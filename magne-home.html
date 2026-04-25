@@ -381,6 +381,32 @@
     }
     .momentum-footer span { margin: 0 0.5rem; }
     .momentum-cta { text-align: center; margin-top: 2rem; display: flex; justify-content: center; align-items: center; gap: 0; flex-wrap: wrap; }
+    .dashboard-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.75rem 1.5rem;
+      background: rgba(0, 212, 212, 0.08);
+      border: 1px solid rgba(0, 212, 212, 0.4);
+      border-radius: 12px;
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(8px);
+    }
+    .dashboard-btn:hover {
+      background: rgba(0, 212, 212, 0.15);
+      border-color: var(--accent);
+      box-shadow: 0 0 20px rgba(0, 212, 212, 0.25);
+      transform: translateY(-2px);
+    }
+    .dashboard-btn svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
 
     /* WHY MAGNE */
     #why-magne .cards-grid {
@@ -1024,7 +1050,16 @@
 
     <div class="momentum-cta">
       <a href="https://payment.magne.ai/lottery" target="_blank" class="btn-primary">Join the Campaign</a>
-      <a href="lottery-dashboard.html" class="btn-secondary" style="margin-left:0.75rem;">📊 View Live Dashboard ↗</a>
+      <a href="lottery-dashboard.html" class="dashboard-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7" rx="1"/>
+          <rect x="14" y="3" width="7" height="7" rx="1"/>
+          <rect x="3" y="14" width="7" height="7" rx="1"/>
+          <path d="M14 17h7"/>
+          <path d="M17.5 14v7"/>
+        </svg>
+        View Live Dashboard ↗
+      </a>
     </div>
   </div>
 </section>
