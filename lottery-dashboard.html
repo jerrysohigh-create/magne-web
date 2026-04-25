@@ -568,9 +568,9 @@
       </div>
 
       <div class="stat-card">
-        <div class="stat-icon">🎲</div>
-        <div class="stat-value" id="entries-today">—</div>
-        <div class="stat-label">Entries Today</div>
+        <div class="stat-icon">🎯</div>
+        <div class="stat-value" id="entries-needed-val">—</div>
+        <div class="stat-label">Entries Until Next Draw</div>
         <div class="stat-trend">Auto-updated</div>
       </div>
     </div>
@@ -711,6 +711,12 @@
           if (fill) fill.style.width = pct + '%';
           if (entriesEl) entriesEl.textContent = entriesNow;
           if (neededEl) neededEl.textContent = d.nextDrawNeed + ' more entries';
+        }
+
+        // Update entries until next draw stat
+        const entriesNeededValEl = document.getElementById('entries-needed-val');
+        if (entriesNeededValEl && d.nextDrawNeed !== undefined) {
+          entriesNeededValEl.textContent = d.nextDrawNeed;
         }
       } catch (e) {
         console.warn('Dashboard API error:', e);
