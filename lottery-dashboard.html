@@ -563,21 +563,21 @@
       <div class="stat-card gold">
         <div class="stat-icon">📱</div>
         <div class="stat-value" id="phones-given">—</div>
-        <div class="stat-label">Phones Given Away</div>
+        <div class="stat-label">Phones Won</div>
         <div class="stat-trend" id="phones-remaining">— remaining</div>
       </div>
 
       <div class="stat-card">
-        <div class="stat-icon">🎯</div>
-        <div class="stat-value" id="entries-needed-val">—</div>
-        <div class="stat-label">Entries Until Next Draw</div>
-        <div class="stat-trend">Auto-updated</div>
+        <div class="stat-icon">💰</div>
+        <div class="stat-value" id="onchain-assets-val">$—</div>
+        <div class="stat-label">On-chain Assets</div>
+        <div class="stat-trend">USDT in pool</div>
       </div>
 
       <div class="stat-card">
         <div class="stat-icon">🎰</div>
         <div class="stat-value" id="curr-round-val">—</div>
-        <div class="stat-label">Current Round</div>
+        <div class="stat-label">Round</div>
         <div class="stat-trend">Live draw</div>
       </div>
 
@@ -743,6 +743,8 @@
           const onChainUsd = onChainRounds * 1000 + entriesNow * 10;
           const poolEl = document.getElementById('prize-pool-amount');
           if (poolEl) poolEl.textContent = '$' + onChainUsd.toLocaleString();
+          const onchainAssetsEl = document.getElementById('onchain-assets-val');
+          if (onchainAssetsEl) onchainAssetsEl.textContent = '$' + onChainUsd.toLocaleString();
         }
 
         // Update entries until next draw stat
