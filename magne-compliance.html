@@ -281,6 +281,22 @@
       line-height: 1.6;
       text-align: center;
     }
+    .cert-card-link {
+      display: inline-block;
+      margin-top: 0.75rem;
+      padding: 0.45rem 1rem;
+      border: 1px solid rgba(0, 191, 255, 0.3);
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--accent);
+      background: rgba(0, 191, 255, 0.06);
+      transition: all 0.2s;
+    }
+    .cert-card-link:hover {
+      background: rgba(0, 191, 255, 0.12);
+      border-color: rgba(0, 191, 255, 0.5);
+    }
 
     /* PUBLIC IDENTIFIERS */
     .identifiers-section {
@@ -549,6 +565,12 @@
       <span class="cert-status approved">Approved</span>
       <p>Built on the latest Android platform with official licensing, ensuring long-term app compatibility and security updates.</p>
     </div>
+    <div class="cert-card animate">
+      <h4>FCC Equipment Authorization</h4>
+      <span class="cert-status passed">Authorized</span>
+      <p>FCC equipment authorization covering licensed cellular, 5GHz Wi-Fi, Bluetooth, NFC, EMC, and SAR — with public grant records under FCC ID 2BVCPGC603606.</p>
+      <a href="fcc-lookup.html" class="cert-card-link">View FCC Documentation →</a>
+    </div>
   </div>
   </div>
 </section>
@@ -709,6 +731,17 @@
       a dedicated supporting page is available.
     </p>
     <a href="gsma-tac-lookup.html" class="btn-primary">View GSMA TAC Details →</a>
+  </div>
+</section>
+
+<!-- FCC SUPPORTING PROOF ENTRY -->
+<section class="supporting-proof-section">
+  <div class="section-inner" style="text-align: center; padding: 5rem 2rem;">
+    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">Need deeper FCC verification?</h3>
+    <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; line-height: 1.7;">
+      For partners, regulatory bodies, and institutional reviewers who require a more detailed view of MAG1's FCC equipment authorization — including SAR reports, cellular RF test data, Wi-Fi / U-NII / DFS reports, EMC results, and public grant records — a dedicated FCC document center is available.
+    </p>
+    <a href="fcc-lookup.html" class="btn-primary">View FCC Documentation →</a>
   </div>
 </section>
 
