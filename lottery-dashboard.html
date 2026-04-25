@@ -579,7 +579,7 @@
     <div class="prize-pool">
       <div class="prize-pool-content">
         <div class="label">💰 Current Prize Pool</div>
-        <div class="amount">$162,221</div>
+        <div class="amount" id="prize-pool-amount">$—</div>
         <div class="subtitle">USDT in reward pool • Live on-chain</div>
       </div>
     </div>
@@ -711,6 +711,12 @@
           if (fill) fill.style.width = pct + '%';
           if (entriesEl) entriesEl.textContent = entriesNow;
           if (neededEl) neededEl.textContent = d.nextDrawNeed + ' more entries';
+
+          // On-chain Assets = (completedRounds * $1000) + (currentEntries * $10)
+          const completedRounds = (d.currRound || 1) - 1;
+          const onChainUsd = completedRounds * 1000 + entriesNow * 10;
+          const poolEl = document.getElementById('prize-pool-amount');
+          if (poolEl) poolEl.textContent = '$' + onChainUsd.toLocaleString();
         }
 
         // Update entries until next draw stat
