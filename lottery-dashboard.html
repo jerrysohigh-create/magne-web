@@ -124,6 +124,12 @@
       letter-spacing: 1px;
     }
 
+    /* Long number display */
+    #pending-mha-val {
+      font-size: 2.2rem;
+      word-break: break-all;
+    }
+
     .stat-trend {
       display: inline-flex;
       align-items: center;
@@ -694,13 +700,6 @@
       </div>
 
       <div class="stat-card">
-        <div class="stat-icon">🎰</div>
-        <div class="stat-value" id="curr-round-val">—</div>
-        <div class="stat-label">Round</div>
-        <div class="stat-trend">Live draw</div>
-      </div>
-
-      <div class="stat-card">
         <div class="stat-icon">🪙</div>
         <div class="stat-value" id="pending-mha-val">—</div>
         <div class="stat-label">Pending MHA Airdrop</div>
@@ -856,9 +855,6 @@
         if (roundEl && d.currRound) roundEl.textContent = d.currRound;
 
         // Current Round stat card
-        const currRoundValEl = document.getElementById('curr-round-val');
-        if (currRoundValEl && d.currRound) currRoundValEl.textContent = d.currRound;
-
         // Pending MHA Airdrop = (currRound - 1) * 99 * 100
         const pendingMhaEl = document.getElementById('pending-mha-val');
         if (pendingMhaEl && d.currRound) {
