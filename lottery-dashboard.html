@@ -40,6 +40,24 @@
       margin: 0 auto;
     }
 
+        .back-home {
+      margin-bottom: 1.5rem;
+    }
+
+    .back-home a {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: color 0.2s;
+    }
+
+    .back-home a:hover {
+      color: var(--accent);
+    }
+
     /* Header */
     .header {
       text-align: center;
@@ -721,6 +739,9 @@
 </head>
 <body>
   <div class="dashboard">
+    <div class="back-home">
+      <a href="magne-home.html">← Back to MAGNE.AI Home</a>
+    </div>
     <div class="header">
       <div class="api-status" id="api-status">
         <span class="dot"></span>
