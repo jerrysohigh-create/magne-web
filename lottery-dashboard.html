@@ -589,15 +589,6 @@
       </div>
     </div>
 
-    <!-- Prize Pool -->
-    <div class="prize-pool">
-      <div class="prize-pool-content">
-        <div class="label">💰 Current Prize Pool</div>
-        <div class="amount" id="prize-pool-amount">$—</div>
-        <div class="subtitle">USDT in reward pool • Live on-chain</div>
-      </div>
-    </div>
-
     <!-- Current Round -->
     <div class="current-round">
       <div class="round-header">
@@ -741,17 +732,10 @@
           // On-chain Assets = (completedRounds * $1000) + (currentEntries * $10)
           const onChainRounds = (d.currRound || 1) - 1;
           const onChainUsd = onChainRounds * 1000 + entriesNow * 10;
-          const poolEl = document.getElementById('prize-pool-amount');
-          if (poolEl) poolEl.textContent = '$' + onChainUsd.toLocaleString();
           const onchainAssetsEl = document.getElementById('onchain-assets-val');
           if (onchainAssetsEl) onchainAssetsEl.textContent = '$' + onChainUsd.toLocaleString();
         }
 
-        // Update entries until next draw stat
-        const entriesNeededValEl = document.getElementById('entries-needed-val');
-        if (entriesNeededValEl && d.nextDrawNeed !== undefined) {
-          entriesNeededValEl.textContent = d.nextDrawNeed;
-        }
       } catch (e) {
         console.warn('Dashboard API error:', e);
       }
