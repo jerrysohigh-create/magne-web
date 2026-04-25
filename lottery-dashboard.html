@@ -410,40 +410,6 @@
       box-shadow: 0 10px 40px var(--accent-glow);
     }
 
-    /* Recent Draws */
-    .recent-draws {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 1.5rem 2rem;
-      margin-bottom: 1.5rem;
-    }
-    .recent-draws-note {
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.3);
-      margin-bottom: 1rem;
-    }
-    .draws-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.82rem;
-    }
-    .draws-table th {
-      text-align: left;
-      padding: 0.5rem 0.75rem;
-      color: rgba(255,255,255,0.4);
-      font-weight: 600;
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-    .draws-table td {
-      padding: 0.6rem 0.75rem;
-      color: var(--text-secondary);
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-    }
-
     /* Recent Activity */
     .recent-activity {
       background: var(--bg-secondary);
@@ -765,29 +731,6 @@
           🎲 Participate in Lottery
         </button>
       </div>
-    </div>
-
-    <!-- Recent Draws -->
-    <div class="recent-draws">
-      <div class="activity-title">📋 Recent Draws</div>
-      <div class="recent-draws-note">Draw result timestamps are recorded on-chain. Connect wallet to verify your participation history.</div>
-      <table class="draws-table">
-        <thead>
-          <tr>
-            <th>Round</th>
-            <th>Winner Address</th>
-            <th>Result</th>
-            <th>Tx</th>
-          </tr>
-        </thead>
-        <tbody id="draws-tbody">
-          <tr>
-            <td colspan="4" style="text-align:center; color: rgba(255,255,255,0.3); padding: 2rem;">
-              Connect wallet to view your draw history
-            </td>
-          </tr>
-        </tbody>
-      </table>
     </div>
 
     <!-- All Winners -->
