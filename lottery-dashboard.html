@@ -61,32 +61,42 @@
       font-size: 1rem;
     }
 
+    /* Section Label */
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 1rem;
+    }
+
     /* Stats Grid */
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
       margin-bottom: 2rem;
     }
 
     .stat-card {
       background: var(--bg-secondary);
       border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 2rem;
+      border-radius: 16px;
+      padding: 1.5rem 1.25rem;
       position: relative;
       overflow: hidden;
       transition: all 0.3s ease;
     }
 
     .stat-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
     }
 
     .stat-card.gold {
-      border-color: rgba(255, 215, 0, 0.3);
-      background: linear-gradient(135deg, rgba(255, 215, 0, 0.05), transparent);
+      border-color: rgba(255, 215, 0, 0.25);
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.06), transparent);
     }
 
     .stat-card.gold::before {
@@ -95,22 +105,22 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 3px;
+      height: 2px;
       background: linear-gradient(90deg, var(--gold), transparent);
     }
 
     .stat-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
+      font-size: 1.8rem;
+      margin-bottom: 0.75rem;
     }
 
     .stat-value {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 3rem;
+      font-size: 2.4rem;
       font-weight: 700;
       color: var(--accent);
       line-height: 1;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
     }
 
     .stat-card.gold .stat-value {
@@ -118,10 +128,16 @@
     }
 
     .stat-label {
-      font-size: 0.9rem;
+      font-size: 0.72rem;
       color: var(--text-secondary);
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 1.2px;
+    }
+
+    .stat-trend {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.35);
+      margin-top: 0.4rem;
     }
 
     /* Long number display */
@@ -148,36 +164,40 @@
       border: 1px solid rgba(0, 212, 212, 0.15);
       border-radius: 16px;
       padding: 1.5rem 2rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
     }
     .rules-header {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 700;
-      letter-spacing: 2px;
+      letter-spacing: 2.5px;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 1rem;
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid rgba(0,212,212,0.1);
+      padding-bottom: 0.75rem;
     }
     .rules-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 1rem;
     }
     .rule-item {
       display: flex;
       align-items: flex-start;
-      gap: 0.75rem;
-      font-size: 0.88rem;
+      gap: 0.6rem;
+      font-size: 0.85rem;
       color: var(--text-secondary);
+      line-height: 1.5;
     }
     .rule-icon {
       font-size: 1.1rem;
       flex-shrink: 0;
+      margin-top: 0.1rem;
     }
     .rules-note {
       margin-top: 1rem;
-      font-size: 0.75rem;
-      color: rgba(255,255,255,0.3);
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.25);
       text-align: center;
     }
 
@@ -399,17 +419,19 @@
       background: var(--bg-secondary);
       border: 1px solid var(--border);
       border-radius: 20px;
-      padding: 2rem;
-      margin-top: 2rem;
+      padding: 1.75rem;
+      margin-top: 1.5rem;
     }
 
     .activity-title {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-      color: var(--text-secondary);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding-bottom: 0.75rem;
     }
 
     .activity-list {
@@ -568,21 +590,57 @@
       .dashboard {
         padding: 1rem;
       }
-      
+
       .header h1 {
+        font-size: 1.6rem;
+      }
+
+      .rules-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+      }
+
+      .stat-card {
+        padding: 1.25rem 1rem;
+      }
+
+      .stat-value {
         font-size: 1.8rem;
       }
-      
-      .stat-value {
-        font-size: 2.2rem;
+
+      #pending-mha-val {
+        font-size: 1.5rem;
       }
-      
-      .prize-pool .amount {
-        font-size: 2.5rem;
+
+      .stat-icon {
+        font-size: 1.5rem;
       }
-      
-      .progress-bar {
-        height: 50px;
+
+      .tier-cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+      }
+
+      .tier-amount {
+        font-size: 1.3rem;
+      }
+
+      .recent-activity {
+        padding: 1.25rem;
+      }
+
+      .activity-item {
+        padding: 0.85rem;
+        gap: 0.75rem;
+      }
+
+      .winners-pagination {
+        flex-direction: column;
+        align-items: flex-start;
       }
     }
   </style>
@@ -686,6 +744,7 @@
         </div>
       </div>
 
+      <div class="section-label">Participation Options</div>
       <!-- Entry Tier Cards -->
       <div class="tier-cards">
         <div class="tier-card">
@@ -717,6 +776,7 @@
       </div>
     </div>
 
+    <div class="section-label" style="margin-top:2rem;">All Winners</div>
     <!-- All Winners -->
     <div class="recent-activity">
       <div class="activity-title">🏆 All Winners</div>
