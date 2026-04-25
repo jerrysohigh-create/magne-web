@@ -325,68 +325,10 @@
       color: var(--text-secondary);
     }
 
-    /* Ticket Tiers */
-    .ticket-tiers {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-    }
-
-    .tier-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.5rem;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .tier-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-    }
-
-    .tier-card.selected {
-      border-color: var(--gold);
-      background: var(--gold-dim);
-    }
-
-    .tier-amount {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 0.3rem;
-    }
-
-    .tier-label {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      margin-bottom: 0.5rem;
-    }
-
-    .tier-chances {
-      font-size: 0.8rem;
-      color: var(--gold);
-      font-weight: 600;
-    }
-
     /* Participate Button */
     .participate-section {
       text-align: center;
       margin-top: 2rem;
-    }
-
-    .your-draws {
-      font-size: 1rem;
-      color: var(--text-secondary);
-      margin-bottom: 1rem;
-    }
-
-    .your-draws span {
-      color: var(--accent);
-      font-weight: 600;
     }
 
     .btn-participate {
@@ -403,6 +345,7 @@
       cursor: pointer;
       transition: all 0.3s;
       font-family: 'Outfit', sans-serif;
+      text-decoration: none;
     }
 
     .btn-participate:hover {
@@ -702,34 +645,10 @@
         </div>
       </div>
 
-      <div class="ticket-tiers">
-        <div class="tier-card" onclick="selectTier(this, 1)">
-          <div class="tier-amount">10 USDT</div>
-          <div class="tier-label">Standard Entry</div>
-          <div class="tier-chances">🎯 1 Chance</div>
-        </div>
-        <div class="tier-card selected" onclick="selectTier(this, 2)">
-          <div class="tier-amount">20 USDT</div>
-          <div class="tier-label">Double Up</div>
-          <div class="tier-chances">🎯 2 Chances</div>
-        </div>
-        <div class="tier-card" onclick="selectTier(this, 5)">
-          <div class="tier-amount">50 USDT</div>
-          <div class="tier-label">High Roller</div>
-          <div class="tier-chances">🎯 5 Chances</div>
-        </div>
-        <div class="tier-card" onclick="selectTier(this, 10)">
-          <div class="tier-amount">100 USDT</div>
-          <div class="tier-label">Maximum</div>
-          <div class="tier-chances">🎯 10 Chances</div>
-        </div>
-      </div>
-
       <div class="participate-section">
-        <div class="your-draws">Your draws: <span id="your-draws">0</span> / 10</div>
-        <button class="btn-participate" onclick="alert('Connect wallet to participate!')">
+        <a href="https://payment.magne.ai/lottery" target="_blank" class="btn-participate">
           🎲 Participate in Lottery
-        </button>
+        </a>
       </div>
     </div>
 
@@ -909,13 +828,6 @@
       renderWinnersPage(newPage);
       // Scroll to winners section
       document.querySelector('.recent-activity')?.scrollIntoView({ behavior: 'smooth' });
-    }
-
-    function selectTier(element) {
-      document.querySelectorAll('.tier-card').forEach(card => {
-        card.classList.remove('selected');
-      });
-      element.classList.add('selected');
     }
 
     // Initial load
