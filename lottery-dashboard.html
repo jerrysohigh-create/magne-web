@@ -389,6 +389,66 @@
       border: 1px solid rgba(255, 215, 0, 0.3);
     }
 
+    .winners-pagination {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .winners-pagination .winners-count {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+    }
+    .pagination-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .page-btn {
+      padding: 0.4rem 1rem;
+      border: 1px solid var(--border-hover);
+      border-radius: 8px;
+      background: var(--bg-card);
+      color: var(--text-primary);
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .page-btn:hover:not(:disabled) {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .page-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+    .page-indicator {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      font-family: 'JetBrains Mono', monospace;
+      white-space: nowrap;
+    }
+    .win-count-badge {
+      display: inline-flex;
+      align-items: center;
+      margin-left: 0.4rem;
+      padding: 0.1rem 0.45rem;
+      background: rgba(255, 215, 0, 0.2);
+      border: 1px solid rgba(255, 215, 0, 0.4);
+      border-radius: 999px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .activity-round {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.2rem;
+    }
     .activity-icon {
       width: 44px;
       height: 44px;
@@ -502,16 +562,16 @@
 
       <div class="stat-card gold">
         <div class="stat-icon">📱</div>
-        <div class="stat-value" id="phones-given">143</div>
-        <div class="stat-label">Phones Given Away</div>
-        <div class="stat-trend">857 remaining</div>
+        <div class="stat-value" id="phones-given">—</div>
+        <div class="stat-label">Unique Winners</div>
+        <div class="stat-trend">of 1,000 phones in pool</div>
       </div>
 
       <div class="stat-card">
         <div class="stat-icon">🎲</div>
-        <div class="stat-value" id="entries-today">89</div>
+        <div class="stat-value" id="entries-today">—</div>
         <div class="stat-label">Entries Today</div>
-        <div class="stat-trend">↑ +12% vs yesterday</div>
+        <div class="stat-trend">Auto-updated</div>
       </div>
     </div>
 
@@ -577,35 +637,18 @@
       </div>
     </div>
 
-    <!-- Recent Winners -->
+    <!-- All Winners -->
     <div class="recent-activity">
-      <div class="activity-title">🏆 Recent Winners</div>
-      <div class="activity-list" id="activity-list">
-        <div class="activity-item activity-winner">
-          <div class="activity-icon phone">📱</div>
-          <div class="activity-content">
-            <div class="activity-text">Won <strong>1x Magne Phone</strong> (8+512GB)</div>
-            <div class="activity-time">Round 143 • 3 minutes ago</div>
-            <div class="activity-addr">0x7a8...3f2d</div>
-          </div>
-        </div>
-        <div class="activity-item">
-          <div class="activity-icon mha">💎</div>
-          <div class="activity-content">
-            <div class="activity-text">Received <strong>100 MHA</strong> consolation prize</div>
-            <div class="activity-time">Round 143 • 3 minutes ago</div>
-            <div class="activity-addr">0x4c2...9a1e</div>
-          </div>
-        </div>
-        <div class="activity-item activity-winner">
-          <div class="activity-icon phone">📱</div>
-          <div class="activity-content">
-            <div class="activity-text">Won <strong>1x Magne Phone</strong> (8+512GB)</div>
-            <div class="activity-time">Round 142 • 8 minutes ago</div>
-            <div class="activity-addr">0x9d3...1b7c</div>
-          </div>
+      <div class="activity-title">🏆 All Winners</div>
+      <div class="winners-pagination">
+        <span id="winners-count"></span>
+        <div class="pagination-controls">
+          <button class="page-btn" id="prev-btn" onclick="changePage(-1)" disabled>← Prev</button>
+          <span class="page-indicator" id="page-indicator"></span>
+          <button class="page-btn" id="next-btn" onclick="changePage(1)" disabled>Next →</button>
         </div>
       </div>
+      <div class="activity-list" id="activity-list"></div>
     </div>
 
     <!-- Footer Note -->
@@ -668,52 +711,92 @@
       }
     }
 
-    // Load winners list
+    // Pagination state
+    let allWinners = [];
+    let winCountMap = {};  // address -> number of wins
+    const PAGE_SIZE = 20;
+    let currentPage = 1;
+
+    // Load all winners with pagination
     async function loadWinners() {
       try {
         const res = await fetch(WINNERS_API);
         const json = await res.json();
         if (json.code !== 200 || !json.data) return;
 
-        // Show latest 10 winners
-        const winners = json.data.slice(0, 10);
-        const list = document.getElementById('activity-list');
-        if (!list) return;
+        allWinners = json.data; // already sorted newest first by API
 
-        list.innerHTML = '';
-        winners.forEach((w, i) => {
-          const item = document.createElement('div');
-          item.className = 'activity-item' + (w.hasAddress ? ' activity-winner' : '');
-          const statusIcon = w.hasAddress ? '✓' : '⚠';
-          const statusText = w.hasAddress ? 'Address Filled' : 'Address Not Set';
-          const timeAgo = getTimeAgo(w.drawRound);
-          const bscUrl = 'https://bscscan.com/address/' + w.address;
-          item.innerHTML = `
-            <div class="activity-icon phone">📱</div>
-            <div class="activity-content">
-              <div class="activity-text">
-                Won <strong>1x Magne Phone</strong>
-                <span class="addr-status ${w.hasAddress ? 'filled' : 'unset'}">${statusIcon} ${statusText}</span>
-              </div>
-              <div class="activity-time">Round ${w.drawRound} • ${timeAgo}</div>
-              <a class="activity-addr" href="${bscUrl}" target="_blank" rel="noopener" title="View on BSC Scan">${fmtAddr(w.address)} ↗</a>
-            </div>
-          `;
-          list.appendChild(item);
+        // Count wins per address
+        winCountMap = {};
+        allWinners.forEach(w => {
+          winCountMap[w.address] = (winCountMap[w.address] || 0) + 1;
         });
+
+        // Update total count in stats
+        const phonesGivenEl = document.getElementById('phones-given');
+        if (phonesGivenEl) {
+          phonesGivenEl.textContent = Object.keys(winCountMap).length;
+        }
+
+        renderWinnersPage(1);
       } catch (e) {
         console.warn('Winners API error:', e);
       }
     }
 
-    // Rough time-ago based on round number (each round = ~100 entries, ~1 entry ≈ some time)
-    // We don't have real timestamps, so show round-based relative text
-    function getTimeAgo(round) {
-      const currRound = parseInt(document.getElementById('round-number')?.textContent || '152');
-      const diff = currRound - round;
-      if (diff === 0) return 'This round';
-      if (diff === 1) return 'Previous round';
-      return `${diff} rounds ago`;
+    function renderWinnersPage(page) {
+      currentPage = page;
+      const list = document.getElementById('activity-list');
+      if (!list) return;
+
+      const totalPages = Math.ceil(allWinners.length / PAGE_SIZE);
+      const start = (page - 1) * PAGE_SIZE;
+      const pageWinners = allWinners.slice(start, start + PAGE_SIZE);
+
+      list.innerHTML = '';
+      pageWinners.forEach(w => {
+        const wins = winCountMap[w.address] || 1;
+        const item = document.createElement('div');
+        item.className = 'activity-item' + (w.hasAddress ? ' activity-winner' : '');
+        const statusIcon = w.hasAddress ? '✓' : '⚠';
+        const statusText = w.hasAddress ? 'Address Filled' : 'Address Not Set';
+        const bscUrl = 'https://bscscan.com/address/' + w.address;
+        const winBadge = wins > 1
+          ? `<span class="win-count-badge">×${wins} WINS</span>`
+          : '';
+        item.innerHTML = `
+          <div class="activity-icon phone">📱</div>
+          <div class="activity-content">
+            <div class="activity-text">
+              Won <strong>1x Magne Phone</strong> ${winBadge}
+              <span class="addr-status ${w.hasAddress ? 'filled' : 'unset'}">${statusIcon} ${statusText}</span>
+            </div>
+            <div class="activity-round">Round ${w.drawRound}</div>
+            <a class="activity-addr" href="${bscUrl}" target="_blank" rel="noopener" title="View on BSC Scan">${fmtAddr(w.address)} ↗</a>
+          </div>
+        `;
+        list.appendChild(item);
+      });
+
+      // Update pagination controls
+      const prevBtn = document.getElementById('prev-btn');
+      const nextBtn = document.getElementById('next-btn');
+      const pageIndicator = document.getElementById('page-indicator');
+      const winnersCount = document.getElementById('winners-count');
+
+      if (prevBtn) prevBtn.disabled = page <= 1;
+      if (nextBtn) nextBtn.disabled = page >= totalPages;
+      if (pageIndicator) pageIndicator.textContent = `Page ${page} / ${totalPages}`;
+      if (winnersCount) winnersCount.textContent = `${allWinners.length} winners`;
+    }
+
+    function changePage(delta) {
+      const totalPages = Math.ceil(allWinners.length / PAGE_SIZE);
+      const newPage = currentPage + delta;
+      if (newPage < 1 || newPage > totalPages) return;
+      renderWinnersPage(newPage);
+      // Scroll to winners section
+      document.querySelector('.recent-activity')?.scrollIntoView({ behavior: 'smooth' });
     }
 
     function selectTier(element) {
