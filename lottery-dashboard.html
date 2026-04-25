@@ -573,6 +573,20 @@
         <div class="stat-label">Entries Until Next Draw</div>
         <div class="stat-trend">Auto-updated</div>
       </div>
+
+      <div class="stat-card">
+        <div class="stat-icon">🎰</div>
+        <div class="stat-value" id="curr-round-val">—</div>
+        <div class="stat-label">Current Round</div>
+        <div class="stat-trend">Live draw</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon">🪙</div>
+        <div class="stat-value" id="pending-mha-val">—</div>
+        <div class="stat-label">Pending MHA Airdrop</div>
+        <div class="stat-trend">MHA Token</div>
+      </div>
     </div>
 
     <!-- Prize Pool -->
@@ -701,6 +715,18 @@
         const roundEl = document.getElementById('round-number');
         if (roundEl && d.currRound) roundEl.textContent = d.currRound;
 
+        // Current Round stat card
+        const currRoundValEl = document.getElementById('curr-round-val');
+        if (currRoundValEl && d.currRound) currRoundValEl.textContent = d.currRound;
+
+        // Pending MHA Airdrop = (currRound - 1) * 99 * 100
+        const pendingMhaEl = document.getElementById('pending-mha-val');
+        if (pendingMhaEl && d.currRound) {
+          const completedRounds = d.currRound - 1;
+          const pendingMha = completedRounds * 99 * 100;
+          pendingMhaEl.textContent = pendingMha.toLocaleString();
+        }
+
         // Progress bar: how many entries toward next draw
         if (d.nextDrawNeed !== undefined) {
           const entriesNow = 100 - d.nextDrawNeed;
@@ -713,8 +739,8 @@
           if (neededEl) neededEl.textContent = d.nextDrawNeed + ' more entries';
 
           // On-chain Assets = (completedRounds * $1000) + (currentEntries * $10)
-          const completedRounds = (d.currRound || 1) - 1;
-          const onChainUsd = completedRounds * 1000 + entriesNow * 10;
+          const onChainRounds = (d.currRound || 1) - 1;
+          const onChainUsd = onChainRounds * 1000 + entriesNow * 10;
           const poolEl = document.getElementById('prize-pool-amount');
           if (poolEl) poolEl.textContent = '$' + onChainUsd.toLocaleString();
         }
