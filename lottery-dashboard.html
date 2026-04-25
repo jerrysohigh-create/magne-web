@@ -563,8 +563,8 @@
       <div class="stat-card gold">
         <div class="stat-icon">📱</div>
         <div class="stat-value" id="phones-given">—</div>
-        <div class="stat-label">Unique Winners</div>
-        <div class="stat-trend">of 1,000 phones in pool</div>
+        <div class="stat-label">Phones Given Away</div>
+        <div class="stat-trend" id="phones-remaining">— remaining</div>
       </div>
 
       <div class="stat-card">
@@ -683,12 +683,18 @@
           ? d.totalParticipants.toLocaleString()
           : '—';
 
-        // Phones given = winners with address filled (approximation from winners count)
+        // Phones given = from dashboard API totalMobile field
         const phonesGivenEl = document.getElementById('phones-given');
+        const phonesRemainingEl = document.getElementById('phones-remaining');
+        const TOTAL_PHONES = 1000;
         if (phonesGivenEl) {
           phonesGivenEl.textContent = d.totalMobile
             ? d.totalMobile.toLocaleString()
             : '—';
+        }
+        if (phonesRemainingEl) {
+          const given = d.totalMobile || 0;
+          phonesRemainingEl.textContent = (TOTAL_PHONES - given).toLocaleString() + ' remaining';
         }
 
         // Update round number and progress
@@ -731,12 +737,6 @@
         allWinners.forEach(w => {
           winCountMap[w.address] = (winCountMap[w.address] || 0) + 1;
         });
-
-        // Update total count in stats
-        const phonesGivenEl = document.getElementById('phones-given');
-        if (phonesGivenEl) {
-          phonesGivenEl.textContent = Object.keys(winCountMap).length;
-        }
 
         renderWinnersPage(1);
       } catch (e) {
