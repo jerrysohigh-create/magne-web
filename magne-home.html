@@ -429,6 +429,95 @@
       line-height: 1.7; 
     }
 
+    /* PARTNERS */
+    #partners {
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .partners-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 0.75rem;
+    }
+
+    .partners-heading {
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 700;
+      margin-bottom: 3rem;
+      color: var(--text-primary);
+    }
+
+    .partners-heading span {
+      color: var(--accent);
+    }
+
+    .partners-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .partner-card {
+      background: rgba(0, 212, 212, 0.04);
+      border: 1px solid rgba(0, 212, 212, 0.2);
+      border-radius: 16px;
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+      min-height: 100px;
+    }
+
+    .partner-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 20px rgba(0, 212, 212, 0.15);
+      transform: translateY(-3px);
+    }
+
+    .partner-card img {
+      height: 36px;
+      width: auto;
+      object-fit: contain;
+      filter: brightness(0.9) saturate(0.9);
+      transition: filter 0.3s;
+    }
+
+    .partner-card:hover img {
+      filter: brightness(1) saturate(1);
+    }
+
+    .partner-card .partner-name {
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    .partners-cta {
+      margin-top: 2.5rem;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+    }
+
+    .partners-cta a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .partners-cta a:hover {
+      opacity: 0.7;
+    }
+
     /* SECURITY */
     #security {
       background: linear-gradient(180deg, var(--bg-primary) 0%, rgba(138,43,226,0.05) 100%);
@@ -968,6 +1057,59 @@
       <p>Built with certification and compatibility readiness in mind for broader real-world deployment.</p>
     </div>
   </div>
+</section>
+
+<!-- PARTNERS -->
+<section id="partners">
+  <div class="partners-title">Backed by Industry Leaders</div>
+  <h2 class="partners-heading">Strategic <span>Partners</span></h2>
+  <div class="partners-grid">
+    <div class="partner-card">
+      <img src="partners/google.png" alt="Google">
+      <span class="partner-name">Google</span>
+    </div>
+    <div class="partner-card">
+      <img src="partners/google-cloud.png" alt="Google Cloud">
+      <span class="partner-name">Google Cloud</span>
+    </div>
+    <div class="partner-card">
+      <img src="partners/fih.png" alt="FIH">
+      <span class="partner-name">FIH Mobile</span>
+    </div>
+    <div class="partner-card">
+      <img src="partners/imag.png" alt="IMG">
+      <span class="partner-name">IMG</span>
+    </div>
+    <div class="partner-card">
+      <img src="partners/kucoin_new.png" alt="KuCoin">
+      <span class="partner-name">KuCoin</span>
+    </div>
+    <div class="partner-card">
+      <img src="partners/mexc-new.png" alt="MEXC">
+      <span class="partner-name">MEXC</span>
+    </div>
+    <div class="partner-card">
+      <img src="partners/bitget.png" alt="Bitget">
+      <span class="partner-name">Bitget</span>
+    </div>
+    <div class="partner-card">
+      <img src="partners/castrum.png" alt="Castrum Capital">
+      <span class="partner-name">Castrum Capital</span>
+    </div>
+    <div class="partner-card">
+      <img src="partners/duckdao.png" alt="DuckDAO">
+      <span class="partner-name">DuckDAO</span>
+    </div>
+    <div class="partner-card">
+      <img src="partners/becker.png" alt="Becker Ventures">
+      <span class="partner-name">Becker Ventures</span>
+    </div>
+    <div class="partner-card">
+      <img src="partners/tbv.png" alt="TBV">
+      <span class="partner-name">TBV</span>
+    </div>
+  </div>
+  <p class="partners-cta"><a href="magne-landing.html">View all partners →</a></p>
 </section>
 
 <!-- SCREEN 3: THREE-LAYER SECURITY -->
