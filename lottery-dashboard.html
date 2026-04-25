@@ -136,6 +136,59 @@
       border-radius: 6px;
     }
 
+    /* Lottery Rules */
+    .rules-section {
+      background: rgba(0, 212, 212, 0.05);
+      border: 1px solid rgba(0, 212, 212, 0.15);
+      border-radius: 16px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .rules-header {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    .rule-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+    }
+    .rule-icon {
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .rules-note {
+      margin-top: 1rem;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+    }
+
+    /* Device Info */
+    .device-info {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      padding: 1rem 0;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .device-info-item {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+    }
+
     /* Prize Pool Card */
     .prize-pool {
       background: linear-gradient(135deg, rgba(0, 212, 212, 0.1), rgba(255, 215, 0, 0.05));
@@ -351,6 +404,40 @@
       box-shadow: 0 10px 40px var(--accent-glow);
     }
 
+    /* Recent Draws */
+    .recent-draws {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .recent-draws-note {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 1rem;
+    }
+    .draws-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+    }
+    .draws-table th {
+      text-align: left;
+      padding: 0.5rem 0.75rem;
+      color: rgba(255,255,255,0.4);
+      font-weight: 600;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .draws-table td {
+      padding: 0.6rem 0.75rem;
+      color: var(--text-secondary);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
     /* Recent Activity */
     .recent-activity {
       background: var(--bg-secondary);
@@ -551,6 +638,38 @@
       <p>1,000 AI Phones to be given away • Every 100 entries = 1 draw</p>
     </div>
 
+    <!-- Lottery Rules -->
+    <div class="rules-section">
+      <div class="rules-header">🎰 Lottery Rules</div>
+      <div class="rules-grid">
+        <div class="rule-item">
+          <div class="rule-icon">📱</div>
+          <div class="rule-text">
+            <strong>1,000 AI Phones</strong> to be given away globally
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">💰</div>
+          <div class="rule-text">
+            Each wallet up to <strong>10 entries</strong> at <strong>10 USDT</strong> per entry
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">🎯</div>
+          <div class="rule-text">
+            Every <strong>100 entries</strong> = 1 draw for <strong>1 phone (8+512GB)</strong>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">🪙</div>
+          <div class="rule-text">
+            Non-winners receive <strong>100 MHA</strong> within 30 days after TGE
+          </div>
+        </div>
+      </div>
+      <div class="rules-note">Magne.ai reserves final interpretation rights.</div>
+    </div>
+
     <!-- Stats Grid -->
     <div class="stats-grid">
       <div class="stat-card">
@@ -587,6 +706,13 @@
         <div class="stat-label">Pending MHA Airdrop</div>
         <div class="stat-trend">MHA Token</div>
       </div>
+    </div>
+
+    <!-- Device Info -->
+    <div class="device-info">
+      <div class="device-info-item">📱 <strong>Device:</strong> 8GB + 512GB</div>
+      <div class="device-info-item">🚚 <strong>Shipping:</strong> First batch Jul–Sep 2026</div>
+      <div class="device-info-item">🪙 <strong>MHA Airdrop:</strong> Within 30 days after TGE</div>
     </div>
 
     <!-- Current Round -->
@@ -640,6 +766,29 @@
           🎲 Participate in Lottery
         </button>
       </div>
+    </div>
+
+    <!-- Recent Draws -->
+    <div class="recent-draws">
+      <div class="activity-title">📋 Recent Draws</div>
+      <div class="recent-draws-note">Draw result timestamps are recorded on-chain. Connect wallet to verify your participation history.</div>
+      <table class="draws-table">
+        <thead>
+          <tr>
+            <th>Round</th>
+            <th>Winner Address</th>
+            <th>Result</th>
+            <th>Tx</th>
+          </tr>
+        </thead>
+        <tbody id="draws-tbody">
+          <tr>
+            <td colspan="4" style="text-align:center; color: rgba(255,255,255,0.3); padding: 2rem;">
+              Connect wallet to view your draw history
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <!-- All Winners -->
