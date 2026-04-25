@@ -2803,5 +2803,56 @@
         }
       });
     </script>
+
+    <!-- Lottery Live Data -->
+    <script>
+    (function() {
+      const DASHBOARD_API = 'https://payment.magne.ai/api/v1/lottery/dashboard';
+      const MHA_PER_NON_WINNER = 100;
+      const NON_WINNERS_PER_ROUND = 99;
+
+      function fmtNum(n) {
+        if (n === undefined || n === null || n === '--') return '--';
+        return Number(n).toLocaleString();
+      }
+
+      function setEl(id, val) {
+        const el = document.getElementById(id);
+        if (el) el.textContent = val !== undefined && val !== null ? val : '--';
+      }
+
+      async function loadLottery() {
+        try {
+          const res = await fetch(DASHBOARD_API);
+          const json = await res.json();
+          if (json.code !== 200 || !json.data) return;
+          const d = json.data;
+
+          setEl('lottery-participants', fmtNum(d.totalParticipants));
+          setEl('lottery-phones', fmtNum(d.totalMobile));
+          setEl('lottery-round', fmtNum(d.currRound));
+
+          // Pending MHA Airdrop = (currRound - 1) * 99 * 100
+          const completedRounds = (d.currRound || 1) - 1;
+          const pendingMha = completedRounds * NON_WINNERS_PER_ROUND * MHA_PER_NON_WINNER;
+          setEl('lottery-mha', fmtNum(pendingMha));
+
+          // Next draw progress
+          if (d.nextDrawNeed !== undefined) {
+            const entriesNow = 100 - d.nextDrawNeed;
+            setEl('lottery-entries', entriesNow);
+            setEl('lottery-entries-bar', entriesNow);
+            const fill = document.getElementById('lottery-progress-bar');
+            if (fill) fill.style.width = Math.min(100, Math.max(0, entriesNow)) + '%';
+          }
+        } catch (e) {
+          console.warn('Lottery API error:', e);
+        }
+      }
+
+      loadLottery();
+      setInterval(loadLottery, 30000);
+    })();
+    </script>
   </body>
 </html>
