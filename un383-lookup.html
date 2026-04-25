@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UN38.3 Transport &amp; Shipping Compliance Details — MAGNE.AI</title>
+  <link rel="icon" type="image/png" href="logo-icon-circle.png">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0a0c;
+      --bg-secondary: #0f0f12;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.10);
+      --text-primary: #f5f5f7;
+      --text-secondary: rgba(245, 245, 247, 0.6);
+      --text-muted: rgba(245, 245, 247, 0.4);
+      --accent: #00d4d4;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 12, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-decoration: none;
+    }
+    .nav-back {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--accent); }
+
+    .hero {
+      padding: 9rem 2rem 5rem;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+    .hero-sub {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      max-width: 680px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .section { padding: 6rem 2rem; }
+    .section-shell { width: min(1200px, calc(100% - 48px)); margin: 0 auto; }
+    .section-header { max-width: 900px; margin: 0 auto 3rem; text-align: center; }
+    .section-header h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .section-header p {
+      color: var(--text-secondary);
+      max-width: 680px;
+      margin: 0 auto;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+    .section-intro {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      text-align: center;
+    }
+    .section-intro p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      background: var(--accent);
+      color: #000;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
+    .btn-secondary {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .summary-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.25s ease;
+    }
+    .summary-card:hover {
+      border-color: rgba(0, 212, 212, 0.3);
+      transform: translateY(-3px);
+    }
+    .summary-card h4 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.75rem; }
+    .summary-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.65; }
+
+    .docs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .doc-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.75rem;
+      text-align: center;
+      transition: all 0.25s ease;
+    }
+    .doc-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+    .doc-id {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--accent);
+      background: rgba(0, 212, 212, 0.12);
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+    .doc-card h4 { font-size: 1rem; font-weight: 600; margin-bottom: 0.6rem; }
+    .doc-summary {
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      line-height: 1.65;
+      margin-bottom: 1rem;
+    }
+    .doc-actions {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .doc-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.6rem 0.9rem;
+      border: 1px solid var(--border-hover);
+      border-radius: 8px;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .doc-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    .highlight-box {
+      margin-top: 3rem;
+      background: linear-gradient(180deg, rgba(0,212,212,0.05) 0%, rgba(0,212,212,0.01) 100%);
+      border: 1px solid rgba(0, 212, 212, 0.15);
+      border-radius: 20px;
+      padding: 2.5rem;
+      text-align: center;
+    }
+    .highlight-box h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem; }
+    .highlight-box p {
+      color: var(--text-secondary);
+      max-width: 760px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    .cta-section {
+      padding: 6rem 2rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .cta-shell { width: min(1000px, calc(100% - 48px)); margin: 0 auto; }
+    .cta-shell h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .cta-shell p {
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.8;
+    }
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    footer {
+      text-align: center;
+      padding: 4rem 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .footer-links a { color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--accent); }
+
+    @media (max-width: 640px) {
+      .hero { padding: 7rem 1.5rem 3rem; }
+      .section { padding: 3rem 1.5rem; }
+      .summary-grid,
+      .docs-grid { grid-template-columns: 1fr; }
+      .doc-actions { flex-direction: column; }
+      nav { padding: 0.9rem 1.25rem; }
+      .nav-back { font-size: 0.82rem; }
+      .section-header h2 { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="magne-home.html" class="nav-logo">MAGNE.AI</a>
+    <a href="magne-compliance.html" class="nav-back">← Back to Compliance</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">COMPLIANCE SUPPORTING PAGE</div>
+    <h1>UN38.3 Transport &amp; Shipping Compliance Details</h1>
+    <p class="hero-sub">
+      A supporting page for partners, exchanges, logistics counterparts, and institutional reviewers
+      who require deeper verification of MAG1 battery's transport safety, shipping compliance,
+      and supporting documentation.
+    </p>
+    <div class="hero-ctas">
+      <a href="magne-compliance.html" class="btn-secondary">← Back to Compliance</a>
+    </div>
+  </section>
+
+  <!-- SECTION 1: TRANSPORT SAFETY SUMMARY -->
+  <section class="section">
+    <div class="section-shell">
+      <div class="section-header">
+        <h2>Transport Safety Summary</h2>
+        <p>A concise overview of MAG1 battery's transport safety and shipping compliance document set.</p>
+      </div>
+      <div class="section-intro">
+        <p>
+          MAG1 battery is supported by a transport-oriented compliance document set that includes
+          safety data, UN38.3 testing, packaging validation, and shipment classification materials.
+          This page is intended to provide a structured supporting reference for parties who require
+          a more detailed view of transport readiness and logistics-facing documentation.
+        </p>
+        <p style="margin-top:1rem;">
+          Rather than functioning as a general product summary, this page is focused on the
+          transport and shipment context of MAG1 battery and should be read together with MAG1's
+          broader compliance and product-readiness materials.
+        </p>
+      </div>
+      <div class="summary-grid">
+        <div class="summary-card">
+          <h4>Battery Model</h4>
+          <p>MGU</p>
+        </div>
+        <div class="summary-card">
+          <h4>Battery Rating</h4>
+          <p>3.87V / 4900mAh / 18.97Wh</p>
+        </div>
+        <div class="summary-card">
+          <h4>UN38.3 Status</h4>
+          <p>Passed — T1 through T8</p>
+        </div>
+        <div class="summary-card">
+          <h4>Supporting Scope</h4>
+          <p>Transport, packaging, and shipping compliance</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: CORE COMPLIANCE DOCUMENTS -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="section-shell">
+      <div class="section-header">
+        <h2>Core Compliance Documents</h2>
+        <p>Primary transport safety documents associated with MAG1 battery's shipping compliance profile.</p>
+      </div>
+      <div class="section-intro">
+        <p>
+          The following documents form the core transport safety record for MAG1 battery.
+          Together, they provide a structured view of hazard information, formal UN38.3 testing,
+          and the summary-level transport reference commonly required in shipping and logistics review.
+          The battery is consistently described across these materials as model <strong>MGU</strong>,
+          rated at <strong>3.87V / 4900mAh / 18.97Wh</strong>.
+        </p>
+      </div>
+      <div class="docs-grid">
+        <div class="doc-card">
+          <div class="doc-id">DOC 1</div>
+          <h4>MSDS</h4>
+          <p class="doc-summary">
+            Hazard, handling, and chemical safety reference for the rechargeable Li-ion polymer battery MGU,
+            issued by Dongguan Veken Battery Co., Ltd.
+          </p>
+          <div class="doc-actions">
+            <a href="assets/pdfs/un38/DSP25120089_001_MSDS.pdf" target="_blank" class="doc-btn">View PDF</a>
+            <a href="assets/pdfs/un38/DSP25120089_001_MSDS.pdf" download class="doc-btn">Download</a>
+          </div>
+        </div>
+        <div class="doc-card">
+          <div class="doc-id">DOC 2</div>
+          <h4>UN38.3 Test Report</h4>
+          <p class="doc-summary">
+            Formal transport safety test record under UN Manual of Tests and Criteria Rev.8,
+            covering T1–T8 with an overall passing conclusion. Issue date: 2025-12-11.
+          </p>
+          <div class="doc-actions">
+            <a href="assets/pdfs/un38/DSP25120089_002_UN-Test.pdf" target="_blank" class="doc-btn">View PDF</a>
+            <a href="assets/pdfs/un38/DSP25120089_002_UN-Test.pdf" download class="doc-btn">Download</a>
+          </div>
+        </div>
+        <div class="doc-card">
+          <div class="doc-id">DOC 3</div>
+          <h4>UN38.3 Test Summary</h4>
+          <p class="doc-summary">
+            One-page summary confirming T1 through T8 as passed, referencing test report
+            DSP25120089-2 and issue date 2025-12-11.
+          </p>
+          <div class="doc-actions">
+            <a href="assets/pdfs/un38/DSP25120089_003_Summary.pdf" target="_blank" class="doc-btn">View PDF</a>
+            <a href="assets/pdfs/un38/DSP25120089_003_Summary.pdf" download class="doc-btn">Download</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: PACKAGING VALIDATION DOCUMENTS -->
+  <section class="section">
+    <div class="section-shell">
+      <div class="section-header">
+        <h2>Packaging Validation Documents</h2>
+        <p>Supporting packaging and transport-condition validation materials associated with shipment readiness.</p>
+      </div>
+      <div class="section-intro">
+        <p>
+          In addition to the core UN38.3 transport safety documents, MAG1 battery is supported by
+          packaging validation materials that address physical transport conditions. These include 1.2m
+          drop testing for two shipment configurations and a stacking test for the carton-based
+          packaging structure used in transport preparation.
+        </p>
+      </div>
+      <div class="docs-grid">
+        <div class="doc-card">
+          <div class="doc-id">PKG 1</div>
+          <h4>1.2m Drop Report — 136 pcs</h4>
+          <p class="doc-summary">
+            Packaging validation for a carton containing 136 lithium ion batteries with gross mass
+            11.34kg, passing the 1.2m drop test without battery damage or leakage.
+            Issue date: 2026-01-17.
+          </p>
+          <div class="doc-actions">
+            <a href="assets/pdfs/un38/DSP25120089_004_12m-Drop.pdf" target="_blank" class="doc-btn">View PDF</a>
+            <a href="assets/pdfs/un38/DSP25120089_004_12m-Drop.pdf" download class="doc-btn">Download</a>
+          </div>
+        </div>
+        <div class="doc-card">
+          <div class="doc-id">PKG 2</div>
+          <h4>Stacking Test Report</h4>
+          <p class="doc-summary">
+            3m stacking validation for the five-layer corrugated carton configuration,
+            including a reported stacking load of 206.74kgf for 24 hours with a passing result.
+            Issue date: 2026-01-17.
+          </p>
+          <div class="doc-actions">
+            <a href="assets/pdfs/un38/DSP25120089_005_Stacking.pdf" target="_blank" class="doc-btn">View PDF</a>
+            <a href="assets/pdfs/un38/DSP25120089_005_Stacking.pdf" download class="doc-btn">Download</a>
+          </div>
+        </div>
+        <div class="doc-card">
+          <div class="doc-id">PKG 3</div>
+          <h4>1.2m Drop Report — 192 pcs</h4>
+          <p class="doc-summary">
+            Packaging validation for a carton containing 192 lithium ion batteries with gross mass
+            15.18kg, passing the 1.2m drop test without battery damage or release of contents.
+            Issue date: 2026-01-17.
+          </p>
+          <div class="doc-actions">
+            <a href="assets/pdfs/un38/DSP25120089_006_12m-Transport.pdf" target="_blank" class="doc-btn">View PDF</a>
+            <a href="assets/pdfs/un38/DSP25120089_006_12m-Transport.pdf" download class="doc-btn">Download</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: AIR & SEA SHIPPING CLASSIFICATION -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="section-shell">
+      <div class="section-header">
+        <h2>Air &amp; Sea Shipping Classification</h2>
+        <p>Shipment classification references associated with MAG1 battery's transport documentation.</p>
+      </div>
+      <div class="section-intro">
+        <p>
+          In addition to transport safety and packaging validation documents, MAG1 battery is
+          supported by shipment classification references covering both air and sea transport contexts.
+          These materials provide logistics-facing interpretation of how the battery shipment is
+          treated under the relevant transport frameworks.
+        </p>
+      </div>
+      <div class="docs-grid">
+        <div class="doc-card">
+          <div class="doc-id">SHIP 1</div>
+          <h4>Air Transport Classification</h4>
+          <p class="doc-summary">
+            Air transport classification under IATA DGR 67th (2026), marked <strong>cargo aircraft only</strong>.
+            Issue No. PEKSZ202602069869LYY560001, effective date 2026-02-09.
+            136 batteries / net battery weight approx. 8.72kg / SoC not exceeding 30%.
+          </p>
+          <div class="doc-actions">
+            <a href="assets/pdfs/un38/S45C-Air-Transport.pdf" target="_blank" class="doc-btn">View PDF</a>
+            <a href="assets/pdfs/un38/S45C-Air-Transport.pdf" download class="doc-btn">Download</a>
+          </div>
+        </div>
+        <div class="doc-card">
+          <div class="doc-id">SHIP 2</div>
+          <h4>Sea Transport Classification</h4>
+          <p class="doc-summary">
+            Sea transport classification under IMDG Code (Amdt 42-24), classified as
+            <strong>not subject to these regulations</strong>.
+            Issue No. SEKSZ202602064221LYY680001, effective date 2026-02-09.
+            192 batteries / gross package weight 15.18kg.
+          </p>
+          <div class="doc-actions">
+            <a href="assets/pdfs/un38/S45C-Sea-Transport.pdf" target="_blank" class="doc-btn">View PDF</a>
+            <a href="assets/pdfs/un38/S45C-Sea-Transport.pdf" download class="doc-btn">Download</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: WHAT THESE DOCUMENTS MEAN -->
+  <section class="section">
+    <div class="section-shell">
+      <div class="section-header">
+        <h2>What These Documents Mean</h2>
+        <p>How MAG1 battery's transport and shipping compliance materials should be interpreted in a structured review context.</p>
+      </div>
+      <div class="section-intro">
+        <p>
+          Taken together, these materials form a layered transport and logistics compliance package
+          for MAG1 battery. The MSDS provides hazard and handling context, the UN38.3 materials
+          establish the transport safety testing basis, the packaging validation reports support
+          shipment-condition readiness, and the air / sea classification files provide
+          logistics-facing shipment interpretation under their respective transport frameworks.
+        </p>
+      </div>
+      <div class="summary-grid">
+        <div class="summary-card">
+          <h4>Hazard &amp; Handling Context</h4>
+          <p>The MSDS provides chemical safety, hazard identification, and handling-related context for the rechargeable Li-ion polymer battery MGU.</p>
+        </div>
+        <div class="summary-card">
+          <h4>Transport Safety Basis</h4>
+          <p>The UN38.3 report and summary establish the formal test basis for transport safety, with T1 through T8 listed as passed.</p>
+        </div>
+        <div class="summary-card">
+          <h4>Packaging Readiness</h4>
+          <p>The drop and stacking reports support the physical transport-readiness of the carton configurations used in shipping preparation.</p>
+        </div>
+        <div class="summary-card">
+          <h4>Shipment Interpretation</h4>
+          <p>The air and sea classification files provide route-specific logistics interpretation for shipment under the relevant transport codes.</p>
+        </div>
+      </div>
+      <div class="highlight-box">
+        <h3>Interpretation Context</h3>
+        <p>
+          This page should not be read as a substitute for MAGNE's broader compliance profile.
+          Instead, it should be used as a focused supporting reference for transport safety,
+          shipment preparation, and logistics review.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: INTERPRETATION NOTE -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="section-shell">
+      <div class="section-header">
+        <h2>Interpretation Note</h2>
+        <p>How this page should be used in the context of transport, logistics, and compliance review.</p>
+      </div>
+      <div class="highlight-box">
+        <h3>How this page should be used</h3>
+        <p>
+          This page is intended as a supporting compliance reference for MAG1 battery's transport
+          and shipping documentation. It should be read together with MAGNE's broader Compliance page
+          and related safety, logistics, and product-readiness materials.
+        </p>
+        <p style="margin-top: 1rem;">
+          The purpose of this page is to help partners, exchanges, logistics counterparts, and
+          institutional reviewers understand the structure and role of MAG1 battery's transport-related
+          document set without treating any single document as a standalone substitute for the broader
+          compliance profile.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-shell">
+      <h2>Need broader compliance materials?</h2>
+      <p>
+        For broader compliance references, shipping-related support, or institutional review
+        assistance, contact MAGNE directly or return to the broader Compliance page.
+      </p>
+      <div class="cta-buttons">
+        <a href="magne-compliance.html" class="btn-secondary">← Back to Compliance</a>
+        <a href="magne-contact.html" class="btn-primary">Contact MAGNE</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-links">
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="magne-contact.html">Contact</a>
+      <a href="media-kit.html">Media Kit</a>
+    </div>
+    <p style="opacity: 0.5;">© 2026 MAGNE.AI. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

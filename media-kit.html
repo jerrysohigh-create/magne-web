@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media Kit & Brand Assets — MAGNE.AI</title>
+  <link rel="icon" type="image/png" href="logo-icon-circle.png">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0a0c;
+      --bg-secondary: #0f0f12;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --bg-card-hover: rgba(255, 255, 255, 0.05);
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.1);
+      --text-primary: #f5f5f7;
+      --text-secondary: rgba(245, 245, 247, 0.6);
+      --text-muted: rgba(245, 245, 247, 0.4);
+      --accent: #00d4d4;
+      --accent-dim: rgba(0, 212, 212, 0.06);
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; height: auto; }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 12, 0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-logo {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-decoration: none;
+    }
+    .nav-logo:hover { opacity: 0.8; }
+    .nav-back {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: color 0.3s;
+    }
+    .nav-back:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      background: radial-gradient(ellipse at 50% 0%, rgba(0, 212, 212, 0.08) 0%, transparent 60%);
+    }
+    .hero-gen {
+      font-size: 0.9rem;
+      color: var(--accent);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .hero-desc {
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin-bottom: 2rem;
+    }
+
+    /* MEDIA CONTENT */
+    .media-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+    .media-section {
+      margin-bottom: 4rem;
+    }
+    .media-section h2 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .media-section .section-desc {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+    .media-section h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* LOGO GRID */
+    .logo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .logo-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .logo-card:hover {
+      border-color: var(--border-hover);
+      background: var(--bg-card-hover);
+    }
+    .logo-card img {
+      height: 60px;
+      margin-bottom: 1rem;
+      object-fit: contain;
+    }
+    .logo-card.dark {
+      background: #000;
+      border-color: rgba(255,255,255,0.1);
+    }
+    .logo-card span {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-top: 0.5rem;
+    }
+
+    /* COLOR GRID */
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    .color-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+    .color-card:hover {
+      border-color: var(--border-hover);
+    }
+    .color-swatch {
+      height: 100px;
+    }
+    .color-info {
+      padding: 1rem;
+    }
+    .color-name {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+    .color-hex {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    .color-rgb, .color-cmyk {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+    .brand-guide-images {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .guide-image {
+      text-align: center;
+    }
+    .guide-image img {
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    .guide-image p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-top: 0.5rem;
+    }
+
+    /* LIGHTBOX */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+    .lightbox.active {
+      display: flex;
+    }
+    .lightbox img {
+      max-width: 95%;
+      max-height: 95%;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: #fff;
+      font-size: 40px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+    .lightbox-download {
+      position: absolute;
+      bottom: 30px;
+      padding: 12px 24px;
+      background: var(--accent);
+      color: #000;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .lightbox-download:hover {
+      opacity: 0.9;
+    }
+
+    /* PRODUCT IMAGES */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    .product-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+    }
+    .product-card img {
+      height: 200px;
+      object-fit: contain;
+      margin-bottom: 1rem;
+    }
+    .product-card h4 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .product-card p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    /* CONTACT */
+    .contact-section {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: var(--bg-secondary);
+      border-radius: 24px;
+      margin-top: 4rem;
+    }
+    .contact-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .contact-emails {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    .contact-email {
+      font-size: 1.1rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .contact-email:hover {
+      text-decoration: underline;
+    }
+    .contact-note {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    .contact-email-box {
+      margin-top: 1.5rem;
+      text-align: center;
+    }
+    .contact-email-link {
+      font-size: 1.2rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      cursor: pointer;
+      user-select: text;
+    }
+    .contact-email-link:hover {
+      text-decoration: underline;
+    }
+    .contact-hint {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+    .contact-section p {
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+    }
+    .btn-primary {
+      display: inline-block;
+      padding: 0.9rem 2rem;
+      background: var(--accent);
+      color: #000;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 4rem 2rem;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+    footer a { color: var(--accent); }
+    footer a:hover { text-decoration: underline; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav {
+        padding: 1rem 1.5rem;
+      }
+      .hero {
+        padding: 6rem 1.5rem 3rem;
+      }
+      .media-content {
+        padding: 2rem 1.5rem;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-brand"><a href="magne-home.html" class="nav-logo">MAGNE.AI</a></div>
+    <a href="magne-home.html" class="nav-back">← Back to Home</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-gen">Press & Partners</div>
+    <h1>Media Kit & Brand Assets</h1>
+    <p class="hero-desc">Official brand resources for press coverage, media inquiries, and partner integration</p>
+  </section>
+
+  <!-- CONTENT -->
+  <div class="media-content">
+
+    <!-- LOGO ASSETS -->
+    <div class="media-section">
+      <h2>Logo Assets</h2>
+      <p class="section-desc">PNG and SVG formats for press, partners, and editorial use</p>
+      <h3>PNG (6 files)</h3>
+      <div class="logo-grid">
+        <div class="logo-card">
+          <img src="media-kit-logos/01-logo-variant.png" alt="PNG 01">
+          <span>PNG · 799×769 · 54KB</span>
+        </div>
+        <div class="logo-card">
+          <img src="media-kit-logos/02-logo-variant.png" alt="PNG 02">
+          <span>PNG · 800×769 · 52KB</span>
+        </div>
+        <div class="logo-card">
+          <img src="media-kit-logos/03-logo-variant.png" alt="PNG 03">
+          <span>PNG · 877×769 · 14KB</span>
+        </div>
+        <div class="logo-card dark">
+          <img src="media-kit-logos/04-logo-black-wide.png" alt="PNG 04" style="filter: brightness(10);">
+          <span>PNG · 3962×768 · 48KB</span>
+        </div>
+        <div class="logo-card">
+          <img src="media-kit-logos/06-logo-white-wide.png" alt="PNG 06">
+          <span>PNG · 3962×769 · 48KB</span>
+        </div>
+        <div class="logo-card">
+          <img src="media-kit-logos/28-logo-variant.png" alt="PNG 28">
+          <span>PNG · 877×769 · 13KB</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SVG LOGOS -->
+    <div class="media-section">
+      <h3>SVG — Vector (7 files)</h3>
+      <div class="logo-grid">
+        <div class="logo-card">
+          <img src="media-kit-logos/08-logo-vector.svg" alt="SVG 08">
+          <span>SVG · Vector · 1.5KB</span>
+        </div>
+        <div class="logo-card">
+          <img src="media-kit-logos/09-logo-vector.svg" alt="SVG 09">
+          <span>SVG · Vector · 65KB</span>
+        </div>
+        <div class="logo-card">
+          <img src="media-kit-logos/10-logo-vector.svg" alt="SVG 10">
+          <span>SVG · Vector · 2KB</span>
+        </div>
+        <div class="logo-card">
+          <img src="media-kit-logos/11-logo-vector.svg" alt="SVG 11">
+          <span>SVG · Vector · 2KB</span>
+        </div>
+        <div class="logo-card">
+          <img src="media-kit-logos/18-logo-vector.svg" alt="SVG 18">
+          <span>SVG · Vector · 5KB</span>
+        </div>
+        <div class="logo-card">
+          <img src="media-kit-logos/21-logo-vector.svg" alt="SVG 21">
+          <span>SVG · Vector · 1.5KB</span>
+        </div>
+        <div class="logo-card">
+          <img src="media-kit-logos/26-logo-vector.svg" alt="SVG 26">
+          <span>SVG · Vector · 5KB</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- BRAND GUIDELINES -->
+    <div class="media-section">
+      <h2>Brand Guidelines</h2>
+      <p class="section-desc">Official color values and typography for consistent brand representation</p>
+      <h3>Brand Colors</h3>
+      <div class="color-grid">
+        <div class="color-card">
+          <div class="color-swatch" style="background: #000000;"></div>
+          <div class="color-info">
+            <div class="color-name">Black</div>
+            <div class="color-hex">#000000</div>
+            <div class="color-rgb">RGB: 0, 0, 0</div>
+            <div class="color-cmyk">CMYK: 75, 68, 67, 90</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #404040;"></div>
+          <div class="color-info">
+            <div class="color-name">Charcoal Grey</div>
+            <div class="color-hex">#404040</div>
+            <div class="color-rgb">RGB: 64, 64, 64</div>
+            <div class="color-cmyk">CMYK: 68, 61, 60, 47</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #808080;"></div>
+          <div class="color-info">
+            <div class="color-name">Granite</div>
+            <div class="color-hex">#808080</div>
+            <div class="color-rgb">RGB: 128, 128, 128</div>
+            <div class="color-cmyk">CMYK: 52, 43, 43, 8</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #bfbfbf;"></div>
+          <div class="color-info">
+            <div class="color-name">Pale Slate</div>
+            <div class="color-hex">#bfbfbf</div>
+            <div class="color-rgb">RGB: 191, 191, 191</div>
+            <div class="color-cmyk">CMYK: 25, 20, 20, 0</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #ffffff; border: 1px solid var(--border);"></div>
+          <div class="color-info">
+            <div class="color-name">White</div>
+            <div class="color-hex">#ffffff</div>
+            <div class="color-rgb">RGB: 255, 255, 255</div>
+            <div class="color-cmyk">CMYK: 0, 0, 0, 0</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="brand-guide-images">
+        <div class="guide-image">
+          <img src="media-kit/color-guide.png" alt="Color Guide">
+          <p>Color Palette Guide</p>
+        </div>
+        <div class="guide-image">
+          <img src="media-kit/logo-concept.png" alt="Logo Concept">
+          <p>Logo Concept</p>
+        </div>
+        <div class="guide-image">
+          <img src="media-kit/brand-identity.png" alt="Brand Identity">
+          <p>Brand Identity</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT & PACKAGING -->
+    <div class="media-section">
+      <h2>Product & Packaging</h2>
+      <p class="section-desc">High-resolution product renders and packaging design files</p>
+      <h3>Product Images</h3>
+      <div class="product-grid">
+        <div class="product-card">
+          <img src="phone-black.png" alt="MAG1 Black">
+          <h4>MAG1 — Obsidian Black</h4>
+          <p>World's First Web3 AI Smartphone</p>
+        </div>
+        <div class="product-card">
+          <img src="phone-white.png" alt="MAG1 White">
+          <h4>MAG1 — Moonlight Silver</h4>
+          <p>Secure Hardware + On-device AI</p>
+        </div>
+        <div class="product-card">
+          <img src="pkg-exploded-new.png" alt="Packaging">
+          <h4>Premium Packaging</h4>
+          <p>Complete accessories included</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PACKAGING DESIGN -->
+    <div class="media-section">
+      <h3>Packaging Design (5 pages)</h3>
+      <div class="logo-grid">
+        <div class="logo-card">
+          <img src="media-kit/package-page-1.png" alt="Packaging Page 1">
+          <span>Page 1 · Packaging Design</span>
+        </div>
+        <div class="logo-card">
+          <img src="media-kit/package-page-2.png" alt="Packaging Page 2">
+          <span>Page 2 · Packaging Design</span>
+        </div>
+        <div class="logo-card">
+          <img src="media-kit/package-page-3.png" alt="Packaging Page 3">
+          <span>Page 3 · Packaging Design</span>
+        </div>
+        <div class="logo-card">
+          <img src="media-kit/package-page-4.png" alt="Packaging Page 4">
+          <span>Page 4 · Packaging Design</span>
+        </div>
+        <div class="logo-card">
+          <img src="media-kit/package-page-5.png" alt="Packaging Page 5">
+          <span>Page 5 · Packaging Design</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="contact-section">
+      <h2>Need additional assets or press materials?</h2>
+      <p>For brand resources, partnership collateral, or media requests, contact us at:</p>
+      <div class="contact-email-box">
+        <a href="mailto:official@magne.ai" class="contact-email-link">official@magne.ai</a>
+        <span class="contact-hint">Click to copy or open email client</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>MAGNE.AI — The Web3-native AI Phone</p>
+    <div class="footer-links">
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="magne-contact.html">Contact</a>
+      <a href="media-kit.html">Media Kit</a>
+    </div>
+    <p style="margin-top: 1.5rem; opacity: 0.5;">© 2026 MAGNE.AI. All rights reserved.</p>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+    <img id="lightbox-img" src="" alt="Full size">
+    <button id="lightbox-download" class="lightbox-download">Download</button>
+  </div>
+
+  <script>
+    // Open lightbox
+    document.querySelectorAll('.logo-card img, .color-card img, .product-card img, .guide-image img').forEach(function(img) {
+      img.style.cursor = 'pointer';
+      img.addEventListener('click', function() {
+        var src = this.src;
+        var lightbox = document.getElementById('lightbox');
+        var lightboxImg = document.getElementById('lightbox-img');
+        var downloadLink = document.getElementById('lightbox-download');
+        lightboxImg.src = src;
+        downloadLink.href = src;
+        downloadLink.download = src.split('/').pop();
+        downloadLink.style.display = 'inline-block';
+        lightbox.classList.add('active');
+      });
+    });
+    
+
+    
+    // Close lightbox
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+    
+    // Close on background click
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+      if (e.target === this) closeLightbox();
+    });
+    
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+    
+    // Download button click handler
+    document.getElementById('lightbox-download').addEventListener('click', function() {
+      var img = document.getElementById('lightbox-img');
+      var a = document.createElement('a');
+      a.href = img.src;
+      a.download = img.src.split('/').pop();
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    });
+  </script>
+</body>
+</html>

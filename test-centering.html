@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #111; padding: 20px; }
+  .wrapper {
+    width: min(1200px, calc(100% - 48px));
+    margin: 0 auto;
+    background: rgba(255,255,255,0.1);
+    padding: 2rem;
+  }
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.05);
+    padding: 2rem;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  .card {
+    background: rgba(255,255,255,0.1);
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+  }
+  p { color: white; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <p>Wrapper: 1200px max, centered</p>
+  <div class="section">
+    <p>Section: 1100px max, centered in wrapper</p>
+    <div class="grid">
+      <div class="card">Card 1</div>
+      <div class="card">Card 2</div>
+      <div class="card">Card 3</div>
+      <div class="card">Card 4</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FCC Equipment Authorization — 2BVCPGC603606 — MAGNE.AI</title>
+  <link rel="icon" type="image/png" href="logo-icon-circle.png">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0a0c;
+      --bg-secondary: #0f0f12;
+      --bg-card: rgba(255,255,255,0.03);
+      --bg-card-hover: rgba(255,255,255,0.05);
+      --border: rgba(255,255,255,0.06);
+      --border-hover: rgba(255,255,255,0.12);
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255,255,255,0.5);
+      --text-tertiary: rgba(255,255,255,0.3);
+      --accent: #00bfff;
+      --accent-secondary: #00ff88;
+      --accent-purple: #a855f7;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      font-family:'Outfit',-apple-system,sans-serif;
+      background:var(--bg-primary);
+      color:var(--text-primary);
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+    a { color:inherit; text-decoration:none; }
+
+    /* NAV */
+    nav {
+      position:fixed; top:0; left:0; right:0; z-index:100;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:.85rem 2.5rem;
+      background:rgba(10,10,12,0.82);
+      backdrop-filter:blur(24px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav-logo { font-weight:700; font-size:1rem; letter-spacing:.5px; display:flex; align-items:center; gap:.5rem; }
+    .nav-logo img { height:26px; margin-top:2px; }
+    .nav-back { font-size:.88rem; color:var(--text-secondary); transition:color .2s; }
+    .nav-back:hover { color:var(--text-primary); }
+
+    /* HERO */
+    .hero {
+      min-height:100vh;
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      text-align:center;
+      padding:8rem 2rem 5rem;
+      position:relative;
+    }
+    .hero-eyebrow {
+      font-family:'JetBrains Mono',monospace;
+      font-size:.72rem; font-weight:700; letter-spacing:2px;
+      color:var(--accent);
+      background:rgba(0,191,255,.1);
+      border:1px solid rgba(0,191,255,.25);
+      padding:.35rem 1rem; border-radius:999px;
+      margin-bottom:1.75rem;
+    }
+    .hero h1 {
+      font-size:clamp(2rem,5vw,3.5rem);
+      font-weight:700; line-height:1.1;
+      max-width:800px; margin-bottom:1.5rem;
+    }
+    .hero-sub {
+      font-size:1.05rem; color:var(--text-secondary);
+      max-width:640px; line-height:1.75;
+      margin-bottom:2.5rem;
+    }
+    .grant-badge {
+      display:inline-flex; align-items:center; gap:.75rem;
+      background:var(--bg-card); border:1px solid var(--border);
+      border-radius:14px; padding:.85rem 1.5rem;
+      font-family:'JetBrains Mono',monospace; font-size:.88rem;
+      margin-bottom:2.5rem;
+    }
+    .grant-badge .badge-label { color:var(--text-secondary); }
+    .grant-badge .badge-value { color:var(--accent); font-weight:600; }
+    .hero-ctas { display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; }
+
+    /* BUTTONS */
+    .btn-primary {
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.75rem 1.75rem;
+      background:var(--accent); color:#000; font-weight:600; font-size:.9rem;
+      border-radius:10px; transition:all .2s;
+    }
+    .btn-primary:hover { background:#33ccff; transform:translateY(-1px); }
+    .btn-secondary {
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.75rem 1.75rem;
+      background:var(--bg-card); color:var(--text-primary); font-weight:500; font-size:.9rem;
+      border:1px solid var(--border); border-radius:10px; transition:all .2s;
+    }
+    .btn-secondary:hover { border-color:var(--border-hover); background:var(--bg-card-hover); }
+
+    /* SECTIONS */
+    .section { padding:5rem 2rem; }
+    .section-shell { max-width:1100px; margin:0 auto; }
+    .section-header { text-align:center; margin-bottom:3rem; }
+    .section-header h2 { font-size:1.75rem; font-weight:700; margin-bottom:.75rem; }
+    .section-header p { color:var(--text-secondary); max-width:600px; margin:0 auto; line-height:1.7; }
+    .section-intro { text-align:center; margin-bottom:3rem; }
+    .section-intro p { color:var(--text-secondary); max-width:680px; margin:0 auto 1rem; line-height:1.75; }
+
+    /* GRANT SUMMARY CARDS */
+    .grant-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:1.25rem;
+    }
+    .grant-card {
+      background:var(--bg-card);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:1.5rem;
+      transition:all .25s;
+    }
+    .grant-card:hover { border-color:var(--border-hover); transform:translateY(-2px); }
+    .grant-card .card-label { font-size:.75rem; font-weight:600; color:var(--text-secondary); letter-spacing:.5px; margin-bottom:.4rem; text-transform:uppercase; }
+    .grant-card .card-value { font-size:1rem; font-weight:600; color:var(--text-primary); }
+    .grant-card .card-value.accent { color:var(--accent); }
+    .grant-card .card-note { font-size:.82rem; color:var(--text-tertiary); margin-top:.3rem; }
+
+    /* EQUIPMENT TABLE */
+    .eq-table { width:100%; border-collapse:collapse; margin-top:2rem; }
+    .eq-table th {
+      text-align:left; padding:.85rem 1.25rem;
+      font-size:.72rem; font-weight:700; letter-spacing:1px;
+      color:var(--text-secondary); text-transform:uppercase;
+      border-bottom:1px solid var(--border);
+    }
+    .eq-table td {
+      padding:1rem 1.25rem;
+      font-size:.9rem;
+      border-bottom:1px solid rgba(255,255,255,0.04);
+      vertical-align:top;
+    }
+    .eq-table tr:hover td { background:rgba(255,255,255,0.02); }
+    .eq-table .eq-class { font-family:'JetBrains Mono',monospace; font-size:.8rem; color:var(--accent); font-weight:600; }
+    .eq-table .eq-name { font-weight:500; }
+    .eq-table .eq-parts { color:var(--text-secondary); font-size:.85rem; }
+    .eq-table .eq-pdf { display:flex; gap:.5rem; flex-wrap:wrap; }
+    .eq-table .pdf-btn {
+      display:inline-flex; align-items:center; gap:.35rem;
+      padding:.35rem .75rem;
+      background:rgba(0,191,255,.08); border:1px solid rgba(0,191,255,.2);
+      border-radius:6px; font-size:.78rem; color:var(--accent);
+      transition:all .2s; cursor:pointer;
+    }
+    .eq-table .pdf-btn:hover { background:rgba(0,191,255,.15); border-color:rgba(0,191,255,.4); }
+
+    /* DOC GRID */
+    .docs-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:1.25rem;
+    }
+    .doc-card {
+      background:var(--bg-card);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:1.75rem;
+      transition:all .25s;
+    }
+    .doc-card:hover { border-color:var(--border-hover); transform:translateY(-2px); }
+    .doc-id {
+      font-family:'JetBrains Mono',monospace;
+      font-size:.68rem; font-weight:700; letter-spacing:1.5px;
+      color:var(--accent); margin-bottom:.75rem;
+    }
+    .doc-card h4 { font-size:1rem; font-weight:600; margin-bottom:.5rem; }
+    .doc-card .doc-summary { color:var(--text-secondary); font-size:.88rem; line-height:1.65; margin-bottom:1rem; }
+    .doc-card .doc-meta { font-family:'JetBrains Mono',monospace; font-size:.75rem; color:var(--text-tertiary); margin-bottom:1rem; }
+    .doc-actions { display:flex; gap:.5rem; flex-wrap:wrap; }
+    .doc-btn {
+      display:inline-flex; align-items:center; gap:.35rem;
+      padding:.45rem .9rem;
+      border:1px solid var(--border-hover); border-radius:8px;
+      font-size:.82rem; font-weight:500; color:var(--text-primary);
+      transition:all .2s;
+    }
+    .doc-btn:hover { border-color:var(--accent); color:var(--accent); }
+
+    /* ANTENNA CARD */
+    .antenna-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:1.25rem;
+    }
+    .antenna-card {
+      background:var(--bg-card);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:1.75rem;
+      transition:all .25s;
+    }
+    .antenna-card:hover { border-color:var(--border-hover); }
+    .antenna-card .ant-label { font-size:.72rem; font-weight:700; color:var(--text-secondary); text-transform:uppercase; letter-spacing:.5px; margin-bottom:.4rem; }
+    .antenna-card .ant-value { font-size:1rem; font-weight:600; margin-bottom:.3rem; }
+    .antenna-card .ant-note { font-size:.82rem; color:var(--text-tertiary); }
+
+    /* HIGHLIGHT BOX */
+    .highlight-box {
+      background:linear-gradient(135deg,rgba(0,191,255,.06) 0%,rgba(0,255,136,.03) 100%);
+      border:1px solid rgba(0,191,255,.18);
+      border-radius:20px;
+      padding:2.5rem;
+      margin-top:3rem;
+    }
+    .highlight-box h3 { font-size:1.15rem; font-weight:600; margin-bottom:1rem; }
+    .highlight-box p { color:var(--text-secondary); line-height:1.8; }
+    .highlight-box p + p { margin-top:.75rem; }
+
+    /* CTA */
+    .cta-section {
+      padding:5rem 2rem;
+      text-align:center;
+    }
+    .cta-shell { max-width:640px; margin:0 auto; }
+    .cta-shell h2 { font-size:1.75rem; font-weight:700; margin-bottom:1rem; }
+    .cta-shell p { color:var(--text-secondary); line-height:1.7; margin-bottom:2rem; }
+    .cta-buttons { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+
+    /* FOOTER */
+    footer {
+      border-top:1px solid var(--border);
+      padding:2rem;
+      text-align:center;
+      font-size:.82rem;
+      color:var(--text-tertiary);
+    }
+    footer a { color:var(--text-secondary); transition:color .2s; }
+    footer a:hover { color:var(--text-primary); }
+    footer .footer-links { display:flex; gap:1.5rem; justify-content:center; margin-bottom:.5rem; }
+
+    /* MOBILE */
+    @media (max-width:640px) {
+      nav { padding:.85rem 1.25rem; }
+      .hero { padding:7rem 1.25rem 4rem; }
+      .section { padding:3.5rem 1.25rem; }
+      .grant-grid { grid-template-columns:1fr 1fr; }
+      .eq-table { font-size:.82rem; }
+      .cta-buttons { flex-direction:column; align-items:center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="magne-landing.html" class="nav-logo">
+    <img src="logo-combined-nav.png" alt="MAGNE.AI" style="height:28px; margin-top:2px;">
+  </a>
+  <a href="magne-compliance.html" class="nav-back">← Back to Compliance</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">COMPLIANCE SUPPORTING PAGE</div>
+  <h1>FCC Equipment Authorization</h1>
+  <p class="hero-sub">
+    A supporting reference page for partners, institutional reviewers, and logistics counterparties who require deeper verification of MAG1's FCC equipment authorization documentation.
+  </p>
+  <div class="grant-badge">
+    <span class="badge-label">FCC ID</span>
+    <span class="badge-value">2BVCPGC603606</span>
+    <span style="color:var(--text-tertiary)">·</span>
+    <span class="badge-label">Model</span>
+    <span class="badge-value">MAG1</span>
+    <span style="color:var(--text-tertiary)">·</span>
+    <span class="badge-label">Granted</span>
+    <span class="badge-value">04/17/2026</span>
+  </div>
+  <div class="hero-ctas">
+    <a href="magne-compliance.html" class="btn-secondary">← Back to Compliance</a>
+    <a href="#docs" class="btn-primary">View All Documents ↓</a>
+  </div>
+</section>
+
+<!-- SECTION 1: GRANT SUMMARY -->
+<section class="section" id="grant-summary">
+  <div class="section-shell">
+    <div class="section-header">
+      <h2>FCC Grant Summary</h2>
+      <p>Key facts from the FCC equipment authorization issued for MAG1.</p>
+    </div>
+    <div class="grant-grid">
+      <div class="grant-card">
+        <div class="card-label">FCC ID</div>
+        <div class="card-value accent">2BVCPGC603606</div>
+        <div class="card-note">Grantee-assigned identifier</div>
+      </div>
+      <div class="grant-card">
+        <div class="card-label">Grantee</div>
+        <div class="card-value">magne ai global tech limited</div>
+        <div class="card-note">Flat 1019B, 10/F, LivEn House, Kwun Tong, Hong Kong</div>
+      </div>
+      <div class="grant-card">
+        <div class="card-label">Product Name</div>
+        <div class="card-value">MAG1</div>
+        <div class="card-note">Mobile Phone</div>
+      </div>
+      <div class="grant-card">
+        <div class="card-label">TCB</div>
+        <div class="card-value">Sporton International (USA) Inc.</div>
+        <div class="card-note">1175 Montague Expressway, Milpitas, CA 95035</div>
+      </div>
+      <div class="grant-card">
+        <div class="card-label">Date of Grant</div>
+        <div class="card-value">04/17/2026</div>
+        <div class="card-note">Application dated 04/16/2026</div>
+      </div>
+      <div class="grant-card">
+        <div class="card-label">Authorization Type</div>
+        <div class="card-value">Certification</div>
+        <div class="card-note">Under FCC Rules Parts 2, 15, 22, 24, 27</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: EQUIPMENT AUTHORIZATIONS -->
+<section class="section" style="background:var(--bg-secondary);" id="equipment">
+  <div class="section-shell">
+    <div class="section-header">
+      <h2>Equipment Authorization Details</h2>
+      <p>MAG1 carries six distinct FCC equipment authorizations covering cellular, Wi-Fi, Bluetooth, and receiver functions.</p>
+    </div>
+    <div class="section-intro">
+      <p>Each authorization is issued under a specific FCC Rule Part and covers a distinct transmission technology. Together they represent the full radio compliance profile of the MAG1 mobile phone.</p>
+    </div>
+    <table class="eq-table">
+      <thead>
+        <tr>
+          <th>Class Code</th>
+          <th>Equipment Description</th>
+          <th>FCC Rule Parts</th>
+          <th>Certification Letter</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="eq-class">PCE</span></td>
+          <td>
+            <div class="eq-name">PCS Licensed Transmitter held to ear</div>
+            <div class="eq-parts">Cellular voice and data — GSM/WCDMA/LTE</div>
+          </td>
+          <td><span class="eq-parts">Part 22(H), 24(E)</span></td>
+          <td><div class="eq-pdf"><a class="pdf-btn" href="assets/pdfs/fcc/2BVCPGC603606_PCE.pdf" target="_blank">View</a></div></td>
+        </tr>
+        <tr>
+          <td><span class="eq-class">CXX</span></td>
+          <td>
+            <div class="eq-name">Communications Receiver for use with licensed Tx and CBs</div>
+            <div class="eq-parts">Receiver function associated with licensed transmitters</div>
+          </td>
+          <td><span class="eq-parts">Part 15B</span></td>
+          <td><div class="eq-pdf"><a class="pdf-btn" href="assets/pdfs/fcc/2BVCPGC603606_CXX.pdf" target="_blank">View</a></div></td>
+        </tr>
+        <tr>
+          <td><span class="eq-class">DXX</span></td>
+          <td>
+            <div class="eq-name">Part 15 Low Power Communication Device Transmitter</div>
+            <div class="eq-parts">Wi-Fi 2.4 GHz (802.11b/g/n)</div>
+          </td>
+          <td><span class="eq-parts">Part 15C</span></td>
+          <td><div class="eq-pdf"><a class="pdf-btn" href="assets/pdfs/fcc/2BVCPGC603606_DXX.pdf" target="_blank">View</a></div></td>
+        </tr>
+        <tr>
+          <td><span class="eq-class">DSS</span></td>
+          <td>
+            <div class="eq-name">Part 15 Class B Digital Transmission System</div>
+            <div class="eq-parts">Bluetooth LE</div>
+          </td>
+          <td><span class="eq-parts">Part 15C</span></td>
+          <td><div class="eq-pdf"><a class="pdf-btn" href="assets/pdfs/fcc/2BVCPGC603606_DSS.pdf" target="_blank">View</a></div></td>
+        </tr>
+        <tr>
+          <td><span class="eq-class">NII</span></td>
+          <td>
+            <div class="eq-name">Unlicensed National Information Infrastructure</div>
+            <div class="eq-parts">Wi-Fi 5 GHz (U-NII-1, 2, 3 — 802.11a/n/ac/ax)</div>
+          </td>
+          <td><span class="eq-parts">Part 15E</span></td>
+          <td><div class="eq-pdf"><a class="pdf-btn" href="assets/pdfs/fcc/2BVCPGC603606_NII.pdf" target="_blank">View</a></div></td>
+        </tr>
+        <tr>
+          <td><span class="eq-class">JBP</span></td>
+          <td>
+            <div class="eq-name">Part 15 Class B Computing Device Peripheral</div>
+            <div class="eq-parts">EMI/EMC compliance for computing device</div>
+          </td>
+          <td><span class="eq-parts">Part 15B</span></td>
+          <td><div class="eq-pdf"><a class="pdf-btn" href="assets/pdfs/fcc/2BVCPGC603606_JBP.pdf" target="_blank">View</a></div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SECTION 3: ANTENNA -->
+<section class="section" id="antenna">
+  <div class="section-shell">
+    <div class="section-header">
+      <h2>Antenna Configuration</h2>
+      <p>MAG1 uses an integrated multi-band antenna system covering cellular, Wi-Fi, Bluetooth, and WPC/NFC functions.</p>
+    </div>
+    <div class="antenna-grid">
+      <div class="antenna-card">
+        <div class="ant-label">Antenna Model</div>
+        <div class="ant-value">ANT6</div>
+        <div class="ant-note">Primary cellular / Wi-Fi / BT antenna</div>
+      </div>
+      <div class="antenna-card">
+        <div class="ant-label">Antenna Type</div>
+        <div class="ant-value">PIFA</div>
+        <div class="ant-note">Planar Inverted-F Antenna</div>
+      </div>
+      <div class="antenna-card">
+        <div class="ant-label">Manufacturer</div>
+        <div class="ant-value">PIFA Electronics</div>
+        <div class="ant-note">No.100 Binjiang North Road, Zhangpu Town, Kunshan, Jiangsu, P.R. China</div>
+      </div>
+      <div class="antenna-card">
+        <div class="ant-label">WPC/NFC Antenna</div>
+        <div class="ant-value">W0213</div>
+        <div class="ant-note">Two-in-one daily line — wireless charging + NFC</div>
+      </div>
+    </div>
+    <div style="margin-top:2rem; text-align:center;">
+      <a class="pdf-btn" href="assets/pdfs/fcc/2BVCPGC603606_Antenna Report.pdf" target="_blank" style="font-size:.88rem; padding:.55rem 1.2rem;">
+        View Antenna Report PDF →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: TEST REPORTS — PCE (CELLULAR) -->
+<section class="section" style="background:var(--bg-secondary);" id="docs">
+  <div class="section-shell">
+    <div class="section-header">
+      <h2>Test Reports — Cellular (PCE)</h2>
+      <p>Radio frequency test reports covering GSM, WCDMA, LTE, and 5G NR transmissions under Part 22, 24, and 27.</p>
+    </div>
+    <div class="docs-grid">
+      <div class="doc-card">
+        <div class="doc-id">PCE-01</div>
+        <h4>2G / 3G RF Test Report</h4>
+        <p class="doc-summary">GSM850 and GSM1900 conducted and radiated measurements for voice and data modes.</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_2G,3G_v1.pdf" target="_blank">View PDF</a>
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_2G,3G_v1.pdf" download>Download</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-id">PCE-02</div>
+        <h4>LTE Band 42 (TD-LTE 2570–2620 MHz)</h4>
+        <p class="doc-summary">Radio tests for LTE Band 42 in 2×2 MIMO configuration with 27Q modulation.</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_27Q_B42_v1.pdf" target="_blank">View PDF</a>
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_27Q_B42_v1.pdf" download>Download</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-id">PCE-03</div>
+        <h4>LTE Band 26 (FDD-LTE 814–849 MHz)</h4>
+        <p class="doc-summary">Radio tests for LTE Band 26 with 90S resource block configuration.</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_90S_B26_v1.pdf" target="_blank">View PDF</a>
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_90S_B26_v1.pdf" download>Download</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-id">PCE-04</div>
+        <h4>LTE B2 / B25 / B66 / B5 / B26 (Part 1 of 2)</h4>
+        <p class="doc-summary">Conducted and radiated tests for LTE FDD Bands 2, 25, 66, 5, and 26 — Part 1.</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_B2.25.66.5.26_Part1-2_v1.pdf" target="_blank">View PDF</a>
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_B2.25.66.5.26_Part1-2_v1.pdf" download>Download</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-id">PCE-05</div>
+        <h4>LTE B2 / B25 / B66 / B5 / B26 (Part 2 of 2)</h4>
+        <p class="doc-summary">Conducted and radiated tests for LTE FDD Bands 2, 25, 66, 5, and 26 — Part 2.</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_B2.25.66.5.26_Part2-2.pdf" target="_blank">View PDF</a>
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_B2.25.66.5.26_Part2-2.pdf" download>Download</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-id">PCE-06</div>
+        <h4>LTE B7 / B12 / B13 / B17 / B38 / B41 / B71 (Part 1 of 3)</h4>
+        <p class="doc-summary">LTE Bands 7, 12, 13, 17, 38, 41, 71 radiated tests — Part 1.</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_B7.12.13.17.38.41.71_Part1-3_v1.pdf" target="_blank">View PDF</a>
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_B7.12.13.17.38.41.71_Part1-3_v1.pdf" download>Download</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-id">PCE-07</div>
+        <h4>LTE B7 / B12 / B13 / B17 / B38 / B41 / B71 (Part 2 of 3)</h4>
+        <p class="doc-summary">LTE Bands 7, 12, 13, 17, 38, 41, 71 radiated tests — Part 2.</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_B7.12.13.17.38.41.71_Part2-3.pdf" target="_blank">View PDF</a>
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_B7.12.13.17.38.41.71_Part2-3.pdf" download>Download</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-id">PCE-08</div>
+        <h4>LTE B7 / B12 / B13 / B17 / B38 / B41 / B71 (Part 3 of 3)</h4>
+        <p class="doc-summary">LTE Bands 7, 12, 13, 17, 38, 41, 71 radiated tests — Part 3.</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_B7.12.13.17.38.41.71_Part3-3_v1.pdf" target="_blank">View PDF</a>
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_B7.12.13.17.38.41.71_Part3-3_v1.pdf" download>Download</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-id">PCE-09</div>
+        <h4>5G NR n77 / n78 (27O / 27Q)</h4>
+        <p class="doc-summary">5G NR FR1 tests for n77 (3300–4200 MHz) and n78 (3300–3800 MHz) with 27O and 27Q modulation.</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_5G_27O_n77.78_v1.pdf" target="_blank">View n77/78 27O</a>
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_5G_27Q_n77.78_v2.pdf" target="_blank">View n77/78 27Q</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-id">PCE-10</div>
+        <h4>5G NR n5 / n7 / n38 / n41 / n66 / n71 (Part 1 of 3)</h4>
+        <p class="doc-summary">5G NR FR1 tests covering n5 (850 MHz), n7 (2600 MHz), n38 (TD-2600), n41 (TD-2500), n66 (AWS), n71 (600 MHz) — Part 1.</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_5G_n5.7.38.41.66.71_Part1-3_v1.pdf" target="_blank">View PDF</a>
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_5G_n5.7.38.41.66.71_Part1-3_v1.pdf" download>Download</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-id">PCE-11</div>
+        <h4>5G NR n5 / n7 / n38 / n41 / n66 / n71 (Part 2 of 3)</h4>
+        <p class="doc-summary">5G NR FR1 tests covering n5, n7, n38, n41, n66, n71 — Part 2.</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_5G_n5.7.38.41.66.71_Part2-3.pdf" target="_blank">View PDF</a>
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_5G_n5.7.38.41.66.71_Part2-3.pdf" download>Download</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-id">PCE-12</div>
+        <h4>5G NR n5 / n7 / n38 / n41 / n66 / n71 (Part 3 of 3)</h4>
+        <p class="doc-summary">5G NR FR1 tests covering n5, n7, n38, n41, n66, n71 — Part 3.</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_5G_n5.7.38.41.66.71_Part3-3.pdf" target="_blank">View PDF</a>
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_5G_n5.7.38.41.66.71_Part3-3.pdf" download>Download</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: TEST REPORTS — NII (WI-FI 5GHz) -->
+<section class="section" id="nii-reports">
+  <div class="section-shell">
+    <div class="section-header">
+      <h2>Test Reports — Wi-Fi 5 GHz (NII / U-NII)</h2>
+      <p>Radio tests for 802.11a/n/ac/ax in U-NII-1, U-NII-2A, U-NII-2C, and U-NII-3 bands under Part 15E. Includes DFS compliance testing.</p>
+    </div>
+    <div class="docs-grid">
+      <div class="doc-card">
+        <div class="doc-id">NII-01</div>
+        <h4>U-NII-1, 2, 3 (Part 1 of 3)</h4>
+        <p class="doc-summary">Conducted and radiated tests for Wi-Fi 5 GHz across all U-NII bands — Part 1.</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_NII_U-NII-1,2,3_Part1-3_v1.pdf" target="_blank">View PDF</a>
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_NII_U-NII-1,2,3_Part1-3_v1.pdf" download>Download</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-id">NII-02</div>
+        <h4>U-NII-1, 2, 3 (Part 2 of 3)</h4>
+        <p class="doc-summary">Conducted and radiated tests for Wi-Fi 5 GHz across all U-NII bands — Part 2.</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_NII_U-NII-1,2,3_Part2-3_v1.pdf" target="_blank">View PDF</a>
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_NII_U-NII-1,2,3_Part2-3_v1.pdf" download>Download</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-id">NII-03</div>
+        <h4>U-NII-1, 2, 3 (Part 3 of 3)</h4>
+        <p class="doc-summary">Conducted and radiated tests for Wi-Fi 5 GHz across all U-NII bands — Part 3.</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_NII_U-NII-1,2,3_Part3-3.pdf" target="_blank">View PDF</a>
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_NII_U-NII-1,2,3_Part3-3.pdf" download>Download</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-id">NII-04</div>
+        <h4>U-NII DFS Compliance</h4>
+        <p class="doc-summary">Dynamic Frequency Selection tests for radar detection and avoidance compliance in 5 GHz bands requiring DFS.</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_NII_DFS_v1.pdf" target="_blank">View PDF</a>
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_NII_DFS_v1.pdf" download>Download</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: TEST REPORTS — SAR -->
+<section class="section" style="background:var(--bg-secondary);" id="sar-reports">
+  <div class="section-shell">
+    <div class="section-header">
+      <h2>Test Reports — Specific Absorption Rate (SAR)</h2>
+      <p>SAR measurements evaluate the RF energy absorbed by human tissue during device use. MAG1 has been tested for head, body, and limb exposure scenarios.</p>
+    </div>
+    <div class="docs-grid">
+      <div class="doc-card">
+        <div class="doc-id">SAR-01</div>
+        <h4>SAR Test Report (Main)</h4>
+        <p class="doc-summary">Full SAR evaluation for head, body-worn, and limb exposure configurations.</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_v1.pdf" target="_blank">View PDF</a>
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_v1.pdf" download>Download</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-id">SAR-02</div>
+        <h4>Appendix A — Test Setup Photos</h4>
+        <p class="doc-summary">Photographic documentation of SAR test equipment and device positioning.</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_Appendix A_v1.pdf" target="_blank">View PDF</a>
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_Appendix A_v1.pdf" download>Download</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-id">SAR-03</div>
+        <h4>Appendix B — Tissue Recipes (Part 1)</h4>
+        <p class="doc-summary">Composition and electromagnetic properties of tissue-simulating liquids used in SAR testing — Part 1.</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_Appendix B_Part1-2.pdf" target="_blank">View Part 1</a>
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_Appendix B_Part2-2.pdf" target="_blank">View Part 2</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-id">SAR-04</div>
+        <h4>Appendix C — System Verification (Part 1 of 3)</h4>
+        <p class="doc-summary">SAR system verification data for each tissue configuration — Part 1.</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_Appendix C_Part1-3.pdf" target="_blank">View Part 1</a>
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_Appendix C_Part2-3.pdf" target="_blank">View Part 2</a>
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_Appendix C_Part3-3.pdf" target="_blank">View Part 3</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-id">SAR-05</div>
+        <h4>Appendix E — SAR Measurement Data</h4>
+        <p class="doc-summary">Detailed SAR measurement results for all test positions and frequency bands.</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_Appendix E.pdf" target="_blank">View PDF</a>
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_Appendix E.pdf" download>Download</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: SUPPORTING DOCS -->
+<section class="section" id="supporting">
+  <div class="section-shell">
+    <div class="section-header">
+      <h2>Supporting Documents</h2>
+      <p>Label drawings, confidentiality requests, power of attorney, and other administrative documents associated with this FCC filing.</p>
+    </div>
+    <div class="docs-grid">
+      <div class="doc-card">
+        <div class="doc-id">DOC-01</div>
+        <h4>FCC Label Drawing</h4>
+        <p class="doc-summary">Approved label layout including FCC ID placement and format for the MAG1 housing.</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_Label.pdf" target="_blank">View PDF</a>
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_Label.pdf" download>Download</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-id">DOC-02</div>
+        <h4>Label Location</h4>
+        <p class="doc-summary">Illustration showing the designated physical location for the FCC label on the MAG1 device housing.</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_Label Location.pdf" target="_blank">View PDF</a>
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_Label Location.pdf" download>Download</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-id">DOC-03</div>
+        <h4>FCC Confidentiality Request</h4>
+        <p class="doc-summary">Long-Term Confidentiality (LTC) and Short-Term Confidentiality (STC) request per FCC Rule 0.457.</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_cvrltr_FCC Confidentiality Request(LTC+STC).pdf" target="_blank">View PDF</a>
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_cvrltr_FCC Confidentiality Request(LTC+STC).pdf" download>Download</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-id">DOC-04</div>
+        <h4>FCC Power of Attorney</h4>
+        <p class="doc-summary">Authorization granted to Sporton International (USA) Inc. to act as the designated TCB representative.</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_cvrltr_FCC POA.pdf" target="_blank">View PDF</a>
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_cvrltr_FCC POA.pdf" download>Download</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-id">DOC-05</div>
+        <h4>U.S. Agent Attention Letter</h4>
+        <p class="doc-summary">Letter designating the U.S. agent for FCC correspondence and regulatory attention.</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_cvrltr_Attention for U.S. Agent.pdf" target="_blank">View PDF</a>
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_cvrltr_Attention for U.S. Agent.pdf" download>Download</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-id">DOC-06</div>
+        <h4>FCC Certification Letter (2.911d)</h4>
+        <p class="doc-summary">Primary FCC equipment authorization certification letter issued by Sporton International (USA) Inc. under 47 CFR 2.911(d).</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_cvrltr_Certification_2.911d5(i)&(ii).pdf" target="_blank">View PDF</a>
+          <a class="doc-btn" href="assets/pdfs/fcc/2BVCPGC603606_cvrltr_Certification_2.911d5(i)&(ii).pdf" download>Download</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERPRETATION NOTE -->
+<section class="section" style="background:var(--bg-secondary);">
+  <div class="section-shell">
+    <div class="highlight-box">
+      <h3>How This Page Should Be Used</h3>
+      <p>This page is a supporting compliance reference for MAG1's FCC equipment authorization. It consolidates all test reports, grant letters, antenna documentation, and administrative filings associated with FCC ID 2BVCPGC603606 into a single structured reference for partners, exchanges, and institutional reviewers.</p>
+      <p>This page should be read together with MAGNE's broader Compliance page and related product-readiness materials. It does not replace the official FCC grant or the underlying test reports, and should be used as an index and access point rather than a standalone compliance statement.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-shell">
+    <h2>Need broader compliance materials?</h2>
+    <p>For additional compliance references, regulatory inquiries, or institutional review assistance, contact the MAGNE team directly.</p>
+    <div class="cta-buttons">
+      <a href="magne-compliance.html" class="btn-secondary">← Back to Compliance</a>
+      <a href="magne-contact.html" class="btn-primary">Contact MAGNE</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="magne-privacy.html">Privacy Policy</a>
+    <a href="magne-contact.html">Contact</a>
+    <a href="magne-media.html">Media Kit</a>
+  </div>
+  <p>© 2026 MAGNE.AI — magne ai global tech limited</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자주 묻는 질문 - MAGNE.AI</title>
+  <link rel="icon" type="image/png" href="logo-combined-nav.png">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0a0c;
+      --bg-secondary: #0f0f12;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --bg-card-hover: rgba(255, 255, 255, 0.06);
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.1);
+      --text-primary: #f5f5f7;
+      --text-secondary: rgba(245, 245, 247, 0.6);
+      --text-muted: rgba(245, 245, 247, 0.4);
+      --accent: #00d4d4;
+      --accent-dim: rgba(0, 212, 212, 0.06);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    .content--canvas { position: relative; z-index: 1; }
+    .content--canvas canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 12, 0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-decoration: none;
+    }
+    .nav-back {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: color 0.3s;
+      background: rgba(0, 212, 212, 0.1);
+      border: 1px solid rgba(0, 212, 212, 0.3);
+      color: #00d4d4;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+    }
+    .nav-back:hover {
+      background: rgba(0, 212, 212, 0.2);
+      color: #00d4d4;
+    }
+
+    .page-header {
+      padding: 8rem 2rem 3rem;
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .page-header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .page-header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 2rem 6rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .faq-section {
+      margin-bottom: 2.5rem;
+    }
+    .faq-section-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 0.75rem;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+    .faq-item:hover {
+      border-color: rgba(0, 212, 212, 0.3);
+    }
+    .faq-item.active {
+      background: var(--bg-card-hover);
+      border-color: rgba(0, 212, 212, 0.3);
+    }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 1.2rem 1.5rem;
+      color: var(--text-primary);
+      font-size: 1rem;
+      font-weight: 500;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .faq-question:hover {
+      color: var(--accent);
+    }
+    .faq-question .icon {
+      font-size: 1.5rem;
+      transition: transform 0.3s;
+      flex-shrink: 0;
+      color: var(--text-muted);
+    }
+    .faq-item.active .faq-question .icon {
+      transform: rotate(45deg);
+      color: var(--accent);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+    .faq-answer-content {
+      padding: 0 1.5rem 1.5rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+    .faq-answer-content a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .faq-answer-content a:hover {
+      text-decoration: underline;
+    }
+    .faq-item.active .faq-answer {
+      max-height: 500px;
+    }
+
+    footer {
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      position: relative;
+      z-index: 1;
+    }
+    footer a { color: var(--text-secondary); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+    }
+    .footer-links a:hover {
+      color: var(--accent);
+      background: rgba(0, 212, 212, 0.1);
+    }
+    .footer-icon {
+      padding: 0.6rem !important;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .footer-icon:hover {
+      border-color: var(--accent);
+      background: rgba(0, 212, 212, 0.1);
+    }
+    .footer-logo { margin: 2rem 0 1rem; }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .page-header { padding: 7rem 1.5rem 2rem; }
+      .content { padding: 1rem 1.5rem 4rem; }
+    }
+  
+    .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-brand a { color: var(--text-secondary); text-decoration: none; font-weight: 600; }
+    .lang-link.active { background: var(--accent) !important; color: #000 !important; font-weight: 600 !important; border-color: var(--accent) !important; }
+    </style>
+</head>
+<body class="content--canvas">
+  <canvas id="swirl"></canvas>
+
+  <nav>
+      <div class="nav-brand">
+        <a href="magne-landing.html" class="nav-logo"
+          ><img
+            src="logo-combined-nav.png"
+            alt="MAGNE.AI"
+            style="height: 28px; margin-top: 2px"
+        /></a>
+      </div>
+      <a href="magne-landing.html" class="nav-back">← Back to Home</a>
+    </nav>
+
+  <div class="page-header">
+    <h1>자주 묻는 질문</h1>
+    <p>MAGNE.AI에 대해 알아야 할 모든 것</p>
+  </div>
+
+  <div class="content">
+    <!-- 제품 Section -->
+    <div class="faq-section">
+      <div class="faq-section-title">제품</div>
+      
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>MAGNE.AI란 무엇입니까?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            MAGNE.AI는 세계 최초의 Web3 AI 스마트폰입니다, combining secure hardware architecture with on-device AI capabilities. It features the AX3596 NPU for powerful on-device AI processing, a built-in hardware wallet for secure crypto asset management, and native dual-chain support (L1 + L2) for seamless Web3 interaction.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>MAGNE.AI는 언제 출시되나요?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            사전 주문이现在开始되었습니다. <a href="https://payment.magne.ai/buy">payment.magne.ai/buy</a>에서 가입하여 장치를 예약하세요. 공식 출시 일정과 배송 시간은 공식 채널을 통해 발표될 것입니다.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>MAGNE.AI는 다른 스마트폰과 어떻게 다른가요?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            기존 스마트폰과 달리 MAGNE.AI는 Web3 시대를 위해 구축되었습니다. 주요 차별화 요소: 개인 키용 전용 보안 요소와 하드웨어 수준 보안, 온디바이스 AI 처리(클라우드 종속 없음), 네이티브 블록체인 통합, Layer 1과 Layer 2 프로토콜을 모두 지원하는 이중 체인 아키텍처.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>장치 사양은 무엇인가요?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            MAGNE.AI는 AI 작업을 위한 AX3596 NPU가 포함된高性能 프로세서, 충분한 저장 용량과 메모리 구성, 멋진 디스플레이, 고급 카메라 시스템을 특징으로 합니다. 자세한 사양은 <a href="magne-landing.html#specs">사양 섹션</a>을 방문하세요.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 보안 Section -->
+    <div class="faq-section">
+      <div class="faq-section-title">보안</div>
+      
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>하드웨어 지갑은 어떻게 작동하나요?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            MAGNE.AI는 개인 키를 주요 운영 체제에서 분리하는 전용 보안 요소를 갖추고 있습니다. 이 하드웨어 수준의 격리는 장치가 손상되더라도 암호 자산이 보호된 상태로 유지되도록 합니다. 보안 요소는 키를 주요 프로세서에 노출하지 않고 모든 서명 작업을 처리합니다.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>제 데이터와 자산은 안전한가요?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            보안 is our top priority. MAGNE.AI implements multiple layers of protection: hardware-level encryption via secure element, biometric authentication (fingerprint + face), encrypted storage, and secure boot chain. Your private keys never leave the secure hardware, providing bank-grade protection for your digital assets.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>장치를 분실하면 어떻게 되나요?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            자산은 지갑을 설정할 때 안전하게 저장해야 하는 백업 문구(시드 문구)를 사용하여 복구할 수 있습니다. 백업 문구를 안전한 위치에 오프라인으로 저장할 것을 권장합니다. 백업 문구가 있으면 새 장치에서 자산에 대한 액세스를 복원할 수 있습니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Web3 & 블록체인 Section -->
+    <div class="faq-section">
+      <div class="faq-section-title">Web3 & 블록체인</div>
+      
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>어떤 블록체인이 지원되나요?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            MAGNE.AI는 여러 블록체인 네트워크와의 상호작용을 가능하게 하는 네이티브 이중 체인 아키텍처(L1 + L2)를 지원합니다. 이 장치는 Ethereum, BNB Chain, Polygon 및 다양한 Layer 2 솔루션을 포함한 주요 생태계에 최적화되어 있습니다. 지원 체인의 전체 목록은 <a href="magne-landing.html#network">Web3 네트워크 섹션</a>을 확인하세요.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>이 폰을 사용하려면 블록체인에 대해 알아야 하나요?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            전혀 아닙니다! MAGNE.AI는 완전한 Web3 기능을 제공하면서도 블록체인 복잡성을 추상화하도록 설계되었습니다. 사용자 인터페이스는 트랜잭션 보내기, 토큰 관리, dApps와 상호작용과 같은 일반적인 작업을 단순화합니다. 암호화폐에 익숙하든 Web3를 처음 접하든, 직관적이고 접근하기 쉬운 경험을 발견할 것입니다.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>온디바이스 AI 기능이란 무엇인가요?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            AX3596 NPU는 인터넷 연결이나 클라우드 서버로 데이터 전송 없이 장치에서 직접 강력한 AI 기능을 활성화합니다. 여기에는 AI 기반 사진 향상, 음성 비서, 스마트 자동화, 트랜잭션 분석 및 포트폴리오 관리와 같은 Web3 특정 기능이 포함됩니다—모두 장치에서 비공개로 처리됩니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 사전 주문 & 구매 Section -->
+    <div class="faq-section">
+      <div class="faq-section-title">사전 주문 & 구매</div>
+      
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>MAGNE.AI는 어떻게 사전 주문하나요?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <a href="https://payment.magne.ai/buy">payment.magne.ai/buy</a>에서 보안 사전 주문 페이지를 방문하세요. 선호하는 구성을 선택하고 체크아웃 프로세스를 완료하세요. 주문 세부 정보와 예상 배송 일정이 포함된 확인 이메일을 받게 됩니다.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>어떤 결제 방법이 지원되나요?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            당사는 신용/직불 카드, 암호화폐 결제(BTC, ETH, USDT 및 기타 주요 토큰),大口 주문을 위한 은행 송금 등 다양한 결제 방법을接受的합니다. 모든 거래는 당사의 신뢰할 수 있는 결제 파트너를 통해 보호됩니다.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>환불 정책이 있나요?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            당사의 환불 정책은 주문 체결 후 14일 이내에 전액 환불을 위한 취소를 허용합니다. 장치가 배송되면 당사의 표준 반품 정책이 적용됩니다(장치는 미사용 및 원래 포장 상태여야 함). 자세한 내용과 지원은 당사 지원 팀에 문의하세요.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>전 세계 배송이 있나요?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            네, MAGNE.AI는 전 세계에 배송됩니다. 배송 비용과 배송 시간은 지역에 따라 다릅니다. 사전 주문 중에您的位置에 사용 가능한 배송 옵션이 표시됩니다. 우리는 전 세계에서 안전하고 효율적인 배송을 보장하기 위해 신뢰할 수 있는 물류 파트너와 협력합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 지원 Section -->
+    <div class="faq-section">
+      <div class="faq-section-title">지원</div>
+      
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>기술 지원을 받으려면 어떻게 하나요?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            For technical support, you can reach us via email at <a href="mailto:support@magne.ai">support@magne.ai</a> or through our Telegram support channel. Our team is available to assist with setup, troubleshooting, and any technical inquiries.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>최신 업데이트는 어디서 찾을 수 있나요?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            최신 뉴스와 업데이트는 공식 채널을 따르세요: <a href="https://twitter.com/Magne_Ai">X (Twitter)</a>, <a href="https://t.me/MagneAI">Telegram</>, 및 우리의 웹사이트. 우리는 정기적으로 제품 업데이트, 파트너십 발표 및 커뮤니티 하이라이트를 공유합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-links">
+      <a href="https://x.com/Magne_Ai" target="_blank" class="footer-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="https://t.me/MagneAI" target="_blank" class="footer-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+      <a href="https://discord.gg/tX2xRAkd" target="_blank" class="footer-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
+      <a href="https://github.com/magne-ai" target="_blank" class="footer-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+      <a href="https://www.youtube.com/@MagneAI" target="_blank" class="footer-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+      <a href="https://web3.magne.ai" target="_blank" class="footer-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></a>
+      <a href="https://docsend.com/view/79frzd4m9c8y84vx" target="_blank" class="footer-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></a>
+      <a href="https://explorer.testnet.magicalhash.com" target="_blank" class="footer-icon" style="padding: 0.5rem;"><img src="https://explorer.testnet.magicalhash.com/assets/configs/network_logo.png" alt="L1 Network" style="height: 24px; vertical-align: middle;"></a>
+      <a href="https://l2-explorer.testnet.magicalhash.com" target="_blank" class="footer-icon" style="padding: 0.5rem;"><img src="https://l2-explorer.testnet.magicalhash.com/assets/configs/network_logo.png" alt="L2 Network" style="height: 24px; vertical-align: middle;"></a>
+    </div>
+    <div class="footer-logo">
+      <img src="logo-combined-footer.png" alt="MAGNE.AI" style="height: 32px; margin-bottom: 1rem; opacity: 0.7;">
+    </div>
+    <p>© 2026 MAGNE.AI® All rights reserved. · <a href="https://tmsearch.uspto.gov/search/search-results/99311528" target="_blank" class="footer-icon" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;">Trademark</a></p>
+    <p style="margin-top: 0.5rem">
+      <a href="privacy-policy-kr.html">Privacy Policy</a>
+    </p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
+  <script>
+    const canvas = document.getElementById('swirl');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let simplex = new SimplexNoise();
+    function resize() { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; }
+    resize();
+    window.addEventListener('resize', resize);
+    const particles = [];
+    const count = 40;
+    for (let i = 0; i < count; i++) {
+      particles.push({ x: Math.random() * width, y: Math.random() * height, vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3, size: Math.random() * 3 + 2 });
+    }
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      for (let p of particles) {
+        const nx = simplex.noise3D(p.x * 0.001, p.y * 0.001, performance.now() * 0.00015);
+        const ny = simplex.noise3D(p.x * 0.001 + 100, p.y * 0.001 + 100, performance.now() * 0.00015);
+        p.x += p.vx + nx * 0.3; p.y += p.vy + ny * 0.3;
+        if (p.x < 0) p.x = width; if (p.x > width) p.x = 0;
+        if (p.y < 0) p.y = height; if (p.y > height) p.y = 0;
+        const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 2);
+        gradient.addColorStop(0, 'rgba(0, 212, 212, 0.3)');
+        gradient.addColorStop(1, 'rgba(0, 212, 212, 0)');
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.size * 2, 0, Math.PI * 2);
+        ctx.fillStyle = gradient; ctx.fill();
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.size * 0.4, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(0, 212, 212, 0.6)'; ctx.fill();
+      }
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+  <script>
+    // FAQ Accordion functionality
+    document.querySelectorAll('.faq-question').forEach(button => {
+      button.addEventListener('click', () => {
+        const faqItem = button.parentElement;
+        const isActive = faqItem.classList.contains('active');
+        
+        // Close all items
+        document.querySelectorAll('.faq-item').forEach(item => {
+          item.classList.remove('active');
+        });
+        
+        // Open clicked item if it wasn't already open
+        if (!isActive) {
+          faqItem.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

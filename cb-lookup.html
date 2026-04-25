@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CB Certificate Detail — MAGNE.AI</title>
+  <link rel="icon" type="image/png" href="logo-icon-circle.png">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0a0c;
+      --bg-secondary: #0f0f12;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.10);
+      --text-primary: #f5f5f7;
+      --text-secondary: rgba(245, 245, 247, 0.6);
+      --text-muted: rgba(245, 245, 247, 0.4);
+      --accent: #00d4d4;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 12, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-decoration: none;
+    }
+    .nav-back {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--accent); }
+
+    .hero {
+      padding: 9rem 2rem 5rem;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+    .hero-sub {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      max-width: 680px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .section { padding: 6rem 2rem; }
+    .section-shell { width: min(1200px, calc(100% - 48px)); margin: 0 auto; }
+    .section-header { max-width: 900px; margin: 0 auto 3rem; text-align: center; }
+    .section-header h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .section-header p {
+      color: var(--text-secondary);
+      max-width: 680px;
+      margin: 0 auto;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+    .section-intro {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      text-align: center;
+    }
+    .section-intro p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      background: var(--accent);
+      color: #000;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
+    .btn-secondary {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .summary-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.25s ease;
+    }
+    .summary-card:hover {
+      border-color: rgba(0, 212, 212, 0.3);
+      transform: translateY(-3px);
+    }
+    .summary-card h4 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.75rem; }
+    .summary-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.65; }
+
+    .identifier-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .identifier-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.75rem;
+      text-align: center;
+      transition: all 0.25s ease;
+    }
+    .identifier-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+    .identifier-label {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--accent);
+      background: rgba(0, 212, 212, 0.10);
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+    .identifier-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.5;
+      word-break: break-word;
+    }
+
+    .highlight-box {
+      margin-top: 3rem;
+      background: linear-gradient(180deg, rgba(0,212,212,0.05) 0%, rgba(0,212,212,0.01) 100%);
+      border: 1px solid rgba(0, 212, 212, 0.15);
+      border-radius: 20px;
+      padding: 2.5rem;
+      text-align: center;
+    }
+    .highlight-box h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem; }
+    .highlight-box p {
+      color: var(--text-secondary);
+      max-width: 760px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    .docs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .doc-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.75rem;
+      text-align: center;
+      transition: all 0.25s ease;
+    }
+    .doc-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+    .doc-id {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--accent);
+      background: rgba(0, 212, 212, 0.12);
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+    .doc-card h4 { font-size: 1rem; font-weight: 600; margin-bottom: 0.6rem; }
+    .doc-summary {
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      line-height: 1.65;
+      margin-bottom: 1rem;
+    }
+    .doc-actions {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .doc-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.6rem 0.9rem;
+      border: 1px solid var(--border-hover);
+      border-radius: 8px;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .doc-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    .cta-section {
+      padding: 6rem 2rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .cta-shell { width: min(1000px, calc(100% - 48px)); margin: 0 auto; }
+    .cta-shell h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .cta-shell p {
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.8;
+    }
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    footer {
+      text-align: center;
+      padding: 4rem 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .footer-links a { color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--accent); }
+
+    @media (max-width: 640px) {
+      .hero { padding: 7rem 1.5rem 3rem; }
+      .section { padding: 3rem 1.5rem; }
+      .summary-grid,
+      .identifier-grid,
+      .docs-grid { grid-template-columns: 1fr; }
+      .doc-actions { flex-direction: column; }
+      nav { padding: 0.9rem 1.25rem; }
+      .nav-back { font-size: 0.82rem; }
+      .section-header h2 { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="magne-home.html" class="nav-logo">MAGNE.AI</a>
+    <a href="magne-compliance.html" class="nav-back">← Back to Compliance</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">COMPLIANCE SUPPORTING PAGE</div>
+    <h1>CB Certificate Detail</h1>
+    <p class="hero-sub">
+      A supporting page for partners, exchanges, and institutional reviewers who require
+      deeper verification of MAG1 battery's CB certificate and related reference information.
+    </p>
+    <div class="hero-ctas">
+      <a href="magne-compliance.html" class="btn-secondary">← Back to Compliance</a>
+    </div>
+  </section>
+
+  <!-- SECTION 1: CERTIFICATE SUMMARY -->
+  <section class="section">
+    <div class="section-shell">
+      <div class="section-header">
+        <h2>Certificate Summary</h2>
+        <p>A concise overview of MAG1 battery's CB certificate and its supporting compliance context.</p>
+      </div>
+      <div class="section-intro">
+        <p>
+          MAG1 battery has obtained a CB certificate within the applicable battery safety
+          framework. This page is intended to provide a structured supporting reference for
+          parties who require a more detailed view of the certificate identity, scope,
+          issuing body, and related verification context.
+        </p>
+        <p style="margin-top:1rem;">
+          Rather than functioning as a broad safety or logistics summary, this page is focused
+          on a single certificate-level reference and should be read together with MAG1's
+          broader compliance and product-readiness materials.
+        </p>
+      </div>
+      <div class="summary-grid">
+        <div class="summary-card">
+          <h4>Certificate Status</h4>
+          <p>Obtained</p>
+        </div>
+        <div class="summary-card">
+          <h4>Certificate Scope</h4>
+          <p>Rechargeable Li-ion Polymer Battery</p>
+        </div>
+        <div class="summary-card">
+          <h4>Reference Standard</h4>
+          <p>IEC 62133-2:2017 + AMD1:2021</p>
+        </div>
+        <div class="summary-card">
+          <h4>Review Purpose</h4>
+          <p>Supporting compliance reference</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: CERTIFICATE DETAILS -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="section-shell">
+      <div class="section-header">
+        <h2>Certificate Details</h2>
+        <p>Key certificate fields associated with MAG1 battery's CB certificate.</p>
+      </div>
+      <div class="section-intro">
+        <p>
+          The following fields identify the certificate and product context associated with
+          MAG1 battery's CB certification record.
+        </p>
+      </div>
+      <div class="identifier-grid">
+        <div class="identifier-card">
+          <div class="identifier-label">CB NUMBER</div>
+          <div class="identifier-value">JPTUV-182068</div>
+        </div>
+        <div class="identifier-card">
+          <div class="identifier-label">ISSUING ORGANIZATION</div>
+          <div class="identifier-value">TÜV Rheinland Japan Ltd.</div>
+        </div>
+        <div class="identifier-card">
+          <div class="identifier-label">PRODUCT</div>
+          <div class="identifier-value">Rechargeable Li-ion Polymer Battery</div>
+        </div>
+        <div class="identifier-card">
+          <div class="identifier-label">MODEL / TYPE</div>
+          <div class="identifier-value">MGU</div>
+        </div>
+        <div class="identifier-card">
+          <div class="identifier-label">RATINGS</div>
+          <div class="identifier-value">3.87V / 5000mAh (typ) / 4900mAh (rated)</div>
+        </div>
+        <div class="identifier-card">
+          <div class="identifier-label">STANDARD</div>
+          <div class="identifier-value">IEC 62133-2:2017 + AMD1:2021</div>
+        </div>
+      </div>
+      <div class="highlight-box">
+        <h3>Structured Review Context</h3>
+        <p>
+          These certificate details are presented as a supporting reference for structured
+          review and should be interpreted together with the certificate itself and MAG1's
+          broader compliance materials.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: WHAT THIS CERTIFICATE MEANS -->
+  <section class="section">
+    <div class="section-shell">
+      <div class="section-header">
+        <h2>What This Certificate Means</h2>
+        <p>How MAG1 battery's CB certificate should be interpreted in the context of battery safety and product review.</p>
+      </div>
+      <div class="section-intro">
+        <p>
+          This CB certificate relates to battery safety within the applicable IEC framework
+          and supports review of rechargeable battery compliance in the relevant product context.
+          It provides a recognized reference point for battery-related safety evaluation
+          and certification interpretation.
+        </p>
+        <p style="margin-top:1rem;">
+          This page does not replace broader device-level certifications, logistics documentation,
+          or market-access materials. Instead, it should be read together with MAG1's broader
+          compliance profile, including safety, shipping, and device-readiness references where applicable.
+        </p>
+      </div>
+      <div class="summary-grid">
+        <div class="summary-card">
+          <h4>Battery Safety Context</h4>
+          <p>This certificate supports review of battery safety compliance within the applicable IEC framework.</p>
+        </div>
+        <div class="summary-card">
+          <h4>Broader Compliance Context</h4>
+          <p>It should be read together with MAG1's broader safety, logistics, and market-readiness materials.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: SUPPORTING CERTIFICATE -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="section-shell">
+      <div class="section-header">
+        <h2>Supporting Certificate</h2>
+        <p>The official certificate reference associated with MAG1 battery's CB certification.</p>
+      </div>
+      <div class="section-intro">
+        <p>
+          The CB certificate for MAG1 battery may be verified through the official IECEE
+          certificate database using the CB Number listed above. Supporting certificate
+          documentation may be provided upon request in the context of formal due diligence
+          or partnership review.
+        </p>
+      </div>
+      <div class="docs-grid" style="max-width: 800px; margin: 0 auto;">
+        <div class="doc-card">
+          <div class="doc-id">CERT</div>
+          <h4>CB Battery Certificate</h4>
+          <p class="doc-summary">
+            Official CB certificate for MAG1 battery (JPTUV-182068) issued by TÜV Rheinland Japan Ltd.
+          </p>
+          <div class="doc-actions">
+            <a href="assets/pdfs/cb/JPTUV-182068_MGU_62133_Certificate.pdf" target="_blank" class="doc-btn">View PDF</a>
+            <a href="assets/pdfs/cb/JPTUV-182068_MGU_62133_Certificate.pdf" download class="doc-btn">Download</a>
+          </div>
+        </div>
+        <div class="doc-card">
+          <div class="doc-id">REPORT</div>
+          <h4>CB Test Report</h4>
+          <p class="doc-summary">
+            Supporting test report associated with MAG1 battery's CB certification and IEC 62133-2:2017 compliance scope.
+          </p>
+          <div class="doc-actions">
+            <a href="assets/pdfs/cb/CN25UQGP_001_TR_MGU_62133_Test-Report.pdf" target="_blank" class="doc-btn">View PDF</a>
+            <a href="assets/pdfs/cb/CN25UQGP_001_TR_MGU_62133_Test-Report.pdf" download class="doc-btn">Download</a>
+          </div>
+        </div>
+      </div>
+      <p style="text-align: center; color: var(--text-muted); font-size: 0.88rem; margin-top: 2rem; line-height: 1.7;">
+        Also available via official IECEE database search: CB Number JPTUV-182068
+      </p>
+    </div>
+  </section>
+
+  <!-- SECTION 5: HOW TO VERIFY -->
+  <section class="section">
+    <div class="section-shell">
+      <div class="section-header">
+        <h2>How to Verify</h2>
+        <p>How reviewers may verify the certificate through the official IECEE certificate search.</p>
+      </div>
+      <div class="section-intro">
+        <p>
+          Reviewers may verify the certificate through the official IECEE certificate search
+          by entering the CB Number associated with MAG1 battery's certification record.
+        </p>
+      </div>
+      <div class="identifier-grid">
+        <div class="identifier-card">
+          <div class="identifier-label">STEP 1</div>
+          <div class="identifier-value">Open the official IECEE certificate search page</div>
+        </div>
+        <div class="identifier-card">
+          <div class="identifier-label">STEP 2</div>
+          <div class="identifier-value">Enter CB Number: JPTUV-182068</div>
+        </div>
+        <div class="identifier-card">
+          <div class="identifier-label">STEP 3</div>
+          <div class="identifier-value">Review the corresponding certificate entry</div>
+        </div>
+      </div>
+      <div class="highlight-box">
+        <h3>Verification Note</h3>
+        <p>
+          This verification path is provided as an additional reference layer and should be
+          read together with the certificate PDF and MAG1's broader compliance materials.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: INTERPRETATION NOTE -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="section-shell">
+      <div class="section-header">
+        <h2>Interpretation Note</h2>
+        <p>How this page should be used in the context of structured compliance review.</p>
+      </div>
+      <div class="highlight-box">
+        <h3>How this page should be used</h3>
+        <p>
+          This page is intended as a supporting compliance reference and should be read
+          together with the broader Compliance page and related safety materials. It is
+          designed to help partners, exchanges, and institutional reviewers understand the
+          identity and scope of MAG1 battery's CB certificate without expanding beyond the
+          underlying certificate context.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-shell">
+      <h2>Need broader compliance materials?</h2>
+      <p>
+        For broader compliance references, commercial materials, or institutional review
+        support, contact MAGNE directly or return to the broader Compliance page.
+      </p>
+      <div class="cta-buttons">
+        <a href="magne-compliance.html" class="btn-secondary">← Back to Compliance</a>
+        <a href="magne-contact.html" class="btn-primary">Contact MAGNE</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-links">
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="magne-contact.html">Contact</a>
+      <a href="media-kit.html">Media Kit</a>
+    </div>
+    <p style="opacity: 0.5;">© 2026 MAGNE.AI. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

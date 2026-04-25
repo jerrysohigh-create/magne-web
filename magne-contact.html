@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact MAGNE.AI — Get in Touch</title>
+  <link rel="icon" type="image/png" href="logo-icon-circle.png">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #0a0a0c;
+      --bg-secondary: #0f0f12;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --bg-card-hover: rgba(255, 255, 255, 0.05);
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.12);
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.5);
+      --text-tertiary: rgba(255, 255, 255, 0.3);
+      --accent: #00d4d4;
+      --accent-secondary: #00ff88;
+      --accent-purple: #a855f7;
+      --accent-gold: #ffd700;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', -apple-system, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NODE NETWORK BACKGROUND */
+    #node-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 12, 0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-brand a { color: var(--text-secondary); text-decoration: none; }
+    .nav-logo { font-size: 1.3rem; font-weight: 700; color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a.active { color: var(--accent); }
+    .nav-cta {
+      background: var(--accent);
+      color: #000 !important;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .nav-cta:hover { opacity: 0.9; }
+
+    /* CONTENT WRAPPER */
+    .content-wrapper {
+      position: relative;
+      z-index: 1;
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 600px;
+      background: radial-gradient(ellipse at center, rgba(0,212,212,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 0.8s ease-out;
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.85) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeInUp 0.8s ease-out 0.1s both;
+    }
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin-bottom: 3rem;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+
+    /* CONTACT PATHS */
+    .contact-section {
+      padding: 4rem 2rem 6rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .contact-section > .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .contact-section > .section-title h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .contact-section > .section-title p {
+      color: var(--text-secondary);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .contact-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .contact-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    .contact-card .icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .contact-card h4 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .contact-card p {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    .contact-card .email-link {
+      display: inline-block;
+      font-size: 0.85rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+    .contact-card .email-link:hover {
+      opacity: 0.8;
+    }
+    .contact-card .sub-link {
+      display: inline-block;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      margin-top: 0.5rem;
+      transition: color 0.2s;
+    }
+    .contact-card .sub-link:hover {
+      color: var(--accent);
+    }
+
+    /* DIRECT CONTACT */
+    .direct-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 3rem;
+      margin: 4rem auto;
+      max-width: 800px;
+    }
+    .direct-section h3 {
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+    }
+    .direct-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    .direct-item {
+      background: var(--bg-secondary);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .direct-item .label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+    .direct-item .email {
+      font-size: 0.95rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    /* RESPONSE INFO */
+    .response-info {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      max-width: 500px;
+      margin: 0 auto 4rem;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 4rem 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-tertiary);
+      font-size: 0.9rem;
+    }
+    footer a { color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--accent); }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; margin-top: 1rem; }
+
+
+    /* ANIMATIONS */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate { opacity: 0; }
+    .animate.visible {
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .contact-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1rem; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .direct-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NODE NETWORK BACKGROUND -->
+<canvas id="node-bg"></canvas>
+
+<div class="content-wrapper">
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <a href="magne-home.html"><span class="nav-logo">MAGNE.AI</span></a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="magne-home.html">Home</a></li>
+    <li><a href="magne-phone.html">Phone</a></li>
+    <li><a href="magne-security.html">Security</a></li>
+    <li><a href="magne-compliance.html">Compliance</a></li>
+    <li><a href="magne-network.html">Network</a></li>
+    <li><a href="magne-progress.html">Progress</a></li>
+  </ul>
+  <a href="magne-contact.html" class="nav-cta active">Contact</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Contact</div>
+  <h1>Get in touch</h1>
+  <p class="hero-sub">Whether you have a product question, a partnership inquiry, or need to discuss institutional engagement — we have the right contact path for you.</p>
+</section>
+
+<!-- CONTACT PATHS -->
+<div class="contact-section">
+  <div class="section-title">
+    <h2>What are you contacting us about?</h2>
+    <p>Select the category that best matches your inquiry.</p>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-card animate">
+      <div class="icon">📦</div>
+      <h4>Product Inquiry</h4>
+      <p>Questions about MAGNE Phone Gen1 specifications, features, availability, or general product information.</p>
+      <a href="mailto:official@magne.ai" class="email-link">official@magne.ai →</a>
+    </div>
+    <div class="contact-card animate">
+      <div class="icon">🛒</div>
+      <h4>Preorder</h4>
+      <p>Ready to reserve your device or want to understand the preorder process and first batch timeline.</p>
+      <a href="mailto:official@magne.ai" class="email-link">official@magne.ai →</a>
+    </div>
+    <div class="contact-card animate">
+      <div class="icon">🤝</div>
+      <h4>Partnership</h4>
+      <p>Distribution, channel partnerships, OEM/ODM collaborations, or broader commercial partnerships.</p>
+      <a href="mailto:official@magne.ai" class="email-link">official@magne.ai →</a>
+    </div>
+    <div class="contact-card animate">
+      <div class="icon">💼</div>
+      <h4>Investor Relations</h4>
+      <p>Institutional investment inquiries, fund manager discussions, or strategic capital engagement.</p>
+      <a href="mailto:official@magne.ai" class="email-link">official@magne.ai →</a>
+    </div>
+    <div class="contact-card animate">
+      <div class="icon">🏛️</div>
+      <h4>Exchange / DD</h4>
+      <p>Exchange listings, due diligence processes, listing requirements, or institutional-grade program information.</p>
+      <a href="mailto:official@magne.ai" class="email-link">official@magne.ai →</a>
+    </div>
+    <div class="contact-card animate">
+      <div class="icon">📰</div>
+      <h4>Media / Developer</h4>
+      <p>Press inquiries, interview requests, developer ecosystem, or documentation questions.</p>
+      <a href="mailto:official@magne.ai" class="email-link">official@magne.ai →</a>
+      <a href="media-kit.html" class="sub-link">Access Media Kit →</a>
+    </div>
+  </div>
+</div>
+
+<!-- DIRECT CONTACT -->
+<div class="direct-section animate">
+  <h3>Direct Contact</h3>
+  <div class="direct-grid">
+    <div class="direct-item">
+      <div class="label">General Inquiries</div>
+      <a href="mailto:official@magne.ai" class="email">official@magne.ai</a>
+    </div>
+    <div class="direct-item">
+      <div class="label">Business Development</div>
+      <a href="mailto:official@magne.ai" class="email">official@magne.ai</a>
+    </div>
+  </div>
+</div>
+
+<!-- RESPONSE INFO -->
+<div class="response-info">
+  <p>We aim to respond to all inquiries within 2–3 business days. For urgent matters, please indicate the urgency in your message.</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>MAGNE.AI — The Web3-native AI Phone</p>
+  <div class="footer-links">
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="magne-contact.html">Contact</a>
+    <a href="media-kit.html">Media Kit</a>
+  </div>
+  <p style="margin-top: 1.5rem; opacity: 0.5;">© 2026 MAGNE.AI. All rights reserved.</p>
+</footer>
+
+</div>
+
+<!-- SCRIPTS -->
+<script>
+  // Node Network Background
+  const canvas = document.getElementById('node-bg');
+  const ctx = canvas.getContext('2d');
+  let width, height;
+  let nodes = [];
+  let simplex;
+
+  function resize() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  }
+
+  function createNodes() {
+    const numNodes = Math.floor((width * height) / 15000);
+    nodes = [];
+    for (let i = 0; i < numNodes; i++) {
+      nodes.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        radius: Math.random() * 2 + 1,
+        baseX: 0,
+        baseY: 0
+      });
+      nodes[i].baseX = nodes[i].x;
+      nodes[i].baseY = nodes[i].y;
+    }
+  }
+
+  function init() {
+    resize();
+    simplex = new SimplexNoise();
+    createNodes();
+    animate();
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+    const time = Date.now() * 0.0005;
+    
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const dx = nodes[i].x - nodes[j].x;
+        const dy = nodes[i].y - nodes[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 150) {
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(0, 212, 212, ${0.15 * (1 - dist / 150)})`;
+          ctx.lineWidth = 1;
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+    
+    for (let node of nodes) {
+      const noiseX = simplex.noise2D(node.baseX * 0.001, time) * 30;
+      const noiseY = simplex.noise2D(node.baseY * 0.001, time) * 30;
+      node.x = node.baseX + noiseX;
+      node.y = node.baseY + noiseY;
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(0, 212, 212, 0.6)';
+      ctx.fill();
+    }
+    
+    requestAnimationFrame(animate);
+  }
+
+  window.addEventListener('resize', () => { resize(); createNodes(); });
+  init();
+
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, index * 100);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

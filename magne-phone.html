@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAGNE Phone Gen1 — Hardware, Software, and Ownership Features</title>
+  <link rel="icon" type="image/png" href="logo-icon-circle.png">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #0a0a0c;
+      --bg-secondary: #0f0f12;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --bg-card-hover: rgba(255, 255, 255, 0.05);
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.12);
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.5);
+      --text-tertiary: rgba(255, 255, 255, 0.3);
+      --accent: #00d4d4;
+      --accent-secondary: #00ff88;
+      --accent-purple: #a855f7;
+      --accent-gold: #ffd700;
+      --accent-pink: #ff6482;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', -apple-system, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NODE NETWORK BACKGROUND */
+    #node-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 12, 0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-brand a { color: var(--text-secondary); text-decoration: none; }
+    .nav-logo { font-size: 1.3rem; font-weight: 700; color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a.active { color: var(--accent); }
+    .nav-cta {
+      background: var(--accent);
+      color: #000 !important;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .nav-cta:hover { opacity: 0.9; }
+
+    /* CONTENT WRAPPER */
+    .content-wrapper {
+      position: relative;
+      z-index: 1;
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 600px;
+      background: radial-gradient(ellipse at center, rgba(0,212,212,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 0.8s ease-out;
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.85) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeInUp 0.8s ease-out 0.1s both;
+    }
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin-bottom: 3rem;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+    .hero-ctas { 
+      display: flex; 
+      gap: 1rem; 
+      flex-wrap: wrap; 
+      justify-content: center;
+      animation: fadeInUp 0.8s ease-out 0.3s both;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+      padding: 1rem 2.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover { 
+      transform: translateY(-3px); 
+      box-shadow: 0 15px 40px rgba(0,212,212,0.4);
+    }
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--border-hover);
+      color: var(--text-primary);
+      padding: 1rem 2.5rem;
+      border-radius: 8px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-secondary:hover { 
+      border-color: var(--accent); 
+      color: var(--accent);
+    }
+
+    /* SECTION BASE */
+    section { 
+      padding: 6rem 2rem; 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      position: relative;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .section-title h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .section-title p {
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1rem;
+    }
+
+    /* PRODUCT VISUAL */
+    .product-visual-section {
+      padding: 4rem 2rem 6rem;
+      text-align: center;
+    }
+    .product-image-stack {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 2rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .product-image-stack img {
+      max-height: 500px;
+      filter: drop-shadow(0 30px 60px rgba(0,0,0,0.6));
+    }
+    .product-image-stack .phone-front {
+      z-index: 2;
+    }
+    .product-image-stack .phone-back {
+      z-index: 1;
+      margin-bottom: 20px;
+      opacity: 0.85;
+    }
+
+    /* SPECS GRID */
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .spec-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.3s;
+    }
+    .spec-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+    }
+    .spec-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .spec-card h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .spec-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    /* SOFTWARE ARCH */
+    .software-layout {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      margin-top: 3rem;
+    }
+    .software-visual {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+    .software-diagram {
+      width: 280px;
+      height: 280px;
+      position: relative;
+      margin: 0 auto;
+    }
+    .diagram-circle {
+      position: absolute;
+      border-radius: 50%;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .diagram-core {
+      width: 100px; height: 100px;
+      background: linear-gradient(135deg, rgba(0,212,212,0.2), rgba(0,212,212,0.05));
+      border: 2px solid rgba(0,212,212,0.4);
+      z-index: 3;
+    }
+    .diagram-outer {
+      width: 180px; height: 180px;
+      background: linear-gradient(135deg, rgba(168,85,247,0.1), rgba(168,85,247,0.02));
+      border: 1px solid rgba(168,85,247,0.3);
+      z-index: 2;
+    }
+    .diagram-nfc {
+      width: 260px; height: 260px;
+      background: linear-gradient(135deg, rgba(255,215,0,0.05), rgba(255,215,0,0.01));
+      border: 1px solid rgba(255,215,0,0.2);
+      z-index: 1;
+    }
+
+    /* Independent text labels */
+    .diagram-tag {
+      position: absolute;
+      z-index: 10;
+      text-align: center;
+    }
+    .diagram-tag .diagram-label {
+      color: var(--text-primary);
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: block;
+    }
+    .diagram-tag .diagram-sublabel {
+      font-size: 0.65rem;
+      color: var(--text-secondary);
+      font-weight: 400;
+      display: block;
+    }
+
+    /* Position each tag separately */
+    .tag-core {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      align-items: center;
+      text-align: center;
+      min-width: 120px;
+    }
+    .tag-outer {
+      top: 46%;
+      left: calc(50% + 98px);
+      transform: translateY(-50%);
+      align-items: flex-start;
+      text-align: left;
+      min-width: 138px;
+    }
+    .tag-nfc {
+      top: calc(50% + 104px);
+      left: 50%;
+      transform: translateX(-50%);
+      align-items: center;
+      text-align: center;
+      min-width: 180px;
+    }
+
+    @media (max-width: 600px) {
+      .tag-core {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        align-items: center;
+        text-align: center;
+        min-width: 100px;
+      }
+      .tag-outer {
+        top: 46%;
+        left: calc(50% + 82px);
+        transform: translateY(-50%);
+        align-items: flex-start;
+        text-align: left;
+        min-width: 118px;
+      }
+      .tag-nfc {
+        top: calc(50% + 88px);
+        left: 50%;
+        transform: translateX(-50%);
+        align-items: center;
+        text-align: center;
+        min-width: 150px;
+      }
+    }
+    .software-content {
+      flex: 1.2;
+    }
+    .software-item {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .software-item:last-child {
+      border-bottom: none;
+    }
+    .software-item h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .software-item p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    /* SECURITY SUMMARY */
+    .security-summary {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 3rem;
+      margin-top: 4rem;
+    }
+    .security-summary h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .security-layers {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .security-layer {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid;
+    }
+    .security-layer.layer-1 {
+      background: rgba(0,212,212,0.05);
+      border-color: rgba(0,212,212,0.2);
+    }
+    .security-layer.layer-2 {
+      background: rgba(168,85,247,0.05);
+      border-color: rgba(168,85,247,0.2);
+    }
+    .security-layer.layer-3 {
+      background: rgba(255,215,0,0.05);
+      border-color: rgba(255,215,0,0.2);
+    }
+    .layer-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 700;
+      min-width: 50px;
+    }
+    .layer-1 .layer-num { color: var(--accent); }
+    .layer-2 .layer-num { color: var(--accent-purple); }
+    .layer-3 .layer-num { color: var(--accent-gold); }
+    .layer-text h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    .layer-text p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    .layer-badge {
+      margin-left: auto;
+      font-size: 0.75rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      font-weight: 600;
+    }
+    .layer-1 .layer-badge { background: rgba(0,212,212,0.1); color: var(--accent); }
+    .layer-2 .layer-badge { background: rgba(168,85,247,0.1); color: var(--accent-purple); }
+    .layer-3 .layer-badge { background: rgba(255,215,0,0.1); color: var(--accent-gold); }
+
+    /* CERTIFICATIONS */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+    .cert-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .cert-card:hover {
+      border-color: var(--border-hover);
+    }
+    .cert-card h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .cert-card p {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    /* DIFFERENTIATION */
+    .diff-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .diff-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.3s;
+    }
+    .diff-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+    }
+    .diff-card h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+    .diff-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* CTA */
+    .cta-section {
+      text-align: center;
+      padding: 6rem 2rem;
+    }
+    .cta-section h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .cta-section p {
+      color: var(--text-secondary);
+      margin-bottom: 2.5rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    /* SECTION EYEBROW */
+    .section-eyebrow {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* FEATURE DEMOS */
+    .demo-section {
+      padding: 6rem 2rem;
+    }
+    .demo-shell {
+      width: min(1100px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+    .demo-card {
+      margin-top: 2rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .demo-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .demo-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .demo-card p {
+      max-width: 700px;
+      margin: 0 auto;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      font-size: 1rem;
+    }
+    .demo-actions {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 4rem 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-tertiary);
+      font-size: 0.9rem;
+    }
+    footer a { color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--accent); }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; margin-top: 1rem; }
+
+
+    /* ANIMATIONS */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate { opacity: 0; }
+    .animate.visible {
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .specs-grid { grid-template-columns: repeat(2, 1fr); }
+      .software-layout { flex-direction: column; }
+      .cert-grid { grid-template-columns: repeat(2, 1fr); }
+      .diff-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1rem; }
+      .specs-grid { grid-template-columns: 1fr; }
+      .cert-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NODE NETWORK BACKGROUND -->
+<canvas id="node-bg"></canvas>
+
+<div class="content-wrapper">
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <a href="magne-home.html"><span class="nav-logo">MAGNE.AI</span></a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="magne-home.html">Home</a></li>
+    <li><a href="magne-phone.html" class="active">Phone</a></li>
+    <li><a href="magne-security.html">Security</a></li>
+    <li><a href="magne-compliance.html">Compliance</a></li>
+    <li><a href="magne-network.html">Network</a></li>
+    <li><a href="magne-progress.html">Progress</a></li>
+  </ul>
+  <a href="magne-contact.html" class="nav-cta">Contact</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">MAGNE.AI Phone Gen1</div>
+  <h1>Hardware, software, and ownership features in one product view</h1>
+  <p class="hero-sub">A production-oriented smartphone built for digital assets, private AI workflows, and secure ownership — with native Web3 access built in.</p>
+  <div class="hero-ctas">
+    <a href="#contact" class="btn-primary">Preorder Now</a>
+    <a href="#specs" class="btn-secondary">View Specifications</a>
+  </div>
+</section>
+
+<!-- PRODUCT VISUAL -->
+<div class="product-visual-section">
+  <div class="product-image-stack">
+    <img src="phone-white.png" alt="MAGNE Phone Front" class="phone-front">
+    <img src="phone-black.png" alt="MAGNE Phone Back" class="phone-back">
+  </div>
+</div>
+
+<!-- HARDWARE SPECS -->
+<section id="specs">
+  <div class="section-title">
+    <h2>Core Hardware Specifications</h2>
+    <p>Every component selected to support real-world deployment with security, AI capability, and everyday usability in one device.</p>
+  </div>
+  <div class="specs-grid">
+    <div class="spec-card animate">
+      <div class="spec-icon">📡</div>
+      <h4>UNISOC T9100 5G</h4>
+      <p>A practical 5G smartphone foundation built for real-world deployment and global connectivity.</p>
+    </div>
+    <div class="spec-card animate">
+      <div class="spec-icon">🧠</div>
+      <h4>8 TOPS NPU</h4>
+      <p>Supports on-device AI experiences across privacy-sensitive mobile use cases without cloud dependency.</p>
+    </div>
+    <div class="spec-card animate">
+      <div class="spec-icon">💾</div>
+      <h4>Up to 12GB RAM + 512GB UFS 3.1</h4>
+      <p>Configured for modern app use, local intelligence, and wallet-related continuity.</p>
+    </div>
+    <div class="spec-card animate">
+      <div class="spec-icon">🖥️</div>
+      <h4>6.72" FHD+ 120Hz Display</h4>
+      <p>A fluid visual experience designed for both daily use and immersive interaction.</p>
+    </div>
+    <div class="spec-card animate">
+      <div class="spec-icon">🔋</div>
+      <h4>5010mAh + IP52</h4>
+      <p>Designed for longer usage continuity and practical day-to-day resilience.</p>
+    </div>
+    <div class="spec-card animate">
+      <div class="spec-icon">📲</div>
+      <h4>Android 15 + NFC</h4>
+      <p>Built on a modern Android foundation with native support for connected workflows and encrypted NFC recovery.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SOFTWARE ARCHITECTURE -->
+<section id="software">
+  <div class="section-title">
+    <h2>Software Architecture</h2>
+    <p>Beyond hardware — MAGNE runs a dual-space architecture that separates everyday use from Web3 operations.</p>
+  </div>
+  <div class="software-layout">
+    <div class="software-visual">
+      <div class="software-diagram">
+        <div class="diagram-circle diagram-nfc"></div>
+        <div class="diagram-circle diagram-outer"></div>
+        <div class="diagram-circle diagram-core"></div>
+
+        <div class="diagram-tag tag-nfc">
+          <span class="diagram-label">NFC Recovery</span>
+          <span class="diagram-sublabel">Encrypted offline backup</span>
+        </div>
+
+        <div class="diagram-tag tag-outer">
+          <span class="diagram-label">Web3 Space</span>
+          <span class="diagram-sublabel">Isolated environment</span>
+        </div>
+
+        <div class="diagram-tag tag-core">
+          <span class="diagram-label">Private Space</span>
+          <span class="diagram-sublabel">Secure key storage</span>
+        </div>
+      </div>
+    </div>
+    <div class="software-content">
+      <div class="software-item animate">
+        <h4>Android 15 Foundation</h4>
+        <p>Built on a modern Android foundation with Google GMS compatibility, ensuring app ecosystem access and everyday usability.</p>
+      </div>
+      <div class="software-item animate">
+        <h4>Private Dual-Space Architecture</h4>
+        <p>A hidden Web3 space isolates wallet operations, signing flows, and blockchain interactions from the main mobile experience.</p>
+      </div>
+      <div class="software-item animate">
+        <h4>Hardware Wallet-grade Key Isolation</h4>
+        <p>Private keys are protected through dedicated secure element architecture — not software-based storage.</p>
+      </div>
+      <div class="software-item animate">
+        <h4>Native Web3 Access</h4>
+        <p>Wallet, swap, stake, bridge, and ecosystem access are integrated directly — no separate devices required.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECURITY SUMMARY -->
+<section id="security">
+  <div class="section-title">
+    <h2>Security Architecture</h2>
+    <p>Three-layer protection designed into the hardware — not added as an afterthought.</p>
+  </div>
+  <div class="security-summary animate">
+    <h3>Three-Layer Secure Ownership Stack</h3>
+    <div class="security-layers">
+      <div class="security-layer layer-1 animate">
+        <div class="layer-num">L1</div>
+        <div class="layer-text">
+          <h4>Trusted Execution Isolation</h4>
+          <p>Process isolation at the trusted execution layer for stronger operational control.</p>
+        </div>
+        <span class="layer-badge">CC EAL2+</span>
+      </div>
+      <div class="security-layer layer-2 animate">
+        <div class="layer-num">L2</div>
+        <div class="layer-text">
+          <h4>Secure Element Signing</h4>
+          <p>Dedicated hardware for private key storage and transaction signing operations.</p>
+        </div>
+        <span class="layer-badge">CC EAL6+</span>
+      </div>
+      <div class="security-layer layer-3 animate">
+        <div class="layer-num">L3</div>
+        <div class="layer-text">
+          <h4>Encrypted NFC Recovery</h4>
+          <p>Offline backup and physical recovery extend protection beyond the device itself.</p>
+        </div>
+        <span class="layer-badge">CC EAL6+</span>
+      </div>
+    </div>
+  </div>
+  <p style="text-align: center; margin-top: 2rem;">
+    <a href="magne-security.html" style="color: var(--accent); text-decoration: none; font-size: 0.95rem;">View full security architecture →</a>
+  </p>
+</section>
+
+<!-- CERTIFICATIONS SUMMARY -->
+<section id="certifications">
+  <div class="section-title">
+    <h2>Certifications & Standards</h2>
+    <p>Key certifications obtained or in progress to support global deployment.</p>
+  </div>
+  <div class="cert-grid">
+    <div class="cert-card animate">
+      <h4>Google GMS</h4>
+      <p>Approved</p>
+    </div>
+    <div class="cert-card animate">
+      <h4>Widevine L1</h4>
+      <p>Supported</p>
+    </div>
+    <div class="cert-card animate">
+      <h4>GSMA TAC</h4>
+      <p>Obtained</p>
+    </div>
+    <div class="cert-card animate">
+      <h4>FCC</h4>
+      <p>Public</p>
+    </div>
+    <div class="cert-card animate">
+      <h4>CB</h4>
+      <p>Completed</p>
+    </div>
+    <div class="cert-card animate">
+      <h4>UN38.3</h4>
+      <p>Passed</p>
+    </div>
+    <div class="cert-card animate">
+      <h4>CP65</h4>
+      <p>Passed</p>
+    </div>
+    <div class="cert-card animate">
+      <h4>CE</h4>
+      <p>In Progress</p>
+    </div>
+  </div>
+  <p style="text-align: center; margin-top: 2rem;">
+    <a href="magne-compliance.html" style="color: var(--accent); text-decoration: none; font-size: 0.95rem;">View compliance details →</a>
+  </p>
+</section>
+
+<!-- DIFFERENTIATION -->
+<section id="difference">
+  <div class="section-title">
+    <h2>What Makes MAGNE Different</h2>
+    <p>Not just another smartphone — a device designed from the ground up for the next generation of digital ownership.</p>
+  </div>
+  <div class="diff-grid">
+    <div class="diff-card animate">
+      <h4>Built for ownership, not just apps</h4>
+      <p>Most phones are optimized for content consumption. MAGNE is optimized for digital asset ownership — with security architecture designed in from the start, not layered on top.</p>
+    </div>
+    <div class="diff-card animate">
+      <h4>Private AI, on-device</h4>
+      <p>The NPU enables privacy-sensitive AI workflows without sending data to the cloud. Your intelligence stays on your device.</p>
+    </div>
+    <div class="diff-card animate">
+      <h4>Web3 is native, not an app</h4>
+      <p>Wallet, swap, stake, bridge — these aren't separate apps you download. They're integrated into the device experience through a secure Web3 space.</p>
+    </div>
+    <div class="diff-card animate">
+      <h4>Recovery that works offline</h4>
+      <p>NFC-based encrypted backup means your assets can be recovered even without cloud access. Physical security for digital assets.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE DEMOS -->
+<section class="demo-section">
+  <div class="demo-shell">
+    <div class="section-title">
+      <div class="section-eyebrow">DEVICE DEMOS</div>
+      <h2>See MAG1 in Action</h2>
+      <p>Watch real device walkthroughs covering wallet creation, recovery, dApp connection, private space, and AI-assisted workflows.</p>
+    </div>
+    <div class="demo-card">
+      <div class="demo-copy">
+        <h3>Real workflows on a real device</h3>
+        <p>Explore guided demos showing how MAG1 works in practice — from wallet setup and encrypted recovery to private space usage, dApp connection, and AI-assisted interaction.</p>
+      </div>
+      <div class="demo-actions">
+        <a href="features-demo.html" class="btn-primary">Open Feature Demos</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section id="contact" class="cta-section">
+  <h2>Ready to learn more?</h2>
+  <p>Whether you are ready to preorder or want more product details, we are here to help.</p>
+  <div class="cta-buttons">
+    <a href="magne-contact.html" class="btn-primary">Preorder or Inquire</a>
+    <a href="magne-security.html" class="btn-secondary">View Security Details</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>MAGNE.AI — The Web3-native AI Phone</p>
+  <div class="footer-links">
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="magne-contact.html">Contact</a>
+    <a href="media-kit.html">Media Kit</a>
+  </div>
+  <p style="margin-top: 1.5rem; opacity: 0.8;">© 2026 MAGNE.AI. All rights reserved.</p>
+</footer>
+
+</div>
+
+<!-- SCRIPTS -->
+<script>
+  // Node Network Background
+  const canvas = document.getElementById('node-bg');
+  const ctx = canvas.getContext('2d');
+  let width, height;
+  let nodes = [];
+  let simplex;
+
+  function resize() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  }
+
+  function createNodes() {
+    const numNodes = Math.floor((width * height) / 15000);
+    nodes = [];
+    for (let i = 0; i < numNodes; i++) {
+      nodes.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        radius: Math.random() * 2 + 1,
+        baseX: 0,
+        baseY: 0
+      });
+      nodes[i].baseX = nodes[i].x;
+      nodes[i].baseY = nodes[i].y;
+    }
+  }
+
+  function init() {
+    resize();
+    simplex = new SimplexNoise();
+    createNodes();
+    animate();
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+    const time = Date.now() * 0.0005;
+    
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const dx = nodes[i].x - nodes[j].x;
+        const dy = nodes[i].y - nodes[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 150) {
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(0, 212, 212, ${0.15 * (1 - dist / 150)})`;
+          ctx.lineWidth = 1;
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+    
+    for (let node of nodes) {
+      const noiseX = simplex.noise2D(node.baseX * 0.001, time) * 30;
+      const noiseY = simplex.noise2D(node.baseY * 0.001, time) * 30;
+      node.x = node.baseX + noiseX;
+      node.y = node.baseY + noiseY;
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(0, 212, 212, 0.6)';
+      ctx.fill();
+    }
+    
+    requestAnimationFrame(animate);
+  }
+
+  window.addEventListener('resize', () => { resize(); createNodes(); });
+  init();
+
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, index * 100);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

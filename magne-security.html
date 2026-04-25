@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Architecture — Three Layers of Hardware Wallet-grade Protection</title>
+  <link rel="icon" type="image/png" href="logo-icon-circle.png">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #0a0a0c;
+      --bg-secondary: #0f0f12;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --bg-card-hover: rgba(255, 255, 255, 0.05);
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.12);
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.5);
+      --text-tertiary: rgba(255, 255, 255, 0.3);
+      --accent: #a855f7;
+      --accent-secondary: #00ff88;
+      --accent-purple: #a855f7;
+      --accent-gold: #ffd700;
+      --accent-pink: #ff6482;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', -apple-system, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NODE NETWORK BACKGROUND */
+    #node-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      opacity: 0.80;
+      pointer-events: none;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 12, 0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-brand a { color: var(--text-secondary); text-decoration: none; }
+    .nav-logo { font-size: 1.3rem; font-weight: 700; color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a.active { color: var(--accent); }
+    .nav-cta {
+      background: var(--accent);
+      color: #000 !important;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .nav-cta:hover { opacity: 0.9; }
+
+    /* CONTENT WRAPPER */
+    .content-wrapper {
+      position: relative;
+      z-index: 1;
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 900px; height: 700px;
+      background: radial-gradient(ellipse at center, rgba(168,85,247,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 0.8s ease-out;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.85) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeInUp 0.8s ease-out 0.1s both;
+    }
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 650px;
+      margin-bottom: 3rem;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+    .hero-ctas { 
+      display: flex; 
+      gap: 1rem; 
+      flex-wrap: wrap; 
+      justify-content: center;
+      animation: fadeInUp 0.8s ease-out 0.3s both;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+      padding: 1rem 2.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover { 
+      transform: translateY(-3px); 
+      box-shadow: 0 15px 40px rgba(168,85,247,0.4);
+    }
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--border-hover);
+      color: var(--text-primary);
+      padding: 1rem 2.5rem;
+      border-radius: 8px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-secondary:hover { 
+      border-color: var(--accent); 
+      color: var(--accent);
+    }
+
+    /* SECTION INNER WRAPPER */
+    .section-inner {
+      width: min(1200px, calc(100% - 48px));
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* SECTION BASE */
+    section { 
+      padding: 6rem 2rem; 
+      max-width: 1100px; 
+      margin: 0 auto; 
+      position: relative;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .section-title h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .section-title p {
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1rem;
+    }
+
+    /* CENTRAL ARCHITECTURE VISUAL */
+    .arch-hero {
+      padding: 4rem 2rem 6rem;
+      text-align: center;
+    }
+    .arch-diagram {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .arch-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      align-items: center;
+    }
+    .arch-layer-box {
+      width: 100%;
+      max-width: 700px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      position: relative;
+      border: 1px solid;
+    }
+    .arch-layer-box::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: -20px;
+      transform: translateX(-50%);
+      border: 10px solid transparent;
+    }
+    .arch-layer-box.layer-1 {
+      background: linear-gradient(180deg, rgba(0,212,212,0.12) 0%, rgba(0,212,212,0.04) 100%);
+      border-color: rgba(0,212,212,0.3);
+      border-radius: 16px 16px 0 0;
+    }
+    .arch-layer-box.layer-1::before {
+      border-bottom-color: rgba(0,212,212,0.3);
+      top: -20px;
+    }
+    .arch-layer-box.layer-2 {
+      background: linear-gradient(180deg, rgba(168,85,247,0.12) 0%, rgba(168,85,247,0.04) 100%);
+      border-color: rgba(168,85,247,0.3);
+      border-top: none;
+    }
+    .arch-layer-box.layer-2::before {
+      border-bottom-color: rgba(168,85,247,0.3);
+      top: -20px;
+    }
+    .arch-layer-box.layer-3 {
+      background: linear-gradient(180deg, rgba(255,215,0,0.12) 0%, rgba(255,215,0,0.04) 100%);
+      border-color: rgba(255,215,0,0.3);
+      border-top: none;
+      border-radius: 0 0 16px 16px;
+    }
+    .arch-layer-box.layer-3::before {
+      border-bottom-color: rgba(255,215,0,0.3);
+      top: -20px;
+    }
+    .arch-layer-label {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.25rem 0.75rem;
+      border-radius: 50px;
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+    }
+    .layer-1 .arch-layer-label {
+      background: rgba(0,212,212,0.2);
+      color: var(--accent);
+    }
+    .layer-2 .arch-layer-label {
+      background: rgba(168,85,247,0.2);
+      color: var(--accent-purple);
+    }
+    .layer-3 .arch-layer-label {
+      background: rgba(255,215,0,0.2);
+      color: var(--accent-gold);
+    }
+    .arch-layer-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .arch-layer-sub {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+    .arch-layer-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      font-weight: 600;
+    }
+    .layer-1 .arch-layer-badge {
+      background: rgba(0,212,212,0.15);
+      color: var(--accent);
+    }
+    .layer-2 .arch-layer-badge,
+    .layer-3 .arch-layer-badge {
+      background: rgba(168,85,247,0.15);
+      color: var(--accent-purple);
+    }
+    .layer-3 .arch-layer-badge {
+      background: rgba(255,215,0,0.15);
+      color: var(--accent-gold);
+    }
+    .arch-connector {
+      width: 2px;
+      height: 40px;
+      background: linear-gradient(180deg, rgba(168,85,247,0.5), rgba(0,212,212,0.5));
+    }
+
+    /* LAYER DETAIL */
+    .layer-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 4rem;
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .layer-detail:last-of-type {
+      border-bottom: none;
+    }
+    .layer-detail.reverse {
+      flex-direction: row-reverse;
+    }
+    .layer-info {
+      flex: 1;
+    }
+    .layer-visual {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .layer-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      opacity: 0.15;
+      line-height: 1;
+    }
+    .layer-info h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .layer-info p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+    .layer-badges {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .layer-badge {
+      font-size: 0.8rem;
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-weight: 600;
+    }
+    .layer-detail.layer-1-detail .layer-badge {
+      background: rgba(0,212,212,0.15);
+      color: var(--accent);
+    }
+    .layer-detail.layer-2-detail .layer-badge,
+    .layer-detail.layer-3-detail .layer-badge {
+      background: rgba(168,85,247,0.15);
+      color: var(--accent-purple);
+    }
+    .layer-detail.layer-3-detail .layer-badge {
+      background: rgba(255,215,0,0.15);
+      color: var(--accent-gold);
+    }
+    .layer-icon-box {
+      width: 200px;
+      height: 200px;
+      border-radius: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      border: 1px solid;
+    }
+    .layer-1-detail .layer-icon-box {
+      background: linear-gradient(135deg, rgba(0,212,212,0.1) 0%, rgba(0,212,212,0.02) 100%);
+      border-color: rgba(0,212,212,0.3);
+    }
+    .layer-2-detail .layer-icon-box {
+      background: linear-gradient(135deg, rgba(168,85,247,0.1) 0%, rgba(168,85,247,0.02) 100%);
+      border-color: rgba(168,85,247,0.3);
+    }
+    .layer-3-detail .layer-icon-box {
+      background: linear-gradient(135deg, rgba(255,215,0,0.1) 0%, rgba(255,215,0,0.02) 100%);
+      border-color: rgba(255,215,0,0.3);
+    }
+    .layer-icon-box .icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .layer-icon-box .label {
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .layer-icon-box .sublabel {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      margin-top: 0.25rem;
+    }
+
+    /* OWNERSHIP FLOW */
+    .flow-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 3rem;
+      margin: 4rem 0;
+    }
+    .flow-section h3 {
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 3rem;
+    }
+    .flow-steps {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+    .flow-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 1rem;
+      min-width: 100px;
+    }
+    .flow-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .flow-step:nth-child(1) .flow-icon { background: rgba(0,212,212,0.2); }
+    .flow-step:nth-child(3) .flow-icon { background: rgba(0,212,212,0.2); }
+    .flow-step:nth-child(5) .flow-icon { background: rgba(168,85,247,0.2); }
+    .flow-step:nth-child(7) .flow-icon { background: rgba(168,85,247,0.2); }
+    .flow-step:nth-child(9) .flow-icon { background: rgba(255,215,0,0.2); }
+    .flow-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    .flow-sublabel {
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+    }
+    .flow-arrow {
+      font-size: 1.5rem;
+      color: var(--text-tertiary);
+      padding: 0 0.5rem;
+    }
+
+    /* VS TABLE */
+    .vs-section {
+      margin: 4rem 0;
+    }
+    .vs-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 2rem;
+      table-layout: fixed;
+    }
+    .vs-table th,
+    .vs-table td {
+      padding: 1.25rem 1.5rem;
+      vertical-align: middle;
+      border-bottom: 1px solid var(--border);
+    }
+    .vs-table th {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-secondary);
+      font-weight: 600;
+      text-align: center;
+    }
+    .vs-table td:first-child {
+      text-align: center;
+      font-weight: 600;
+    }
+    .vs-table td:nth-child(2),
+    .vs-table td:nth-child(3) {
+      text-align: left;
+    }
+    .vs-table tr:hover td {
+      background: var(--bg-card);
+    }
+    .vs-highlight {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .vs-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .vs-badge.magne {
+      background: rgba(168,85,247,0.2);
+      color: var(--accent-purple);
+    }
+    .vs-badge.software {
+      background: rgba(255,255,255,0.1);
+      color: var(--text-secondary);
+    }
+
+    /* SUPPORTING PROOF */
+    .proof-grid {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin: 3rem 0;
+    }
+    .proof-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem 2.5rem;
+      text-align: center;
+      min-width: 200px;
+    }
+    .proof-item h4 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--accent-purple);
+      margin-bottom: 0.5rem;
+    }
+    .proof-item p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    /* CTA */
+    .cta-section {
+      text-align: center;
+      padding: 6rem 2rem;
+      background: linear-gradient(180deg, transparent 0%, rgba(168,85,247,0.03) 100%);
+      border-top: 1px solid var(--border);
+    }
+    .cta-section h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .cta-section p {
+      color: var(--text-secondary);
+      margin-bottom: 2.5rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 4rem 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-tertiary);
+      font-size: 0.9rem;
+    }
+    footer a { color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--accent); }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; margin-top: 1rem; }
+    .footer-links-secondary { display: flex; justify-content: center; gap: 2rem; margin-top: 0.75rem; }
+    .footer-links-secondary a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; }
+    .footer-links-secondary a:hover { color: var(--accent); }
+
+    /* ANIMATIONS */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate { opacity: 0; }
+    .animate.visible {
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .layer-detail,
+      .layer-detail.reverse {
+        flex-direction: column;
+        gap: 2rem;
+      }
+      .layer-visual {
+        order: -1;
+      }
+      .flow-steps {
+        gap: 1rem;
+      }
+      .flow-arrow {
+        display: none;
+      }
+      table-layout: fixed;
+    }
+    .vs-table th,
+      .vs-table td {
+        padding: 1rem;
+        font-size: 0.9rem;
+      }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1rem; }
+      .arch-layer-box {
+        padding: 2rem 1rem;
+      }
+      .arch-layer-title {
+        font-size: 1.2rem;
+      }
+      .proof-grid {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NODE NETWORK BACKGROUND -->
+<canvas id="node-bg"></canvas>
+
+<div class="content-wrapper">
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <a href="magne-home.html"><span class="nav-logo">MAGNE.AI</span></a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="magne-home.html">Home</a></li>
+    <li><a href="magne-phone.html">Phone</a></li>
+    <li><a href="magne-security.html" class="active">Security</a></li>
+    <li><a href="magne-compliance.html">Compliance</a></li>
+    <li><a href="magne-network.html">Network</a></li>
+    <li><a href="magne-progress.html">Progress</a></li>
+  </ul>
+  <a href="magne-contact.html" class="nav-cta">Contact</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Security Architecture</div>
+  <h1>Three layers of protection. Hardware wallet-grade security.</h1>
+  <p class="hero-sub">From trusted execution isolation to secure element signing and encrypted NFC recovery, MAGNE secures ownership at the system level.</p>
+  <div class="hero-ctas">
+    <a href="#contact" class="btn-primary">Partner / Technical Inquiry</a>
+    <a href="magne-phone.html" class="btn-secondary">Explore MAGNE Phone</a>
+  </div>
+</section>
+
+<!-- CENTRAL ARCHITECTURE VISUAL -->
+<div class="arch-hero">
+  <div class="arch-diagram">
+    <div class="arch-stack">
+      <div class="arch-layer-box layer-1 animate">
+        <span class="arch-layer-label">L1 — TRUSTED EXECUTION</span>
+        <h3 class="arch-layer-title">Trusted Execution Isolation</h3>
+        <p class="arch-layer-sub">Process isolation at the system level for stronger operational control</p>
+        <span class="arch-layer-badge">CC EAL2+</span>
+      </div>
+      <div class="arch-connector"></div>
+      <div class="arch-layer-box layer-2 animate">
+        <span class="arch-layer-label">L2 — SECURE ELEMENT</span>
+        <h3 class="arch-layer-title">Secure Element Signing</h3>
+        <p class="arch-layer-sub">Dedicated hardware for private key storage and transaction signing</p>
+        <span class="arch-layer-badge">CC EAL6+</span>
+      </div>
+      <div class="arch-connector"></div>
+      <div class="arch-layer-box layer-3 animate">
+        <span class="arch-layer-label">L3 — NFC RECOVERY</span>
+        <h3 class="arch-layer-title">Encrypted NFC Recovery</h3>
+        <p class="arch-layer-sub">Offline backup and physical recovery beyond the device itself</p>
+        <span class="arch-layer-badge">CC EAL6+</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LAYER 1 DETAIL -->
+<section id="layer-1">
+  <div class="section-inner">
+  <div class="layer-detail layer-1-detail">
+    <div class="layer-info">
+      <div class="layer-num">L1</div>
+      <h3>Trusted Execution Isolation</h3>
+      <p>The first layer of protection operates at the system execution level. Sensitive operations are isolated in a trusted execution environment, separate from the main operating system. This means even if the main OS is compromised, the isolated execution environment remains protected.</p>
+      <p>This is not software-based isolation — it is architectural separation built into the hardware foundation of the device. It defines which processes can access what, and creates hard boundaries around the most sensitive operations.</p>
+      <div class="layer-badges">
+        <span class="layer-badge">CC EAL2+ Certified</span>
+        <span class="layer-badge">TEE Environment</span>
+        <span class="layer-badge">Process Isolation</span>
+      </div>
+    </div>
+    <div class="layer-visual">
+      <div class="layer-icon-box">
+        <div class="icon">🛡️</div>
+        <div class="label">Trusted Execution</div>
+        <div class="sublabel">System-level isolation</div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- LAYER 2 DETAIL -->
+<section id="layer-2">
+  <div class="section-inner">
+  <div class="layer-detail reverse layer-2-detail">
+    <div class="layer-info">
+      <div class="layer-num">L2</div>
+      <h3>Secure Element Protection</h3>
+      <p>The second layer is where private keys live. Unlike software wallets where keys are stored in application memory, MAGNE's secure element is a dedicated hardware component designed specifically for cryptographic key storage and signing operations.</p>
+      <p>Private keys never leave the secure element. When a transaction needs to be signed, the signing operation happens inside the secure boundary — the main processor never has access to the raw private key. This is the same architecture used in hardware security modules used by financial institutions.</p>
+      <div class="layer-badges">
+        <span class="layer-badge">CC EAL6+ Certified</span>
+        <span class="layer-badge">Secure Key Storage</span>
+        <span class="layer-badge">Hardware Signing</span>
+      </div>
+    </div>
+    <div class="layer-visual">
+      <div class="layer-icon-box">
+        <div class="icon">🔐</div>
+        <div class="label">Secure Element</div>
+        <div class="sublabel">Key isolation architecture</div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- LAYER 3 DETAIL -->
+<section id="layer-3">
+  <div class="section-inner">
+  <div class="layer-detail layer-3-detail">
+    <div class="layer-info">
+      <div class="layer-num">L3</div>
+      <h3>Encrypted NFC Recovery</h3>
+      <p>The third layer addresses the oldest problem in digital asset management: what happens when you lose access to your device? NFC-based encrypted backup extends protection beyond the hardware itself.</p>
+      <p>When you set up MAGNE, an encrypted backup is generated and stored on an NFC tag or another device. This backup contains the information needed to recover your assets — without exposing your private keys in plain text. Recovery is physical, offline, and does not require cloud access or a third party.</p>
+      <div class="layer-badges">
+        <span class="layer-badge">CC EAL6+ Certified</span>
+        <span class="layer-badge">NFC Encrypted Backup</span>
+        <span class="layer-badge">Offline Recovery</span>
+      </div>
+    </div>
+    <div class="layer-visual">
+      <div class="layer-icon-box">
+        <div class="icon">📡</div>
+        <div class="label">NFC Recovery</div>
+        <div class="sublabel">Encrypted offline backup</div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- OWNERSHIP FLOW -->
+<section id="flow">
+  <div class="section-inner">
+  <div class="flow-section animate">
+    <h3>How Secure Ownership Works on MAGNE</h3>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="flow-icon">⚙️</div>
+        <div class="flow-label">Create</div>
+        <div class="flow-sublabel">Key generation in secure element</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-icon">🔒</div>
+        <div class="flow-label">Isolate</div>
+        <div class="flow-sublabel">Keys stay in secure hardware</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-icon">✍️</div>
+        <div class="flow-label">Sign</div>
+        <div class="flow-sublabel">Signing happens inside secure element</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-icon">💾</div>
+        <div class="flow-label">Backup</div>
+        <div class="flow-sublabel">NFC encrypted recovery tag</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-icon">♻️</div>
+        <div class="flow-label">Recover</div>
+        <div class="flow-sublabel">Offline physical recovery</div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- VS SOFTWARE WALLETS -->
+<section id="vs" class="vs-section">
+  <div class="section-inner">
+  <div class="section-title">
+    <h2>How MAGNE Compares to Software Wallets</h2>
+    <p>Software wallets make trade-offs between usability and security. MAGNE's hardware-backed architecture addresses each one.</p>
+  </div>
+  <table class="vs-table">
+    <thead>
+      <tr>
+        <th>Aspect</th>
+        <th>Software Wallets</th>
+        <th>MAGNE</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Key Isolation</td>
+        <td>Keys stored in app memory, accessible to OS</td>
+        <td><span class="vs-highlight">Keys isolated in dedicated secure hardware</span></td>
+      </tr>
+      <tr>
+        <td>Signing Environment</td>
+        <td>Software-based signing on main processor</td>
+        <td><span class="vs-highlight">Hardware signing inside secure element boundary</span></td>
+      </tr>
+      <tr>
+        <td>Backup Method</td>
+        <td>Seed phrase (can be stolen, lost, guessed)</td>
+        <td><span class="vs-highlight">NFC encrypted backup — physical, offline, no seed exposure</span></td>
+      </tr>
+      <tr>
+        <td>Device Exposure</td>
+        <td>Entire device must be trusted and secure</td>
+        <td><span class="vs-highlight">Only secure element needs protection — main OS can be compromised</span></td>
+      </tr>
+      <tr>
+        <td>Recovery Model</td>
+        <td>Depends on seed phrase + third-party tools</td>
+        <td><span class="vs-highlight">Offline NFC recovery without cloud or third-party</span></td>
+      </tr>
+      <tr>
+        <td>Certification</td>
+        <td>No hardware security certification</td>
+        <td><span class="vs-highlight">CC EAL2+ / EAL6+ certified secure element</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- SECURITY CHIP COMPONENTS -->
+<section id="chip-components" style="background: var(--bg-secondary);">
+  <div class="section-inner">
+  <div class="section-title">
+    <h2>Security Chip Components</h2>
+    <p>At the heart of MAGNE's security solution are purpose-built components designed for hardware-grade protection.</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:2.5rem;">
+    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:18px;padding:2rem;text-align:center;transition:all .25s ease;" onmouseover="this.style.borderColor='rgba(0,212,212,0.3)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:700;letter-spacing:1px;color:var(--accent);background:rgba(0,212,212,.12);padding:.3rem .7rem;border-radius:999px;margin-bottom:1rem;display:inline-block;">COMPONENT</div>
+      <h4 style="font-size:1.05rem;font-weight:600;margin-bottom:.75rem;">UTEE — UNISOC TEE</h4>
+      <p style="color:var(--text-secondary);font-size:.9rem;line-height:1.65;">Custom Trusted Execution Environment developed in partnership with UNISOC. UTEE isolates sensitive data and operations from the main system, ensuring cryptographic keys and user data are securely processed within a trusted environment. <strong style="color:var(--accent);">CC EAL2+</strong> certified.</p>
+    </div>
+    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:18px;padding:2rem;text-align:center;transition:all .25s ease;" onmouseover="this.style.borderColor='rgba(0,212,212,0.3)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:700;letter-spacing:1px;color:var(--accent);background:rgba(0,212,212,.12);padding:.3rem .7rem;border-radius:999px;margin-bottom:1rem;display:inline-block;">COMPONENT</div>
+      <h4 style="font-size:1.05rem;font-weight:600;margin-bottom:.75rem;">HYPERSEED N60 (CIU98M50)</h4>
+      <p style="color:var(--text-secondary);font-size:.9rem;line-height:1.65;">Custom security solution combining the CIU98M50 processor with an integrated NFC module. Offers secure cryptographic operations, key isolation, and offline key recovery. <strong style="color:var(--accent);">CC EAL6+</strong> certified.</p>
+    </div>
+    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:18px;padding:2rem;text-align:center;transition:all .25s ease;" onmouseover="this.style.borderColor='rgba(0,212,212,0.3)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:700;letter-spacing:1px;color:var(--accent);background:rgba(0,212,212,.12);padding:.3rem .7rem;border-radius:999px;margin-bottom:1rem;display:inline-block;">COMPONENT</div>
+      <h4 style="font-size:1.05rem;font-weight:600;margin-bottom:.75rem;">HYPERSEED 72B (CIU9872B)</h4>
+      <p style="color:var(--text-secondary);font-size:.9rem;line-height:1.65;">Software-enhanced version of the CIU9872B, providing additional encryption and key recovery functionality. <strong style="color:var(--accent);">CC EAL6+</strong> certified.</p>
+    </div>
+  </div>
+
+  <div style="margin-top:2.5rem;background:linear-gradient(180deg,rgba(0,212,212,.06) 0%,rgba(0,212,212,.02) 100%);border:1px solid rgba(0,212,212,.15);border-radius:20px;padding:2.5rem;text-align:center;">
+    <h3 style="font-size:1.2rem;font-weight:600;margin-bottom:1rem;">Certified Security Standards</h3>
+    <p style="color:var(--text-secondary);max-width:760px;margin:0 auto;line-height:1.8;">
+      MAGNE's security components meet the highest international security certification standards. UTEE is certified <strong style="color:var(--accent);">CC EAL2+</strong>; HYPERSEED N60 and 72B are certified <strong style="color:var(--accent);">CC EAL6+</strong>, providing robust protection against both physical and software-based attacks.
+    </p>
+  </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD CERTIFICATION DOCUMENTS -->
+<section id="cert-downloads">
+  <div class="section-inner">
+  <div class="section-title">
+    <h2>Download Certification Documents</h2>
+    <p>Selected certification documents are available for deeper verification by partners, reviewers, and institutional contacts.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;margin-top:2.5rem;">
+    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:18px;padding:1.75rem;text-align:center;transition:all .25s ease;" onmouseover="this.style.borderColor='var(--border-hover)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.75rem;font-weight:700;letter-spacing:1px;color:var(--accent);background:rgba(0,212,212,.12);padding:.3rem .7rem;border-radius:999px;margin-bottom:1rem;display:inline-block;">CERT</div>
+      <h4 style="font-size:1rem;font-weight:600;margin-bottom:.6rem;">CIU98M50 Certification</h4>
+      <p style="color:var(--text-secondary);font-size:.88rem;line-height:1.65;margin-bottom:1rem;">CC EAL6+ &middot; NSCIB-CC-2300121-01 &middot; Valid to 28-05-2029</p>
+      <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;">
+        <a href="assets/pdfs/security/CIU98M50_CCert_NSCIB-CC-2300121-01.pdf" target="_blank" style="display:inline-flex;align-items:center;padding:.5rem .85rem;border:1px solid var(--border-hover);border-radius:8px;color:var(--text-primary);text-decoration:none;font-size:.82rem;font-weight:500;transition:all .2s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border-hover)';this.style.color='var(--text-primary)'">View PDF</a>
+        <a href="assets/pdfs/security/CIU98M50_CCert_NSCIB-CC-2300121-01.pdf" download style="display:inline-flex;align-items:center;padding:.5rem .85rem;border:1px solid var(--border-hover);border-radius:8px;color:var(--text-primary);text-decoration:none;font-size:.82rem;font-weight:500;transition:all .2s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border-hover)';this.style.color='var(--text-primary)'">Download</a>
+      </div>
+    </div>
+    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:18px;padding:1.75rem;text-align:center;transition:all .25s ease;" onmouseover="this.style.borderColor='var(--border-hover)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.75rem;font-weight:700;letter-spacing:1px;color:var(--accent);background:rgba(0,212,212,.12);padding:.3rem .7rem;border-radius:999px;margin-bottom:1rem;display:inline-block;">CERT</div>
+      <h4 style="font-size:1rem;font-weight:600;margin-bottom:.6rem;">CIU9872B Certification</h4>
+      <p style="color:var(--text-secondary);font-size:.88rem;line-height:1.65;margin-bottom:1rem;">CC EAL6+ &middot; NSCIB-CC-2400053-01 &middot; Valid to 09-05-2030</p>
+      <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;">
+        <a href="assets/pdfs/security/CIU9872B_CCert_NSCIB-CC-2400053-01.pdf" target="_blank" style="display:inline-flex;align-items:center;padding:.5rem .85rem;border:1px solid var(--border-hover);border-radius:8px;color:var(--text-primary);text-decoration:none;font-size:.82rem;font-weight:500;transition:all .2s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border-hover)';this.style.color='var(--text-primary)'">View PDF</a>
+        <a href="assets/pdfs/security/CIU9872B_CCert_NSCIB-CC-2400053-01.pdf" download style="display:inline-flex;align-items:center;padding:.5rem .85rem;border:1px solid var(--border-hover);border-radius:8px;color:var(--text-primary);text-decoration:none;font-size:.82rem;font-weight:500;transition:all .2s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border-hover)';this.style.color='var(--text-primary)'">Download</a>
+      </div>
+    </div>
+    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:18px;padding:1.75rem;text-align:center;transition:all .25s ease;" onmouseover="this.style.borderColor='var(--border-hover)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.75rem;font-weight:700;letter-spacing:1px;color:var(--accent);background:rgba(0,212,212,.12);padding:.3rem .7rem;border-radius:999px;margin-bottom:1rem;display:inline-block;">CERT</div>
+      <h4 style="font-size:1rem;font-weight:600;margin-bottom:.6rem;">UTEE Certification</h4>
+      <p style="color:var(--text-secondary);font-size:.88rem;line-height:1.65;margin-bottom:1rem;">CC EAL2+ &middot; CC-23-0492117 &middot; Valid to 12-12-2028</p>
+      <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;">
+        <a href="assets/pdfs/security/UNISOC_TEE_CCert_CC-23-0492117.pdf" target="_blank" style="display:inline-flex;align-items:center;padding:.5rem .85rem;border:1px solid var(--border-hover);border-radius:8px;color:var(--text-primary);text-decoration:none;font-size:.82rem;font-weight:500;transition:all .2s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border-hover)';this.style.color='var(--text-primary)'">View PDF</a>
+        <a href="assets/pdfs/security/UNISOC_TEE_CCert_CC-23-0492117.pdf" download style="display:inline-flex;align-items:center;padding:.5rem .85rem;border:1px solid var(--border-hover);border-radius:8px;color:var(--text-primary);text-decoration:none;font-size:.82rem;font-weight:500;transition:all .2s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border-hover)';this.style.color='var(--text-primary)'">Download</a>
+      </div>
+    </div>
+  </div>
+  <p style="text-align:center;margin-top:2rem;color:var(--text-secondary);font-size:.9rem;line-height:1.7;">
+    To request access to certification documents, please contact the MAGNE team.<br>
+    <a href="magne-contact.html" style="color:var(--accent);text-decoration:none;font-weight:500;">Contact MAGNE →</a>
+  </p>
+  </div>
+</section>
+
+<!-- SUPPORTING PROOF -->
+<section id="proof">
+  <div class="section-inner">
+  <div class="section-title">
+    <h2>Security Certifications & Validation</h2>
+    <p>MAGNE's security architecture is backed by independent validation and certification.</p>
+  </div>
+  <div class="proof-grid">
+    <div class="proof-item animate">
+      <h4>CC EAL2+</h4>
+      <p>Trusted Execution Environment validation for process isolation</p>
+    </div>
+    <div class="proof-item animate">
+      <h4>CC EAL6+</h4>
+      <p>Secure element certification for key storage and signing</p>
+    </div>
+    <div class="proof-item animate">
+      <h4>Hardware Architecture</h4>
+      <p>Dedicated secure element separate from main processor</p>
+    </div>
+  </div>
+  <p style="text-align: center; margin-top: 2rem; color: var(--text-secondary); font-size: 0.9rem;">
+    Selected certifications and technical references available upon request
+  </p>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section id="contact" class="cta-section">
+  <div class="section-inner">
+  <h2>Need a deeper technical overview?</h2>
+  <p>For institutional due diligence, technical partnerships, or security architecture discussions, our team is available.</p>
+  <div class="cta-buttons">
+    <a href="magne-contact.html" class="btn-primary">Technical Inquiry</a>
+    <a href="magne-contact.html" class="btn-secondary">Partner Contact</a>
+  </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>MAGNE.AI — The Web3-native AI Phone</p>
+  <div class="footer-links">
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="magne-contact.html">Contact</a>
+    <a href="media-kit.html">Media Kit</a>
+  </div>
+  <p style="margin-top: 1.5rem; opacity: 0.80;">© 2026 MAGNE.AI. All rights reserved.</p>
+</footer>
+
+</div>
+
+<!-- SCRIPTS -->
+<script>
+  // Node Network Background
+  const canvas = document.getElementById('node-bg');
+  const ctx = canvas.getContext('2d');
+  let width, height;
+  let nodes = [];
+  let simplex;
+
+  function resize() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  }
+
+  function createNodes() {
+    const numNodes = Math.floor((width * height) / 15000);
+    nodes = [];
+    for (let i = 0; i < numNodes; i++) {
+      nodes.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        radius: Math.random() * 2 + 1,
+        baseX: 0,
+        baseY: 0
+      });
+      nodes[i].baseX = nodes[i].x;
+      nodes[i].baseY = nodes[i].y;
+    }
+  }
+
+  function init() {
+    resize();
+    simplex = new SimplexNoise();
+    createNodes();
+    animate();
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+    const time = Date.now() * 0.0005;
+    
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const dx = nodes[i].x - nodes[j].x;
+        const dy = nodes[i].y - nodes[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 150) {
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(168, 85, 247, ${0.15 * (1 - dist / 150)})`;
+          ctx.lineWidth = 1;
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+    
+    for (let node of nodes) {
+      const noiseX = simplex.noise2D(node.baseX * 0.001, time) * 30;
+      const noiseY = simplex.noise2D(node.baseY * 0.001, time) * 30;
+      node.x = node.baseX + noiseX;
+      node.y = node.baseY + noiseY;
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(168, 85, 247, 0.6)';
+      ctx.fill();
+    }
+    
+    requestAnimationFrame(animate);
+  }
+
+  window.addEventListener('resize', () => { resize(); createNodes(); });
+  init();
+
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, index * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

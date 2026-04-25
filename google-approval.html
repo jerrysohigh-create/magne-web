@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google GMS & Android Approval Details — MAGNE.AI</title>
+  <link rel="icon" type="image/png" href="logo-icon-circle.png">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0a0c;
+      --bg-secondary: #0f0f12;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.1);
+      --text-primary: #f5f5f7;
+      --text-secondary: rgba(245, 245, 247, 0.6);
+      --text-muted: rgba(245, 245, 247, 0.4);
+      --accent: #00d4d4;
+      --accent-dim: rgba(0, 212, 212, 0.06);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 12, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-decoration: none;
+    }
+    .nav-back {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      padding: 9rem 2rem 5rem;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+    .hero-sub {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      max-width: 680px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* BUTTONS */
+    .btn-primary {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      background: var(--accent);
+      color: #000;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .btn-primary:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+    .btn-secondary {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* SECTION SHARED */
+    .section {
+      padding: 6rem 2rem;
+    }
+    .section-shell {
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+    .section-header {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      text-align: center;
+    }
+    .section-header h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .section-header p {
+      color: var(--text-secondary);
+      max-width: 680px;
+      margin: 0 auto;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+    .section-intro {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      text-align: center;
+    }
+    .section-intro p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    /* APPROVAL SUMMARY CARDS */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .summary-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.25s ease;
+    }
+    .summary-card:hover {
+      border-color: rgba(0, 212, 212, 0.3);
+      transform: translateY(-3px);
+    }
+    .summary-card h4 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .summary-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    /* SIGNALS CARDS */
+    .signals-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .signal-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 2rem;
+      transition: all 0.25s ease;
+    }
+    .signal-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+    .signal-tag {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--accent);
+      background: rgba(0, 212, 212, 0.1);
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+    .signal-card h4 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .signal-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    /* SUPPORTING DOCUMENTS */
+    .docs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .doc-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.75rem;
+      transition: all 0.25s ease;
+    }
+    .doc-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+    .doc-id {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--accent);
+      background: rgba(0, 212, 212, 0.12);
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+    .doc-card h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+    .doc-summary {
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      line-height: 1.65;
+      margin-bottom: 1rem;
+    }
+    .doc-actions {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+    .doc-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.6rem 0.9rem;
+      border: 1px solid var(--border-hover);
+      border-radius: 8px;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .doc-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* HIGHLIGHT BOX */
+    .highlight-box {
+      margin-top: 3rem;
+      background: linear-gradient(180deg, rgba(0,212,212,0.05) 0%, rgba(0,212,212,0.01) 100%);
+      border: 1px solid rgba(0, 212, 212, 0.15);
+      border-radius: 20px;
+      padding: 2.5rem;
+      text-align: center;
+    }
+    .highlight-box h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .highlight-box p {
+      color: var(--text-secondary);
+      max-width: 760px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* NOTES GRID */
+    .notes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .note-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem;
+    }
+    .note-card h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .note-card p {
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      line-height: 1.7;
+    }
+
+    /* CTA */
+    .cta-section {
+      padding: 6rem 2rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .cta-shell {
+      width: min(1000px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+    .cta-shell h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .cta-shell p {
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.8;
+    }
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 4rem 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* WIDEVINE L1 CONTENT PROTECTION */
+    .wv-section {
+      padding: 6rem 2rem;
+    }
+    .wv-shell {
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+    .wv-intro {
+      max-width: 900px;
+      margin: 0 auto 2.5rem;
+      text-align: center;
+    }
+    .wv-intro p {
+      color: var(--text-secondary);
+      font-size: 0.98rem;
+      line-height: 1.8;
+    }
+    .wv-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .wv-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 2rem;
+      transition: all 0.25s ease;
+    }
+    .wv-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+    .wv-tag {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--accent);
+      background: rgba(0, 212, 212, 0.12);
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+    .wv-card h4 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .wv-card p {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+    .wv-highlight {
+      margin-top: 2.5rem;
+    }
+    .wv-highlight-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: linear-gradient(180deg, rgba(0,212,212,0.06) 0%, rgba(0,212,212,0.02) 100%);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem;
+      text-align: center;
+    }
+    .wv-highlight-inner h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .wv-highlight-inner p {
+      color: var(--text-secondary);
+      max-width: 760px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+    .wv-notes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .wv-note-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem;
+    }
+    .wv-note-card h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .wv-note-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+    .wv-related-note {
+      max-width: 760px;
+      margin: 2.5rem auto 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 640px) {
+      .hero { padding: 7rem 1.5rem 3rem; }
+      .section { padding: 3rem 1.5rem; }
+      .doc-actions { flex-direction: column; }
+      .summary-grid,
+      .signals-grid,
+      .docs-grid,
+      .notes-grid { grid-template-columns: 1fr; }
+      nav { padding: 0.9rem 1.25rem; }
+      .nav-back { font-size: 0.82rem; }
+      .section-header h2 { font-size: 1.6rem; }
+      .wv-section { padding: 3rem 1.5rem; }
+      .wv-grid { grid-template-columns: 1fr; }
+      .wv-highlight-inner { padding: 1.5rem; }
+      .wv-notes { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 400px) {
+      .docs-grid { grid-template-columns: 1fr; }
+      .doc-card { padding: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="magne-home.html" class="nav-logo">MAGNE.AI</a>
+    <a href="magne-compliance.html" class="nav-back">← Back to Compliance</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">COMPLIANCE SUPPORTING PAGE</div>
+    <h1>Google GMS &amp; Android Approval Details</h1>
+    <p class="hero-sub">
+      A supporting page for partners, exchanges, and institutional reviewers who require
+      deeper verification of MAG1's Google approval and Android partner workflow status.
+    </p>
+    <div class="hero-ctas">
+      <a href="magne-compliance.html" class="btn-secondary">← Back to Compliance</a>
+    </div>
+  </section>
+
+  <!-- SECTION 1: APPROVAL SUMMARY -->
+  <section class="section">
+    <div class="section-shell">
+      <div class="section-header">
+        <h2>Approval Summary</h2>
+        <p>A concise overview of MAG1's documented Google GMS and Android partner workflow status.</p>
+      </div>
+      <div class="section-intro">
+        <p>
+          MAG1 has completed the key documented steps associated with its Google GMS and Android
+          partner approval path for the relevant build and shipment scope. This page is intended
+          to provide a more structured supporting view for parties who require deeper review
+          beyond the main Compliance page.
+        </p>
+      </div>
+      <div class="summary-grid">
+        <div class="summary-card">
+          <h4>Google GMS Path</h4>
+          <p>MAG1 has completed the documented Google approval path applicable to the relevant device build.</p>
+        </div>
+        <div class="summary-card">
+          <h4>Android Partner Workflow</h4>
+          <p>MAG1's approval position is supported by the relevant Android partner workflow materials and documentation.</p>
+        </div>
+        <div class="summary-card">
+          <h4>Shipment Scope</h4>
+          <p>The documented approval status applies to the relevant shipment scope and build coverage described in supporting materials.</p>
+        </div>
+        <div class="summary-card">
+          <h4>Supporting References</h4>
+          <p>Additional references are available for parties who require deeper compliance and due diligence review.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: KEY APPROVAL SIGNALS -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="section-shell">
+      <div class="section-header">
+        <h2>Key Approval Signals</h2>
+        <p>Core signals that support MAG1's Google and Android approval positioning.</p>
+      </div>
+      <div class="signals-grid">
+        <div class="signal-card">
+          <div class="signal-tag">GMS</div>
+          <h4>Google GMS Approval</h4>
+          <p>MAG1's approval path includes the relevant Google GMS workflow for the documented build and release context.</p>
+        </div>
+        <div class="signal-card">
+          <div class="signal-tag">PARTNER</div>
+          <h4>Android Partner Workflow</h4>
+          <p>The device is positioned within the documented Android partner approval process applicable to the current materials.</p>
+        </div>
+        <div class="signal-card">
+          <div class="signal-tag">SHIPMENT</div>
+          <h4>Shipment Scope</h4>
+          <p>The available approval references support the documented shipment and release scope associated with MAG1.</p>
+        </div>
+        <div class="signal-card">
+          <div class="signal-tag">BUILD</div>
+          <h4>Build Coverage</h4>
+          <p>The approval status is tied to the documented build framework and should be interpreted within that defined coverage.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: SUPPORTING DOCUMENTS -->
+  <section class="section">
+    <div class="section-shell">
+      <div class="section-header">
+        <h2>Supporting Documents — Full Reference Index</h2>
+        <p>
+          All currently prepared supporting references are listed below for deeper review,
+          with direct PDF access and short contextual summaries.
+        </p>
+      </div>
+      <div class="section-intro">
+        <p>
+          The following materials are presented as supporting references for parties who require
+          deeper review of MAG1's approval position. They should be understood as part of a
+          broader supporting set, rather than as standalone marketing claims.
+        </p>
+      </div>
+      <div class="docs-grid">
+        <div class="doc-card">
+          <div class="doc-id">G1</div>
+          <h4>Regional Scope</h4>
+          <p class="doc-summary">Supporting material associated with MAG1's documented regional approval scope and applicable build context.</p>
+          <div class="doc-actions">
+            <a href="assets/pdfs/G1-Regional.pdf" target="_blank" class="doc-btn">View PDF</a>
+            <a href="assets/pdfs/G1-Regional.pdf" download class="doc-btn">Download</a>
+          </div>
+        </div>
+        <div class="doc-card">
+          <div class="doc-id">G2</div>
+          <h4>Worldwide Build</h4>
+          <p class="doc-summary">Supporting material related to the documented worldwide build context and release scope.</p>
+          <div class="doc-actions">
+            <a href="assets/pdfs/G2-Worldwide.pdf" target="_blank" class="doc-btn">View PDF</a>
+            <a href="assets/pdfs/G2-Worldwide.pdf" download class="doc-btn">Download</a>
+          </div>
+        </div>
+        <div class="doc-card">
+          <div class="doc-id">G3</div>
+          <h4>Build / Framework</h4>
+          <p class="doc-summary">Supporting material describing the relevant build framework and approval context.</p>
+          <div class="doc-actions">
+            <a href="assets/pdfs/G3-build.pdf" target="_blank" class="doc-btn">View PDF</a>
+            <a href="assets/pdfs/G3-build.pdf" download class="doc-btn">Download</a>
+          </div>
+        </div>
+        <div class="doc-card">
+          <div class="doc-id">G4</div>
+          <h4>Android Partner Workflow Details</h4>
+          <p class="doc-summary">Supporting material connected to the applicable Android partner process and workflow.</p>
+          <div class="doc-actions">
+            <a href="assets/pdfs/G4-Details.pdf" target="_blank" class="doc-btn">View PDF</a>
+            <a href="assets/pdfs/G4-Details.pdf" download class="doc-btn">Download</a>
+          </div>
+        </div>
+        <div class="doc-card">
+          <div class="doc-id">G5</div>
+          <h4>Device Overview</h4>
+          <p class="doc-summary">Supporting material describing the device configuration and hardware context.</p>
+          <div class="doc-actions">
+            <a href="assets/pdfs/G5-device.pdf" target="_blank" class="doc-btn">View PDF</a>
+            <a href="assets/pdfs/G5-device.pdf" download class="doc-btn">Download</a>
+          </div>
+        </div>
+        <div class="doc-card">
+          <div class="doc-id">G6</div>
+          <h4>Platform Overview</h4>
+          <p class="doc-summary">Supporting material providing an overview of the platform and software architecture.</p>
+          <div class="doc-actions">
+            <a href="assets/pdfs/G6-overview.pdf" target="_blank" class="doc-btn">View PDF</a>
+            <a href="assets/pdfs/G6-overview.pdf" download class="doc-btn">Download</a>
+          </div>
+        </div>
+        <div class="doc-card">
+          <div class="doc-id">G7</div>
+          <h4>Product Context</h4>
+          <p class="doc-summary">Supporting material describing the product positioning and context within the approval framework.</p>
+          <div class="doc-actions">
+            <a href="assets/pdfs/G7-product.pdf" target="_blank" class="doc-btn">View PDF</a>
+            <a href="assets/pdfs/G7-product.pdf" download class="doc-btn">Download</a>
+          </div>
+        </div>
+        <div class="doc-card">
+          <div class="doc-id">G8</div>
+          <h4>Sublicense Documentation</h4>
+          <p class="doc-summary">Supporting material related to sublicense documentation and applicable frameworks.</p>
+          <div class="doc-actions">
+            <a href="assets/pdfs/G8-sublicense.pdf" target="_blank" class="doc-btn">View PDF</a>
+            <a href="assets/pdfs/G8-sublicense.pdf" download class="doc-btn">Download</a>
+          </div>
+        </div>
+        <div class="doc-card">
+          <div class="doc-id">G9</div>
+          <h4>Widevine L1 Approval</h4>
+          <p class="doc-summary">Supporting material related to MAG1\u2019s Widevine L1 position and its relevance to premium content protection compatibility within the documented Google / Android framework.</p>
+          <div class="doc-actions">
+            <a href="assets/pdfs/G9-WidevineL1.pdf" target="_blank" class="doc-btn">View PDF</a>
+            <a href="assets/pdfs/G9-WidevineL1.pdf" download class="doc-btn">Download</a>
+          </div>
+        </div>
+        <div class="doc-card">
+          <div class="doc-id">G10</div>
+          <h4>Android Partner Approvals</h4>
+          <p class="doc-summary">Supporting material associated with the documented Android partner approval path and workflow.</p>
+          <div class="doc-actions">
+            <a href="assets/pdfs/G10-Android_Partner_Approvals.pdf" target="_blank" class="doc-btn">View PDF</a>
+            <a href="assets/pdfs/G10-Android_Partner_Approvals.pdf" download class="doc-btn">Download</a>
+          </div>
+        </div>
+        <div class="doc-card">
+          <div class="doc-id">G11</div>
+          <h4>Extended Information</h4>
+          <p class="doc-summary">Extended supporting information for deeper review of MAG1's approval context.</p>
+          <div class="doc-actions">
+            <a href="assets/pdfs/G11-Extended_Info.pdf" target="_blank" class="doc-btn">View PDF</a>
+            <a href="assets/pdfs/G11-Extended_Info.pdf" download class="doc-btn">Download</a>
+          </div>
+        </div>
+        <div class="doc-card">
+          <div class="doc-id">G12</div>
+          <h4>Reports</h4>
+          <p class="doc-summary">Supporting reports and documentation associated with the MAG1 approval workflow.</p>
+          <div class="doc-actions">
+            <a href="assets/pdfs/G12-Reports.pdf" target="_blank" class="doc-btn">View PDF</a>
+            <a href="assets/pdfs/G12-Reports.pdf" download class="doc-btn">Download</a>
+          </div>
+        </div>
+        <div class="doc-card">
+          <div class="doc-id">G13</div>
+          <h4>Tests</h4>
+          <p class="doc-summary">Supporting test documentation and compatibility verification materials.</p>
+          <div class="doc-actions">
+            <a href="assets/pdfs/G13-Tests.pdf" target="_blank" class="doc-btn">View PDF</a>
+            <a href="assets/pdfs/G13-Tests.pdf" download class="doc-btn">Download</a>
+          </div>
+        </div>
+        <div class="doc-card">
+          <div class="doc-id">G14</div>
+          <h4>Device Information</h4>
+          <p class="doc-summary">Supporting material providing device-level information relevant to how MAG1\u2019s Widevine L1 and broader Google / Android approval context should be interpreted.</p>
+          <div class="doc-actions">
+            <a href="assets/pdfs/G14-deviceinfo.pdf" target="_blank" class="doc-btn">View PDF</a>
+            <a href="assets/pdfs/G14-deviceinfo.pdf" download class="doc-btn">Download</a>
+          </div>
+        </div>
+        <div class="doc-card">
+          <div class="doc-id">G15</div>
+          <h4>Secure Element</h4>
+          <p class="doc-summary">Supporting material related to the Secure Element architecture and compatibility.</p>
+          <div class="doc-actions">
+            <a href="assets/pdfs/G15-SE.pdf" target="_blank" class="doc-btn">View PDF</a>
+            <a href="assets/pdfs/G15-SE.pdf" download class="doc-btn">Download</a>
+          </div>
+        </div>
+      </div>
+      <div class="highlight-box">
+        <h3>For Deeper Review</h3>
+        <p>
+          Additional supporting references may be provided in the context of partnership review,
+          exchange due diligence, or institutional compliance evaluation. Contact the MAGNE team
+          for access to extended materials.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: SECURE ELEMENT COMPATIBILITY -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="section-shell">
+      <div class="section-header">
+        <h2>Secure Element Compatibility</h2>
+        <p>How MAG1's secure element architecture aligns with the relevant Android / Google compatibility workflow.</p>
+      </div>
+      <div class="section-intro">
+        <p>
+          MAG1's secure element implementation is presented as part of a broader compatibility and approval context,
+          rather than as an isolated hardware claim. This section summarizes how the device's secure element
+          architecture relates to Android secure element access, compatibility workflow expectations, and the
+          supporting validation path referenced in the broader materials.
+        </p>
+      </div>
+      <div class="signals-grid">
+        <div class="signal-card">
+          <div class="signal-tag">SE ACCESS</div>
+          <h4>Android Secure Element Access Context</h4>
+          <p>MAG1's secure element architecture is positioned within the Android secure element access framework relevant to device compatibility and supporting review.</p>
+        </div>
+        <div class="signal-card">
+          <div class="signal-tag">OMAPI</div>
+          <h4>OMAPI / Access Control Relevance</h4>
+          <p>Relevant secure element interaction is understood in connection with OMAPI and access-control related compatibility expectations applicable to the documented device context.</p>
+        </div>
+        <div class="signal-card">
+          <div class="signal-tag">VALIDATION</div>
+          <h4>Supporting Validation Path</h4>
+          <p>The secure element position should be read together with the broader approval, compatibility, and supporting document set rather than as a standalone statement.</p>
+        </div>
+      </div>
+      <div class="highlight-box">
+        <h3>Why This Matters</h3>
+        <p>
+          For technical reviewers, partners, and institutional readers, secure element compatibility is an important
+          part of understanding how MAG1's hardware-backed security architecture fits into a real Android device workflow.
+        </p>
+      </div>
+      <div class="notes-grid">
+        <div class="note-card">
+          <h4>Hardware-backed Security Context</h4>
+          <p>MAG1's secure element should be understood as part of a broader device security architecture that includes isolated execution, secure element-based operations, and recovery-oriented supporting mechanisms.</p>
+        </div>
+        <div class="note-card">
+          <h4>Interpretation Guidance</h4>
+          <p>This section is intended as a supporting explanation for compatibility review and should be interpreted together with the underlying approval references and broader compliance materials.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: GOOGLE APPLICATION BASIS -->
+  <section class="section">
+    <div class="section-shell">
+      <div class="section-header">
+        <h2>Google Application Basis</h2>
+        <p>The basis on which MAG1's Google application environment is presented within the documented Android / GMS framework.</p>
+      </div>
+      <div class="section-intro">
+        <p>
+          MAG1's Google application environment should be understood within the documented Android / GMS framework
+          applicable to the device build and approval context. This section is intended to clarify the basis for
+          presenting MAG1's Google application layer in a compliance-supporting manner.
+        </p>
+      </div>
+      <div class="signals-grid">
+        <div class="signal-card">
+          <div class="signal-tag">FRAMEWORK</div>
+          <h4>Android / GMS Context</h4>
+          <p>MAG1's Google application layer is presented on the basis of the documented Android and GMS framework associated with the relevant build and approval path.</p>
+        </div>
+        <div class="signal-card">
+          <div class="signal-tag">APPLICATION</div>
+          <h4>Google App Environment</h4>
+          <p>Google application availability should be interpreted as part of the approved software environment applicable to the documented device configuration.</p>
+        </div>
+        <div class="signal-card">
+          <div class="signal-tag">INTERPRETATION</div>
+          <h4>Supporting Presentation Basis</h4>
+          <p>Statements regarding Google application support are intended to be read within the broader approval and compliance context, rather than as isolated product claims.</p>
+        </div>
+      </div>
+      <div class="highlight-box">
+        <h3>Why This Matters</h3>
+        <p>
+          For reviewers assessing platform legitimacy and software readiness, the Google application basis helps clarify
+          how MAG1's software environment is positioned within a documented Android / GMS approval context.
+        </p>
+      </div>
+      <div class="notes-grid">
+        <div class="note-card">
+          <h4>For Compliance Review</h4>
+          <p>This section helps explain the basis for presenting Google application support in a structured and review-friendly way.</p>
+        </div>
+        <div class="note-card">
+          <h4>For Institutional Readers</h4>
+          <p>The goal is not to market individual applications, but to clarify the software framework under which the Google application layer is referenced.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: WIDEVINE L1 CONTENT PROTECTION -->
+  <section class="wv-section">
+    <div class="wv-shell">
+      <div class="section-header">
+        <h2>Widevine L1 Content Protection</h2>
+        <p>
+          How MAG1\u2019s Widevine L1 position supports mainstream premium content compatibility
+          within the documented Google / Android framework.
+        </p>
+      </div>
+
+      <div class="wv-intro">
+        <p>
+          MAG1\u2019s Widevine L1 position should be understood as part of its broader Google /
+          Android compatibility context. Rather than being presented as an isolated consumer
+          feature, Widevine L1 is relevant because it supports premium content protection
+          expectations associated with mainstream streaming services and higher-trust playback
+          environments.
+        </p>
+      </div>
+
+      <div class="wv-grid">
+        <div class="wv-card">
+          <div class="wv-tag">WIDEVINE</div>
+          <h4>Widevine L1 Context</h4>
+          <p>
+            Widevine L1 represents the highest Widevine security level and is commonly
+            associated with hardware-backed content protection and higher-trust playback
+            environments.
+          </p>
+        </div>
+
+        <div class="wv-card">
+          <div class="wv-tag">CONTENT</div>
+          <h4>Premium Streaming Relevance</h4>
+          <p>
+            Widevine L1 is relevant to compatibility expectations for premium content services,
+            including platforms that distinguish playback quality and access by DRM level.
+          </p>
+        </div>
+
+        <div class="wv-card">
+          <div class="wv-tag">INTERPRETATION</div>
+          <h4>Supporting Review Basis</h4>
+          <p>
+            MAG1\u2019s Widevine L1 position should be interpreted within the broader documented
+            Google / Android framework, rather than as a standalone entertainment claim.
+          </p>
+        </div>
+      </div>
+
+      <div class="wv-highlight">
+        <div class="wv-highlight-inner">
+          <h3>Why this matters</h3>
+          <p>
+            For partners, reviewers, and market-facing stakeholders, Widevine L1 provides an
+            additional signal that MAG1 is positioned for compatibility with higher-trust
+            mainstream content environments rather than only basic application-layer access.
+          </p>
+        </div>
+      </div>
+
+      <div class="wv-notes">
+        <div class="wv-note-card">
+          <h4>For platform credibility</h4>
+          <p>
+            Widevine L1 helps reinforce that MAG1\u2019s software and device stack is aligned with
+            mainstream content ecosystem expectations at a higher protection level.
+          </p>
+        </div>
+
+        <div class="wv-note-card">
+          <h4>For review context</h4>
+          <p>
+            This section is intended as a structured explanation for compliance and due
+            diligence review, and should be read together with the broader approval and
+            supporting document set.
+          </p>
+        </div>
+      </div>
+
+      <div class="wv-related-note">
+        <p>
+          Related supporting references are included in the full reference index above,
+          including G9 \u2014 Widevine L1 and G14 \u2014 Device Information.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: REGIONAL SCOPE -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="section-shell">
+      <div class="section-header">
+        <h2>Regional Scope</h2>
+        <p>Documented shipment and build scope associated with MAG1's current approval status.</p>
+      </div>
+      <div class="section-intro">
+        <p>
+          The regional scope referenced for MAG1 should be understood within the documented build, shipment,
+          and approval context reflected in the supporting materials. This section is intended to clarify how
+          regional applicability is described in a structured and review-oriented manner.
+        </p>
+      </div>
+      <div class="signals-grid">
+        <div class="signal-card">
+          <div class="signal-tag">EEA</div>
+          <h4>EEA Scope</h4>
+          <p>MAG1's documented approval position includes the relevant EEA-oriented scope applicable to the corresponding build and shipment context.</p>
+        </div>
+        <div class="signal-card">
+          <div class="signal-tag">WORLDWIDE</div>
+          <h4>Worldwide Build Context</h4>
+          <p>Certain documented references describe MAG1's broader worldwide build context, which should be interpreted within the applicable shipment and approval framework.</p>
+        </div>
+        <div class="signal-card">
+          <div class="signal-tag">SHIPMENT</div>
+          <h4>Shipment Interpretation</h4>
+          <p>Shipment scope should be read as part of the documented release path and not as a standalone claim detached from the relevant materials.</p>
+        </div>
+      </div>
+      <div class="highlight-box">
+        <h3>How to Read Regional Scope Correctly</h3>
+        <p>
+          Regional applicability for MAG1 should be interpreted in relation to the specific documented build,
+          approval context, and shipment references available in the supporting set. It is best understood as
+          documented scope, rather than as an unrestricted universal shipping statement.
+        </p>
+      </div>
+      <div class="notes-grid">
+        <div class="note-card">
+          <h4>For Partners</h4>
+          <p>Regional scope helps clarify how MAG1's documented approval coverage may align with market-facing discussions and deployment planning.</p>
+        </div>
+        <div class="note-card">
+          <h4>For Exchanges and Reviewers</h4>
+          <p>This section provides context for interpreting shipping and build references during due diligence and compliance review.</p>
+        </div>
+        <div class="note-card">
+          <h4>For Structured Interpretation</h4>
+          <p>The most appropriate reading is based on documented scope and associated approval materials, rather than on simplified "global" shorthand.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: WHAT THIS MEANS FOR REVIEWERS -->
+  <section class="section">
+    <div class="section-shell">
+      <div class="section-header">
+        <h2>What This Means for Reviewers</h2>
+        <p>How the approval path, supporting materials, and scope references may be interpreted by partners, exchanges, and institutional reviewers.</p>
+      </div>
+      <div class="section-intro">
+        <p>
+          This page is intended to function as a supporting reference rather than a standalone marketing claim.
+          Its role is to help reviewers understand how MAG1's documented Google / Android approval context,
+          supporting materials, secure element references, and regional scope fit together in a structured way.
+        </p>
+      </div>
+      <div class="signals-grid">
+        <div class="signal-card">
+          <div class="signal-tag">PARTNERS</div>
+          <h4>For Partners</h4>
+          <p>The materials on this page provide a more structured view of platform readiness, approval-path context, and shipment interpretation that may support market-facing and commercial discussions.</p>
+        </div>
+        <div class="signal-card">
+          <div class="signal-tag">EXCHANGES</div>
+          <h4>For Exchanges</h4>
+          <p>For exchange-facing review, these materials may serve as an additional reference layer when assessing device legitimacy, operational positioning, and broader due diligence context.</p>
+        </div>
+        <div class="signal-card">
+          <div class="signal-tag">INSTITUTIONAL</div>
+          <h4>For Institutional Reviewers</h4>
+          <p>This page is designed to support structured review by aggregating approval-path context, supporting documents, and interpretation guidance in a single location.</p>
+        </div>
+      </div>
+      <div class="highlight-box">
+        <h3>How This Page Should Be Used</h3>
+        <p>
+          This page is best understood as a supporting compliance and review reference. It should be read together
+          with the broader Compliance page, related supporting documents, and additional materials provided in
+          the context of partnership, exchange review, or institutional diligence.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-shell">
+      <h2>Need broader compliance materials?</h2>
+      <p>
+        For deeper compliance references, commercial materials, or institutional review support,
+        contact MAGNE directly or return to the broader Compliance page.
+      </p>
+      <div class="cta-buttons">
+        <a href="magne-compliance.html" class="btn-secondary">← Back to Compliance</a>
+        <a href="magne-contact.html" class="btn-primary">Contact MAGNE</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-links">
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="magne-contact.html">Contact</a>
+      <a href="media-kit.html">Media Kit</a>
+    </div>
+    <p style="opacity: 0.5;">© 2026 MAGNE.AI. All rights reserved.</p>
+  </footer>
+</body>
+</html>

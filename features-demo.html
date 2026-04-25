@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Features Demo — MAGNE.AI</title>
+  <link rel="icon" type="image/png" href="logo-icon-circle.png">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0a0c;
+      --bg-secondary: #0f0f12;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.1);
+      --text-primary: #f5f5f7;
+      --text-secondary: rgba(245, 245, 247, 0.6);
+      --text-muted: rgba(245, 245, 247, 0.4);
+      --accent: #00d4d4;
+      --accent-dim: rgba(0, 212, 212, 0.06);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+    }
+    .content--canvas { position: relative; z-index: 1; }
+    .content--canvas canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 12, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-decoration: none;
+    }
+    .nav-back {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: color 0.3s;
+    }
+    .nav-back:hover { color: var(--accent); }
+
+    .page-header {
+      padding: 7rem 2rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .page-header .label {
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .page-header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+      
+      
+    }
+    .page-header .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+    }
+
+    main {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+    /* FEATURED DEMO */
+    .featured-demo {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3rem;
+      align-items: center;
+      margin: 3rem 0 4rem;
+      padding: 2rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      position: relative;
+      z-index: 2;
+    }
+    .featured-copy .demo-eyebrow {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .featured-copy h3 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .featured-copy p {
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+    }
+    .featured-thumb {
+      position: relative;
+      display: block;
+      width: 100%;
+      max-width: 300px;
+      margin-left: auto;
+      aspect-ratio: 9 / 16;
+      background: #000;
+      border-radius: 28px;
+      overflow: hidden;
+    }
+    .featured-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .featured-thumb .play-button {
+      top: 45%;
+    }
+
+    /* VIDEO GRID */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .video-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    @media (max-width: 600px) {
+      .video-grid {
+        grid-template-columns: 1fr;
+        max-width: 340px;
+        margin: 0 auto;
+      }
+      .featured-demo {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .featured-thumb {
+        margin: 0 auto;
+      }
+    }
+
+    /* VIDEO CARD */
+    .video-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .video-card:hover {
+      border-color: rgba(0, 212, 212, 0.22);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+    }
+    .video-thumb {
+      position: relative;
+      display: block;
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      background: #000;
+      overflow: hidden;
+    }
+    .video-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .video-card:hover .video-thumb img {
+      transform: scale(1.04);
+    }
+    .video-thumb::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0.12) 35%, rgba(0,0,0,0.04) 100%);
+    }
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: rgba(10, 10, 12, 0.58);
+      border: 1px solid rgba(255,255,255,0.18);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1rem;
+      z-index: 2;
+    }
+    .video-body {
+      padding: 1.25rem 1.25rem 1.5rem;
+      text-align: center;
+    }
+    .video-body h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.35;
+      margin-bottom: 0.6rem;
+    }
+    .video-body p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .video-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    .video-link:hover {
+      opacity: 0.8;
+    }
+    .demo-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }    .demo-label {
+      padding: 1rem;
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+    footer a { color: var(--text-secondary); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+    footer p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+  
+    /* DEMO GROUP */
+    .demo-group {
+      margin-bottom: 5rem;
+    }
+    .group-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .group-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    .group-desc {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* LIGHT CTA */
+    .light-cta {
+      text-align: center;
+      padding: 5rem 2rem;
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+    .light-cta h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .light-cta p {
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+
+  
+
+    /* BUTTONS */
+    .btn-primary {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      background: var(--accent);
+      color: #000;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .btn-primary:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+    .btn-secondary {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+</style>
+</head>
+<body class="content--canvas">
+  <canvas id="bg"></canvas>
+  <nav>
+    <div class="nav-brand"><a href="magne-home.html" class="nav-logo">MAGNE.AI</a></div>
+    <a href="magne-home.html" class="nav-back">← Back to Home</a>
+  </nav>
+
+  <div class="page-header">
+    <div class="label">FEATURE DEMOS</div>
+    <h1>See MAG1 in Action</h1>
+    <p class="subtitle">Watch real device walkthroughs covering wallet creation, recovery, dApp connection, private space, and AI-assisted workflows.</p>
+  </div>
+
+  <main>
+
+    <!-- FEATURED DEMO -->
+    <div class="featured-demo">
+      <div class="featured-copy">
+        <div class="demo-eyebrow">FEATURED DEMO</div>
+        <h3>Create a New Wallet on MAG1</h3>
+        <p>See how MAG1 guides wallet setup directly on-device, combining secure ownership workflows with a mobile-native user experience.</p>
+        <a href="https://youtube.com/shorts/ZMhyf6yImOc" target="_blank" class="btn-primary">Watch Featured Demo</a>
+      </div>
+      <a href="https://youtube.com/shorts/ZMhyf6yImOc" target="_blank" class="featured-thumb">
+        <img src="https://img.youtube.com/vi/ZMhyf6yImOc/hqdefault.jpg" alt="Create a New Wallet">
+        <span class="play-button">▶</span>
+      </a>
+    </div>
+
+    <!-- WALLET SETUP -->
+    <div class="demo-group">
+      <div class="group-header">
+        <div class="group-title">Secure Wallet Setup</div>
+        <p class="group-desc">Set up and recover wallet access directly on MAG1 through guided device workflows.</p>
+      </div>
+      <div class="video-grid">
+        <article class="video-card">
+          <a href="https://youtube.com/shorts/bcHC_FbMrog" target="_blank" class="video-thumb">
+            <img src="https://img.youtube.com/vi/bcHC_FbMrog/hqdefault.jpg" alt="NFC Recovery">
+            <span class="play-button">▶</span>
+          </a>
+          <div class="video-body">
+            <h3>Restore with NFC Card</h3>
+            <p>Recover wallet access using encrypted NFC backup.</p>
+            <a href="https://youtube.com/shorts/bcHC_FbMrog" target="_blank" class="video-link">Watch Demo →</a>
+          </div>
+        </article>
+
+        <article class="video-card">
+          <a href="https://youtube.com/shorts/naYHLTVEeWw" target="_blank" class="video-thumb">
+            <img src="https://img.youtube.com/vi/naYHLTVEeWw/hqdefault.jpg" alt="Mnemonic Recovery">
+            <span class="play-button">▶</span>
+          </a>
+          <div class="video-body">
+            <h3>Restore with Mnemonic</h3>
+            <p>Recover wallet using standard recovery phrase.</p>
+            <a href="https://youtube.com/shorts/naYHLTVEeWw" target="_blank" class="video-link">Watch Demo →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- PRIVATE & SECURE -->
+    <div class="demo-group">
+      <div class="group-header">
+        <div class="group-title">Private & Secure Usage</div>
+        <p class="group-desc">See how MAG1 separates sensitive Web3 activity from everyday mobile use.</p>
+      </div>
+      <div class="video-grid">
+        <article class="video-card">
+          <a href="https://youtube.com/shorts/1k2nQIyhDsg" target="_blank" class="video-thumb">
+            <img src="https://img.youtube.com/vi/1k2nQIyhDsg/hqdefault.jpg" alt="Connect DApp">
+            <span class="play-button">▶</span>
+          </a>
+          <div class="video-body">
+            <h3>Connect Wallet to DApp</h3>
+            <p>Link MAG1 wallet to Web3 applications.</p>
+            <a href="https://youtube.com/shorts/1k2nQIyhDsg" target="_blank" class="video-link">Watch Demo →</a>
+          </div>
+        </article>
+
+        <article class="video-card">
+          <a href="https://youtube.com/shorts/BZOy194iYA8" target="_blank" class="video-thumb">
+            <img src="https://img.youtube.com/vi/BZOy194iYA8/hqdefault.jpg" alt="Hide Private Space">
+            <span class="play-button">▶</span>
+          </a>
+          <div class="video-body">
+            <h3>Hide Private Space</h3>
+            <p>Separate sensitive Web3 activity from daily use.</p>
+            <a href="https://youtube.com/shorts/BZOy194iYA8" target="_blank" class="video-link">Watch Demo →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- AI & DAILY -->
+    <div class="demo-group">
+      <div class="group-header">
+        <div class="group-title">AI & Daily Workflows</div>
+        <p class="group-desc">Explore how MAG1 combines on-device intelligence with practical daily interaction.</p>
+      </div>
+      <div class="video-grid">
+        <article class="video-card">
+          <a href="https://youtube.com/shorts/u61eNffrhe0" target="_blank" class="video-thumb">
+            <img src="https://img.youtube.com/vi/u61eNffrhe0/hqdefault.jpg" alt="Gemini AI">
+            <span class="play-button">▶</span>
+          </a>
+          <div class="video-body">
+            <h3>Use Gemini AI</h3>
+            <p>On-device AI assistance for daily workflows.</p>
+            <a href="https://youtube.com/shorts/u61eNffrhe0" target="_blank" class="video-link">Watch Demo →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- LIGHT CONTACT CTA -->
+    <div class="light-cta">
+      <h3>Need more help?</h3>
+      <p>For product questions or partnership inquiries, contact the MAGNE.AI team.</p>
+      <a href="magne-contact.html" class="btn-secondary">Contact MAGNE</a>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>MAGNE.AI — The Web3-native AI Phone</p>
+    <div class="footer-links">
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="magne-contact.html">Contact</a>
+      <a href="media-kit.html">Media Kit</a>
+    </div>
+    <p style="margin-top: 1.5rem; opacity: 0.5;">© 2026 MAGNE.AI. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const canvas = document.getElementById('bg');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+    const particles = [];
+    for (let i = 0; i < 60; i++) {
+      particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4, size: Math.random() * 2 + 1 });
+    }
+    function animate() {
+      ctx.fillStyle = '#0a0a0c';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(0, 212, 212, 0.25)';
+        ctx.fill();
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+      });
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+</body>
+</html>

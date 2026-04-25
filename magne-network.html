@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAGNE Network — A Native Value Stack from Device to Chain</title>
+  <link rel="icon" type="image/png" href="logo-icon-circle.png">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #0a0a0c;
+      --bg-secondary: #0f0f12;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --bg-card-hover: rgba(255, 255, 255, 0.05);
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.12);
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.5);
+      --text-tertiary: rgba(255, 255, 255, 0.3);
+      --accent: #00d4d4;
+      --accent-secondary: #00ff88;
+      --accent-cyan: #00d4d4;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', -apple-system, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NODE NETWORK BACKGROUND */
+    #node-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 12, 0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-brand a { color: var(--text-secondary); text-decoration: none; }
+    .nav-logo { font-size: 1.3rem; font-weight: 700; color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a.active { color: var(--accent); }
+    .nav-cta {
+      background: var(--accent);
+      color: #000 !important;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .nav-cta:hover { opacity: 0.9; }
+
+    /* CONTENT WRAPPER */
+    .content-wrapper {
+      position: relative;
+      z-index: 1;
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 900px; height: 700px;
+      background: radial-gradient(ellipse at center, rgba(0,212,212,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 0.8s ease-out;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.85) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeInUp 0.8s ease-out 0.1s both;
+    }
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 650px;
+      margin-bottom: 3rem;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+    .hero-ctas { 
+      display: flex; 
+      gap: 1rem; 
+      flex-wrap: wrap; 
+      justify-content: center;
+      animation: fadeInUp 0.8s ease-out 0.3s both;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+      padding: 1rem 2.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover { 
+      transform: translateY(-3px); 
+      box-shadow: 0 15px 40px rgba(0,212,212,0.3);
+    }
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--border-hover);
+      color: var(--text-primary);
+      padding: 1rem 2.5rem;
+      border-radius: 8px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-secondary:hover { 
+      border-color: var(--accent); 
+      color: var(--accent);
+    }
+
+    /* SECTION BASE */
+    section { 
+      padding: 6rem 2rem; 
+      max-width: 1100px; 
+      margin: 0 auto; 
+      position: relative;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .section-title h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .section-title p {
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1rem;
+    }
+
+    /* DUAL CHAIN ARCHITECTURE */
+    .chain-arch {
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      gap: 3rem;
+      margin: 4rem 0;
+    }
+    .chain-box {
+      flex: 1;
+      max-width: 480px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .chain-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+    }
+    .chain-box.l1::before { background: linear-gradient(90deg, var(--accent), var(--accent-secondary)); }
+    .chain-box.l2::before { background: linear-gradient(90deg, var(--accent-cyan), #0088aa); }
+    .chain-label {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+      letter-spacing: 1px;
+    }
+    .chain-box.l1 .chain-label {
+      background: rgba(0,212,212,0.15);
+      color: var(--accent);
+    }
+    .chain-box.l2 .chain-label {
+      background: rgba(0,136,170,0.15);
+      color: var(--accent-cyan);
+    }
+    .chain-box h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .chain-box p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+    .chain-features {
+      list-style: none;
+      padding: 0;
+    }
+    .chain-features li {
+      padding: 0.5rem 0;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .chain-features li::before {
+      content: '→';
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .chain-connector {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .chain-connector-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+    }
+    .chain-connector span {
+      font-size: 0.7rem;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* WHAT RUNS */
+    .ecosystem-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin: 3rem 0;
+    }
+    .eco-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .eco-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+    }
+    .eco-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .eco-card h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .eco-card p {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+
+    /* SECTION EYEBROW */
+    .section-eyebrow {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent-cyan);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    /* ECOSYSTEM SHOWCASE */
+    .showcase-section {
+      padding: 6rem 2rem;
+    }
+    .showcase-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .showcase-body p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.75;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .showcase-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .highlight-item {
+      display: flex;
+      align-items: center;
+    }
+    .highlight-tag {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+    .showcase-cta {
+      text-align: center;
+    }
+
+    /* DEVICE JOURNEY */
+    .journey-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 3rem;
+      margin: 4rem 0;
+    }
+    .journey-section h3 {
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 3rem;
+    }
+    .journey-flow {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+    .journey-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 1rem;
+      min-width: 120px;
+    }
+    .journey-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      background: rgba(0,212,212,0.1);
+      border: 1px solid rgba(0,212,212,0.2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .journey-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    .journey-sublabel {
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+    }
+    .journey-arrow {
+      font-size: 1.5rem;
+      color: var(--text-tertiary);
+      padding: 0 0.5rem;
+    }
+
+    /* GATEWAY VALUE */
+    .gateway-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin: 4rem 0;
+    }
+    .gateway-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.3s;
+    }
+    .gateway-card:hover {
+      border-color: var(--border-hover);
+    }
+    .gateway-card h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: var(--accent);
+    }
+    .gateway-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* OPEN DEV */
+    .dev-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin: 3rem 0;
+    }
+    .dev-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.2s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .dev-card-soon {
+      opacity: 0.6;
+      cursor: default;
+    }
+    .dev-card-soon:hover {
+      transform: none;
+      border-color: var(--border);
+      color: inherit;
+    }
+    .coming-soon {
+      display: block;
+      margin-top: 0.75rem;
+      font-size: 0.7rem;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .dev-card:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-3px);
+    }
+    .dev-icon {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+    .dev-card h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .dev-card p {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    /* CTA */
+    .cta-section {
+      text-align: center;
+      padding: 6rem 2rem;
+      background: linear-gradient(180deg, transparent 0%, rgba(0,212,212,0.03) 100%);
+      border-top: 1px solid var(--border);
+    }
+    .cta-section h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .cta-section p {
+      color: var(--text-secondary);
+      margin-bottom: 2.5rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 4rem 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-tertiary);
+      font-size: 0.9rem;
+    }
+    footer a { color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--accent); }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; margin-top: 1rem; }
+    .footer-links-secondary { display: flex; justify-content: center; gap: 2rem; margin-top: 0.75rem; }
+    .footer-links-secondary a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; }
+    .footer-links-secondary a:hover { color: var(--accent); }
+
+    /* ANIMATIONS */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate { opacity: 0; }
+    .animate.visible {
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .chain-arch {
+        flex-direction: column;
+        align-items: center;
+      }
+      .chain-connector {
+        transform: rotate(90deg);
+        margin: 1rem 0;
+      }
+      .ecosystem-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .dev-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .gateway-grid {
+        grid-template-columns: 1fr;
+      }
+      .journey-flow {
+        gap: 0.5rem;
+      }
+      .journey-arrow {
+        display: none;
+      }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1rem; }
+      .ecosystem-grid,
+      .dev-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NODE NETWORK BACKGROUND -->
+<canvas id="node-bg"></canvas>
+
+<div class="content-wrapper">
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <a href="magne-home.html"><span class="nav-logo">MAGNE.AI</span></a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="magne-home.html">Home</a></li>
+    <li><a href="magne-phone.html">Phone</a></li>
+    <li><a href="magne-security.html">Security</a></li>
+    <li><a href="magne-compliance.html">Compliance</a></li>
+    <li><a href="magne-network.html" class="active">Network</a></li>
+    <li><a href="magne-progress.html">Progress</a></li>
+  </ul>
+  <a href="magne-contact.html" class="nav-cta">Contact</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">MAGNE Network</div>
+  <h1>A native value stack from device to chain</h1>
+  <p class="hero-sub">MAGNE is not just a phone — it is a device-native gateway to a dual-chain ecosystem. L1 for ownership logic, L2 for scalable execution, and the phone as the primary access point.</p>
+  <div class="hero-ctas">
+    <a href="#architecture" class="btn-primary">Explore Architecture</a>
+    <a href="#ecosystem" class="btn-secondary">View Ecosystem</a>
+  </div>
+</section>
+
+<!-- DUAL CHAIN ARCHITECTURE -->
+<section id="architecture">
+  <div class="section-title">
+    <h2>Two-Layer Chain Architecture</h2>
+    <p>MAGNE L1 handles ownership logic. MHash L2 handles scalable execution. Together they form a complete stack from device to chain.</p>
+  </div>
+  <div class="chain-arch">
+    <div class="chain-box l1 animate">
+      <span class="chain-label">L1 — MAGNE</span>
+      <h3>Ownership Layer</h3>
+      <p>MAGNE L1 is the foundational layer designed for secure ownership, wallet logic, and asset-related operations. It is where private keys live, where signing happens, and where the rules of digital asset ownership are enforced.</p>
+      <ul class="chain-features">
+        <li>Private key storage & key isolation</li>
+        <li>Transaction signing (hardware-backed)</li>
+        <li>Wallet logic & address management</li>
+        <li>Asset ownership records</li>
+        <li>Staking & validation participation</li>
+      </ul>
+    </div>
+    <div class="chain-connector">
+      <div class="chain-connector-icon">⚡</div>
+      <span>Native</span>
+    </div>
+    <div class="chain-box l2 animate">
+      <span class="chain-label">L2 — MHASH</span>
+      <h3>Execution Layer</h3>
+      <p>MHash L2 is the scalable execution layer designed for broader applications and lower-friction user interaction. It is where smart contracts run, where dApps live, and where users interact with the broader ecosystem at lower cost.</p>
+      <ul class="chain-features">
+        <li>Smart contract execution</li>
+        <li>dApp deployment & hosting</li>
+        <li>Cross-chain bridge operations</li>
+        <li>Low-fee token transfers & swaps</li>
+        <li>Ecosystem service logic</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT RUNS ON MAGNE -->
+<section id="ecosystem">
+  <div class="section-title">
+    <div class="section-eyebrow">ECOSYSTEM ACCESS</div>
+    <h2>What Runs on MAGNE</h2>
+    <p>Wallet operations, asset flows, and interactive applications designed to work across the MAGNE device and network stack.</p>
+  </div>
+  <div class="ecosystem-grid">
+    <div class="eco-card animate">
+      <div class="eco-icon">👛</div>
+      <h4>Wallet</h4>
+      <p>Native multi-chain wallet with hardware-backed key storage — not a software wallet.</p>
+    </div>
+    <div class="eco-card animate">
+      <div class="eco-icon">🔄</div>
+      <h4>Swap</h4>
+      <p>Token exchange through integrated DEXs on MHash L2 with hardware-signed transactions.</p>
+    </div>
+    <div class="eco-card animate">
+      <div class="eco-icon">📈</div>
+      <h4>Stake</h4>
+      <p>Staking and validation participation with keys protected by the secure element.</p>
+    </div>
+    <div class="eco-card animate">
+      <div class="eco-icon">🌉</div>
+      <h4>Bridge</h4>
+      <p>Cross-chain bridge access for moving assets between L1, L2, and external chains.</p>
+    </div>
+    <div class="eco-card animate">
+      <div class="eco-icon">🪪</div>
+      <h4>Identity</h4>
+      <p>Decentralized identity management with credentials stored securely on-device.</p>
+    </div>
+    <div class="eco-card animate">
+      <div class="eco-icon">📱</div>
+      <h4>Applications</h4>
+      <p>dApps and ecosystem services running on MHash L2, accessible from the device.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DEVICE GATEWAY VALUE -->
+<section id="gateway">
+  <div class="section-title">
+    <h2>Why the Device as Gateway?</h2>
+    <p>MAGNE is not a phone with a blockchain app added. It is a native gateway — where the device and the chain are designed together from the start.</p>
+  </div>
+  <div class="gateway-grid">
+    <div class="gateway-card animate">
+      <h4>Keys never leave the device</h4>
+      <p>Private keys are generated and stored in the secure element. Signing happens in hardware. The seed phrase never exists in software. This is not a software wallet with extra steps — it is hardware-grade ownership built into the device architecture.</p>
+    </div>
+    <div class="gateway-card animate">
+      <h4>Chain interaction is native, not app-based</h4>
+      <p>When you access DeFi, a dApp, or a bridge from MAGNE, the interaction flows through the secure element and the MAGNE/MHash stack. You are not trusting a browser extension or a third-party app — you are interacting with the chain through device-native architecture.</p>
+    </div>
+    <div class="gateway-card animate">
+      <h4>One device, multiple chains</h4>
+      <p>The dual-chain architecture means MAGNE L1 handles ownership while MHash L2 handles execution. Users do not need a separate computer or hardware wallet for each chain — the device manages both.</p>
+    </div>
+    <div class="gateway-card animate">
+      <h4>Recovery without cloud</h4>
+      <p>NFC-based encrypted backup means you can recover your assets offline, without a seed phrase written down, without cloud backup, and without trusting a third party. The device is the key and the backup.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DEVICE JOURNEY -->
+<section id="journey">
+  <div class="journey-section animate">
+    <h3>The MAGNE Device Journey</h3>
+    <div class="journey-flow">
+      <div class="journey-step">
+        <div class="journey-icon">📱</div>
+        <div class="journey-label">Setup</div>
+        <div class="journey-sublabel">Secure element initializes keys</div>
+      </div>
+      <div class="journey-arrow">→</div>
+      <div class="journey-step">
+        <div class="journey-icon">👛</div>
+        <div class="journey-label">Wallet</div>
+        <div class="journey-sublabel">L1 wallet with hardware keys</div>
+      </div>
+      <div class="journey-arrow">→</div>
+      <div class="journey-step">
+        <div class="journey-icon">🔄</div>
+        <div class="journey-label">Swap / Stake</div>
+        <div class="journey-sublabel">L2-powered DeFi interactions</div>
+      </div>
+      <div class="journey-arrow">→</div>
+      <div class="journey-step">
+        <div class="journey-icon">🌉</div>
+        <div class="journey-label">Bridge</div>
+        <div class="journey-sublabel">Cross-chain via native bridge</div>
+      </div>
+      <div class="journey-arrow">→</div>
+      <div class="journey-step">
+        <div class="journey-icon">📡</div>
+        <div class="journey-label">NFC Recover</div>
+        <div class="journey-sublabel">Offline backup & recovery</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPEN DEVELOPMENT -->
+<section id="dev">
+  <div class="section-title">
+    <h2>Open Development</h2>
+    <p>MAGNE is not a closed ecosystem. Developers and community members can explore the stack, contribute to the protocol, and build on the foundation.</p>
+  </div>
+  <div class="dev-grid">
+    <div class="dev-card dev-card-soon animate">
+      <div class="dev-icon">📄</div>
+      <h4>Docs</h4>
+      <p>Protocol documentation</p>
+      <span class="coming-soon">Coming soon</span>
+    </div>
+    <div class="dev-card dev-card-soon animate">
+      <div class="dev-icon">🐙</div>
+      <h4>GitHub</h4>
+      <p>Open source repositories</p>
+      <span class="coming-soon">Coming soon</span>
+    </div>
+    <div class="dev-card dev-card-soon animate">
+      <div class="dev-icon">🔍</div>
+      <h4>Explorer</h4>
+      <p>Chain & transaction browser</p>
+      <span class="coming-soon">Coming soon</span>
+    </div>
+    <div class="dev-card dev-card-soon animate">
+      <div class="dev-icon">📊</div>
+      <h4>Whitepaper</h4>
+      <p>Technical specification</p>
+      <span class="coming-soon">Coming soon</span>
+    </div>
+  </div>
+</section>
+
+<!-- ECOSYSTEM SHOWCASE -->
+<section id="showcase" class="showcase-section">
+  <div class="section-title">
+    <div class="section-eyebrow">ECOSYSTEM SHOWCASE</div>
+    <h2>Clash of the Titans</h2>
+    <p>A self-developed live application used to validate MAGNE L2 performance, transaction flows, and real ecosystem interaction.</p>
+  </div>
+  <div class="showcase-content">
+    <div class="showcase-body">
+      <p>Rather than presenting MAGNE L2 only as infrastructure, MAGNE also uses first-party applications to test how the network performs in practical usage scenarios. Clash of the Titans serves as an early ecosystem showcase for transaction execution, user interaction, and application-level network behavior.</p>
+    </div>
+    <div class="showcase-highlights">
+      <div class="highlight-item">
+        <span class="highlight-tag">Self-Developed</span>
+      </div>
+      <div class="highlight-item">
+        <span class="highlight-tag">L2 Validation Use Case</span>
+      </div>
+      <div class="highlight-item">
+        <span class="highlight-tag">Live Transaction Testing</span>
+      </div>
+      <div class="highlight-item">
+        <span class="highlight-tag">Early Ecosystem Showcase</span>
+      </div>
+    </div>
+    <div class="showcase-cta">
+      <a href="https://clash-of-titans.magne.ai" target="_blank" class="btn-secondary">Explore the Ecosystem →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact" class="cta-section">
+  <h2>Interested in the MAGNE ecosystem?</h2>
+  <p>Whether you are a developer, ecosystem partner, or institutional collaborator, there is a path to engage with the MAGNE Network.</p>
+  <div class="cta-buttons">
+    <a href="magne-contact.html" class="btn-primary">Explore Docs</a>
+    <a href="magne-contact.html" class="btn-secondary">Contact MAGNE</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>MAGNE.AI — The Web3-native AI Phone</p>
+  <div class="footer-links">
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="magne-contact.html">Contact</a>
+    <a href="media-kit.html">Media Kit</a>
+  </div>
+  <p style="margin-top: 1.5rem; opacity: 0.5;">© 2026 MAGNE.AI. All rights reserved.</p>
+</footer>
+
+</div>
+
+<!-- SCRIPTS -->
+<script>
+  // Node Network Background
+  const canvas = document.getElementById('node-bg');
+  const ctx = canvas.getContext('2d');
+  let width, height;
+  let nodes = [];
+  let simplex;
+
+  function resize() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  }
+
+  function createNodes() {
+    const numNodes = Math.floor((width * height) / 15000);
+    nodes = [];
+    for (let i = 0; i < numNodes; i++) {
+      nodes.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        radius: Math.random() * 2 + 1,
+        baseX: 0,
+        baseY: 0
+      });
+      nodes[i].baseX = nodes[i].x;
+      nodes[i].baseY = nodes[i].y;
+    }
+  }
+
+  function init() {
+    resize();
+    simplex = new SimplexNoise();
+    createNodes();
+    animate();
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+    const time = Date.now() * 0.0005;
+    
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const dx = nodes[i].x - nodes[j].x;
+        const dy = nodes[i].y - nodes[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 150) {
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(0, 212, 212, ${0.15 * (1 - dist / 150)})`;
+          ctx.lineWidth = 1;
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+    
+    for (let node of nodes) {
+      const noiseX = simplex.noise2D(node.baseX * 0.001, time) * 30;
+      const noiseY = simplex.noise2D(node.baseY * 0.001, time) * 30;
+      node.x = node.baseX + noiseX;
+      node.y = node.baseY + noiseY;
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(0, 212, 212, 0.6)';
+      ctx.fill();
+    }
+    
+    requestAnimationFrame(animate);
+  }
+
+  window.addEventListener('resize', () => { resize(); createNodes(); });
+  init();
+
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, index * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

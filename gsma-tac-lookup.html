@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GSMA TAC Verification Details — MAGNE.AI</title>
+  <link rel="icon" type="image/png" href="logo-icon-circle.png">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0a0c;
+      --bg-secondary: #0f0f12;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.10);
+      --text-primary: #f5f5f7;
+      --text-secondary: rgba(245, 245, 247, 0.6);
+      --text-muted: rgba(245, 245, 247, 0.4);
+      --accent: #00d4d4;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 12, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-decoration: none;
+    }
+    .nav-back {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--accent); }
+
+    .hero {
+      padding: 9rem 2rem 5rem;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+    .hero-sub {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      max-width: 680px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .section { padding: 6rem 2rem; }
+    .section-shell { width: min(1200px, calc(100% - 48px)); margin: 0 auto; }
+    .section-header { max-width: 900px; margin: 0 auto 3rem; text-align: center; }
+    .section-header h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .section-header p {
+      color: var(--text-secondary);
+      max-width: 680px;
+      margin: 0 auto;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+    .section-intro {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      text-align: center;
+    }
+    .section-intro p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      background: var(--accent);
+      color: #000;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
+    .btn-secondary {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .summary-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.25s ease;
+    }
+    .summary-card:hover {
+      border-color: rgba(0, 212, 212, 0.3);
+      transform: translateY(-3px);
+    }
+    .summary-card h4 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.75rem; }
+    .summary-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.65; }
+
+    .identifier-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .identifier-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.75rem;
+      text-align: center;
+      transition: all 0.25s ease;
+    }
+    .identifier-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+    .identifier-label {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--accent);
+      background: rgba(0, 212, 212, 0.10);
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+    .identifier-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.5;
+      word-break: break-word;
+    }
+
+    .signals-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .signal-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 2rem;
+      transition: all 0.25s ease;
+    }
+    .signal-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+    .signal-tag {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--accent);
+      background: rgba(0, 212, 212, 0.1);
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+    .signal-card h4 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.75rem; }
+    .signal-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.65; }
+
+    .highlight-box {
+      margin-top: 3rem;
+      background: linear-gradient(180deg, rgba(0,212,212,0.05) 0%, rgba(0,212,212,0.01) 100%);
+      border: 1px solid rgba(0, 212, 212, 0.15);
+      border-radius: 20px;
+      padding: 2.5rem;
+      text-align: center;
+    }
+    .highlight-box h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem; }
+    .highlight-box p {
+      color: var(--text-secondary);
+      max-width: 760px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    .cta-section {
+      padding: 6rem 2rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .cta-shell { width: min(1000px, calc(100% - 48px)); margin: 0 auto; }
+    .cta-shell h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .cta-shell p {
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.8;
+    }
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    footer {
+      text-align: center;
+      padding: 4rem 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .footer-links a { color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--accent); }
+
+    .docs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .doc-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.75rem;
+      transition: all 0.25s ease;
+    }
+    .doc-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+    .doc-id {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--accent);
+      background: rgba(0, 212, 212, 0.12);
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+    .doc-card h4 { font-size: 1rem; font-weight: 600; margin-bottom: 0.6rem; }
+    .doc-summary {
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      line-height: 1.65;
+      margin-bottom: 1rem;
+    }
+    .doc-actions {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+    .doc-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.6rem 0.9rem;
+      border: 1px solid var(--border-hover);
+      border-radius: 8px;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .doc-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    .tac-note {
+      max-width: 760px;
+      margin: 2rem auto 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      line-height: 1.75;
+    }
+
+    @media (max-width: 640px) {
+      .hero { padding: 7rem 1.5rem 3rem; }
+      .section { padding: 3rem 1.5rem; }
+      .summary-grid,
+      .identifier-grid,
+      .signals-grid { grid-template-columns: 1fr; }
+      nav { padding: 0.9rem 1.25rem; }
+      .nav-back { font-size: 0.82rem; }
+      .section-header h2 { font-size: 1.6rem; }
+      .identifier-value { font-size: 0.88rem; }
+      .doc-actions { flex-direction: column; }
+    }
+    @media (max-width: 400px) {
+      .identifier-card { padding: 1.25rem; }
+      .doc-card { padding: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="magne-home.html" class="nav-logo">MAGNE.AI</a>
+    <a href="magne-compliance.html" class="nav-back">← Back to Compliance</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">COMPLIANCE SUPPORTING PAGE</div>
+    <h1>GSMA TAC Verification Details</h1>
+    <p class="hero-sub">
+      A supporting page for partners, exchanges, and institutional reviewers who require
+      deeper verification of MAG1's GSMA TAC allocation and public device identification profile.
+    </p>
+    <div class="hero-ctas">
+      <a href="magne-compliance.html" class="btn-secondary">← Back to Compliance</a>
+    </div>
+  </section>
+
+  <!-- SECTION 1: TAC SUMMARY -->
+  <section class="section">
+    <div class="section-shell">
+      <div class="section-header">
+        <h2>GSMA TAC Summary</h2>
+        <p>A concise overview of MAG1's GSMA Type Allocation Code and public device identification context.</p>
+      </div>
+      <div class="section-intro">
+        <p>
+          MAG1 has been assigned a GSMA Type Allocation Code as part of its publicly identifiable device profile.
+          This page is intended to provide a more structured supporting view for parties who require deeper
+          verification of MAG1's TAC allocation, certificate details, and device identification context.
+        </p>
+      </div>
+      <div class="summary-grid">
+        <div class="summary-card">
+          <h4>GSMA TAC Assigned</h4>
+          <p>MAG1 has been assigned a GSMA Type Allocation Code as part of its formal device identification profile.</p>
+        </div>
+        <div class="summary-card">
+          <h4>Public Device Identity</h4>
+          <p>The TAC record supports structured device recognition in the context of mobile network and product identification systems.</p>
+        </div>
+        <div class="summary-card">
+          <h4>Reviewer Reference</h4>
+          <p>This page is intended as a supporting reference for compliance review, due diligence, and partnership evaluation.</p>
+        </div>
+        <div class="summary-card">
+          <h4>Supporting Materials</h4>
+          <p>Additional TAC-related reference materials may be provided alongside broader compliance documentation where required.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: PUBLIC IDENTIFIER DETAILS -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="section-shell">
+      <div class="section-header">
+        <h2>Public Identifier Details</h2>
+        <p>Key TAC-related fields associated with MAG1's publicly presented device identity profile.</p>
+      </div>
+      <div class="identifier-grid">
+        <div class="identifier-card">
+          <div class="identifier-label">TAC</div>
+          <div class="identifier-value">01681300</div>
+        </div>
+        <div class="identifier-card">
+          <div class="identifier-label">TAC HOLDER</div>
+          <div class="identifier-value">Magne AI Global Tech Limited</div>
+        </div>
+        <div class="identifier-card">
+          <div class="identifier-label">MODEL NAME</div>
+          <div class="identifier-value">MA1</div>
+        </div>
+        <div class="identifier-card">
+          <div class="identifier-label">MARKETING NAME</div>
+          <div class="identifier-value">MAG1</div>
+        </div>
+        <div class="identifier-card">
+          <div class="identifier-label">CERTIFICATE DATE</div>
+          <div class="identifier-value">December 3, 2025</div>
+        </div>
+        <div class="identifier-card">
+          <div class="identifier-label">ISSUING ORGANIZATION</div>
+          <div class="identifier-value">GSMA Services LLC</div>
+        </div>
+      </div>
+      <p class="tac-note">
+        Model Name and Marketing Name should be interpreted as distinct fields within the
+        TAC-related device identification context.
+      </p>
+    </div>
+  </section>
+
+  <!-- SECTION 3: WHY TAC MATTERS -->
+  <section class="section">
+    <div class="section-shell">
+      <div class="section-header">
+        <h2>Why TAC Matters</h2>
+        <p>How GSMA TAC allocation should be understood by networks, partners, and institutional reviewers.</p>
+      </div>
+      <div class="signals-grid">
+        <div class="signal-card">
+          <div class="signal-tag">NETWORKS</div>
+          <h4>For Networks</h4>
+          <p>
+            The GSMA TAC forms part of the device identification framework used in network registration,
+            model recognition, and IMEI-related device tracking context.
+          </p>
+        </div>
+        <div class="signal-card">
+          <div class="signal-tag">PARTNERS</div>
+          <h4>For Partners</h4>
+          <p>
+            A documented TAC allocation helps support device legitimacy, distribution discussions,
+            and product identification consistency across market-facing workflows.
+          </p>
+        </div>
+        <div class="signal-card">
+          <div class="signal-tag">INSTITUTIONAL</div>
+          <h4>For Institutional Reviewers</h4>
+          <p>
+            The TAC record provides an additional publicly interpretable signal that MAG1 is positioned
+            as a formally identified mobile device model rather than an unregistered reference build.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: SUPPORTING DOCUMENTS -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="section-shell">
+      <div class="section-header">
+        <h2>Supporting Documents</h2>
+        <p>Reference materials associated with MAG1's GSMA TAC allocation and related device identification context.</p>
+      </div>
+      <div class="section-intro">
+        <p>
+          The following materials are presented as supporting references for parties who require deeper review
+          of MAG1's TAC allocation and public device identity profile. Reference materials may be provided
+          upon request in the context of formal due diligence or partnership review.
+        </p>
+      </div>
+      <div class="docs-grid" style="max-width:800px;margin:0 auto;">
+        <div class="doc-card" style="text-align:center;">
+          <div class="doc-id">GSMA</div>
+          <h4>GSMA TAC Certificate</h4>
+          <p class="doc-summary">
+            Official GSMA TAC certificate associated with MAG1's Type Allocation Code allocation and device identification record.
+          </p>
+          <div class="doc-actions" style="justify-content:center;">
+            <a href="assets/pdfs/GSMA-TAC-Certificate.pdf" target="_blank" class="doc-btn">View PDF</a>
+            <a href="assets/pdfs/GSMA-TAC-Certificate.pdf" download class="doc-btn">Download</a>
+          </div>
+        </div>
+      </div>
+
+      <p class="tac-note" style="margin-top:2rem;">
+        Additional device identification and product-related supporting materials may be provided upon request
+        in the context of formal due diligence or partnership review.
+      </p>
+    </div>
+  </section>
+
+  <!-- SECTION 5: INTERPRETATION NOTE -->
+  <section class="section">
+    <div class="section-shell">
+      <div class="section-header">
+        <h2>Interpretation Note</h2>
+        <p>How this page should be read in the context of broader compliance review.</p>
+      </div>
+      <div class="highlight-box">
+        <h3>How this page should be used</h3>
+        <p>
+          This page is intended as a supporting compliance and review reference. It should be
+          read together with the broader Compliance page and, where applicable, with additional
+          supporting materials provided in the context of partnership review, exchange due diligence,
+          or institutional evaluation.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-shell">
+      <h2>Need broader compliance materials?</h2>
+      <p>
+        For deeper compliance references, commercial materials, or institutional review support,
+        contact MAGNE directly or return to the broader Compliance page.
+      </p>
+      <div class="cta-buttons">
+        <a href="magne-compliance.html" class="btn-secondary">← Back to Compliance</a>
+        <a href="magne-contact.html" class="btn-primary">Contact MAGNE</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-links">
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="magne-contact.html">Contact</a>
+      <a href="media-kit.html">Media Kit</a>
+    </div>
+    <p style="opacity: 0.5;">© 2026 MAGNE.AI. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

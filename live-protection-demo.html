@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Protection Feed - Demo</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0a0c;
+      --bg-secondary: #0f0f12;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 255, 255, 0.06);
+      --text-primary: #f5f5f7;
+      --text-secondary: rgba(245, 245, 247, 0.6);
+      --accent: #00d4d4;
+      --accent-glow: rgba(0, 212, 212, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Live Protection Feed Widget */
+    .live-protection-feed {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      max-width: 900px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      z-index: 1000;
+    }
+
+    .feed-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .live-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 0, 0, 0.1);
+      border: 1px solid rgba(255, 0, 0, 0.3);
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      background: #ff4444;
+      border-radius: 50%;
+      animation: pulse-live 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse-live {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.2); }
+    }
+
+    .feed-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent), #7b2fff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .feed-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-left: auto;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 40px rgba(0, 212, 212, 0.1);
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+    }
+
+    .stat-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .stat-change {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.75rem;
+      color: #00ff88;
+      margin-top: 0.5rem;
+      padding: 0.2rem 0.5rem;
+      background: rgba(0, 255, 136, 0.1);
+      border-radius: 4px;
+    }
+
+    /* Activity Feed */
+    .activity-feed {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .activity-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .activity-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .activity-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.8rem;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      animation: slide-in 0.3s ease;
+    }
+
+    @keyframes slide-in {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .activity-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .activity-icon.blocked {
+      background: rgba(255, 68, 68, 0.2);
+      color: #ff4444;
+    }
+
+    .activity-icon.safe {
+      background: rgba(0, 255, 136, 0.2);
+      color: #00ff88;
+    }
+
+    .activity-icon.warning {
+      background: rgba(255, 200, 0, 0.2);
+      color: #ffc800;
+    }
+
+    .activity-content {
+      flex: 1;
+    }
+
+    .activity-text {
+      font-size: 0.85rem;
+      color: var(--text-primary);
+      margin-bottom: 0.2rem;
+    }
+
+    .activity-time {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+
+    /* Close Button */
+    .close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--border);
+      background: transparent;
+      border-radius: 8px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .close-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Scrollbar */
+    .activity-feed::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .activity-feed::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .activity-feed::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 3px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .live-protection-feed {
+        padding: 1.5rem;
+      }
+      
+      .feed-header {
+        flex-wrap: wrap;
+      }
+      
+      .feed-subtitle {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 0.5rem;
+      }
+      
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .stat-value {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="live-protection-feed">
+    <button class="close-btn" onclick="window.close()">✕</button>
+    
+    <div class="feed-header">
+      <div class="live-indicator">
+        <div class="live-dot"></div>
+        Live
+      </div>
+      <div class="feed-title">🛡️ Magne AI Protection Feed</div>
+      <div class="feed-subtitle">Last updated: <span id="last-update">Just now</span></div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon">🎣</div>
+        <div class="stat-value" id="phishing-count">1,247</div>
+        <div class="stat-label">Phishing Attacks Blocked</div>
+        <div class="stat-change">↑ +12 in last hour</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon">🔗</div>
+        <div class="stat-value" id="dapp-count">304</div>
+        <div class="stat-label">Malicious DApp Blocked</div>
+        <div class="stat-change">↑ +5 in last hour</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon">📝</div>
+        <div class="stat-value" id="contract-count">892</div>
+        <div class="stat-label">Contracts Audited</div>
+        <div class="stat-change">↑ +23 in last hour</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon">👛</div>
+        <div class="stat-value" id="wallets-count">12.4K</div>
+        <div class="stat-label">Wallets Protected</div>
+        <div class="stat-change">↑ +156 today</div>
+      </div>
+    </div>
+
+    <div class="activity-feed">
+      <div class="activity-title">🔔 Real-Time Activity</div>
+      <div class="activity-list" id="activity-list">
+        <!-- Activities will be injected here -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Real-time counters
+    let phishingCount = 1247;
+    let dappCount = 304;
+    let contractCount = 892;
+
+    // Activity templates
+    const activities = [
+      { type: 'blocked', icon: '🔒', text: 'Intercepted connection to malicious site', detail: 'Signature request denied by EAL6+ chip' },
+      { type: 'safe', icon: '✅', text: 'Safe transaction verified', detail: 'Contract audited: No vulnerabilities found' },
+      { type: 'warning', icon: '⚠️', text: 'Suspicious address flagged', detail: 'Wallet analyzed: High risk pattern detected' },
+      { type: 'blocked', icon: '🛡️', text: 'Phishing link blocked', detail: 'Fake minting site intercepted' },
+      { type: 'safe', icon: '🔐', text: 'Hardware wallet signature', detail: 'EAL6+ secure element engaged' },
+      { type: 'warning', icon: '⚡', text: 'Unusual gas fee detected', detail: 'Transaction analyzed: Possible sandwich attack' },
+      { type: 'blocked', icon: '🚫', text: 'DApp connection rejected', detail: 'Malicious contract access denied' },
+      { type: 'safe', icon: '✨', text: 'NFT transfer verified safe', detail: 'Collection verified: Official contract' },
+    ];
+
+    const regions = [
+      'Seoul, KR', 'Tokyo, JP', 'Taipei, TW', 'Singapore, SG',
+      'Hong Kong, HK', 'London, UK', 'New York, US', 'Berlin, DE'
+    ];
+
+    function formatTime() {
+      const now = new Date();
+      return now.toLocaleTimeString('en-US', { hour12: false });
+    }
+
+    function addActivity() {
+      const activity = activities[Math.floor(Math.random() * activities.length)];
+      const region = regions[Math.floor(Math.random() * regions.length)];
+      
+      const item = document.createElement('div');
+      item.className = 'activity-item';
+      item.innerHTML = `
+        <div class="activity-icon ${activity.type}">${activity.icon}</div>
+        <div class="activity-content">
+          <div class="activity-text">${activity.text} • ${region}</div>
+          <div class="activity-time">${formatTime()} • ${activity.detail}</div>
+        </div>
+      `;
+      
+      const list = document.getElementById('activity-list');
+      list.insertBefore(item, list.firstChild);
+      
+      // Keep only 10 items
+      while (list.children.length > 10) {
+        list.removeChild(list.lastChild);
+      }
+
+      // Update last update time
+      document.getElementById('last-update').textContent = 'Just now';
+    }
+
+    function updateCounters() {
+      // Randomly increment counters
+      if (Math.random() > 0.7) {
+        phishingCount++;
+        document.getElementById('phishing-count').textContent = phishingCount.toLocaleString();
+      }
+      if (Math.random() > 0.8) {
+        dappCount++;
+        document.getElementById('dapp-count').textContent = dappCount.toLocaleString();
+      }
+      if (Math.random() > 0.6) {
+        contractCount++;
+        document.getElementById('contract-count').textContent = contractCount.toLocaleString();
+      }
+
+      // Update "last hour" text
+      document.querySelectorAll('.stat-change').forEach(el => {
+        if (el.textContent.includes('+')) {
+          const match = el.textContent.match(/\+(\d+)/);
+          if (match && Math.random() > 0.5) {
+            const newVal = parseInt(match[1]) + 1;
+            el.textContent = el.textContent.replace(/\+\d+/, `+${newVal}`);
+          }
+        }
+      });
+    }
+
+    // Add initial activities
+    for (let i = 0; i < 5; i++) {
+      setTimeout(addActivity, i * 200);
+    }
+
+    // Update every 3 seconds
+    setInterval(addActivity, 3000);
+    setInterval(updateCounters, 5000);
+
+    // Update "last update" text
+    setInterval(() => {
+      const el = document.getElementById('last-update');
+      const text = el.textContent;
+      if (text === 'Just now') {
+        el.textContent = '5 seconds ago';
+      } else if (text.includes('seconds')) {
+        const match = text.match(/(\d+)/);
+        if (match) {
+          const secs = parseInt(match[1]) + 5;
+          el.textContent = secs >= 60 ? '1 minute ago' : `${secs} seconds ago`;
+        }
+      }
+    }, 5000);
+  </script>
+</body>
+</html>
