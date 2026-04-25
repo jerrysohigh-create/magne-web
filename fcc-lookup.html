@@ -244,6 +244,7 @@
     .tag-filing { background:rgba(255,255,255,.06); color:var(--text-secondary); border:1px solid var(--border); }
     .tag-antenna { background:rgba(255,100,130,.1); color:#ff6482; border:1px solid rgba(255,100,130,.25); }
     .tag-public { background:rgba(0,191,255,.08); color:var(--accent); border:1px solid rgba(0,191,255,.2); }
+    .tag-restricted { background:rgba(255,100,130,.1); color:#ff6482; border:1px solid rgba(255,100,130,.25); }
 
     /* CTA */
     .cta-section { padding:5rem 2rem; text-align:center; }
@@ -618,7 +619,7 @@
   <div class="section-shell">
     <div class="section-header">
       <h2>EMC / Digital Device Emissions</h2>
-      <p>FCC Part 15 Subpart B evaluation for AC conducted and radiated emissions — both reported as PASS.</p>
+      <p>FCC Part 15 Subpart B evaluation for AC conducted and radiated emissions — both within acceptable limits.</p>
     </div>
     <div class="section-intro">
       <p>For a public-facing compliance page, this section helps explain that FCC authorization was not limited to radio transmitter testing. MAG1 also underwent digital device and EMC evaluation consistent with its role as a commercial connected consumer product.</p>
@@ -626,13 +627,13 @@
     <div class="grant-grid" style="margin-bottom:2rem;">
       <div class="grant-card">
         <div class="card-label">AC Conducted Emission</div>
-        <div class="card-value accent">PASS</div>
-        <div class="card-note">FCC Part 15 Subpart B — with under-limit margin</div>
+        <div class="card-value accent">Compliant</div>
+        <div class="card-note">FCC Part 15 Subpart B — within limit margins</div>
       </div>
       <div class="grant-card">
         <div class="card-label">Radiated Emission</div>
-        <div class="card-value accent">PASS</div>
-        <div class="card-note">FCC Part 15 Subpart B — with under-limit margin</div>
+        <div class="card-value accent">Compliant</div>
+        <div class="card-note">FCC Part 15 Subpart B — within limit margins</div>
       </div>
       <div class="grant-card">
         <div class="card-label">Device Class</div>
@@ -792,7 +793,7 @@
               </div>
             </div>
             <div class="doc-card">
-              <div class="doc-id">FILING</div>
+              <div class="doc-id">FILING <span class="tag tag-restricted" style="margin-left:.5rem;">RESTRICTED</span></div>
               <h4>Confidentiality Request (LTC + STC)</h4>
               <p class="doc-summary">Long-Term and Short-Term Confidentiality request per FCC Rule 0.457.</p>
               <div class="doc-actions">
@@ -801,7 +802,7 @@
               </div>
             </div>
             <div class="doc-card">
-              <div class="doc-id">FILING</div>
+              <div class="doc-id">FILING <span class="tag tag-restricted" style="margin-left:.5rem;">RESTRICTED</span></div>
               <h4>Power of Attorney (POA)</h4>
               <p class="doc-summary">Authorization for Sporton International (USA) Inc. to act as designated TCB representative.</p>
               <div class="doc-actions">
@@ -810,7 +811,7 @@
               </div>
             </div>
             <div class="doc-card">
-              <div class="doc-id">FILING</div>
+              <div class="doc-id">FILING <span class="tag tag-restricted" style="margin-left:.5rem;">RESTRICTED</span></div>
               <h4>U.S. Agent Attention Letter</h4>
               <p class="doc-summary">Letter designating the U.S. agent for FCC correspondence and regulatory attention.</p>
               <div class="doc-actions">
@@ -1058,6 +1059,15 @@
       <a href="magne-compliance.html" class="btn-secondary">← Back to Compliance</a>
       <a href="magne-contact.html" class="btn-primary">Contact MAGNE</a>
     </div>
+  </div>
+</section>
+
+<!-- DISCLAIMER -->
+<section class="section" style="padding:2rem 0;border-top:1px solid var(--border);margin-top:2rem;">
+  <div class="section-shell" style="padding:0;">
+    <p style="font-size:0.75rem;color:var(--text-secondary);line-height:1.7;max-width:900px;">
+      <strong style="color:var(--text-primary);">Disclaimer:</strong> All FCC test results and certifications are based on the device configuration and test reports current as of the grant date (04/17/2026). MAGNE.AI reserves the right to update certification statements in accordance with subsequent test results or regulatory changes. For further verification or detailed data, please refer to the specific test reports available in the Document Center above, or contact the MAGNE team directly.
+    </p>
   </div>
 </section>
 
