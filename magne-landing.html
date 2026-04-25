@@ -2844,6 +2844,11 @@
             setEl('lottery-entries-bar', entriesNow);
             const fill = document.getElementById('lottery-progress-bar');
             if (fill) fill.style.width = Math.min(100, Math.max(0, entriesNow)) + '%';
+
+            // On-chain Assets = (completedRounds * $1000) + (currentEntries * $10)
+            const completedRounds = (d.currRound || 1) - 1;
+            const onChainUsd = completedRounds * 1000 + entriesNow * 10;
+            setEl('lottery-pool', fmtNum(onChainUsd));
           }
         } catch (e) {
           console.warn('Lottery API error:', e);
