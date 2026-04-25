@@ -325,10 +325,55 @@
       color: var(--text-secondary);
     }
 
+    /* Tier Cards (static info) */
+    .tier-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tier-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.3s;
+      display: block;
+    }
+
+    .tier-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0, 212, 212, 0.15);
+    }
+
+    .tier-amount {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.2rem;
+    }
+
+    .tier-label {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.4rem;
+    }
+
+    .tier-chances {
+      font-size: 0.85rem;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
     /* Participate Button */
     .participate-section {
       text-align: center;
-      margin-top: 2rem;
+      margin-top: 0.5rem;
     }
 
     .btn-participate {
@@ -643,6 +688,30 @@
           <span>Entries needed for next draw</span>
           <span id="entries-needed">24 more entries</span>
         </div>
+      </div>
+
+      <!-- Entry Tier Cards -->
+      <div class="tier-cards">
+        <a href="https://payment.magne.ai/lottery" target="_blank" class="tier-card">
+          <div class="tier-amount">10 USDT</div>
+          <div class="tier-label">Standard Entry</div>
+          <div class="tier-chances">🎯 1 Chance</div>
+        </a>
+        <a href="https://payment.magne.ai/lottery" target="_blank" class="tier-card">
+          <div class="tier-amount">20 USDT</div>
+          <div class="tier-label">Double Up</div>
+          <div class="tier-chances">🎯 2 Chances</div>
+        </a>
+        <a href="https://payment.magne.ai/lottery" target="_blank" class="tier-card">
+          <div class="tier-amount">50 USDT</div>
+          <div class="tier-label">High Roller</div>
+          <div class="tier-chances">🎯 5 Chances</div>
+        </a>
+        <a href="https://payment.magne.ai/lottery" target="_blank" class="tier-card">
+          <div class="tier-amount">100 USDT</div>
+          <div class="tier-label">Maximum</div>
+          <div class="tier-chances">🎯 10 Chances</div>
+        </a>
       </div>
 
       <div class="participate-section">
