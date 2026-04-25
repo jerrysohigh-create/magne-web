@@ -447,11 +447,22 @@
       padding: 1rem;
       background: var(--bg-card);
       border-radius: 12px;
+      border: 1px solid transparent;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .activity-item:hover {
+      border-color: var(--accent);
+      transform: translateX(3px);
     }
 
     .activity-winner {
       background: var(--gold-dim);
-      border: 1px solid rgba(255, 215, 0, 0.3);
+      border: 1px solid rgba(255, 215, 0, 0.25);
+    }
+
+    .activity-winner:hover {
+      border-color: var(--gold);
     }
 
     .winners-pagination {
@@ -583,6 +594,11 @@
     .footer-note a {
       color: var(--accent);
       text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .footer-note a:hover {
+      opacity: 0.75;
     }
 
     /* Responsive */
@@ -795,8 +811,8 @@
     <div class="footer-note">
       🎁 <strong>1,000 Magne Phones</strong> to be given away • Every 100 entries = 1 phone draw<br>
       Non-winners receive <strong>100 MHA</strong> • Released within 1 month after TGE<br><br>
-      Contract: <a href="https://bscscan.com/address/0xb14426893ADb6601b9e6397afa10527B66297bc1" target="_blank">0xb144...97bc1</a> • 
-      Prize Pool: <a href="https://bscscan.com/token/0x55d398326f99059ff775485246999027b3197955?a=0x2598825231f9aff0018c407b46e8e50facf082d7" target="_blank">View on BSCScan</a>
+      Contract: <a href="https://bscscan.com/address/0xb14426893ADb6601b9e6397afa10527B66297bc1" target="_blank" rel="noopener">0xb144...97bc1 ↗</a> • 
+      Prize Pool: <a href="https://bscscan.com/token/0x55d398326f99059ff775485246999027b3197955?a=0x2598825231f9aff0018c407b46e8e50facf082d7" target="_blank" rel="noopener">View on BSCScan ↗</a>
     </div>
   </div>
 
