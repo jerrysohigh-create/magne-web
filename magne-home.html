@@ -379,7 +379,8 @@
       color: var(--text-tertiary);
       font-size: 0.85rem;
     }
-    .momentum-footer span { margin: 0 0.5rem; }
+    .momentum-footer span { margin: 0 0.5rem; display: inline-flex; align-items: center; gap: 0.3rem; }
+    .momentum-footer .foot-icon { width: 14px; height: 14px; flex-shrink: 0; }
     .momentum-cta { text-align: center; margin-top: 2rem; display: flex; justify-content: center; align-items: center; gap: 0; flex-wrap: wrap; }
     .dashboard-btn {
       display: inline-flex;
@@ -1043,9 +1044,18 @@
     </div>
 
     <div class="momentum-footer">
-      <span>📱 Device: 8GB + 512GB</span> •
-      <span>🚚 First batch shipping: Jul–Sep 2026</span> •
-      <span>🪙 MHA airdrop: within 30 days after TGE</span>
+      <span>
+        <svg class="foot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
+        Device: 8GB + 512GB
+      </span> •
+      <span>
+        <svg class="foot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        First batch shipping: Jul–Sep 2026
+      </span> •
+      <span>
+        <svg class="foot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        MHA airdrop: within 30 days after TGE
+      </span>
     </div>
 
     <div class="momentum-cta">
