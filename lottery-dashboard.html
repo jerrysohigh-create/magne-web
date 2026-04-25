@@ -428,6 +428,21 @@
       font-size: 0.8rem;
       color: var(--accent);
     }
+    .addr-status {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      margin-left: 0.5rem;
+    }
+    .addr-status.filled {
+      background: var(--green-dim);
+      color: var(--green);
+    }
+    .addr-status.unset {
+      background: rgba(255, 100, 100, 0.15);
+      color: #ff6464;
+    }
 
     /* Footer Note */
     .footer-note {
@@ -603,71 +618,116 @@
   </div>
 
   <script>
-    // Live data simulation
-    let participants = 1963;
-    let phonesGiven = 143;
-    let currentEntries = 76;
-    let roundNumber = 144;
+    const DASHBOARD_API = 'https://payment.magne.ai/api/v1/lottery/dashboard';
+    const WINNERS_API = 'https://payment.magne.ai/api/v1/lottery/winners';
 
-    function updateCounters() {
-      // Randomly increment participants
-      if (Math.random() > 0.6) {
-        participants++;
-        document.getElementById('participants').textContent = participants.toLocaleString();
-      }
+    // Format wallet address: show first 4 + last 4 chars
+    function fmtAddr(addr) {
+      if (!addr) return '—';
+      return addr.slice(0, 6) + '...' + addr.slice(-4);
+    }
 
-      // Randomly increment entries
-      if (Math.random() > 0.5) {
-        currentEntries++;
-        
-        // Check if draw should happen
-        if (currentEntries >= 100) {
-          currentEntries = 0;
-          phonesGiven++;
-          roundNumber++;
-          
-          document.getElementById('phones-given').textContent = phonesGiven;
-          document.getElementById('round-number').textContent = roundNumber;
-          
-          // Add winner to activity
-          addWinnerActivity();
+    // Load dashboard stats
+    async function loadDashboard() {
+      try {
+        const res = await fetch(DASHBOARD_API);
+        const json = await res.json();
+        if (json.code !== 200 || !json.data) return;
+        const d = json.data;
+
+        // Update stat cards
+        document.getElementById('participants').textContent = d.totalParticipants
+          ? d.totalParticipants.toLocaleString()
+          : '—';
+
+        // Phones given = winners with address filled (approximation from winners count)
+        const phonesGivenEl = document.getElementById('phones-given');
+        if (phonesGivenEl) {
+          phonesGivenEl.textContent = d.totalMobile
+            ? d.totalMobile.toLocaleString()
+            : '—';
         }
-        
-        document.getElementById('current-entries').textContent = currentEntries;
-        document.getElementById('progress-fill').style.width = currentEntries + '%';
-        document.getElementById('entries-needed').textContent = (100 - currentEntries) + ' more entries';
+
+        // Update round number and progress
+        const roundEl = document.getElementById('round-number');
+        if (roundEl && d.currRound) roundEl.textContent = d.currRound;
+
+        // Progress bar: how many entries toward next draw
+        if (d.nextDrawNeed !== undefined) {
+          const entriesNow = 100 - d.nextDrawNeed;
+          const pct = Math.min(100, Math.max(0, entriesNow));
+          const fill = document.getElementById('progress-fill');
+          const entriesEl = document.getElementById('current-entries');
+          const neededEl = document.getElementById('entries-needed');
+          if (fill) fill.style.width = pct + '%';
+          if (entriesEl) entriesEl.textContent = entriesNow;
+          if (neededEl) neededEl.textContent = d.nextDrawNeed + ' more entries';
+        }
+      } catch (e) {
+        console.warn('Dashboard API error:', e);
       }
     }
 
-    function addWinnerActivity() {
-      const list = document.getElementById('activity-list');
-      const winner = document.createElement('div');
-      winner.className = 'activity-item activity-winner';
-      winner.innerHTML = `
-        <div class="activity-icon phone">📱</div>
-        <div class="activity-content">
-          <div class="activity-text">Won <strong>1x Magne Phone</strong> (8+512GB)</div>
-          <div class="activity-time">Round ${roundNumber} • Just now</div>
-          <div class="activity-addr">0x${Math.random().toString(16).substr(2, 4)}...${Math.random().toString(16).substr(2, 4)}</div>
-        </div>
-      `;
-      list.insertBefore(winner, list.firstChild);
-      
-      // Keep only 5 items
-      while (list.children.length > 5) {
-        list.removeChild(list.lastChild);
+    // Load winners list
+    async function loadWinners() {
+      try {
+        const res = await fetch(WINNERS_API);
+        const json = await res.json();
+        if (json.code !== 200 || !json.data) return;
+
+        // Show latest 10 winners
+        const winners = json.data.slice(0, 10);
+        const list = document.getElementById('activity-list');
+        if (!list) return;
+
+        list.innerHTML = '';
+        winners.forEach((w, i) => {
+          const item = document.createElement('div');
+          item.className = 'activity-item' + (w.hasAddress ? ' activity-winner' : '');
+          const statusIcon = w.hasAddress ? '✓' : '⚠';
+          const statusText = w.hasAddress ? 'Address Filled' : 'Address Not Set';
+          const timeAgo = getTimeAgo(w.drawRound);
+          item.innerHTML = `
+            <div class="activity-icon phone">📱</div>
+            <div class="activity-content">
+              <div class="activity-text">
+                Won <strong>1x Magne Phone</strong>
+                <span class="addr-status ${w.hasAddress ? 'filled' : 'unset'}">${statusIcon} ${statusText}</span>
+              </div>
+              <div class="activity-time">Round ${w.drawRound} • ${timeAgo}</div>
+              <div class="activity-addr">${fmtAddr(w.address)}</div>
+            </div>
+          `;
+          list.appendChild(item);
+        });
+      } catch (e) {
+        console.warn('Winners API error:', e);
       }
     }
 
-    function selectTier(element, chances) {
+    // Rough time-ago based on round number (each round = ~100 entries, ~1 entry ≈ some time)
+    // We don't have real timestamps, so show round-based relative text
+    function getTimeAgo(round) {
+      const currRound = parseInt(document.getElementById('round-number')?.textContent || '152');
+      const diff = currRound - round;
+      if (diff === 0) return 'This round';
+      if (diff === 1) return 'Previous round';
+      return `${diff} rounds ago`;
+    }
+
+    function selectTier(element) {
       document.querySelectorAll('.tier-card').forEach(card => {
         card.classList.remove('selected');
       });
       element.classList.add('selected');
     }
 
-    // Update every 5 seconds
-    setInterval(updateCounters, 5000);
+    // Initial load
+    loadDashboard();
+    loadWinners();
+
+    // Refresh every 30 seconds
+    setInterval(() => { loadDashboard(); loadWinners(); }, 30000);
   </script>
 </body>
 </html>
