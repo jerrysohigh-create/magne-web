@@ -687,6 +687,7 @@
           const statusIcon = w.hasAddress ? '✓' : '⚠';
           const statusText = w.hasAddress ? 'Address Filled' : 'Address Not Set';
           const timeAgo = getTimeAgo(w.drawRound);
+          const bscUrl = 'https://bscscan.com/address/' + w.address;
           item.innerHTML = `
             <div class="activity-icon phone">📱</div>
             <div class="activity-content">
@@ -695,7 +696,7 @@
                 <span class="addr-status ${w.hasAddress ? 'filled' : 'unset'}">${statusIcon} ${statusText}</span>
               </div>
               <div class="activity-time">Round ${w.drawRound} • ${timeAgo}</div>
-              <div class="activity-addr">${fmtAddr(w.address)}</div>
+              <a class="activity-addr" href="${bscUrl}" target="_blank" rel="noopener" title="View on BSC Scan">${fmtAddr(w.address)} ↗</a>
             </div>
           `;
           list.appendChild(item);
