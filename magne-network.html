@@ -316,6 +316,52 @@
       line-height: 1.6;
     }
 
+    /* ECOSYSTEM PARTNERS */
+    .eco-partners {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .eco-partners-title {
+      text-align: center;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+    }
+    .eco-partners-grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .eco-partner-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.8rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      min-width: 100px;
+      transition: all 0.3s;
+    }
+    .eco-partner-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+    .eco-partner-card img {
+      height: 28px;
+      width: auto;
+      object-fit: contain;
+    }
+    .eco-partner-card span {
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+    }
+
     /* SECTION EYEBROW */
     .section-eyebrow {
       font-size: 0.75rem;
@@ -700,6 +746,40 @@
       <div class="eco-icon">📱</div>
       <h4>Applications</h4>
       <p>dApps and ecosystem services running on MHash L2, accessible from the device.</p>
+    </div>
+  </div>
+
+  <div class="eco-partners">
+    <div class="eco-partners-title">Ecosystem Partners</div>
+    <div class="eco-partners-grid">
+      <div class="eco-partner-card">
+        <img src="partners/kucoin.svg" alt="KuCoin">
+        <span>KuCoin</span>
+      </div>
+      <div class="eco-partner-card">
+        <img src="partners/mexc.png" alt="MEXC">
+        <span>MEXC</span>
+      </div>
+      <div class="eco-partner-card">
+        <img src="partners/bitget.png" alt="Bitget Wallet">
+        <span>Bitget Wallet</span>
+      </div>
+      <div class="eco-partner-card">
+        <img src="partners/becker.png" alt="Becker Ventures">
+        <span>Becker Ventures</span>
+      </div>
+      <div class="eco-partner-card">
+        <img src="partners/duckdao.png" alt="DuckDAO">
+        <span>DuckDAO</span>
+      </div>
+      <div class="eco-partner-card">
+        <img src="partners/castrum.png" alt="Castrum Capital">
+        <span>Castrum Capital</span>
+      </div>
+      <div class="eco-partner-card">
+        <img src="partners/tbv.png" alt="TBV">
+        <span>TBV</span>
+      </div>
     </div>
   </div>
 </section>
