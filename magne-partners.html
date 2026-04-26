@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Partners — MAGNE Network</title>
+  <link rel="icon" type="image/png" href="logo-icon-circle.png">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0a0c;
+      --bg-secondary: #0f0f12;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --bg-card-hover: rgba(255, 255, 255, 0.05);
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.12);
+      --accent: #00d4d4;
+      --accent-dim: rgba(0, 212, 212, 0.15);
+      --accent2: #ffd700;
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.55);
+      --text-tertiary: rgba(255, 255, 255, 0.35);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 12, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-cta {
+      background: var(--accent);
+      color: #000;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .nav-cta:hover { background: #00e8e8; transform: translateY(-1px); }
+
+    /* LANG SWITCHER */
+    .lang-switcher {
+      position: fixed;
+      top: 5.5rem;
+      right: 2rem;
+      z-index: 99;
+      display: flex;
+      gap: 0.5rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.4rem;
+    }
+    .lang-switcher a {
+      padding: 0.3rem 0.75rem;
+      border-radius: 7px;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+    }
+    .lang-switcher a:hover { color: var(--text-primary); }
+    .lang-switcher a.active {
+      background: var(--accent);
+      color: #000;
+      font-weight: 600;
+    }
+
+    /* PAGE HEADER */
+    .page-header {
+      padding: 9rem 2rem 4rem;
+      text-align: center;
+      position: relative;
+    }
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at 50% 30%, rgba(0, 212, 212, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .page-header h1 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    .page-header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* SECTION */
+    .content-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    section {
+      padding: 5rem 2rem;
+    }
+    section + section {
+      border-top: 1px solid var(--border);
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .section-title h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    .section-title p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+    }
+
+    /* PARTNER CARDS */
+    .partners-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1rem;
+    }
+    .partner-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.25rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s;
+      min-height: 90px;
+    }
+    .partner-card:hover {
+      border-color: var(--border-hover);
+      background: var(--bg-card-hover);
+      transform: translateY(-2px);
+    }
+    .partner-card img {
+      height: 32px;
+      width: auto;
+      max-width: 110px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+    }
+    .partner-card .partner-name {
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    /* STRATEGIC SPECIFIC */
+    .strategic-grid {
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    }
+    .strategic-grid .partner-card {
+      min-height: 100px;
+    }
+    .strategic-grid .partner-card img {
+      filter: none;
+    }
+
+    /* BACK LINK */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      padding: 1rem 2rem;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 4rem 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-tertiary);
+      font-size: 0.9rem;
+      margin-top: 2rem;
+    }
+    footer a { color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--accent); }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; margin-top: 1rem; flex-wrap: wrap; }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      html, body { overflow-x: hidden; }
+      nav { padding: 0.85rem 1rem; }
+      .nav-links { display: none !important; }
+      .nav-cta { padding: 0.5rem 0.9rem; font-size: 0.82rem; border-radius: 7px; }
+      .lang-switcher { right: 1rem; top: 5rem; }
+      section { padding: 3rem 1.25rem; }
+      .partners-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 0.65rem; }
+      .strategic-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 0.65rem; }
+      .partner-card { padding: 0.9rem 0.5rem; min-height: 80px; border-radius: 12px; }
+      .partner-card img { max-width: 80px; height: 26px; }
+      .partner-card .partner-name { font-size: 0.6rem; }
+      .page-header { padding: 7rem 1.25rem 3rem; }
+      .section-title h2 { font-size: 1.65rem; }
+      .section-title p { font-size: 0.9rem; }
+    }
+    @media (max-width: 480px) {
+      .partners-grid { grid-template-columns: repeat(2, 1fr) !important; }
+      .strategic-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="magne-home.html" class="nav-logo">MAGNE.AI</a>
+  <ul class="nav-links">
+    <li><a href="magne-home.html">Home</a></li>
+    <li><a href="magne-home.html#why-magne">Why MAGNE</a></li>
+    <li><a href="magne-home.html#security">Security</a></li>
+    <li><a href="magne-network.html">Network</a></li>
+    <li><a href="magne-partners.html">Partners</a></li>
+  </ul>
+  <a href="https://payment.magne.ai/buy" class="nav-cta">Preorder</a>
+</nav>
+
+<div class="lang-switcher">
+  <a href="magne-partners.html">EN</a>
+  <a href="magne-partners-jp.html">日本語</a>
+  <a href="magne-partners-kr.html">한국어</a>
+  <a href="magne-partners-cn.html">繁體</a>
+</div>
+
+<div class="page-header">
+  <h1>Our Partners</h1>
+  <p>The companies and projects building the future of native DePIN with MAGNE.</p>
+</div>
+
+<!-- STRATEGIC PARTNERS -->
+<section id="strategic">
+  <div class="content-wrapper">
+    <div class="section-title">
+      <h2>Strategic Partners</h2>
+      <p>World-class technology leaders and investors powering the MAGNE ecosystem.</p>
+    </div>
+    <div class="partners-grid strategic-grid">
+
+      <div class="partner-card">
+        <img src="partners/strategic/google-logo.png" alt="Google">
+        <span class="partner-name">Google</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/strategic/fih.png" alt="FIH Mobile">
+        <span class="partner-name">FIH Mobile</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/strategic/samsung_inv.png" alt="Samsung">
+        <span class="partner-name">Samsung</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/strategic/deepmind_blue.png" alt="DeepMind">
+        <span class="partner-name">DeepMind</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/strategic/ti.svg" alt="Texas Instruments">
+        <span class="partner-name">Texas Instruments</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/strategic/skhynix_web.png" alt="SK Hynix">
+        <span class="partner-name">SK Hynix</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/strategic/micron_inv.png" alt="Micron">
+        <span class="partner-name">Micron</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/strategic/tdk_inv.png" alt="TDK">
+        <span class="partner-name">TDK</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/strategic/wd_better_inv.png" alt="WD">
+        <span class="partner-name">WD</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/strategic/unisoc_web.png" alt="Unisoc">
+        <span class="partner-name">Unisoc</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/strategic/imag_green.png" alt="Imagination">
+        <span class="partner-name">Imagination</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/strategic/hed.png" alt="HED">
+        <span class="partner-name">HED</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/strategic/redrock_web.png" alt="REDROCK">
+        <span class="partner-name">REDROCK</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/strategic/kucoin.svg" alt="KuCoin">
+        <span class="partner-name">KuCoin</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/strategic/mexc.png" alt="MEXC">
+        <span class="partner-name">MEXC</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/strategic/bitget.png" alt="Bitget Wallet">
+        <span class="partner-name">Bitget Wallet</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/strategic/becker.png" alt="Becker Ventures">
+        <span class="partner-name">Becker Ventures</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/strategic/duckdao.png" alt="DuckDAO">
+        <span class="partner-name">DuckDAO</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/strategic/castrum.png" alt="Castrum Capital">
+        <span class="partner-name">Castrum Capital</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/strategic/tbv.png" alt="TBV">
+        <span class="partner-name">TBV</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ECOSYSTEM PARTNERS -->
+<section id="ecosystem">
+  <div class="content-wrapper">
+    <div class="section-title">
+      <h2>Ecosystem Partners</h2>
+      <p>Exchanges, DePIN infrastructure, Web3, gaming, and tooling powering the MAGNE Network.</p>
+    </div>
+    <div class="partners-grid">
+
+      <!-- Exchanges -->
+      <div class="partner-card">
+        <img src="partners/ecosystem/kucoin_web.png" alt="KuCoin">
+        <span class="partner-name">KuCoin</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/mexc_web.png" alt="MEXC">
+        <span class="partner-name">MEXC</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/bitget.png" alt="Bitget Wallet">
+        <span class="partner-name">Bitget Wallet</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/lbank.png" alt="LBank">
+        <span class="partner-name">LBank</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/weex.png" alt="Weex">
+        <span class="partner-name">Weex</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/xt.png" alt="XT">
+        <span class="partner-name">XT</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/virgocx_web.png" alt="VirgoCX">
+        <span class="partner-name">VirgoCX</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/ascendex.svg" alt="AscendEX">
+        <span class="partner-name">AscendEX</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/TX24.png" alt="TX24">
+        <span class="partner-name">TX24</span>
+      </div>
+
+      <!-- DePIN / Infrastructure -->
+      <div class="partner-card">
+        <img src="partners/ecosystem/iotex_web.png" alt="IoTeX">
+        <span class="partner-name">IoTeX</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/nodle.svg" alt="Nodle">
+        <span class="partner-name">Nodle</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/stabilityworld.svg" alt="Stability World.AI">
+        <span class="partner-name">Stability World.AI</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/depinscan.png" alt="Depinscan">
+        <span class="partner-name">Depinscan</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/u2u_network.svg" alt="U2U Network">
+        <span class="partner-name">U2U Network</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/qitmeer.svg" alt="Qitmeer">
+        <span class="partner-name">Qitmeer</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/nowchain.svg" alt="NOW CHAIN">
+        <span class="partner-name">NOW CHAIN</span>
+      </div>
+
+      <!-- Web3 / DeFi -->
+      <div class="partner-card">
+        <img src="partners/ecosystem/gamepad.svg" alt="GamePad">
+        <span class="partner-name">GamePad</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/aios.png" alt="AIOS Ventures">
+        <span class="partner-name">AIOS Ventures</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/attRace.svg" alt="ADVERTISING TIME TRACE">
+        <span class="partner-name">ADVERTISING TIME TRACE</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/linklayer_ai.png" alt="LinkLayer.AI">
+        <span class="partner-name">LinkLayer.AI</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/becker.png" alt="Becker Ventures">
+        <span class="partner-name">Becker Ventures</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/duckdao.png" alt="DuckDAO">
+        <span class="partner-name">DuckDAO</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/castrum.png" alt="Castrum Capital">
+        <span class="partner-name">Castrum Capital</span>
+      </div>
+
+      <!-- Media / Community -->
+      <div class="partner-card">
+        <img src="partners/ecosystem/blockbeats.svg" alt="BlockBeats">
+        <span class="partner-name">BlockBeats</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/chaincatcher_web.png" alt="ChainCatcher">
+        <span class="partner-name">ChainCatcher</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/jinse_web.png" alt="Jinse">
+        <span class="partner-name">Jinse</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/techflow.png" alt="TechFlow">
+        <span class="partner-name">TechFlow</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/bitpush.png" alt="BitPush">
+        <span class="partner-name">BitPush</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/cipherbc.png" alt="Cipherbc">
+        <span class="partner-name">Cipherbc</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/chainthink.png" alt="ChainThink">
+        <span class="partner-name">ChainThink</span>
+      </div>
+
+      <!-- Gaming -->
+      <div class="partner-card">
+        <img src="partners/ecosystem/playsout_web.png" alt="PlaysOut">
+        <span class="partner-name">PlaysOut</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/landload_web.png" alt="LandLoad">
+        <span class="partner-name">LandLoad</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/grandgangstacity_web.png" alt="Grand Gangsta City">
+        <span class="partner-name">Grand Gangsta City</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/samurai_warlords.png" alt="Samurai Warlords">
+        <span class="partner-name">Samurai Warlords</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/meta_arena.png" alt="META ARENA">
+        <span class="partner-name">META ARENA</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/kpopclick-green.png" alt="K-POPCLICK">
+        <span class="partner-name">K-POPCLICK</span>
+      </div>
+
+      <!-- Tools / Services -->
+      <div class="partner-card">
+        <img src="partners/ecosystem/manuspay.png" alt="ManusPay">
+        <span class="partner-name">ManusPay</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/snowball.png" alt="Snowball">
+        <span class="partner-name">Snowball</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/momofun.png" alt="MOMO.FUN">
+        <span class="partner-name">MOMO.FUN</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/soda.png" alt="SODABOT">
+        <span class="partner-name">SODABOT</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/iflux.svg" alt="iFlux">
+        <span class="partner-name">iFlux</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/hyra.svg" alt="Hyra">
+        <span class="partner-name">Hyra</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/agentbay.png" alt="AgentBay">
+        <span class="partner-name">AgentBay</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/socialgrowai.png" alt="SocialGrowAI">
+        <span class="partner-name">SocialGrowAI</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/cheersland.png" alt="Cheersland">
+        <span class="partner-name">Cheersland</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/crmclick.png" alt="CRMClick.io">
+        <span class="partner-name">CRMClick.io</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/planethares.png" alt="PlanetHares">
+        <span class="partner-name">PlanetHares</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/aylab.webp" alt="aylab">
+        <span class="partner-name">aylab</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/1zeni.png" alt="1Zeni">
+        <span class="partner-name">1Zeni</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/21dao.png" alt="21DAO">
+        <span class="partner-name">21DAO</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/fognet.png" alt="FOGNET">
+        <span class="partner-name">FOGNET</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/mixmax.png" alt="MIX MAX">
+        <span class="partner-name">MIX MAX</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/eni_web.png" alt="ENI">
+        <span class="partner-name">ENI</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/evx_web.png" alt="EVX">
+        <span class="partner-name">EVX</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/menya_web.png" alt="MetYa">
+        <span class="partner-name">MetYa</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/teltlk_web.png" alt="TELTLK">
+        <span class="partner-name">TELTLK</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/soei_web.png" alt="SOEI">
+        <span class="partner-name">SOEI</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/tbv.png" alt="TBV">
+        <span class="partner-name">TBV</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/hpx_web.png" alt="HPX">
+        <span class="partner-name">HPX</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/primeyield.svg" alt="Prime Yield">
+        <span class="partner-name">Prime Yield</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/dmail.svg" alt="Dmail">
+        <span class="partner-name">Dmail</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/beosin.png" alt="Beosin">
+        <span class="partner-name">Beosin</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/gs_legal_llc.png" alt="GS LEGAL LLC">
+        <span class="partner-name">GS LEGAL LLC</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/ecosystem/ave_ai.png" alt="AVE.AI">
+        <span class="partner-name">AVE.AI</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a href="magne-home.html">← Back to Home</a>
+  <div class="footer-links">
+    <a href="magne-home.html">Home</a>
+    <a href="magne-network.html">Network</a>
+    <a href="magne-partners.html">Partners</a>
+    <a href="https://payment.magne.ai/buy">Preorder</a>
+  </div>
+  <p style="margin-top:1.5rem; color: var(--text-tertiary); font-size: 0.8rem;">© 2026 MAGNE.AI — Native Value Stack from Device to Chain</p>
+</footer>
+
+</body>
+</html>
