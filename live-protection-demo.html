@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Live Protection Feed - Demo</title>
+  <title>Live Protection Feed — Interactive Demo</title>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -311,34 +311,43 @@
       .stat-value {
         font-size: 2rem;
       }
+
+    /* Demo Disclaimer */
+    .demo-disclaimer {
+      max-width: 720px;
+      margin: 1rem auto 0;
+      color: rgba(255,255,255,0.45);
+      font-size: 0.78rem;
+      line-height: 1.6;
+      text-align: center;
     }
   </style>
 </head>
 <body>
   <div class="live-protection-feed">
-    <button class="close-btn" onclick="window.close()">✕</button>
+    <a href="features-demo.html" class="close-btn">✕</a>
     
     <div class="feed-header">
       <div class="live-indicator">
         <div class="live-dot"></div>
-        Live
+        Demo Mode
       </div>
       <div class="feed-title">🛡️ Magne AI Protection Feed</div>
-      <div class="feed-subtitle">Last updated: <span id="last-update">Just now</span></div>
+      <div class="feed-subtitle">Simulated live feed for product demonstration only.</div>
     </div>
 
     <div class="stats-grid">
       <div class="stat-card">
         <div class="stat-icon">🎣</div>
         <div class="stat-value" id="phishing-count">1,247</div>
-        <div class="stat-label">Phishing Attacks Blocked</div>
+        <div class="stat-label">Phishing Risks Flagged</div>
         <div class="stat-change">↑ +12 in last hour</div>
       </div>
 
       <div class="stat-card">
         <div class="stat-icon">🔗</div>
         <div class="stat-value" id="dapp-count">304</div>
-        <div class="stat-label">Malicious DApp Blocked</div>
+        <div class="stat-label">Malicious DApps Detected</div>
         <div class="stat-change">↑ +5 in last hour</div>
       </div>
 
@@ -352,7 +361,7 @@
       <div class="stat-card">
         <div class="stat-icon">👛</div>
         <div class="stat-value" id="wallets-count">12.4K</div>
-        <div class="stat-label">Wallets Protected</div>
+        <div class="stat-label">Wallet Sessions Monitored</div>
         <div class="stat-change">↑ +156 today</div>
       </div>
     </div>
@@ -363,6 +372,12 @@
         <!-- Activities will be injected here -->
       </div>
     </div>
+  </div>
+
+    <!-- Demo Disclaimer -->
+    <p class="demo-disclaimer">
+      Demo data is simulated for illustration purposes only. Security alerts, detection labels, and counters do not represent live production telemetry, guaranteed protection, or real-time blocking performance.
+    </p>
   </div>
 
   <script>
