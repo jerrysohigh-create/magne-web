@@ -692,8 +692,18 @@
       }
       .nav-cta { padding: 0.5rem 0.75rem; font-size: 0.78rem; }
       footer { padding: 3rem 1.25rem; text-align: center; }
+    .footer-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+      padding: 0;
     }
-    .bottom-nav-cta {
     .footer-icon:hover {
       color: var(--accent);
       border-color: var(--accent);
@@ -720,7 +730,7 @@
       padding: 0.7rem 1rem; border-radius: 999px; font-size: 0.85rem; transition: all 0.2s;
     }
     .official-contact-actions a:hover { color: var(--accent); border-color: var(--accent); background: rgba(0, 212, 212, 0.06); }
-
+    .bottom-nav-cta {
       max-width: 1000px;
       margin: 4rem auto 0;
       padding: 2rem;
