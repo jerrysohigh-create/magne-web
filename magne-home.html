@@ -490,43 +490,37 @@
     }
 
     .partner-card {
-      background: rgba(0, 212, 212, 0.04);
-      border: 1px solid rgba(0, 212, 212, 0.2);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 1.5rem 1rem;
+      padding: 1.25rem 1rem;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 0.6rem;
-      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
-      min-height: 100px;
+      gap: 0.5rem;
+      transition: all 0.3s;
+      min-height: 90px;
     }
 
     .partner-card:hover {
-      border-color: var(--accent);
-      box-shadow: 0 0 20px rgba(0, 212, 212, 0.15);
-      transform: translateY(-3px);
+      border-color: var(--border-hover);
+      background: var(--bg-card-hover);
+      transform: translateY(-2px);
     }
 
     .partner-card img {
-      height: 36px;
+      height: 32px;
       width: auto;
+      max-width: 110px;
       object-fit: contain;
-      filter: brightness(0.9) saturate(0.9);
-      transition: filter 0.3s;
     }
 
     .partner-card:hover img {
-      filter: brightness(1) saturate(1);
-    }
-
-    .partner-card.ti-card img {
-      filter: brightness(0) invert(1);
+      filter: brightness(1.1);
     }
 
     .partner-card .partner-name {
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       color: var(--text-secondary);
       font-weight: 500;
       letter-spacing: 0.5px;
