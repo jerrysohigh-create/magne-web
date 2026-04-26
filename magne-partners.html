@@ -247,18 +247,14 @@
       .nav-cta { padding: 0.5rem 0.9rem; font-size: 0.82rem; border-radius: 7px; }
       .lang-switcher { right: 1rem; top: 5rem; }
       section { padding: 3rem 1.25rem; }
-      .partners-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 0.65rem; }
-      .strategic-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 0.65rem; }
-      .partner-card { padding: 0.9rem 0.5rem; min-height: 80px; border-radius: 12px; }
-      .partner-card img { max-width: 80px; height: 26px; }
-      .partner-card .partner-name { font-size: 0.6rem; }
+      .partners-grid,
+      .strategic-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 0.75rem; }
+      .partner-card { padding: 0.95rem 0.55rem; min-height: 82px; border-radius: 12px; }
+      .partner-card img { max-width: 88px; max-height: 28px; height: auto; width: auto; object-fit: contain; }
+      .partner-card .partner-name { font-size: 0.62rem; line-height: 1.2; }
       .page-header { padding: 7rem 1.25rem 3rem; }
       .section-title h2 { font-size: 1.65rem; }
       .section-title p { font-size: 0.9rem; }
-    }
-    @media (max-width: 480px) {
-      .partners-grid { grid-template-columns: repeat(2, 1fr) !important; }
-      .strategic-grid { grid-template-columns: repeat(2, 1fr) !important; }
     }
   </style>
 </head>
@@ -664,14 +660,13 @@
 </section>
 
 <footer>
-  <a href="magne-home.html">← Back to Home</a>
+  <p>MAGNE.AI — The Web3-native AI Phone</p>
   <div class="footer-links">
-    <a href="magne-home.html">Home</a>
-    <a href="magne-network.html">Network</a>
-    <a href="magne-partners.html">Partners</a>
-    <a href="https://payment.magne.ai/buy">Preorder</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="magne-contact.html">Contact</a>
+    <a href="media-kit.html">Media Kit</a>
   </div>
-  <p style="margin-top:1.5rem; color: var(--text-tertiary); font-size: 0.8rem;">© 2026 MAGNE.AI — Native Value Stack from Device to Chain</p>
+  <p style="margin-top: 1.5rem; opacity: 0.5;">© 2026 MAGNE.AI. All rights reserved.</p>
 </footer>
 
 </body>
