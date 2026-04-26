@@ -307,6 +307,64 @@
       footer { padding: 3rem 1.25rem; text-align: center; }
       .footer-links { flex-direction: column; gap: 0.75rem; align-items: center; }
     }
+    .bottom-nav-cta {
+      max-width: 1000px;
+      margin: 4rem auto 0;
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .bottom-nav-label {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    .bottom-nav-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+    .bottom-nav-btn {
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 0.65rem 1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+    .bottom-nav-btn:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: rgba(0, 212, 212, 0.06);
+    }
+    .bottom-nav-btn.nav-active {
+      color: var(--accent);
+      border-color: var(--accent);
+      pointer-events: none;
+    }
+    .bottom-nav-btn.nav-home-btn {
+      border-color: var(--border-hover);
+    }
+    @media (max-width: 768px) {
+      .bottom-nav-cta {
+        margin-top: 3rem;
+        padding: 1.5rem 1.25rem;
+      }
+      .bottom-nav-actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.65rem;
+      }
+      .bottom-nav-btn {
+        width: 100%;
+        text-align: center;
+        padding: 0.75rem 0.6rem;
+      }
+      .bottom-nav-btn.nav-home-btn {
+        grid-column: span 2;
+      }
+    }
   </style>
 </head>
 <body>
@@ -712,6 +770,19 @@
       </div>
 
     </div>
+  </div>
+</section>
+
+<section class="bottom-nav-cta">
+  <p class="bottom-nav-label">Continue exploring MAGNE.AI</p>
+  <div class="bottom-nav-actions">
+    <a href="magne-home.html" class="bottom-nav-btn nav-home-btn">← Back to Home</a>
+    <a href="magne-phone.html" class="bottom-nav-btn">Phone</a>
+    <a href="magne-security.html" class="bottom-nav-btn">Security</a>
+    <a href="magne-compliance.html" class="bottom-nav-btn">Compliance</a>
+    <a href="magne-network.html" class="bottom-nav-btn">Network</a>
+    <a href="magne-progress.html" class="bottom-nav-btn">Progress</a>
+    <a href="magne-partners.html" class="bottom-nav-btn nav-active">Partners</a>
   </div>
 </section>
 
