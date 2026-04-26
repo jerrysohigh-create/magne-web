@@ -328,57 +328,41 @@
       text-transform: uppercase;
       letter-spacing: 2px;
       color: var(--text-secondary);
-      margin-bottom: 0.5rem;
-    }
-    .eco-partners-heading {
-      text-align: center;
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
-    .eco-partners-heading span {
-      color: var(--accent);
-    }
-    .eco-partners-subtitle {
-      text-align: center;
-      color: var(--text-secondary);
-      margin-bottom: 2rem;
-      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
     }
     .eco-partners-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
       gap: 1rem;
     }
     .eco-partner-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.25rem 1rem;
+      border-radius: 12px;
+      padding: 0.8rem 1.2rem;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
+      gap: 0.4rem;
+      min-width: 100px;
       transition: all 0.3s;
-      min-height: 90px;
     }
     .eco-partner-card:hover {
       border-color: var(--border-hover);
-      background: var(--bg-card-hover);
       transform: translateY(-2px);
     }
     .eco-partner-card img {
-      height: 32px;
+      height: 28px;
       width: auto;
-      max-width: 110px;
       object-fit: contain;
     }
     .eco-partner-card span {
       font-size: 0.7rem;
       color: var(--text-secondary);
-      text-align: center;
-      line-height: 1.3;
+    }
+    .eco-partner-light span {
+      color: #ffffff;
     }
 
     /* SECTION EYEBROW */
@@ -607,6 +591,7 @@
     }
     footer a { color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
     footer a:hover { color: var(--accent); }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; margin-top: 1rem; }
     .footer-links-secondary { display: flex; justify-content: center; gap: 2rem; margin-top: 0.75rem; }
     .footer-links-secondary a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; }
     .footer-links-secondary a:hover { color: var(--accent); }
@@ -653,62 +638,19 @@
       .ecosystem-grid,
       .dev-grid { grid-template-columns: 1fr; }
     }
-    .mobile-menu-btn {
-      display: none;
-      background: transparent;
-      border: 1px solid var(--border-hover);
-      color: var(--text-primary);
-      padding: 0.5rem 0.85rem;
-      border-radius: 8px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      cursor: pointer;
-      font-family: 'Outfit', sans-serif;
+  
+    /* FOOTER SOCIAL ICONS */
+    .footer-socials { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0; }
+    .footer-socials a {
+      display: inline-flex; align-items: center; justify-content: center;
+      height: 42px; padding: 0;
+      border: 1px solid var(--border); border-radius: 999px;
+      color: var(--text-secondary); font-size: 0.82rem; transition: all 0.2s;
     }
-    @media (max-width: 768px) {
-      html, body { overflow-x: hidden; }
-      nav {
-        padding: 0.85rem 1rem;
-        gap: 0.5rem;
-        position: relative;
-      }
-      .mobile-menu-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .nav-links {
-        display: none !important;
-        position: absolute;
-        top: 100%;
-        left: 1rem;
-        right: 1rem;
-        background: rgba(10, 10, 12, 0.98);
-        border: 1px solid var(--border);
-        border-radius: 14px;
-        padding: 1rem;
-        flex-direction: column;
-        gap: 0.85rem;
-        backdrop-filter: blur(20px);
-        z-index: 99;
-      }
-      .nav-links.mobile-open {
-        display: flex !important;
-      }
-      .nav-links a {
-        display: block;
-        padding: 0.65rem 0.75rem;
-        font-size: 0.95rem;
-        color: var(--text-primary);
-        border-radius: 8px;
-      }
-      .nav-links a:hover {
-        background: var(--bg-card-hover);
-        color: var(--accent);
-      }
-      .nav-cta { padding: 0.5rem 0.75rem; font-size: 0.78rem; }
-      footer { padding: 3rem 1.25rem; text-align: center; }
-    div.footer-socials > a > svg.footer-icon { width: 20px !important; height: 20px !important; }
+    .footer-socials a:hover { color: var(--accent); border-color: var(--accent); background: rgba(0, 212, 212, 0.06); }
+    .footer-copy { margin-top: 1.5rem; opacity: 0.5; }
+
+    .footer-socials a.footer-icon svg { width: 20px; height: 20px; }
     .footer-icon {
       display: inline-flex;
       align-items: center;
@@ -716,7 +658,7 @@
       width: 42px;
       height: 42px;
       border: 1px solid var(--border);
-      border-radius: 50%;
+      border-radius: 999px;
       color: var(--text-secondary);
       transition: all 0.2s;
       padding: 0;
@@ -726,133 +668,8 @@
       border-color: var(--accent);
       background: rgba(0, 212, 212, 0.1);
     }
-    .official-contact-cta {
-      max-width: 1000px; margin: 4rem auto 0;
-      padding: 2.5rem 2rem; border-top: 1px solid var(--border); text-align: center;
-    }
-    .official-contact-inner {
-      background: rgba(0, 212, 212, 0.04);
-      border: 1px solid rgba(0, 212, 212, 0.16);
-      border-radius: 24px; padding: 2.5rem;
-    }
-    .official-contact-eyebrow {
-      color: var(--accent); font-size: 0.75rem; letter-spacing: 3px;
-      text-transform: uppercase; margin-bottom: 0.75rem;
-    }
-    .official-contact-cta h2 { font-size: 2rem; margin-bottom: 1rem; }
-    .official-contact-cta p { color: var(--text-secondary); max-width: 720px; margin: 0 auto 1.5rem; }
-    .official-contact-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
-    .official-contact-actions a {
-      border: 1px solid var(--border); color: var(--text-secondary);
-      padding: 0.7rem 1rem; border-radius: 50%; font-size: 0.85rem; transition: all 0.2s;
-    }
-    .official-contact-actions a:hover { color: var(--accent); border-color: var(--accent); background: rgba(0, 212, 212, 0.06); }
-    .bottom-nav-cta {
-      max-width: 1000px;
-      margin: 4rem auto 0;
-      padding: 2rem;
-      border-top: 1px solid var(--border);
-      text-align: center;
-    }
-    .bottom-nav-label {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
-    }
-    .bottom-nav-actions {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.75rem;
-    }
-    .bottom-nav-btn {
-      border: 1px solid var(--border);
-      color: var(--text-secondary);
-      padding: 0.65rem 1rem;
-      border-radius: 50%;
-      font-size: 0.85rem;
-      transition: all 0.2s;
-    }
-    .bottom-nav-btn:hover {
-      color: var(--accent);
-      border-color: var(--accent);
-      background: rgba(0, 212, 212, 0.06);
-    }
-    .bottom-nav-btn.nav-active {
-      color: var(--accent);
-      border-color: var(--accent);
-      pointer-events: none;
-    }
-    .bottom-nav-btn.nav-home-btn {
-      border-color: var(--border-hover);
-    }
-    }
-    @media (max-width: 768px) {
 
-    
-    .footer-brand { margin-bottom: 1rem; }
-    .footer-socials { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0 1.25rem; }
-    .footer-socials a { width: 42px; height: 42px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--border); border-radius: 50%; color: rgba(255,255,255,0.55); background: rgba(255,255,255,0.02); transition: all 0.2s ease; }
-    .footer-socials a:hover { color: var(--accent); border-color: rgba(0,212,212,0.45); background: rgba(0,212,212,0.08); transform: translateY(-1px); }
-    .social-icon { width: 18px; height: 18px; fill: currentColor; }
-    .footer-links { display: flex; justify-content: center; align-items: center; gap: 2rem; margin-top: 1.25rem; flex-direction: row; }
-    .footer-copy { margin-top: 1.5rem; opacity: 0.5; }
-
-    .bottom-nav-cta {
-        margin-top: 3rem;
-        padding: 1.5rem 1.25rem;
-      }
-      .bottom-nav-actions {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 0.65rem;
-      }
-      .bottom-nav-btn {
-        width: 100%;
-        text-align: center;
-        padding: 0.75rem 0.6rem;
-      }
-      .bottom-nav-btn.nav-home-btn {
-        grid-column: 1 / -1;
-      }
-      .official-contact-cta {
-        margin-top: 3rem;
-        padding: 1.5rem 1.25rem;
-      }
-      .official-contact-inner {
-        padding: 1.5rem;
-      }
-      .official-contact-cta h2 {
-        font-size: 1.55rem;
-      }
-      .official-contact-actions {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 0.65rem;
-      }
-      .official-contact-actions a {
-        width: 100%;
-        text-align: center;
-      }
-      .footer-socials {
-        gap: 0.5rem;
-      }
-      div.footer-socials > a > svg.footer-icon { width: 20px !important; height: 20px !important; }
-    .footer-icon {
-        width: 38px;
-        height: 38px;
-      }
-      footer {
-        padding: 3rem 1.25rem;
-        text-align: center;
-      }
-      .footer-links {
-        flex-direction: column;
-        gap: 0.75rem;
-        align-items: center;
-      }
-    }
-  </style>
+</style>
 </head>
 <body>
 
@@ -863,18 +680,18 @@
 
 <!-- NAV -->
 <nav>
-  <a href="magne-home.html" class="nav-logo">MAGNE.AI</a>
-  <button class="mobile-menu-btn" onclick="toggleMobileMenu()">Menu</button>
-  <ul class="nav-links" id="mobileNavLinks">
+  <div class="nav-brand">
+    <a href="magne-home.html"><span class="nav-logo">MAGNE.AI</span></a>
+  </div>
+  <ul class="nav-links">
     <li><a href="magne-home.html">Home</a></li>
     <li><a href="magne-phone.html">Phone</a></li>
     <li><a href="magne-security.html">Security</a></li>
     <li><a href="magne-compliance.html">Compliance</a></li>
-    <li><a href="magne-network.html">Network</a></li>
+    <li><a href="magne-network.html" class="active">Network</a></li>
     <li><a href="magne-progress.html">Progress</a></li>
-    <li><a href="magne-partners.html">Partners</a></li>
   </ul>
-  <a href="https://payment.magne.ai/buy" class="nav-cta">Preorder</a>
+  <a href="magne-contact.html" class="nav-cta">Contact</a>
 </nav>
 
 <!-- HERO -->
@@ -968,8 +785,6 @@
 
   <div class="eco-partners">
     <div class="eco-partners-title">Ecosystem Partners</div>
-    <h2 class="eco-partners-heading">Ecosystem <span>Partners</span></h2>
-    <p class="eco-partners-subtitle">Exchanges, DePIN infrastructure, Web3, gaming, and tooling powering the MAGNE Network.</p>
     <div class="eco-partners-grid">
       <div class="eco-partner-card">
         <img src="partners/ecosystem/kucoin_web.png" alt="KuCoin">
@@ -1355,7 +1170,7 @@
       </div>
     </div>
     <div class="showcase-cta">
-      <a href="https://cott.magne.ai" target="_blank" class="btn-secondary">Explore the Ecosystem →</a>
+      <a href="https://clash-of-titans.magne.ai" target="_blank" class="btn-secondary">Explore the Ecosystem →</a>
     </div>
   </div>
 </section>
@@ -1371,50 +1186,24 @@
 </section>
 
 <!-- FOOTER -->
-<section class="bottom-nav-cta">
-  <p class="bottom-nav-label">Continue exploring MAGNE.AI</p>
-  <div class="bottom-nav-actions">
-    <a href="magne-home.html" class="bottom-nav-btn nav-home-btn">← Back to Home</a>
-    <a href="magne-phone.html" class="bottom-nav-btn">Phone</a>
-    <a href="magne-security.html" class="bottom-nav-btn">Security</a>
-    <a href="magne-compliance.html" class="bottom-nav-btn">Compliance</a>
-    <a href="magne-network.html" class="bottom-nav-btn nav-active">Network</a>
-    <a href="magne-progress.html" class="bottom-nav-btn">Progress</a>
-    <a href="magne-partners.html" class="bottom-nav-btn">Partners</a>
-  </div>
-</section>
-
-<section class="official-contact-cta">
-  <div class="official-contact-inner">
-    <p class="official-contact-eyebrow">Official Channels</p>
-    <h2>Connect with MAGNE.AI</h2>
-    <p>For preorder, ecosystem partnerships, exchange due diligence, developer collaboration, media, or institutional inquiries — reach the MAGNE.AI team through official channels.</p>
-    <div class="official-contact-actions">
-      <a href="https://t.me/MagneAI" target="_blank" rel="noopener">Preorder Inquiry</a>
-      <a href="https://t.me/MagneAI" target="_blank" rel="noopener">Partnership</a>
-      <a href="https://t.me/MagneAI" target="_blank" rel="noopener">Exchange / DD</a>
-      <a href="https://t.me/MagneAI" target="_blank" rel="noopener">Developer Ecosystem</a>
-      <a href="mailto:official@magne.ai">Media</a>
-    </div>
-  </div>
-</section>
-
 <footer>
-  <p class="footer-brand">MAGNE.AI — The Web3-native AI Phone</p>
+  <p>MAGNE.AI — The Web3-native AI Phone</p>
+  
   <div class="footer-socials" aria-label="Official MAGNE.AI channels">
-  <a href="https://x.com/Magne_Ai" target="_blank" rel="noopener" aria-label="MAGNE.AI on X" title="X"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="footer-icon" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.847h-7.406l-5.8-7.584-6.64 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932L18.9 1.153Z"/></svg></a>
-  <a href="https://t.me/MagneAI" target="_blank" rel="noopener" aria-label="MAGNE.AI on Telegram" title="Telegram"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="footer-icon" aria-hidden="true"><path d="M9.04 15.47 8.66 20.8c.55 0 .78-.24 1.06-.52l2.54-2.43 5.26 3.85c.97.53 1.65.25 1.91-.9l3.46-16.2c.3-1.39-.5-1.93-1.45-1.58L1.37 10.8c-1.36.53-1.34 1.29-.23 1.63l5.13 1.6L18.2 6.5c.56-.34 1.07-.15.65.2"/></svg></a>
-  <a href="https://discord.gg/tX2xRAkd" target="_blank" rel="noopener" aria-label="MAGNE.AI on Discord" title="Discord"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="footer-icon" aria-hidden="true"><path d="M20.317 4.369A19.791 19.791 0 0 0 15.885 3c-.191.328-.403.775-.552 1.124a18.27 18.27 0 0 0-5.33 0A12.64 12.64 0 0 0 9.45 3a19.736 19.736 0 0 0-4.433 1.37C2.21 8.531 1.45 12.59 1.83 16.593A19.9 19.9 0 0 0 7.245 19.5c.436-.598.824-1.23 1.158-1.89-.637-.241-1.244-.54-1.818-.885.152-.11.301-.226.445-.345 3.507 1.648 7.317 1.648 10.783 0 .146.12.294.235.445.345-.576.346-1.186.645-1.823.886.334.659.722 1.291 1.158 1.889a19.867 19.867 0 0 0 5.418-2.907c.456-4.64-.78-8.662-3.694-12.224ZM9.68 14.813c-1.05 0-1.91-.963-1.91-2.148 0-1.185.84-2.148 1.91-2.148 1.078 0 1.93.972 1.91 2.148 0 1.185-.84 2.148-1.91 2.148Zm4.64 0c-1.05 0-1.91-.963-1.91-2.148 0-1.185.84-2.148 1.91-2.148 1.078 0 1.93.972 1.91 2.148 0 1.185-.84 2.148-1.91 2.148Z"/></svg></a>
-  <a href="https://github.com/magne-ai" target="_blank" rel="noopener" aria-label="MAGNE.AI on GitHub" title="GitHub"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="footer-icon" aria-hidden="true"><path d="M12 .5C5.648.5.5 5.648.5 12a11.5 11.5 0 0 0 7.86 10.92c.575.106.785-.25.785-.556 0-.274-.01-1-.015-1.962-3.197.695-3.873-1.54-3.873-1.54-.523-1.33-1.277-1.685-1.277-1.685-1.044-.714.08-.7.08-.7 1.154.082 1.76 1.186 1.76 1.186 1.026 1.758 2.692 1.25 3.348.957.104-.743.402-1.25.732-1.538-2.552-.29-5.236-1.276-5.236-5.68 0-1.255.448-2.282 1.183-3.087-.119-.29-.513-1.459.112-3.042 0 0 .965-.309 3.162 1.18a10.97 10.97 0 0 1 5.756 0c2.196-1.489 3.16-1.18 3.16-1.18.627 1.583.233 2.752.114 3.042.737.805 1.182 1.832 1.182 3.087 0 4.415-2.688 5.387-5.248 5.672.413.355.78 1.055.78 2.126 0 1.535-.014 2.772-.014 3.148 0 .309.207.667.79.554A11.502 11.502 0 0 0 23.5 12C23.5 5.648 18.352.5 12 .5Z"/></svg></a>
-  <a href="https://www.youtube.com/@MagneAI" target="_blank" rel="noopener" aria-label="MAGNE.AI on YouTube" title="YouTube"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="footer-icon" aria-hidden="true"><path d="M23.498 6.186a2.99 2.99 0 0 0-2.103-2.116C19.51 3.5 12 3.5 12 3.5s-7.51 0-9.395.57A2.99 2.99 0 0 0 .502 6.186 31.225 31.225 0 0 0 0 12a31.23 31.23 0 0 0 .502 5.814 2.99 2.99 0 0 0 2.103 2.116C4.49 20.5 12 20.5 12 20.5s7.51 0 9.395-.57a2.99 2.99 0 0 0 2.103-2.116A31.23 31.23 0 0 0 24 12a31.225 31.225 0 0 0-.502-5.814ZM9.545 15.568V8.432L15.818 12l-6.273 3.568Z"/></svg></a>
-  <a href="https://web3.magne.ai" target="_blank" rel="noopener" aria-label="MAGNE Web3 Docs" title="Web3 Docs"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="footer-icon" aria-hidden="true"><path d="M6 2.75h8.5L19.25 7.5V21.25H6A2.25 2.25 0 0 1 3.75 19V5A2.25 2.25 0 0 1 6 2.75Zm7.5 1.5V8h3.75M8 12h8M8 15.5h8M8 19h5"/></svg></a>
-</div>
-  <div class="footer-links">
+    <a href="https://x.com/Magne_Ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+    <a href="https://t.me/MagneAI" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+    <a href="https://discord.gg/tX2xRAkd" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
+    <a href="https://github.com/magne-ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+    <a href="https://www.youtube.com/@MagneAI" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+    <a href="https://web3.magne.ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE Web3 Docs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></a>
+  </div>
+
+<div class="footer-links">
     <a href="privacy-policy.html">Privacy Policy</a>
     <a href="magne-contact.html">Contact</a>
     <a href="media-kit.html">Media Kit</a>
   </div>
-  <p class="footer-copy">© 2026 MAGNE.AI. All rights reserved.</p>
+  <p style="margin-top: 1.5rem; opacity: 0.5;">© 2026 MAGNE.AI. All rights reserved.</p>
 </footer>
 
 </div>
@@ -1507,20 +1296,6 @@
   }, { threshold: 0.1 });
 
   document.querySelectorAll('.animate').forEach(el => observer.observe(el));
-
-function toggleMobileMenu() {
-  var navLinks = document.getElementById('mobileNavLinks');
-  if (!navLinks) return;
-  navLinks.classList.toggle('mobile-open');
-}
-document.addEventListener('click', function(event) {
-  var navLinks = document.getElementById('mobileNavLinks');
-  var menuButton = document.querySelector('.mobile-menu-btn');
-  if (!navLinks || !menuButton) return;
-  if (!navLinks.contains(event.target) && !menuButton.contains(event.target)) {
-    navLinks.classList.remove('mobile-open');
-  }
-});
 </script>
 
 </body>
