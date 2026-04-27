@@ -462,15 +462,17 @@
       overflow: hidden;
       min-height: 400px;
     }
-    .showcase-bg {
+    .showcase-card::before {
+      content: '';
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background-image: url('assets/clash-game-bg.jpg?v=1777289257');
+      background-image: url('assets/clash-game-bg.jpg');
       background-size: cover;
       background-position: center;
       z-index: 0;
     }
-    .showcase-overlay {
+    .showcase-card::after {
+      content: '';
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(0,0,0,0.6);
@@ -1389,8 +1391,6 @@
     </div>
 
     <div class="showcase-card">
-      <div class="showcase-bg"></div>
-      <div class="showcase-overlay"></div>
       <div class="showcase-content">
       <div class="showcase-content-inner">
       <p class="showcase-tag">Web3 Game · MAGNE L1/L2 Use Case</p>
