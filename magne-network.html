@@ -456,15 +456,23 @@
     .showcase-card {
       position: relative;
       background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 3rem;
+      overflow: hidden;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .showcase-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
       background-image: url('assets/clash-game-bg.jpg');
       background-size: cover;
       background-position: center;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 3rem 3.5rem;
-      overflow: hidden;
+      z-index: 0;
     }
-    .showcase-card::before {
+    .showcase-card::after {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -474,6 +482,9 @@
     .showcase-card > * {
       position: relative;
       z-index: 2;
+    }
+    .showcase-content-wrapper {
+      max-width: 100%;
     }
     .showcase-tag {
       display: inline-block;
@@ -1382,7 +1393,8 @@
 
     <div class="showcase-card">
       <div class="showcase-content">
-        <p class="showcase-tag">Web3 Game · MAGNE L1/L2 Use Case</p>
+      <div class="showcase-content-inner">
+      <p class="showcase-tag">Web3 Game · MAGNE L1/L2 Use Case</p>
         <h3>From device-native ownership to playable on-chain assets</h3>
         <p>
           Clash of the Titans is designed as an application showcase across MAGNE L1 and MHash L2,
