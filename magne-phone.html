@@ -245,6 +245,28 @@
       font-size: 0.9rem;
       line-height: 1.6;
     }
+    .spec-card .spec-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+      display: block;
+    }
+    .spec-card h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+    .spec-card-featured {
+      border-color: rgba(0, 212, 212, 0.3);
+      background: rgba(0, 212, 212, 0.04);
+    }
+    .spec-card-featured:hover {
+      border-color: rgba(0, 212, 212, 0.5);
+      box-shadow: 0 4px 20px rgba(0, 212, 212, 0.1);
+    }
 
     /* SOFTWARE ARCH */
     .software-layout {
@@ -700,34 +722,79 @@
   </div>
   <div class="specs-grid">
     <div class="spec-card animate">
-      <div class="spec-icon">📡</div>
-      <h4>UNISOC T9100 5G</h4>
-      <p>A practical 5G smartphone foundation built for real-world deployment and global connectivity.</p>
+      <span class="spec-label">SoC</span>
+      <h3>UNISOC T9100 5G SoC</h3>
     </div>
     <div class="spec-card animate">
-      <div class="spec-icon">🧠</div>
-      <h4>8 TOPS NPU</h4>
-      <p>Supports on-device AI experiences across privacy-sensitive mobile use cases without cloud dependency.</p>
+      <span class="spec-label">CPU / GPU</span>
+      <h3>8-core CPU · ARM Mali-G57 MC4</h3>
     </div>
     <div class="spec-card animate">
-      <div class="spec-icon">💾</div>
-      <h4>Up to 12GB RAM + 512GB UFS 3.1</h4>
-      <p>Configured for modern app use, local intelligence, and wallet-related continuity.</p>
+      <span class="spec-label">AI NPU</span>
+      <h3>IMG AX3596 · 8 TOPS AI NPU</h3>
     </div>
     <div class="spec-card animate">
-      <div class="spec-icon">🖥️</div>
-      <h4>6.72" FHD+ 120Hz Display</h4>
-      <p>A fluid visual experience designed for both daily use and immersive interaction.</p>
+      <span class="spec-label">AI Experience</span>
+      <h3>On-device AI + Google Gemini cloud AI experience</h3>
+    </div>
+    <div class="spec-card spec-card-featured animate">
+      <span class="spec-label">Security Architecture</span>
+      <h3>TEE + HyperSeed Secure Elements</h3>
+      <p>TEE (CC EAL2+) + HyperSeed N60 (CC EAL6+) + HyperSeed 72B NFC Backup Card (CC EAL6+)</p>
+    </div>
+    <div class="spec-card spec-card-featured animate">
+      <span class="spec-label">Hardware Wallet</span>
+      <h3>Built-in hardware wallet</h3>
+      <p>Secure key isolation and encrypted NFC backup</p>
+    </div>
+    <div class="spec-card spec-card-featured animate">
+      <span class="spec-label">Private Space</span>
+      <h3>Dual-system private space</h3>
+      <p>Separates Web2 and Web3 environments</p>
     </div>
     <div class="spec-card animate">
-      <div class="spec-icon">🔋</div>
-      <h4>5010mAh + IP52</h4>
-      <p>Designed for longer usage continuity and practical day-to-day resilience.</p>
+      <span class="spec-label">Memory</span>
+      <h3>8GB / 12GB RAM + up to 12GB virtual memory</h3>
+      <p>Up to 20GB / 24GB Hyper RAM</p>
     </div>
     <div class="spec-card animate">
-      <div class="spec-icon">📲</div>
-      <h4>Android 15 + NFC</h4>
-      <p>Built on a modern Android foundation with native support for connected workflows and encrypted NFC recovery.</p>
+      <span class="spec-label">Storage</span>
+      <h3>512GB ROM</h3>
+      <p>UFS 3.1 high-speed storage</p>
+    </div>
+    <div class="spec-card animate">
+      <span class="spec-label">Display</span>
+      <h3>6.72-inch FHD+</h3>
+      <p>1080 × 2384 · 120Hz refresh rate</p>
+    </div>
+    <div class="spec-card animate">
+      <span class="spec-label">Battery / Charging</span>
+      <h3>5000mAh</h3>
+      <p>33W PD wired charging · 15W wireless charging</p>
+    </div>
+    <div class="spec-card animate">
+      <span class="spec-label">Camera</span>
+      <h3>50MP + 2MP + 2MP rear</h3>
+      <p>16MP front camera</p>
+    </div>
+    <div class="spec-card animate">
+      <span class="spec-label">OS</span>
+      <h3>Android 15</h3>
+    </div>
+    <div class="spec-card animate">
+      <span class="spec-label">Media DRM</span>
+      <h3>Google Widevine L1</h3>
+      <p>HD streaming supported</p>
+    </div>
+    <div class="spec-card animate">
+      <span class="spec-label">Durability</span>
+      <h3>IP52</h3>
+      <p>Water and dust resistance</p>
+    </div>
+    <div class="spec-card animate">
+      <span class="spec-label">Connectivity</span>
+      <h3>5G Sub-6 · LTE</h3>
+      <p>Wi-Fi 2.4GHz/5GHz · Bluetooth · NFC</p>
     </div>
   </div>
 </section>
