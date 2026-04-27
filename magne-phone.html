@@ -758,6 +758,46 @@
       margin: 2rem auto 0;
       opacity: 0.7;
     }
+
+    /* PACKAGE CONTENTS */
+    .package-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .package-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem 1rem;
+      width: 140px;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+    .package-item:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .package-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .package-item .package-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.25rem;
+    }
+    .package-item .package-desc {
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+    }
   </style>
 </head>
 <body>
@@ -907,6 +947,41 @@
       <p>Wi-Fi 2.4GHz/5GHz · Bluetooth · NFC</p>
     </div>
   </div>
+<!-- PACKAGE CONTENTS -->
+<section id="package">
+  <div class="section-title">
+    <h2>Package Contents</h2>
+    <p>Everything included in the box</p>
+  </div>
+  <div class="package-grid">
+    <div class="package-item">
+      <div class="package-icon">📱</div>
+      <span class="package-name">MAG1 Phone</span>
+      <span class="package-desc">6.72" Android 15 device</span>
+    </div>
+    <div class="package-item">
+      <div class="package-icon">🪪</div>
+      <span class="package-name">NFC Card</span>
+      <span class="package-desc">Encrypted identity backup</span>
+    </div>
+    <div class="package-item">
+      <div class="package-icon">🔌</div>
+      <span class="package-name">Charging Brick</span>
+      <span class="package-desc">US / EU plug compatible</span>
+    </div>
+    <div class="package-item">
+      <div class="package-icon">⚡</div>
+      <span class="package-name">Type-C Cable</span>
+      <span class="package-desc">33W PD fast charging</span>
+    </div>
+    <div class="package-item">
+      <div class="package-icon">📎</div>
+      <span class="package-name">SIM Ejector</span>
+      <span class="package-desc">SIM tray tool</span>
+    </div>
+  </div>
+</section>
+
 <!-- GOOGLE SERVICES -->
 <section id="google-services">
   <div class="section-title">
