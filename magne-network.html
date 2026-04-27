@@ -454,7 +454,6 @@
       margin: 0 auto;
     }
     .showcase-card {
-      position: relative;
       background: var(--bg-card);
       background-image: url('assets/clash-game-screenshot.png');
       background-size: cover;
@@ -462,17 +461,6 @@
       border: 1px solid var(--border);
       border-radius: 20px;
       padding: 2.5rem;
-      overflow: hidden;
-    }
-    .showcase-card-overlay {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.65);
-      z-index: 1;
-    }
-    .showcase-content {
-      position: relative;
-      z-index: 2;
     }
     .showcase-tag {
       display: inline-block;
@@ -1380,7 +1368,6 @@
     </div>
 
     <div class="showcase-card">
-      <div class="showcase-card-overlay"></div>
       <div class="showcase-content">
         <p class="showcase-tag">Web3 Game · MAGNE L1/L2 Use Case</p>
         <h3>From device-native ownership to playable on-chain assets</h3>
@@ -1407,7 +1394,6 @@
         </div>
       </div>
     </div>
-    <div class="showcase-card-overlay"></div>
 </section>
 
 <!-- WEB3 PROTOCOL CARD -->
