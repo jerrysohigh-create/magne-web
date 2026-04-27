@@ -425,6 +425,107 @@
       text-align: center;
     }
 
+    /* ECOSYSTEM SHOWCASE */
+    .ecosystem-showcase {
+      margin: 4rem 0;
+    }
+    .ecosystem-showcase .section-title {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .ecosystem-showcase .section-title .eyebrow {
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .ecosystem-showcase .section-title h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .ecosystem-showcase .section-title p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .showcase-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem;
+    }
+    .showcase-tag {
+      display: inline-block;
+      background: rgba(0, 212, 212, 0.1);
+      color: var(--accent);
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .showcase-card h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .showcase-points {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1.5rem 0;
+    }
+    .showcase-points span {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.4rem 1rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    .showcase-note {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin: 1.5rem 0;
+      line-height: 1.6;
+    }
+    .showcase-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+    .showcase-actions a {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .showcase-actions a:first-child {
+      background: var(--accent);
+      color: var(--bg-primary);
+    }
+    .showcase-actions a:first-child:hover {
+      background: #00b8b8;
+    }
+    .showcase-actions a:last-child {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+    }
+    .showcase-actions a:last-child:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
     /* DEVICE JOURNEY */
     .journey-section {
       background: var(--bg-card);
@@ -1156,33 +1257,42 @@
   </div>
 </section>
 
-<!-- ECOSYSTEM SHOWCASE -->
-<section id="showcase" class="showcase-section">
+<!-- CLASH OF THE TITANS -->
+<section id="clash-of-titans" class="ecosystem-showcase">
   <div class="section-title">
-    <div class="section-eyebrow">ECOSYSTEM SHOWCASE</div>
+    <span class="eyebrow">Ecosystem Showcase</span>
     <h2>Clash of the Titans</h2>
-    <p>A self-developed live application used to validate MAGNE L2 performance, transaction flows, and real ecosystem interaction.</p>
+    <p>
+      A first-party Web3 strategy game showcase demonstrating how MAGNE Network can support
+      application-level interaction, NFT-style assets, wallet flows, and L1/L2 transaction logic.
+    </p>
   </div>
-  <div class="showcase-content">
-    <div class="showcase-body">
-      <p>Rather than presenting MAGNE L2 only as infrastructure, MAGNE also uses first-party applications to test how the network performs in practical usage scenarios. Clash of the Titans serves as an early ecosystem showcase for transaction execution, user interaction, and application-level network behavior.</p>
-    </div>
-    <div class="showcase-highlights">
-      <div class="highlight-item">
-        <span class="highlight-tag">Self-Developed</span>
+
+  <div class="showcase-card">
+    <div class="showcase-content">
+      <p class="showcase-tag">Web3 Game · MAGNE L1/L2 Use Case</p>
+      <h3>From device-native ownership to playable on-chain assets</h3>
+      <p>
+        Clash of the Titans is designed as an application showcase across MAGNE L1 and MHash L2,
+        connecting gameplay, wallet interaction, NFT-style assets, and on-chain settlement flows.
+      </p>
+
+      <div class="showcase-points">
+        <span>First-party ecosystem showcase</span>
+        <span>NFT-style asset interaction</span>
+        <span>Wallet and transaction-flow validation</span>
+        <span>L1/L2 application scenario</span>
       </div>
-      <div class="highlight-item">
-        <span class="highlight-tag">L2 Validation Use Case</span>
+
+      <p class="showcase-note">
+        Gameplay, rewards, token mechanics, NFT availability, and launch timing are subject to final product design,
+        compliance review, smart contract deployment, and official release schedules.
+      </p>
+
+      <div class="showcase-actions">
+        <a href="clash-of-titans.html">Read Game Whitepaper</a>
+        <a href="https://cott-game.magne.ai" target="_blank" rel="noopener">Open Game Site</a>
       </div>
-      <div class="highlight-item">
-        <span class="highlight-tag">Live Transaction Testing</span>
-      </div>
-      <div class="highlight-item">
-        <span class="highlight-tag">Early Ecosystem Showcase</span>
-      </div>
-    </div>
-    <div class="showcase-cta">
-      <a href="https://clash-of-titans.magne.ai" target="_blank" class="btn-secondary">Explore the Ecosystem →</a>
     </div>
   </div>
 </section>
