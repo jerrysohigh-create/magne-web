@@ -236,7 +236,22 @@
     .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
     .nav-brand a { color: var(--text-secondary); text-decoration: none; font-weight: 600; }
     .lang-link.active { background: var(--accent) !important; color: #000 !important; font-weight: 600 !important; border-color: var(--accent) !important; }
-    </style>
+    
+    .trademark-notice {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-top: 1rem;
+      opacity: 0.7;
+    }
+    .trademark-notice a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .trademark-notice a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body class="content--canvas">
   <canvas id="swirl"></canvas>
@@ -475,7 +490,22 @@
         </div>
       </div>
     </div>
-  </div>
+  
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Is MAGNE.AI trademarked?</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            Yes. MAGNE.AI™ is a trademark of Magical Hash Global Tech Limited, currently in the registration process 
+            with the U.S. Patent and Trademark Office (USPTO Serial: 99311528). 
+            You can verify the status on the <a href="https://tmsearch.uspto.gov/search/search-results/99311528" target="_blank" rel="noopener">official USPTO database</a>.
+          </div>
+        </div>
+      </div>
+
+    </div>
 
   <footer>
     <div class="footer-links">
