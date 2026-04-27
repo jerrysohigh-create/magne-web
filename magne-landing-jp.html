@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MAGNE.AI Phone Gen1 — 世界初のWeb3 AIスマートフォン</title>
+    <title>MAGNE.AI Phone Gen1 — 世界初Web3 AIスマートフォン</title>
     <link rel="icon" type="image/png" href="logo-icon-circle.png" />
     <link rel="icon" type="image/png" href="logo-icon-circle.png" />
     <link
@@ -39,7 +39,7 @@
         top: 0; left: 0;
         width: 100%; height: 100%;
         z-index: 0;
-        opacity: 0.60;
+        opacity: 0.80;
         pointer-events: none;
       }
 
@@ -544,7 +544,7 @@
         background: var(--bg-primary);
         border: 2px solid var(--accent);
       }
-      .timeline-item.完了::before { border-color: #4ade80; background: #4ade80; }
+      .timeline-item.completed::before { border-color: #4ade80; background: #4ade80; }
       .timeline-item.in-progress::before { border-color: #facc15; background: #facc15; animation: pulse 2s infinite; }
       .timeline-item.planned::before { border-color: #60a5fa; background: transparent; }
       @keyframes pulse {
@@ -864,6 +864,7 @@
   </head>
   <body class="content--canvas">
     <canvas id="swirl"></canvas>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
 
     <!-- NAV -->
     <nav>
@@ -876,9 +877,9 @@
         /></a>
         <div class="lang-switcher">
           <span class="globe-icon">🌐</span>
-          <a href="magne-landing.html" class="lang-link">EN</a>
+          <a href="magne-landing.html" class="lang-link active">EN</a>
           <a href="magne-landing-tw.html" class="lang-link">繁中</a>
-          <a href="magne-landing-jp.html" class="lang-link active">日</a>
+          <a href="magne-landing-jp.html" class="lang-link">日</a>
           <a href="magne-landing-kr.html" class="lang-link">한</a>
         </div>
       </div>
@@ -891,13 +892,13 @@
         <li><a href="#specs">仕様</a></li>
         <li><a href="#certs">認証</a></li>
         <li><a href="#network">Web3ネットワーク</a></li>
-        <li><a href="#bands">バンド</a></li>
+        <li><a href="#bands">周波数帯</a></li>
         <li><a href="#milestones">マイルストーン</a></li>
-        <li><a href="faq-jp.html">FAQ</a></li>
-        <li><a href="media-kit-jp.html">メディアキット</a></li>
-        <li><a href="features-demo-jp.html">機能デモ</a></li>
+        <li><a href="faq.html">よくある質問</a></li>
+        
+        <li><a href="features-demo.html">機能 Demo</a></li>
         <li>
-          <a href="https://payment.magne.ai/buy" class="nav-cta">予約注文</a>
+          <a href="https://payment.magne.ai/buy" class="nav-cta">予約</a>
         </li>
       </ul>
     </nav>
@@ -912,83 +913,90 @@
       <div class="hero-gen">MAGNE.AI Phone Gen1</div>
       <h1>Web3ネイティブAIスマートフォン</h1>
       <p class="hero-desc">
-        安全な暗号資産管理、プライベートAI体験、次世代モバイル接続のために構築。
-        これはコンセプトではなく、実際の認証を取得した本物の製品です。
+        安全な暗号資産管理、プライベートAI体験、次世代モバイル接続のために設計されました。これはコンセプトではなく、実際の認定を取得済みの本物の製品です。
       </p>
 
       <div class="hw-tags">
         <span class="hw-tag">TEE (CC EAL2+)</span>
         <span class="hw-tag">HyperSeed N60 (CC EAL6+)</span>
         <span class="hw-tag">HyperSeed 72B (CC EAL6+) NFC Backup</span>
-        <span class="hw-tag">オンデバイスAI + Google Gemini</span>
+        <span class="hw-tag">端末AI + Google Gemini</span>
         <span class="hw-tag">FCC ID: 2BVCPGC603606</span>
       </div>
 
       <div class="hero-buttons">
-        <a href="#specs" class="btn-secondary">詳細な仕様を見る</a>
+        <a href="#specs" class="btn-secondary">詳細仕様を見る</a>
         <a href="https://payment.magne.ai/buy" class="btn-primary"
-          >今すぐ予約</a
+          >予約する</a
         >
       </div>
     </section>
-    <!-- 宝くじ統計セクション -->
+    <!-- Lottery Stats Section -->
     <section id="lottery-stats" style="padding: 4rem 2rem; background: linear-gradient(180deg, var(--bg-secondary) 0%, rgba(0,212,212,0.03) 100%); margin-top: 2rem; position: relative; overflow: hidden;">
+      <!-- Animated background particles -->
       <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; overflow: hidden;">
         <div style="position: absolute; width: 300px; height: 300px; background: radial-gradient(circle, rgba(0,212,212,0.1) 0%, transparent 70%); top: -100px; left: -100px; animation: float 8s ease-in-out infinite;"></div>
         <div style="position: absolute; width: 400px; height: 400px; background: radial-gradient(circle, rgba(255,215,0,0.08) 0%, transparent 70%); bottom: -150px; right: -100px; animation: float 10s ease-in-out infinite reverse;"></div>
       </div>
       
       <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;">
+        <!-- Header -->
         <div style="text-align: center; margin-bottom: 3rem;">
           <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(135deg, rgba(0,212,212,0.15), rgba(0,136,170,0.15)); border: 1px solid rgba(0,212,212,0.3); padding: 0.5rem 1.2rem; border-radius: 50px; margin-bottom: 1rem;">
             <span style="width: 8px; height: 8px; background: var(--accent); border-radius: 50%; animation: pulse 1.5s infinite;"></span>
-            <span style="font-size: 0.8rem; color: var(--accent); font-weight: 600; letter-spacing: 2px;">リアルタイムデータ</span>
+            <span style="font-size: 0.8rem; color: var(--accent); font-weight: 600; letter-spacing: 2px; text-transform: uppercase;">ライブデータ</span>
           </div>
           <h2 style="font-size: 2.5rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; text-shadow: 0 0 30px rgba(0,212,212,0.3);">
-            🎰 MAGNE.AI Phone Gen1 宝くじ
+            🎰 MAGNE.AI Phone Gen1 福引
           </h2>
           <p style="color: var(--text-secondary); font-size: 1rem;">
-            1,000台のAIフォンを配布 • 100回参加で1回引き
+            1,000台のAIスマートフォンをプレゼント • エントリー100件ごとに1回の抽籤
           </p>
         </div>
         
         <!-- Stats Single Row -->
         <div style="display: flex; justify-content: center; align-items: stretch; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
+          <!-- Participants -->
           <div style="flex: 1; min-width: 150px; max-width: 220px; background: linear-gradient(135deg, rgba(0,212,212,0.08) 0%, rgba(0,30,30,0.5) 100%); border: 1px solid rgba(0,212,212,0.2); border-radius: 16px; padding: 1.5rem 1rem; text-align: center;">
             <div style="font-size: 2rem; margin-bottom: 0.5rem;">👥</div>
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 2rem; font-weight: 700; color: var(--accent);" id="lottery-participants">--</div>
-            <div style="font-size: 0.7rem; color: var(--text-secondary);">総参加者数</div>
+            <div style="font-size: 0.7rem; color: var(--text-secondary);">参加者数</div>
           </div>
           
+          <!-- Phones -->
           <div style="flex: 1; min-width: 150px; max-width: 220px; background: linear-gradient(135deg, rgba(255,215,0,0.08) 0%, rgba(30,30,0,0.5) 100%); border: 1px solid rgba(255,215,0,0.2); border-radius: 16px; padding: 1.5rem 1rem; text-align: center;">
             <div style="font-size: 2rem; margin-bottom: 0.5rem;">📱</div>
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 2rem; font-weight: 700; color: #ffd700;" id="lottery-phones">--</div>
-            <div style="font-size: 0.7rem; color: var(--text-secondary);">受賞スマホ数</div>
+            <div style="font-size: 0.7rem; color: var(--text-secondary);">、当選者数</div>
           </div>
           
+          <!-- MHA -->
           <div style="flex: 1; min-width: 150px; max-width: 220px; background: linear-gradient(135deg, rgba(255,100,130,0.08) 0%, rgba(50,0,20,0.5) 100%); border: 1px solid rgba(255,100,130,0.2); border-radius: 16px; padding: 1.5rem 1rem; text-align: center;">
             <div style="font-size: 2rem; margin-bottom: 0.5rem;">🪙</div>
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.8rem; font-weight: 700; color: #ff6482;" id="lottery-mha">--</div>
-            <div style="font-size: 0.7rem; color: var(--text-secondary);">待分配MHA数</div>
+            <div style="font-size: 0.7rem; color: var(--text-secondary);">。MHAエアドロップ待機中</div>
           </div>
           
+          <!-- 回戦 -->
           <div style="flex: 1; min-width: 150px; max-width: 220px; background: linear-gradient(135deg, rgba(138,43,226,0.08) 0%, rgba(30,0,50,0.5) 100%); border: 1px solid rgba(138,43,226,0.2); border-radius: 16px; padding: 1.5rem 1rem; text-align: center;">
             <div style="font-size: 2rem; margin-bottom: 0.5rem;">🎰</div>
-            <div style="font-family: 'JetBrains Mono', monospace; font-size: 2rem; font-weight: 700; color: #a855f7;">第 <span id="lottery-round">--</span> 回</div>
-            <div style="font-size: 0.7rem; color: var(--text-secondary);"><span id="lottery-entries">--</span>/100 参加</div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 2rem; font-weight: 700; color: #a855f7;">回戦 <span id="lottery-round">--</span></div>
+            <div style="font-size: 0.7rem; color: var(--text-secondary);"><span id="lottery-件">--</span>/100</div>
           </div>
           
+          <!-- Prize Pool -->
           <div style="flex: 1; min-width: 150px; max-width: 220px; background: linear-gradient(135deg, rgba(0,255,136,0.08) 0%, rgba(0,30,20,0.5) 100%); border: 1px solid rgba(0,255,136,0.2); border-radius: 16px; padding: 1.5rem 1rem; text-align: center;">
             <div style="font-size: 2rem; margin-bottom: 0.5rem;">💰</div>
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.8rem; font-weight: 700; color: #00ff88;">$<span id="lottery-pool">--</span></div>
-            <div style="font-size: 0.7rem; color: var(--text-secondary);">チェーン上資産</div>
+            <div style="font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px;">オンチェーン資産</div>
           </div>
         </div>
         
+        <!-- Progress Bar -->
         <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; margin-bottom: 2rem;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-            <span style="font-size: 0.9rem; color: var(--text-secondary);">次の描画進捗</span>
-            <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; color: var(--accent);"><span id="lottery-entries-bar">--</span>/100 参加</span>
+            <span style="font-size: 0.9rem; color: var(--text-secondary);">次回抽籤まで</span>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; color: var(--accent);"><span id="lottery-件-bar">--</span>/100 件</span>
           </div>
           <div style="height: 12px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; position: relative;">
             <div id="lottery-progress-bar" style="height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent), #00ff88); border-radius: 10px; transition: width 0.5s ease-out; position: relative; overflow: hidden;">
@@ -997,18 +1005,19 @@
           </div>
         </div>
         
+        <!-- CTA Button -->
         <div style="text-align: center;">
           <a href="https://payment.magne.ai/lottery" target="_blank" style="display: inline-flex; align-items: center; gap: 0.5rem; background: transparent; border: 1px solid var(--accent); color: var(--accent); padding: 0.9rem 2.5rem; font-size: 1rem; font-weight: 600; border-radius: 8px; text-decoration: none; transition: all 0.3s ease; letter-spacing: 0.5px;" onmouseover="this.style.background='var(--accent)'; this.style.color='#000'; this.style.boxShadow='0 0 25px rgba(0,212,212,0.4)'" onmouseout="this.style.background='transparent'; this.style.color='var(--accent)'; this.style.boxShadow='none'">
-            参加する →
+            Participate Now →
           </a>
         </div>
         
         <!-- Notes -->
         <div style="text-align: center; margin-top: 1.5rem; color: var(--text-secondary); font-size: 0.85rem; line-height: 1.8;">
           <div style="display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem 1.5rem;">
-            <span>📱 デバイス：8GB+512GB</span>
-            <span>🚚 初回量産出荷：2026年7〜9月予定</span>
-            <span>🪙 MHAエアドロップ：TGE後30日以内に配布</span>
+            <span>📱 Device: 8GB+512GB</span>
+            <span>🚚 First batch shipping: Jul–Sep 2026</span>
+            <span>🪙 MHA Airdrop: Within 30 days after TGE</span>
           </div>
         </div>
       </div>
@@ -1037,12 +1046,14 @@
     </style>
     
     <script>
+      // Fetch real lottery data from API
       async function fetchLotteryData() {
         try {
           const res = await fetch('https://payment.magne.ai/api/v1/lottery/dashboard');
           const json = await res.json();
           const data = json.data;
           
+          // Animate the updates
           const animateUpdate = (id, value) => {
             const el = document.getElementById(id);
             if (el) {
@@ -1056,28 +1067,34 @@
           animateUpdate('lottery-phones', data.totalMobile);
           animateUpdate('lottery-round', data.currRound);
           
-          const completedRounds = data.currRound - 1;
+          // Calculate prize pool: (completed rounds × 1000) + (current 件 × 10)
+          const completedRounds = data.curr回戦 - 1;
           const currentEntries = 100 - data.nextDrawNeed;
           const prizePool = (completedRounds * 1000) + (currentEntries * 10);
           animateUpdate('lottery-pool', prizePool.toLocaleString());
           
-          const mhaRewards = (data.currRound - 1) * 99 * 100;
+          // Calculate MHA rewards: (totalParticipants - totalMobile) × 100
+          const mhaRewards = (data.curr回戦 - 1) * 99 * 100;
           animateUpdate('lottery-mha', mhaRewards.toLocaleString());
           
-          const entries = 100 - data.nextDrawNeed;
-          animateUpdate('lottery-entries', entries);
-          animateUpdate('lottery-entries-bar', entries);
+          const 件 = 100 - data.nextDrawNeed;
+          animateUpdate('lottery-件', 件);
+          animateUpdate('lottery-件-bar', 件);
           
+          // Update progress bar
           const progressBar = document.getElementById('lottery-progress-bar');
           if (progressBar) {
-            progressBar.style.width = entries + '%';
+            progressBar.style.width = 件 + '%';
           }
         } catch (e) {
           console.log('Lottery API error:', e);
         }
       }
       
+      // Initial fetch
       fetchLotteryData();
+      
+      // Refresh every 30 seconds
       setInterval(fetchLotteryData, 30000);
     </script>
 
@@ -1100,18 +1117,18 @@
     <!-- CORE FEATURES -->
     <section id="features">
       <div class="section-title">
-        <h2>革新の <span style="color: var(--accent)">6つの柱</span></h2>
-        <p>Web3時代のために設計されたすべての機能。</p>
+        <h2>
+          <span style="color: var(--accent)">イノベーション</span>の六つの柱
+        </h2>
+        <p>すべての機能がWeb3時代に向けに設計されています。</p>
       </div>
       <div class="features-grid">
         <div class="feature-card animate anim-up delay-1">
           <div class="icon">🤖</div>
           <div class="num">01</div>
-          <h3>オンデバイスAI + Google Gemini</h3>
+          <h3>端末AI + Google Gemini</h3>
           <p>
-            AX3596 NPU（8
-            TOPS）がプライベートなローカルAIを推進。ゼロデータ漏洩でGoogle
-            Geminiクラウド体験を提供。
+            AX3596 NPU (8 TOPS) がプライベートローカルAIを実行。Geminiクラウド体験ながらデータ漏えいゼロ。
           </p>
         </div>
         <div class="feature-card animate anim-up delay-2">
@@ -1122,21 +1139,22 @@
         <div class="feature-card animate anim-up delay-3">
           <div class="icon">📱</div>
           <div class="num">03</div>
-          <h3>暗号化NFCバックアップ</h3>
+          <h3>暗号化されたNFCバックアップ</h3>
         </div>
         <div class="feature-card animate anim-up delay-4">
           <div class="icon">🕵️</div>
           <div class="num">04</div>
           <h3>プライベートデュアルシステムスペース</h3>
-          <p>分離され隠されたWeb3環境。日常アプリとデータからの完全な隔離。</p>
+          <p>
+            分離・隠蔽されたWeb3環境。日頃のアプリとデータから完全に隔離。
+          </p>
         </div>
         <div class="feature-card animate anim-up delay-5">
           <div class="icon">🌐</div>
           <div class="num">05</div>
           <h3>Web3ネイティブアクセス</h3>
           <p>
-            ビルトインウォレット、dApps、MHash レイヤー2、エコシステムサービス。
-            ワンタップでSwap、Stake、Bridge。
+            内蔵ウォレット、dApps、MHash Layer2、エコシステムサービス。スワイプ、ステイク、ブリッジをワンタップで。
           </p>
         </div>
         <div class="feature-card animate anim-up delay-6">
@@ -1144,8 +1162,7 @@
           <div class="num">06</div>
           <h3>グローバルコンプライアンス</h3>
           <p>
-            GMS、Google Widevine L1、GSMA TAC、FCC、CP65、CB、UN38.3 —
-            世界展開対応。
+            GMS、Google Widevine L1、GSMA TAC、FCC、CP65、CB、UN38.3対応。世界中への展開准备好了。
           </p>
         </div>
       </div>
@@ -1155,13 +1172,13 @@
     <section id="security">
       <div class="section-title">
         <h2>
-          3層
+          三層
           <span style="color: var(--accent)">セキュリティアーキテクチャ</span>
         </h2>
         <p>
-          すべてのスマートフォンの中で最も安全なハードウェアウォレットアーキテクチャ。
-          <a href="security-lookup-jp.html" style="color: var(--accent)"
-            >詳細を見る →</a
+          The most secure hardware wallet architecture in any smartphone.
+          <a href="security-lookup.html" style="color: var(--accent)"
+            >View details →</a
           >
         </p>
       </div>
@@ -1171,32 +1188,36 @@
           <div class="layer-num">LAYER 1</div>
           <h3>TEE (CC EAL2+)</h3>
           <p>
-            繊細な操作分離とハードウェアレベルのプロセス分離のための Trusted
-            Execution Environment（TrustZone技術）。
+            繊細な操作の分離とハードウェアレベルのプロセス分離のための信頼できる実行環境。
           </p>
-          <span class="cert-badge">CC EAL2+ 認証取得</span>
+          <span class="cert-badge">CC EAL2+認定</span>
         </div>
         <div class="layer-card">
           <div class="layer-num">LAYER 2</div>
           <h3>HyperSeed N60 (CC EAL6+)</h3>
           <p>
-            プライベートキー分離、セキュア署名、ハードウェアウォレット保護。
+            Private key isolation, secure signing, and hardware wallet
+            protection.
           </p>
-          <span class="cert-badge">CC EAL6+ 認証取得</span>
+          <span class="cert-badge">CC EAL6+認定</span>
         </div>
         <div class="layer-card">
           <div class="layer-num">LAYER 3</div>
           <h3>HyperSeed 72B (CC EAL6+) NFC Backup</h3>
           <p>
-            暗号化されたオフラインバックアップと復元カード。いつでもどこでも物理的にウォレットを復元。
+            Encrypted offline backup and recovery card. Physically restore your
+            wallet anytime, anywhere.
           </p>
-          <span class="cert-badge">CC EAL6+ 認証取得</span>
+          <span class="cert-badge">CC EAL6+認定</span>
         </div>
       </div>
       <div class="security-summary">
         <p>
-          <strong>信頼できる実行</strong
-          >、<strong>セキュアな鍵分離</strong>、<strong>暗号化されたNFCバックアップ</strong>を組み合わせた3層ハードウェアウォレットアーキテクチャ。これがMAGNE.AIを他のスマホやハードウェアウォレットと差別化します。
+          A three-layer hardware wallet architecture combining
+          <strong>trusted execution</strong>,
+          <strong>secure key isolation</strong>, and
+          <strong>encrypted NFC backup</strong>. This is what makes MAGNE.AI
+          different from any phone — and any hardware wallet.
         </p>
       </div>
     </section>
@@ -1204,8 +1225,10 @@
     <!-- TECHNICAL SPECIFICATIONS -->
     <section id="specs">
       <div class="section-title">
-        <h2>技術的 <span style="color: var(--accent)">仕様</span></h2>
-        <p>本物のハードウェア。本物の製品。出荷準備完了。</p>
+        <h2>
+          Technical <span style="color: var(--accent)">仕様</span>
+        </h2>
+        <p>本当のハードウェア。本当の製品。出荷準備完了。</p>
       </div>
       <div class="specs-table animate anim-up">
         <div class="specs-row">
@@ -1223,30 +1246,29 @@
         <div class="specs-row">
           <div class="specs-label">AI</div>
           <div class="specs-value">
-            オンデバイスAI + Google Gemini cloud AI experience
+            端末AI + Google GeminiクラウドAI体験
           </div>
         </div>
         <div class="specs-row">
           <div class="specs-label">メモリ</div>
           <div class="specs-value">
-            8GB / 12GB RAM + 最大12GB仮想メモリ、最大20GB / 24GB ハイパーラム
+            8GB / 12GB RAM + 最大12GB仮想メモリ、最大20GB / 24GBハイパーRAM
           </div>
         </div>
         <div class="specs-row">
           <div class="specs-label">ストレージ</div>
-          <div class="specs-value">512GB ROM, UFS 3.1 high-speed storage</div>
+          <div class="specs-value">512GB ROM、UFS 3.1高速ストレージ</div>
         </div>
         <div class="specs-row">
           <div class="specs-label">セキュリティ</div>
           <div class="specs-value">
-            TEE (CC EAL2+) + HyperSeed N60 (CC EAL6+) + HyperSeed 72B (CC EAL6+)
-            NFC Backup
+            TEE (CC EAL2+) + HyperSeed N60 (CC EAL6+) + HyperSeed 72B (CC EAL6+) NFCバックアップ
           </div>
         </div>
         <div class="specs-row">
           <div class="specs-label">ハードウェアウォレット</div>
           <div class="specs-value">
-            セキュアな鍵分離と暗号化されたNFCバックアップを備えたビルトインハードウェアウォレット
+            暗号化されたNFCバックアップを備えた安全な鍵分離を備えた、内蔵ハードウェアウォレット
           </div>
         </div>
         <div class="specs-row">
@@ -1258,18 +1280,18 @@
         <div class="specs-row">
           <div class="specs-label">ディスプレイ</div>
           <div class="specs-value">
-            6.72-inch FHD+, 1080 × 2384, 120Hz refresh rate
+            6.72インチFHD+、1080 × 2384、120Hzリフレッシュレート
           </div>
         </div>
         <div class="specs-row">
           <div class="specs-label">バッテリー / 充電</div>
           <div class="specs-value">
-            5000mAh · 33W PD wired / 15W wireless charging
+            5000mAh · 33W PD有線 / 15Wワイヤレス充電
           </div>
         </div>
         <div class="specs-row">
           <div class="specs-label">カメラ</div>
-          <div class="specs-value">50MP + 2MP + 2MP rear · 16MP front</div>
+          <div class="specs-value">50MP + 2MP + 2MP リア · 16MP フロント</div>
         </div>
         <div class="specs-row">
           <div class="specs-label">OS</div>
@@ -1278,17 +1300,17 @@
         <div class="specs-row">
           <div class="specs-label">メディアDRM</div>
           <div class="specs-value">
-            Google Widevine L1 · HDストリーミング対応
+            Google Widevine L1対応 · HDストリーミング対応
           </div>
         </div>
         <div class="specs-row">
           <div class="specs-label">耐久性</div>
-          <div class="specs-value">IP52 water and dust resistance</div>
+          <div class="specs-value">IP52 防塵・防水性能</div>
         </div>
         <div class="specs-row">
           <div class="specs-label">接続性</div>
           <div class="specs-value">
-            5G Sub-6, LTE, Wi-Fi 2.4GHz/5GHz, Bluetooth, NFC
+            5G Sub-6、LTE、Wi-Fi 2.4GHz/5GHz、Bluetooth、NFC
           </div>
         </div>
         <div class="specs-row">
@@ -1297,12 +1319,12 @@
         </div>
         <div class="specs-row">
           <div class="specs-label">GSMA TAC</div>
-          <div class="specs-value">TAC 01681300 · マーケティング名：MAG1</div>
+          <div class="specs-value">TAC 01681300 · マーケティング名: MAG1</div>
         </div>
       </div>
       <div style="text-align: center; margin-top: 2rem">
         <a href="https://payment.magne.ai/buy" class="btn-primary btn-small"
-          >今すぐ予約</a
+          >予約する</a
         >
       </div>
     </section>
@@ -1310,8 +1332,8 @@
     <!-- NETWORK BANDS -->
     <section id="bands">
       <div class="section-title">
-        <h2>ネットワーク <span style="color: var(--accent)">バンド</span></h2>
-        <p>マーケティング名：MAG1</p>
+        <h2>ネットワーク<span style="color: var(--accent)">周波数帯</span></h2>
+        <p>マーケティング名: MAG1</p>
       </div>
       <div class="specs-table animate anim-up">
         <div class="specs-row">
@@ -1320,18 +1342,18 @@
         </div>
         <div class="specs-row">
           <div class="specs-label">UMTS / WCDMA / HSPA</div>
-          <div class="specs-value">バンド 1 / 2 / 4 / 5 / 8</div>
+          <div class="specs-value">周波数帯 1 / 2 / 4 / 5 / 8</div>
         </div>
         <div class="specs-row">
           <div class="specs-label">LTE FDD</div>
           <div class="specs-value">
-            バンド 1 / 2 / 3 / 5 / 7 / 8 / 12 / 13 / 17 / 20 / 25 / 26 / 28 / 34
+            周波数帯 1 / 2 / 3 / 5 / 7 / 8 / 12 / 13 / 17 / 20 / 25 / 26 / 28 / 34
             / 38 / 40 / 41 / 42 / 66 / 71
           </div>
         </div>
         <div class="specs-row">
           <div class="specs-label">LTE TDD</div>
-          <div class="specs-value">バンド 38 / 41 / 42</div>
+          <div class="specs-value">周波数帯 38 / 41 / 42</div>
         </div>
         <div class="specs-row">
           <div class="specs-label">5G NR Sub-6 FDD</div>
@@ -1343,7 +1365,7 @@
         </div>
         <div class="specs-row">
           <div class="specs-label">5G NR ENDC</div>
-          <div class="specs-value">サポート</div>
+          <div class="specs-value">Supported</div>
         </div>
         <div class="specs-row">
           <div class="specs-label">Wi-Fi</div>
@@ -1368,8 +1390,9 @@
           margin-top: 1.5rem;
         "
       >
-        このデバイスは、LTEと5G
-        NRに必要なすべてのグローバル周波数バンドをサポートし、北米、欧州、アジアを含む世界中の地域での互換性を確保します。
+        The device supports all global frequency bands required for LTE and 5G
+        NR, ensuring compatibility in regions worldwide including North America,
+        Europe, and Asia.
       </p>
     </section>
 
@@ -1379,10 +1402,10 @@
       style="padding: 4rem 2rem;"
     >
       <div class="section-title">
-        <h2>機能 <span style="color: var(--accent)">デモ</span></h2>
-        <p>MAG1の実演を見る</p>
+        <h2>機能 <span style="color: var(--accent)">Demo</span></h2>
+        <p>See the MAG1 in action</p>
       </div>
-      <div style="
+            <div style="
         width: 100%;
         background: linear-gradient(135deg, rgba(0, 212, 212, 0.12) 0%, rgba(123, 47, 255, 0.12) 100%);
         border: 1px solid rgba(0, 212, 212, 0.3);
@@ -1392,9 +1415,9 @@
         text-align: center;
       ">
         <a href="features-demo.html" style="text-decoration: none;">
-          <img src="https://yt3.googleusercontent.com/yZ7sCeEn-gUboQoR_lG59O9eTAmt6FrggjBbd9713gsCb1uSgvC-2tTKn18ur8fYRvD8eE4uTg=w1707-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj" alt="MAG1 Features Demo" style="width: 100%; border-radius: 8px; margin-bottom: 1rem;">
-          <div style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 0.5rem; font-family: 'JetBrains Mono', monospace;">🎬 機能デモ</div>
-          <p style="color: var(--text-secondary);">MAG1の実演を見る →</p>
+          <img src="https://yt3.googleusercontent.com/yZ7sCeEn-gUboQoR_lG59O9eTAmt6FrggjBbd9713gsCb1uSgvC-2tTKn18ur8fYRvD8eE4uTg=w1707-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj" alt="MAG1 機能 Demo" style="width: 100%; border-radius: 8px; margin-bottom: 1rem;">
+          <div style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 0.5rem; font-family: 'JetBrains Mono', monospace;">🎬 機能 Demo</div>
+          <p style="color: var(--text-secondary);">See the MAG1 in action →</p>
         </a>
       </div>
     </section>
@@ -1402,8 +1425,10 @@
     <!-- CERTIFICATIONS -->
     <section id="certs">
       <div class="section-title">
-        <h2>認証 & <span style="color: var(--accent)">コンプライアンス</span></h2>
-        <p>世界展開とキャリアパートナーシップのために設計。</p>
+        <h2>
+          認証 & <span style="color: var(--accent)">Compliance</span>
+        </h2>
+        <p>Built for worldwide deployment and carrier partnerships.</p>
       </div>
       <div class="certs-grid">
         <a
@@ -1417,9 +1442,9 @@
           "
         >
           <div class="cert-name">
-            Google GMS<span>Google モバイルサービス</span>
+            Google GMS<span>Google Mobile Services</span>
           </div>
-          <span class="cert-status pass">承認済み</span>
+          <span class="cert-status pass">Approved</span>
         </a>
         <a
           href="google-approval.html"
@@ -1432,12 +1457,12 @@
           "
         >
           <div class="cert-name">
-            Google Widevine L1<span>HDコンテンツ保護</span>
+            Google Widevine L1<span>HD Content Protection</span>
           </div>
-          <span class="cert-status supported">サポート</span>
+          <span class="cert-status supported">Supported</span>
         </a>
         <a
-          href="gsma-tac-lookup-jp.html"
+          href="gsma-tac-lookup.html"
           class="cert-card animate anim-up delay-3"
           style="
             display: flex;
@@ -1449,10 +1474,10 @@
           <div class="cert-name">
             GSMA TAC<span>TAC 01681300 · MA1/MAG1</span>
           </div>
-          <span class="cert-status pass">取得済み</span>
+          <span class="cert-status pass">Obtained</span>
         </a>
         <a
-          href="fcc-lookup-jp.html"
+          href="fcc-lookup.html"
           class="cert-card animate anim-up delay-4"
           style="
             display: flex;
@@ -1462,10 +1487,10 @@
           "
         >
           <div class="cert-name">FCC<span>FCC ID: 2BVCPGC603606</span></div>
-          <span class="cert-status pass">公開</span>
+          <span class="cert-status pass">Public</span>
         </a>
         <a
-          href="cb-lookup-jp.html"
+          href="cb-lookup.html"
           class="cert-card animate anim-up delay-5"
           style="
             display: flex;
@@ -1475,12 +1500,12 @@
           "
         >
           <div class="cert-name">
-            Battery CB<span>IEC 62133 準拠</span>
+            バッテリー CB<span>IEC 62133 Compliance</span>
           </div>
           <span class="cert-status pass">完了</span>
         </a>
         <a
-          href="un383-lookup-jp.html"
+          href="un383-lookup.html"
           class="cert-card animate anim-up delay-6"
           style="
             display: flex;
@@ -1490,12 +1515,12 @@
           "
         >
           <div class="cert-name">
-            Battery UN38.3<span>輸送安全</span>
+            バッテリー UN38.3<span>Transport Safety</span>
           </div>
-          <span class="cert-status pass">合格</span>
+          <span class="cert-status pass">PASS</span>
         </a>
         <a
-          href="cp65-lookup-jp.html"
+          href="cp65-lookup.html"
           class="cert-card animate anim-up delay-1"
           style="
             display: flex;
@@ -1505,14 +1530,14 @@
           "
         >
           <div class="cert-name">
-            カリフォルニア州プロポジション65 (CP65)<span
+            California Prop 65<span
               >TÜV Rheinland Report No. 27220370a 001</span
             >
           </div>
-          <span class="cert-status pass">合格</span>
+          <span class="cert-status pass">PASS</span>
         </a>
         <a
-          href="security-lookup-jp.html"
+          href="security-lookup.html"
           class="cert-card animate anim-up delay-2"
           style="
             display: flex;
@@ -1524,10 +1549,10 @@
           <div class="cert-name">
             CC EAL2+ / EAL6+<span>Common Criteria セキュリティ</span>
           </div>
-          <span class="cert-status pass">認証取得</span>
+          <span class="cert-status pass">Certified</span>
         </a>
         <div class="cert-card animate anim-up delay-3">
-          <div class="cert-name">CE<span>欧州整合性</span></div>
+          <div class="cert-name">CE<span>欧州統一基準</span></div>
           <span class="cert-status progress">進行中</span>
         </div>
       </div>
@@ -1538,7 +1563,7 @@
       style="padding: 4rem 2rem;"
     >
       <div class="section-title">
-        <h2>製品 <span style="color: var(--accent)">パッケージ</span></h2>
+        <h2>Product <span style="color: var(--accent)">Packaging</span></h2>
       </div>
       <div
         style="
@@ -1594,6 +1619,8 @@
           ), url('magne-protocol-bg.png');
           background-size: cover;
           background-position: center;
+          background-size: cover;
+          background-position: center;
           border: 1px solid rgba(0, 212, 212, 0.3);
           border-radius: 16px;
           padding: 2rem;
@@ -1611,13 +1638,14 @@
             font-family: &quot;JetBrains Mono&quot;, monospace;
           "
         >
-          🌐 MAGNEブロックチェーン提供
+          🌐 Powered by MAGNE Blockchain
         </div>
         <h3 style="font-size: 1.5rem; margin-bottom: 0.8rem">
-          ホワイトペーパー, ネットワーク統計 & 開発者ドキュメント
+          Whitepaper, Network Stats & Developer Docs
         </h3>
         <p style="color: var(--text-secondary); margin-bottom: 1.2rem">
-          400ms ブロック時間 · 数千TPS · 手数料 &lt; $0.0025 · 数千のノードで検証
+          400ms block time · Thousands of TPS · Fees < $0.0025 · Validated by
+          thousands of nodes
         </p>
         <a
           href="https://web3.magne.ai"
@@ -1638,16 +1666,14 @@
             transition: all 0.3s;
             letter-spacing: 1px;
           "
-          >web3.magne.aiを探索 →</a
+          >Explore web3.magne.ai →</a
         >
       </div>
       <div class="section-title">
-        <h2>
-          MAGNE <span style="color: var(--accent)">Web3ネットワーク</span>
-        </h2>
+        <h2>MAGNE <span style="color: var(--accent)">Web3ネットワーク</span></h2>
         <p>
-          ウォレット操作、dAppアクセス、分散型インフラのためのネイティブL1 +
-          L2ブロックチェーン統合。
+          Native L1 + L2 blockchain integration for wallet operations, dApp
+          access, and decentralized infrastructure.
         </p>
       </div>
       <div class="network-grid">
@@ -1657,10 +1683,11 @@
           class="network-card animate anim-up delay-1"
           style="text-decoration: none"
         >
-          <div class="chain-id">チェーンID: 20250810</div>
-          <h4>MAGNE L1 テストネット ↗</h4>
+          <div class="chain-id">Chain ID: 20250810</div>
+          <h4>MAGNE L1 Testnet ↗</h4>
           <p>
-            セキュアな資産管理とウォレット操作のためのネイティブレイヤー1ブロックチェーン。
+            Native Layer 1 blockchain for secure asset management and wallet
+            operations.
           </p>
         </a>
         <a
@@ -1669,18 +1696,18 @@
           class="network-card animate anim-up delay-2"
           style="text-decoration: none"
         >
-          <div class="chain-id">チェーンID: 20250827</div>
-          <h4>MHash L2 テストネット ↗</h4>
+          <div class="chain-id">Chain ID: 20250827</div>
+          <h4>MHash L2 Testnet ↗</h4>
           <p>
-            スケーラブルなWeb3アプリケーションとほぼゼロのガス代のために設計されたOP
-            Stackベースのレイヤー2。
+            OP Stack-based Layer 2 designed for scalable Web3 applications and
+            near-zero gas fees.
           </p>
         </a>
         <div class="network-card animate anim-up delay-3">
-          <h4>ビルトインdAppエコシステム</h4>
+          <h4>Built-in dApp Ecosystem</h4>
           <p>
-            Swap、Stake、Bridge、NFT、Identity —
-            すべてMAGNEデバイスからアクセス可能。
+            Swap, Stake, Bridge, NFT, and Identity — all accessible from your
+            MAGNE device.
           </p>
         </div>
         <a
@@ -1689,8 +1716,8 @@
           class="network-card animate anim-up delay-4"
           style="text-decoration: none"
         >
-          <h4>💻 オープンソース ↗</h4>
-          <p>L1&L2のソースコードはGitHubで公開済み。</p>
+          <h4>💻 Open Source ↗</h4>
+          <p>L1 & L2 source code publicly available on GitHub.</p>
         </a>
         <a
           href="https://cott-game.magne.ai/"
@@ -1710,18 +1737,16 @@
               font-size: 0.7rem;
               color: var(--accent);
             "
-            >🌐 Web3ゲーム</span
+            >🌐 Web3 Game</span
           >
           <h4>🎮 Clash of the Titans ↗</h4>
           <span class="cert-status" style="margin-bottom: 0.5rem"
-            >クローズドベータ</span
+            >Closed Beta</span
           >
-          <p>
-            MAGNEブロックチェーンで構築されたWeb3ゲーム。プレイして報酬を獲得。
-          </p>
+          <p>Web3 game built on MAGNE blockchain. Play and earn.</p>
         </a>
         <a
-          href="clash-of-titans-jp.html"
+          href="clash-of-titans.html"
           class="network-card animate anim-up delay-6"
           style="text-decoration: none"
         >
@@ -1737,10 +1762,10 @@
               font-size: 0.7rem;
               color: var(--accent);
             "
-            >🌐 Web3ゲーム</span
+            >🌐 Web3 Game</span
           >
-          <h4>📄 Clash of the Titans ホワイトペーパー ↗</h4>
-          <p>Clash of the Titans 完全ホワイトペーパー — 英語版。</p>
+          <h4>📄 Clash of the Titans Whitepaper ↗</h4>
+          <p>Clash of the Titans full whitepaper — English version.</p>
         </a>
       </div>
     </section>
@@ -1748,10 +1773,11 @@
     <!-- MILESTONES TIMELINE -->
     <section id="milestones">
       <div class="section-title">
-        <h2>
-          プロジェクト <span style="color: var(--accent)">マイルストーン</span>
-        </h2>
-        <p>セキュリティ認証から量産まで — すべてのステップを記録。</p>
+        <h2>Project <span style="color: var(--accent)">マイルストーン</span></h2>
+        <p>
+          From security certification to mass production — every step
+          documented.
+        </p>
       </div>
       <div class="timeline">
         <!-- PHONE GEN1: SECURITY & CERTIFICATIONS -->
@@ -1759,393 +1785,430 @@
           Phone Gen1 — セキュリティ & 認証
         </div>
 
-        <div class="timeline-item 完了">
-          <div class="timeline-date">2023年12月</div>
+        <div class="timeline-item completed">
+          <div class="timeline-date">Dec 2023</div>
           <div class="timeline-content">
             <div class="timeline-badge completed">✓ 完了</div>
-            <h4>UTEEセキュリティ評価 — EAL2+</h4>
+            <h4>UTEE セキュリティ Evaluation — EAL2+</h4>
             <p>
-              OEM/ODMマッピング済み · EAL2+認証完了;
-              マッピングは機密保持契約下で利用可能。
+              Mapped to OEM/ODM · EAL2+ certification completed; mapping
+              available under controlled due diligence.
             </p>
           </div>
         </div>
 
-        <div class="timeline-item 完了">
-          <div class="timeline-date">2024年5月</div>
+        <div class="timeline-item completed">
+          <div class="timeline-date">May 2024</div>
           <div class="timeline-content">
             <div class="timeline-badge completed">✓ 完了</div>
-            <h4>HyperSeed N60セキュアコンポーネント — EAL6+</h4>
+            <h4>HyperSeed N60 Secure Component — EAL6+</h4>
             <p>
-              OEM/ODMマッピング済み · EAL6+認証完了;
-              マッピングは機密保持契約下で利用可能。
+              Mapped to OEM/ODM · EAL6+ certification completed; mapping
+              available under controlled due diligence.
             </p>
           </div>
         </div>
 
-        <div class="timeline-item 完了">
-          <div class="timeline-date">2025年9月</div>
+        <div class="timeline-item completed">
+          <div class="timeline-date">Sep 2025</div>
           <div class="timeline-content">
             <div class="timeline-badge completed">✓ 完了</div>
-            <h4>HyperSeed 72Bセキュアエレメント — EAL6+</h4>
-            <p>EAL6+認証完了; マッピングは機密保持契約下で利用可能。</p>
-          </div>
-        </div>
-
-        <div class="timeline-item 完了">
-          <div class="timeline-date">2025年9月</div>
-          <div class="timeline-content">
-            <div class="timeline-badge completed">✓ 完了</div>
-            <h4>Google GMS承認</h4>
-            <p>ビルド承認付与; 出荷/最終承認証拠は機密保持契約下で利用可能。</p>
-          </div>
-        </div>
-
-        <div class="timeline-item 完了">
-          <div class="timeline-date">2025年9月</div>
-          <div class="timeline-content">
-            <div class="timeline-badge completed">✓ 完了</div>
-            <h4>Google Widevine L1承認</h4>
-            <p>承認証拠は機密保持契約下で利用可能。</p>
-          </div>
-        </div>
-
-        <div class="timeline-item 完了">
-          <div class="timeline-date">2025年12月</div>
-          <div class="timeline-content">
-            <div class="timeline-badge completed">✓ 完了</div>
-            <h4>GSMA TAC発行</h4>
-            <p>TAC 01681300 · マーケティング名：MAG1</p>
-          </div>
-        </div>
-
-        <div class="timeline-item 完了">
-          <div class="timeline-date">2025年12月</div>
-          <div class="timeline-content">
-            <div class="timeline-badge completed">✓ 完了</div>
-            <h4>UN38.3認証合格</h4>
-            <p>輸送安全試験完了。</p>
-          </div>
-        </div>
-
-        <div class="timeline-item 完了">
-          <div class="timeline-date">2025年12月</div>
-          <div class="timeline-content">
-            <div class="timeline-badge completed">✓ 完了</div>
-            <h4>CB認証合格（IEC 62133-2）</h4>
-            <p>バッテリー安全認証完了。</p>
-          </div>
-        </div>
-
-        <div class="timeline-item 完了">
-          <div class="timeline-date">2026年4月</div>
-          <div class="timeline-content">
-            <div class="timeline-badge completed">✓ 完了</div>
-            <h4>FCC認証</h4>
-            <p>公開済み · FCC ID: 2BVCPGC603606</p>
-          </div>
-        </div>
-
-        <div class="timeline-item 完了">
-          <div class="timeline-date">2026年4月</div>
-          <div class="timeline-content">
-            <div class="timeline-badge completed">✓ 完了</div>
-            <h4>カリフォルニア州プロポジション65 (CP65)</h4>
+            <h4>HyperSeed 72B Secure Element — EAL6+</h4>
             <p>
-              TÜV RheinlandレポートNo. 27220370a 001 ·
-              フタル酸塩類および鉛含有量 合格
+              EAL6+ certification completed; mapping available under controlled
+              due diligence.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item completed">
+          <div class="timeline-date">Sep 2025</div>
+          <div class="timeline-content">
+            <div class="timeline-badge completed">✓ 完了</div>
+            <h4>Google GMS Approval</h4>
+            <p>
+              Build approval granted; shipment/final approval evidence available
+              under controlled due diligence.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item completed">
+          <div class="timeline-date">Sep 2025</div>
+          <div class="timeline-content">
+            <div class="timeline-badge completed">✓ 完了</div>
+            <h4>Google Widevine L1 Approval</h4>
+            <p>Approval evidence available under controlled due diligence.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item completed">
+          <div class="timeline-date">Dec 2025</div>
+          <div class="timeline-content">
+            <div class="timeline-badge completed">✓ 完了</div>
+            <h4>GSMA TAC Issuance</h4>
+            <p>TAC 01681300, マーケティング名: MAG1</p>
+          </div>
+        </div>
+
+        <div class="timeline-item completed">
+          <div class="timeline-date">Dec 2025</div>
+          <div class="timeline-content">
+            <div class="timeline-badge completed">✓ 完了</div>
+            <h4>UN38.3 Certification Passed</h4>
+            <p>Transport safety testing completed.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item completed">
+          <div class="timeline-date">Dec 2025</div>
+          <div class="timeline-content">
+            <div class="timeline-badge completed">✓ 完了</div>
+            <h4>CB Certification Passed (IEC 62133-2)</h4>
+            <p>バッテリー safety certification completed.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item completed">
+          <div class="timeline-date">Apr 2026</div>
+          <div class="timeline-content">
+            <div class="timeline-badge completed">✓ 完了</div>
+            <h4>FCC Certification</h4>
+            <p>Publicly available · FCC ID: 2BVCPGC603606</p>
+          </div>
+        </div>
+
+        <div class="timeline-item completed">
+          <div class="timeline-date">Apr 2026</div>
+          <div class="timeline-content">
+            <div class="timeline-badge completed">✓ 完了</div>
+            <h4>California Proposition 65 (CP65)</h4>
+            <p>
+              TÜV Rheinland Report No. 27220370a 001 · Phthalates and Lead
+              Content PASS
             </p>
           </div>
         </div>
 
         <div class="timeline-item in-progress">
-          <div class="timeline-date">2026年第1四半期</div>
+          <div class="timeline-date">Q1 2026</div>
           <div class="timeline-content">
             <div class="timeline-badge in-progress">⏳ 進行中</div>
-            <h4>CE認証</h4>
+            <h4>CE Certification</h4>
             <p>
-              欧州整合性 — ラボスケジュールに依存;
-              証拠は機密保持契約下で利用可能。
+              欧州統一基準 — Lab schedule dependent; evidence available
+              under controlled due diligence.
             </p>
           </div>
         </div>
 
         <!-- PHONE GEN1: DEVICE PROGRAM -->
-        <div class="timeline-section-label">
-          Phone Gen1 — デバイスプログラム
-        </div>
+        <div class="timeline-section-label">Phone Gen1 — Device Program</div>
 
-        <div class="timeline-item 完了">
-          <div class="timeline-date">2024年9月 – 2025年6月</div>
+        <div class="timeline-item completed">
+          <div class="timeline-date">Sep 2024 – Jun 2025</div>
           <div class="timeline-content">
             <div class="timeline-badge completed">✓ 完了</div>
-            <h4>Pre EVT P0 受入 / 共同R&Dフェーズ</h4>
+            <h4>Pre EVT P0 Acceptance / Joint R&D Phase</h4>
             <p>
-              開発前・共同R&Dフェーズ完了;
-              支援資料はNDA/機密保持契約下で利用可能。
+              Pre-development and joint R&D phase completed; supporting
+              materials available under NDA / controlled due diligence.
             </p>
           </div>
         </div>
 
-        <div class="timeline-item 完了">
-          <div class="timeline-date">2025年12月</div>
+        <div class="timeline-item completed">
+          <div class="timeline-date">Dec 2025</div>
           <div class="timeline-content">
             <div class="timeline-badge completed">✓ 完了</div>
-            <h4>OEM/ODM生産契約締結</h4>
-            <p>製造パートナーとの生産協力協定締結完了。</p>
+            <h4>OEM/ODM Production Contract Signed</h4>
+            <p>
+              Production cooperation agreement executed with manufacturing
+              partner.
+            </p>
           </div>
         </div>
 
-        <div class="timeline-item 完了">
-          <div class="timeline-date">2026年2月</div>
+        <div class="timeline-item completed">
+          <div class="timeline-date">Feb 2026</div>
           <div class="timeline-content">
             <div class="timeline-badge completed">✓ 完了</div>
-            <h4>EVT P1 受入</h4>
-            <p>EVT P1受入完了; 支援資料はNDA/機密保持契約下で利用可能。</p>
+            <h4>EVT P1 Acceptance</h4>
+            <p>
+              EVT P1 acceptance completed; supporting materials available under
+              NDA / controlled due diligence.
+            </p>
           </div>
         </div>
 
         <div class="timeline-item in-progress">
-          <div class="timeline-date">2026年3月〜4月</div>
+          <div class="timeline-date">Mar–Apr 2026</div>
           <div class="timeline-content">
             <div class="timeline-badge in-progress">⏳ 進行中</div>
-            <h4>PVT P2 Validation & 受入</h4>
+            <h4>PVT P2 Validation & Acceptance</h4>
             <p>
-              量産validation進行中;
-              フェーズ成果物とゲーティング証拠はNDA/機密保持契約下で利用可能。
+              Mass-production validation is in progress; phase artifacts and
+              gating evidence available under NDA / controlled due diligence.
             </p>
           </div>
         </div>
 
         <div class="timeline-item planned">
-          <div class="timeline-date">2026年6月〜7月</div>
+          <div class="timeline-date">Jun–Jul 2026</div>
           <div class="timeline-content">
-            <div class="timeline-badge planned">🔵 予定</div>
-            <h4>初回出荷ウィンドウ</h4>
-            <p>PVT validation後・認証終了予定。</p>
+            <div class="timeline-badge planned">🔵 計画中</div>
+            <h4>First Delivery Window</h4>
+            <p>
+              First delivery targeted after PVT validation and certification
+              closure.
+            </p>
           </div>
         </div>
 
         <div class="timeline-item planned">
-          <div class="timeline-date">2026年7月〜8月</div>
+          <div class="timeline-date">Jul–Aug 2026</div>
           <div class="timeline-content">
-            <div class="timeline-badge planned">🔵 予定</div>
-            <h4>量産ラマス</h4>
-            <p>歩留まりvalidation、安定性validation、初回バッチ出荷。</p>
+            <div class="timeline-badge planned">🔵 計画中</div>
+            <h4>Mass Production Ramp</h4>
+            <p>
+              Yield validation, stability validation, and first batch shipment.
+            </p>
           </div>
         </div>
 
         <!-- L1 & L2: NETWORK & INFRASTRUCTURE -->
         <div class="timeline-section-label">
-          L1 & L2 — ネットワーク & インフラ
+          L1 & L2 — Network & Infrastructure
         </div>
 
-        <div class="timeline-item 完了">
-          <div class="timeline-date">2025年8月</div>
+        <div class="timeline-item completed">
+          <div class="timeline-date">Aug 2025</div>
           <div class="timeline-content">
             <div class="timeline-badge completed">✓ 完了</div>
-            <h4>MAGNE L1テストネットローンチ</h4>
-            <p>チェーンID = 20250810 · 公式接続文書に記載。</p>
-          </div>
-        </div>
-
-        <div class="timeline-item 完了">
-          <div class="timeline-date">2025年8月</div>
-          <div class="timeline-content">
-            <div class="timeline-badge completed">✓ 完了</div>
-            <h4>M Hash L2 テストネットローンチ</h4>
+            <h4>MAGNE L1 Testnet Launch</h4>
             <p>
-              チェーンID = 20250827 · OP StackベースL2 · 公式接続文書に記載。
+              Chain ID = 20250810 · Listed in official connection documentation.
             </p>
           </div>
         </div>
 
-        <div class="timeline-item 完了">
-          <div class="timeline-date">2025年9月</div>
+        <div class="timeline-item completed">
+          <div class="timeline-date">Aug 2025</div>
           <div class="timeline-content">
             <div class="timeline-badge completed">✓ 完了</div>
-            <h4>MAGNE L1 公開GitHubリポジトリ公開</h4>
-            <p>公開アクセス可能 · 外部タイムスタンプで検証可能。</p>
-          </div>
-        </div>
-
-        <div class="timeline-item 完了">
-          <div class="timeline-date">2025年9月</div>
-          <div class="timeline-content">
-            <div class="timeline-badge completed">✓ 完了</div>
-            <h4>M Hash L2公開GitHubリポジトリ公開</h4>
-            <p>公開アクセス可能 · 外部タイムスタンプで検証可能。</p>
-          </div>
-        </div>
-
-        <div class="timeline-item 完了">
-          <div class="timeline-date">2025年10月</div>
-          <div class="timeline-content">
-            <div class="timeline-badge completed">✓ 完了</div>
-            <h4>L2テストネットエクスプローラー 公開利用可能</h4>
-            <p>公開タイムスタンプで外部検証可能。</p>
-          </div>
-        </div>
-
-        <div class="timeline-item 完了">
-          <div class="timeline-date">2025年10月</div>
-          <div class="timeline-content">
-            <div class="timeline-badge completed">✓ 完了</div>
-            <h4>L1テストネットエクスプローラー 公開利用可能</h4>
-            <p>公開タイムスタンプで外部検証可能。</p>
-          </div>
-        </div>
-
-        <div class="timeline-item 完了">
-          <div class="timeline-date">2025年10月</div>
-          <div class="timeline-content">
-            <div class="timeline-badge completed">✓ 完了</div>
-            <h4>テストネットファウセット/ガス提供</h4>
-            <p>テストネットのみ利用可能.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item 完了">
-          <div class="timeline-date">2025年10月</div>
-          <div class="timeline-content">
-            <div class="timeline-badge completed">✓ 完了</div>
-            <h4>開発者ドキュメント v1 （公開）</h4>
+            <h4>M Hash L2 Testnet Launch</h4>
             <p>
-              公開ドキュメントにはnet-config / RPC / ツール /
-              クイックスタートガイド が含まれています。
+              Chain ID = 20250827 · OP Stack-based L2 · Listed in official
+              connection documentation.
             </p>
           </div>
         </div>
 
-        <div class="timeline-item in-progress">
-          <div class="timeline-date">Q1–2026年第2四半期</div>
+        <div class="timeline-item completed">
+          <div class="timeline-date">Sep 2025</div>
           <div class="timeline-content">
-            <div class="timeline-badge in-progress">⏳ 進行中</div>
-            <h4>プロトコルセキュリティレビュー/監査準備</h4>
+            <div class="timeline-badge completed">✓ 完了</div>
+            <h4>MAGNE L1 Public GitHub Repository Released</h4>
+            <p>Publicly accessible and externally timestamp-verifiable.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item completed">
+          <div class="timeline-date">Sep 2025</div>
+          <div class="timeline-content">
+            <div class="timeline-badge completed">✓ 完了</div>
+            <h4>M Hash L2 Public GitHub Repository Released</h4>
+            <p>Publicly accessible and externally timestamp-verifiable.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item completed">
+          <div class="timeline-date">Oct 2025</div>
+          <div class="timeline-content">
+            <div class="timeline-badge completed">✓ 完了</div>
+            <h4>L2 Testnet Explorer Publicly Available</h4>
+            <p>Externally verifiable via publicly visible timestamps.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item completed">
+          <div class="timeline-date">Oct 2025</div>
+          <div class="timeline-content">
+            <div class="timeline-badge completed">✓ 完了</div>
+            <h4>L1 Testnet Explorer Publicly Available</h4>
+            <p>Externally verifiable via publicly visible timestamps.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item completed">
+          <div class="timeline-date">Oct 2025</div>
+          <div class="timeline-content">
+            <div class="timeline-badge completed">✓ 完了</div>
+            <h4>Testnet Faucet / Gas Provisioning</h4>
+            <p>Available on testnet only.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item completed">
+          <div class="timeline-date">Oct 2025</div>
+          <div class="timeline-content">
+            <div class="timeline-badge completed">✓ 完了</div>
+            <h4>Developer Documentation v1 (Public)</h4>
             <p>
-              セキュリティレビューと監査準備のワークストリームがメインネットゲーティングに向けて進行中。
+              Public docs include net-config / RPC / tools / quickstart guides.
             </p>
           </div>
         </div>
 
         <div class="timeline-item in-progress">
-          <div class="timeline-date">Q1–2026年第2四半期</div>
+          <div class="timeline-date">Q1–Q2 2026</div>
           <div class="timeline-content">
             <div class="timeline-badge in-progress">⏳ 進行中</div>
-            <h4>安定性ポリシー</h4>
+            <h4>Protocol セキュリティ Review / Audit Readiness</h4>
             <p>
-              レート制限、監視、可用性SLO —
-              ランブックとダッシュボードは機密保持契約下で利用可能。
+              セキュリティ review and audit readiness workstreams are progressing
+              toward mainnet gating.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item in-progress">
+          <div class="timeline-date">Q1–Q2 2026</div>
+          <div class="timeline-content">
+            <div class="timeline-badge in-progress">⏳ 進行中</div>
+            <h4>Stability Policy</h4>
+            <p>
+              Rate limiting, monitoring, and availability SLO — runbooks and
+              dashboards available under controlled due diligence.
             </p>
           </div>
         </div>
 
         <div class="timeline-item planned">
-          <div class="timeline-date">Q1–2026年第2四半期</div>
+          <div class="timeline-date">Q1–Q2 2026</div>
           <div class="timeline-content">
-            <div class="timeline-badge planned">🔵 予定</div>
-            <h4>メインネット準備チェックリスト&ジェネシスプラン</h4>
+            <div class="timeline-badge planned">🔵 計画中</div>
+            <h4>Mainnet Readiness Checklist & Genesis Plan</h4>
             <p>
-              テストネット強化後に進行予定; セキュリティと運用ゲートに依存。
+              To be progressed after testnet hardening; subject to security and
+              operations gates.
             </p>
           </div>
         </div>
 
         <div class="timeline-item planned">
-          <div class="timeline-date">Q1–2026年第2四半期</div>
+          <div class="timeline-date">Q1–Q2 2026</div>
           <div class="timeline-content">
-            <div class="timeline-badge planned">🔵 予定</div>
-            <h4>メインネットローンチ (L1/L2)</h4>
-            <p>準備ゲート、監査、エコシステム成熟度に依存。</p>
+            <div class="timeline-badge planned">🔵 計画中</div>
+            <h4>Mainnet Launch (L1/L2)</h4>
+            <p>Dependent on readiness gates, audits, and ecosystem maturity.</p>
           </div>
         </div>
 
         <!-- CAPITAL MARKETS & LISTING READINESS -->
-        <div class="timeline-section-label">資本市場・上場準備</div>
+        <div class="timeline-section-label">
+          Capital Markets & Listing Readiness
+        </div>
 
-        <div class="timeline-item 完了">
-          <div class="timeline-date">2026年3月</div>
+        <div class="timeline-item completed">
+          <div class="timeline-date">Mar 2026</div>
           <div class="timeline-content">
             <div class="timeline-badge completed">✓ 完了</div>
-            <h4>$MHAに関するシンガポール法的意見書発行</h4>
+            <h4>Singapore Legal Opinion on $MHA Issued</h4>
             <p>
-              GS Legal
-              LLCがMHAに関する法的意見書を発行。意見書では、レビューされたトークンデザインに基づくと、MHAはPS法におけるデジタル決済トークンに該当し、電子Money、社債、または集団投資スキームに該当せず、したがってSFAに基づく證券または資本市場商品とみなされないことを確認。
+              GS Legal LLC issued a legal opinion on MHA. The opinion states
+              that, based on the token design reviewed, MHA constitutes a
+              digital payment token under the PS Act, does not constitute
+              e-money, debenture, or a collective investment scheme, and
+              accordingly would not be deemed a security or capital markets
+              product under the SFA.
             </p>
           </div>
         </div>
 
         <div class="timeline-item in-progress">
-          <div class="timeline-date">2026年第1四半期</div>
+          <div class="timeline-date">Q1 2026</div>
           <div class="timeline-content">
             <div class="timeline-badge in-progress">⏳ 進行中</div>
-            <h4>取引平台DDパッケージ反復（v1 / v2 / v3）</h4>
+            <h4>Exchange DD Package Iterations (v1 / v2 / v3)</h4>
             <p>
-              チーム、セキュリティ、コンプライアンス、運用、トークン関連文書までのDD資料は複数の管理バージョンで更新されています。
+              DD materials covering team, security, compliance, operations, and
+              token-related documentation have been iteratively updated across
+              multiple controlled versions in response to review needs; public
+              disclosure remains summary-level.
             </p>
           </div>
         </div>
 
         <div class="timeline-item in-progress">
-          <div class="timeline-date">2026年第1四半期</div>
+          <div class="timeline-date">Q1 2026</div>
           <div class="timeline-content">
             <div class="timeline-badge in-progress">⏳ 進行中</div>
-            <h4>トークンドキュメント/ディスクロージャーパッケージの洗練</h4>
+            <h4>Token Documentation / Disclosure Package Refinement</h4>
             <p>
-              トークノミクス、放出スケジュール、ユーティリティ設計、ディスクロージャー言葉が取引平台とパートナーのレビューのために洗練されています。
+              Tokenomics, release schedule, utility design, and disclosure
+              wording are being refined for exchange and partner review.
             </p>
           </div>
         </div>
 
         <div class="timeline-item in-progress">
-          <div class="timeline-date">2026年第1四半期</div>
+          <div class="timeline-date">Q1 2026</div>
           <div class="timeline-content">
             <div class="timeline-badge in-progress">⏳ 進行中</div>
-            <h4>スマートコントラクト/プロトコル監査</h4>
+            <h4>Smart Contract / Protocol Audit</h4>
             <p>
-              監査ワークストリーム進行中;
-              最終報告書は完了時に機密保持契約下で開示予定。
+              Audit workstream progressing; final report to be disclosed under
+              controlled due diligence upon completion.
             </p>
           </div>
         </div>
 
         <div class="timeline-item in-progress">
-          <div class="timeline-date">2026年第1四半期</div>
+          <div class="timeline-date">Q1 2026</div>
           <div class="timeline-content">
             <div class="timeline-badge in-progress">⏳ 進行中</div>
-            <h4>取引平台DD/提出準備</h4>
+            <h4>Exchange DD / Submission Preparation</h4>
             <p>
-              提出資料、支援附件、検証パッケージは交換向けレビューのために統合中です。
+              Submission materials, supporting annexes, and verification package
+              are being consolidated for exchange-facing review.
             </p>
           </div>
         </div>
 
         <div class="timeline-item in-progress">
-          <div class="timeline-date">2026年第1四半期</div>
+          <div class="timeline-date">Q1 2026</div>
           <div class="timeline-content">
             <div class="timeline-badge in-progress">⏳ 進行中</div>
-            <h4>マーケットメーカー/流動性調整</h4>
-            <p>上場準備と並行して、ローンチ構造計画の議論が進められています。</p>
+            <h4>Market Maker / Liquidity Coordination</h4>
+            <p>
+              Discussions and launch-structure planning are being advanced in
+              parallel with listing preparation.
+            </p>
           </div>
         </div>
 
         <div class="timeline-item planned">
           <div class="timeline-date">Pre-TGE</div>
           <div class="timeline-content">
-            <div class="timeline-badge planned">🔵 予定</div>
-            <h4>TGE準備チェックリスト</h4>
+            <div class="timeline-badge planned">🔵 計画中</div>
+            <h4>TGE Readiness Checklist</h4>
             <p>
-              最終ゲーティングは法務、監査、取引平台、流動性、運用準備に依存。
+              Final gating subject to legal, audit, exchange, liquidity, and
+              operational readiness.
             </p>
           </div>
         </div>
 
         <div class="timeline-item planned">
-          <div class="timeline-date">Pre-TGE / メインネット</div>
+          <div class="timeline-date">Pre-TGE / Mainnet</div>
           <div class="timeline-content">
-            <div class="timeline-badge planned">🔵 予定</div>
-            <h4>上場/ローンチ実行ウィンドウ</h4>
-            <p>準備ゲートの完了と外部調整に依存。</p>
+            <div class="timeline-badge planned">🔵 計画中</div>
+            <h4>Listing / Launch Execution Window</h4>
+            <p>
+              Dependent on completion of readiness gates and external
+              coordination.
+            </p>
           </div>
         </div>
       </div>
@@ -2154,21 +2217,21 @@
     <!-- MANUFACTURING & COMMERCIAL STATUS -->
     <section id="status">
       <div class="section-title">
-        <h2>商用 <span style="color: var(--accent)">ステータス</span></h2>
-        <p>本物の製品。本物のパートナー。本物の勢いの。</p>
+        <h2>Commercial <span style="color: var(--accent)">Status</span></h2>
+        <p>Real product. Real partners. Real momentum.</p>
       </div>
       <div class="status-cards">
         <div class="status-card animate anim-scale delay-1">
           <div class="number">5,300+</div>
-          <div class="label">予約注文受付</div>
+          <div class="label">Pre-orders Received</div>
         </div>
         <div class="status-card animate anim-scale delay-2">
           <div class="number">30K</div>
-          <div class="label">OEM/ODM注文（台数）</div>
+          <div class="label">OEM/ODM Order (Units)</div>
         </div>
         <div class="status-card animate anim-scale delay-3">
           <div class="number">10K</div>
-          <div class="label">初回バッチ目標</div>
+          <div class="label">First Batch Target</div>
         </div>
         <a
           href="https://pitchbook.com/profiles/company/962044-57#overview"
@@ -2177,7 +2240,7 @@
           style="text-decoration: none; display: block"
         >
           <div class="number">$10M</div>
-          <div class="label">戦略的資金調達</div>
+          <div class="label">Strategic Funding</div>
         </a>
       </div>
     </section>
@@ -2188,7 +2251,7 @@
       style="padding: 4rem 2rem; max-width: 1200px; margin: 0 auto"
     >
       <div class="section-title">
-        <h2>戦略 <span style="color: var(--accent)">パートナー</span></h2>
+        <h2>Strategic <span style="color: var(--accent)">Partners</span></h2>
       </div>
       
     <style>
@@ -2234,63 +2297,65 @@
       <div class="strategic-marquee">
         <div class="strategic-marquee-row">
           <div class="strategic-marquee-inner">
-        <img src="partners/fih.png" alt="Fih" style="height: 40px; width: auto; object-fit: contain;">
-        <img src="partners/google-logo.png" alt="Google Logo" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/fih.png" alt="fih" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/google-logo.png" alt="google-logo" style="height: 40px; width: auto; object-fit: contain;">
         <img src="partners/google-cloud.png" alt="Google Cloud" style="height: 40px; width: auto; object-fit: contain;">
-        <img src="partners/imag.png" alt="Imag" style="height: 40px; width: auto; object-fit: contain;">
-        <img src="partners/hed.png" alt="Hed" style="height: 40px; width: auto; object-fit: contain;">
-        <img src="partners/kucoin.png" alt="Kucoin" style="height: 40px; width: auto; object-fit: contain;">
-        <img src="partners/mexc.png" alt="Mexc" style="height: 40px; width: auto; object-fit: contain;">
-        <img src="partners/castrum.png" alt="Castrum" style="height: 40px; width: auto; object-fit: contain;">
-        <img src="partners/becker.png" alt="Becker" style="height: 40px; width: auto; object-fit: contain;">
-        <img src="partners/duckdao.png" alt="Duckdao" style="height: 40px; width: auto; object-fit: contain;">
-        <img src="partners/tbv.png" alt="Tbv" style="height: 40px; width: auto; object-fit: contain;"><img src="partners/beosin.png" alt="Beosin" style="height: 40px; width: auto; object-fit: contain;">
-        <img src="partners/gs.png" alt="GS" style="height: 40px; width: auto; object-fit: contain;">
-        
+        <img src="partners/imag.png" alt="imag" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/hed.png" alt="hed" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/kucoin.png" alt="kucoin" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/mexc.png" alt="mexc" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/castrum.png" alt="castrum" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/becker.png" alt="becker" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/duckdao.png" alt="duckdao" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/tbv.png" alt="tbv" style="height: 40px; width: auto; object-fit: contain;">
             <!-- Duplicate row 1 -->
-        <img src="partners/fih.png" alt="Fih" style="height: 40px; width: auto; object-fit: contain;">
-        <img src="partners/google-logo.png" alt="Google Logo" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/fih.png" alt="fih" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/google-logo.png" alt="google-logo" style="height: 40px; width: auto; object-fit: contain;">
         <img src="partners/google-cloud.png" alt="Google Cloud" style="height: 40px; width: auto; object-fit: contain;">
-        <img src="partners/imag.png" alt="Imag" style="height: 40px; width: auto; object-fit: contain;">
-        <img src="partners/hed.png" alt="Hed" style="height: 40px; width: auto; object-fit: contain;">
-        <img src="partners/kucoin.png" alt="Kucoin" style="height: 40px; width: auto; object-fit: contain;">
-        <img src="partners/mexc.png" alt="Mexc" style="height: 40px; width: auto; object-fit: contain;">
-        <img src="partners/castrum.png" alt="Castrum" style="height: 40px; width: auto; object-fit: contain;">
-        <img src="partners/becker.png" alt="Becker" style="height: 40px; width: auto; object-fit: contain;">
-        <img src="partners/duckdao.png" alt="Duckdao" style="height: 40px; width: auto; object-fit: contain;">
-        <img src="partners/tbv.png" alt="Tbv" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/imag.png" alt="imag" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/hed.png" alt="hed" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/kucoin.png" alt="kucoin" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/mexc.png" alt="mexc" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/castrum.png" alt="castrum" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/becker.png" alt="becker" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/duckdao.png" alt="duckdao" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/tbv.png" alt="tbv" style="height: 40px; width: auto; object-fit: contain;">
           </div>
         </div>
         <div class="strategic-marquee-row">
           <div class="strategic-marquee-inner">
-        <img src="partners/bitget.png" alt="Bitget" style="height: 40px; width: auto; object-fit: contain;">
-        <img src="partners/lbank.png" alt="Lbank" style="height: 40px; width: auto; object-fit: contain;">
-        <img src="partners/iotex.png" alt="Iotex" style="height: 40px; width: auto; object-fit: contain;">
-        <img src="partners/chaincatcher.png" alt="Chaincatcher" style="height: 40px; width: auto; object-fit: contain;">
-        <img src="partners/techflow.png" alt="Techflow" style="height: 40px; width: auto; object-fit: contain;">
-        <img src="partners/xt.png" alt="Xt" style="height: 40px; width: auto; object-fit: contain;">
-        <img src="partners/weex.png" alt="Weex" style="height: 40px; width: auto; object-fit: contain;">
-        <img src="partners/bitpush.png" alt="Bitpush" style="height: 40px; width: auto; object-fit: contain;">
-        <img src="partners/jinse.png" alt="Jinse" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/bitget.png" alt="bitget" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/lbank.png" alt="lbank" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/iotex.png" alt="iotex" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/chaincatcher.png" alt="chaincatcher" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/techflow.png" alt="techflow" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/xt.png" alt="xt" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/weex.png" alt="weex" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/bitpush.png" alt="bitpush" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/gs.png" alt="gs" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/beosin.png" alt="beosin" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/jinse.png" alt="jinse" style="height: 40px; width: auto; object-fit: contain;">
             <!-- Duplicate row 2 -->
-        <img src="partners/bitget.png" alt="Bitget" style="height: 40px; width: auto; object-fit: contain;">
-        <img src="partners/lbank.png" alt="Lbank" style="height: 40px; width: auto; object-fit: contain;">
-        <img src="partners/iotex.png" alt="Iotex" style="height: 40px; width: auto; object-fit: contain;">
-        <img src="partners/chaincatcher.png" alt="Chaincatcher" style="height: 40px; width: auto; object-fit: contain;">
-        <img src="partners/techflow.png" alt="Techflow" style="height: 40px; width: auto; object-fit: contain;">
-        <img src="partners/xt.png" alt="Xt" style="height: 40px; width: auto; object-fit: contain;">
-        <img src="partners/weex.png" alt="Weex" style="height: 40px; width: auto; object-fit: contain;">
-        <img src="partners/bitpush.png" alt="Bitpush" style="height: 40px; width: auto; object-fit: contain;">
-        <img src="partners/jinse.png" alt="Jinse" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/bitget.png" alt="bitget" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/lbank.png" alt="lbank" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/iotex.png" alt="iotex" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/chaincatcher.png" alt="chaincatcher" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/techflow.png" alt="techflow" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/xt.png" alt="xt" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/weex.png" alt="weex" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/bitpush.png" alt="bitpush" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/gs.png" alt="gs" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/beosin.png" alt="beosin" style="height: 40px; width: auto; object-fit: contain;">
+        <img src="partners/jinse.png" alt="jinse" style="height: 40px; width: auto; object-fit: contain;">
           </div>
         </div>
       </div>
     </section>
 
-        <!-- ECOSYSTEM PARTNERS -->
+    <!-- ECOSYSTEM PARTNERS -->
     <section style="padding: 3rem 2rem; max-width: 1200px; margin: 0 auto;">
       <div class="section-title">
-        <h2><span style="font-weight: 700;">エコシステム</span> <span style="color: var(--accent); font-weight: 700;">パートナー</span></h2>
+        <h2><span style="font-weight: 700;">Ecosystem</span> <span style="color: var(--accent); font-weight: 700;">Partners</span></h2>
       </div>
       
     <style>
@@ -2442,51 +2507,52 @@
         <img src="partners/primeyield.svg" alt="PrimeYield" style="height: 50px; width: auto; object-fit: contain;">
         <img src="partners/newlogo.png" alt="TX24" style="height: 50px; width: auto; object-fit: contain;">
         <img src="partners/blockbeats.svg" alt="BlockBeats" style="height: 50px; width: auto; object-fit: contain;">
-        
           </div>
         </div>
       </div>
     </section>
 
-
     <!-- CONTACT / CTA -->
     <section id="contact">
       <div class="contact-section animate anim-up">
-        <h2>安全なAI + <span>Web3</span>の未来を構築しよう</h2>
+        <h2>Let's Build the <span>Secure AI + Web3</span> Future</h2>
         <p>
-          予約注文、エコシステムパートナーシップ、取引所デューデリジェンス、開発者コラボレーション、機関投資家向けお問い合わせは、MAGNE.AIチームまでご連絡ください。
+          For preorder, ecosystem partnerships, exchange due diligence,
+          developer collaboration, or institutional inquiries — contact the
+          MAGNE.AI team.
         </p>
         <div class="contact-categories">
           <a href="https://t.me/JerryKao" target="_blank" class="contact-cat"
-            >🛒 予約注文</a
+            >🛒 予約 Inquiry</a
           >
           <a href="https://t.me/Kongnet2022" target="_blank" class="contact-cat"
-            >🤝 パートナーシップ</a
+            >🤝 Partnership</a
           >
           <a href="https://t.me/Kongnet2022" target="_blank" class="contact-cat"
-            >🔍 取引所/デューデリジェンス</a
+            >🔍 Exchange / Due Diligence</a
           >
           <a href="https://t.me/Kongnet2022" target="_blank" class="contact-cat"
-            >👨💻 開発者エコシステム</a
+            >👨‍💻 Developer Ecosystem</a
           >
           <a href="https://t.me/Kongnet2022" target="_blank" class="contact-cat"
-            >💰 投資家</a
+            >💰 Investor</a
           >
           <a href="https://t.me/Kongnet2022" target="_blank" class="contact-cat"
-            >📱 プリインストール アプリ/DApp</a>
+            >📱 Pre-installed App/DApp</a
           >
           <a
             href="https://t.me/Aaron_MagneAI"
             target="_blank"
             class="contact-cat"
-            >📰 メディア</a
+            >📰 Media</a
           >
         </div>
         <div class="contact-buttons">
           <a href="https://payment.magne.ai/buy" class="btn-primary"
-            >今すぐ予約</a
+            >予約する</a
           >
-          <a href="/cdn-cgi/l/email-protection#107a756262694f7b717f507d71777e753e7179" class="btn-secondary">チームに連絡</a
+          <a href="mailto:jerry_kao@magne.ai" class="btn-secondary"
+            >お問い合わせ Team</a
           >
         </div>
       </div>
@@ -2574,13 +2640,13 @@
         <a href="https://explorer.testnet.magicalhash.com" target="_blank"
           ><img
             src="https://explorer.testnet.magicalhash.com/assets/configs/network_logo.png"
-            alt="L1 ネットワーク"
+            alt="L1 Network"
             style="height: 24px; vertical-align: middle"
         /></a>
         <a href="https://l2-explorer.testnet.magicalhash.com" target="_blank"
           ><img
             src="https://l2-explorer.testnet.magicalhash.com/assets/configs/network_logo.png"
-            alt="L2 ネットワーク"
+            alt="L2 Network"
             style="height: 24px; vertical-align: middle"
         /></a>
       </div>
@@ -2592,22 +2658,21 @@
         />
       </div>
       <p>
-        © 2026 MAGNE.AI® 版権所有。 ·
+        © 2026 MAGNE.AI® 無記所有権. ·
         <a
           href="https://tmsearch.uspto.gov/search/search-results/99311528"
           target="_blank"
           class="footer-icon"
           style="padding: 0.3rem 0.6rem; font-size: 0.8rem"
-          >商標</a
+          >Trademark</a
         >
       </p>
       <p style="margin-top: 0.5rem">
-        <a href="privacy-policy-jp.html">プライバシーポリシー</a>
+        <a href="privacy-policy.html">プライバシーポリシー</a>
       </p>
     </footer>
 
     <!-- SWIRL PARTICLE BACKGROUND -->
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
     <script>
       document.addEventListener("click", function (e) {
         const menu = document.getElementById("nav-menu");
@@ -2688,8 +2753,8 @@
       animate();
 
       const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
+        (件) => {
+          件.forEach((entry) => {
             if (entry.isIntersecting) {
               entry.target.classList.add("visible");
             }
@@ -2742,6 +2807,62 @@
           hamburger.classList.remove("active");
         }
       });
+    </script>
+
+    <!-- Lottery ライブデータ -->
+    <script>
+    (function() {
+      const DASHBOARD_API = 'https://payment.magne.ai/api/v1/lottery/dashboard';
+      const MHA_PER_NON_WINNER = 100;
+      const NON_WINNERS_PER_ROUND = 99;
+
+      function fmtNum(n) {
+        if (n === undefined || n === null || n === '--') return '--';
+        return Number(n).toLocaleString();
+      }
+
+      function setEl(id, val) {
+        const el = document.getElementById(id);
+        if (el) el.textContent = val !== undefined && val !== null ? val : '--';
+      }
+
+      async function loadLottery() {
+        try {
+          const res = await fetch(DASHBOARD_API);
+          const json = await res.json();
+          if (json.code !== 200 || !json.data) return;
+          const d = json.data;
+
+          setEl('lottery-participants', fmtNum(d.totalParticipants));
+          setEl('lottery-phones', fmtNum(d.totalMobile));
+          setEl('lottery-round', fmtNum(d.currRound));
+
+          // 。MHAエアドロップ待機中 = (curr回戦 - 1) * 99 * 100
+          const completedRounds = (d.curr回戦 || 1) - 1;
+          const pendingMha = completedRounds * NON_WINNERS_PER_ROUND * MHA_PER_NON_WINNER;
+          setEl('lottery-mha', fmtNum(pendingMha));
+
+          // Next draw progress
+          if (d.nextDrawNeed !== undefined) {
+            const 件Now = 100 - d.nextDrawNeed;
+            setEl('lottery-件', 件Now);
+            setEl('lottery-件-bar', 件Now);
+            const fill = document.getElementById('lottery-progress-bar');
+            if (fill) fill.style.width = Math.min(100, Math.max(0, 件Now)) + '%';
+
+            // オンチェーン資産 = (completedRounds * $1000) + (currentEntries * $10)
+            const completedRounds = (d.curr回戦 || 1) - 1;
+            const onChainUsd = completedRounds * 1000 + 件Now * 10;
+            setEl('lottery-pool', fmtNum(onChainUsd));
+          }
+        } catch (e) {
+          console.warn('Lottery API error:', e);
+        }
+      }
+
+      loadLottery();
+      setInterval(loadLottery, 30000);
+    })();
     </script>
   </body>
 </html>
