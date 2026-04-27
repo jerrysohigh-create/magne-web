@@ -454,10 +454,26 @@
       margin: 0 auto;
     }
     .showcase-card {
+      position: relative;
       background: var(--bg-card);
+      background-image: url('assets/clash-game-bg.jpg');
+      background-size: cover;
+      background-position: center;
       border: 1px solid var(--border);
       border-radius: 20px;
       padding: 2.5rem;
+      overflow: hidden;
+    }
+    .showcase-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 1;
+    }
+    .showcase-card > * {
+      position: relative;
+      z-index: 2;
     }
     .showcase-tag {
       display: inline-block;
