@@ -376,12 +376,31 @@
       color: var(--accent);
     }
 
-</style>
+    .nav-logo-img {
+      height: 28px;
+      width: auto;
+      display: block;
+    }
+      .footer-brand-logo {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .footer-brand-logo img {
+      height: 30px;
+      width: auto;
+      margin-bottom: 0.75rem;
+      opacity: 0.9;
+    }
+    .footer-brand-logo p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 <body class="content--canvas">
   <canvas id="bg"></canvas>
   <nav>
-    <div class="nav-brand"><a href="magne-home.html" class="nav-logo">MAGNE.AI</a></div>
+    <div class="nav-brand"><a href="magne-home.html" class="nav-logo"><img src="assets/brand/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="nav-logo-img"></a></div>
     <a href="magne-home.html" class="nav-back">← Back to Home</a>
   </nav>
 
@@ -505,7 +524,10 @@
 
   <!-- FOOTER -->
   <footer>
-    <p>MAGNE.AI — The Web3-native AI Phone</p>
+    <div class="footer-brand-logo">
+      <img src="assets/brand/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="footer-brand-img">
+      <p>The Web3-native AI Phone</p>
+    </div>
     <div class="footer-links">
       <a href="privacy-policy.html">Privacy Policy</a>
       <a href="magne-contact.html">Contact</a>
