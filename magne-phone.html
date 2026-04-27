@@ -705,6 +705,59 @@
     .trademark-notice a:hover {
       text-decoration: underline;
     }
+
+    /* GOOGLE SERVICES */
+    #google-services {
+      padding: 4rem 2rem;
+    }
+    .google-services-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .google-service-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.25rem 1rem;
+      width: 120px;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+    .google-service-item:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .google-service-item img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      margin-bottom: 0.75rem;
+    }
+    .google-service-item .service-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.25rem;
+    }
+    .google-service-item .service-desc {
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+    }
+    .google-disclaimer {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      max-width: 800px;
+      margin: 2rem auto 0;
+      opacity: 0.7;
+    }
   </style>
 </head>
 <body>
@@ -853,7 +906,72 @@
       <p>Wi-Fi 2.4GHz/5GHz · Bluetooth · NFC</p>
     </div>
   </div>
+<!-- GOOGLE SERVICES -->
+<section id="google-services">
+  <div class="section-title">
+    <h2>Google Services & AI</h2>
+    <p>Pre-installed Google apps and services for a complete mobile experience.</p>
+  </div>
+  <div class="google-services-grid">
+    <div class="google-service-item">
+      <img src="assets/android-icon.png" alt="Android">
+      <span class="service-name">Android 15</span>
+      <span class="service-desc">Official Android platform</span>
+    </div>
+    <div class="google-service-item">
+      <img src="assets/gemini-icon.png" alt="Gemini">
+      <span class="service-name">Gemini AI</span>
+      <span class="service-desc">One-touch via side key</span>
+    </div>
+    <div class="google-service-item">
+      <img src="assets/play-icon.png" alt="Google Play">
+      <span class="service-name">Google Play</span>
+      <span class="service-desc">Official app store</span>
+    </div>
+    <div class="google-service-item">
+      <img src="assets/maps-icon.png" alt="Google Maps">
+      <span class="service-name">Google Maps</span>
+      <span class="service-desc">Navigation & location</span>
+    </div>
+    <div class="google-service-item">
+      <img src="assets/chrome-icon.png" alt="Chrome">
+      <span class="service-name">Chrome</span>
+      <span class="service-desc">Full web browsing</span>
+    </div>
+    <div class="google-service-item">
+      <img src="assets/gmail-icon.png" alt="Gmail">
+      <span class="service-name">Gmail</span>
+      <span class="service-desc">Google email</span>
+    </div>
+    <div class="google-service-item">
+      <img src="assets/drive-icon.png" alt="Google Drive">
+      <span class="service-name">Google Drive</span>
+      <span class="service-desc">Cloud storage</span>
+    </div>
+    <div class="google-service-item">
+      <img src="assets/youtube-icon.jpg" alt="YouTube">
+      <span class="service-name">YouTube</span>
+      <span class="service-desc">Video streaming</span>
+    </div>
+    <div class="google-service-item">
+      <img src="assets/youtube-music-icon.png" alt="YouTube Music">
+      <span class="service-name">YouTube Music</span>
+      <span class="service-desc">Music streaming</span>
+    </div>
+    <div class="google-service-item">
+      <img src="assets/tv-icon.png" alt="Google TV">
+      <span class="service-name">Google TV</span>
+      <span class="service-desc">Entertainment hub</span>
+    </div>
+    <div class="google-service-item">
+      <img src="assets/meet-icon.png" alt="Google Meet">
+      <span class="service-name">Google Meet</span>
+      <span class="service-desc">Video conferencing</span>
+    </div>
+  </div>
+  <p class="google-disclaimer">Google, Android, Gemini, Gmail, Chrome, YouTube, Google Maps, Google Drive, Google Meet, and Google Play are trademarks of Google LLC. Their presence on this page is for descriptive purposes only and does not constitute an endorsement or partnership.</p>
 </section>
+
 
 <!-- SOFTWARE ARCHITECTURE -->
 <section id="software">
