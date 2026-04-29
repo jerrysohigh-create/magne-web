@@ -87,7 +87,7 @@ body.mobile-nav-open .mobile-menu-btn::after { transform: rotate(-45deg); }
  nav {
  height: var(--mobile-nav-height);
  padding: 0.75rem 1rem !important;
- display: flex;
+ display: inline-flex !important;
  align-items: center;
  }
 
@@ -102,7 +102,7 @@ body.mobile-nav-open .mobile-menu-btn::after { transform: rotate(-45deg); }
  }
 
  .mobile-menu-btn {
- display: flex;
+ display: inline-flex !important;
  }
 
  .nav-links {
@@ -138,7 +138,7 @@ body.mobile-nav-open .mobile-menu-btn::after { transform: rotate(-45deg); }
  }
 
  .nav-links a {
- display: flex;
+ display: inline-flex !important;
  align-items: center;
  justify-content: space-between;
  min-height: 46px;
