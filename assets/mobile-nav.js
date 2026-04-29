@@ -1,5 +1,8 @@
 (function () {
   document.addEventListener("DOMContentLoaded", function () {
+    var existingBtn = document.querySelector(".mobile-menu-btn");
+    if (existingBtn) return; // Button already exists in HTML
+
     var menuBtn = document.createElement("button");
     menuBtn.className = "mobile-menu-btn";
     menuBtn.type = "button";
@@ -16,9 +19,11 @@
       nav.insertBefore(menuBtn, nav.firstChild);
     }
 
-    menuBtn.addEventListener("click", function () {
+    var btn = document.querySelector(".mobile-menu-btn");
+    
+    btn.addEventListener("click", function () {
       var isOpen = document.body.classList.toggle("mobile-nav-open");
-      menuBtn.setAttribute("aria-expanded", String(isOpen));
+      btn.setAttribute("aria-expanded", String(isOpen));
     });
 
     var navLinks = nav.querySelector(".nav-links");
@@ -26,7 +31,7 @@
       navLinks.querySelectorAll("a").forEach(function (link) {
         link.addEventListener("click", function () {
           document.body.classList.remove("mobile-nav-open");
-          menuBtn.setAttribute("aria-expanded", "false");
+          btn.setAttribute("aria-expanded", "false");
         });
       });
     }
@@ -34,7 +39,7 @@
     document.addEventListener("click", function (e) {
       if (!e.target.closest("nav") && document.body.classList.contains("mobile-nav-open")) {
         document.body.classList.remove("mobile-nav-open");
-        menuBtn.setAttribute("aria-expanded", "false");
+        btn.setAttribute("aria-expanded", "false");
       }
     });
   });
