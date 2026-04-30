@@ -430,3 +430,38 @@ body {
     grid-template-columns: 1fr !important;
   }
 }
+
+/* Phone Product Visual Section - Mobile */
+@media (max-width: 768px) {
+  .product-visual-section {
+    padding: 2rem 1rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+  }
+
+  .product-image-stack {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 1rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    flex-wrap: nowrap !important;
+    overflow: visible !important;
+  }
+
+  .product-image-stack img {
+    max-width: 85vw !important;
+    max-height: 350px !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
+  }
+
+  .product-image-stack .phone-back {
+    margin-bottom: 0 !important;
+    opacity: 0.85 !important;
+  }
+}
