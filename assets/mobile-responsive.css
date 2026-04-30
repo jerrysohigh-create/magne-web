@@ -270,3 +270,168 @@ body {
  overflow-x: hidden !important;
  }
 }
+
+
+/* =========================================================
+ MAGNE PHONE PAGE MOBILE HARD FIX
+ Fix package, Google services, and security stack overflow
+ ========================================================= */
+@media (max-width: 768px) {
+  /* Package Contents - 2 columns on mobile */
+  #package .package-grid,
+  .package-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    gap: 1rem !important;
+    overflow: visible !important;
+  }
+
+  #package .package-item,
+  .package-item {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    padding: 1rem !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    text-align: center !important;
+  }
+
+  #package .package-item img,
+  .package-item img {
+    max-width: 90px !important;
+    max-height: 70px !important;
+    object-fit: contain !important;
+    margin: 0 auto 0.75rem !important;
+    display: block !important;
+  }
+
+  #package .package-item .package-name,
+  #package .package-item .package-desc,
+  .package-item .package-name,
+  .package-item .package-desc {
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+    line-height: 1.4 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* Google Services - 2 columns on mobile */
+  #google-services .google-services-grid,
+  .google-services-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    gap: 1rem !important;
+    overflow: visible !important;
+  }
+
+  #google-services .google-service-item,
+  .google-service-item {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    padding: 1rem !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    text-align: center !important;
+    min-height: auto !important;
+  }
+
+  #google-services .google-service-item img,
+  .google-service-item img {
+    width: 40px !important;
+    height: 40px !important;
+    object-fit: contain !important;
+    margin: 0 auto 0.5rem !important;
+    display: block !important;
+  }
+
+  #google-services .google-service-item .service-name,
+  #google-services .google-service-item .service-desc,
+  .google-service-item .service-name,
+  .google-service-item .service-desc {
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+    line-height: 1.35 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* Security Three-Layer Stack - single column on mobile */
+  #security .security-three-layer,
+  .security-three-layer {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    gap: 1.5rem !important;
+    overflow: visible !important;
+  }
+
+  #security .layer-card,
+  .layer-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    padding: 1.5rem !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    text-align: left !important;
+  }
+
+  .layer-card .layer-num {
+    position: static !important;
+    transform: none !important;
+    display: inline-block !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .layer-card h3,
+  .layer-card p {
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+    line-height: 1.5 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* Certifications grid - single column */
+  .certs-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Specs table */
+  .specs-table {
+    display: block !important;
+    overflow-x: auto !important;
+  }
+
+  /* Core Hardware cards - 2 columns on mobile */
+  .cards-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 420px) {
+  #package .package-grid,
+  .package-grid,
+  #google-services .google-services-grid,
+  .google-services-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
