@@ -1,45 +1,37 @@
 (function () {
   document.addEventListener("DOMContentLoaded", function () {
-    var existingBtn = document.querySelector(".mobile-menu-btn");
-    if (existingBtn) return; // Button already exists in HTML
+    var toggle = document.querySelector(".mobile-menu-btn");
+    var menu = document.querySelector(".nav-links") || document.querySelector(".nav-menu");
 
-    var menuBtn = document.createElement("button");
-    menuBtn.className = "mobile-menu-btn";
-    menuBtn.type = "button";
-    menuBtn.setAttribute("aria-label", "Toggle navigation menu");
-    menuBtn.innerHTML = "<span></span>";
+    if (!toggle || !menu) return;
 
-    var nav = document.querySelector("nav");
-    if (!nav) return;
+    // Ensure toggle is visible (it should be hidden on desktop via CSS)
+    toggle.style.display = "inline-flex";
 
-    var navBrand = nav.querySelector(".nav-brand");
-    if (navBrand) {
-      nav.insertBefore(menuBtn, navBrand.nextSibling);
-    } else {
-      nav.insertBefore(menuBtn, nav.firstChild);
-    }
-
-    var btn = document.querySelector(".mobile-menu-btn");
-    
-    btn.addEventListener("click", function () {
-      var isOpen = document.body.classList.toggle("mobile-nav-open");
-      btn.setAttribute("aria-expanded", String(isOpen));
+    toggle.addEventListener("click", function () {
+      var isOpen = menu.classList.toggle("active");
+      toggle.classList.toggle("active", isOpen);
+      document.body.classList.toggle("menu-open", isOpen);
+      toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
     });
 
-    var navLinks = nav.querySelector(".nav-links");
-    if (navLinks) {
-      navLinks.querySelectorAll("a").forEach(function (link) {
-        link.addEventListener("click", function () {
-          document.body.classList.remove("mobile-nav-open");
-          btn.setAttribute("aria-expanded", "false");
-        });
+    // Close menu when clicking a link
+    menu.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        menu.classList.remove("active");
+        toggle.classList.remove("active");
+        document.body.classList.remove("menu-open");
+        toggle.setAttribute("aria-expanded", "false");
       });
-    }
+    });
 
+    // Close menu when clicking outside
     document.addEventListener("click", function (e) {
-      if (!e.target.closest("nav") && document.body.classList.contains("mobile-nav-open")) {
-        document.body.classList.remove("mobile-nav-open");
-        btn.setAttribute("aria-expanded", "false");
+      if (!e.target.closest("nav") && menu.classList.contains("active")) {
+        menu.classList.remove("active");
+        toggle.classList.remove("active");
+        document.body.classList.remove("menu-open");
+        toggle.setAttribute("aria-expanded", "false");
       }
     });
   });
