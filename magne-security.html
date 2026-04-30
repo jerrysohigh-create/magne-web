@@ -872,7 +872,10 @@
       </div>
       
       <!-- TEE Block Diagram -->
-      <svg viewBox="0 0 800 280" style="width: 100%; max-width: 800px; height: auto; display: block; margin: 0 auto;">
+      <svg viewBox="0 0 800 260" style="width: 100%; max-width: 800px; height: auto; display: block; margin: 0 auto;">
+        <!-- TrustZone Header -->
+        <text x="400" y="18" fill="rgba(255,255,255,0.5)" font-size="9" text-anchor="middle" font-weight="600">TRUSTZONE</text>
+ style="width: 100%; max-width: 800px; height: auto; display: block; margin: 0 auto;">
         <!-- Non-Secure World -->
         <rect x="10" y="10" width="380" height="260" rx="12" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
         <text x="25" y="35" fill="rgba(255,255,255,0.5)" font-size="11" font-weight="600">NON-SECURE WORLD (HLOS)</text>
@@ -891,10 +894,6 @@
         <text x="40" y="158" fill="rgba(255,255,255,0.6)" font-size="10">Linux Kernel</text>
         <rect x="40" y="168" width="320" height="20" rx="4" fill="rgba(150,100,200,0.2)" stroke="rgba(150,100,200,0.4)"/>
         <text x="48" y="182" fill="rgba(220,180,255,0.9)" font-size="7">trusty linux driver (TIPC + virtio + SMC call)</text>
-        
-        <!-- TrustZone Boundary -->
-        <rect x="395" y="10" width="10" height="260" rx="5" fill="rgba(0, 212, 212, 0.3)"/>
-        <text x="402" y="18" fill="var(--accent)" font-size="7" font-weight="600">TrustZone</text>
         
         <!-- Secure World -->
         <rect x="410" y="10" width="380" height="260" rx="12" fill="rgba(0, 212, 212, 0.05)" stroke="rgba(0, 212, 212, 0.2)" stroke-width="1"/>
