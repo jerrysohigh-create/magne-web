@@ -1110,6 +1110,115 @@
   }
 }
 
+
+/* Why MAGNE - Clean Responsive */
+.why-magne-section,
+#why-magne {
+  position: relative;
+  z-index: 1;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 7rem 2rem;
+  box-sizing: border-box;
+}
+
+#why-magne .section-header {
+  max-width: 760px;
+  margin: 0 auto 4rem;
+  text-align: center;
+}
+
+#why-magne .section-header h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.25rem;
+}
+
+#why-magne .section-header p {
+  color: var(--text-secondary);
+  font-size: 1.15rem;
+  line-height: 1.75;
+}
+
+.why-magne-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.why-magne-card {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 2.25rem;
+  border-radius: 28px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  overflow: hidden;
+}
+
+.why-magne-card.featured {
+  border-color: rgba(0, 212, 212, 0.35);
+  background: rgba(0, 212, 212, 0.055);
+}
+
+.why-magne-card h3 {
+  color: var(--text-primary);
+  font-size: 1.45rem;
+  line-height: 1.25;
+  margin-bottom: 1rem;
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+.why-magne-card p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.7;
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  #why-magne {
+    padding: 5rem 1.25rem;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  #why-magne .section-header {
+    margin-bottom: 2.5rem;
+  }
+
+  #why-magne .section-header h2 {
+    font-size: 2.4rem;
+  }
+
+  #why-magne .section-header p {
+    font-size: 1rem;
+  }
+
+  .why-magne-grid {
+    grid-template-columns: 1fr;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .why-magne-card {
+    width: 100%;
+    min-width: 0;
+    padding: 1.5rem;
+  }
+}
+
   </style>
   <link rel="stylesheet" href="assets/mobile-responsive.css">
 </head>
@@ -1236,35 +1345,35 @@
 
 <!-- SCREEN 2: WHY MAGNE -->
 <section id="why-magne">
-  <div class="section-title">
+  <div class="section-header">
     <h2>Why MAGNE</h2>
     <p>A smartphone designed for people who want stronger control over digital assets, private AI workflows, and next-generation mobile access.</p>
   </div>
-  <div class="cards-grid">
-    <div class="why-card animate">
+  <div class="why-magne-grid">
+    <article class="why-magne-card">
       <h3>Private AI Workflows</h3>
       <p>Run intelligent experiences closer to the device for privacy-sensitive everyday use.</p>
-    </div>
-    <div class="why-card why-featured animate">
+    </article>
+    <article class="why-magne-card featured">
       <h3>Hardware Wallet-grade Key Isolation</h3>
       <p>Private keys and critical signing flows are protected through dedicated hardware security architecture.</p>
-    </div>
-    <div class="why-card animate">
+    </article>
+    <article class="why-magne-card">
       <h3>Tap-to-Restore Encrypted Backup</h3>
       <p>Encrypted NFC recovery extends protection beyond the device and simplifies asset recovery.</p>
-    </div>
-    <div class="why-card animate">
+    </article>
+    <article class="why-magne-card">
       <h3>A Hidden Web3 Space</h3>
       <p>A separate and private environment helps isolate Web3 operations from your everyday mobile experience.</p>
-    </div>
-    <div class="why-card animate">
+    </article>
+    <article class="why-magne-card">
       <h3>Built-in Web3 Access</h3>
       <p>Wallet, swap, stake, bridge, and ecosystem access are integrated directly into the device journey.</p>
-    </div>
-    <div class="why-card animate">
+    </article>
+    <article class="why-magne-card">
       <h3>Global-ready Compliance Stack</h3>
       <p>Built with certification and compatibility readiness in mind for broader real-world deployment.</p>
-    </div>
+    </article>
   </div>
 </section>
 
