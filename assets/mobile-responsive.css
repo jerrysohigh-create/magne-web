@@ -617,3 +617,9 @@ footer {
   border-color: var(--accent);
   background: rgba(0, 212, 212, 0.1);
 }
+
+/* Footer Copyright */
+.footer-copy {
+  margin-top: 1.5rem;
+  opacity: 0.5;
+}
