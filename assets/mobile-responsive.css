@@ -465,3 +465,45 @@ body {
     opacity: 0.85 !important;
   }
 }
+
+/* Compliance Page - Supporting Proof Section Mobile Fix */
+@media (max-width: 768px) {
+  .supporting-proof-section {
+    padding: 3rem 1.25rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+
+  .supporting-proof-section .section-inner {
+    padding: 2rem 1rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .supporting-proof-section h3 {
+    font-size: 1.25rem !important;
+    line-height: 1.4 !important;
+  }
+
+  .supporting-proof-section p {
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+  }
+
+  .supporting-proof-section .btn-primary,
+  .supporting-proof-section .btn-secondary {
+    display: inline-block !important;
+    width: auto !important;
+    max-width: 100% !important;
+    padding: 0.9rem 1.5rem !important;
+    font-size: 0.9rem !important;
+    line-height: 1.4 !important;
+    white-space: normal !important;
+    word-break: normal !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+  }
+}
