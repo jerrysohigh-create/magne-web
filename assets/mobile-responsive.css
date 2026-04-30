@@ -509,9 +509,15 @@ body {
 }
 
 /* Footer - Icon Sizing */
+
+/* Footer - Background and Layout */
 footer {
   text-align: center;
+  padding: 3rem 2rem 2rem;
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border);
 }
+
 
 .footer-brand-logo {
   text-align: center;
@@ -556,7 +562,7 @@ footer {
   width: 42px;
   padding: 0;
   border: 1px solid var(--border);
-  border-radius: 999px;
+  border-radius: 999px !important;
   color: var(--text-secondary);
   transition: all 0.2s;
 }
