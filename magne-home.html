@@ -1017,6 +1017,99 @@
     .trademark-notice a:hover {
       text-decoration: underline;
     }
+
+/* =========================================================
+ HOME MOBILE HARD FIX - Why MAGNE & Partners Grid Overflow
+ ========================================================= */
+@media (max-width: 768px) {
+  /* Why MAGNE section - force single column */
+  #why-magne {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+    box-sizing: border-box !important;
+  }
+
+  #why-magne .cards-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    gap: 1rem !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+  }
+
+  #why-magne .why-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 1.25rem !important;
+  }
+
+  #why-magne .why-card h3,
+  #why-magne .why-card p {
+    width: 100% !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+  }
+
+  /* Partners section - force 2 columns */
+  #partners {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+    box-sizing: border-box !important;
+  }
+
+  #partners .partners-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    gap: 1rem !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+  }
+
+  #partners .partner-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    padding: 1rem !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+
+  #partners .partner-card img {
+    max-width: 80% !important;
+    max-height: 40px !important;
+    height: auto !important;
+    object-fit: contain !important;
+  }
+
+  #partners .partner-card span {
+    font-size: 0.8rem !important;
+    word-break: break-word !important;
+  }
+}
+
+@media (max-width: 420px) {
+  #partners .partners-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
   </style>
   <link rel="stylesheet" href="assets/mobile-responsive.css">
 </head>
