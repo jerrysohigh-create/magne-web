@@ -414,46 +414,6 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
     }
-    .why-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 2rem;
-      transition: all 0.4s;
-      position: relative;
-      overflow: hidden;
-    }
-    .why-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-purple));
-      transform: scaleX(0);
-      transition: transform 0.3s;
-    }
-    .why-card.why-featured {
-      grid-column: span 2;
-      background: linear-gradient(135deg, rgba(0,212,212,0.08) 0%, rgba(0,30,30,0.3) 100%);
-      border-color: rgba(0,212,212,0.3);
-    }
-
-    .why-card:hover { 
-      border-color: var(--accent);
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(0,212,212,0.1);
-    }
-    .why-card:hover::before { transform: scaleX(1); }
-    .why-card h3 { 
-      font-size: 1.2rem; 
-      margin-bottom: 0.75rem; 
-      color: var(--text-primary); 
-    }
-    .why-card p { 
-      font-size: 0.9rem; 
-      color: var(--text-secondary); 
-      line-height: 1.7; 
-    }
 
     /* PARTNERS */
     #partners {
@@ -1043,24 +1003,7 @@
     box-sizing: border-box !important;
   }
 
-  #why-magne .why-card {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-    box-sizing: border-box !important;
-    overflow: hidden !important;
-    margin: 0 !important;
-    padding: 1.25rem !important;
-  }
 
-  #why-magne .why-card h3,
-  #why-magne .why-card p {
-    width: 100% !important;
-    max-width: 100% !important;
-    white-space: normal !important;
-    word-break: normal !important;
-    overflow-wrap: normal !important;
-  }
 
   /* Partners section - force 2 columns */
   #partners {
