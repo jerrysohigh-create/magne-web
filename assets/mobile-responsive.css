@@ -559,7 +559,11 @@ footer {
 }
 
 .trademark-notice {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
   text-align: center;
+  margin-top: 1rem;
+  opacity: 0.7;
 }
 
 .trademark-notice + p {
