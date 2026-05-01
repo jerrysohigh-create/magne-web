@@ -62,9 +62,14 @@
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--text-primary); }
+    .nav-actions {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
     .nav-cta {
       background: var(--accent);
-      color: #000;
+      color: #000 !important;
       padding: 0.6rem 1.4rem;
       border-radius: 8px;
       font-weight: 600;
@@ -72,6 +77,17 @@
       transition: all 0.2s;
     }
     .nav-cta:hover { background: #00e8e8; transform: translateY(-1px); }
+    .nav-contact {
+      background: transparent;
+      border: 1px solid var(--border-hover);
+      color: var(--text-primary) !important;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+    .nav-contact:hover { border-color: var(--accent); color: var(--accent) !important; }
 
     /* LANG SWITCHER */
     .lang-switcher {
@@ -510,17 +526,21 @@
     <a href="magne-home.html" class="nav-logo"><img src="assets/brand/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="nav-logo-img"></a>
     <button class="mobile-menu-btn" type="button" aria-label="Toggle menu"><span></span></button>
   </div>
-  <ul class="nav-links" id="mobileNavLinks">
+  <ul class="nav-links">
     <li><a href="magne-home.html">Home</a></li>
     <li><a href="magne-phone.html">Phone</a></li>
     <li><a href="magne-security.html">Security</a></li>
     <li><a href="magne-compliance.html">Compliance</a></li>
     <li><a href="magne-network.html">Network</a></li>
     <li><a href="magne-progress.html">Progress</a></li>
-    <li><a href="magne-partners.html">Partners</a></li>
+    <li><a href="magne-partners.html" class="active">Partners</a></li>
     <li><a href="faq.html">FAQ</a></li>
+    <li><a href="https://web3.magne.ai" target="_blank" rel="noopener" class="nav-web3">Web3 Portal ↗️</a></li>
+    <li class="nav-actions-mobile">
+      <a href="magne-contact.html" class="nav-contact">Contact</a>
+      <a href="https://payment.magne.ai/buy" class="nav-cta">Preorder</a>
+    </li>
   </ul>
-  <a href="https://payment.magne.ai/buy" class="nav-cta">Preorder</a>
 </nav>
 
 <!--

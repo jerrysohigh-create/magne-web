@@ -79,6 +79,11 @@
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
     .nav-links a:hover { color: var(--accent); }
+    .nav-actions {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
     .nav-cta {
       background: var(--accent);
       color: #000 !important;
@@ -87,7 +92,17 @@
       font-weight: 600;
       text-decoration: none;
     }
-    .nav-cta:hover { opacity: 0.9; }
+    .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+    .nav-contact {
+      background: transparent;
+      border: 1px solid var(--border-hover);
+      color: var(--text-primary) !important;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 500;
+      text-decoration: none;
+    }
+    .nav-contact:hover { border-color: var(--accent); color: var(--accent) !important; }
     .page-header {
       padding: 8rem 2rem 3rem;
       max-width: 900px;
@@ -253,6 +268,11 @@
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
     .nav-links a:hover { color: var(--accent); }
+    .nav-actions {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
     .nav-cta {
       background: var(--accent);
       color: #000 !important;
@@ -261,7 +281,339 @@
       font-weight: 600;
       text-decoration: none;
     }
-    .nav-cta:hover { opacity: 0.9; }
+    .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+    .nav-contact {
+      background: transparent;
+      border: 1px solid var(--border-hover);
+      color: var(--text-primary) !important;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 500;
+      text-decoration: none;
+    }
+    .nav-contact:hover { border-color: var(--accent); color: var(--accent) !important; }
+    .page-header { padding: 7rem 1.5rem 2rem; }
+      .content { padding: 1rem 1.5rem 4rem; }
+    }
+  
+    .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-brand a { color: var(--text-secondary); text-decoration: none; font-weight: 600; }
+    .lang-link.active { background: var(--accent) !important; color: #000 !important; font-weight: 600 !important; border-color: var(--accent) !important; }
+    
+    .trademark-notice {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-top: 1rem;
+      opacity: 0.7;
+    }
+    .trademark-notice a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .trademark-notice a:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <link rel="stylesheet" href="assets/mobile-responsive.css">
+</head>
+<body class="content--canvas">
+  <canvas id="swirl"></canvas>
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ - MAGNE.AI</title>
+  <link rel="icon" type="image/png" href="assets/brand/magne-logo-white-horizontal.png">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0a0c;
+      --bg-secondary: #0f0f12;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --bg-card-hover: rgba(255, 255, 255, 0.06);
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.1);
+      --text-primary: #f5f5f7;
+      --text-secondary: rgba(245, 245, 247, 0.6);
+      --text-muted: rgba(245, 245, 247, 0.4);
+      --accent: #00d4d4;
+      --accent-dim: rgba(0, 212, 212, 0.06);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    .content--canvas { position: relative; z-index: 1; }
+    .content--canvas canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 12, 0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      display: block;
+    }
+    .nav-logo-img {
+      height: 20px;
+      width: auto;
+      display: block;
+    }
+    .nav-back {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: color 0.3s;
+      background: rgba(0, 212, 212, 0.1);
+      border: 1px solid rgba(0, 212, 212, 0.3);
+      color: #00d4d4;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+    }
+    .nav-back:hover {
+      background: rgba(0, 212, 212, 0.2);
+      color: #00d4d4;
+    }
+
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-actions {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    .nav-cta {
+      background: var(--accent);
+      color: #000 !important;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+    .nav-contact {
+      background: transparent;
+      border: 1px solid var(--border-hover);
+      color: var(--text-primary) !important;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 500;
+      text-decoration: none;
+    }
+    .nav-contact:hover { border-color: var(--accent); color: var(--accent) !important; }
+    .page-header {
+      padding: 8rem 2rem 3rem;
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .page-header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .page-header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 2rem 6rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .faq-section {
+      margin-bottom: 2.5rem;
+    }
+    .faq-section-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 0.75rem;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+    .faq-item:hover {
+      border-color: rgba(0, 212, 212, 0.3);
+    }
+    .faq-item.active {
+      background: var(--bg-card-hover);
+      border-color: rgba(0, 212, 212, 0.3);
+    }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 1.2rem 1.5rem;
+      color: var(--text-primary);
+      font-size: 1rem;
+      font-weight: 500;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .faq-question:hover {
+      color: var(--accent);
+    }
+    .faq-question .icon {
+      font-size: 1.5rem;
+      transition: transform 0.3s;
+      flex-shrink: 0;
+      color: var(--text-muted);
+    }
+    .faq-item.active .faq-question .icon {
+      transform: rotate(45deg);
+      color: var(--accent);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+    .faq-answer-content {
+      padding: 0 1.5rem 1.5rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+    .faq-answer-content a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .faq-answer-content a:hover {
+      text-decoration: underline;
+    }
+    .faq-item.active .faq-answer {
+      max-height: 500px;
+    }
+
+    footer {
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      position: relative;
+      z-index: 1;
+    }
+    footer a { color: var(--text-secondary); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+    }
+    .footer-links a:hover {
+      color: var(--accent);
+      background: rgba(0, 212, 212, 0.1);
+    }
+    .footer-brand-logo { text-align: center; margin-bottom: 1.5rem; }
+    .footer-brand-logo img { height: 24px; width: auto; margin-bottom: 0.75rem; opacity: 0.9; }
+    .footer-brand-logo p { color: var(--text-secondary); font-size: 0.9rem; }
+    .footer-socials a { width: 42px; height: 42px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--border); border-radius: 50%; color: rgba(255,255,255,0.55); background: rgba(255,255,255,0.02); transition: all 0.2s ease; text-decoration: none; }
+    .footer-socials a:hover { color: var(--accent); border-color: rgba(0,212,212,0.45); background: rgba(0,212,212,0.08); transform: translateY(-1px); }
+    .footer-socials a svg.footer-icon { width: 18px; height: 18px; fill: currentColor; }
+    .footer-icon {
+      padding: 0.6rem !important;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .footer-icon:hover {
+      border-color: var(--accent);
+      background: rgba(0, 212, 212, 0.1);
+    }
+    .footer-logo { margin: 2rem 0 1rem; }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+  
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-actions {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    .nav-cta {
+      background: var(--accent);
+      color: #000 !important;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+    .nav-contact {
+      background: transparent;
+      border: 1px solid var(--border-hover);
+      color: var(--text-primary) !important;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 500;
+      text-decoration: none;
+    }
+    .nav-contact:hover { border-color: var(--accent); color: var(--accent) !important; }
     .page-header { padding: 7rem 1.5rem 2rem; }
       .content { padding: 1rem 1.5rem 4rem; }
     }
@@ -304,8 +656,11 @@
     <li><a href="magne-progress.html">Progress</a></li>
     <li><a href="magne-partners.html">Partners</a></li>
     <li><a href="faq.html">FAQ</a></li>
+    <li class="nav-actions-mobile">
+      <a href="magne-contact.html" class="nav-contact">Contact</a>
+      <a href="https://payment.magne.ai/buy" class="nav-cta">Preorder</a>
+    </li>
   </ul>
-  <a href="https://payment.magne.ai/buy" class="nav-cta">Preorder</a>
 </nav>
 
   <div class="page-header">

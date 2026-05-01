@@ -157,18 +157,62 @@ body {
  color: #00d4d4 !important;
  }
 
- .nav-cta {
- display: none !important;
- }
-
+ /* Desktop nav-actions hidden on mobile — buttons live inside mobile menu */
  .nav-actions {
  display: none !important;
  }
 
+ /* Mobile menu: nav-actions-mobile li fills bottom of menu */
+ .nav-actions-mobile {
+ padding-top: 0.75rem !important;
+ margin-top: 0.5rem !important;
+ border-top: 1px solid rgba(255,255,255,0.10) !important;
+ display: flex !important;
+ flex-direction: column !important;
+ gap: 0.5rem !important;
+ list-style: none !important;
+ }
+
+ /* Override link styles inside nav-actions-mobile */
+ .nav-actions-mobile a {
+ display: block !important;
+ width: 100% !important;
+ text-align: center !important;
+ padding: 0.85rem 1rem !important;
+ border-radius: 12px !important;
+ font-size: 1rem !important;
+ text-decoration: none !important;
+ box-sizing: border-box !important;
+ }
+
+ .nav-contact {
+ background: transparent !important;
+ border: 1px solid rgba(255,255,255,0.22) !important;
+ color: rgba(255,255,255,0.80) !important;
+ font-weight: 500 !important;
+ }
+
+ .nav-contact:hover {
+ border-color: #00d4d4 !important;
+ color: #00d4d4 !important;
+ background: rgba(0,212,212,0.06) !important;
+ }
+
+ .nav-cta {
+ background: var(--accent) !important;
+ color: #000 !important;
+ font-weight: 600 !important;
+ }
+
+ .nav-cta:hover {
+ background: #00e8e8 !important;
+ transform: none !important;
+ }
+
  .nav-links li:last-child {
- margin-bottom: 0.5rem !important;
- border-bottom: 1px solid rgba(255,255,255,0.08) !important;
- padding-bottom: 0.5rem !important;
+ margin-bottom: 0 !important;
+ border-bottom: none !important;
+ padding-bottom: 0 !important;
  }
 
  /* Prevent body scroll when menu open */
