@@ -780,7 +780,7 @@
     <div class="layer-info">
       <div class="layer-num">L1</div>
       <h3>Trusted Execution Isolation</h3>
-      <p>The first layer of protection operates at the system execution level. Sensitive operations are isolated in a trusted execution environment, separate from the main operating system. This means even if the main OS is compromised, the isolated execution environment remains protected.</p>
+      <p>The first layer of protection operates at the system execution level. Sensitive operations are isolated in a trusted execution environment, separate from the main operating system. the isolated execution environment is designed to reduce exposure even when the main OS is under attack.</p>
       <p>This is not software-based isolation — it is architectural separation built into the hardware foundation of the device. It defines which processes can access what, and creates hard boundaries around the most sensitive operations.</p>
       <div class="layer-badges">
         <span class="layer-badge">CC EAL2+ Certified</span>
@@ -807,7 +807,7 @@
       <div class="layer-num">L2</div>
       <h3>Secure Element Protection</h3>
       <p>The second layer is where private keys live. Unlike software wallets where keys are stored in application memory, MAGNE's secure element is a dedicated hardware component designed specifically for cryptographic key storage and signing operations.</p>
-      <p>Private keys never leave the secure element. When a transaction needs to be signed, the signing operation happens inside the secure boundary — the main processor never has access to the raw private key. This is the same architecture used in hardware security modules used by financial institutions.</p>
+      <p>Private keys are designed to remain protected within the secure element during normal signing workflows. When a transaction needs to be signed, the signing operation happens inside the secure boundary — the main processor does not have access to the raw private key. This follows a hardware-backed security design philosophy similar to dedicated cryptographic security modules.</p>
       <div class="layer-badges">
         <span class="layer-badge">CC EAL6+ Certified</span>
         <span class="layer-badge">Secure Key Storage</span>
