@@ -1,0 +1,3 @@
+[submodule "web3-magne-ai"]
+    path = web3-magne-ai
+    url = https://github.com/jerrysohigh-create/magne-web3.git
