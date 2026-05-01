@@ -199,6 +199,11 @@
     .strategic-grid .partner-card img {
       filter: none;
     }
+
+    /* Invert filter for logos that are light-colored on dark backgrounds */
+    .partner-card-invert img {
+      filter: brightness(0) invert(1);
+    }
     #ecosystem .partner-card img {
       filter: none;
     }
@@ -568,6 +573,22 @@
         <img src="partners/strategic/unisoc_web.png" alt="Unisoc">
         <span class="partner-name">Unisoc</span>
       </div>
+      <div class="partner-card partner-card-invert">
+        <img src="partners/strategic/ti.svg" alt="Texas Instruments">
+        <span class="partner-name">Texas Instruments</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/strategic/imag_green.png" alt="Imagination">
+        <span class="partner-name">Imagination</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/strategic/hed.png" alt="HED">
+        <span class="partner-name">HED</span>
+      </div>
+      <div class="partner-card">
+        <img src="partners/strategic/redrock_web.png" alt="REDROCK">
+        <span class="partner-name">REDROCK</span>
+      </div>
     </div>
   </div>
 </section>
@@ -587,30 +608,6 @@
       <div class="partner-card">
         <img src="partners/strategic/deepmind_blue.png" alt="DeepMind">
         <span class="partner-name">DeepMind</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SECURITY & TECHNOLOGY COMPONENTS -->
-<section id="security-components">
-  <div class="content-wrapper">
-    <div class="section-title">
-      <h2>Security &amp; Technology Components</h2>
-      <p>Security architecture and semiconductor technology components referenced in MAGNE's hardware design.</p>
-    </div>
-    <div class="partners-grid">
-      <div class="partner-card">
-        <img src="partners/strategic/ti.svg" alt="Texas Instruments">
-        <span class="partner-name">Texas Instruments</span>
-      </div>
-      <div class="partner-card">
-        <img src="partners/strategic/imag_green.png" alt="Imagination">
-        <span class="partner-name">Imagination</span>
-      </div>
-      <div class="partner-card">
-        <img src="partners/strategic/hed.png" alt="HED">
-        <span class="partner-name">HED</span>
       </div>
     </div>
   </div>
@@ -836,10 +833,6 @@
       <p>Institutional and strategic funding and backing signals for MAGNE program development.</p>
     </div>
     <div class="partners-grid">
-      <div class="partner-card">
-        <img src="partners/strategic/redrock_web.png" alt="REDROCK">
-        <span class="partner-name">REDROCK</span>
-      </div>
       <div class="partner-card">
         <img src="partners/strategic/becker.png" alt="Becker Ventures">
         <span class="partner-name">Becker Ventures</span>
