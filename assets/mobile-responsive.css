@@ -157,6 +157,20 @@ body {
  color: #00d4d4 !important;
  }
 
+ /* Language switch link in mobile menu */
+ .nav-lang-switch {
+   display: block !important;
+   width: 100% !important;
+   text-align: center !important;
+   padding: 0.5rem 1rem !important;
+   color: rgba(255,255,255,0.5) !important;
+   font-size: 0.8rem !important;
+   text-decoration: none !important;
+   border: 1px solid rgba(255,255,255,0.15) !important;
+   border-radius: 8px !important;
+   margin-bottom: 0.5rem !important;
+ }
+
  /* Desktop nav-actions hidden on mobile — buttons live inside mobile menu */
  .nav-actions {
  display: none !important;
