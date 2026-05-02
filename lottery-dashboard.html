@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lottery Dashboard - MAGNE AI</title>
+  <title>MAGNE.AI Phone Gen1 Campaign - MAGNE AI</title>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -350,8 +350,8 @@
       color: var(--text-secondary);
     }
 
-    /* Prize Pool Card */
-    .prize-pool {
+    /* Campaign Pool Card */
+    .campaign-pool {
       background: linear-gradient(135deg, rgba(0, 212, 212, 0.1), rgba(255, 215, 0, 0.05));
       border: 1px solid var(--accent);
       border-radius: 24px;
@@ -362,7 +362,7 @@
       overflow: hidden;
     }
 
-    .prize-pool::before {
+    .campaign-pool::before {
       content: '';
       position: absolute;
       top: -50%;
@@ -378,12 +378,12 @@
       50% { opacity: 0.6; transform: scale(1.1); }
     }
 
-    .prize-pool-content {
+    .campaign-pool-content {
       position: relative;
       z-index: 1;
     }
 
-    .prize-pool .label {
+    .campaign-pool .label {
       font-size: 0.9rem;
       color: var(--text-secondary);
       text-transform: uppercase;
@@ -391,7 +391,7 @@
       margin-bottom: 1rem;
     }
 
-    .prize-pool .amount {
+    .campaign-pool .amount {
       font-family: 'JetBrains Mono', monospace;
       font-size: 4rem;
       font-weight: 700;
@@ -402,7 +402,7 @@
       margin-bottom: 0.5rem;
     }
 
-    .prize-pool .subtitle {
+    .campaign-pool .subtitle {
       font-size: 1.2rem;
       color: var(--text-secondary);
     }
@@ -889,26 +889,33 @@
 </head>
 <body>
   <nav>
-    <div class="nav-brand">
-      <a href="/magne-web/magne-home.html" class="nav-logo"><img src="/magne-web/assets/brand/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="nav-logo-img"></a>
-    </div>
-    <ul class="nav-links">
-      <li><a href="/magne-web/magne-home.html">Home</a></li>
-      <li><a href="/magne-web/magne-phone.html">Phone</a></li>
-      <li><a href="/magne-web/magne-security.html">Security</a></li>
-      <li><a href="/magne-web/magne-compliance.html">Compliance</a></li>
-      <li><a href="/magne-web/magne-network.html">Network</a></li>
-      <li><a href="/magne-web/magne-progress.html">Progress</a></li>
-      <li><a href="/magne-web/magne-partners.html">Partners</a></li>
-    </ul>
-    <a href="/magne-web/magne-contact.html" class="nav-cta">Contact</a>
-  </nav>
+  <div class="nav-brand">
+    <a href="/magne-web/magne-home.html" class="nav-logo"><img src="/magne-web/assets/brand/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="nav-logo-img"></a>
+    <button class="mobile-menu-btn" type="button" aria-label="Toggle menu"><span></span></button>
+  </div>
+  <ul class="nav-links">
+    <li><a href="/magne-web/magne-home.html">Home</a></li>
+    <li><a href="/magne-web/magne-phone.html">Phone</a></li>
+    <li><a href="/magne-web/magne-security.html">Security</a></li>
+    <li><a href="/magne-web/magne-compliance.html">Compliance</a></li>
+    <li><a href="/magne-web/magne-network.html">Network</a></li>
+    <li><a href="/magne-web/magne-progress.html">Progress</a></li>
+    <li><a href="/magne-web/magne-partners.html">Partners</a></li>
+    <li><a href="/magne-web/faq.html">FAQ</a></li>
+    <a href="tc/magne-home.html" class="nav-lang-switch">EN | 繁中</a></li>
+    <li><a href="https://web3.magne.ai" target="_blank" rel="noopener" class="nav-web3">Web3 Portal ↗️</a></li>
+    <li class="nav-actions-mobile">
+      <a href="/magne-web/magne-contact.html" class="nav-contact">Contact</a>
+      <a href="https://payment.magne.ai/buy" class="nav-cta">Preorder</a>
+    </li>
+  </ul>
+</nav>
 
   <div class="content-wrapper">
     <section class="hero">
-      <div class="hero-eyebrow">Live Campaign Dashboard</div>
-      <h1>🎰 MAGNE Phone Lottery</h1>
-      <p>1,000 AI Phones to be given away • Every 100 entries = 1 draw</p>
+      <div class="hero-eyebrow">MAGNE.AI Phone Gen1 Campaign</div>
+      <h1>🎰 MAGNE.MAGNE.AI Phone Gen1 Gen1 Lottery</h1>
+      <p>1,000 MAGNE.AI Phone Gen1 campaign allocations • Every 100 entries = 1 draw</p>
     </section>
 
     <div class="api-status" id="api-status">
@@ -925,7 +932,7 @@
         <div class="rule-item">
           <div class="rule-icon">📱</div>
           <div class="rule-text">
-            <strong>1,000 AI Phones</strong> to be given away globally
+            <strong>1,000 MAGNE.AI Phone Gen1s</strong> campaign allocation globally
           </div>
         </div>
         <div class="rule-item">
@@ -976,7 +983,7 @@
       <div class="stat-card">
         <div class="stat-icon">🪙</div>
         <div class="stat-value" id="pending-mha-val">—</div>
-        <div class="stat-label">Pending MHA Airdrop</div>
+        <div class="stat-label">Post-TGE MHA Reward Status</div>
         <div class="stat-trend">MHA Token</div>
       </div>
     </div>
@@ -985,7 +992,7 @@
     <div class="device-info">
       <div class="device-info-item">📱 <strong>Device:</strong> 8GB + 512GB</div>
       <div class="device-info-item">🚚 <strong>Shipping:</strong> First batch Jul–Sep 2026</div>
-      <div class="device-info-item">🪙 <strong>MHA Airdrop:</strong> Within 30 days after TGE</div>
+      <div class="device-info-item">🪙 <strong>MHA Reward:</strong> Within 30 days after TGE</div>
     </div>
 
     <!-- Current Round -->
@@ -1059,15 +1066,15 @@
 
     <!-- Dashboard Disclaimer -->
     <p class="dashboard-disclaimer">
-      Campaign data is provided for visibility purposes only. Rewards, eligibility, and distribution timing are subject to official campaign rules, verification, and TGE-related schedules. MHA reward information does not represent investment advice, guaranteed value, or a guaranteed return.
+      Campaign data is provided for visibility purposes only. Rewards, eligibility, and distribution timing are subject to official campaign rules, verification, and TGE-related schedules. MHA reward information does not represent investment advice, guaranteed value, or any guaranteed return.
     </p>
 
     <!-- Footer Note -->
     <div class="footer-note">
-      🎁 <strong>1,000 Magne Phones</strong> to be given away • Every 100 entries = 1 phone draw<br>
-      Non-winners receive <strong>100 MHA</strong> • Distribution timing is subject to TGE schedule, campaign rules, and eligibility verification.<br><br>
+      🎁 <strong>1,000 MAGNE.MAGNE.AI Phone Gen1 Gen1s</strong> campaign allocation • Every 100 entries = 1 phone draw<br>
+      Eligible non-selected participants may receive <strong>100 MHA</strong> • Distribution timing is subject to TGE schedule, campaign rules, and eligibility verification.<br><br>
       Contract: <a href="https://bscscan.com/address/0xb14426893ADb6601b9e6397afa10527B66297bc1" target="_blank" rel="noopener">0xb144...97bc1 ↗</a> • 
-      Prize Pool: <a href="https://bscscan.com/token/0x55d398326f99059ff775485246999027b3197955?a=0x2598825231f9aff0018c407b46e8e50facf082d7" target="_blank" rel="noopener">View on BSCScan ↗</a>
+      Campaign Pool: <a href="https://bscscan.com/token/0x55d398326f99059ff775485246999027b3197955?a=0x2598825231f9aff0018c407b46e8e50facf082d7" target="_blank" rel="noopener">View on BSCScan ↗</a>
     </div>
   </div>
 
@@ -1113,7 +1120,7 @@
         if (roundEl && d.currRound) roundEl.textContent = d.currRound;
 
         // Current Round stat card
-        // Pending MHA Airdrop = (currRound - 1) * 99 * 100
+        // Post-TGE MHA Reward Status = (currRound - 1) * 99 * 100
         const pendingMhaEl = document.getElementById('pending-mha-val');
         if (pendingMhaEl && d.currRound) {
           const completedRounds = d.currRound - 1;
@@ -1216,7 +1223,7 @@
           <div class="activity-icon phone">📱</div>
           <div class="activity-content">
             <div class="activity-text">
-              Won <strong>1x Magne Phone</strong> ${winBadge}
+              Won <strong>1x MAGNE.MAGNE.AI Phone Gen1 Gen1</strong> ${winBadge}
               <span class="addr-status ${w.hasAddress ? 'filled' : 'unset'}">${statusIcon} ${statusText}</span>
             </div>
             <div class="activity-round">Round ${w.drawRound}</div>
@@ -1261,7 +1268,7 @@
   <footer>
   <div class="footer-brand-logo">
       <img src="/magne-web/assets/brand/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="footer-brand-img">
-      <p>The Web3-native AI Phone</p>
+      <p>The Web3-native MAGNE.AI Phone Gen1</p>
     </div>
   
   <div class="footer-socials" aria-label="Official MAGNE.AI channels">
@@ -1277,6 +1284,8 @@
     <a href="/magne-web/privacy-policy.html">Privacy Policy</a>
     <a href="/magne-web/magne-contact.html">Contact</a>
     <a href="/magne-web/media-kit.html">Media Kit</a>
+    <a href="https://web3.magne.ai" target="_blank" rel="noopener">Whitepaper</a>
+    <a href="https://web3.magne.ai/transparency" target="_blank" rel="noopener">Legal Opinion</a>
   </div>
     <p class="trademark-notice">
     MAGNE.AI™ is a trademark of Magical Hash Global Tech Limited, currently in registration process 
