@@ -138,6 +138,19 @@
       border-color: var(--accent);
     }
 
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      color: #f97316;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 0.8s ease-out;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     .page-header {
       padding: 8rem 2rem 3rem;
       max-width: 900px;
@@ -347,6 +360,19 @@
       border-color: var(--accent);
     }
 
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      color: #f97316;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 0.8s ease-out;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     .page-header { padding: 7rem 1.5rem 2rem; }
       .content { padding: 1rem 1.5rem 4rem; }
     }
@@ -372,9 +398,10 @@
   </style>
   <link rel="stylesheet" href="assets/mobile-responsive.css">
   <base href="/">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
 </head>
 <body class="content--canvas">
-  <canvas id="swirl"></canvas>
+  <canvas id="node-bg"></canvas>
 
 <div class="content-wrapper">
 <nav>
@@ -402,6 +429,7 @@
 
 
   <div class="page-header">
+    <div class="hero-eyebrow">FAQ</div>
     <h1>Frequently Asked Questions</h1>
     <p>Everything you need to know about MAGNE.AI</p>
     <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2rem">
@@ -673,40 +701,7 @@
   </p>
   <p style="margin-top: 1.5rem; opacity: 0.5;">© 2026 MAGNE.AI. All rights reserved.</p>
 </footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
-  <script>
-    const canvas = document.getElementById('swirl');
-    const ctx = canvas.getContext('2d');
-    let width, height;
-    let simplex = new SimplexNoise();
-    function resize() { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; }
-    resize();
-    window.addEventListener('resize', resize);
-    const particles = [];
-    const count = 40;
-    for (let i = 0; i < count; i++) {
-      particles.push({ x: Math.random() * width, y: Math.random() * height, vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3, size: Math.random() * 3 + 2 });
-    }
-    function animate() {
-      ctx.clearRect(0, 0, width, height);
-      for (let p of particles) {
-        const nx = simplex.noise3D(p.x * 0.001, p.y * 0.001, performance.now() * 0.00015);
-        const ny = simplex.noise3D(p.x * 0.001 + 100, p.y * 0.001 + 100, performance.now() * 0.00015);
-        p.x += p.vx + nx * 0.3; p.y += p.vy + ny * 0.3;
-        if (p.x < 0) p.x = width; if (p.x > width) p.x = 0;
-        if (p.y < 0) p.y = height; if (p.y > height) p.y = 0;
-        const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 2);
-        gradient.addColorStop(0, 'rgba(0, 212, 212, 0.3)');
-        gradient.addColorStop(1, 'rgba(0, 212, 212, 0)');
-        ctx.beginPath(); ctx.arc(p.x, p.y, p.size * 2, 0, Math.PI * 2);
-        ctx.fillStyle = gradient; ctx.fill();
-        ctx.beginPath(); ctx.arc(p.x, p.y, p.size * 0.4, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(0, 212, 212, 0.6)'; ctx.fill();
-      }
-      requestAnimationFrame(animate);
-    }
-    animate();
-  </script>
+  
   <script>
     // FAQ Accordion functionality
     document.querySelectorAll('.faq-question').forEach(button => {
@@ -727,8 +722,170 @@
     });
   </script>
   <script src="/magne-web/assets/mobile-nav.js" defer></script>
+  <script>
+    const canvas = document.getElementById("node-bg");
+    const ctx = canvas.getContext("2d");
+    let width, height;
+    let nodes = [];
+    let simplex;
+
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+
+    function createNodes() {
+      const numNodes = Math.floor((width * height) / 15000);
+      nodes = [];
+      for (let i = 0; i < numNodes; i++) {
+        nodes.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
+          radius: Math.random() * 2 + 1,
+          baseX: 0,
+          baseY: 0
+        });
+        nodes[i].baseX = nodes[i].x;
+        nodes[i].baseY = nodes[i].y;
+      }
+    }
+
+    function init() {
+      resize();
+      simplex = new SimplexNoise();
+      createNodes();
+      animate();
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      
+      const time = Date.now() * 0.0005;
+      
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const dx = nodes[i].x - nodes[j].x;
+          const dy = nodes[i].y - nodes[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 150) {
+            ctx.beginPath();
+            ctx.strokeStyle = "rgba(249, 115, 22, " + (0.15 * (1 - dist / 150)) + ")";
+            ctx.lineWidth = 1;
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+      
+      for (let node of nodes) {
+        const noiseX = simplex.noise2D(node.baseX * 0.001, time) * 30;
+        const noiseY = simplex.noise2D(node.baseY * 0.001, time) * 30;
+        
+        node.x = node.baseX + noiseX;
+        node.y = node.baseY + noiseY;
+        
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(249, 115, 22, 0.6)";
+        ctx.fill();
+      }
+      
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener("resize", () => {
+      resize();
+      createNodes();
+    });
+
+    init();
+  </script>
 </body>
 </html>
 
+  <script>
+    const canvas = document.getElementById("node-bg");
+    const ctx = canvas.getContext("2d");
+    let width, height;
+    let nodes = [];
+    let simplex;
+
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+
+    function createNodes() {
+      const numNodes = Math.floor((width * height) / 15000);
+      nodes = [];
+      for (let i = 0; i < numNodes; i++) {
+        nodes.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
+          radius: Math.random() * 2 + 1,
+          baseX: 0,
+          baseY: 0
+        });
+        nodes[i].baseX = nodes[i].x;
+        nodes[i].baseY = nodes[i].y;
+      }
+    }
+
+    function init() {
+      resize();
+      simplex = new SimplexNoise();
+      createNodes();
+      animate();
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      
+      const time = Date.now() * 0.0005;
+      
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const dx = nodes[i].x - nodes[j].x;
+          const dy = nodes[i].y - nodes[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 150) {
+            ctx.beginPath();
+            ctx.strokeStyle = "rgba(249, 115, 22, " + (0.15 * (1 - dist / 150)) + ")";
+            ctx.lineWidth = 1;
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+      
+      for (let node of nodes) {
+        const noiseX = simplex.noise2D(node.baseX * 0.001, time) * 30;
+        const noiseY = simplex.noise2D(node.baseY * 0.001, time) * 30;
+        
+        node.x = node.baseX + noiseX;
+        node.y = node.baseY + noiseY;
+        
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(249, 115, 22, 0.6)";
+        ctx.fill();
+      }
+      
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener("resize", () => {
+      resize();
+      createNodes();
+    });
+
+    init();
+  </script>
 </body>
 </html>
