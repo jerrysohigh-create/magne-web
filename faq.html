@@ -140,11 +140,12 @@
 
     .hero-eyebrow {
       font-size: 0.8rem;
-      color: #f97316;
+      color: #00d4d4;
       letter-spacing: 3px;
       text-transform: uppercase;
       margin-bottom: 1.5rem;
       animation: fadeInUp 0.8s ease-out;
+      text-align: center;
     }
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(20px); }
@@ -362,11 +363,12 @@
 
     .hero-eyebrow {
       font-size: 0.8rem;
-      color: #f97316;
+      color: #00d4d4;
       letter-spacing: 3px;
       text-transform: uppercase;
       margin-bottom: 1.5rem;
       animation: fadeInUp 0.8s ease-out;
+      text-align: center;
     }
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(20px); }
@@ -771,7 +773,7 @@
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < 150) {
             ctx.beginPath();
-            ctx.strokeStyle = "rgba(249, 115, 22, " + (0.15 * (1 - dist / 150)) + ")";
+            ctx.strokeStyle = "rgba(0, 212, 212, " + (0.15 * (1 - dist / 150)) + ")";
             ctx.lineWidth = 1;
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
@@ -789,7 +791,7 @@
         
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(249, 115, 22, 0.6)";
+        ctx.fillStyle = "rgba(0, 212, 212, 0.6)";
         ctx.fill();
       }
       
@@ -855,7 +857,7 @@
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < 150) {
             ctx.beginPath();
-            ctx.strokeStyle = "rgba(249, 115, 22, " + (0.15 * (1 - dist / 150)) + ")";
+            ctx.strokeStyle = "rgba(0, 212, 212, " + (0.15 * (1 - dist / 150)) + ")";
             ctx.lineWidth = 1;
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
@@ -873,7 +875,7 @@
         
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(249, 115, 22, 0.6)";
+        ctx.fillStyle = "rgba(0, 212, 212, 0.6)";
         ctx.fill();
       }
       
