@@ -1,21 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
+  <base href="/">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Progress — From Concept to Shipment: Visible Progress Across All Dimensions</title>
-  <link rel="alternate" hreflang="zh-Hant" href="https://jerrysohigh-create.github.io/magne-web/TC/magne-progress.html">
-  <link rel="alternate" hreflang="en" href="https://jerrysohigh-create.github.io/magne-web/magne-progress.html">
-  <link rel="alternate" hreflang="x-default" href="https://jerrysohigh-create.github.io/magne-web/magne-progress.html">
+  <title>合規與認證 — Certification-backed Readiness for Global Deployment</title>
+  <link rel="alternate" hreflang="en" href="https://jerrysohigh-create.github.io/magne-web/magne-compliance.html">
+  <link rel="alternate" hreflang="zh-Hant" href="https://jerrysohigh-create.github.io/magne-web/TC/magne-compliance.html">
+  <link rel="alternate" hreflang="x-default" href="https://jerrysohigh-create.github.io/magne-web/magne-compliance.html">
+
+  <link rel="alternate" hreflang="en" href="../magne-compliance.html">
+  <link rel="alternate" hreflang="zh-Hant" href="magne-compliance.html">
+  <link rel="alternate" hreflang="x-default" href="../magne-compliance.html">
 
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <meta property="og:title" content="Progress — Visible Progress Across All Dimensions">
-  <meta property="og:description" content="Track MAGNE Phone Gen1 development: security certifications, device program milestones, network infrastructure, and capital markets readiness.">
+  <meta property="og:title" content="Compliance & Certifications — Certification-backed Readiness">
+  <meta property="og:description" content="MAGNE Phone Gen1 certifications: Google GMS, Widevine L1, GSMA TAC, FCC, CB, UN38.3, CP65, CE — covering global market entry requirements.">
   <meta property="og:image" content="https://jerrysohigh-create.github.io/magne-web/phone-white.png">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Progress — Visible Progress Across All Dimensions">
-  <meta name="twitter:description" content="Track MAGNE Phone Gen1 development: security certifications, device program milestones, network infrastructure, and capital markets readiness.">
+  <meta name="twitter:title" content="Compliance & Certifications — Certification-backed Readiness">
+  <meta name="twitter:description" content="MAGNE Phone Gen1 certifications: Google GMS, Widevine L1, GSMA TAC, FCC, CB, UN38.3, CP65, CE — covering global market entry requirements.">
   <meta name="twitter:image" content="https://jerrysohigh-create.github.io/magne-web/phone-white.png">
   <link rel="icon" type="image/png" href="logo-icon-circle.png">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
@@ -31,8 +36,9 @@
       --text-primary: #ffffff;
       --text-secondary: rgba(255, 255, 255, 0.5);
       --text-tertiary: rgba(255, 255, 255, 0.3);
-      --accent: #ffd700;
+      --accent: #00ff88;
       --accent-secondary: #00ff88;
+      --accent-green: #00ff88;
       --accent-gold: #ffd700;
     }
 
@@ -143,7 +149,7 @@
       position: absolute;
       top: 0; left: 50%; transform: translateX(-50%);
       width: 900px; height: 700px;
-      background: radial-gradient(ellipse at center, rgba(255,215,0,0.06) 0%, transparent 70%);
+      background: radial-gradient(ellipse at center, rgba(0,255,136,0.06) 0%, transparent 70%);
       pointer-events: none;
     }
     .hero-eyebrow {
@@ -191,7 +197,7 @@
     }
     .btn-primary:hover { 
       transform: translateY(-3px); 
-      box-shadow: 0 15px 40px rgba(255,215,0,0.3);
+      box-shadow: 0 15px 40px rgba(0,255,136,0.3);
     }
     .btn-secondary {
       background: transparent;
@@ -206,6 +212,13 @@
     .btn-secondary:hover { 
       border-color: var(--accent); 
       color: var(--accent);
+    }
+
+    /* SECTION INNER WRAPPER */
+    .section-inner {
+      width: min(1200px, calc(100% - 48px));
+      margin-left: auto;
+      margin-right: auto;
     }
 
     /* SECTION BASE */
@@ -231,181 +244,222 @@
       font-size: 1rem;
     }
 
-    /* PROGRESS OVERVIEW */
+    /* OVERVIEW */
     .overview-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
-      margin: 3rem 0 4rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
     }
     .overview-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 1.5rem;
-      text-align: center;
-    }
-    .overview-card .num {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
-    }
-    .overview-card .label {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-    }
-
-    /* TIMELINE */
-    .timeline-section {
-      margin: 4rem 0;
-    }
-    .timeline-track {
-      position: relative;
-      padding-left: 2rem;
-    }
-    .timeline-track::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: linear-gradient(180deg, var(--accent), var(--accent-secondary));
-    }
-    .timeline-item {
-      position: relative;
-      padding: 1.5rem 0 1.5rem 2rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .timeline-item:last-child {
-      border-bottom: none;
-    }
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -2rem;
-      top: 2rem;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--accent);
-      transform: translateX(-5px);
-    }
-    .timeline-date {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--accent);
-      letter-spacing: 1px;
-      margin-bottom: 0.5rem;
-    }
-    .timeline-item h4 {
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-    .timeline-item p {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      line-height: 1.6;
-    }
-    .timeline-status {
-      display: inline-block;
-      font-size: 0.7rem;
-      padding: 0.2rem 0.6rem;
-      border-radius: 50px;
-      font-weight: 600;
-      margin-left: 0.5rem;
-    }
-    .timeline-status.done { background: rgba(0,255,136,0.15); color: var(--accent-secondary); }
-    .timeline-status.active { background: rgba(255,215,0,0.15); color: var(--accent-gold); }
-    .timeline-status.planned { background: rgba(255,255,255,0.1); color: var(--text-secondary); }
-
-    /* PROGRESS COLUMNS */
-    .progress-columns {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
-      margin: 4rem 0;
-    }
-    .progress-col {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
       padding: 2rem;
+      transition: all 0.3s;
     }
-    .progress-col h4 {
+    .overview-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+    }
+    .overview-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .overview-card h4 {
       font-size: 1.1rem;
       font-weight: 600;
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
+      margin-bottom: 0.75rem;
     }
-    .progress-col h4 .icon {
-      font-size: 1.25rem;
-    }
-    .progress-list {
-      list-style: none;
-      padding: 0;
-    }
-    .progress-list li {
-      padding: 0.75rem 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.9rem;
+    .overview-card p {
       color: var(--text-secondary);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      font-size: 0.9rem;
+      line-height: 1.7;
     }
-    .progress-list li:last-child {
-      border-bottom: none;
-    }
-    .progress-list .status {
-      font-size: 0.75rem;
-      padding: 0.2rem 0.6rem;
-      border-radius: 50px;
-      font-weight: 600;
-    }
-    .progress-list .status.done { background: rgba(0,255,136,0.15); color: var(--accent-secondary); }
-    .progress-list .status.active { background: rgba(255,215,0,0.15); color: var(--accent-gold); }
-    .progress-list .status.planned { background: rgba(255,255,255,0.1); color: var(--text-secondary); }
 
-    /* COMMERCIAL */
-    .commercial-grid {
+    /* CERT GRID */
+    .cert-section {
+      margin: 4rem 0;
+    }
+    .cert-group-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 2rem;
+      text-align: center;
+      padding-left: 0;
+      border-left: none;
+    }
+    .cert-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 1.5rem;
-      margin: 3rem 0;
+      margin-bottom: 3rem;
     }
-    .commercial-card {
+    .cert-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 2rem;
+      padding: 1.5rem;
+      transition: all 0.2s;
       text-align: center;
     }
-    .commercial-card .icon {
-      font-size: 2rem;
-      margin-bottom: 1rem;
+    .cert-card:hover {
+      border-color: var(--border-hover);
     }
-    .commercial-card h4 {
+    .cert-card h4 {
       font-size: 1rem;
       font-weight: 600;
       margin-bottom: 0.5rem;
+      text-align: center;
     }
-    .commercial-card p {
+    .cert-status {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 50px;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .cert-status.approved { background: rgba(0,255,136,0.15); color: var(--accent); }
+    .cert-status.supported { background: rgba(0,212,212,0.15); color: var(--accent-secondary); }
+    .cert-status.obtained { background: rgba(0,255,136,0.15); color: var(--accent); }
+    .cert-status.passed { background: rgba(0,255,136,0.15); color: var(--accent); }
+    .cert-status.in-progress { background: rgba(255,215,0,0.15); color: var(--accent-gold); }
+    .cert-card p {
       color: var(--text-secondary);
       font-size: 0.85rem;
       line-height: 1.6;
+      text-align: center;
+    }
+    /* PUBLIC IDENTIFIERS */
+    .identifiers-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 3rem;
+      margin: 4rem 0;
+    }
+    .identifiers-section h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .identifier-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .identifier-item {
+      text-align: center;
+      padding: 1.5rem;
+      background: var(--bg-secondary);
+      border-radius: 12px;
+    }
+    .identifier-item .label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+    .identifier-item .value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    /* BANDS */
+    .bands-section {
+      margin: 4rem 0;
+    }
+    .bands-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .compliance-note {
+      margin-top: 1.5rem;
+      color: var(--text-secondary);
+      font-size: 0.78rem;
+      line-height: 1.6;
+      text-align: center;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .bands-header p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .bands-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    .band-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .band-card h5 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+    }
+    .band-card p {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    /* MEANING SECTION */
+    .meaning-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 3rem;
+      margin: 4rem 0;
+    }
+    .meaning-section h3 {
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 3rem;
+    }
+    .meaning-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .meaning-card {
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .meaning-card h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--accent);
+      text-align: center;
+    }
+    .meaning-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      text-align: center;
     }
 
     /* CTA */
     .cta-section {
       text-align: center;
       padding: 6rem 2rem;
-      background: linear-gradient(180deg, transparent 0%, rgba(255,215,0,0.03) 100%);
+      background: linear-gradient(180deg, transparent 0%, rgba(0,255,136,0.03) 100%);
       border-top: 1px solid var(--border);
     }
     .cta-section h2 {
@@ -454,15 +508,19 @@
 
     /* RESPONSIVE */
     @media (max-width: 900px) {
-      .overview-grid { grid-template-columns: repeat(2, 1fr); }
-      .progress-columns { grid-template-columns: 1fr; }
-      .commercial-grid { grid-template-columns: repeat(2, 1fr); }
+      .overview-grid,
+      .cert-grid,
+      .bands-grid { grid-template-columns: repeat(2, 1fr); }
+      .identifier-grid { grid-template-columns: 1fr; }
+      .meaning-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 600px) {
       nav { padding: 1rem 1.5rem; }
       .nav-links { gap: 1rem; }
-      .overview-grid { grid-template-columns: 1fr; }
-      .commercial-grid { grid-template-columns: 1fr; }
+      .overview-grid,
+      .cert-grid,
+      .bands-grid { grid-template-columns: 1fr; }
+      .supporting-proof-section .section-inner { padding: 3rem 1.5rem !important; }
     }
   
     /* FOOTER SOCIAL ICONS */
@@ -542,11 +600,11 @@
 
 <!-- NAV -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Progress — From Concept to Shipment: Visible Progress Across All Dimensions</title>
+  <title>Compliance & Certifications — Certification-backed Readiness for Global Deployment</title>
   <link rel="icon" type="image/png" href="logo-icon-circle.png">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
@@ -561,8 +619,9 @@
       --text-primary: #ffffff;
       --text-secondary: rgba(255, 255, 255, 0.5);
       --text-tertiary: rgba(255, 255, 255, 0.3);
-      --accent: #ffd700;
+      --accent: #00ff88;
       --accent-secondary: #00ff88;
+      --accent-green: #00ff88;
       --accent-gold: #ffd700;
     }
 
@@ -673,7 +732,7 @@
       position: absolute;
       top: 0; left: 50%; transform: translateX(-50%);
       width: 900px; height: 700px;
-      background: radial-gradient(ellipse at center, rgba(255,215,0,0.06) 0%, transparent 70%);
+      background: radial-gradient(ellipse at center, rgba(0,255,136,0.06) 0%, transparent 70%);
       pointer-events: none;
     }
     .hero-eyebrow {
@@ -721,7 +780,7 @@
     }
     .btn-primary:hover { 
       transform: translateY(-3px); 
-      box-shadow: 0 15px 40px rgba(255,215,0,0.3);
+      box-shadow: 0 15px 40px rgba(0,255,136,0.3);
     }
     .btn-secondary {
       background: transparent;
@@ -736,6 +795,13 @@
     .btn-secondary:hover { 
       border-color: var(--accent); 
       color: var(--accent);
+    }
+
+    /* SECTION INNER WRAPPER */
+    .section-inner {
+      width: min(1200px, calc(100% - 48px));
+      margin-left: auto;
+      margin-right: auto;
     }
 
     /* SECTION BASE */
@@ -761,181 +827,222 @@
       font-size: 1rem;
     }
 
-    /* PROGRESS OVERVIEW */
+    /* OVERVIEW */
     .overview-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
-      margin: 3rem 0 4rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
     }
     .overview-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 1.5rem;
-      text-align: center;
-    }
-    .overview-card .num {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
-    }
-    .overview-card .label {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-    }
-
-    /* TIMELINE */
-    .timeline-section {
-      margin: 4rem 0;
-    }
-    .timeline-track {
-      position: relative;
-      padding-left: 2rem;
-    }
-    .timeline-track::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: linear-gradient(180deg, var(--accent), var(--accent-secondary));
-    }
-    .timeline-item {
-      position: relative;
-      padding: 1.5rem 0 1.5rem 2rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .timeline-item:last-child {
-      border-bottom: none;
-    }
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -2rem;
-      top: 2rem;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--accent);
-      transform: translateX(-5px);
-    }
-    .timeline-date {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--accent);
-      letter-spacing: 1px;
-      margin-bottom: 0.5rem;
-    }
-    .timeline-item h4 {
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-    .timeline-item p {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      line-height: 1.6;
-    }
-    .timeline-status {
-      display: inline-block;
-      font-size: 0.7rem;
-      padding: 0.2rem 0.6rem;
-      border-radius: 50px;
-      font-weight: 600;
-      margin-left: 0.5rem;
-    }
-    .timeline-status.done { background: rgba(0,255,136,0.15); color: var(--accent-secondary); }
-    .timeline-status.active { background: rgba(255,215,0,0.15); color: var(--accent-gold); }
-    .timeline-status.planned { background: rgba(255,255,255,0.1); color: var(--text-secondary); }
-
-    /* PROGRESS COLUMNS */
-    .progress-columns {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
-      margin: 4rem 0;
-    }
-    .progress-col {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
       padding: 2rem;
+      transition: all 0.3s;
     }
-    .progress-col h4 {
+    .overview-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+    }
+    .overview-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .overview-card h4 {
       font-size: 1.1rem;
       font-weight: 600;
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
+      margin-bottom: 0.75rem;
     }
-    .progress-col h4 .icon {
-      font-size: 1.25rem;
-    }
-    .progress-list {
-      list-style: none;
-      padding: 0;
-    }
-    .progress-list li {
-      padding: 0.75rem 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.9rem;
+    .overview-card p {
       color: var(--text-secondary);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      font-size: 0.9rem;
+      line-height: 1.7;
     }
-    .progress-list li:last-child {
-      border-bottom: none;
-    }
-    .progress-list .status {
-      font-size: 0.75rem;
-      padding: 0.2rem 0.6rem;
-      border-radius: 50px;
-      font-weight: 600;
-    }
-    .progress-list .status.done { background: rgba(0,255,136,0.15); color: var(--accent-secondary); }
-    .progress-list .status.active { background: rgba(255,215,0,0.15); color: var(--accent-gold); }
-    .progress-list .status.planned { background: rgba(255,255,255,0.1); color: var(--text-secondary); }
 
-    /* COMMERCIAL */
-    .commercial-grid {
+    /* CERT GRID */
+    .cert-section {
+      margin: 4rem 0;
+    }
+    .cert-group-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 2rem;
+      text-align: center;
+      padding-left: 0;
+      border-left: none;
+    }
+    .cert-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 1.5rem;
-      margin: 3rem 0;
+      margin-bottom: 3rem;
     }
-    .commercial-card {
+    .cert-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 2rem;
+      padding: 1.5rem;
+      transition: all 0.2s;
       text-align: center;
     }
-    .commercial-card .icon {
-      font-size: 2rem;
-      margin-bottom: 1rem;
+    .cert-card:hover {
+      border-color: var(--border-hover);
     }
-    .commercial-card h4 {
+    .cert-card h4 {
       font-size: 1rem;
       font-weight: 600;
       margin-bottom: 0.5rem;
+      text-align: center;
     }
-    .commercial-card p {
+    .cert-status {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 50px;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .cert-status.approved { background: rgba(0,255,136,0.15); color: var(--accent); }
+    .cert-status.supported { background: rgba(0,212,212,0.15); color: var(--accent-secondary); }
+    .cert-status.obtained { background: rgba(0,255,136,0.15); color: var(--accent); }
+    .cert-status.passed { background: rgba(0,255,136,0.15); color: var(--accent); }
+    .cert-status.in-progress { background: rgba(255,215,0,0.15); color: var(--accent-gold); }
+    .cert-card p {
       color: var(--text-secondary);
       font-size: 0.85rem;
       line-height: 1.6;
+      text-align: center;
+    }
+    /* PUBLIC IDENTIFIERS */
+    .identifiers-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 3rem;
+      margin: 4rem 0;
+    }
+    .identifiers-section h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .identifier-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .identifier-item {
+      text-align: center;
+      padding: 1.5rem;
+      background: var(--bg-secondary);
+      border-radius: 12px;
+    }
+    .identifier-item .label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+    .identifier-item .value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    /* BANDS */
+    .bands-section {
+      margin: 4rem 0;
+    }
+    .bands-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .compliance-note {
+      margin-top: 1.5rem;
+      color: var(--text-secondary);
+      font-size: 0.78rem;
+      line-height: 1.6;
+      text-align: center;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .bands-header p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .bands-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    .band-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .band-card h5 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+    }
+    .band-card p {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    /* MEANING SECTION */
+    .meaning-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 3rem;
+      margin: 4rem 0;
+    }
+    .meaning-section h3 {
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 3rem;
+    }
+    .meaning-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .meaning-card {
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .meaning-card h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--accent);
+      text-align: center;
+    }
+    .meaning-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      text-align: center;
     }
 
     /* CTA */
     .cta-section {
       text-align: center;
       padding: 6rem 2rem;
-      background: linear-gradient(180deg, transparent 0%, rgba(255,215,0,0.03) 100%);
+      background: linear-gradient(180deg, transparent 0%, rgba(0,255,136,0.03) 100%);
       border-top: 1px solid var(--border);
     }
     .cta-section h2 {
@@ -984,15 +1091,19 @@
 
     /* RESPONSIVE */
     @media (max-width: 900px) {
-      .overview-grid { grid-template-columns: repeat(2, 1fr); }
-      .progress-columns { grid-template-columns: 1fr; }
-      .commercial-grid { grid-template-columns: repeat(2, 1fr); }
+      .overview-grid,
+      .cert-grid,
+      .bands-grid { grid-template-columns: repeat(2, 1fr); }
+      .identifier-grid { grid-template-columns: 1fr; }
+      .meaning-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 600px) {
       nav { padding: 1rem 1.5rem; }
       .nav-links { gap: 1rem; }
-      .overview-grid { grid-template-columns: 1fr; }
-      .commercial-grid { grid-template-columns: 1fr; }
+      .overview-grid,
+      .cert-grid,
+      .bands-grid { grid-template-columns: 1fr; }
+      .supporting-proof-section .section-inner { padding: 3rem 1.5rem !important; }
     }
   
     /* FOOTER SOCIAL ICONS */
@@ -1077,351 +1188,302 @@
     <button class="mobile-menu-btn" type="button" aria-label="Toggle menu"><span></span></button>
   </div>
   <ul class="nav-links">
-    <li><a href="magne-home.html">Home</a></li>
-    <li><a href="magne-phone.html">Phone</a></li>
-    <li><a href="magne-security.html">Security</a></li>
-    <li><a href="magne-compliance.html">Compliance</a></li>
-    <li><a href="magne-network.html">Network</a></li>
-    <li><a href="magne-progress.html" class="active">Progress</a></li>
-    <li><a href="magne-partners.html">Partners</a></li>
-    <li><a href="faq.html">FAQ</a></li>
-    <a href="TC/magne-progress.html" class="nav-lang-switch">EN | 繁中</a></li>
-    <li><a href="https://web3.magne.ai" target="_blank" rel="noopener" class="nav-web3">Web3 Portal ↗️</a></li>
+    <li><a href="magne-home.html">首頁</a></li>
+    <li><a href="magne-phone.html">手機</a></li>
+    <li><a href="magne-security.html">安全</a></li>
+    <li><a href="magne-compliance.html" class="active">Compliance</a></li>
+    <li><a href="magne-network.html">網絡</a></li>
+    <li><a href="magne-progress.html">進展</a></li>
+    <li><a href="magne-partners.html">合作夥伴</a></li>
+    <li><a href="faq.html">常見問題</a></li>
+    <a href="../magne-compliance.html" class="nav-lang-switch">EN | 繁中</a></li>
+    <li><a href="https://web3.magne.ai" target="_blank" rel="noopener" class="nav-web3">Web3 入口 ↗️</a></li>
     <li class="nav-actions-mobile">
-      <a href="magne-contact.html" class="nav-contact">Contact</a>
-      <a href="https://payment.magne.ai/buy" class="nav-cta">Preorder</a>
+      <a href="magne-contact.html" class="nav-contact">聯絡</a>
+      <a href="https://payment.magne.ai/buy" class="nav-cta">預訂</a>
     </li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-eyebrow">Program Progress</div>
-  <h1>From concept to shipment — visible progress across all dimensions</h1>
-  <p class="hero-sub">MAGNE's progress spans security architecture, device engineering, network development, and commercial preparation. This page shows where the program stands across each dimension.</p>
+  <div class="hero-eyebrow">Compliance & Certifications</div>
+  <h1>Certification-backed readiness for real-world deployment</h1>
+  <p class="hero-sub">MAGNE is presented with visible trust, compatibility, and compliance signals to support broader market confidence.</p>
   <div class="hero-ctas">
-    <a href="magne-contact.html" class="btn-primary">Contact MAGNE.AI</a>
-    <a href="magne-compliance.html" class="btn-secondary">View Compliance</a>
+    <a href="magne-contact.html" class="btn-primary">聯絡合規團隊</a>
+    <a href="#identifiers" class="btn-secondary">查看認證資料</a>
   </div>
 </section>
 
-<!-- PROGRESS OVERVIEW -->
+<!-- COMPLIANCE OVERVIEW -->
 <section id="overview">
+  <div class="section-inner">
   <div class="section-title">
-    <h2>Progress at a Glance</h2>
-    <p>Four dimensions of program development — all showing active momentum.</p>
+    <h2>What This Page Covers</h2>
+    <p>MAGNE's compliance and certification profile spans three dimensions of market readiness.</p>
   </div>
   <div class="overview-grid">
     <div class="overview-card animate">
-      <div class="num">4</div>
-      <div class="label">Security Certifications</div>
+      <div class="overview-icon">📱</div>
+      <h4>Platform & Content Readiness</h4>
+      <p>Google GMS, Widevine L1, and GSMA TAC represent MAGNE's foundation for mainstream app ecosystem access and global content platform compatibility.</p>
     </div>
     <div class="overview-card animate">
-      <div class="num">8+</div>
-      <div class="label">Certifications & Standards</div>
+      <div class="overview-icon">📦</div>
+      <h4>Safety & Shipment Readiness</h4>
+      <p>CB, UN38.3, CP65, and CE represent the testing and certification required for international shipping, logistics, and market entry in key regions.</p>
     </div>
     <div class="overview-card animate">
-      <div class="num">1</div>
-      <div class="label">Dual-Chain Architecture</div>
-    </div>
-    <div class="overview-card animate">
-      <div class="num">Q3</div>
-      <div class="label">First Batch Target</div>
+      <div class="overview-icon">🌍</div>
+      <h4>Global Compatibility Planning</h4>
+      <p>Broad LTE and 5G band coverage, NFC, Wi-Fi, and Bluetooth support are designed into the hardware for international deployment flexibility.</p>
     </div>
   </div>
 </section>
 
-<!-- SECURITY & CERTIFICATIONS TIMELINE -->
-<section id="timeline">
-  <div class="section-title">
-    <h2>Security & Certifications</h2>
-    <p>Certification milestones define the product's security credibility and market entry readiness.</p>
+<!-- PLATFORM & CONTENT -->
+<section id="platform" class="cert-section">
+  <div class="section-inner">
+  <div class="cert-group-title">Platform & Content</div>
+  <div class="cert-grid">
+    <div class="cert-card animate">
+      <h4>Google GMS</h4>
+      <span class="cert-status approved">Approved</span>
+      <p>Google Mobile Services certification confirms official Android compatibility and Google Play access — not an open-source Android fork.</p>
+    </div>
+    <div class="cert-card animate">
+      <h4>Widevine L1</h4>
+      <span class="cert-status supported">Supported</span>
+      <p>DRM certification at the highest level enables Netflix, Disney+, and other premium content platforms at full HD and 4K resolution.</p>
+    </div>
+    <div class="cert-card animate">
+      <h4>GSMA TAC</h4>
+      <span class="cert-status obtained">Obtained</span>
+      <p>Type Allocation Code registered with the GSMA identifies MAGNE as a legitimate, internationally tracked device — not a grey-market product.</p>
+    </div>
+    <div class="cert-card animate">
+      <h4>Android 15</h4>
+      <span class="cert-status approved">Approved</span>
+      <p>Built on the latest Android platform with official licensing, ensuring long-term app compatibility and security updates.</p>
+    </div>
+    <div class="cert-card animate">
+      <h4>FCC Equipment Authorization</h4>
+      <span class="cert-status passed">Authorized</span>
+      <p>FCC equipment authorization covering licensed cellular, 5GHz Wi-Fi, Bluetooth, NFC, EMC, and SAR — with public grant records under FCC ID 2BVCPGC603606.</p>
+    </div>
   </div>
-  <div class="timeline-section">
-    <div class="timeline-track">
-      <div class="timeline-item animate">
-        <div class="timeline-date">Q1–Q2 2025</div>
-        <h4>CC EAL2+ Security Architecture Validation <span class="timeline-status done">Completed</span></h4>
-        <p>Trusted execution environment architecture validated against Common Criteria standards for process isolation.</p>
-      </div>
-      <div class="timeline-item animate">
-        <div class="timeline-date">Q2–Q3 2025</div>
-        <h4>CC EAL6+ Secure Element Certification <span class="timeline-status done">Completed</span></h4>
-        <p>Dedicated secure element for key storage and signing operations certified at EAL6+ level — hardware wallet grade.</p>
-      </div>
-      <div class="timeline-item animate">
-        <div class="timeline-date">Q3–Q4 2025</div>
-        <h4>CB / UN38.3 / CP65 Testing <span class="timeline-status done">Completed</span></h4>
-        <p>International battery safety, transport testing, and environmental disclosure compliance completed for global shipping readiness.</p>
-      </div>
-      <div class="timeline-item animate">
-        <div class="timeline-date">Q4 2025</div>
-        <h4>Google GMS / Widevine L1 / GSMA TAC <span class="timeline-status done">Completed</span></h4>
-        <p>Platform compatibility and content protection certifications obtained — enabling full Android ecosystem and premium content access.</p>
-      </div>
-      <div class="timeline-item animate">
-        <div class="timeline-date">Q1 2026</div>
-        <h4>FCC / CE Certification <span class="timeline-status active">In Progress</span></h4>
-        <p>FCC certification public filing complete. CE marking in progress for EU market entry ahead of first batch shipments.</p>
-      </div>
+  </div>
+</section>
+
+<!-- PUBLIC IDENTIFIERS -->
+<section id="identifiers" class="identifiers-section">
+  <div class="section-inner">
+  <h3>Public Device Identifiers</h3>
+  <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem; font-size: 0.95rem;">
+    These identifiers can be verified through public regulatory databases and the GSMA database.
+  </p>
+  <div class="identifier-grid">
+    <div class="identifier-item animate">
+      <div class="label">FCC ID</div>
+      <div class="value">2BVCPGC603606</div>
+    </div>
+    <div class="identifier-item animate">
+      <div class="label">GSMA TAC</div>
+      <div class="value">01681300</div>
+    </div>
+    <div class="identifier-item animate">
+      <div class="label">Marketing Name</div>
+      <div class="value">MAG1</div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- SAFETY & LOGISTICS -->
+<section id="safety" class="cert-section">
+  <div class="section-inner">
+  <div class="cert-group-title">Safety & Logistics</div>
+  <div class="cert-grid">
+    <div class="cert-card animate">
+      <h4>CB Scheme</h4>
+      <span class="cert-status passed">已完成</span>
+      <p>International Electrotechnical Commission certification accepted by 54+ countries, enabling streamlined national approvals for electrical equipment safety.</p>
+    </div>
+    <div class="cert-card animate">
+      <h4>UN38.3</h4>
+      <span class="cert-status passed">Passed</span>
+      <p>UN transportation testing for lithium batteries confirms safe air and sea shipping — required for international logistics of battery-powered devices.</p>
+    </div>
+    <div class="cert-card animate">
+      <h4>CP65</h4>
+      <span class="cert-status passed">Passed</span>
+      <p>California Proposition 65 compliance ensures appropriate disclosure of chemicals in the product, meeting US consumer safety disclosure requirements.</p>
+    </div>
+    <div class="cert-card animate">
+      <h4>CE</h4>
+      <span class="cert-status in-progress">進行中</span>
+      <p>European Conformity marking for EU market access covering safety, health, and environmental requirements — expected completion ahead of first EU shipments.</p>
     </div>
   </div>
 </section>
 
-<!-- PHONE GEN1 — SECURITY & CERTIFICATIONS -->
-<section id="security-certs">
-  <div class="section-title">
-    <h2>Phone Gen1 — Security &amp; Certifications</h2>
-    <p>Hardware security and certification milestones defining MAGNE Phone Gen1's market entry readiness.</p>
+<!-- BANDS & COMPATIBILITY -->
+<section id="bands" class="bands-section">
+  <div class="bands-header">
+    <h2>Communication & Connectivity</h2>
+    <p>Designed for broad international compatibility across major LTE and Sub-6 5G bands.</p>
   </div>
-  <div class="progress-columns">
-    <div class="progress-col animate">
-      <h4><span class="icon">🔐</span> Security Architecture</h4>
-      <ul class="progress-list">
-        <li>
-          <span>CC EAL2+ TEE — Trusted Execution Environment</span>
-          <span class="status done">Done</span>
-        </li>
-        <li>
-          <span>CC EAL6+ Secure Element — HYPERSEED N60</span>
-          <span class="status done">Done</span>
-        </li>
-        <li>
-          <span>CC EAL6+ Secure Element — HYPERSEED 72B</span>
-          <span class="status done">Done</span>
-        </li>
-        <li>
-          <span>NFC Encrypted Recovery Tag</span>
-          <span class="status done">Done</span>
-        </li>
-        <li>
-          <span>Hardware Key Generation in Secure Boundary</span>
-          <span class="status done">Done</span>
-        </li>
-      </ul>
+  <div class="section-inner">
+  <div class="bands-grid">
+    <div class="band-card animate">
+      <h5>GSM</h5>
+      <p>850 / 900 / 1800 / 1900 MHz</p>
     </div>
-    <div class="progress-col animate">
-      <h4><span class="icon">📜</span> Certifications &amp; Standards</h4>
-      <ul class="progress-list">
-        <li>
-          <span>Google GMS — Mobile Services Certification</span>
-          <span class="status done">Done</span>
-        </li>
-        <li>
-          <span>Widevine L1 — DRM / Content Protection</span>
-          <span class="status done">Done</span>
-        </li>
-        <li>
-          <span>GSMA TAC — Device Identity Registration</span>
-          <span class="status done">Done</span>
-        </li>
-        <li>
-          <span>FCC Certification — US Market Entry</span>
-          <span class="status done">Done</span>
-        </li>
-        <li>
-          <span>CB Certification — International Compliance</span>
-          <span class="status done">Done</span>
-        </li>
-        <li>
-          <span>UN38.3 — Battery Transport Safety</span>
-          <span class="status done">Done</span>
-        </li>
-        <li>
-          <span>CP65 — California Prop 65 Disclosure</span>
-          <span class="status done">Done</span>
-        </li>
-        <li>
-          <span>CE Marking — EU Market Entry</span>
-          <span class="status planned">In Progress</span>
-        </li>
-      </ul>
+    <div class="band-card animate">
+      <h5>WCDMA</h5>
+      <p>B1 / B2 / B5 / B8</p>
     </div>
+    <div class="band-card animate">
+      <h5>LTE FDD</h5>
+      <p>B1 / B2 / B3 / B4 / B5 / B7 / B8 / B20 / B28</p>
+    </div>
+    <div class="band-card animate">
+      <h5>LTE TDD</h5>
+      <p>B38 / B40 / B41</p>
+    </div>
+    <div class="band-card animate">
+      <h5>5G NR</h5>
+      <p>n1 / n3 / n7 / n8 / n20 / n28 / n38 / n40 / n41 / n77 / n78</p>
+    </div>
+    <div class="band-card animate">
+      <h5>ENDC</h5>
+      <p>LTE + 5G NR dual connectivity</p>
+    </div>
+    <div class="band-card animate">
+      <h5>Wi-Fi</h5>
+      <p>802.11 a/b/g/n/ac/ax</p>
+    </div>
+    <div class="band-card animate">
+      <h5>Bluetooth</h5>
+      <p>BT 5.2 + BLE</p>
+    </div>
+  </div>
+  <p style="text-align: center; margin-top: 2rem; color: var(--text-secondary); font-size: 0.85rem;">
+    NFC (ISO 14443, ISO 18092) — Android HCE / Secure Element supported
+  </p>
+  <p class="compliance-note">
+    Band availability and network compatibility 可能有所差異 by market, carrier, software configuration, and certification status.
+    MAGNE Phone Gen1 is presented with global frequency planning capability; final regional availability is 取決於 applicable approvals and operator requirements.
+  </p>
   </div>
 </section>
 
-<!-- DEVICE PROGRAM — EVT / PVT / MP READINESS -->
-<section id="device">
-  <div class="section-title">
-    <h2>Device Program — EVT / PVT / MP Readiness</h2>
-    <p>Hardware development phases from early prototype to mass production ramp.</p>
+<!-- WHAT THESE SIGNALS MEAN -->
+<section id="meaning" class="meaning-section">
+  <div class="section-inner">
+  <h3>What These Signals Mean</h3>
+  <div class="meaning-grid">
+    <div class="meaning-card animate">
+      <h4>For Users</h4>
+      <p>MAGNE is not a grey-market or unbranded device. It has internationally recognized identifiers, certified safety testing, and platform compatibility that can be independently verified. MAGNE is designed for broad international compatibility across supported LTE and 5G bands, while actual carrier availability 可能有所差異 by region, operator, SKU, software configuration, and certification status.</p>
+    </div>
+    <div class="meaning-card animate">
+      <h4>For Partners & Channels</h4>
+      <p>Distribution partners, carriers, and retail channels can verify MAGNE's regulatory standing through public databases. The certification portfolio reduces channel risk and supports faster regulatory clearance for inventory and sales authorization.</p>
+    </div>
+    <div class="meaning-card animate">
+      <h4>For Market Readiness</h4>
+      <p>The combination of GMS, FCC, CB, UN38.3, and CE in progress signals a product that is materially closer to shippable status in major markets. MAGNE is presented as a certification-active, production-oriented device program rather than a concept-only prototype.</p>
+    </div>
   </div>
-  <div class="progress-columns">
-    <div class="progress-col animate">
-      <h4><span class="icon">📱</span> Hardware Phases</h4>
-      <ul class="progress-list">
-        <li>
-          <span>Pre-EVT — Design &amp; Architecture Validation</span>
-          <span class="status done">Done</span>
-        </li>
-        <li>
-          <span>EVT P1 — Engineering Validation Phase 1</span>
-          <span class="status done">Done</span>
-        </li>
-        <li>
-          <span>PVT P2 — Production Validation Phase 2</span>
-          <span class="status active">Active</span>
-        </li>
-        <li>
-          <span>First Batch Manufacturing</span>
-          <span class="status planned">Q3 2026 Target</span>
-        </li>
-        <li>
-          <span>Mass Production Ramp</span>
-          <span class="status planned">H2 2026</span>
-        </li>
-      </ul>
-    </div>
-    <div class="progress-col animate">
-      <h4><span class="icon">🏭</span> Production &amp; Delivery</h4>
-      <ul class="progress-list">
-        <li>
-          <span>Design Freeze</span>
-          <span class="status done">Done</span>
-        </li>
-        <li>
-          <span>Component Sourcing</span>
-          <span class="status done">Done</span>
-        </li>
-        <li>
-          <span>Manufacturing Partner Alignment</span>
-          <span class="status done">Done</span>
-        </li>
-        <li>
-          <span>First Batch Shipment</span>
-          <span class="status planned">Jul–Sep 2026</span>
-        </li>
-        <li>
-          <span>Distribution &amp; Fulfillment</span>
-          <span class="status planned">In Planning</span>
-        </li>
-      </ul>
-    </div>
   </div>
 </section>
 
-<!-- MAGNE NETWORK — L1 / L2 / DEVELOPER DOCS -->
-<section id="network">
-  <div class="section-title">
-    <h2>MAGNE Network — L1 / L2 / Developer Docs</h2>
-    <p>Blockchain infrastructure, testnet progress, and ecosystem development supporting the network side of the stack.</p>
-  </div>
-  <div class="progress-columns">
-    <div class="progress-col animate">
-      <h4><span class="icon">⛓️</span> Chain Infrastructure</h4>
-      <ul class="progress-list">
-        <li>
-          <span>MAGNE L1 Testnet</span>
-          <span class="status done">Public Reference</span>
-        </li>
-        <li>
-          <span>MHash L2 Testnet</span>
-          <span class="status active">Testnet Phase</span>
-        </li>
-        <li>
-          <span>Chain ID Assignment</span>
-          <span class="status done">Done</span>
-        </li>
-        <li>
-          <span>L1 / L2 Explorer Visibility</span>
-          <span class="status active">Available</span>
-        </li>
-        <li>
-          <span>Wallet Integration</span>
-          <span class="status done">Done</span>
-        </li>
-        <li>
-          <span>Bridge Protocol</span>
-          <span class="status active">In Progress</span>
-        </li>
-      </ul>
-    </div>
-    <div class="progress-col animate">
-      <h4><span class="icon">🛠️</span> Developer Ecosystem</h4>
-      <ul class="progress-list">
-        <li>
-          <span>Developer Documentation</span>
-          <span class="status done">Available</span>
-        </li>
-        <li>
-          <span>SDK Design</span>
-          <span class="status active">In Progress</span>
-        </li>
-        <li>
-          <span>GitHub Public Repositories</span>
-          <span class="status done">Public Reference</span>
-        </li>
-        <li>
-          <span>Security Audit &amp; Protocol Review</span>
-          <span class="status planned">Planned</span>
-        </li>
-        <li>
-          <span>Validator Network</span>
-          <span class="status planned">Subject to Network Phase</span>
-        </li>
-      </ul>
-    </div>
+<!-- SUPPORTING PROOF ENTRY -->
+<section class="supporting-proof-section">
+  <div class="section-inner" style="text-align: center; padding: 5rem 2rem;">
+    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">Need deeper Google / Android verification?</h3>
+    <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; line-height: 1.7;">
+      For partners, exchanges, and institutional reviewers who require a more detailed view of MAG1's
+      Google GMS approval path, Android partner workflow, and related supporting materials,
+      a dedicated supporting page is available.
+    </p>
+    <a href="google-approval.html" class="btn-primary">View Google Approval Details →</a>
   </div>
 </section>
 
-<!-- CAPITAL MARKETS / LISTING READINESS -->
-<section id="capital">
-  <div class="section-title">
-    <h2>Capital Markets / Listing Readiness</h2>
-    <p>Institutional and exchange-facing preparations supporting token and listing milestones.</p>
-  </div>
-  <div class="progress-columns">
-    <div class="progress-col animate">
-      <h4><span class="icon">⚖️</span> Legal &amp; Compliance</h4>
-      <ul class="progress-list">
-        <li>
-          <span>Legal Opinion — Token Framework</span>
-          <span class="status done">Done</span>
-        </li>
-        <li>
-          <span>DD Package — Exchange Submission</span>
-          <span class="status done">Done</span>
-        </li>
-        <li>
-          <span>Token Disclosure &amp; Transparency Reporting</span>
-          <span class="status active">Active</span>
-        </li>
-        <li>
-          <span>Smart Contract Audit</span>
-          <span class="status done">Done</span>
-        </li>
-      </ul>
-    </div>
-    <div class="progress-col animate">
-      <h4><span class="icon">🏦</span> Market Readiness</h4>
-      <ul class="progress-list">
-        <li>
-          <span>Market Maker Coordination</span>
-          <span class="status planned">In Preparation</span>
-        </li>
-        <li>
-          <span>TGE Readiness</span>
-          <span class="status planned">Subject to Conditions</span>
-        </li>
-        <li>
-          <span>Exchange Listing Submissions</span>
-          <span class="status planned">Multiple Submissions</span>
-        </li>
-        <li>
-          <span>Ongoing Compliance &amp; Reporting</span>
-          <span class="status active">Continuous</span>
-        </li>
-      </ul>
-    </div>
+<!-- CP65 SUPPORTING PROOF ENTRY -->
+<section class="supporting-proof-section">
+  <div class="section-inner" style="text-align: center; padding: 5rem 2rem;">
+    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">Need deeper CP65 verification?</h3>
+    <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; line-height: 1.7;">
+      For partners, exchanges, and institutional reviewers who require a more detailed view of MAG1's
+      California Proposition 65 test result, report identity, and supporting reference,
+      a dedicated supporting page is available.
+    </p>
+    <a href="cp65-lookup.html" class="btn-primary">View CP65 Test Details →</a>
   </div>
 </section>
 
+<!-- GSMA TAC SUPPORTING PROOF ENTRY -->
+<section class="supporting-proof-section">
+  <div class="section-inner" style="text-align: center; padding: 5rem 2rem;">
+    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">Need deeper GSMA TAC verification?</h3>
+    <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; line-height: 1.7;">
+      For partners, exchanges, and institutional reviewers who require a more detailed view of MAG1's
+      GSMA TAC allocation, public device identification profile, and supporting reference materials,
+      a dedicated supporting page is available.
+    </p>
+    <a href="gsma-tac-lookup.html" class="btn-primary">View GSMA TAC Details →</a>
+  </div>
+</section>
+
+<!-- FCC SUPPORTING PROOF ENTRY -->
+<section class="supporting-proof-section">
+  <div class="section-inner" style="text-align: center; padding: 5rem 2rem;">
+    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">Need deeper FCC verification?</h3>
+    <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; line-height: 1.7;">
+      For partners, regulatory bodies, and institutional reviewers who require a more detailed view of MAG1's FCC equipment authorization — including SAR reports, cellular RF test data, Wi-Fi / U-NII / DFS reports, EMC results, and public grant records — a dedicated FCC document center is available.
+    </p>
+    <a href="fcc-lookup.html" class="btn-primary">View FCC Documentation →</a>
+  </div>
+</section>
+
+<!-- CB SUPPORTING PROOF ENTRY -->
+<section class="supporting-proof-section">
+  <div class="section-inner" style="text-align: center; padding: 5rem 2rem;">
+    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">Need deeper CB verification?</h3>
+    <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; line-height: 1.7;">
+      For partners, exchanges, and institutional reviewers who require a more detailed view of MAG1 battery's
+      CB certificate, certificate identity, and related verification reference,
+      a dedicated supporting page is available.
+    </p>
+    <a href="cb-lookup.html" class="btn-primary">View CB Certificate Detail →</a>
+  </div>
+</section>
+
+<!-- UN38.3 SUPPORTING PROOF ENTRY -->
+<section class="supporting-proof-section">
+  <div class="section-inner" style="text-align: center; padding: 5rem 2rem;">
+    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">Need deeper UN38.3 / shipping verification?</h3>
+    <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; line-height: 1.7;">
+      For partners, exchanges, logistics counterparts, and institutional reviewers who require a more detailed view of MAG1 battery's UN38.3 status, packaging validation, and air / sea shipping classification materials,
+      a dedicated supporting page is available.
+    </p>
+    <a href="un383-lookup.html" class="btn-primary">View Transport &amp; Shipping Details →</a>
+  </div>
+</section>
+
+<!-- CTA -->
 <section id="contact" class="cta-section">
-  <h2>Need the full investor overview?</h2>
-  <p>For institutional due diligence, investor presentations, or to discuss commercial engagement, our team is available.</p>
+  <div class="section-inner">
+  <h2>Need official references or commercial materials?</h2>
+  <p>For regulatory inquiries, distribution discussions, or to request official certification documentation, our team is available.</p>
   <div class="cta-buttons">
-    <a href="magne-contact.html" class="btn-primary">Contact MAGNE.AI</a>
-    <a href="magne-partners.html" class="btn-secondary">Explore Partners</a>
+    <a href="magne-contact.html" class="btn-primary">聯絡 MAGNE.AI</a>
+    <a href="magne-progress.html" class="btn-secondary">探索 Progress</a>
+  </div>
   </div>
 </section>
 
@@ -1442,17 +1504,17 @@
   </div>
 
 <div class="footer-links">
-    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="privacy-policy.html">隱私政策</a>
     <a href="magne-contact.html">Contact</a>
-    <a href="media-kit.html">Media Kit</a>
-    <a href="https://web3.magne.ai" target="_blank" rel="noopener">Whitepaper</a>
-    <a href="https://web3.magne.ai/transparency" target="_blank" rel="noopener">Legal Opinion</a>
+    <a href="media-kit.html">媒體資料包</a>
+    <a href="https://web3.magne.ai" target="_blank" rel="noopener">白皮書</a>
+    <a href="https://web3.magne.ai/transparency" target="_blank" rel="noopener">法律意見書</a>
   </div>
     <p class="trademark-notice">
-    MAGNE.AI™ is a trademark of Magical Hash Global Tech Limited, currently in registration process 
+    MAGNE.AI™ 為註冊商標 of Magical Hash Global Tech Limited, currently in registration process 
     (<a href="https://tmsearch.uspto.gov/search/search-results/99311528" target="_blank" rel="noopener">USPTO Serial: 99311528</a>).
   </p>
-  <p style="margin-top: 1.5rem; opacity: 0.5;">© 2026 MAGNE.AI. All rights reserved.</p>
+  <p style="margin-top: 1.5rem; opacity: 0.5;">© 2026 MAGNE.AI. 版權所有.</p>
 </footer>
 
 </div>
@@ -1507,7 +1569,7 @@
         const dist = Math.sqrt(dx * dx + dy * dy);
         if (dist < 150) {
           ctx.beginPath();
-          ctx.strokeStyle = `rgba(255, 215, 0, ${0.15 * (1 - dist / 150)})`;
+          ctx.strokeStyle = `rgba(0, 255, 136, ${0.15 * (1 - dist / 150)})`;
           ctx.lineWidth = 1;
           ctx.moveTo(nodes[i].x, nodes[i].y);
           ctx.lineTo(nodes[j].x, nodes[j].y);
@@ -1523,7 +1585,7 @@
       node.y = node.baseY + noiseY;
       ctx.beginPath();
       ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(255, 215, 0, 0.6)';
+      ctx.fillStyle = 'rgba(0, 255, 136, 0.6)';
       ctx.fill();
     }
     
