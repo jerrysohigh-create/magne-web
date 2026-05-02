@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAGNE.AI Phone Gen1 抽獎活動</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0a0c;
+      --bg-secondary: #0f0f12;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 255, 255, 0.06);
+      --text-primary: #f5f5f7;
+      --text-secondary: rgba(245, 245, 247, 0.6);
+      --accent: #00ff88;
+      --accent-glow: rgba(0, 255, 136, 0.3);
+      --gold: #ffd700;
+      --gold-dim: rgba(255, 215, 0, 0.2);
+      --green: #00ff88;
+      --green-dim: rgba(0, 255, 136, 0.15);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', -apple-system, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 12, 0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-brand a { color: var(--text-secondary); text-decoration: none; }
+    .nav-logo { font-size: 1.3rem; font-weight: 700; color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a.active { color: var(--accent); }
+    .nav-cta {
+      background: var(--accent);
+      color: #000 !important;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .nav-cta:hover { opacity: 0.9; }
+
+    /* CONTENT WRAPPER */
+    .content-wrapper {
+      position: relative;
+      z-index: 1;
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+      padding-top: 5rem;
+    }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 3rem 2rem 2rem;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 300px;
+      background: radial-gradient(ellipse at center, rgba(0,255,136,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.85) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* DASHBOARD CONTAINER */
+    .dashboard {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 0 4rem;
+    }
+
+        .back-home {
+      margin-bottom: 1.5rem;
+    }
+
+    .back-home a {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: color 0.2s;
+    }
+
+    .back-home a:hover {
+      color: var(--accent);
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .api-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.68rem;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 0.75rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .api-status .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+    }
+
+    .api-status.live .dot {
+      background: #00ff88;
+      box-shadow: 0 0 6px #00ff88;
+      animation: status-pulse 2s ease-in-out infinite;
+    }
+
+    .api-status.error .dot {
+      background: #ff4444;
+      box-shadow: 0 0 6px #ff4444;
+    }
+
+    .api-status.error {
+      color: rgba(255,68,68,0.6);
+    }
+
+    @keyframes status-pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, var(--accent), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .header p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+    }
+
+    /* Section Label */
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 1rem;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem 1.25rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+
+    .stat-card.gold {
+      border-color: rgba(255, 215, 0, 0.25);
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.06), transparent);
+    }
+
+    .stat-card.gold::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+
+    .stat-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .stat-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-card.gold .stat-value {
+      color: var(--gold);
+    }
+
+    .stat-label {
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+    }
+
+    .stat-trend {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.35);
+      margin-top: 0.4rem;
+    }
+
+    /* Long number display */
+    #pending-mha-val {
+      font-size: 2.2rem;
+      word-break: break-all;
+    }
+
+    .stat-trend {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.8rem;
+      color: var(--green);
+      margin-top: 0.8rem;
+      padding: 0.3rem 0.6rem;
+      background: var(--green-dim);
+      border-radius: 6px;
+    }
+
+    /* Lottery Rules */
+    .rules-section {
+      background: rgba(0, 212, 212, 0.05);
+      border: 1px solid rgba(0, 212, 212, 0.15);
+      border-radius: 16px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 2rem;
+    }
+    .rules-header {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid rgba(0,212,212,0.1);
+      padding-bottom: 0.75rem;
+    }
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    .rule-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    .rule-icon {
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+    .rules-note {
+      margin-top: 1rem;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.25);
+      text-align: center;
+    }
+
+    /* Device Info */
+    .device-info {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      padding: 1rem 0;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .device-info-item {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+    }
+
+    /* Prize Pool Card */
+    .prize-pool {
+      background: linear-gradient(135deg, rgba(0, 212, 212, 0.1), rgba(255, 215, 0, 0.05));
+      border: 1px solid var(--accent);
+      border-radius: 24px;
+      padding: 2.5rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .prize-pool::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, var(--accent-glow), transparent 50%);
+      animation: pulse-glow 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.1); }
+    }
+
+    .prize-pool-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .prize-pool .label {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+    }
+
+    .prize-pool .amount {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 4rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--gold), #ff9500);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .prize-pool .subtitle {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+    }
+
+    /* Current Round */
+    .current-round {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .round-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .round-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    .round-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--gold-dim);
+      color: var(--gold);
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      font-weight: 600;
+    }
+
+    .progress-container {
+      margin-bottom: 1.5rem;
+    }
+
+    .progress-bar {
+      height: 60px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 30px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 76%;
+      background:
+        linear-gradient(90deg, rgba(0,212,212,0.3), var(--accent) 30%, var(--gold));
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 1rem;
+      transition: width 1s ease;
+      position: relative;
+    }
+
+    .progress-fill::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 6px;
+      background: rgba(255,255,255,0.5);
+      border-radius: 0 30px 30px 0;
+      animation: pulse-glow 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+    }
+
+    .progress-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--bg-primary);
+    }
+
+    .progress-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.8rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    /* Tier Cards (static info) */
+    .tier-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tier-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      transition: border-color 0.3s;
+    }
+
+    .tier-card:hover {
+      border-color: var(--accent);
+    }
+
+    .tier-amount {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.2rem;
+    }
+
+    .tier-label {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.4rem;
+    }
+
+    .tier-chances {
+      font-size: 0.85rem;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    /* Participate Button */
+    .participate-section {
+      text-align: center;
+      margin-top: 0.5rem;
+    }
+
+    .btn-participate {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: linear-gradient(135deg, var(--accent), #0088aa);
+      color: var(--bg-primary);
+      border: none;
+      padding: 1rem 3rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: 'Outfit', sans-serif;
+      text-decoration: none;
+    }
+
+    .btn-participate:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 40px var(--accent-glow);
+    }
+
+    /* Recent Activity */
+    .recent-activity {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 1.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .activity-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding-bottom: 0.75rem;
+    }
+
+    .activity-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .activity-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: var(--bg-card);
+      border-radius: 12px;
+      border: 1px solid transparent;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .activity-item:hover {
+      border-color: var(--accent);
+      transform: translateX(3px);
+    }
+
+    .activity-winner {
+      background: var(--gold-dim);
+      border: 1px solid rgba(255, 215, 0, 0.25);
+    }
+
+    .activity-winner:hover {
+      border-color: var(--gold);
+    }
+
+    .winners-pagination {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .winners-pagination .winners-count {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+    }
+    .pagination-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .page-btn {
+      padding: 0.4rem 1rem;
+      border: 1px solid var(--border-hover);
+      border-radius: 8px;
+      background: var(--bg-card);
+      color: var(--text-primary);
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .page-btn:hover:not(:disabled) {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .page-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+    .page-indicator {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      font-family: 'JetBrains Mono', monospace;
+      white-space: nowrap;
+    }
+    .win-count-badge {
+      display: inline-flex;
+      align-items: center;
+      margin-left: 0.4rem;
+      padding: 0.1rem 0.45rem;
+      background: rgba(255, 215, 0, 0.2);
+      border: 1px solid rgba(255, 215, 0, 0.4);
+      border-radius: 999px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .activity-round {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.2rem;
+    }
+    .activity-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .activity-icon.phone {
+      background: rgba(0, 212, 212, 0.2);
+    }
+
+    .activity-icon.mha {
+      background: rgba(0, 255, 136, 0.2);
+    }
+
+    .activity-content {
+      flex: 1;
+    }
+
+    .activity-text {
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      margin-bottom: 0.2rem;
+    }
+
+    .activity-time {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+
+    .activity-addr {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--accent);
+    }
+    .addr-status {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      margin-left: 0.5rem;
+    }
+    .addr-status.filled {
+      background: var(--green-dim);
+      color: var(--green);
+    }
+    .addr-status.unset {
+      background: rgba(255, 100, 100, 0.15);
+      color: #ff6464;
+    }
+
+    /* Footer Note */
+    .footer-note {
+      text-align: center;
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: var(--bg-card);
+      border-radius: 12px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .footer-note a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .footer-note a:hover {
+      opacity: 0.75;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        padding: 0.75rem 1.5rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .content-wrapper {
+        padding-top: 5rem;
+      }
+
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .dashboard {
+        padding: 0 0 2rem;
+      }
+
+      .rules-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+      }
+
+      .stat-card {
+        padding: 1.25rem 1rem;
+      }
+
+      .stat-value {
+        font-size: 1.8rem;
+      }
+
+      #pending-mha-val {
+        font-size: 1.5rem;
+      }
+
+      .stat-icon {
+        font-size: 1.5rem;
+      }
+
+      .tier-cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+      }
+
+      .tier-amount {
+        font-size: 1.3rem;
+      }
+
+      .recent-activity {
+        padding: 1.25rem;
+      }
+
+      .activity-item {
+        padding: 0.85rem;
+        gap: 0.75rem;
+      }
+
+      .winners-pagination {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  
+    /* Dashboard Disclaimer */
+    .dashboard-disclaimer {
+      max-width: 820px;
+      margin: 1.25rem auto 0;
+      color: rgba(255,255,255,0.42);
+      font-size: 0.78rem;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    /* Dashboard Simplified Footer */
+    .dashboard-footer {
+      margin-top: 3rem;
+      padding: 2rem 1rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      text-align: center;
+      color: rgba(255,255,255,0.38);
+      font-size: 0.85rem;
+    }
+    .dashboard-footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+    .dashboard-footer-links a {
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+    }
+    .dashboard-footer-links a:hover {
+      color: var(--accent);
+    }
+
+
+    .nav-logo-img {
+      height: 20px;
+      width: auto;
+      display: block;
+    }
+  
+    .trademark-notice {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-top: 1rem;
+      opacity: 0.7;
+    }
+    .trademark-notice a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .trademark-notice a:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <link rel="stylesheet" href="assets/mobile-responsive.css">
+</head>
+<body>
+  <nav>
+    <div class="nav-brand">
+      <a href="/magne-web/tc/magne-home.html" class="nav-logo"><img src="/magne-web/assets/brand/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="nav-logo-img"></a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="/magne-web/tc/magne-home.html">首頁</a></li>
+      <li><a href="/magne-web/tc/magne-phone.html">手機</a></li>
+      <li><a href="/magne-web/tc/magne-security.html">安全</a></li>
+      <li><a href="/magne-web/tc/magne-compliance.html">合規</a></li>
+      <li><a href="/magne-web/tc/magne-network.html">網絡</a></li>
+      <li><a href="/magne-web/tc/magne-progress.html">進展</a></li>
+      <li><a href="/magne-web/tc/magne-partners.html">合作夥伴</a></li>
+    </ul>
+    <a href="/magne-web/tc/magne-contact.html" class="nav-cta">聯絡</a>
+  </nav>
+
+  <div class="content-wrapper">
+    <section class="hero">
+      <div class="hero-eyebrow">直播活動儀表板</div>
+      <h1>🎰 MAGNE 手機抽獎活動</h1>
+      <p>1,000 部 AI 手機贈送 • 每 100 次報名 = 1 次抽獎</p>
+    </section>
+
+    <div class="api-status" id="api-status">
+      <span class="dot"></span>
+      <span id="api-status-text">連接中...</span>
+    </div>
+
+    <div class="dashboard">
+
+    <!-- Lottery Rules -->
+    <div class="rules-section">
+      <div class="rules-header">🎰 抽獎規則</div>
+      <div class="rules-grid">
+        <div class="rule-item">
+          <div class="rule-icon">📱</div>
+          <div class="rule-text">
+            <strong>1,000 部 AI 手機</strong> 全球贈送
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">💰</div>
+          <div class="rule-text">
+            每個錢包最多 <strong>10 次報名</strong> at <strong>10 USDT</strong> 每次報名
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">🎯</div>
+          <div class="rule-text">
+            每 <strong>100 次報名</strong> = 1 次抽獎，獲得 <strong>1 部手機 (8+512GB)</strong>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">🪙</div>
+          <div class="rule-text">
+            符合資格但未中獎的參與者，根據官方活動規則、資格驗證及 TGE 相關分配時間表，可能獲得 100 MHA。
+          </div>
+        </div>
+      </div>
+      <div class="rules-note">Magne.ai 保留最終解釋權。</div>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon">👥</div>
+        <div class="stat-value" id="participants">1,963</div>
+        <div class="stat-label">總參與人數</div>
+        <div class="stat-trend">↑ +127 今日</div>
+      </div>
+
+      <div class="stat-card gold">
+        <div class="stat-icon">📱</div>
+        <div class="stat-value" id="phones-given">—</div>
+        <div class="stat-label">已中獎手機</div>
+        <div class="stat-trend" id="phones-剩餘">— 剩餘</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon">💰</div>
+        <div class="stat-value" id="onchain-assets-val">$—</div>
+        <div class="stat-label">鏈上資產</div>
+        <div class="stat-trend">獎金池 USDT</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon">🪙</div>
+        <div class="stat-value" id="pending-mha-val">—</div>
+        <div class="stat-label">待發放 MHA 空投</div>
+        <div class="stat-trend">MHA 代幣</div>
+      </div>
+    </div>
+
+    <!-- Device Info -->
+    <div class="device-info">
+      <div class="device-info-item">📱 <strong>設備：</strong> 8GB + 512GB</div>
+      <div class="device-info-item">🚚 <strong>出貨：</strong> 首批 2026 年 7–9 月</div>
+      <div class="device-info-item">🪙 <strong>MHA 空投：</strong> TGE 後 30 天內</div>
+    </div>
+
+    <!-- Current Round -->
+    <div class="current-round">
+      <div class="round-header">
+        <div class="round-title">🎰 輪次 <span id="round-number">144</span></div>
+        <div class="round-badge">
+          <span>📱</span>
+          <span>1 手機備妥</span>
+        </div>
+      </div>
+
+      <div class="progress-container">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill" style="width: 76%;">
+            <span class="progress-text"><span id="current-entries">76</span>/100</span>
+          </div>
+        </div>
+        <div class="progress-labels">
+          <span>下次抽獎所需報名</span>
+          <span id="entries-needed">24 個報名名額</span>
+        </div>
+      </div>
+
+      <div class="section-label">參與選項</div>
+      <!-- Entry Tier Cards -->
+      <div class="tier-cards">
+        <div class="tier-card">
+          <div class="tier-amount">10 USDT</div>
+          <div class="tier-label">標準報名</div>
+          <div class="tier-chances">🎯 1 次機會</div>
+        </div>
+        <div class="tier-card">
+          <div class="tier-amount">20 USDT</div>
+          <div class="tier-label">雙倍機會</div>
+          <div class="tier-chances">🎯 2 次機會</div>
+        </div>
+        <div class="tier-card">
+          <div class="tier-amount">50 USDT</div>
+          <div class="tier-label">高額投入</div>
+          <div class="tier-chances">🎯 5 次機會</div>
+        </div>
+        <div class="tier-card">
+          <div class="tier-amount">100 USDT</div>
+          <div class="tier-label">最高額</div>
+          <div class="tier-chances">🎯 10 次機會</div>
+        </div>
+      </div>
+
+      <div class="participate-section">
+        <a href="https://payment.magne.ai/lottery" target="_blank" class="btn-participate">
+          🎲 參與抽獎活動
+        </a>
+      </div>
+    </div>
+
+    <div class="section-label" style="margin-top:2rem;">所有中獎者</div>
+    <!-- All Winners -->
+    <div class="recent-activity">
+      <div class="activity-title">🏆 所有中獎者</div>
+      <div class="winners-pagination">
+        <span id="winners-count"></span>
+        <div class="pagination-controls">
+          <button class="page-btn" id="prev-btn" onclick="changePage(-1)" disabled>← 上一頁</button>
+          <span class="page-indicator" id="page-indicator"></span>
+          <button class="page-btn" id="next-btn" onclick="changePage(1)" disabled>下一頁 →</button>
+        </div>
+      </div>
+      <div class="activity-list" id="activity-list"></div>
+    </div>
+
+    <!-- Dashboard Disclaimer -->
+    <p class="dashboard-disclaimer">
+      活動數據僅供參考。獎勵、資格及分配時間須受官方活動規則、資格驗證及 TGE 相關時間表約束。MHA 獎勵資訊不代表投資建議、保證價值或保證回報。
+    </p>
+
+    <!-- Footer Note -->
+    <div class="footer-note">
+      🎁 <strong>1,000 部 Magne 手機</strong> 贈送 • 每 100 次報名 = 1 次手機抽獎<br>
+      未中獎者可得 <strong>100 MHA</strong> • 分配時間須受 TGE 時間表、活動規則及資格驗證約束。<br><br>
+      合約： <a href="https://bscscan.com/address/0xb14426893ADb6601b9e6397afa10527B66297bc1" target="_blank" rel="noopener">0xb144...97bc1 ↗</a> • 
+      獎金池： <a href="https://bscscan.com/token/0x55d398326f99059ff775485246999027b3197955?a=0x2598825231f9aff0018c407b46e8e50facf082d7" target="_blank" rel="noopener">在 BSCScan 上查看 ↗</a>
+    </div>
+  </div>
+
+  <script>
+    const DASHBOARD_API = 'https://payment.magne.ai/api/v1/lottery/dashboard';
+    const WINNERS_API = 'https://payment.magne.ai/api/v1/lottery/winners';
+
+    // Format wallet address: show first 4 + last 4 chars
+    function fmtAddr(addr) {
+      if (!addr) return '—';
+      return addr.slice(0, 6) + '...' + addr.slice(-4);
+    }
+
+    // Load dashboard stats
+    async function loadDashboard() {
+      try {
+        const res = await fetch(DASHBOARD_API);
+        const json = await res.json();
+        if (json.code !== 200 || !json.data) return;
+        const d = json.data;
+
+        // Update stat cards
+        document.getElementById('participants').textContent = d.totalParticipants
+          ? d.totalParticipants.toLocaleString()
+          : '—';
+
+        // Phones given = from dashboard API totalMobile field
+        const phonesGivenEl = document.getElementById('phones-given');
+        const phonesRemainingEl = document.getElementById('phones-剩餘');
+        const TOTAL_PHONES = 1000;
+        if (phonesGivenEl) {
+          phonesGivenEl.textContent = d.totalMobile
+            ? d.totalMobile.toLocaleString()
+            : '—';
+        }
+        if (phonesRemainingEl) {
+          const given = d.totalMobile || 0;
+          phonesRemainingEl.textContent = (TOTAL_PHONES - given).toLocaleString() + ' 剩餘';
+        }
+
+        // Update round number and progress
+        const roundEl = document.getElementById('round-number');
+        if (roundEl && d.currRound) roundEl.textContent = d.currRound;
+
+        // Current Round stat card
+        // 待發放 MHA 空投 = (currRound - 1) * 99 * 100
+        const pendingMhaEl = document.getElementById('pending-mha-val');
+        if (pendingMhaEl && d.currRound) {
+          const completedRounds = d.currRound - 1;
+          const pendingMha = completedRounds * 99 * 100;
+          pendingMhaEl.textContent = pendingMha.toLocaleString();
+        }
+
+        // Progress bar: how many entries toward next draw
+        if (d.nextDrawNeed !== undefined) {
+          const entriesNow = 100 - d.nextDrawNeed;
+          const pct = Math.min(100, Math.max(0, entriesNow));
+          const fill = document.getElementById('progress-fill');
+          const entriesEl = document.getElementById('current-entries');
+          const neededEl = document.getElementById('entries-needed');
+          if (fill) fill.style.width = pct + '%';
+          if (entriesEl) entriesEl.textContent = entriesNow;
+          if (neededEl) neededEl.textContent = d.nextDrawNeed + ' more entries';
+
+          // 鏈上資產 = (completedRounds * $1000) + (currentEntries * $10)
+          const onChainRounds = (d.currRound || 1) - 1;
+          const onChainUsd = onChainRounds * 1000 + entriesNow * 10;
+          const onchainAssetsEl = document.getElementById('onchain-assets-val');
+          if (onchainAssetsEl) onchainAssetsEl.textContent = '$' + onChainUsd.toLocaleString();
+        }
+
+        markApiLive();
+
+      } catch (e) {
+        console.warn('Dashboard API error:', e);
+        setApiStatus('error', 'Dashboard data temporarily unavailable.');
+      }
+    }
+
+    function setApiStatus(status, msg) {
+      const el = document.getElementById('api-status');
+      const txt = document.getElementById('api-status-text');
+      if (!el || !txt) return;
+      el.className = 'api-status ' + status;
+      txt.textContent = msg || (status === 'live' ? 'Live' : 'Error');
+    }
+
+    // Pagination state
+    let allWinners = [];
+    let winCountMap = {};  // address -> number of wins
+    const PAGE_SIZE = 20;
+    let currentPage = 1;
+
+    // Load all winners with pagination
+    async function loadWinners() {
+      try {
+        const res = await fetch(WINNERS_API);
+        const json = await res.json();
+        if (json.code !== 200 || !json.data) return;
+
+        allWinners = json.data; // already sorted newest first by API
+
+        // Count wins per address
+        winCountMap = {};
+        allWinners.forEach(w => {
+          winCountMap[w.address] = (winCountMap[w.address] || 0) + 1;
+        });
+
+        renderWinnersPage(1);
+        markApiLive();
+      } catch (e) {
+        console.warn('Winners API error:', e);
+      }
+    }
+
+    // Mark live on first successful load of both
+    let apiLive = false;
+    function markApiLive() {
+      if (!apiLive) {
+        apiLive = true;
+        setApiStatus('live', 'Live');
+      }
+    }
+
+    function renderWinnersPage(page) {
+      currentPage = page;
+      const list = document.getElementById('activity-list');
+      if (!list) return;
+
+      const totalPages = Math.ceil(allWinners.length / PAGE_SIZE);
+      const start = (page - 1) * PAGE_SIZE;
+      const pageWinners = allWinners.slice(start, start + PAGE_SIZE);
+
+      list.innerHTML = '';
+      pageWinners.forEach(w => {
+        const wins = winCountMap[w.address] || 1;
+        const item = document.createElement('div');
+        item.className = 'activity-item' + (w.hasAddress ? ' activity-winner' : '');
+        const statusIcon = w.hasAddress ? '✓' : '⚠';
+        const statusText = w.hasAddress ? 'Address Filled' : 'Address Not Set';
+        const bscUrl = 'https://bscscan.com/address/' + w.address;
+        const winBadge = wins > 1
+          ? `<span class="win-count-badge">×${wins} WINS</span>`
+          : '';
+        item.innerHTML = `
+          <div class="activity-icon phone">📱</div>
+          <div class="activity-content">
+            <div class="activity-text">
+              Won <strong>1x Magne Phone</strong> ${winBadge}
+              <span class="addr-status ${w.hasAddress ? 'filled' : 'unset'}">${statusIcon} ${statusText}</span>
+            </div>
+            <div class="activity-round">Round ${w.drawRound}</div>
+            <a class="activity-addr" href="${bscUrl}" target="_blank" rel="noopener" title="View on BSC Scan">${fmtAddr(w.address)} ↗</a>
+          </div>
+        `;
+        list.appendChild(item);
+      });
+
+      // Update pagination controls
+      const prevBtn = document.getElementById('prev-btn');
+      const nextBtn = document.getElementById('next-btn');
+      const pageIndicator = document.getElementById('page-indicator');
+      const winnersCount = document.getElementById('winners-count');
+
+      if (prevBtn) prevBtn.disabled = page <= 1;
+      if (nextBtn) nextBtn.disabled = page >= totalPages;
+      if (pageIndicator) pageIndicator.textContent = `Page ${page} / ${totalPages}`;
+      if (winnersCount) winnersCount.textContent = `${allWinners.length} winners`;
+    }
+
+    function changePage(delta) {
+      const totalPages = Math.ceil(allWinners.length / PAGE_SIZE);
+      const newPage = currentPage + delta;
+      if (newPage < 1 || newPage > totalPages) return;
+      renderWinnersPage(newPage);
+      // Scroll to winners section
+      document.querySelector('.recent-activity')?.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Initial load
+    loadDashboard();
+    loadWinners();
+
+    // Refresh every 30 seconds
+    setInterval(() => { loadDashboard(); loadWinners(); }, 30000);
+  </script>
+  </div>
+</div>
+  <script src="/magne-web/assets/mobile-nav.js" defer></script>
+
+  <footer>
+  <div class="footer-brand-logo">
+      <img src="/magne-web/assets/brand/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="footer-brand-img">
+      <p>Web3 原生 AI 安全手機</p>
+    </div>
+  
+  <div class="footer-socials" aria-label="Official MAGNE.AI channels">
+    <a href="https://x.com/Magne_Ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+    <a href="https://t.me/MagneAI" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+    <a href="https://discord.gg/tX2xRAkd" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
+    <a href="https://github.com/magne-ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+    <a href="https://www.youtube.com/@MagneAI" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+    <a href="https://web3.magne.ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE Web3 Docs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></a>
+  </div>
+
+<div class="footer-links">
+    <a href="/magne-web/tc/privacy-policy.html">隱私權政策</a>
+    <a href="/magne-web/tc/magne-contact.html">聯絡</a>
+    <a href="/magne-web/tc/media-kit.html">媒體資料包</a>
+  </div>
+    <p class="trademark-notice">
+    MAGNE.AI™ 為 Magical Hash Global Tech Limited 的商業，目前正在註冊程序中 
+    (<a href="https://tmsearch.uspto.gov/search/search-results/99311528" target="_blank" rel="noopener">USPTO 序號：99311528</a>).
+  </p>
+  <p style="margin-top: 1.5rem; opacity: 0.5;">© 2026 MAGNE.AI. 保留所有權利。</p>
+</footer>
+
+</div>
+
+
+</body>
+</html>
