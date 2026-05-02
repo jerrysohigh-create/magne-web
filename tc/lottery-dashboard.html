@@ -900,15 +900,18 @@
       <li><a href="/magne-web/tc/magne-network.html">網絡</a></li>
       <li><a href="/magne-web/tc/magne-progress.html">進展</a></li>
       <li><a href="/magne-web/tc/magne-partners.html">合作夥伴</a></li>
+      <li><a href="/magne-web/tc/faq.html">常見問題</a></li>
+      <li><a href="/magne-web/lottery-dashboard.html" class="lang-switch">繁中 | EN</a></li>
     </ul>
+    <a href="https://t.me/MagneAI" target="_blank" rel="noopener" class="nav-link">Web3 入口 ↗️</a>
     <a href="/magne-web/tc/magne-contact.html" class="nav-cta">聯絡</a>
   </nav>
 
   <div class="content-wrapper">
     <section class="hero">
       <div class="hero-eyebrow">直播活動儀表板</div>
-      <h1>🎰 MAGNE 手機抽獎活動</h1>
-      <p>1,000 部 AI 手機贈送 • 每 100 次報名 = 1 次抽獎</p>
+      <h1>🎰 MAGNE.AI Phone Gen1 抽獎活動</h1>
+      <p>查看社區參與進度、中獎手機記錄，以及如適用的 TGE 後 MHA 獎勵狀態更新。</p>
     </section>
 
     <div class="api-status" id="api-status">
@@ -925,7 +928,7 @@
         <div class="rule-item">
           <div class="rule-icon">📱</div>
           <div class="rule-text">
-            <strong>1,000 部 AI 手機</strong> 全球贈送
+            <strong>1,000 部 MAGNE.AI Phone Gen1</strong> 活動名額
           </div>
         </div>
         <div class="rule-item">
@@ -969,14 +972,14 @@
       <div class="stat-card">
         <div class="stat-icon">💰</div>
         <div class="stat-value" id="onchain-assets-val">$—</div>
-        <div class="stat-label">鏈上資產</div>
-        <div class="stat-trend">獎金池 USDT</div>
+        <div class="stat-label">活動合約資產</div>
+        <div class="stat-trend">USDT 活動池</div>
       </div>
 
       <div class="stat-card">
         <div class="stat-icon">🪙</div>
         <div class="stat-value" id="pending-mha-val">—</div>
-        <div class="stat-label">待發放 MHA 空投</div>
+        <div class="stat-label">TGE 後 MHA 獎勵狀態</div>
         <div class="stat-trend">MHA 代幣</div>
       </div>
     </div>
@@ -985,7 +988,7 @@
     <div class="device-info">
       <div class="device-info-item">📱 <strong>設備：</strong> 8GB + 512GB</div>
       <div class="device-info-item">🚚 <strong>出貨：</strong> 首批 2026 年 7–9 月</div>
-      <div class="device-info-item">🪙 <strong>MHA 空投：</strong> TGE 後 30 天內</div>
+      <div class="device-info-item">🪙 <strong>MHA 獎勵分配：</strong> 受限於 TGE 時間表</div>
     </div>
 
     <!-- Current Round -->
@@ -1025,12 +1028,12 @@
         </div>
         <div class="tier-card">
           <div class="tier-amount">50 USDT</div>
-          <div class="tier-label">高額投入</div>
+          <div class="tier-label">多次參與</div>
           <div class="tier-chances">🎯 5 次機會</div>
         </div>
         <div class="tier-card">
           <div class="tier-amount">100 USDT</div>
-          <div class="tier-label">最高額</div>
+          <div class="tier-label">最高 10 次參與</div>
           <div class="tier-chances">🎯 10 次機會</div>
         </div>
       </div>
@@ -1064,10 +1067,10 @@
 
     <!-- Footer Note -->
     <div class="footer-note">
-      🎁 <strong>1,000 部 Magne 手機</strong> 贈送 • 每 100 次報名 = 1 次手機抽獎<br>
-      未中獎者可得 <strong>100 MHA</strong> • 分配時間須受 TGE 時間表、活動規則及資格驗證約束。<br><br>
+      🎁 <strong>1,000 部 MAGNE.AI Phone Gen1</strong> 活動名額 • 每 100 次報名觸發 1 次手機抽獎<br>
+      符合資格但未中獎的參與者，可依官方活動規則、資格驗證及 TGE 相關分配時間表，獲得相應 MHA 獎勵安排。<br><br>
       合約： <a href="https://bscscan.com/address/0xb14426893ADb6601b9e6397afa10527B66297bc1" target="_blank" rel="noopener">0xb144...97bc1 ↗</a> • 
-      獎金池： <a href="https://bscscan.com/token/0x55d398326f99059ff775485246999027b3197955?a=0x2598825231f9aff0018c407b46e8e50facf082d7" target="_blank" rel="noopener">在 BSCScan 上查看 ↗</a>
+      USDT 活動池： <a href="https://bscscan.com/token/0x55d398326f99059ff775485246999027b3197955?a=0x2598825231f9aff0018c407b46e8e50facf082d7" target="_blank" rel="noopener">在 BSCScan 上查看 ↗</a>
     </div>
   </div>
 
@@ -1113,7 +1116,7 @@
         if (roundEl && d.currRound) roundEl.textContent = d.currRound;
 
         // Current Round stat card
-        // 待發放 MHA 空投 = (currRound - 1) * 99 * 100
+        // TGE 後 MHA 獎勵狀態 = (currRound - 1) * 99 * 100
         const pendingMhaEl = document.getElementById('pending-mha-val');
         if (pendingMhaEl && d.currRound) {
           const completedRounds = d.currRound - 1;
@@ -1132,7 +1135,7 @@
           if (entriesEl) entriesEl.textContent = entriesNow;
           if (neededEl) neededEl.textContent = d.nextDrawNeed + ' more entries';
 
-          // 鏈上資產 = (completedRounds * $1000) + (currentEntries * $10)
+          // 活動合約資產 = (completedRounds * $1000) + (currentEntries * $10)
           const onChainRounds = (d.currRound || 1) - 1;
           const onChainUsd = onChainRounds * 1000 + entriesNow * 10;
           const onchainAssetsEl = document.getElementById('onchain-assets-val');
@@ -1277,12 +1280,13 @@
     <a href="/magne-web/tc/privacy-policy.html">隱私權政策</a>
     <a href="/magne-web/tc/magne-contact.html">聯絡</a>
     <a href="/magne-web/tc/media-kit.html">媒體資料包</a>
+    <a href="https://web3.magne.ai" target="_blank" rel="noopener">白皮書</a>
+    <a href="https://web3.magne.ai/transparency" target="_blank" rel="noopener">法律意見書</a>
   </div>
     <p class="trademark-notice">
-    MAGNE.AI™ 為 Magical Hash Global Tech Limited 的商業，目前正在註冊程序中 
-    (<a href="https://tmsearch.uspto.gov/search/search-results/99311528" target="_blank" rel="noopener">USPTO 序號：99311528</a>).
+    MAGNE.AI™ 為 Magical Hash Global Tech Limited 的商標，目前正在註冊程序中（USPTO 序號：99311528）。
   </p>
-  <p style="margin-top: 1.5rem; opacity: 0.5;">© 2026 MAGNE.AI. 保留所有權利。</p>
+  <p style="margin-top: 1.5rem; opacity: 0.5;">© 2026 MAGNE.AI. 版權所有。</p>
 </footer>
 
 </div>
