@@ -190,7 +190,30 @@
     .hero-compact {
       min-height: auto;
       padding: 8rem 2rem 4rem;
+      display: flex;
+      flex-direction: column;
       justify-content: flex-start;
+      align-items: center;
+      text-align: center;
+    }
+    .hero-compact .hero-eyebrow {
+      margin-bottom: 1.5rem;
+    }
+    .hero-compact h1 {
+      max-width: 980px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.12;
+      text-wrap: balance;
+    }
+    .faq-hero {
+      padding: 7.5rem 2rem 3rem;
+    }
+
+    .hero-compact p {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .hero-ctas {
@@ -477,7 +500,7 @@
 </nav>
 
 
-  <section class="hero hero-compact">
+  <section class="hero hero-compact faq-hero">
     <div class="hero-eyebrow">FAQ</div>
     <h1>Frequently Asked Questions</h1>
     <p>Everything you need to know about MAGNE.AI</p>
