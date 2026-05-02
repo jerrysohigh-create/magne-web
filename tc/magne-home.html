@@ -1,23 +1,20 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MAGNE.AI — 安全擁有權的 Web3 原生 AI 手機</title>
-  <link rel="alternate" hreflang="zh-Hant" href="https://jerrysohigh-create.github.io/magne-web/tc/magne-home.html">
+  <title>MAGNE.AI — Web3 原生 AI 手機，安全擁有權</title>
+  <link rel="icon" type="image/png" href="/magne-web/assets/brand/logo-icon-circle.png">
   <link rel="alternate" hreflang="en" href="https://jerrysohigh-create.github.io/magne-web/magne-home.html">
+  <link rel="alternate" hreflang="zh-Hant" href="https://jerrysohigh-create.github.io/magne-web/tc/magne-home.html">
   <link rel="alternate" hreflang="x-default" href="https://jerrysohigh-create.github.io/magne-web/magne-home.html">
-
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <meta property="og:title" content="MAGNE.AI — The Web3-native AI Phone for Secure Ownership">
-  <meta property="og:description" content="The world's first Web3-native AI smartphone with CC EAL6+ secure element, CC EAL2+ 可信執行環境, private dual-space architecture, and native access to MAGNE Network.">
-  <meta property="og:image" content="https://jerrysohigh-create.github.io/magne-web/phone-white.png">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="MAGNE.AI — The Web3-native AI Phone for Secure Ownership">
-  <meta name="twitter:description" content="The world's first Web3-native AI smartphone with CC EAL6+ secure element, CC EAL2+ 可信執行環境, private dual-space architecture, and native access to MAGNE Network.">
-  <meta name="twitter:image" content="https://jerrysohigh-create.github.io/magne-web/phone-white.png">
-  <link rel="icon" type="image/png" href="logo-icon-circle.png">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAGNE.AI — Web3 原生 AI 手機 安全擁有權</title>
+  <link rel="icon" type="image/png" href="/magne-web/assets/brand/logo-icon-circle.png">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
   <style>
@@ -1038,10 +1035,10 @@
     }
 
 /* =========================================================
- HOME MOBILE HARD FIX - Why MAGNE & Partners Grid Overflow
+ HOME MOBILE HARD FIX - 為何選擇 MAGNE & Partners Grid Overflow
  ========================================================= */
 @media (max-width: 768px) {
-  /* Why MAGNE section - force single column */
+  /* 為何選擇 MAGNE section - force single column */
   #why-magne {
     width: 100% !important;
     max-width: 100% !important;
@@ -1113,7 +1110,7 @@
 }
 
 
-/* Why MAGNE - Clean Responsive */
+/* 為何選擇 MAGNE - Clean Responsive */
 .why-magne-section,
 #why-magne {
   position: relative;
@@ -1223,1226 +1220,6 @@
 
   </style>
   <link rel="stylesheet" href="/magne-web/assets/mobile-responsive.css">
-</head>
-<body>
-
-<!-- NODE NETWORK BACKGROUND -->
-<canvas id="node-bg"></canvas>
-
-<div class="content-wrapper">
-
-<!-- NAV -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MAGNE.AI — 安全擁有權的 Web3 原生 AI 手機</title>
-  <link rel="icon" type="image/png" href="logo-icon-circle.png">
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
-  <style>
-    :root {
-      --bg-primary: #0a0a0c;
-      --bg-secondary: #0f0f12;
-      --bg-card: rgba(255, 255, 255, 0.03);
-      --bg-card-hover: rgba(255, 255, 255, 0.05);
-      --border: rgba(255, 255, 255, 0.06);
-      --border-hover: rgba(255, 255, 255, 0.12);
-      --text-primary: #ffffff;
-      --text-secondary: rgba(255, 255, 255, 0.5);
-      --text-tertiary: rgba(255, 255, 255, 0.3);
-      --accent: #00d4d4;
-      --accent-secondary: #00ff88;
-      --accent-purple: #a855f7;
-      --accent-gold: #ffd700;
-      --accent-pink: #ff6482;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Outfit', -apple-system, sans-serif;
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* NODE NETWORK BACKGROUND */
-    #node-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      opacity: 0.8;
-      pointer-events: none;
-    }
-
-    /* NAV */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 1rem 3rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(10, 10, 12, 0.92);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
-    .nav-brand a { color: var(--text-secondary); text-decoration: none; }
-    .nav-logo { font-size: 1.3rem; font-weight: 700; color: var(--accent); }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--accent); }
-    .nav-actions {
-      display: flex;
-      gap: 0.75rem;
-      align-items: center;
-    }
-    .nav-cta {
-      background: var(--accent);
-      color: #000 !important;
-      padding: 0.6rem 1.4rem;
-      border-radius: 8px;
-      font-weight: 600;
-      text-decoration: none;
-    }
-    .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
-    .nav-contact {
-      background: transparent;
-      border: 1px solid var(--border-hover);
-      color: var(--text-primary) !important;
-      padding: 0.6rem 1.4rem;
-      border-radius: 8px;
-      font-weight: 500;
-      text-decoration: none;
-    }
-    .nav-contact:hover { border-color: var(--accent); color: var(--accent) !important; }
-    .nav-web3 {
-      color: var(--accent-secondary) !important;
-      font-size: 0.85rem;
-    }
-    .nav-web3:hover { color: var(--accent) !important; }
-    .nav-lang-switch {
-      color: rgba(255,255,255,0.5) !important;
-      font-size: 0.8rem !important;
-      text-decoration: none !important;
-      padding: 0.2rem 0.5rem !important;
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 6px;
-    }
-    .nav-lang-switch:hover {
-      color: var(--accent) !important;
-      border-color: var(--accent);
-    }
-
-
-    /* CONTENT WRAPPER */
-    .content-wrapper {
-      position: relative;
-      z-index: 1;
-      width: min(1200px, calc(100% - 48px));
-      margin: 0 auto;
-    }
-
-    /* HERO */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 8rem 2rem 4rem;
-      position: relative;
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 50%; transform: translateX(-50%);
-      width: 800px;
-      height: 600px;
-      background: radial-gradient(ellipse at center, rgba(0,212,212,0.08) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero-eyebrow {
-      font-size: 0.8rem;
-      color: var(--accent);
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-      animation: fadeInUp 0.8s ease-out;
-    }
-    .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      font-weight: 700;
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
-      background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.85) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: fadeInUp 0.8s ease-out 0.1s both;
-      text-shadow: 0 0 60px rgba(0,212,212,0.2);
-    }
-    .hero-layout {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 4rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      flex-wrap: wrap;
-    }
-    .hero-content {
-      flex: 1;
-      min-width: 320px;
-      text-align: left;
-    }
-    .hero-visual {
-      flex: 1;
-      min-width: 280px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .hero-phone {
-      max-width: 420px;
-      width: 100%;
-      opacity: 0.95;
-      animation: float 4s ease-in-out infinite;
-      filter: drop-shadow(0 20px 60px rgba(0,212,212,0.15));
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
-    }
-    .hero-sub {
-      font-size: 1.2rem;
-      color: var(--text-secondary);
-      max-width: 700px;
-      margin-bottom: 2rem;
-      animation: fadeInUp 0.8s ease-out 0.2s both;
-    }
-    .hero-ctas { 
-      display: flex; 
-      gap: 1rem; 
-      margin-bottom: 2rem; 
-      flex-wrap: wrap; 
-      justify-content: flex-start;
-      animation: fadeInUp 0.8s ease-out 0.3s both;
-    }
-    .btn-primary {
-      background: var(--accent);
-      color: #000;
-      padding: 1rem 2.5rem;
-      border-radius: 8px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.3s;
-      border: none;
-      cursor: pointer;
-    }
-    .btn-primary:hover { 
-      transform: translateY(-3px); 
-      box-shadow: 0 15px 40px rgba(0,212,212,0.4);
-    }
-    .btn-secondary {
-      background: transparent;
-      border: 1px solid var(--border-hover);
-      color: var(--text-primary);
-      padding: 1rem 2.5rem;
-      border-radius: 8px;
-      font-weight: 500;
-      text-decoration: none;
-      transition: all 0.3s;
-    }
-    .btn-secondary-alt {
-      background: var(--accent-purple);
-      color: #fff;
-    }
-    .btn-secondary-alt:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 40px rgba(168,85,247,0.4);
-    }
-    .btn-secondary:hover { 
-      border-color: var(--accent); 
-      color: var(--accent);
-      box-shadow: 0 0 20px rgba(0,212,212,0.2);
-    }
-    .trust-chips { 
-      display: flex; 
-      gap: 1rem; 
-      flex-wrap: wrap; 
-      justify-content: flex-start; 
-      margin-top: 1.5rem;
-      animation: fadeInUp 0.8s ease-out 0.4s both;
-    }
-    .trust-chip {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      padding: 0.5rem 1.2rem;
-      border-radius: 50px;
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      backdrop-filter: blur(10px);
-    }
-    .hero-supporting {
-      margin-top: 2rem;
-      font-size: 0.95rem;
-      color: var(--text-tertiary);
-      max-width: 600px;
-      animation: fadeInUp 0.8s ease-out 0.5s both;
-    }
-
-    /* SECTION BASE */
-    section { 
-      padding: 6rem 2rem; 
-      max-width: 1200px; 
-      margin: 0 auto; 
-      position: relative;
-    }
-    .section-title {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-    .section-title h2 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.8) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .section-title p { 
-      color: var(--text-secondary); 
-      font-size: 1.1rem; 
-      max-width: 600px; 
-      margin: 0 auto; 
-    }
-
-    /* LIVE COMMUNITY MOMENTUM */
-    #momentum {
-      background: linear-gradient(180deg, var(--bg-secondary) 0%, rgba(0,212,212,0.05) 100%);
-      padding: 4rem 2rem;
-      position: relative;
-      overflow: hidden;
-      border-radius: 24px;
-      margin: 2rem auto;
-      max-width: 1000px;
-      border: 1px solid var(--border);
-    }
-    #momentum::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(ellipse at center, rgba(0,212,212,0.015) 0%, transparent 50%);
-      animation: pulse-glow 6s ease-in-out infinite;
-    }
-    @keyframes pulse-glow {
-      0%, 100% { opacity: 0.3; transform: scale(1); }
-      50% { opacity: 0.8; transform: scale(1.02); }
-    }
-    .momentum-container { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
-    .momentum-eyebrow {
-      text-align: center;
-      font-size: 0.75rem;
-      color: var(--accent);
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-    .momentum-title {
-      text-align: center;
-      font-size: 2.2rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      text-shadow: 0 0 20px rgba(0,212,212,0.15);
-    }
-    .momentum-sub {
-      text-align: center;
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      margin-bottom: 2rem;
-    }
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-    .stat-card {
-      background: rgba(0,212,212,0.05);
-      border: 1px solid rgba(0,212,212,0.2);
-      border-radius: 16px;
-      padding: 1.5rem 1rem;
-      text-align: center;
-      transition: all 0.3s;
-    }
-    .stat-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0,212,212,0.08);
-      border-color: rgba(0,212,212,0.25);
-    }
-    .stat-value {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
-    }
-    .stat-label { font-size: 0.9rem; color: var(--text-primary); font-weight: 500; }
-    .stat-sub { font-size: 0.7rem; color: var(--text-tertiary); margin-top: 0.25rem; }
-    .progress-section {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-    }
-    .progress-header {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 1rem;
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-    }
-    .progress-bar {
-      height: 12px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 10px;
-      overflow: hidden;
-    }
-    .progress-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
-      border-radius: 10px;
-      transition: width 0.5s ease;
-      position: relative;
-    }
-    .progress-fill::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      animation: shimmer 2s infinite;
-    }
-    @keyframes shimmer {
-      0% { left: -100%; }
-      100% { left: 100%; }
-    }
-    .momentum-footer {
-      text-align: center;
-      color: var(--text-tertiary);
-      font-size: 0.85rem;
-    }
-    .momentum-footer span { margin: 0 0.5rem; display: inline-flex; align-items: center; gap: 0.3rem; }
-    .momentum-footer .foot-icon { width: 14px; height: 14px; flex-shrink: 0; }
-    .momentum-cta { text-align: center; margin-top: 2rem; display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap; }
-    .dashboard-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      background: var(--accent);
-      color: #000;
-      padding: 1rem 2.5rem;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 1rem;
-      text-decoration: none;
-      transition: all 0.3s;
-      border: none;
-      cursor: pointer;
-    }
-    .dashboard-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 40px rgba(0,212,212,0.4);
-    }
-    .dashboard-btn svg {
-      width: 18px;
-      height: 18px;
-      flex-shrink: 0;
-    }
-
-    /* WHY MAGNE */
-    #why-magne .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
-
-    /* PARTNERS */
-    #partners {
-      padding: 5rem 2rem;
-      text-align: center;
-    }
-
-    .partners-title {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--text-secondary);
-      margin-bottom: 0.75rem;
-    }
-
-    .partners-heading {
-      font-size: 1.1rem;
-      font-weight: 400;
-      margin-bottom: 2rem;
-      color: var(--text-secondary);
-      text-align: center;
-    }
-
-    .partners-heading span {
-      color: var(--accent);
-    }
-
-    .partners-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .partner-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.25rem 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      transition: all 0.3s;
-      min-height: 90px;
-    }
-
-    .partner-card:hover {
-      border-color: var(--border-hover);
-      background: var(--bg-card-hover);
-      transform: translateY(-2px);
-    }
-
-    .partner-card img {
-      height: 32px;
-      width: auto;
-      max-width: 110px;
-      object-fit: contain;
-    }
-
-    .partner-card:hover img {
-      filter: brightness(1.1);
-    }
-
-    .partner-card .partner-name {
-      font-size: 0.7rem;
-      color: var(--text-secondary);
-      font-weight: 500;
-      letter-spacing: 0.5px;
-    }
-
-    .partner-card.ti-card img {
-      filter: brightness(0) invert(1);
-    }
-
-    .partners-cta {
-      margin-top: 2.5rem;
-      font-size: 0.82rem;
-      color: var(--text-secondary);
-    }
-
-    .partners-cta a {
-      color: var(--accent);
-      text-decoration: none;
-      transition: opacity 0.2s;
-    }
-
-    .partners-cta a:hover {
-      opacity: 0.7;
-    }
-
-    .partners-disclaimer {
-      margin-top: 1.5rem;
-      font-size: 0.75rem;
-      color: var(--text-tertiary);
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.6;
-      text-align: center;
-    }
-
-    /* SECURITY */
-    #security {
-      background: linear-gradient(180deg, var(--bg-primary) 0%, rgba(138,43,226,0.05) 100%);
-      border-radius: 24px;
-      margin: 2rem auto;
-    }
-.security-arch {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0;
-      margin: 3rem auto 4rem;
-      max-width: 900px;
-    }
-    .arch-layer {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 1.5rem 1rem;
-      border-radius: 12px;
-      border: 1px solid;
-    }
-    .arch-layer-1 {
-      background: rgba(0,212,212,0.05);
-      border-color: rgba(0,212,212,0.2);
-    }
-    .arch-layer-2 {
-      background: rgba(168,85,247,0.05);
-      border-color: rgba(168,85,247,0.2);
-    }
-    .arch-layer-3 {
-      background: rgba(255,215,0,0.05);
-      border-color: rgba(255,215,0,0.2);
-    }
-    .arch-label {
-      font-size: 1.5rem;
-      font-weight: 700;
-      font-family: "JetBrains Mono", monospace;
-    }
-    .arch-layer-1 .arch-label { color: var(--accent); }
-    .arch-layer-2 .arch-label { color: var(--accent-purple); }
-    .arch-layer-3 .arch-label { color: var(--accent-gold); }
-    .arch-content h4 {
-      font-size: 0.95rem;
-      font-weight: 600;
-      margin-bottom: 0.2rem;
-    }
-    .arch-content p {
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-    }
-    .arch-connector {
-      width: 40px;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-purple), var(--accent-gold));
-      flex-shrink: 0;
-    }
-    @media (max-width: 768px) {
-      .security-arch {
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-      .arch-connector {
-        width: 2px;
-        height: 30px;
-        background: linear-gradient(180deg, var(--accent), var(--accent-purple), var(--accent-gold));
-      }
-    }
-    .security-layers { display: flex; flex-direction: column; gap: 2rem; max-width: 900px; margin: 0 auto; }
-    .security-layer {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 2.5rem;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.3s;
-    }
-    .security-layer:hover {
-      transform: translateX(8px);
-      border-color: var(--accent-purple);
-    }
-    .security-layer::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; height: 4px;
-    }
-    .security-layer.layer-1::before { background: linear-gradient(90deg, var(--accent), #0088aa); }
-    .security-layer.layer-2::before { background: linear-gradient(90deg, var(--accent-purple), #7c3aed); }
-    .security-layer.layer-3::before { background: linear-gradient(90deg, var(--accent-gold), #f59e0b); }
-    .layer-label {
-      font-size: 0.75rem;
-      color: var(--accent);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-    }
-    .layer-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; }
-    .layer-body { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.7; }
-    .layer-badge {
-      display: inline-block;
-      background: rgba(0,212,212,0.1);
-      border: 1px solid rgba(0,212,212,0.3);
-      color: var(--accent);
-      padding: 0.4rem 1rem;
-      border-radius: 50px;
-      font-size: 0.85rem;
-      font-weight: 600;
-    }
-    .security-closing {
-      text-align: center;
-      margin-top: 3rem;
-      padding: 2rem;
-      color: var(--text-secondary);
-      font-size: 1.1rem;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-      font-style: italic;
-    }
-
-    /* TRUST */
-    #trust .trust-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-    }
-    .trust-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.5rem 1rem;
-      text-align: center;
-      transition: all 0.3s;
-    }
-    .trust-group {
-      margin-bottom: 3rem;
-    }
-    .trust-group:last-child {
-      margin-bottom: 0;
-    }
-    .trust-group-title {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--accent);
-      margin-bottom: 1rem;
-      text-align: left;
-      padding-left: 0.5rem;
-    }
-    .trust-card:hover { 
-      border-color: var(--accent-secondary);
-      transform: translateY(-4px);
-      box-shadow: 0 10px 30px rgba(0,255,136,0.1);
-    }
-    .trust-card h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem; }
-    .trust-card p { font-size: 0.75rem; color: var(--accent-secondary); }
-
-    /* PRODUCT */
-.product-layout {
-      display: flex;
-      align-items: center;
-      gap: 4rem;
-      margin-top: 3rem;
-    }
-    .product-visual {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-    }
-    .product-phone {
-      max-width: 280px;
-      width: 100%;
-      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5));
-    }
-    .product-specs {
-      flex: 1.5;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-    }
-    @media (max-width: 900px) {
-      .product-layout {
-        flex-direction: column;
-      }
-      .product-specs {
-        grid-template-columns: 1fr;
-      }
-    }
-    #product .product-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
-    .product-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.5rem;
-      transition: all 0.3s;
-    }
-    .product-card:hover { 
-      border-color: var(--accent);
-      transform: translateY(-4px);
-      box-shadow: 0 15px 35px rgba(0,212,212,0.1);
-    }
-    .product-card h4 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
-    .product-card p { font-size: 0.85rem; color: var(--text-secondary); }
-
-    /* NETWORK */
-    #network .network-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
-    .network-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 2rem;
-      transition: all 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-    .network-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, var(--accent-purple), var(--accent));
-    }
-    .network-card:hover { 
-      border-color: var(--accent-purple);
-      transform: translateY(-6px);
-      box-shadow: 0 20px 40px rgba(168,85,247,0.15);
-    }
-    .network-card h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem; }
-    .network-card p { font-size: 0.9rem; color: var(--text-secondary); }
-
-    /* PROGRESS */
-    #progress .progress-columns {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
-    }
-    .progress-col {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.5rem;
-      transition: all 0.3s;
-    }
-    .progress-col:hover {
-      border-color: var(--accent-gold);
-      transform: translateY(-4px);
-    }
-    .progress-col h4 { 
-      font-size: 1rem; 
-      font-weight: 600; 
-      margin-bottom: 1rem; 
-      color: var(--accent-gold); 
-    }
-    .progress-col p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; }
-
-    /* COMMERCIAL */
-    #commercial .commercial-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
-      margin-bottom: 3rem;
-    }
-    .commercial-card {
-      background: linear-gradient(135deg, rgba(0,212,212,0.08) 0%, rgba(0,30,30,0.3) 100%);
-      border: 1px solid rgba(0,212,212,0.2);
-      border-radius: 20px;
-      padding: 2rem;
-      text-align: center;
-      transition: all 0.3s;
-    }
-    .commercial-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 40px rgba(0,212,212,0.15);
-      border-color: var(--accent);
-    }
-    .commercial-card h4 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.75rem; }
-    .commercial-card p { font-size: 0.85rem; color: var(--text-secondary); }
-
-    /* FINAL CTA */
-    #cta .cta-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .cta-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 3rem;
-      text-align: center;
-      transition: all 0.4s;
-    }
-    .cta-card:hover { 
-      border-color: var(--accent);
-      transform: translateY(-8px);
-      box-shadow: 0 25px 50px rgba(0,212,212,0.15);
-    }
-    .cta-card h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; }
-    .cta-card p { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.7; }
-
-    /* CONTACT SECTION */
-    .contact-section {
-      padding: 6rem 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-    .contact-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2rem;
-      text-align: center;
-    }
-    .contact-card h3 {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
-    .contact-card p {
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      margin-bottom: 1.5rem;
-    }
-    @media (max-width: 768px) {
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 4rem 2rem;
-      border-top: 1px solid var(--border);
-      color: var(--text-tertiary);
-      font-size: 0.9rem;
-      margin-top: 4rem;
-    }
-    footer a { color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
-    footer a:hover { color: var(--accent); }
-    .footer-links { display: flex; justify-content: center; gap: 2rem; margin-top: 1rem; }
-    .footer-links-secondary { display: flex; justify-content: center; gap: 2rem; margin-top: 0.75rem; }
-    .footer-links-secondary a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; }
-    .footer-links-secondary a:hover { color: var(--accent); }
-
-    /* ANIMATIONS */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
-    }
-    .animate { 
-      opacity: 0; 
-      transform: translateY(30px);
-      transition: all 0.6s ease-out;
-    }
-    .animate.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 1024px) {
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .trust-grid { grid-template-columns: repeat(4, 1fr); }
-      .product-grid { grid-template-columns: repeat(2, 1fr); }
-      .network-grid { grid-template-columns: repeat(2, 1fr); }
-      .progress-columns { grid-template-columns: repeat(2, 1fr); }
-      .commercial-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 768px) {
-      nav { padding: 1rem; }
-      .nav-links { display: none; }
-      section { padding: 4rem 1rem; }
-      .hero h1 { font-size: 2.2rem; }
-      .cards-grid { grid-template-columns: 1fr !important; }
-      .why-magne .cards-grid { grid-template-columns: 1fr; }
-      .trust-grid { grid-template-columns: repeat(2, 1fr); }
-      .product-grid { grid-template-columns: 1fr !important; }
-      .network-grid { grid-template-columns: 1fr !important; }
-      .progress-columns { grid-template-columns: 1fr !important; }
-      .commercial-grid { grid-template-columns: 1fr !important; }
-      .cta-grid { grid-template-columns: 1fr !important; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-  
-    /* FOOTER SOCIAL ICONS */
-    .footer-socials { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0; }
-    .footer-socials a {
-      display: inline-flex; align-items: center; justify-content: center;
-      height: 42px; padding: 0;
-      border: 1px solid var(--border); border-radius: 999px;
-      color: var(--text-secondary); font-size: 0.82rem; transition: all 0.2s;
-    }
-    .footer-socials a:hover { color: var(--accent); border-color: var(--accent); background: rgba(0, 212, 212, 0.06); }
-    .footer-copy { margin-top: 1.5rem; opacity: 0.5; }
-
-    .footer-socials a.footer-icon svg { width: 20px; height: 20px; }
-    .footer-icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 42px;
-      height: 42px;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      color: var(--text-secondary);
-      transition: all 0.2s;
-      padding: 0;
-    }
-    .footer-icon:hover {
-      color: var(--accent);
-      border-color: var(--accent);
-      background: rgba(0, 212, 212, 0.1);
-    }
-
-    .footer-brand-logo {
-      text-align: center;
-      margin-bottom: 1.5rem;
-    }
-    .footer-brand-logo img {
-      height: 24px;
-      width: auto;
-      margin-bottom: 0.75rem;
-      opacity: 0.9;
-    }
-    .footer-brand-logo p {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-    }
-  
-    .nav-logo-img {
-      height: 20px;
-      width: auto;
-      display: block;
-    }
-  
-    .trademark-notice {
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-      text-align: center;
-      margin-top: 1rem;
-      opacity: 0.7;
-    }
-    .trademark-notice a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-    .trademark-notice a:hover {
-      text-decoration: underline;
-    }
-
-/* =========================================================
- HOME MOBILE HARD FIX - Why MAGNE & Partners Grid Overflow
- ========================================================= */
-@media (max-width: 768px) {
-  /* Why MAGNE section - force single column */
-  #why-magne {
-    width: 100% !important;
-    max-width: 100% !important;
-    overflow-x: hidden !important;
-    padding-left: 1.25rem !important;
-    padding-right: 1.25rem !important;
-    box-sizing: border-box !important;
-  }
-
-  #why-magne .cards-grid {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-    gap: 1rem !important;
-    overflow: visible !important;
-    box-sizing: border-box !important;
-  }
-
-
-
-  /* Partners section - force 2 columns */
-  #partners {
-    width: 100% !important;
-    max-width: 100% !important;
-    overflow-x: hidden !important;
-    padding-left: 1.25rem !important;
-    padding-right: 1.25rem !important;
-    box-sizing: border-box !important;
-  }
-
-  #partners .partners-grid {
-    display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-    gap: 1rem !important;
-    overflow: visible !important;
-    box-sizing: border-box !important;
-  }
-
-  #partners .partner-card {
-    width: 100% !important;
-    min-width: 0 !important;
-    padding: 1rem !important;
-    box-sizing: border-box !important;
-    overflow: hidden !important;
-  }
-
-  #partners .partner-card img {
-    max-width: 80% !important;
-    max-height: 40px !important;
-    height: auto !important;
-    object-fit: contain !important;
-  }
-
-  #partners .partner-card span {
-    font-size: 0.8rem !important;
-    word-break: break-word !important;
-  }
-}
-
-@media (max-width: 420px) {
-  #partners .partners-grid {
-    grid-template-columns: 1fr !important;
-  }
-}
-
-
-/* Why MAGNE - Clean Responsive */
-.why-magne-section,
-#why-magne {
-  position: relative;
-  z-index: 1;
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 7rem 2rem;
-  box-sizing: border-box;
-}
-
-#why-magne .section-header {
-  max-width: 760px;
-  margin: 0 auto 4rem;
-  text-align: center;
-}
-
-#why-magne .section-header h2 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-  margin-bottom: 1.25rem;
-}
-
-#why-magne .section-header p {
-  color: var(--text-secondary);
-  font-size: 1.15rem;
-  line-height: 1.75;
-}
-
-.why-magne-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.5rem;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
-.why-magne-card {
-  width: 100%;
-  min-width: 0;
-  box-sizing: border-box;
-  padding: 2.25rem;
-  border-radius: 28px;
-  border: 1px solid var(--border);
-  background: var(--bg-card);
-  overflow: hidden;
-}
-
-.why-magne-card.featured {
-  border-color: rgba(0, 212, 212, 0.35);
-  background: rgba(0, 212, 212, 0.055);
-}
-
-.why-magne-card h3 {
-  color: var(--text-primary);
-  font-size: 1.45rem;
-  line-height: 1.25;
-  margin-bottom: 1rem;
-  white-space: normal;
-  word-break: normal;
-  overflow-wrap: normal;
-}
-
-.why-magne-card p {
-  color: var(--text-secondary);
-  font-size: 1rem;
-  line-height: 1.7;
-  white-space: normal;
-  word-break: normal;
-  overflow-wrap: normal;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  #why-magne {
-    padding: 5rem 1.25rem;
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-  }
-
-  #why-magne .section-header {
-    margin-bottom: 2.5rem;
-  }
-
-  #why-magne .section-header h2 {
-    font-size: 2.4rem;
-  }
-
-  #why-magne .section-header p {
-    font-size: 1rem;
-  }
-
-  .why-magne-grid {
-    grid-template-columns: 1fr;
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .why-magne-card {
-    width: 100%;
-    min-width: 0;
-    padding: 1.5rem;
-  }
-}
-
-  </style>
   <link rel="stylesheet" href="/magne-web/assets/mobile-responsive.css">
 </head>
 <body>
@@ -2468,10 +1245,10 @@
     <li><a href="/magne-web/tc/magne-partners.html">合作夥伴</a></li>
     <li><a href="/magne-web/tc/faq.html">常見問題</a></li>
     <a href="/magne-web/magne-home.html" class="nav-lang-switch">EN | 繁中</a></li>
-    <li><a href="https://web3.magne.ai" target="_blank" rel="noopener" class="nav-web3">前往 Web3 入口 ↗️</a></li>
+    <li><a href="https://web3.magne.ai" target="_blank" rel="noopener" class="nav-web3">Web3 入口 ↗️</a></li>
     <li class="nav-actions-mobile">
       <a href="/magne-web/tc/magne-contact.html" class="nav-contact">聯絡</a>
-      <a href="https://payment.magne.ai/buy" class="nav-cta">預訂</a>
+      <a href="/magne-web/tc/magne-contact.html">預訂</a>
     </li>
   </ul>
 </nav>
@@ -2480,25 +1257,25 @@
 <section class="hero">
   <div class="hero-layout">
     <div class="hero-content">
-      <div class="hero-eyebrow">MAGNE.AI Phone Gen1</div>
-      <h1>安全擁有權的 Web3 原生<br>AI 手機</h1>
-      <p class="hero-sub">採用 CC EAL6+ 安全元件、CC EAL2+ 可信執行環境、私有雙空間架構，並原生支援 MAGNE 網絡。</p>
+      <div class="hero-eyebrow">MAGNE.AI 手機 Gen1</div>
+      <h1>Web3 原生 AI 手機<br>安全擁有權</h1>
+      <p class="hero-sub">Built with CC EAL6+ secure elements, CC EAL2+ 可信賴執行環境, private dual-space architecture, and native access to MAGNE Network.</p>
       <div class="hero-ctas">
-        <a href="https://payment.magne.ai/buy" class="btn-primary">預訂 MAGNE Phone</a>
+        <a href="/magne-web/tc/magne-contact.html">預訂 MAGNE 手機</a>
         <a href="#security" class="btn-secondary">探索安全架構</a>
       </div>
       <div class="trust-chips">
         <span class="trust-chip">CC EAL6+ 安全元件</span>
-        <span class="trust-chip">CC EAL2+ 可信執行環境</span>
-        <span class="trust-chip">私有雙空間</span>
+        <span class="trust-chip">CC EAL2+ 可信賴執行環境</span>
+        <span class="trust-chip">私人雙空間</span>
         <span class="trust-chip">NFC 復原功能</span>
       </div>
     </div>
     <div class="hero-visual">
-      <img src="/magne-web/phone-white.png" alt="MAGNE Phone" class="hero-phone">
+      <img src="phone-white.png" alt="MAGNE Phone" class="hero-phone">
     </div>
   </div>
-  <p class="hero-supporting">硬件錢包 · 私有 AI · Web3 閘道 — 集於一機。</p>
+  <p class="hero-supporting">硬體錢包 · 私人 AI · Web3 閘道器 — 一機掌握。</p>
 </section>
 
 <!-- SCREEN 1.5: LIVE COMMUNITY MOMENTUM -->
@@ -2508,275 +1285,275 @@
 <section id="why-magne">
   <div class="section-header">
     <h2>為何選擇 MAGNE</h2>
-    <p>專為希望更強掌控數碼資產、私有 AI 工作流及下一代流動互聯網存取權的用戶而設的智能手機。</p>
+    <p>A smartphone designed for people who want stronger control over digital assets, private AI workflows, and next-generation mobile access.</p>
   </div>
   <div class="why-magne-grid">
     <article class="why-magne-card">
-      <h3>私有 AI 工作流</h3>
-      <p>將智能體驗盡可能靠近設備端運行，以支援隱私敏感的日常使用場景。</p>
+      <h3>私人 AI Workflows</h3>
+      <p>Run intelligent experiences closer to the device for privacy-sensitive everyday use.</p>
     </article>
     <article class="why-magne-card featured">
-      <h3>硬件錢包級密鑰隔離</h3>
-      <p>私鑰及關鍵簽署流程透過專用硬件安全架構進行保護。</p>
+      <h3>Hardware Wallet-grade Key Isolation</h3>
+      <p>Private keys and critical signing flows are protected through dedicated hardware security architecture.</p>
     </article>
     <article class="why-magne-card">
-      <h3>輕觸還原加密備份</h3>
-      <p>加密 NFC 復原功能將保護能力延伸至設備之外，並簡化資產復原流程。</p>
+      <h3>Tap-to-Restore Encrypted Backup</h3>
+      <p>Encrypted NFC recovery extends protection beyond the device and simplifies asset recovery.</p>
     </article>
     <article class="why-magne-card">
-      <h3>隱藏 Web3 空間</h3>
-      <p>一個獨立私有環境有助於將 Web3 操作與日常流動體驗隔離。</p>
+      <h3>A Hidden Web3 Space</h3>
+      <p>A separate and private environment helps isolate Web3 operations from your everyday mobile experience.</p>
     </article>
     <article class="why-magne-card">
-      <h3>內置 Web3 存取</h3>
-      <p>錢包、兌換、質押、跨鏈橋及生態接入直接整合於設備旅程中。</p>
+      <h3>Built-in Web3 Access</h3>
+      <p>Wallet, swap, stake, bridge, and ecosystem access are integrated directly into the device journey.</p>
     </article>
     <article class="why-magne-card">
-      <h3>國際合規準備架構</h3>
-      <p>以認證及相容性就緒為考量，支援更廣泛的真實場景部署。</p>
+      <h3>Global-ready Compliance Stack</h3>
+      <p>Built with certification and compatibility readiness in mind for broader real-world deployment.</p>
     </article>
   </div>
 </section>
 
 <!-- PARTNERS -->
 <section id="partners">
-  <div class="partners-title">生態、供應鏈與平台信號</div>
-  <h2 class="partners-heading">製造 · 平台 · 生態 · 市場接入</h2>
+  <div class="partners-title">Ecosystem, Supply Chain & Platform Signals</div>
+  <h2 class="partners-heading">Manufacturing · Platform · Ecosystem · Market Access</h2>
   <div class="partners-grid">
     <div class="partner-card">
-      <img src="/magne-web/partners/strategic/google-logo.png" alt="Google">
+      <img src="partners/strategic/google-logo.png" alt="Google">
       <span class="partner-name">Google</span>
     </div>
     <div class="partner-card">
-      <img src="/magne-web/partners/strategic/fih.png" alt="FIH">
+      <img src="partners/strategic/fih.png" alt="FIH">
       <span class="partner-name">FIH Mobile</span>
     </div>
     <div class="partner-card">
-      <img src="/magne-web/partners/strategic/samsung_inv.png" alt="Samsung">
+      <img src="partners/strategic/samsung_inv.png" alt="Samsung">
       <span class="partner-name">Samsung</span>
     </div>
     <div class="partner-card">
-      <img src="/magne-web/partners/strategic/deepmind_blue.png" alt="DeepMind">
+      <img src="partners/strategic/deepmind_blue.png" alt="DeepMind">
       <span class="partner-name">DeepMind</span>
     </div>
     <div class="partner-card ti-card">
-      <img src="/magne-web/partners/strategic/ti.svg" alt="TI">
+      <img src="partners/strategic/ti.svg" alt="TI">
       <span class="partner-name">Texas Instruments</span>
     </div>
     <div class="partner-card">
-      <img src="/magne-web/partners/strategic/skhynix_web.png" alt="SK Hynix">
+      <img src="partners/strategic/skhynix_web.png" alt="SK Hynix">
       <span class="partner-name">SK Hynix</span>
     </div>
     <div class="partner-card">
-      <img src="/magne-web/partners/strategic/micron_inv.png" alt="Micron">
+      <img src="partners/strategic/micron_inv.png" alt="Micron">
       <span class="partner-name">Micron</span>
     </div>
     <div class="partner-card">
-      <img src="/magne-web/partners/strategic/tdk_inv.png" alt="TDK">
+      <img src="partners/strategic/tdk_inv.png" alt="TDK">
       <span class="partner-name">TDK</span>
     </div>
     <div class="partner-card">
-      <img src="/magne-web/partners/strategic/wd_better_inv.png" alt="WD">
+      <img src="partners/strategic/wd_better_inv.png" alt="WD">
       <span class="partner-name">WD</span>
     </div>
     <div class="partner-card">
-      <img src="/magne-web/partners/strategic/unisoc_web.png" alt="Unisoc">
+      <img src="partners/strategic/unisoc_web.png" alt="Unisoc">
       <span class="partner-name">Unisoc</span>
     </div>
     <div class="partner-card">
-      <img src="/magne-web/partners/strategic/imag_green.png" alt="Imagination">
+      <img src="partners/strategic/imag_green.png" alt="Imagination">
       <span class="partner-name">Imagination</span>
     </div>
     <div class="partner-card">
-      <img src="/magne-web/partners/strategic/hed.png" alt="HED">
+      <img src="partners/strategic/hed.png" alt="HED">
       <span class="partner-name">HED</span>
     </div>
     <div class="partner-card">
-      <img src="/magne-web/partners/strategic/redrock_web.png" alt="REDROCK">
+      <img src="partners/strategic/redrock_web.png" alt="REDROCK">
       <span class="partner-name">REDROCK</span>
     </div>
     <div class="partner-card">
-      <img src="/magne-web/partners/strategic/kucoin.svg" alt="KuCoin">
+      <img src="partners/strategic/kucoin.svg" alt="KuCoin">
       <span class="partner-name">KuCoin</span>
     </div>
     <div class="partner-card">
-      <img src="/magne-web/partners/strategic/mexc.png" alt="MEXC">
+      <img src="partners/strategic/mexc.png" alt="MEXC">
       <span class="partner-name">MEXC</span>
     </div>
     <div class="partner-card">
-      <img src="/magne-web/partners/strategic/bitget.png" alt="Bitget">
+      <img src="partners/strategic/bitget.png" alt="Bitget">
       <span class="partner-name">Bitget Wallet</span>
     </div>
     <div class="partner-card">
-      <img src="/magne-web/partners/strategic/becker.png" alt="Becker Ventures">
+      <img src="partners/strategic/becker.png" alt="Becker Ventures">
       <span class="partner-name">Becker Ventures</span>
     </div>
     <div class="partner-card">
-      <img src="/magne-web/partners/strategic/duckdao.png" alt="DuckDAO">
+      <img src="partners/strategic/duckdao.png" alt="DuckDAO">
       <span class="partner-name">DuckDAO</span>
     </div>
     <div class="partner-card">
-      <img src="/magne-web/partners/strategic/castrum.png" alt="Castrum Capital">
+      <img src="partners/strategic/castrum.png" alt="Castrum Capital">
       <span class="partner-name">Castrum Capital</span>
     </div>
     <div class="partner-card">
-      <img src="/magne-web/partners/strategic/tbv.png" alt="TBV">
+      <img src="partners/strategic/tbv.png" alt="TBV">
       <span class="partner-name">TBV</span>
     </div>
   </div>
-  <p class="partners-cta"><a href="/magne-web/tc/magne-partners.html">查看全部合作夥伴 →</a></p>
-  <p class="partners-disclaimer">本頁所展示的標誌及名稱僅用於描述相容性、供應鏈、生態、投資或市場背景。除非 MAGNE.AI 官方資料另有明確說明，其出現不代表背書、贊助或官方合作關係。</p>
+  <p class="partners-cta"><a href="/magne-web/tc/magne-partners.html">View all partners →</a></p>
+  <p class="partners-disclaimer">Logos and names appear for descriptive, compatibility, supply-chain, ecosystem, investment, or market-context purposes only. Their appearance does not imply endorsement, sponsorship, or official partnership unless expressly stated in official materials.</p>
 </section>
 
 <!-- SCREEN 3: THREE-LAYER SECURITY -->
 <section id="security">
   <div class="section-title">
-    <h2>三層保護。一個安全擁有權架構。</h2>
-    <p>MAGNE 將可信執行、安全元件簽署及加密 NFC 復原整合於一個流動安全架構中。</p>
+    <h2>Three Layers. One 安全擁有權 Stack.</h2>
+    <p>MAGNE combines trusted execution, secure element signing, and encrypted NFC recovery in one mobile security architecture.</p>
   </div>
   
   <!-- Security Architecture Visual -->
   <div class="security-arch">
     <div class="arch-layer arch-layer-1">
-      <div class="arch-label">第一層</div>
+      <div class="arch-label">L1</div>
       <div class="arch-content">
-        <h4>可信執行隔離</h4>
-        <p>進程隔離</p>
+        <h4>Trusted Execution</h4>
+        <p>Process Isolation</p>
       </div>
     </div>
     <div class="arch-connector"></div>
     <div class="arch-layer arch-layer-2">
-      <div class="arch-label">第二層</div>
+      <div class="arch-label">L2</div>
       <div class="arch-content">
-        <h4>安全元件</h4>
-        <p>密鑰儲存與簽署</p>
+        <h4>Secure Element</h4>
+        <p>金鑰儲存與簽署</p>
       </div>
     </div>
     <div class="arch-connector"></div>
     <div class="arch-layer arch-layer-3">
-      <div class="arch-label">第三層</div>
+      <div class="arch-label">L3</div>
       <div class="arch-content">
         <h4>NFC 復原功能</h4>
-        <p>加密備份</p>
+        <p>Encrypted Backup</p>
       </div>
     </div>
   </div>
   
   <div class="security-layers">
     <div class="security-layer layer-1 animate">
-      <div class="layer-label">第一層</div>
-      <h3 class="layer-title">可信執行隔離</h3>
-      <p class="layer-body">敏感操作在可信執行層被分隔，實現更強的進程隔離及操作控制。</p>
+      <div class="layer-label">Layer 1</div>
+      <h3 class="layer-title">Trusted Execution Isolation</h3>
+      <p class="layer-body">Sensitive operations are separated at the trusted execution layer for stronger process isolation and operational control.</p>
       <span class="layer-badge">CC EAL2+</span>
     </div>
     <div class="security-layer layer-2 animate">
-      <div class="layer-label">第二層</div>
-      <h3 class="layer-title">安全元件簽署</h3>
-      <p class="layer-body">私鑰儲存及簽署操作通過專用安全硬件保護，實現更強的資產保護。</p>
+      <div class="layer-label">Layer 2</div>
+      <h3 class="layer-title">Secure Element Signing</h3>
+      <p class="layer-body">Private key storage and signing operations are protected through dedicated secure hardware built for stronger asset protection.</p>
       <span class="layer-badge">CC EAL6+</span>
     </div>
     <div class="security-layer layer-3 animate">
-      <div class="layer-label">第三層</div>
-      <h3 class="layer-title">加密 NFC 復原功能</h3>
-      <p class="layer-body">離線備份及物理復原有助將資產保護延伸至設備本身之外。</p>
+      <div class="layer-label">Layer 3</div>
+      <h3 class="layer-title">Encrypted NFC 復原功能</h3>
+      <p class="layer-body">Offline backup and physical recovery help extend asset protection beyond the device itself.</p>
       <span class="layer-badge">CC EAL6+</span>
     </div>
   </div>
   <div class="security-closing">
-    MAGNE 將可信執行、安全簽署及加密復原整合為一個一體化流動擁有權架構。
+    MAGNE brings trusted execution, secure signing, and encrypted recovery into one integrated mobile ownership architecture.
   </div>
 </section>
 
 <!-- SCREEN 4: TRUST SNAPSHOT -->
 <section id="trust">
   <div class="section-title">
-    <h2>以公開、可驗證的信任信號建構</h2>
-    <p>MAGNE 作為一個真實產品項目呈現，具備可見的認證、合規及部署就緒信號支持。</p>
+    <h2>Built with public, verifiable trust signals</h2>
+    <p>MAGNE is presented as a real product program supported by visible certification, compliance, and deployment readiness signals.</p>
   </div>
   
   <div class="trust-group">
-    <h3 class="trust-group-title">平台及內容</h3>
+    <h3 class="trust-group-title">Platform & Content</h3>
     <div class="trust-grid">
       <div class="trust-card animate">
         <h4>Google GMS</h4>
-        <p>已認證</p>
+        <p>Approved</p>
       </div>
       <div class="trust-card animate">
         <h4>Widevine L1</h4>
-        <p>已支援</p>
+        <p>Supported</p>
       </div>
       <div class="trust-card animate">
         <h4>GSMA TAC</h4>
-        <p>已取得</p>
+        <p>Obtained</p>
       </div>
       <div class="trust-card animate">
         <h4>FCC</h4>
-        <p>已公開</p>
+        <p>Public</p>
       </div>
     </div>
   </div>
   
   <div class="trust-group">
-    <h3 class="trust-group-title">安全及就緒狀態</h3>
+    <h3 class="trust-group-title">Safety & Readiness</h3>
     <div class="trust-grid">
       <div class="trust-card animate">
         <h4>CB</h4>
-        <p>已完成</p>
+        <p>Completed</p>
       </div>
       <div class="trust-card animate">
         <h4>UN38.3</h4>
-        <p>已通過</p>
+        <p>Passed</p>
       </div>
       <div class="trust-card animate">
         <h4>CP65</h4>
-        <p>已通過</p>
+        <p>Passed</p>
       </div>
       <div class="trust-card animate">
         <h4>CE</h4>
-        <p>進行中</p>
+        <p>In Progress</p>
       </div>
     </div>
   </div>
 </section>
   <div style="text-align:center;margin:2rem 0">
-    <a href="/magne-web/tc/magne-compliance.html" class="btn-secondary">探索合規認證</a>
+    <a href="/magne-web/tc/magne-compliance.html" class="btn-secondary">Explore Compliance</a>
   </div>
 
 
 <!-- SCREEN 5: PRODUCT SNAPSHOT -->
 <section id="product">
   <div class="section-title">
-    <h2>真實硬件。真實產品。為交付而建。</h2>
-    <p>一個以交付為導向的智能手機平台，專為將安全、AI 能力及日常可用性整合於單一設備而設計。</p>
+    <h2>Real hardware. Real product. Built to ship.</h2>
+    <p>A production-oriented smartphone platform designed to combine security, AI capability, and everyday usability in one device.</p>
   </div>
   <div class="product-layout">
     <div class="product-visual">
-      <img src="/magne-web/phone-black.png" alt="MAGNE Phone Gen1" class="product-phone">
+      <img src="phone-black.png" alt="MAGNE Phone Gen1" class="product-phone">
     </div>
     <div class="product-specs">
       <div class="product-card animate">
         <h4>UNISOC T9100 5G</h4>
-        <p>為真實部署而建的實用 5G 智能手機基礎。</p>
+        <p>A practical 5G smartphone foundation built for real-world deployment.</p>
       </div>
       <div class="product-card animate">
         <h4>8 TOPS NPU</h4>
-        <p>支援跨越隱私敏感流動場景的設備本地 AI 體驗。</p>
+        <p>Supports on-device AI experiences across privacy-sensitive mobile use cases.</p>
       </div>
       <div class="product-card animate">
-        <h4>最高 12GB RAM + 512GB UFS 3.1</h4>
-        <p>為現代應用、本地智能及錢包相關延續性而配置。</p>
+        <h4>Up to 12GB RAM + 512GB UFS 3.1</h4>
+        <p>Configured for modern app use, local intelligence, and wallet-related continuity.</p>
       </div>
       <div class="product-card animate">
-        <h4>6.72 吋 FHD+ 120Hz 顯示屏</h4>
-        <p>為日常使用及沉浸式互動而設計的流暢視覺體驗。</p>
+        <h4>6.72" FHD+ 120Hz Display</h4>
+        <p>A fluid visual experience designed for both daily use and immersive interaction.</p>
       </div>
       <div class="product-card animate">
         <h4>Android 15 + NFC</h4>
-        <p>基於現代 Android 架構，原生支援互聯工作流。</p>
+        <p>Built on a modern Android foundation with native support for connected workflows.</p>
       </div>
       <div class="product-card animate">
         <h4>5000mAh + IP52</h4>
-        <p>為更長使用延續性及日常實用防護而設計。</p>
+        <p>Designed for longer usage continuity and practical day-to-day resilience.</p>
       </div>
     </div>
   </div>
@@ -2785,52 +1562,52 @@
 <!-- SCREEN 6: NETWORK SNAPSHOT -->
 <section id="network">
   <div class="section-title">
-    <h2>不只是一部手機 — 而是 MAGNE 網絡的原生閘道</h2>
-    <p>MAGNE Phone 專為將安全流動硬件、錢包操作及區塊鏈基礎設施整合於一個一體化用戶旅程而設計。</p>
+    <h2>More than a phone — a native gateway to MAGNE Network</h2>
+    <p>MAGNE Phone is designed to connect secure mobile hardware, wallet operations, and blockchain infrastructure in one integrated user journey.</p>
   </div>
   <div class="network-grid">
     <div class="network-card animate">
       <h3>MAGNE L1</h3>
-      <p>為安全擁有權、錢包邏輯及資產相關操作而設計的基礎層。</p>
+      <p>A foundational layer designed for secure ownership, wallet logic, and asset-related operations.</p>
     </div>
     <div class="network-card animate">
       <h3>MHash L2</h3>
-      <p>為更廣泛應用及更低阻力用戶互動而設計的可擴展執行層。</p>
+      <p>A scalable execution layer designed for broader applications and lower-friction user interaction.</p>
     </div>
     <div class="network-card animate">
-      <h3>內置生態接入</h3>
-      <p>錢包、兌換、質押、跨鏈橋、身份及其他 Web3 體驗設計為可從設備直接存取。</p>
+      <h3>Built-in Ecosystem Access</h3>
+      <p>Wallet, swap, stake, bridge, identity, and additional Web3 experiences are designed to be accessible from the device.</p>
     </div>
   </div>
 </section>
   <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin:2rem 0">
-    <a href="/magne-web/tc/magne-network.html" class="btn-secondary">探索 MAGNE 網絡</a>
-    <a href="https://web3.magne.ai" target="_blank" rel="noopener" class="btn-secondary">前往 前往 Web3 入口 ↗️</a>
+    <a href="/magne-web/tc/magne-network.html" class="btn-secondary">Explore MAGNE Network</a>
+    <a href="https://web3.magne.ai" target="_blank" rel="noopener" class="btn-secondary">Open Web3 Portal ↗️</a>
   </div>
 
 
 <!-- SCREEN 7: PROGRESS SNAPSHOT -->
 <section id="progress">
   <div class="section-title">
-    <h2>從認證到部署——進展清晰可見</h2>
-    <p>MAGNE 的進展涵蓋產品安全、設備就緒狀態、網絡開發及更廣泛的商業化準備。</p>
+    <h2>From certification to deployment — progress made visible</h2>
+    <p>MAGNE's progress spans product security, device readiness, network development, and broader commercial preparation.</p>
   </div>
   <div class="progress-columns">
     <div class="progress-col animate">
-      <h4>安全與認證</h4>
-      <p>安全架構及認證里程碑持續定義產品的就緒基礎。</p>
+      <h4>Security & Certifications</h4>
+      <p>Security architecture and certification milestones continue to define the product's readiness foundation.</p>
     </div>
     <div class="progress-col animate">
-      <h4>設備計劃</h4>
-      <p>工程驗證、生產規劃及交付準備支持發貨路徑。</p>
+      <h4>Device Program</h4>
+      <p>Engineering validation, production planning, and delivery preparation support the path toward shipment.</p>
     </div>
     <div class="progress-col animate">
-      <h4>網絡與基礎設施</h4>
-      <p>MAGNE 的進展超越硬件，延伸至 L1、L2、開放開發及可見度工具。</p>
+      <h4>Network & Infrastructure</h4>
+      <p>MAGNE's progress extends beyond hardware into L1, L2, open development, and visibility tools.</p>
     </div>
     <div class="progress-col animate">
-      <h4>商業準備狀態</h4>
-      <p>預訂、機構對話及市場面準備表明實際商業意向。</p>
+      <h4>Commercial Readiness</h4>
+      <p>Preorders, institutional conversations, and market-facing preparation indicate live commercial intent.</p>
     </div>
   </div>
 </section>
@@ -2838,66 +1615,66 @@
 <!-- SCREEN 8: COMMERCIAL PROOF -->
 <section id="commercial">
   <div class="section-title">
-    <h2>商業勢頭，而非僅概念宣稱</h2>
-    <p>MAGNE 作為一個真實產品項目呈現，具備可見的社區吸引力、生產意向及面向機構的進展支持。</p>
+    <h2>Commercial momentum, not just concept claims</h2>
+    <p>MAGNE is presented as a real product program supported by visible community traction, production intent, and institutional-facing progress.</p>
   </div>
   <div class="commercial-grid">
     <div class="commercial-card animate">
-      <h4>已登記預訂</h4>
-      <p>早期市場興趣反映用戶對該設備的初步意向。</p>
+      <h4>Registered Preorders</h4>
+      <p>Early market interest reflects initial user intent around the device.</p>
     </div>
     <div class="commercial-card animate">
-      <h4>OEM / ODM 計劃</h4>
-      <p>製造及交付路徑與以交付為導向的產品策略保持一致。</p>
+      <h4>OEM / ODM Program</h4>
+      <p>Manufacturing and delivery pathways are aligned with a production-oriented product strategy.</p>
     </div>
     <div class="commercial-card animate">
-      <h4>首批目標</h4>
-      <p>初步發貨規劃支持從就緒到發布的過渡。</p>
+      <h4>First Batch Target</h4>
+      <p>Initial shipment planning supports the transition from readiness to release.</p>
     </div>
     <div class="commercial-card animate">
-      <h4>策略支持信號</h4>
-      <p>面向機構及生態的支持信號，反映市場及合作夥伴對該計劃方向的更廣泛興趣。</p>
+      <h4>Strategic Support Signals</h4>
+      <p>Institutional and ecosystem-facing support signals reflect broader market and partner interest in the program direction.</p>
     </div>
   </div>
 </section>
   <div style="text-align:center;margin:2rem 0">
-    <a href="/magne-web/tc/magne-contact.html" class="btn-secondary">聯絡 MAGNE.AI</a>
+    <a href="/magne-web/tc/magne-contact.html" class="btn-secondary">Contact MAGNE.AI</a>
   </div>
 
 
 <section id="momentum">
   <div class="momentum-container">
-    <div class="momentum-eyebrow">社區參與動態</div>
-    <h2 class="momentum-title">MAGNE.AI Phone Gen1 抽獎活動</h2>
-    <p class="momentum-sub">社區參與活動，附現場進度追蹤、設備分配可見度，以及如適用的 TGE 後獎勵追蹤。</p>
+    <div class="momentum-eyebrow">現場社區動態</div>
+    <h2 class="momentum-title">MAGNE.AI 手機 Gen1 Lottery</h2>
+    <p class="momentum-sub">Community participation campaign with live progress, device allocation visibility, and post-TGE reward tracking where applicable.</p>
     
     <div class="stats-grid">
       <div class="stat-card">
         <div class="stat-value" id="stat-participants">--</div>
-        <div class="stat-label">參與者</div>
-        <div class="stat-sub">總社區報名次數</div>
+        <div class="stat-label">Participants</div>
+        <div class="stat-sub">Total community entries</div>
       </div>
       <div class="stat-card">
         <div class="stat-value" id="stat-phones">--</div>
-        <div class="stat-label">已分配設備</div>
-        <div class="stat-sub">已分配設備</div>
+        <div class="stat-label">Phones Won</div>
+        <div class="stat-sub">Devices already allocated</div>
       </div>
       <div class="stat-card">
         <div class="stat-value" id="stat-mha">--</div>
-        <div class="stat-label">TGE 後獎勵追蹤</div>
-        <div class="stat-sub">須受活動規則及適用的代幣分發時間表約束。</div>
+        <div class="stat-label">Post-TGE Reward Tracking</div>
+        <div class="stat-sub">Subject to campaign rules and applicable token distribution schedule.</div>
       </div>
       <div class="stat-card">
-        <div class="stat-label">下次抽獎進度</div>
+        <div class="stat-label">Next Draw Progress</div>
         <div class="stat-value" id="stat-next-progress">--</div>
-        <div class="stat-sub">下次抽獎報名人數</div>
+        <div class="stat-sub">Entries for next round</div>
       </div>
     </div>
 
     <div class="progress-section">
       <div class="progress-header">
-        <span>下次抽獎進度</span>
-        <span><span id="stat-entries">--</span> / 100 個報名名額</span>
+        <span>Next draw progress:</span>
+        <span><span id="stat-entries">--</span> / 100 entries</span>
       </div>
       <div class="progress-bar">
         <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
@@ -2907,21 +1684,21 @@
     <div class="momentum-footer">
       <span>
         <svg class="foot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
-        設備：8GB + 512GB
+        Device: 8GB + 512GB
       </span> •
       <span>
         <svg class="foot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-        首批發貨：2026 年 7–9 月
+        First batch shipping: Jul–Sep 2026
       </span> •
       <span>
         <svg class="foot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        MHA 獎勵分發：須受 TGE 時間表、活動規則及資格驗證約束。
+        MHA reward distribution: subject to TGE schedule, campaign rules, and eligibility verification.
       </span>
     </div>
 
     <div class="momentum-cta">
-      <a href="https://payment.magne.ai/lottery" target="_blank" class="btn-primary">查看活動詳情</a>
-      <a href="https://payment.magne.ai/buy" class="btn-secondary">預訂 MAGNE Phone</a>
+      <a href="https://payment.magne.ai/lottery" target="_blank" class="btn-primary">View Campaign Details</a>
+      <a href="/magne-web/tc/magne-contact.html">預訂 MAGNE 手機</a>
       <a href="lottery-dashboard.html" class="dashboard-btn">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <rect x="3" y="3" width="7" height="7" rx="1"/>
@@ -2930,7 +1707,7 @@
           <path d="M14 17h7"/>
           <path d="M17.5 14v7"/>
         </svg>
-        查看直播儀表板 ↗
+        View Live Dashboard ↗
       </a>
     </div>
   </div>
@@ -2939,19 +1716,19 @@
 <!-- SCREEN 9: FINAL CTA -->
 <section id="cta">
   <div class="section-title">
-    <h2>選擇您的 MAGNE 之路</h2>
-    <p>無論您是在探索產品還是尋求機構合作，MAGNE 都能為您引導正確的下一步。</p>
+    <h2>Choose your path into MAGNE</h2>
+    <p>Whether you are exploring the product or looking for institutional engagement, MAGNE can direct you to the right next step.</p>
   </div>
   <div class="cta-grid">
     <div class="cta-card animate">
-      <h3>購買 / 產品查詢</h3>
-      <p>探索產品詳情、預訂通道、供應情況及 MAGNE Phone Gen1 的用戶資訊。</p>
-      <a href="https://payment.magne.ai/buy" class="btn-primary">預訂 MAGNE Phone</a>
+      <h3>Buy / Product Inquiry</h3>
+      <p>Explore product details, preorder access, availability, and user-facing information about MAGNE Phone Gen1.</p>
+      <a href="/magne-web/tc/magne-contact.html">預訂 MAGNE 手機</a>
     </div>
     <div class="cta-card animate">
-      <h3>合作 / 機構聯絡</h3>
-      <p>聯絡團隊洽談合作、交易所盡調、投資者溝通、媒體或更廣泛的策略討論。</p>
-      <a href="/magne-web/tc/magne-contact.html" class="btn-primary btn-secondary-alt">聯絡 MAGNE.AI</a>
+      <h3>Partner / Institutional Contact</h3>
+      <p>Connect with the team for partnerships, exchange due diligence, investor communication, media, or broader strategic discussion.</p>
+      <a href="/magne-web/tc/magne-contact.html" class="btn-primary btn-secondary-alt">Contact MAGNE.AI</a>
     </div>
   </div>
 </section>
@@ -2959,24 +1736,24 @@
 <!-- CONTACT SECTION -->
 <section id="contact" class="contact-section">
   <div class="section-title">
-    <h2>與我們聯絡</h2>
-    <p>無論您有產品疑問、合作查詢或需要更多資訊，我們隨時候命。</p>
+    <h2>Get in touch</h2>
+    <p>Whether you have product questions, partnership inquiries, or need more information, we are here to help.</p>
   </div>
   <div class="contact-grid">
     <div class="contact-card">
-      <h3>產品與銷售</h3>
-      <p>關於 MAGNE Phone Gen1、預訂、發貨或產品規格的查詢。</p>
-      <a href="/magne-web/tc/magne-contact.html" class="btn-primary">聯絡 MAGNE.AI</a>
+      <h3>Product & Sales</h3>
+      <p>Questions about MAGNE Phone Gen1, preorder, shipping, or product specifications.</p>
+      <a href="/magne-web/tc/magne-contact.html" class="btn-primary">Contact MAGNE.AI</a>
     </div>
     <div class="contact-card">
-      <h3>合作與投資</h3>
-      <p>機構合作、投資者關係、交易所上市或策略協作。</p>
-      <a href="/magne-web/tc/magne-contact.html" class="btn-primary btn-secondary-alt">聯絡 MAGNE.AI</a>
+      <h3>Partnership & Investment</h3>
+      <p>For institutional partnerships, investor relations, exchange listings, or strategic collaborations.</p>
+      <a href="/magne-web/tc/magne-contact.html" class="btn-primary btn-secondary-alt">Contact MAGNE.AI</a>
     </div>
     <div class="contact-card">
-      <h3>媒體與新聞</h3>
-      <p>新聞查詢、媒體資料包、採訪請求及新聞相關通訊。</p>
-      <a href="/magne-web/tc/magne-contact.html" class="btn-primary">聯絡 MAGNE.AI</a>
+      <h3>Media & Press</h3>
+      <p>Press inquiries, media kits, interview requests, and press-related communications.</p>
+      <a href="/magne-web/tc/magne-contact.html" class="btn-primary">Contact MAGNE.AI</a>
     </div>
   </div>
 </section>
@@ -2998,14 +1775,14 @@
   </div>
 
 <div class="footer-links">
-    <a href="/magne-web/privacy-policy.html">隱私政策</a>
+    <a href="/magne-web/tc/magne-contact.html">法律意見書</a>
     <a href="/magne-web/tc/magne-contact.html">聯絡</a>
-    <a href="/magne-web/media-kit.html">媒體資料包</a>
+    <a href="/magne-web/media-kit.html">媒體套件</a>
     <a href="https://web3.magne.ai" target="_blank" rel="noopener">白皮書</a>
     <a href="https://web3.magne.ai/transparency" target="_blank" rel="noopener">法律意見書</a>
   </div>
     <p class="trademark-notice">
-    MAGNE.AI™ 為 Magical Hash Global Tech Limited 的註冊商标，正在註冊程序中 
+    MAGNE.AI™ 為 Magical Hash Global Tech Limited 的商標，目前正在註冊程序中 
     (<a href="https://tmsearch.uspto.gov/search/search-results/99311528" target="_blank" rel="noopener">USPTO Serial: 99311528</a>).
   </p>
   <p style="margin-top: 1.5rem; opacity: 0.5;">© 2026 MAGNE.AI. 版權所有。</p>
@@ -3015,7 +1792,7 @@
 
 <!-- SCRIPTS -->
 <script>
-  // Node Network Background Animation
+  // 節點網絡 Background Animation
   const canvas = document.getElementById('node-bg');
   const ctx = canvas.getContext('2d');
   let width, height;
@@ -3106,7 +1883,7 @@
       const json = await res.json();
       const data = json.data;
       
-      document.getElementById('stat-participants').textContent = data.total參與者.toLocaleString();
+      document.getElementById('stat-participants').textContent = data.totalParticipants.toLocaleString();
       document.getElementById('stat-phones').textContent = data.totalMobile;
       
       const mhaRewards = (data.currRound - 1) * 99 * 100;
@@ -3148,5 +1925,5 @@
 </script>
 
   <script src="/magne-web/assets/mobile-nav.js" defer></script>
-</body>
+
 </html>
