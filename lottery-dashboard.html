@@ -884,6 +884,51 @@
     .trademark-notice a:hover {
       text-decoration: underline;
     }
+  
+    .nav-actions {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    .nav-cta {
+      background: var(--accent);
+      color: #000 !important;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+    .nav-contact {
+      background: transparent;
+      border: 1px solid var(--border-hover);
+      color: var(--text-primary) !important;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 500;
+      text-decoration: none;
+    }
+    .nav-contact:hover { border-color: var(--accent); color: var(--accent) !important; }
+    .nav-web3 {
+      color: var(--accent-secondary) !important;
+      font-size: 0.85rem;
+    }
+    .nav-web3:hover { color: var(--accent) !important; }
+    .nav-lang-switch {
+      color: rgba(255,255,255,0.5) !important;
+      font-size: 0.8rem !important;
+      text-decoration: none !important;
+      padding: 0.2rem 0.5rem !important;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 6px;
+    }
+    .nav-lang-switch:hover {
+      color: var(--accent) !important;
+      border-color: var(--accent);
+    }
+
+
+    
   </style>
   <link rel="stylesheet" href="assets/mobile-responsive.css">
 </head>
