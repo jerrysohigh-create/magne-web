@@ -138,9 +138,28 @@
       border-color: var(--accent);
     }
 
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 600px;
+      background: radial-gradient(ellipse at center, rgba(0,212,212,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
     .hero-eyebrow {
       font-size: 0.8rem;
-      color: #00d4d4;
+      color: var(--accent);
       letter-spacing: 3px;
       text-transform: uppercase;
       margin-bottom: 1.5rem;
@@ -150,25 +169,51 @@
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
-    .page-header {
-      padding: 7.5rem 2rem 4rem;
-      min-height: auto;
-      display: block;
-      text-align: center;
-      position: relative;
-    }
-    .page-header h1 {
-      font-size: 2.5rem;
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
       font-weight: 700;
-      margin-bottom: 1rem;
-      text-align: center;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.85) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeInUp 0.8s ease-out 0.1s both;
     }
-    .page-header p {
+    .hero-sub {
+      font-size: 1.15rem;
       color: var(--text-secondary);
-      font-size: 1.1rem;
-      text-align: center;
+      max-width: 600px;
+      margin-bottom: 3rem;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
     }
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeInUp 0.8s ease-out 0.3s both;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
 
     .content {
       max-width: 900px;
@@ -425,7 +470,7 @@
 </nav>
 
 
-  <div class="page-header">
+  <section class="hero">
     <div class="hero-eyebrow">FAQ</div>
     <h1>Frequently Asked Questions</h1>
     <p>Everything you need to know about MAGNE.AI</p>
@@ -433,7 +478,7 @@
       <a href="/magne-web/magne-contact.html" style="background:transparent;border:1px solid rgba(255,255,255,0.2);color:var(--text-primary);padding:0.85rem 2rem;border-radius:8px;font-weight:500;text-decoration:none">Contact Support</a>
       <a href="https://payment.magne.ai/buy" style="background:var(--accent);color:#000;padding:0.85rem 2rem;border-radius:8px;font-weight:600;text-decoration:none">Preorder MAGNE Phone</a>
     </div>
-  </div>
+  </section>
 
   <div class="content">
     <!-- Product Section -->
