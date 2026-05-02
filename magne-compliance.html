@@ -593,6 +593,588 @@
 
 <div class="content-wrapper">
 
+<!-- NAV -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compliance & Certifications — Certification-backed Readiness for Global Deployment</title>
+  <link rel="icon" type="image/png" href="logo-icon-circle.png">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #0a0a0c;
+      --bg-secondary: #0f0f12;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --bg-card-hover: rgba(255, 255, 255, 0.05);
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.12);
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.5);
+      --text-tertiary: rgba(255, 255, 255, 0.3);
+      --accent: #00ff88;
+      --accent-secondary: #00ff88;
+      --accent-green: #00ff88;
+      --accent-gold: #ffd700;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', -apple-system, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NODE NETWORK BACKGROUND */
+    #node-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 12, 0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-brand a { color: var(--text-secondary); text-decoration: none; }
+    .nav-logo { font-size: 1.3rem; font-weight: 700; color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a.active { color: var(--accent); }
+    .nav-actions {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    .nav-cta {
+      background: var(--accent);
+      color: #000 !important;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+    .nav-contact {
+      background: transparent;
+      border: 1px solid var(--border-hover);
+      color: var(--text-primary) !important;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 500;
+      text-decoration: none;
+    }
+    .nav-contact:hover { border-color: var(--accent); color: var(--accent) !important; }
+    .nav-web3 {
+      color: var(--accent-secondary) !important;
+      font-size: 0.85rem;
+    }
+    .nav-web3:hover { color: var(--accent) !important; }
+    .nav-lang-switch {
+      color: rgba(255,255,255,0.5) !important;
+      font-size: 0.8rem !important;
+      text-decoration: none !important;
+      padding: 0.2rem 0.5rem !important;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 6px;
+    }
+    .nav-lang-switch:hover {
+      color: var(--accent) !important;
+      border-color: var(--accent);
+    }
+
+
+    /* CONTENT WRAPPER */
+    .content-wrapper {
+      position: relative;
+      z-index: 1;
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 900px; height: 700px;
+      background: radial-gradient(ellipse at center, rgba(0,255,136,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 0.8s ease-out;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.85) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeInUp 0.8s ease-out 0.1s both;
+    }
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 650px;
+      margin-bottom: 3rem;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+    .hero-ctas { 
+      display: flex; 
+      gap: 1rem; 
+      flex-wrap: wrap; 
+      justify-content: center;
+      animation: fadeInUp 0.8s ease-out 0.3s both;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+      padding: 1rem 2.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover { 
+      transform: translateY(-3px); 
+      box-shadow: 0 15px 40px rgba(0,255,136,0.3);
+    }
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--border-hover);
+      color: var(--text-primary);
+      padding: 1rem 2.5rem;
+      border-radius: 8px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-secondary:hover { 
+      border-color: var(--accent); 
+      color: var(--accent);
+    }
+
+    /* SECTION INNER WRAPPER */
+    .section-inner {
+      width: min(1200px, calc(100% - 48px));
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* SECTION BASE */
+    section { 
+      padding: 6rem 2rem; 
+      max-width: 1100px; 
+      margin: 0 auto; 
+      position: relative;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .section-title h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .section-title p {
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1rem;
+    }
+
+    /* OVERVIEW */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .overview-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.3s;
+    }
+    .overview-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+    }
+    .overview-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .overview-card h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .overview-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    /* CERT GRID */
+    .cert-section {
+      margin: 4rem 0;
+    }
+    .cert-group-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 2rem;
+      text-align: center;
+      padding-left: 0;
+      border-left: none;
+    }
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .cert-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      transition: all 0.2s;
+      text-align: center;
+    }
+    .cert-card:hover {
+      border-color: var(--border-hover);
+    }
+    .cert-card h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+    .cert-status {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 50px;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .cert-status.approved { background: rgba(0,255,136,0.15); color: var(--accent); }
+    .cert-status.supported { background: rgba(0,212,212,0.15); color: var(--accent-secondary); }
+    .cert-status.obtained { background: rgba(0,255,136,0.15); color: var(--accent); }
+    .cert-status.passed { background: rgba(0,255,136,0.15); color: var(--accent); }
+    .cert-status.in-progress { background: rgba(255,215,0,0.15); color: var(--accent-gold); }
+    .cert-card p {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      line-height: 1.6;
+      text-align: center;
+    }
+    /* PUBLIC IDENTIFIERS */
+    .identifiers-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 3rem;
+      margin: 4rem 0;
+    }
+    .identifiers-section h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .identifier-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .identifier-item {
+      text-align: center;
+      padding: 1.5rem;
+      background: var(--bg-secondary);
+      border-radius: 12px;
+    }
+    .identifier-item .label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+    .identifier-item .value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    /* BANDS */
+    .bands-section {
+      margin: 4rem 0;
+    }
+    .bands-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .compliance-note {
+      margin-top: 1.5rem;
+      color: var(--text-secondary);
+      font-size: 0.78rem;
+      line-height: 1.6;
+      text-align: center;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .bands-header p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .bands-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    .band-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .band-card h5 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+    }
+    .band-card p {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    /* MEANING SECTION */
+    .meaning-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 3rem;
+      margin: 4rem 0;
+    }
+    .meaning-section h3 {
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 3rem;
+    }
+    .meaning-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .meaning-card {
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .meaning-card h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--accent);
+      text-align: center;
+    }
+    .meaning-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    /* CTA */
+    .cta-section {
+      text-align: center;
+      padding: 6rem 2rem;
+      background: linear-gradient(180deg, transparent 0%, rgba(0,255,136,0.03) 100%);
+      border-top: 1px solid var(--border);
+    }
+    .cta-section h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .cta-section p {
+      color: var(--text-secondary);
+      margin-bottom: 2.5rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 4rem 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-tertiary);
+      font-size: 0.9rem;
+    }
+    footer a { color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--accent); }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; margin-top: 1rem; }
+    .footer-links-secondary { display: flex; justify-content: center; gap: 2rem; margin-top: 0.75rem; }
+    .footer-links-secondary a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; }
+    .footer-links-secondary a:hover { color: var(--accent); }
+
+    /* ANIMATIONS */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate { opacity: 0; }
+    .animate.visible {
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .overview-grid,
+      .cert-grid,
+      .bands-grid { grid-template-columns: repeat(2, 1fr); }
+      .identifier-grid { grid-template-columns: 1fr; }
+      .meaning-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1rem; }
+      .overview-grid,
+      .cert-grid,
+      .bands-grid { grid-template-columns: 1fr; }
+      .supporting-proof-section .section-inner { padding: 3rem 1.5rem !important; }
+    }
+  
+    /* FOOTER SOCIAL ICONS */
+    .footer-socials { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0; }
+    .footer-socials a {
+      display: inline-flex; align-items: center; justify-content: center;
+      height: 42px; padding: 0;
+      border: 1px solid var(--border); border-radius: 999px;
+      color: var(--text-secondary); font-size: 0.82rem; transition: all 0.2s;
+    }
+    .footer-socials a:hover { color: var(--accent); border-color: var(--accent); background: rgba(0, 212, 212, 0.06); }
+    .footer-copy { margin-top: 1.5rem; opacity: 0.5; }
+
+    .footer-socials a.footer-icon svg { width: 20px; height: 20px; }
+    .footer-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+      padding: 0;
+    }
+    .footer-icon:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: rgba(0, 212, 212, 0.1);
+    }
+
+    .footer-brand-logo {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .footer-brand-logo img {
+      height: 24px;
+      width: auto;
+      margin-bottom: 0.75rem;
+      opacity: 0.9;
+    }
+    .footer-brand-logo p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+  
+    .nav-logo-img {
+      height: 20px;
+      width: auto;
+      display: block;
+    }
+  
+    .trademark-notice {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-top: 1rem;
+      opacity: 0.7;
+    }
+    .trademark-notice a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .trademark-notice a:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <link rel="stylesheet" href="assets/mobile-responsive.css">
+</head>
+<body>
+
+<!-- NODE NETWORK BACKGROUND -->
+<canvas id="node-bg"></canvas>
+
+<div class="content-wrapper">
 
 <!-- NAV -->
 <nav>
@@ -604,11 +1186,12 @@
     <li><a href="magne-home.html">Home</a></li>
     <li><a href="magne-phone.html">Phone</a></li>
     <li><a href="magne-security.html">Security</a></li>
-    <li><a href="magne-compliance.html">Compliance</a></li>
+    <li><a href="magne-compliance.html" class="active">Compliance</a></li>
     <li><a href="magne-network.html">Network</a></li>
     <li><a href="magne-progress.html">Progress</a></li>
     <li><a href="magne-partners.html">Partners</a></li>
     <li><a href="faq.html">FAQ</a></li>
+    <a href="tc/magne-compliance.html" class="nav-lang-switch">EN | 繁中</a></li>
     <li><a href="https://web3.magne.ai" target="_blank" rel="noopener" class="nav-web3">Web3 Portal ↗️</a></li>
     <li class="nav-actions-mobile">
       <a href="magne-contact.html" class="nav-contact">Contact</a>
@@ -617,3 +1200,410 @@
   </ul>
 </nav>
 
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Compliance & Certifications</div>
+  <h1>Certification-backed readiness for real-world deployment</h1>
+  <p class="hero-sub">MAGNE is presented with visible trust, compatibility, and compliance signals to support broader market confidence.</p>
+  <div class="hero-ctas">
+    <a href="magne-contact.html" class="btn-primary">Contact Compliance Team</a>
+    <a href="#identifiers" class="btn-secondary">View Certification Materials</a>
+  </div>
+</section>
+
+<!-- COMPLIANCE OVERVIEW -->
+<section id="overview">
+  <div class="section-inner">
+  <div class="section-title">
+    <h2>What This Page Covers</h2>
+    <p>MAGNE's compliance and certification profile spans three dimensions of market readiness.</p>
+  </div>
+  <div class="overview-grid">
+    <div class="overview-card animate">
+      <div class="overview-icon">📱</div>
+      <h4>Platform & Content Readiness</h4>
+      <p>Google GMS, Widevine L1, and GSMA TAC represent MAGNE's foundation for mainstream app ecosystem access and global content platform compatibility.</p>
+    </div>
+    <div class="overview-card animate">
+      <div class="overview-icon">📦</div>
+      <h4>Safety & Shipment Readiness</h4>
+      <p>CB, UN38.3, CP65, and CE represent the testing and certification required for international shipping, logistics, and market entry in key regions.</p>
+    </div>
+    <div class="overview-card animate">
+      <div class="overview-icon">🌍</div>
+      <h4>Global Compatibility Planning</h4>
+      <p>Broad LTE and 5G band coverage, NFC, Wi-Fi, and Bluetooth support are designed into the hardware for international deployment flexibility.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORM & CONTENT -->
+<section id="platform" class="cert-section">
+  <div class="section-inner">
+  <div class="cert-group-title">Platform & Content</div>
+  <div class="cert-grid">
+    <div class="cert-card animate">
+      <h4>Google GMS</h4>
+      <span class="cert-status approved">Approved</span>
+      <p>Google Mobile Services certification confirms official Android compatibility and Google Play access — not an open-source Android fork.</p>
+    </div>
+    <div class="cert-card animate">
+      <h4>Widevine L1</h4>
+      <span class="cert-status supported">Supported</span>
+      <p>DRM certification at the highest level enables Netflix, Disney+, and other premium content platforms at full HD and 4K resolution.</p>
+    </div>
+    <div class="cert-card animate">
+      <h4>GSMA TAC</h4>
+      <span class="cert-status obtained">Obtained</span>
+      <p>Type Allocation Code registered with the GSMA identifies MAGNE as a legitimate, internationally tracked device — not a grey-market product.</p>
+    </div>
+    <div class="cert-card animate">
+      <h4>Android 15</h4>
+      <span class="cert-status approved">Approved</span>
+      <p>Built on the latest Android platform with official licensing, ensuring long-term app compatibility and security updates.</p>
+    </div>
+    <div class="cert-card animate">
+      <h4>FCC Equipment Authorization</h4>
+      <span class="cert-status passed">Authorized</span>
+      <p>FCC equipment authorization covering licensed cellular, 5GHz Wi-Fi, Bluetooth, NFC, EMC, and SAR — with public grant records under FCC ID 2BVCPGC603606.</p>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- PUBLIC IDENTIFIERS -->
+<section id="identifiers" class="identifiers-section">
+  <div class="section-inner">
+  <h3>Public Device Identifiers</h3>
+  <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem; font-size: 0.95rem;">
+    These identifiers can be verified through public regulatory databases and the GSMA database.
+  </p>
+  <div class="identifier-grid">
+    <div class="identifier-item animate">
+      <div class="label">FCC ID</div>
+      <div class="value">2BVCPGC603606</div>
+    </div>
+    <div class="identifier-item animate">
+      <div class="label">GSMA TAC</div>
+      <div class="value">01681300</div>
+    </div>
+    <div class="identifier-item animate">
+      <div class="label">Marketing Name</div>
+      <div class="value">MAG1</div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- SAFETY & LOGISTICS -->
+<section id="safety" class="cert-section">
+  <div class="section-inner">
+  <div class="cert-group-title">Safety & Logistics</div>
+  <div class="cert-grid">
+    <div class="cert-card animate">
+      <h4>CB Scheme</h4>
+      <span class="cert-status passed">Completed</span>
+      <p>International Electrotechnical Commission certification accepted by 54+ countries, enabling streamlined national approvals for electrical equipment safety.</p>
+    </div>
+    <div class="cert-card animate">
+      <h4>UN38.3</h4>
+      <span class="cert-status passed">Passed</span>
+      <p>UN transportation testing for lithium batteries confirms safe air and sea shipping — required for international logistics of battery-powered devices.</p>
+    </div>
+    <div class="cert-card animate">
+      <h4>CP65</h4>
+      <span class="cert-status passed">Passed</span>
+      <p>California Proposition 65 compliance ensures appropriate disclosure of chemicals in the product, meeting US consumer safety disclosure requirements.</p>
+    </div>
+    <div class="cert-card animate">
+      <h4>CE</h4>
+      <span class="cert-status in-progress">In Progress</span>
+      <p>European Conformity marking for EU market access covering safety, health, and environmental requirements — expected completion ahead of first EU shipments.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BANDS & COMPATIBILITY -->
+<section id="bands" class="bands-section">
+  <div class="bands-header">
+    <h2>Communication & Connectivity</h2>
+    <p>Designed for broad international compatibility across major LTE and Sub-6 5G bands.</p>
+  </div>
+  <div class="section-inner">
+  <div class="bands-grid">
+    <div class="band-card animate">
+      <h5>GSM</h5>
+      <p>850 / 900 / 1800 / 1900 MHz</p>
+    </div>
+    <div class="band-card animate">
+      <h5>WCDMA</h5>
+      <p>B1 / B2 / B5 / B8</p>
+    </div>
+    <div class="band-card animate">
+      <h5>LTE FDD</h5>
+      <p>B1 / B2 / B3 / B4 / B5 / B7 / B8 / B20 / B28</p>
+    </div>
+    <div class="band-card animate">
+      <h5>LTE TDD</h5>
+      <p>B38 / B40 / B41</p>
+    </div>
+    <div class="band-card animate">
+      <h5>5G NR</h5>
+      <p>n1 / n3 / n7 / n8 / n20 / n28 / n38 / n40 / n41 / n77 / n78</p>
+    </div>
+    <div class="band-card animate">
+      <h5>ENDC</h5>
+      <p>LTE + 5G NR dual connectivity</p>
+    </div>
+    <div class="band-card animate">
+      <h5>Wi-Fi</h5>
+      <p>802.11 a/b/g/n/ac/ax</p>
+    </div>
+    <div class="band-card animate">
+      <h5>Bluetooth</h5>
+      <p>BT 5.2 + BLE</p>
+    </div>
+  </div>
+  <p style="text-align: center; margin-top: 2rem; color: var(--text-secondary); font-size: 0.85rem;">
+    NFC (ISO 14443, ISO 18092) — Android HCE / Secure Element supported
+  </p>
+  <p class="compliance-note">
+    Band availability and network compatibility may vary by market, carrier, software configuration, and certification status.
+    MAGNE Phone Gen1 is presented with global frequency planning capability; final regional availability is subject to applicable approvals and operator requirements.
+  </p>
+  </div>
+</section>
+
+<!-- WHAT THESE SIGNALS MEAN -->
+<section id="meaning" class="meaning-section">
+  <div class="section-inner">
+  <h3>What These Signals Mean</h3>
+  <div class="meaning-grid">
+    <div class="meaning-card animate">
+      <h4>For Users</h4>
+      <p>MAGNE is not a grey-market or unbranded device. It has internationally recognized identifiers, certified safety testing, and platform compatibility that can be independently verified. MAGNE is designed for broad international compatibility across supported LTE and 5G bands, while actual carrier availability may vary by region, operator, SKU, software configuration, and certification status.</p>
+    </div>
+    <div class="meaning-card animate">
+      <h4>For Partners & Channels</h4>
+      <p>Distribution partners, carriers, and retail channels can verify MAGNE's regulatory standing through public databases. The certification portfolio reduces channel risk and supports faster regulatory clearance for inventory and sales authorization.</p>
+    </div>
+    <div class="meaning-card animate">
+      <h4>For Market Readiness</h4>
+      <p>The combination of GMS, FCC, CB, UN38.3, and CE in progress signals a product that is materially closer to shippable status in major markets. MAGNE is presented as a certification-active, production-oriented device program rather than a concept-only prototype.</p>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- SUPPORTING PROOF ENTRY -->
+<section class="supporting-proof-section">
+  <div class="section-inner" style="text-align: center; padding: 5rem 2rem;">
+    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">Need deeper Google / Android verification?</h3>
+    <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; line-height: 1.7;">
+      For partners, exchanges, and institutional reviewers who require a more detailed view of MAG1's
+      Google GMS approval path, Android partner workflow, and related supporting materials,
+      a dedicated supporting page is available.
+    </p>
+    <a href="google-approval.html" class="btn-primary">View Google Approval Details →</a>
+  </div>
+</section>
+
+<!-- CP65 SUPPORTING PROOF ENTRY -->
+<section class="supporting-proof-section">
+  <div class="section-inner" style="text-align: center; padding: 5rem 2rem;">
+    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">Need deeper CP65 verification?</h3>
+    <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; line-height: 1.7;">
+      For partners, exchanges, and institutional reviewers who require a more detailed view of MAG1's
+      California Proposition 65 test result, report identity, and supporting reference,
+      a dedicated supporting page is available.
+    </p>
+    <a href="cp65-lookup.html" class="btn-primary">View CP65 Test Details →</a>
+  </div>
+</section>
+
+<!-- GSMA TAC SUPPORTING PROOF ENTRY -->
+<section class="supporting-proof-section">
+  <div class="section-inner" style="text-align: center; padding: 5rem 2rem;">
+    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">Need deeper GSMA TAC verification?</h3>
+    <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; line-height: 1.7;">
+      For partners, exchanges, and institutional reviewers who require a more detailed view of MAG1's
+      GSMA TAC allocation, public device identification profile, and supporting reference materials,
+      a dedicated supporting page is available.
+    </p>
+    <a href="gsma-tac-lookup.html" class="btn-primary">View GSMA TAC Details →</a>
+  </div>
+</section>
+
+<!-- FCC SUPPORTING PROOF ENTRY -->
+<section class="supporting-proof-section">
+  <div class="section-inner" style="text-align: center; padding: 5rem 2rem;">
+    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">Need deeper FCC verification?</h3>
+    <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; line-height: 1.7;">
+      For partners, regulatory bodies, and institutional reviewers who require a more detailed view of MAG1's FCC equipment authorization — including SAR reports, cellular RF test data, Wi-Fi / U-NII / DFS reports, EMC results, and public grant records — a dedicated FCC document center is available.
+    </p>
+    <a href="fcc-lookup.html" class="btn-primary">View FCC Documentation →</a>
+  </div>
+</section>
+
+<!-- CB SUPPORTING PROOF ENTRY -->
+<section class="supporting-proof-section">
+  <div class="section-inner" style="text-align: center; padding: 5rem 2rem;">
+    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">Need deeper CB verification?</h3>
+    <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; line-height: 1.7;">
+      For partners, exchanges, and institutional reviewers who require a more detailed view of MAG1 battery's
+      CB certificate, certificate identity, and related verification reference,
+      a dedicated supporting page is available.
+    </p>
+    <a href="cb-lookup.html" class="btn-primary">View CB Certificate Detail →</a>
+  </div>
+</section>
+
+<!-- UN38.3 SUPPORTING PROOF ENTRY -->
+<section class="supporting-proof-section">
+  <div class="section-inner" style="text-align: center; padding: 5rem 2rem;">
+    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">Need deeper UN38.3 / shipping verification?</h3>
+    <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; line-height: 1.7;">
+      For partners, exchanges, logistics counterparts, and institutional reviewers who require a more detailed view of MAG1 battery's UN38.3 status, packaging validation, and air / sea shipping classification materials,
+      a dedicated supporting page is available.
+    </p>
+    <a href="un383-lookup.html" class="btn-primary">View Transport &amp; Shipping Details →</a>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact" class="cta-section">
+  <div class="section-inner">
+  <h2>Need official references or commercial materials?</h2>
+  <p>For regulatory inquiries, distribution discussions, or to request official certification documentation, our team is available.</p>
+  <div class="cta-buttons">
+    <a href="magne-contact.html" class="btn-primary">Contact MAGNE.AI</a>
+    <a href="magne-progress.html" class="btn-secondary">Explore Progress</a>
+  </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand-logo">
+      <img src="assets/brand/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="footer-brand-img">
+      <p>The Web3-native AI Phone</p>
+    </div>
+  
+  <div class="footer-socials" aria-label="Official MAGNE.AI channels">
+    <a href="https://x.com/Magne_Ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+    <a href="https://t.me/MagneAI" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+    <a href="https://discord.gg/tX2xRAkd" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
+    <a href="https://github.com/magne-ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+    <a href="https://www.youtube.com/@MagneAI" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+    <a href="https://web3.magne.ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE Web3 Docs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></a>
+  </div>
+
+<div class="footer-links">
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="magne-contact.html">Contact</a>
+    <a href="media-kit.html">Media Kit</a>
+    <a href="https://web3.magne.ai" target="_blank" rel="noopener">Whitepaper</a>
+    <a href="https://web3.magne.ai/transparency" target="_blank" rel="noopener">Legal Opinion</a>
+  </div>
+    <p class="trademark-notice">
+    MAGNE.AI™ is a trademark of Magical Hash Global Tech Limited, currently in registration process 
+    (<a href="https://tmsearch.uspto.gov/search/search-results/99311528" target="_blank" rel="noopener">USPTO Serial: 99311528</a>).
+  </p>
+  <p style="margin-top: 1.5rem; opacity: 0.5;">© 2026 MAGNE.AI. All rights reserved.</p>
+</footer>
+
+</div>
+
+<!-- SCRIPTS -->
+<script>
+  // Node Network Background
+  const canvas = document.getElementById('node-bg');
+  const ctx = canvas.getContext('2d');
+  let width, height;
+  let nodes = [];
+  let simplex;
+
+  function resize() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  }
+
+  function createNodes() {
+    const numNodes = Math.floor((width * height) / 15000);
+    nodes = [];
+    for (let i = 0; i < numNodes; i++) {
+      nodes.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        radius: Math.random() * 2 + 1,
+        baseX: 0,
+        baseY: 0
+      });
+      nodes[i].baseX = nodes[i].x;
+      nodes[i].baseY = nodes[i].y;
+    }
+  }
+
+  function init() {
+    resize();
+    simplex = new SimplexNoise();
+    createNodes();
+    animate();
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+    const time = Date.now() * 0.0005;
+    
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const dx = nodes[i].x - nodes[j].x;
+        const dy = nodes[i].y - nodes[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 150) {
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(0, 255, 136, ${0.15 * (1 - dist / 150)})`;
+          ctx.lineWidth = 1;
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+    
+    for (let node of nodes) {
+      const noiseX = simplex.noise2D(node.baseX * 0.001, time) * 30;
+      const noiseY = simplex.noise2D(node.baseY * 0.001, time) * 30;
+      node.x = node.baseX + noiseX;
+      node.y = node.baseY + noiseY;
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(0, 255, 136, 0.6)';
+      ctx.fill();
+    }
+    
+    requestAnimationFrame(animate);
+  }
+
+  window.addEventListener('resize', () => { resize(); createNodes(); });
+  init();
+
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, index * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+</script>
+
+  <script src="assets/mobile-nav.js" defer></script>
+</body>
+</html>

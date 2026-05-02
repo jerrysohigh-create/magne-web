@@ -1231,6 +1231,1226 @@
 
 <div class="content-wrapper">
 
+<!-- NAV -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAGNE.AI — The Web3-native AI Phone for Secure Ownership</title>
+  <link rel="icon" type="image/png" href="logo-icon-circle.png">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #0a0a0c;
+      --bg-secondary: #0f0f12;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --bg-card-hover: rgba(255, 255, 255, 0.05);
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.12);
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.5);
+      --text-tertiary: rgba(255, 255, 255, 0.3);
+      --accent: #00d4d4;
+      --accent-secondary: #00ff88;
+      --accent-purple: #a855f7;
+      --accent-gold: #ffd700;
+      --accent-pink: #ff6482;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', -apple-system, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NODE NETWORK BACKGROUND */
+    #node-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 12, 0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-brand a { color: var(--text-secondary); text-decoration: none; }
+    .nav-logo { font-size: 1.3rem; font-weight: 700; color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-actions {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    .nav-cta {
+      background: var(--accent);
+      color: #000 !important;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+    .nav-contact {
+      background: transparent;
+      border: 1px solid var(--border-hover);
+      color: var(--text-primary) !important;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 500;
+      text-decoration: none;
+    }
+    .nav-contact:hover { border-color: var(--accent); color: var(--accent) !important; }
+    .nav-web3 {
+      color: var(--accent-secondary) !important;
+      font-size: 0.85rem;
+    }
+    .nav-web3:hover { color: var(--accent) !important; }
+    .nav-lang-switch {
+      color: rgba(255,255,255,0.5) !important;
+      font-size: 0.8rem !important;
+      text-decoration: none !important;
+      padding: 0.2rem 0.5rem !important;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 6px;
+    }
+    .nav-lang-switch:hover {
+      color: var(--accent) !important;
+      border-color: var(--accent);
+    }
+
+
+    /* CONTENT WRAPPER */
+    .content-wrapper {
+      position: relative;
+      z-index: 1;
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 800px;
+      height: 600px;
+      background: radial-gradient(ellipse at center, rgba(0,212,212,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 0.8s ease-out;
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.85) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeInUp 0.8s ease-out 0.1s both;
+      text-shadow: 0 0 60px rgba(0,212,212,0.2);
+    }
+    .hero-layout {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+    .hero-content {
+      flex: 1;
+      min-width: 320px;
+      text-align: left;
+    }
+    .hero-visual {
+      flex: 1;
+      min-width: 280px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hero-phone {
+      max-width: 420px;
+      width: 100%;
+      opacity: 0.95;
+      animation: float 4s ease-in-out infinite;
+      filter: drop-shadow(0 20px 60px rgba(0,212,212,0.15));
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    .hero-sub {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin-bottom: 2rem;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+    .hero-ctas { 
+      display: flex; 
+      gap: 1rem; 
+      margin-bottom: 2rem; 
+      flex-wrap: wrap; 
+      justify-content: flex-start;
+      animation: fadeInUp 0.8s ease-out 0.3s both;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+      padding: 1rem 2.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover { 
+      transform: translateY(-3px); 
+      box-shadow: 0 15px 40px rgba(0,212,212,0.4);
+    }
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--border-hover);
+      color: var(--text-primary);
+      padding: 1rem 2.5rem;
+      border-radius: 8px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-secondary-alt {
+      background: var(--accent-purple);
+      color: #fff;
+    }
+    .btn-secondary-alt:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(168,85,247,0.4);
+    }
+    .btn-secondary:hover { 
+      border-color: var(--accent); 
+      color: var(--accent);
+      box-shadow: 0 0 20px rgba(0,212,212,0.2);
+    }
+    .trust-chips { 
+      display: flex; 
+      gap: 1rem; 
+      flex-wrap: wrap; 
+      justify-content: flex-start; 
+      margin-top: 1.5rem;
+      animation: fadeInUp 0.8s ease-out 0.4s both;
+    }
+    .trust-chip {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      backdrop-filter: blur(10px);
+    }
+    .hero-supporting {
+      margin-top: 2rem;
+      font-size: 0.95rem;
+      color: var(--text-tertiary);
+      max-width: 600px;
+      animation: fadeInUp 0.8s ease-out 0.5s both;
+    }
+
+    /* SECTION BASE */
+    section { 
+      padding: 6rem 2rem; 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      position: relative;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .section-title h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.8) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .section-title p { 
+      color: var(--text-secondary); 
+      font-size: 1.1rem; 
+      max-width: 600px; 
+      margin: 0 auto; 
+    }
+
+    /* LIVE COMMUNITY MOMENTUM */
+    #momentum {
+      background: linear-gradient(180deg, var(--bg-secondary) 0%, rgba(0,212,212,0.05) 100%);
+      padding: 4rem 2rem;
+      position: relative;
+      overflow: hidden;
+      border-radius: 24px;
+      margin: 2rem auto;
+      max-width: 1000px;
+      border: 1px solid var(--border);
+    }
+    #momentum::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(ellipse at center, rgba(0,212,212,0.015) 0%, transparent 50%);
+      animation: pulse-glow 6s ease-in-out infinite;
+    }
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.02); }
+    }
+    .momentum-container { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+    .momentum-eyebrow {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .momentum-title {
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 20px rgba(0,212,212,0.15);
+    }
+    .momentum-sub {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .stat-card {
+      background: rgba(0,212,212,0.05);
+      border: 1px solid rgba(0,212,212,0.2);
+      border-radius: 16px;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .stat-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,212,212,0.08);
+      border-color: rgba(0,212,212,0.25);
+    }
+    .stat-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .stat-label { font-size: 0.9rem; color: var(--text-primary); font-weight: 500; }
+    .stat-sub { font-size: 0.7rem; color: var(--text-tertiary); margin-top: 0.25rem; }
+    .progress-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    .progress-bar {
+      height: 12px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+      border-radius: 10px;
+      transition: width 0.5s ease;
+      position: relative;
+    }
+    .progress-fill::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: shimmer 2s infinite;
+    }
+    @keyframes shimmer {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+    .momentum-footer {
+      text-align: center;
+      color: var(--text-tertiary);
+      font-size: 0.85rem;
+    }
+    .momentum-footer span { margin: 0 0.5rem; display: inline-flex; align-items: center; gap: 0.3rem; }
+    .momentum-footer .foot-icon { width: 14px; height: 14px; flex-shrink: 0; }
+    .momentum-cta { text-align: center; margin-top: 2rem; display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .dashboard-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: #000;
+      padding: 1rem 2.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+    .dashboard-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(0,212,212,0.4);
+    }
+    .dashboard-btn svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    /* WHY MAGNE */
+    #why-magne .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    /* PARTNERS */
+    #partners {
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .partners-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 0.75rem;
+    }
+
+    .partners-heading {
+      font-size: 1.1rem;
+      font-weight: 400;
+      margin-bottom: 2rem;
+      color: var(--text-secondary);
+      text-align: center;
+    }
+
+    .partners-heading span {
+      color: var(--accent);
+    }
+
+    .partners-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .partner-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.25rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s;
+      min-height: 90px;
+    }
+
+    .partner-card:hover {
+      border-color: var(--border-hover);
+      background: var(--bg-card-hover);
+      transform: translateY(-2px);
+    }
+
+    .partner-card img {
+      height: 32px;
+      width: auto;
+      max-width: 110px;
+      object-fit: contain;
+    }
+
+    .partner-card:hover img {
+      filter: brightness(1.1);
+    }
+
+    .partner-card .partner-name {
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    .partner-card.ti-card img {
+      filter: brightness(0) invert(1);
+    }
+
+    .partners-cta {
+      margin-top: 2.5rem;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+    }
+
+    .partners-cta a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .partners-cta a:hover {
+      opacity: 0.7;
+    }
+
+    .partners-disclaimer {
+      margin-top: 1.5rem;
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    /* SECURITY */
+    #security {
+      background: linear-gradient(180deg, var(--bg-primary) 0%, rgba(138,43,226,0.05) 100%);
+      border-radius: 24px;
+      margin: 2rem auto;
+    }
+.security-arch {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin: 3rem auto 4rem;
+      max-width: 900px;
+    }
+    .arch-layer {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.5rem 1rem;
+      border-radius: 12px;
+      border: 1px solid;
+    }
+    .arch-layer-1 {
+      background: rgba(0,212,212,0.05);
+      border-color: rgba(0,212,212,0.2);
+    }
+    .arch-layer-2 {
+      background: rgba(168,85,247,0.05);
+      border-color: rgba(168,85,247,0.2);
+    }
+    .arch-layer-3 {
+      background: rgba(255,215,0,0.05);
+      border-color: rgba(255,215,0,0.2);
+    }
+    .arch-label {
+      font-size: 1.5rem;
+      font-weight: 700;
+      font-family: "JetBrains Mono", monospace;
+    }
+    .arch-layer-1 .arch-label { color: var(--accent); }
+    .arch-layer-2 .arch-label { color: var(--accent-purple); }
+    .arch-layer-3 .arch-label { color: var(--accent-gold); }
+    .arch-content h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+    .arch-content p {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+    .arch-connector {
+      width: 40px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-purple), var(--accent-gold));
+      flex-shrink: 0;
+    }
+    @media (max-width: 768px) {
+      .security-arch {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .arch-connector {
+        width: 2px;
+        height: 30px;
+        background: linear-gradient(180deg, var(--accent), var(--accent-purple), var(--accent-gold));
+      }
+    }
+    .security-layers { display: flex; flex-direction: column; gap: 2rem; max-width: 900px; margin: 0 auto; }
+    .security-layer {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+    .security-layer:hover {
+      transform: translateX(8px);
+      border-color: var(--accent-purple);
+    }
+    .security-layer::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 4px;
+    }
+    .security-layer.layer-1::before { background: linear-gradient(90deg, var(--accent), #0088aa); }
+    .security-layer.layer-2::before { background: linear-gradient(90deg, var(--accent-purple), #7c3aed); }
+    .security-layer.layer-3::before { background: linear-gradient(90deg, var(--accent-gold), #f59e0b); }
+    .layer-label {
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    .layer-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; }
+    .layer-body { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.7; }
+    .layer-badge {
+      display: inline-block;
+      background: rgba(0,212,212,0.1);
+      border: 1px solid rgba(0,212,212,0.3);
+      color: var(--accent);
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .security-closing {
+      text-align: center;
+      margin-top: 3rem;
+      padding: 2rem;
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      font-style: italic;
+    }
+
+    /* TRUST */
+    #trust .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    .trust-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .trust-group {
+      margin-bottom: 3rem;
+    }
+    .trust-group:last-child {
+      margin-bottom: 0;
+    }
+    .trust-group-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      text-align: left;
+      padding-left: 0.5rem;
+    }
+    .trust-card:hover { 
+      border-color: var(--accent-secondary);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0,255,136,0.1);
+    }
+    .trust-card h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .trust-card p { font-size: 0.75rem; color: var(--accent-secondary); }
+
+    /* PRODUCT */
+.product-layout {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      margin-top: 3rem;
+    }
+    .product-visual {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+    .product-phone {
+      max-width: 280px;
+      width: 100%;
+      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5));
+    }
+    .product-specs {
+      flex: 1.5;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    @media (max-width: 900px) {
+      .product-layout {
+        flex-direction: column;
+      }
+      .product-specs {
+        grid-template-columns: 1fr;
+      }
+    }
+    #product .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .product-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      transition: all 0.3s;
+    }
+    .product-card:hover { 
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 15px 35px rgba(0,212,212,0.1);
+    }
+    .product-card h4 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .product-card p { font-size: 0.85rem; color: var(--text-secondary); }
+
+    /* NETWORK */
+    #network .network-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .network-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .network-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--accent-purple), var(--accent));
+    }
+    .network-card:hover { 
+      border-color: var(--accent-purple);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(168,85,247,0.15);
+    }
+    .network-card h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem; }
+    .network-card p { font-size: 0.9rem; color: var(--text-secondary); }
+
+    /* PROGRESS */
+    #progress .progress-columns {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+    .progress-col {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      transition: all 0.3s;
+    }
+    .progress-col:hover {
+      border-color: var(--accent-gold);
+      transform: translateY(-4px);
+    }
+    .progress-col h4 { 
+      font-size: 1rem; 
+      font-weight: 600; 
+      margin-bottom: 1rem; 
+      color: var(--accent-gold); 
+    }
+    .progress-col p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; }
+
+    /* COMMERCIAL */
+    #commercial .commercial-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .commercial-card {
+      background: linear-gradient(135deg, rgba(0,212,212,0.08) 0%, rgba(0,30,30,0.3) 100%);
+      border: 1px solid rgba(0,212,212,0.2);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .commercial-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,212,212,0.15);
+      border-color: var(--accent);
+    }
+    .commercial-card h4 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.75rem; }
+    .commercial-card p { font-size: 0.85rem; color: var(--text-secondary); }
+
+    /* FINAL CTA */
+    #cta .cta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .cta-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 3rem;
+      text-align: center;
+      transition: all 0.4s;
+    }
+    .cta-card:hover { 
+      border-color: var(--accent);
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px rgba(0,212,212,0.15);
+    }
+    .cta-card h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; }
+    .cta-card p { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.7; }
+
+    /* CONTACT SECTION */
+    .contact-section {
+      padding: 6rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .contact-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+    }
+    .contact-card h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .contact-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 4rem 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-tertiary);
+      font-size: 0.9rem;
+      margin-top: 4rem;
+    }
+    footer a { color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--accent); }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; margin-top: 1rem; }
+    .footer-links-secondary { display: flex; justify-content: center; gap: 2rem; margin-top: 0.75rem; }
+    .footer-links-secondary a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; }
+    .footer-links-secondary a:hover { color: var(--accent); }
+
+    /* ANIMATIONS */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    .animate { 
+      opacity: 0; 
+      transform: translateY(30px);
+      transition: all 0.6s ease-out;
+    }
+    .animate.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .trust-grid { grid-template-columns: repeat(4, 1fr); }
+      .product-grid { grid-template-columns: repeat(2, 1fr); }
+      .network-grid { grid-template-columns: repeat(2, 1fr); }
+      .progress-columns { grid-template-columns: repeat(2, 1fr); }
+      .commercial-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 1rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1rem; }
+      .hero h1 { font-size: 2.2rem; }
+      .cards-grid { grid-template-columns: 1fr !important; }
+      .why-magne .cards-grid { grid-template-columns: 1fr; }
+      .trust-grid { grid-template-columns: repeat(2, 1fr); }
+      .product-grid { grid-template-columns: 1fr !important; }
+      .network-grid { grid-template-columns: 1fr !important; }
+      .progress-columns { grid-template-columns: 1fr !important; }
+      .commercial-grid { grid-template-columns: 1fr !important; }
+      .cta-grid { grid-template-columns: 1fr !important; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  
+    /* FOOTER SOCIAL ICONS */
+    .footer-socials { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0; }
+    .footer-socials a {
+      display: inline-flex; align-items: center; justify-content: center;
+      height: 42px; padding: 0;
+      border: 1px solid var(--border); border-radius: 999px;
+      color: var(--text-secondary); font-size: 0.82rem; transition: all 0.2s;
+    }
+    .footer-socials a:hover { color: var(--accent); border-color: var(--accent); background: rgba(0, 212, 212, 0.06); }
+    .footer-copy { margin-top: 1.5rem; opacity: 0.5; }
+
+    .footer-socials a.footer-icon svg { width: 20px; height: 20px; }
+    .footer-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+      padding: 0;
+    }
+    .footer-icon:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: rgba(0, 212, 212, 0.1);
+    }
+
+    .footer-brand-logo {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .footer-brand-logo img {
+      height: 24px;
+      width: auto;
+      margin-bottom: 0.75rem;
+      opacity: 0.9;
+    }
+    .footer-brand-logo p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+  
+    .nav-logo-img {
+      height: 20px;
+      width: auto;
+      display: block;
+    }
+  
+    .trademark-notice {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-top: 1rem;
+      opacity: 0.7;
+    }
+    .trademark-notice a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .trademark-notice a:hover {
+      text-decoration: underline;
+    }
+
+/* =========================================================
+ HOME MOBILE HARD FIX - Why MAGNE & Partners Grid Overflow
+ ========================================================= */
+@media (max-width: 768px) {
+  /* Why MAGNE section - force single column */
+  #why-magne {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+    box-sizing: border-box !important;
+  }
+
+  #why-magne .cards-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    gap: 1rem !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+  }
+
+
+
+  /* Partners section - force 2 columns */
+  #partners {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+    box-sizing: border-box !important;
+  }
+
+  #partners .partners-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    gap: 1rem !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+  }
+
+  #partners .partner-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    padding: 1rem !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+
+  #partners .partner-card img {
+    max-width: 80% !important;
+    max-height: 40px !important;
+    height: auto !important;
+    object-fit: contain !important;
+  }
+
+  #partners .partner-card span {
+    font-size: 0.8rem !important;
+    word-break: break-word !important;
+  }
+}
+
+@media (max-width: 420px) {
+  #partners .partners-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+
+/* Why MAGNE - Clean Responsive */
+.why-magne-section,
+#why-magne {
+  position: relative;
+  z-index: 1;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 7rem 2rem;
+  box-sizing: border-box;
+}
+
+#why-magne .section-header {
+  max-width: 760px;
+  margin: 0 auto 4rem;
+  text-align: center;
+}
+
+#why-magne .section-header h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.25rem;
+}
+
+#why-magne .section-header p {
+  color: var(--text-secondary);
+  font-size: 1.15rem;
+  line-height: 1.75;
+}
+
+.why-magne-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.why-magne-card {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 2.25rem;
+  border-radius: 28px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  overflow: hidden;
+}
+
+.why-magne-card.featured {
+  border-color: rgba(0, 212, 212, 0.35);
+  background: rgba(0, 212, 212, 0.055);
+}
+
+.why-magne-card h3 {
+  color: var(--text-primary);
+  font-size: 1.45rem;
+  line-height: 1.25;
+  margin-bottom: 1rem;
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+.why-magne-card p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.7;
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  #why-magne {
+    padding: 5rem 1.25rem;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  #why-magne .section-header {
+    margin-bottom: 2.5rem;
+  }
+
+  #why-magne .section-header h2 {
+    font-size: 2.4rem;
+  }
+
+  #why-magne .section-header p {
+    font-size: 1rem;
+  }
+
+  .why-magne-grid {
+    grid-template-columns: 1fr;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .why-magne-card {
+    width: 100%;
+    min-width: 0;
+    padding: 1.5rem;
+  }
+}
+
+  </style>
+  <link rel="stylesheet" href="assets/mobile-responsive.css">
+</head>
+<body>
+
+<!-- NODE NETWORK BACKGROUND -->
+<canvas id="node-bg"></canvas>
+
+<div class="content-wrapper">
 
 <!-- NAV -->
 <nav>
@@ -1247,6 +2467,7 @@
     <li><a href="magne-progress.html">Progress</a></li>
     <li><a href="magne-partners.html">Partners</a></li>
     <li><a href="faq.html">FAQ</a></li>
+    <a href="tc/magne-home.html" class="nav-lang-switch">EN | 繁中</a></li>
     <li><a href="https://web3.magne.ai" target="_blank" rel="noopener" class="nav-web3">Web3 Portal ↗️</a></li>
     <li class="nav-actions-mobile">
       <a href="magne-contact.html" class="nav-contact">Contact</a>
@@ -1255,3 +2476,677 @@
   </ul>
 </nav>
 
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-layout">
+    <div class="hero-content">
+      <div class="hero-eyebrow">MAGNE.AI Phone Gen1</div>
+      <h1>The Web3-native AI Phone<br>for Secure Ownership</h1>
+      <p class="hero-sub">Built with CC EAL6+ secure elements, CC EAL2+ TEE, private dual-space architecture, and native access to MAGNE Network.</p>
+      <div class="hero-ctas">
+        <a href="https://payment.magne.ai/buy" class="btn-primary">Preorder MAGNE Phone</a>
+        <a href="#security" class="btn-secondary">Explore Security Architecture</a>
+      </div>
+      <div class="trust-chips">
+        <span class="trust-chip">CC EAL6+ Secure Element</span>
+        <span class="trust-chip">CC EAL2+ TEE</span>
+        <span class="trust-chip">Private Dual-Space</span>
+        <span class="trust-chip">NFC Recovery</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src="phone-white.png" alt="MAGNE Phone" class="hero-phone">
+    </div>
+  </div>
+  <p class="hero-supporting">Hardware wallet · Private AI · Web3 gateway — all in one device.</p>
+</section>
+
+<!-- SCREEN 1.5: LIVE COMMUNITY MOMENTUM -->
+
+
+<!-- SCREEN 2: WHY MAGNE -->
+<section id="why-magne">
+  <div class="section-header">
+    <h2>Why MAGNE</h2>
+    <p>A smartphone designed for people who want stronger control over digital assets, private AI workflows, and next-generation mobile access.</p>
+  </div>
+  <div class="why-magne-grid">
+    <article class="why-magne-card">
+      <h3>Private AI Workflows</h3>
+      <p>Run intelligent experiences closer to the device for privacy-sensitive everyday use.</p>
+    </article>
+    <article class="why-magne-card featured">
+      <h3>Hardware Wallet-grade Key Isolation</h3>
+      <p>Private keys and critical signing flows are protected through dedicated hardware security architecture.</p>
+    </article>
+    <article class="why-magne-card">
+      <h3>Tap-to-Restore Encrypted Backup</h3>
+      <p>Encrypted NFC recovery extends protection beyond the device and simplifies asset recovery.</p>
+    </article>
+    <article class="why-magne-card">
+      <h3>A Hidden Web3 Space</h3>
+      <p>A separate and private environment helps isolate Web3 operations from your everyday mobile experience.</p>
+    </article>
+    <article class="why-magne-card">
+      <h3>Built-in Web3 Access</h3>
+      <p>Wallet, swap, stake, bridge, and ecosystem access are integrated directly into the device journey.</p>
+    </article>
+    <article class="why-magne-card">
+      <h3>Global-ready Compliance Stack</h3>
+      <p>Built with certification and compatibility readiness in mind for broader real-world deployment.</p>
+    </article>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section id="partners">
+  <div class="partners-title">Ecosystem, Supply Chain & Platform Signals</div>
+  <h2 class="partners-heading">Manufacturing · Platform · Ecosystem · Market Access</h2>
+  <div class="partners-grid">
+    <div class="partner-card">
+      <img src="partners/strategic/google-logo.png" alt="Google">
+      <span class="partner-name">Google</span>
+    </div>
+    <div class="partner-card">
+      <img src="partners/strategic/fih.png" alt="FIH">
+      <span class="partner-name">FIH Mobile</span>
+    </div>
+    <div class="partner-card">
+      <img src="partners/strategic/samsung_inv.png" alt="Samsung">
+      <span class="partner-name">Samsung</span>
+    </div>
+    <div class="partner-card">
+      <img src="partners/strategic/deepmind_blue.png" alt="DeepMind">
+      <span class="partner-name">DeepMind</span>
+    </div>
+    <div class="partner-card ti-card">
+      <img src="partners/strategic/ti.svg" alt="TI">
+      <span class="partner-name">Texas Instruments</span>
+    </div>
+    <div class="partner-card">
+      <img src="partners/strategic/skhynix_web.png" alt="SK Hynix">
+      <span class="partner-name">SK Hynix</span>
+    </div>
+    <div class="partner-card">
+      <img src="partners/strategic/micron_inv.png" alt="Micron">
+      <span class="partner-name">Micron</span>
+    </div>
+    <div class="partner-card">
+      <img src="partners/strategic/tdk_inv.png" alt="TDK">
+      <span class="partner-name">TDK</span>
+    </div>
+    <div class="partner-card">
+      <img src="partners/strategic/wd_better_inv.png" alt="WD">
+      <span class="partner-name">WD</span>
+    </div>
+    <div class="partner-card">
+      <img src="partners/strategic/unisoc_web.png" alt="Unisoc">
+      <span class="partner-name">Unisoc</span>
+    </div>
+    <div class="partner-card">
+      <img src="partners/strategic/imag_green.png" alt="Imagination">
+      <span class="partner-name">Imagination</span>
+    </div>
+    <div class="partner-card">
+      <img src="partners/strategic/hed.png" alt="HED">
+      <span class="partner-name">HED</span>
+    </div>
+    <div class="partner-card">
+      <img src="partners/strategic/redrock_web.png" alt="REDROCK">
+      <span class="partner-name">REDROCK</span>
+    </div>
+    <div class="partner-card">
+      <img src="partners/strategic/kucoin.svg" alt="KuCoin">
+      <span class="partner-name">KuCoin</span>
+    </div>
+    <div class="partner-card">
+      <img src="partners/strategic/mexc.png" alt="MEXC">
+      <span class="partner-name">MEXC</span>
+    </div>
+    <div class="partner-card">
+      <img src="partners/strategic/bitget.png" alt="Bitget">
+      <span class="partner-name">Bitget Wallet</span>
+    </div>
+    <div class="partner-card">
+      <img src="partners/strategic/becker.png" alt="Becker Ventures">
+      <span class="partner-name">Becker Ventures</span>
+    </div>
+    <div class="partner-card">
+      <img src="partners/strategic/duckdao.png" alt="DuckDAO">
+      <span class="partner-name">DuckDAO</span>
+    </div>
+    <div class="partner-card">
+      <img src="partners/strategic/castrum.png" alt="Castrum Capital">
+      <span class="partner-name">Castrum Capital</span>
+    </div>
+    <div class="partner-card">
+      <img src="partners/strategic/tbv.png" alt="TBV">
+      <span class="partner-name">TBV</span>
+    </div>
+  </div>
+  <p class="partners-cta"><a href="magne-partners.html">View all partners →</a></p>
+  <p class="partners-disclaimer">Logos and names appear for descriptive, compatibility, supply-chain, ecosystem, investment, or market-context purposes only. Their appearance does not imply endorsement, sponsorship, or official partnership unless expressly stated in official materials.</p>
+</section>
+
+<!-- SCREEN 3: THREE-LAYER SECURITY -->
+<section id="security">
+  <div class="section-title">
+    <h2>Three Layers. One Secure Ownership Stack.</h2>
+    <p>MAGNE combines trusted execution, secure element signing, and encrypted NFC recovery in one mobile security architecture.</p>
+  </div>
+  
+  <!-- Security Architecture Visual -->
+  <div class="security-arch">
+    <div class="arch-layer arch-layer-1">
+      <div class="arch-label">L1</div>
+      <div class="arch-content">
+        <h4>Trusted Execution</h4>
+        <p>Process Isolation</p>
+      </div>
+    </div>
+    <div class="arch-connector"></div>
+    <div class="arch-layer arch-layer-2">
+      <div class="arch-label">L2</div>
+      <div class="arch-content">
+        <h4>Secure Element</h4>
+        <p>Key Storage & Signing</p>
+      </div>
+    </div>
+    <div class="arch-connector"></div>
+    <div class="arch-layer arch-layer-3">
+      <div class="arch-label">L3</div>
+      <div class="arch-content">
+        <h4>NFC Recovery</h4>
+        <p>Encrypted Backup</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="security-layers">
+    <div class="security-layer layer-1 animate">
+      <div class="layer-label">Layer 1</div>
+      <h3 class="layer-title">Trusted Execution Isolation</h3>
+      <p class="layer-body">Sensitive operations are separated at the trusted execution layer for stronger process isolation and operational control.</p>
+      <span class="layer-badge">CC EAL2+</span>
+    </div>
+    <div class="security-layer layer-2 animate">
+      <div class="layer-label">Layer 2</div>
+      <h3 class="layer-title">Secure Element Signing</h3>
+      <p class="layer-body">Private key storage and signing operations are protected through dedicated secure hardware built for stronger asset protection.</p>
+      <span class="layer-badge">CC EAL6+</span>
+    </div>
+    <div class="security-layer layer-3 animate">
+      <div class="layer-label">Layer 3</div>
+      <h3 class="layer-title">Encrypted NFC Recovery</h3>
+      <p class="layer-body">Offline backup and physical recovery help extend asset protection beyond the device itself.</p>
+      <span class="layer-badge">CC EAL6+</span>
+    </div>
+  </div>
+  <div class="security-closing">
+    MAGNE brings trusted execution, secure signing, and encrypted recovery into one integrated mobile ownership architecture.
+  </div>
+</section>
+
+<!-- SCREEN 4: TRUST SNAPSHOT -->
+<section id="trust">
+  <div class="section-title">
+    <h2>Built with public, verifiable trust signals</h2>
+    <p>MAGNE is presented as a real product program supported by visible certification, compliance, and deployment readiness signals.</p>
+  </div>
+  
+  <div class="trust-group">
+    <h3 class="trust-group-title">Platform & Content</h3>
+    <div class="trust-grid">
+      <div class="trust-card animate">
+        <h4>Google GMS</h4>
+        <p>Approved</p>
+      </div>
+      <div class="trust-card animate">
+        <h4>Widevine L1</h4>
+        <p>Supported</p>
+      </div>
+      <div class="trust-card animate">
+        <h4>GSMA TAC</h4>
+        <p>Obtained</p>
+      </div>
+      <div class="trust-card animate">
+        <h4>FCC</h4>
+        <p>Public</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="trust-group">
+    <h3 class="trust-group-title">Safety & Readiness</h3>
+    <div class="trust-grid">
+      <div class="trust-card animate">
+        <h4>CB</h4>
+        <p>Completed</p>
+      </div>
+      <div class="trust-card animate">
+        <h4>UN38.3</h4>
+        <p>Passed</p>
+      </div>
+      <div class="trust-card animate">
+        <h4>CP65</h4>
+        <p>Passed</p>
+      </div>
+      <div class="trust-card animate">
+        <h4>CE</h4>
+        <p>In Progress</p>
+      </div>
+    </div>
+  </div>
+</section>
+  <div style="text-align:center;margin:2rem 0">
+    <a href="magne-compliance.html" class="btn-secondary">Explore Compliance</a>
+  </div>
+
+
+<!-- SCREEN 5: PRODUCT SNAPSHOT -->
+<section id="product">
+  <div class="section-title">
+    <h2>Real hardware. Real product. Built to ship.</h2>
+    <p>A production-oriented smartphone platform designed to combine security, AI capability, and everyday usability in one device.</p>
+  </div>
+  <div class="product-layout">
+    <div class="product-visual">
+      <img src="phone-black.png" alt="MAGNE Phone Gen1" class="product-phone">
+    </div>
+    <div class="product-specs">
+      <div class="product-card animate">
+        <h4>UNISOC T9100 5G</h4>
+        <p>A practical 5G smartphone foundation built for real-world deployment.</p>
+      </div>
+      <div class="product-card animate">
+        <h4>8 TOPS NPU</h4>
+        <p>Supports on-device AI experiences across privacy-sensitive mobile use cases.</p>
+      </div>
+      <div class="product-card animate">
+        <h4>Up to 12GB RAM + 512GB UFS 3.1</h4>
+        <p>Configured for modern app use, local intelligence, and wallet-related continuity.</p>
+      </div>
+      <div class="product-card animate">
+        <h4>6.72" FHD+ 120Hz Display</h4>
+        <p>A fluid visual experience designed for both daily use and immersive interaction.</p>
+      </div>
+      <div class="product-card animate">
+        <h4>Android 15 + NFC</h4>
+        <p>Built on a modern Android foundation with native support for connected workflows.</p>
+      </div>
+      <div class="product-card animate">
+        <h4>5000mAh + IP52</h4>
+        <p>Designed for longer usage continuity and practical day-to-day resilience.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCREEN 6: NETWORK SNAPSHOT -->
+<section id="network">
+  <div class="section-title">
+    <h2>More than a phone — a native gateway to MAGNE Network</h2>
+    <p>MAGNE Phone is designed to connect secure mobile hardware, wallet operations, and blockchain infrastructure in one integrated user journey.</p>
+  </div>
+  <div class="network-grid">
+    <div class="network-card animate">
+      <h3>MAGNE L1</h3>
+      <p>A foundational layer designed for secure ownership, wallet logic, and asset-related operations.</p>
+    </div>
+    <div class="network-card animate">
+      <h3>MHash L2</h3>
+      <p>A scalable execution layer designed for broader applications and lower-friction user interaction.</p>
+    </div>
+    <div class="network-card animate">
+      <h3>Built-in Ecosystem Access</h3>
+      <p>Wallet, swap, stake, bridge, identity, and additional Web3 experiences are designed to be accessible from the device.</p>
+    </div>
+  </div>
+</section>
+  <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin:2rem 0">
+    <a href="magne-network.html" class="btn-secondary">Explore MAGNE Network</a>
+    <a href="https://web3.magne.ai" target="_blank" rel="noopener" class="btn-secondary">Open Web3 Portal ↗️</a>
+  </div>
+
+
+<!-- SCREEN 7: PROGRESS SNAPSHOT -->
+<section id="progress">
+  <div class="section-title">
+    <h2>From certification to deployment — progress made visible</h2>
+    <p>MAGNE's progress spans product security, device readiness, network development, and broader commercial preparation.</p>
+  </div>
+  <div class="progress-columns">
+    <div class="progress-col animate">
+      <h4>Security & Certifications</h4>
+      <p>Security architecture and certification milestones continue to define the product's readiness foundation.</p>
+    </div>
+    <div class="progress-col animate">
+      <h4>Device Program</h4>
+      <p>Engineering validation, production planning, and delivery preparation support the path toward shipment.</p>
+    </div>
+    <div class="progress-col animate">
+      <h4>Network & Infrastructure</h4>
+      <p>MAGNE's progress extends beyond hardware into L1, L2, open development, and visibility tools.</p>
+    </div>
+    <div class="progress-col animate">
+      <h4>Commercial Readiness</h4>
+      <p>Preorders, institutional conversations, and market-facing preparation indicate live commercial intent.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SCREEN 8: COMMERCIAL PROOF -->
+<section id="commercial">
+  <div class="section-title">
+    <h2>Commercial momentum, not just concept claims</h2>
+    <p>MAGNE is presented as a real product program supported by visible community traction, production intent, and institutional-facing progress.</p>
+  </div>
+  <div class="commercial-grid">
+    <div class="commercial-card animate">
+      <h4>Registered Preorders</h4>
+      <p>Early market interest reflects initial user intent around the device.</p>
+    </div>
+    <div class="commercial-card animate">
+      <h4>OEM / ODM Program</h4>
+      <p>Manufacturing and delivery pathways are aligned with a production-oriented product strategy.</p>
+    </div>
+    <div class="commercial-card animate">
+      <h4>First Batch Target</h4>
+      <p>Initial shipment planning supports the transition from readiness to release.</p>
+    </div>
+    <div class="commercial-card animate">
+      <h4>Strategic Support Signals</h4>
+      <p>Institutional and ecosystem-facing support signals reflect broader market and partner interest in the program direction.</p>
+    </div>
+  </div>
+</section>
+  <div style="text-align:center;margin:2rem 0">
+    <a href="magne-contact.html" class="btn-secondary">Contact MAGNE.AI</a>
+  </div>
+
+
+<section id="momentum">
+  <div class="momentum-container">
+    <div class="momentum-eyebrow">Live Community Momentum</div>
+    <h2 class="momentum-title">MAGNE.AI Phone Gen1 Lottery</h2>
+    <p class="momentum-sub">Community participation campaign with live progress, device allocation visibility, and post-TGE reward tracking where applicable.</p>
+    
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value" id="stat-participants">--</div>
+        <div class="stat-label">Participants</div>
+        <div class="stat-sub">Total community entries</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="stat-phones">--</div>
+        <div class="stat-label">Phones Won</div>
+        <div class="stat-sub">Devices already allocated</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="stat-mha">--</div>
+        <div class="stat-label">Post-TGE Reward Tracking</div>
+        <div class="stat-sub">Subject to campaign rules and applicable token distribution schedule.</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Next Draw Progress</div>
+        <div class="stat-value" id="stat-next-progress">--</div>
+        <div class="stat-sub">Entries for next round</div>
+      </div>
+    </div>
+
+    <div class="progress-section">
+      <div class="progress-header">
+        <span>Next Draw Progress</span>
+        <span><span id="stat-entries">--</span> / 100 entries</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+      </div>
+    </div>
+
+    <div class="momentum-footer">
+      <span>
+        <svg class="foot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
+        Device: 8GB + 512GB
+      </span> •
+      <span>
+        <svg class="foot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        First batch shipping: Jul–Sep 2026
+      </span> •
+      <span>
+        <svg class="foot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        MHA reward distribution: subject to TGE schedule, campaign rules, and eligibility verification.
+      </span>
+    </div>
+
+    <div class="momentum-cta">
+      <a href="https://payment.magne.ai/lottery" target="_blank" class="btn-primary">View Campaign Details</a>
+      <a href="https://payment.magne.ai/buy" class="btn-secondary">Preorder MAGNE Phone</a>
+      <a href="lottery-dashboard.html" class="dashboard-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7" rx="1"/>
+          <rect x="14" y="3" width="7" height="7" rx="1"/>
+          <rect x="3" y="14" width="7" height="7" rx="1"/>
+          <path d="M14 17h7"/>
+          <path d="M17.5 14v7"/>
+        </svg>
+        View Live Dashboard ↗
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SCREEN 9: FINAL CTA -->
+<section id="cta">
+  <div class="section-title">
+    <h2>Choose your path into MAGNE</h2>
+    <p>Whether you are exploring the product or looking for institutional engagement, MAGNE can direct you to the right next step.</p>
+  </div>
+  <div class="cta-grid">
+    <div class="cta-card animate">
+      <h3>Buy / Product Inquiry</h3>
+      <p>Explore product details, preorder access, availability, and user-facing information about MAGNE Phone Gen1.</p>
+      <a href="https://payment.magne.ai/buy" class="btn-primary">Preorder MAGNE Phone</a>
+    </div>
+    <div class="cta-card animate">
+      <h3>Partner / Institutional Contact</h3>
+      <p>Connect with the team for partnerships, exchange due diligence, investor communication, media, or broader strategic discussion.</p>
+      <a href="magne-contact.html" class="btn-primary btn-secondary-alt">Contact MAGNE.AI</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section id="contact" class="contact-section">
+  <div class="section-title">
+    <h2>Get in touch</h2>
+    <p>Whether you have product questions, partnership inquiries, or need more information, we are here to help.</p>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-card">
+      <h3>Product & Sales</h3>
+      <p>Questions about MAGNE Phone Gen1, preorder, shipping, or product specifications.</p>
+      <a href="magne-contact.html" class="btn-primary">Contact MAGNE.AI</a>
+    </div>
+    <div class="contact-card">
+      <h3>Partnership & Investment</h3>
+      <p>For institutional partnerships, investor relations, exchange listings, or strategic collaborations.</p>
+      <a href="magne-contact.html" class="btn-primary btn-secondary-alt">Contact MAGNE.AI</a>
+    </div>
+    <div class="contact-card">
+      <h3>Media & Press</h3>
+      <p>Press inquiries, media kits, interview requests, and press-related communications.</p>
+      <a href="magne-contact.html" class="btn-primary">Contact MAGNE.AI</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand-logo">
+      <img src="assets/brand/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="footer-brand-img">
+      <p>The Web3-native AI Phone</p>
+    </div>
+  
+  <div class="footer-socials" aria-label="Official MAGNE.AI channels">
+    <a href="https://x.com/Magne_Ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+    <a href="https://t.me/MagneAI" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+    <a href="https://discord.gg/tX2xRAkd" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
+    <a href="https://github.com/magne-ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+    <a href="https://www.youtube.com/@MagneAI" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+    <a href="https://web3.magne.ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE Web3 Docs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></a>
+  </div>
+
+<div class="footer-links">
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="magne-contact.html">Contact</a>
+    <a href="media-kit.html">Media Kit</a>
+    <a href="https://web3.magne.ai" target="_blank" rel="noopener">Whitepaper</a>
+    <a href="https://web3.magne.ai/transparency" target="_blank" rel="noopener">Legal Opinion</a>
+  </div>
+    <p class="trademark-notice">
+    MAGNE.AI™ is a trademark of Magical Hash Global Tech Limited, currently in registration process 
+    (<a href="https://tmsearch.uspto.gov/search/search-results/99311528" target="_blank" rel="noopener">USPTO Serial: 99311528</a>).
+  </p>
+  <p style="margin-top: 1.5rem; opacity: 0.5;">© 2026 MAGNE.AI. All rights reserved.</p>
+</footer>
+
+</div>
+
+<!-- SCRIPTS -->
+<script>
+  // Node Network Background Animation
+  const canvas = document.getElementById('node-bg');
+  const ctx = canvas.getContext('2d');
+  let width, height;
+  let nodes = [];
+  let simplex;
+
+  function resize() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  }
+
+  function createNodes() {
+    const numNodes = Math.floor((width * height) / 15000);
+    nodes = [];
+    for (let i = 0; i < numNodes; i++) {
+      nodes.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        radius: Math.random() * 2 + 1,
+        baseX: 0,
+        baseY: 0
+      });
+      nodes[i].baseX = nodes[i].x;
+      nodes[i].baseY = nodes[i].y;
+    }
+  }
+
+  function init() {
+    resize();
+    simplex = new SimplexNoise();
+    createNodes();
+    animate();
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+    
+    const time = Date.now() * 0.0005;
+    
+    // Draw connections
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const dx = nodes[i].x - nodes[j].x;
+        const dy = nodes[i].y - nodes[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 150) {
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(0, 212, 212, ${0.15 * (1 - dist / 150)})`;
+          ctx.lineWidth = 1;
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+    
+    // Draw nodes
+    for (let node of nodes) {
+      const noiseX = simplex.noise2D(node.baseX * 0.001, time) * 30;
+      const noiseY = simplex.noise2D(node.baseY * 0.001, time) * 30;
+      
+      node.x = node.baseX + noiseX;
+      node.y = node.baseY + noiseY;
+      
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(0, 212, 212, 0.6)';
+      ctx.fill();
+    }
+    
+    requestAnimationFrame(animate);
+  }
+
+  window.addEventListener('resize', () => {
+    resize();
+    createNodes();
+  });
+
+  init();
+
+  // Fetch real lottery data from API
+  async function fetchLotteryData() {
+    try {
+      const res = await fetch('https://payment.magne.ai/api/v1/lottery/dashboard');
+      if (!res.ok) throw new Error('API error');
+      const json = await res.json();
+      const data = json.data;
+      
+      document.getElementById('stat-participants').textContent = data.totalParticipants.toLocaleString();
+      document.getElementById('stat-phones').textContent = data.totalMobile;
+      
+      const mhaRewards = (data.currRound - 1) * 99 * 100;
+      document.getElementById('stat-mha').textContent = mhaRewards.toLocaleString();
+      
+      const entries = 100 - data.nextDrawNeed;
+      document.getElementById('stat-entries').textContent = entries;
+      document.getElementById('progress-fill').style.width = entries + '%';
+      document.getElementById('stat-next-progress').textContent = entries + '/100';
+    } catch (e) {
+      // Show last known values or unavailable message
+      const els = ['stat-participants', 'stat-phones', 'stat-mha', 'stat-next-progress', 'stat-entries'];
+      els.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.textContent === '--') {
+          el.textContent = '—';
+        }
+      });
+      document.getElementById('progress-fill').style.width = '0%';
+      console.log('Lottery data temporarily unavailable');
+    }
+  }
+  
+  fetchLotteryData();
+  setInterval(fetchLotteryData, 30000);
+
+  // Animate elements on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.animate').forEach(el => {
+    observer.observe(el);
+  });
+</script>
+
+  <script src="assets/mobile-nav.js" defer></script>
+</body>
+</html>

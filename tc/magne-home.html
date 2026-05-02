@@ -4,18 +4,18 @@
   <base href="/">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MAGNE.AI — Web3 原生 AI 手機 for Secure Ownership</title>
-  <link rel="alternate" hreflang="en" href="https://jerrysohigh-create.github.io/magne-web/magne-home.html">
+  <title>MAGNE.AI — 安全擁有權的 Web3 原生 AI 手機</title>
   <link rel="alternate" hreflang="zh-Hant" href="https://jerrysohigh-create.github.io/magne-web/tc/magne-home.html">
+  <link rel="alternate" hreflang="en" href="https://jerrysohigh-create.github.io/magne-web/magne-home.html">
   <link rel="alternate" hreflang="x-default" href="https://jerrysohigh-create.github.io/magne-web/magne-home.html">
 
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <meta property="og:title" content="MAGNE.AI — Web3 原生 AI 手機 for Secure Ownership">
+  <meta property="og:title" content="MAGNE.AI — The Web3-native AI Phone for Secure Ownership">
   <meta property="og:description" content="The world's first Web3-native AI smartphone with CC EAL6+ secure element, CC EAL2+ 可信執行環境, private dual-space architecture, and native access to MAGNE Network.">
   <meta property="og:image" content="https://jerrysohigh-create.github.io/magne-web/phone-white.png">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="MAGNE.AI — Web3 原生 AI 手機 for Secure Ownership">
+  <meta name="twitter:title" content="MAGNE.AI — The Web3-native AI Phone for Secure Ownership">
   <meta name="twitter:description" content="The world's first Web3-native AI smartphone with CC EAL6+ secure element, CC EAL2+ 可信執行環境, private dual-space architecture, and native access to MAGNE Network.">
   <meta name="twitter:image" content="https://jerrysohigh-create.github.io/magne-web/phone-white.png">
   <link rel="icon" type="image/png" href="logo-icon-circle.png">
@@ -1232,6 +1232,1226 @@
 
 <div class="content-wrapper">
 
+<!-- NAV -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAGNE.AI — 安全擁有權的 Web3 原生 AI 手機</title>
+  <link rel="icon" type="image/png" href="logo-icon-circle.png">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #0a0a0c;
+      --bg-secondary: #0f0f12;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --bg-card-hover: rgba(255, 255, 255, 0.05);
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.12);
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.5);
+      --text-tertiary: rgba(255, 255, 255, 0.3);
+      --accent: #00d4d4;
+      --accent-secondary: #00ff88;
+      --accent-purple: #a855f7;
+      --accent-gold: #ffd700;
+      --accent-pink: #ff6482;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', -apple-system, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NODE NETWORK BACKGROUND */
+    #node-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 12, 0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-brand a { color: var(--text-secondary); text-decoration: none; }
+    .nav-logo { font-size: 1.3rem; font-weight: 700; color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-actions {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    .nav-cta {
+      background: var(--accent);
+      color: #000 !important;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+    .nav-contact {
+      background: transparent;
+      border: 1px solid var(--border-hover);
+      color: var(--text-primary) !important;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 500;
+      text-decoration: none;
+    }
+    .nav-contact:hover { border-color: var(--accent); color: var(--accent) !important; }
+    .nav-web3 {
+      color: var(--accent-secondary) !important;
+      font-size: 0.85rem;
+    }
+    .nav-web3:hover { color: var(--accent) !important; }
+    .nav-lang-switch {
+      color: rgba(255,255,255,0.5) !important;
+      font-size: 0.8rem !important;
+      text-decoration: none !important;
+      padding: 0.2rem 0.5rem !important;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 6px;
+    }
+    .nav-lang-switch:hover {
+      color: var(--accent) !important;
+      border-color: var(--accent);
+    }
+
+
+    /* CONTENT WRAPPER */
+    .content-wrapper {
+      position: relative;
+      z-index: 1;
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 800px;
+      height: 600px;
+      background: radial-gradient(ellipse at center, rgba(0,212,212,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 0.8s ease-out;
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.85) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeInUp 0.8s ease-out 0.1s both;
+      text-shadow: 0 0 60px rgba(0,212,212,0.2);
+    }
+    .hero-layout {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+    .hero-content {
+      flex: 1;
+      min-width: 320px;
+      text-align: left;
+    }
+    .hero-visual {
+      flex: 1;
+      min-width: 280px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hero-phone {
+      max-width: 420px;
+      width: 100%;
+      opacity: 0.95;
+      animation: float 4s ease-in-out infinite;
+      filter: drop-shadow(0 20px 60px rgba(0,212,212,0.15));
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    .hero-sub {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin-bottom: 2rem;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+    .hero-ctas { 
+      display: flex; 
+      gap: 1rem; 
+      margin-bottom: 2rem; 
+      flex-wrap: wrap; 
+      justify-content: flex-start;
+      animation: fadeInUp 0.8s ease-out 0.3s both;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+      padding: 1rem 2.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover { 
+      transform: translateY(-3px); 
+      box-shadow: 0 15px 40px rgba(0,212,212,0.4);
+    }
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--border-hover);
+      color: var(--text-primary);
+      padding: 1rem 2.5rem;
+      border-radius: 8px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-secondary-alt {
+      background: var(--accent-purple);
+      color: #fff;
+    }
+    .btn-secondary-alt:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(168,85,247,0.4);
+    }
+    .btn-secondary:hover { 
+      border-color: var(--accent); 
+      color: var(--accent);
+      box-shadow: 0 0 20px rgba(0,212,212,0.2);
+    }
+    .trust-chips { 
+      display: flex; 
+      gap: 1rem; 
+      flex-wrap: wrap; 
+      justify-content: flex-start; 
+      margin-top: 1.5rem;
+      animation: fadeInUp 0.8s ease-out 0.4s both;
+    }
+    .trust-chip {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      backdrop-filter: blur(10px);
+    }
+    .hero-supporting {
+      margin-top: 2rem;
+      font-size: 0.95rem;
+      color: var(--text-tertiary);
+      max-width: 600px;
+      animation: fadeInUp 0.8s ease-out 0.5s both;
+    }
+
+    /* SECTION BASE */
+    section { 
+      padding: 6rem 2rem; 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      position: relative;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .section-title h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.8) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .section-title p { 
+      color: var(--text-secondary); 
+      font-size: 1.1rem; 
+      max-width: 600px; 
+      margin: 0 auto; 
+    }
+
+    /* LIVE COMMUNITY MOMENTUM */
+    #momentum {
+      background: linear-gradient(180deg, var(--bg-secondary) 0%, rgba(0,212,212,0.05) 100%);
+      padding: 4rem 2rem;
+      position: relative;
+      overflow: hidden;
+      border-radius: 24px;
+      margin: 2rem auto;
+      max-width: 1000px;
+      border: 1px solid var(--border);
+    }
+    #momentum::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(ellipse at center, rgba(0,212,212,0.015) 0%, transparent 50%);
+      animation: pulse-glow 6s ease-in-out infinite;
+    }
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.02); }
+    }
+    .momentum-container { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+    .momentum-eyebrow {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .momentum-title {
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 20px rgba(0,212,212,0.15);
+    }
+    .momentum-sub {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .stat-card {
+      background: rgba(0,212,212,0.05);
+      border: 1px solid rgba(0,212,212,0.2);
+      border-radius: 16px;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .stat-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,212,212,0.08);
+      border-color: rgba(0,212,212,0.25);
+    }
+    .stat-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .stat-label { font-size: 0.9rem; color: var(--text-primary); font-weight: 500; }
+    .stat-sub { font-size: 0.7rem; color: var(--text-tertiary); margin-top: 0.25rem; }
+    .progress-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    .progress-bar {
+      height: 12px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+      border-radius: 10px;
+      transition: width 0.5s ease;
+      position: relative;
+    }
+    .progress-fill::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: shimmer 2s infinite;
+    }
+    @keyframes shimmer {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+    .momentum-footer {
+      text-align: center;
+      color: var(--text-tertiary);
+      font-size: 0.85rem;
+    }
+    .momentum-footer span { margin: 0 0.5rem; display: inline-flex; align-items: center; gap: 0.3rem; }
+    .momentum-footer .foot-icon { width: 14px; height: 14px; flex-shrink: 0; }
+    .momentum-cta { text-align: center; margin-top: 2rem; display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .dashboard-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: #000;
+      padding: 1rem 2.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+    .dashboard-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(0,212,212,0.4);
+    }
+    .dashboard-btn svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    /* WHY MAGNE */
+    #why-magne .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    /* PARTNERS */
+    #partners {
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .partners-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 0.75rem;
+    }
+
+    .partners-heading {
+      font-size: 1.1rem;
+      font-weight: 400;
+      margin-bottom: 2rem;
+      color: var(--text-secondary);
+      text-align: center;
+    }
+
+    .partners-heading span {
+      color: var(--accent);
+    }
+
+    .partners-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .partner-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.25rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s;
+      min-height: 90px;
+    }
+
+    .partner-card:hover {
+      border-color: var(--border-hover);
+      background: var(--bg-card-hover);
+      transform: translateY(-2px);
+    }
+
+    .partner-card img {
+      height: 32px;
+      width: auto;
+      max-width: 110px;
+      object-fit: contain;
+    }
+
+    .partner-card:hover img {
+      filter: brightness(1.1);
+    }
+
+    .partner-card .partner-name {
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    .partner-card.ti-card img {
+      filter: brightness(0) invert(1);
+    }
+
+    .partners-cta {
+      margin-top: 2.5rem;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+    }
+
+    .partners-cta a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .partners-cta a:hover {
+      opacity: 0.7;
+    }
+
+    .partners-disclaimer {
+      margin-top: 1.5rem;
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    /* SECURITY */
+    #security {
+      background: linear-gradient(180deg, var(--bg-primary) 0%, rgba(138,43,226,0.05) 100%);
+      border-radius: 24px;
+      margin: 2rem auto;
+    }
+.security-arch {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin: 3rem auto 4rem;
+      max-width: 900px;
+    }
+    .arch-layer {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.5rem 1rem;
+      border-radius: 12px;
+      border: 1px solid;
+    }
+    .arch-layer-1 {
+      background: rgba(0,212,212,0.05);
+      border-color: rgba(0,212,212,0.2);
+    }
+    .arch-layer-2 {
+      background: rgba(168,85,247,0.05);
+      border-color: rgba(168,85,247,0.2);
+    }
+    .arch-layer-3 {
+      background: rgba(255,215,0,0.05);
+      border-color: rgba(255,215,0,0.2);
+    }
+    .arch-label {
+      font-size: 1.5rem;
+      font-weight: 700;
+      font-family: "JetBrains Mono", monospace;
+    }
+    .arch-layer-1 .arch-label { color: var(--accent); }
+    .arch-layer-2 .arch-label { color: var(--accent-purple); }
+    .arch-layer-3 .arch-label { color: var(--accent-gold); }
+    .arch-content h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+    .arch-content p {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+    .arch-connector {
+      width: 40px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-purple), var(--accent-gold));
+      flex-shrink: 0;
+    }
+    @media (max-width: 768px) {
+      .security-arch {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .arch-connector {
+        width: 2px;
+        height: 30px;
+        background: linear-gradient(180deg, var(--accent), var(--accent-purple), var(--accent-gold));
+      }
+    }
+    .security-layers { display: flex; flex-direction: column; gap: 2rem; max-width: 900px; margin: 0 auto; }
+    .security-layer {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+    .security-layer:hover {
+      transform: translateX(8px);
+      border-color: var(--accent-purple);
+    }
+    .security-layer::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 4px;
+    }
+    .security-layer.layer-1::before { background: linear-gradient(90deg, var(--accent), #0088aa); }
+    .security-layer.layer-2::before { background: linear-gradient(90deg, var(--accent-purple), #7c3aed); }
+    .security-layer.layer-3::before { background: linear-gradient(90deg, var(--accent-gold), #f59e0b); }
+    .layer-label {
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    .layer-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; }
+    .layer-body { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.7; }
+    .layer-badge {
+      display: inline-block;
+      background: rgba(0,212,212,0.1);
+      border: 1px solid rgba(0,212,212,0.3);
+      color: var(--accent);
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .security-closing {
+      text-align: center;
+      margin-top: 3rem;
+      padding: 2rem;
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      font-style: italic;
+    }
+
+    /* TRUST */
+    #trust .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    .trust-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .trust-group {
+      margin-bottom: 3rem;
+    }
+    .trust-group:last-child {
+      margin-bottom: 0;
+    }
+    .trust-group-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      text-align: left;
+      padding-left: 0.5rem;
+    }
+    .trust-card:hover { 
+      border-color: var(--accent-secondary);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0,255,136,0.1);
+    }
+    .trust-card h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .trust-card p { font-size: 0.75rem; color: var(--accent-secondary); }
+
+    /* PRODUCT */
+.product-layout {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      margin-top: 3rem;
+    }
+    .product-visual {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+    .product-phone {
+      max-width: 280px;
+      width: 100%;
+      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5));
+    }
+    .product-specs {
+      flex: 1.5;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    @media (max-width: 900px) {
+      .product-layout {
+        flex-direction: column;
+      }
+      .product-specs {
+        grid-template-columns: 1fr;
+      }
+    }
+    #product .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .product-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      transition: all 0.3s;
+    }
+    .product-card:hover { 
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 15px 35px rgba(0,212,212,0.1);
+    }
+    .product-card h4 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .product-card p { font-size: 0.85rem; color: var(--text-secondary); }
+
+    /* NETWORK */
+    #network .network-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .network-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .network-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--accent-purple), var(--accent));
+    }
+    .network-card:hover { 
+      border-color: var(--accent-purple);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(168,85,247,0.15);
+    }
+    .network-card h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem; }
+    .network-card p { font-size: 0.9rem; color: var(--text-secondary); }
+
+    /* PROGRESS */
+    #progress .progress-columns {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+    .progress-col {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      transition: all 0.3s;
+    }
+    .progress-col:hover {
+      border-color: var(--accent-gold);
+      transform: translateY(-4px);
+    }
+    .progress-col h4 { 
+      font-size: 1rem; 
+      font-weight: 600; 
+      margin-bottom: 1rem; 
+      color: var(--accent-gold); 
+    }
+    .progress-col p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; }
+
+    /* COMMERCIAL */
+    #commercial .commercial-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .commercial-card {
+      background: linear-gradient(135deg, rgba(0,212,212,0.08) 0%, rgba(0,30,30,0.3) 100%);
+      border: 1px solid rgba(0,212,212,0.2);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .commercial-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,212,212,0.15);
+      border-color: var(--accent);
+    }
+    .commercial-card h4 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.75rem; }
+    .commercial-card p { font-size: 0.85rem; color: var(--text-secondary); }
+
+    /* FINAL CTA */
+    #cta .cta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .cta-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 3rem;
+      text-align: center;
+      transition: all 0.4s;
+    }
+    .cta-card:hover { 
+      border-color: var(--accent);
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px rgba(0,212,212,0.15);
+    }
+    .cta-card h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; }
+    .cta-card p { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.7; }
+
+    /* CONTACT SECTION */
+    .contact-section {
+      padding: 6rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .contact-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+    }
+    .contact-card h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .contact-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 4rem 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-tertiary);
+      font-size: 0.9rem;
+      margin-top: 4rem;
+    }
+    footer a { color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--accent); }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; margin-top: 1rem; }
+    .footer-links-secondary { display: flex; justify-content: center; gap: 2rem; margin-top: 0.75rem; }
+    .footer-links-secondary a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; }
+    .footer-links-secondary a:hover { color: var(--accent); }
+
+    /* ANIMATIONS */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    .animate { 
+      opacity: 0; 
+      transform: translateY(30px);
+      transition: all 0.6s ease-out;
+    }
+    .animate.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .trust-grid { grid-template-columns: repeat(4, 1fr); }
+      .product-grid { grid-template-columns: repeat(2, 1fr); }
+      .network-grid { grid-template-columns: repeat(2, 1fr); }
+      .progress-columns { grid-template-columns: repeat(2, 1fr); }
+      .commercial-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 1rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1rem; }
+      .hero h1 { font-size: 2.2rem; }
+      .cards-grid { grid-template-columns: 1fr !important; }
+      .why-magne .cards-grid { grid-template-columns: 1fr; }
+      .trust-grid { grid-template-columns: repeat(2, 1fr); }
+      .product-grid { grid-template-columns: 1fr !important; }
+      .network-grid { grid-template-columns: 1fr !important; }
+      .progress-columns { grid-template-columns: 1fr !important; }
+      .commercial-grid { grid-template-columns: 1fr !important; }
+      .cta-grid { grid-template-columns: 1fr !important; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  
+    /* FOOTER SOCIAL ICONS */
+    .footer-socials { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0; }
+    .footer-socials a {
+      display: inline-flex; align-items: center; justify-content: center;
+      height: 42px; padding: 0;
+      border: 1px solid var(--border); border-radius: 999px;
+      color: var(--text-secondary); font-size: 0.82rem; transition: all 0.2s;
+    }
+    .footer-socials a:hover { color: var(--accent); border-color: var(--accent); background: rgba(0, 212, 212, 0.06); }
+    .footer-copy { margin-top: 1.5rem; opacity: 0.5; }
+
+    .footer-socials a.footer-icon svg { width: 20px; height: 20px; }
+    .footer-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+      padding: 0;
+    }
+    .footer-icon:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: rgba(0, 212, 212, 0.1);
+    }
+
+    .footer-brand-logo {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .footer-brand-logo img {
+      height: 24px;
+      width: auto;
+      margin-bottom: 0.75rem;
+      opacity: 0.9;
+    }
+    .footer-brand-logo p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+  
+    .nav-logo-img {
+      height: 20px;
+      width: auto;
+      display: block;
+    }
+  
+    .trademark-notice {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-top: 1rem;
+      opacity: 0.7;
+    }
+    .trademark-notice a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .trademark-notice a:hover {
+      text-decoration: underline;
+    }
+
+/* =========================================================
+ HOME MOBILE HARD FIX - Why MAGNE & Partners Grid Overflow
+ ========================================================= */
+@media (max-width: 768px) {
+  /* Why MAGNE section - force single column */
+  #why-magne {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+    box-sizing: border-box !important;
+  }
+
+  #why-magne .cards-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    gap: 1rem !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+  }
+
+
+
+  /* Partners section - force 2 columns */
+  #partners {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+    box-sizing: border-box !important;
+  }
+
+  #partners .partners-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    gap: 1rem !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+  }
+
+  #partners .partner-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    padding: 1rem !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+
+  #partners .partner-card img {
+    max-width: 80% !important;
+    max-height: 40px !important;
+    height: auto !important;
+    object-fit: contain !important;
+  }
+
+  #partners .partner-card span {
+    font-size: 0.8rem !important;
+    word-break: break-word !important;
+  }
+}
+
+@media (max-width: 420px) {
+  #partners .partners-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+
+/* Why MAGNE - Clean Responsive */
+.why-magne-section,
+#why-magne {
+  position: relative;
+  z-index: 1;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 7rem 2rem;
+  box-sizing: border-box;
+}
+
+#why-magne .section-header {
+  max-width: 760px;
+  margin: 0 auto 4rem;
+  text-align: center;
+}
+
+#why-magne .section-header h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.25rem;
+}
+
+#why-magne .section-header p {
+  color: var(--text-secondary);
+  font-size: 1.15rem;
+  line-height: 1.75;
+}
+
+.why-magne-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.why-magne-card {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 2.25rem;
+  border-radius: 28px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  overflow: hidden;
+}
+
+.why-magne-card.featured {
+  border-color: rgba(0, 212, 212, 0.35);
+  background: rgba(0, 212, 212, 0.055);
+}
+
+.why-magne-card h3 {
+  color: var(--text-primary);
+  font-size: 1.45rem;
+  line-height: 1.25;
+  margin-bottom: 1rem;
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+.why-magne-card p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.7;
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  #why-magne {
+    padding: 5rem 1.25rem;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  #why-magne .section-header {
+    margin-bottom: 2.5rem;
+  }
+
+  #why-magne .section-header h2 {
+    font-size: 2.4rem;
+  }
+
+  #why-magne .section-header p {
+    font-size: 1rem;
+  }
+
+  .why-magne-grid {
+    grid-template-columns: 1fr;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .why-magne-card {
+    width: 100%;
+    min-width: 0;
+    padding: 1.5rem;
+  }
+}
+
+  </style>
+  <link rel="stylesheet" href="assets/mobile-responsive.css">
+</head>
+<body>
+
+<!-- NODE NETWORK BACKGROUND -->
+<canvas id="node-bg"></canvas>
+
+<div class="content-wrapper">
 
 <!-- NAV -->
 <nav>
@@ -1248,6 +2468,7 @@
     <li><a href="magne-progress.html">進展</a></li>
     <li><a href="magne-partners.html">合作夥伴</a></li>
     <li><a href="faq.html">常見問題</a></li>
+    <a href="tc/magne-home.html" class="nav-lang-switch">EN | 繁中</a></li>
     <li><a href="https://web3.magne.ai" target="_blank" rel="noopener" class="nav-web3">Web3 入口 ↗️</a></li>
     <li class="nav-actions-mobile">
       <a href="magne-contact.html" class="nav-contact">聯絡</a>
@@ -1292,27 +2513,27 @@
   </div>
   <div class="why-magne-grid">
     <article class="why-magne-card">
-      <h3>私有 AI 工作流</h3>
+      <h3>Private AI Workflows</h3>
       <p>將智能體驗盡可能靠近設備端運行，以支援隱私敏感的日常使用場景。</p>
     </article>
     <article class="why-magne-card featured">
-      <h3>硬件錢包級密鑰隔離</h3>
-      <p>私鑰及關鍵簽署流程透過專用硬件安全架構進行保護。</p>
+      <h3>Hardware Wallet-grade Key Isolation</h3>
+      <p>Private keys and critical signing flows are protected through dedicated hardware security architecture.</p>
     </article>
     <article class="why-magne-card">
       <h3>Tap-to-Restore 加密備份</h3>
-      <p>加密 NFC 復原功能將保護能力延伸至設備之外，並簡化資產復原流程。</p>
+      <p>Encrypted NFC recovery extends protection beyond the device and simplifies asset recovery.</p>
     </article>
     <article class="why-magne-card">
-      <h3>隱藏 Web3 空間</h3>
+      <h3>A Hidden Web3 Space</h3>
       <p>一個獨立私有環境有助於將 Web3 操作與日常流動體驗隔離。</p>
     </article>
     <article class="why-magne-card">
-      <h3>內置 Web3 存取</h3>
+      <h3>Built-in Web3 Access</h3>
       <p>錢包、兌換、質押、橋樑及生態接入直接整合於設備旅程中。</p>
     </article>
     <article class="why-magne-card">
-      <h3>全球合規準備架構</h3>
+      <h3>Global-ready Compliance Stack</h3>
       <p>以認證及相容性就緒為考量，支持更廣泛的真實部署。</p>
     </article>
   </div>
@@ -1445,19 +2666,19 @@
   <div class="security-layers">
     <div class="security-layer layer-1 animate">
       <div class="layer-label">第一層</div>
-      <h3 class="layer-title">可信執行隔離</h3>
+      <h3 class="layer-title">可信執行隔離 Isolation</h3>
       <p class="layer-body">敏感操作在可信執行層被分隔，實現更強的進程隔離及操作控制。</p>
       <span class="layer-badge">CC EAL2+</span>
     </div>
     <div class="security-layer layer-2 animate">
       <div class="layer-label">Layer 2</div>
-      <h3 class="layer-title">安全元件簽署</h3>
+      <h3 class="layer-title">安全元件 Signing</h3>
       <p class="layer-body">私鑰儲存及簽署操作通過專用安全硬件保護，實現更強的資產保護。</p>
       <span class="layer-badge">CC EAL6+</span>
     </div>
     <div class="security-layer layer-3 animate">
       <div class="layer-label">Layer 3</div>
-      <h3 class="layer-title">加密 NFC 復原功能</h3>
+      <h3 class="layer-title">Encrypted NFC 復原功能</h3>
       <p class="layer-body">離線備份及物理復原有助將資產保護延伸至設備本身之外。</p>
       <span class="layer-badge">CC EAL6+</span>
     </div>
@@ -1475,7 +2696,7 @@
   </div>
   
   <div class="trust-group">
-    <h3 class="trust-group-title">平台及內容</h3>
+    <h3 class="trust-group-title">Platform & Content</h3>
     <div class="trust-grid">
       <div class="trust-card animate">
         <h4>Google GMS</h4>
@@ -1497,7 +2718,7 @@
   </div>
   
   <div class="trust-group">
-    <h3 class="trust-group-title">安全及就緒狀態</h3>
+    <h3 class="trust-group-title">Safety & Readiness</h3>
     <div class="trust-grid">
       <div class="trust-card animate">
         <h4>CB</h4>
@@ -1592,24 +2813,24 @@
 <!-- SCREEN 7: PROGRESS SNAPSHOT -->
 <section id="progress">
   <div class="section-title">
-    <h2>從認證到部署——進展清晰可見</h2>
+    <h2>From certification to deployment — progress made visible</h2>
     <p>MAGNE 的進展涵蓋產品安全、設備就緒狀態、網絡開發及更廣泛的商業化準備。</p>
   </div>
   <div class="progress-columns">
     <div class="progress-col animate">
       <h4>Security & Certifications</h4>
-      <p>安全架構及認證里程碑持續定義產品的就緒基礎。</p>
+      <p>Security architecture and certification milestones continue to define the product's readiness foundation.</p>
     </div>
     <div class="progress-col animate">
-      <h4>Device Program</h4>
+      <h4>設備計劃</h4>
       <p>工程驗證、生產規劃及交付準備支持發貨路徑。</p>
     </div>
     <div class="progress-col animate">
       <h4>Network & Infrastructure</h4>
-      <p>MAGNE 的進展超越硬件，延伸至 L1、L2、開放開發及可見度工具。</p>
+      <p>MAGNE's progress extends beyond hardware into L1, L2, open development, and visibility tools.</p>
     </div>
     <div class="progress-col animate">
-      <h4>Commercial Readiness</h4>
+      <h4>商業準備狀態</h4>
       <p>預訂、機構對話及市場面準備表明實際商業意向。</p>
     </div>
   </div>
@@ -1710,7 +2931,7 @@
           <path d="M14 17h7"/>
           <path d="M17.5 14v7"/>
         </svg>
-        查看現場儀表板 ↗
+        查看直播儀表板 ↗
       </a>
     </div>
   </div>
@@ -1745,17 +2966,17 @@
   <div class="contact-grid">
     <div class="contact-card">
       <h3>Product & Sales</h3>
-      <p>關於 MAGNE Phone Gen1、預訂、發貨或產品規格的查詢。</p>
+      <p>Questions about MAGNE Phone Gen1, preorder, shipping, or product specifications.</p>
       <a href="magne-contact.html" class="btn-primary">聯絡 MAGNE.AI</a>
     </div>
     <div class="contact-card">
       <h3>Partnership & Investment</h3>
-      <p>機構合作、投資者關係、交易所上市或策略協作。</p>
+      <p>For institutional partnerships, investor relations, exchange listings, or strategic collaborations.</p>
       <a href="magne-contact.html" class="btn-primary btn-secondary-alt">聯絡 MAGNE.AI</a>
     </div>
     <div class="contact-card">
       <h3>Media & Press</h3>
-      <p>新聞查詢、媒體資料包、採訪請求及新聞相關通訊。</p>
+      <p>Press inquiries, media kits, interview requests, and press-related communications.</p>
       <a href="magne-contact.html" class="btn-primary">聯絡 MAGNE.AI</a>
     </div>
   </div>
@@ -1785,7 +3006,7 @@
     <a href="https://web3.magne.ai/transparency" target="_blank" rel="noopener">法律意見書</a>
   </div>
     <p class="trademark-notice">
-    MAGNE.AI™ 為 Magical Hash Global Tech Limited 的註冊商標，目前正在註冊程序中 
+    MAGNE.AI™ 為 Magical Hash Global Tech Limited 的註冊商标，正在註冊程序中 
     (<a href="https://tmsearch.uspto.gov/search/search-results/99311528" target="_blank" rel="noopener">USPTO Serial: 99311528</a>).
   </p>
   <p style="margin-top: 1.5rem; opacity: 0.5;">© 2026 MAGNE.AI. 版權所有。</p>
