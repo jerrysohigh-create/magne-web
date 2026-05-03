@@ -2021,7 +2021,7 @@
         const item = document.createElement('div');
         item.className = 'activity-item' + (w.hasAddress ? ' activity-winner' : '');
         const statusIcon = w.hasAddress ? '✓' : '⚠';
-        const statusText = w.hasAddress ? 'Address Filled' : 'Address Not Set';
+        const statusText = w.hasAddress ? '收貨地址已填寫' : '收貨地址未填寫';
         const bscUrl = 'https://bscscan.com/address/' + w.address;
         const winBadge = wins > 1
           ? `<span class="win-count-badge">×${wins} WINS</span>`
