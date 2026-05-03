@@ -1540,7 +1540,7 @@
 <section class="hero">
   <div class="hero-eyebrow">安全構架</div>
   <h1>三層防護，硬件錢包級安全能力。</h1>
-  <p class="hero-sub">從可信執行隔離、安全元件簽署到加密 NFC 復原，MAGNE 在系統層面保護數字資產所有權。</p>
+  <p class="hero-sub">從可信執行隔離、安全元件簽名到加密 NFC 復原，MAGNE 在系統層面保護數字資產所有權。</p>
   <div class="hero-ctas">
     <a href="/magne-web/tc/magne-contact.html" class="btn-primary">聯絡安全團隊</a>
     <a href="/magne-web/tc/magne-compliance.html" class="btn-secondary">查看合規</a>
@@ -1560,8 +1560,8 @@
       <div class="arch-connector"></div>
       <div class="arch-layer-box layer-2 animate">
         <span class="arch-layer-label">L2 — 安全元件</span>
-        <h3 class="arch-layer-title">安全元件簽署</h3>
-        <p class="arch-layer-sub">專用硬件支援私鑰儲存與交易簽署</p>
+        <h3 class="arch-layer-title">安全元件簽名</h3>
+        <p class="arch-layer-sub">專用硬件支援私鑰儲存與交易簽名</p>
         <span class="arch-layer-badge">CC EAL6+</span>
       </div>
       <div class="arch-connector"></div>
@@ -1608,12 +1608,12 @@
     <div class="layer-info">
       <div class="layer-num">L2</div>
       <h3>安全元件保護</h3>
-      <p>第二層是私鑰所在的位置。不同於將私鑰儲存在應用程式記憶體中的軟體錢包，MAGNE 的安全元件是一個專用硬體組件，專為加密密鑰儲存與簽署操作而設計。</p>
-      <p>私鑰被設計為保護於安全元件之內。在正常簽署流程中，當交易需要簽署時，簽署操作會在安全邊界內完成，主處理器無法存取原始私鑰。這遵循類似專用加密安全模組的硬體支援安全設計理念。</p>
+      <p>第二層是私鑰所在的位置。不同於將私鑰儲存在應用程式記憶體中的軟體錢包，MAGNE 的安全元件是一個專用硬體組件，專為加密密鑰儲存與簽名操作而設計。</p>
+      <p>私鑰被設計為保護於安全元件之內。在正常簽名流程中，當交易需要簽名時，簽名操作會在安全邊界內完成，主處理器無法存取原始私鑰。這遵循類似專用加密安全模組的硬體支援安全設計理念。</p>
       <div class="layer-badges">
         <span class="layer-badge">CC EAL6+ 認證</span>
         <span class="layer-badge">安全密鑰儲存</span>
-        <span class="layer-badge">硬件簽署</span>
+        <span class="layer-badge">硬件簽名</span>
       </div>
     </div>
     <div class="layer-visual">
@@ -1911,8 +1911,8 @@
       <div class="flow-arrow">→</div>
       <div class="flow-step">
         <div class="flow-icon">✍️</div>
-        <div class="flow-label">簽署</div>
-        <div class="flow-sublabel">簽署在安全元件內部進行</div>
+        <div class="flow-label">簽名</div>
+        <div class="flow-sublabel">簽名在安全元件內部進行</div>
       </div>
       <div class="flow-arrow">→</div>
       <div class="flow-step">
@@ -1953,9 +1953,9 @@
         <td><span class="vs-highlight">私鑰隔離於專用安全硬件中</span></td>
       </tr>
       <tr>
-        <td>簽署環境</td>
-        <td>在主處理器上進行軟體簽署</td>
-        <td><span class="vs-highlight">在安全元件邊界內進行硬件簽署</span></td>
+        <td>簽名環境</td>
+        <td>在主處理器上進行軟體簽名</td>
+        <td><span class="vs-highlight">在安全元件邊界內進行硬件簽名</span></td>
       </tr>
       <tr>
         <td>備份方式</td>
@@ -1965,7 +1965,7 @@
       <tr>
         <td>設備暴露面</td>
         <td>整台設備必須被視為可信且安全</td>
-        <td><span class="vs-highlight">敏感簽署操作隔離於安全硬件中，降低主系統風險暴露。</span></td>
+        <td><span class="vs-highlight">敏感簽名操作隔離於安全硬件中，降低主系統風險暴露。</span></td>
       </tr>
       <tr>
         <td>復原模式l</td>
@@ -2074,7 +2074,7 @@
     </div>
     <div class="proof-item animate">
       <h4>CC EAL6+</h4>
-      <p>安全元件認證，支援密鑰儲存與簽署</p>
+      <p>安全元件認證，支援密鑰儲存與簽名</p>
     </div>
     <div class="proof-item animate">
       <h4>硬體架構</h4>
