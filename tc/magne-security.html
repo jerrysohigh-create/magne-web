@@ -1949,33 +1949,33 @@
     <tbody>
       <tr>
         <td>密鑰隔離</td>
-        <td>Keys stored in app memory, accessible to OS</td>
+        <td>私鑰儲存在應用程式記憶體中，可被操作系統存取</td>
         <td><span class="vs-highlight">私鑰隔離於專用Secure HW中</span></td>
       </tr>
       <tr>
         <td>簽署環境</td>
-        <td>Software-based signing on main processor</td>
-        <td><span class="vs-highlight">Hardware signing inside secure element boundary</span></td>
+        <td>在主處理器上進行軟體簽署</td>
+        <td><span class="vs-highlight">在安全元件邊界內進行硬件簽署</span></td>
       </tr>
       <tr>
         <td>備份方式</td>
-        <td>Seed phrase (can be stolen, lost, guessed)</td>
-        <td><span class="vs-highlight">NFC encrypted backup — physical, offline, no seed exposure</span></td>
+        <td>助記詞（可被竊取、遺失或猜測）</td>
+        <td><span class="vs-highlight">NFC 加密備份 — 實體、離線、無助記詞暴露風險</span></td>
       </tr>
       <tr>
         <td>設備暴露面</td>
-        <td>Entire device must be trusted and secure</td>
-        <td><span class="vs-highlight">Sensitive signing operations are isolated in secure hardware, reducing exposure to main OS risks.</span></td>
+        <td>整台設備必須被視為可信且安全</td>
+        <td><span class="vs-highlight">敏感簽署操作隔離於安全硬件中，降低主系統風險暴露。</span></td>
       </tr>
       <tr>
         <td>復原模式l</td>
-        <td>Depends on seed phrase + third-party tools</td>
-        <td><span class="vs-highlight">Offline NFC recovery without cloud or third-party</span></td>
+        <td>依賴助記詞與第三方工具</td>
+        <td><span class="vs-highlight">Offline 透過 NFC 復原，無需雲端或第三方</span></td>
       </tr>
       <tr>
         <td>認證</td>
         <td>無硬件安全認證</td>
-        <td><span class="vs-highlight">CC EAL2+ / EAL6+ certified secure element</span></td>
+        <td><span class="vs-highlight">CC EAL2+ / EAL6+ 認證安全元件</span></td>
       </tr>
     </tbody>
   </table>
