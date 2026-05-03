@@ -1585,8 +1585,8 @@
       <p>第一層防護運行於系統執行層。敏感操作會在可信執行環境中隔離，並與主要操作系統分離。該隔離執行環境旨在降低主系統受到攻擊時，敏感操作暴露的風險。</p>
       <p>這並非單純的軟體隔離，而是建立在設備硬體基礎之上的架構隔離。它定義哪些流程可存取哪些資源，並為最敏感的操作建立更明確的安全邊界。</p>
       <div class="layer-badges">
-        <span class="layer-badge">CC EAL2+ Certified</span>
-        <span class="layer-badge">TEE Environment</span>
+        <span class="layer-badge">CC EAL2+ 認證</span>
+        <span class="layer-badge">TEE 可信執行環境</span>
         <span class="layer-badge">流程隔離</span>
       </div>
     </div>
@@ -1611,7 +1611,7 @@
       <p>The second layer is where private keys live. Unlike software wallets where keys are stored in application memory, MAGNE 的安全元件是一個專用硬件組件 專為加密密鑰儲存與簽署操作而設計.</p>
       <p>私鑰被設計為保護於安全元件之內。在正常簽署流程中，當交易需要簽署時，he signing operation happens inside the secure boundary — the main processor does not have access to the raw private key. This follows a hardware-backed security design philosophy similar to dedicated cryptographic security modules.</p>
       <div class="layer-badges">
-        <span class="layer-badge">CC EAL6+ Certified</span>
+        <span class="layer-badge">CC EAL6+ 認證</span>
         <span class="layer-badge">安全密鑰儲存</span>
         <span class="layer-badge">硬件簽署</span>
       </div>
@@ -1619,7 +1619,7 @@
     <div class="layer-visual">
       <div class="layer-icon-box">
         <div class="icon">🔐</div>
-        <div class="label">Secure Element</div>
+        <div class="label">安全元件</div>
         <div class="sublabel">密鑰隔離架構</div>
       </div>
     </div>
@@ -1637,8 +1637,8 @@
       <p>The third layer addresses the oldest problem in digital asset management: what happens when you lose access to your device? NFC-based encrypted backup extends protection beyond the hardware itself.</p>
       <p>When you set up MAGNE, an encrypted backup is generated and stored on an NFC tag or another device. 該備份包含資產復原所需資訊 — without exposing your private keys in plain text. Recovery is physical, offline, and does not require cloud access or a third party.</p>
       <div class="layer-badges">
-        <span class="layer-badge">CC EAL6+ Certified</span>
-        <span class="layer-badge">NFC Encrypted Backup</span>
+        <span class="layer-badge">CC EAL6+ 認證</span>
+        <span class="layer-badge">NFC加密備份</span>
         <span class="layer-badge">離線復原</span>
       </div>
     </div>
@@ -1738,7 +1738,7 @@
           <span style="color: #7b2fff; font-weight: 700; font-size: 1.1rem;">L2</span>
         </div>
         <div>
-          <h3 style="font-size: 1.5rem; margin-bottom: 0.25rem;">HYPERSEED N60 Secure Element</h3>
+          <h3 style="font-size: 1.5rem; margin-bottom: 0.25rem;">HYPERSEED N60 安全元件</h3>
           <p style="color: var(--text-secondary); font-size: 0.9rem;">NFC Controller + eSE • CC EAL6+</p>
         </div>
       </div>
@@ -1830,7 +1830,7 @@
         </div>
         <div>
           <h3 style="font-size: 1.5rem; margin-bottom: 0.25rem;">HYPERSEED 72B NFC Recovery Chip</h3>
-          <p style="color: var(--text-secondary); font-size: 0.9rem;">Standalone Secure Element • CC EAL6+</p>
+          <p style="color: var(--text-secondary); font-size: 0.9rem;">Standalone 安全元件 • CC EAL6+</p>
         </div>
       </div>
       
