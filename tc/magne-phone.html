@@ -4,7 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MAGNE Phone Gen1 — Hardware, Software, and Ownership Features</title>
-  <link rel="icon" type="image/png" href="/magne-web/assets/brand/logo-icon-circle.png">
+  <link rel="alternate" hreflang="zh-Hant" href="https://jerrysohigh-create.github.io/magne-web/tc/magne-phone.html">
+  <link rel="alternate" hreflang="zh-Hant" href="https://jerrysohigh-create.github.io/magne-web/tc/magne-phone.html">
+  <link rel="alternate" hreflang="x-default" href="https://jerrysohigh-create.github.io/magne-web/tc/magne-phone.html">
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <meta property="og:title" content="MAGNE Phone Gen1 — Hardware, Software, and Ownership Features">
+  <meta property="og:description" content="Explore MAGNE Phone Gen1: UNISOC T9100 5G, 8 TOPS NPU, CC EAL6+ secure element, private dual-space, and native Web3 gateway in one device.">
+  <meta property="og:image" content="https://jerrysohigh-create.github.io/magne-web/phone-white.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MAGNE Phone Gen1 — Hardware, Software, and Ownership Features">
+  <meta name="twitter:description" content="Explore MAGNE Phone Gen1: UNISOC T9100 5G, 8 TOPS NPU, CC EAL6+ secure element, private dual-space, and native Web3 gateway in one device.">
+  <meta name="twitter:image" content="https://jerrysohigh-create.github.io/magne-web/phone-white.png">
+  <link rel="icon" type="image/png" href="logo-icon-circle.png">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
   <style>
@@ -832,7 +845,851 @@
       color: var(--text-secondary);
     }
   </style>
-  <link rel="stylesheet" href="/magne-web/assets/mobile-responsive.css">
+  <link rel="stylesheet" href="assets/mobile-responsive.css">
+</head>
+<body>
+
+<!-- NODE NETWORK BACKGROUND -->
+<canvas id="node-bg"></canvas>
+
+<div class="content-wrapper">
+
+<!-- NAV -->
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAGNE Phone Gen1 — Hardware, Software, and Ownership Features</title>
+  <link rel="icon" type="image/png" href="logo-icon-circle.png">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #0a0a0c;
+      --bg-secondary: #0f0f12;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --bg-card-hover: rgba(255, 255, 255, 0.05);
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.12);
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.5);
+      --text-tertiary: rgba(255, 255, 255, 0.3);
+      --accent: #00d4d4;
+      --accent-secondary: #00ff88;
+      --accent-purple: #a855f7;
+      --accent-gold: #ffd700;
+      --accent-pink: #ff6482;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', -apple-system, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NODE NETWORK BACKGROUND */
+    #node-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 12, 0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-brand a { color: var(--text-secondary); text-decoration: none; }
+    .nav-logo { font-size: 1.3rem; font-weight: 700; color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a.active { color: var(--accent); }
+    .nav-actions {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    .nav-cta {
+      background: var(--accent);
+      color: #000 !important;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+    .nav-contact {
+      background: transparent;
+      border: 1px solid var(--border-hover);
+      color: var(--text-primary) !important;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 500;
+      text-decoration: none;
+    }
+    .nav-contact:hover { border-color: var(--accent); color: var(--accent) !important; }
+    .nav-web3 {
+      color: var(--accent-secondary) !important;
+      font-size: 0.85rem;
+    }
+    .nav-web3:hover { color: var(--accent) !important; }
+    .nav-lang-switch {
+      color: rgba(255,255,255,0.5) !important;
+      font-size: 0.8rem !important;
+      text-decoration: none !important;
+      padding: 0.2rem 0.5rem !important;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 6px;
+    }
+    .nav-lang-switch:hover {
+      color: var(--accent) !important;
+      border-color: var(--accent);
+    }
+
+
+    /* CONTENT WRAPPER */
+    .content-wrapper {
+      position: relative;
+      z-index: 1;
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 600px;
+      background: radial-gradient(ellipse at center, rgba(0,212,212,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 0.8s ease-out;
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.85) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeInUp 0.8s ease-out 0.1s both;
+    }
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin-bottom: 3rem;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+    .hero-ctas { 
+      display: flex; 
+      gap: 1rem; 
+      flex-wrap: wrap; 
+      justify-content: center;
+      animation: fadeInUp 0.8s ease-out 0.3s both;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+      padding: 1rem 2.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover { 
+      transform: translateY(-3px); 
+      box-shadow: 0 15px 40px rgba(0,212,212,0.4);
+    }
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--border-hover);
+      color: var(--text-primary);
+      padding: 1rem 2.5rem;
+      border-radius: 8px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-secondary:hover { 
+      border-color: var(--accent); 
+      color: var(--accent);
+    }
+
+    /* SECTION BASE */
+    section { 
+      padding: 6rem 2rem; 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      position: relative;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .section-title h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .section-title p {
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1rem;
+    }
+
+    /* PRODUCT VISUAL */
+    .product-visual-section {
+      padding: 4rem 2rem 6rem;
+      text-align: center;
+    }
+    .product-image-stack {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 2rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .product-image-stack img {
+      max-height: 500px;
+      filter: drop-shadow(0 30px 60px rgba(0,0,0,0.6));
+    }
+    .product-image-stack .phone-front {
+      z-index: 2;
+    }
+    .product-image-stack .phone-back {
+      z-index: 1;
+      margin-bottom: 20px;
+      opacity: 0.85;
+    }
+
+    /* SPECS GRID */
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .spec-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.3s;
+    }
+    .spec-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+    }
+    .spec-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .spec-card h4 {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+      margin-top: 0.25rem;
+    }
+    .spec-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    .spec-card .spec-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+      display: block;
+    }
+    .spec-card h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+    .spec-card-featured {
+      border-color: rgba(0, 212, 212, 0.3);
+      background: rgba(0, 212, 212, 0.04);
+    }
+    .spec-card-featured:hover {
+      border-color: rgba(0, 212, 212, 0.5);
+      box-shadow: 0 4px 20px rgba(0, 212, 212, 0.1);
+    }
+
+    /* SOFTWARE ARCH */
+    .software-layout {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      margin-top: 3rem;
+    }
+    .software-visual {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+    .software-diagram {
+      width: 280px;
+      height: 280px;
+      position: relative;
+      margin: 0 auto;
+    }
+    .diagram-circle {
+      position: absolute;
+      border-radius: 50%;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .diagram-core {
+      width: 100px; height: 100px;
+      background: linear-gradient(135deg, rgba(0,212,212,0.2), rgba(0,212,212,0.05));
+      border: 2px solid rgba(0,212,212,0.4);
+      z-index: 3;
+    }
+    .diagram-outer {
+      width: 180px; height: 180px;
+      background: linear-gradient(135deg, rgba(168,85,247,0.1), rgba(168,85,247,0.02));
+      border: 1px solid rgba(168,85,247,0.3);
+      z-index: 2;
+    }
+    .diagram-nfc {
+      width: 260px; height: 260px;
+      background: linear-gradient(135deg, rgba(255,215,0,0.05), rgba(255,215,0,0.01));
+      border: 1px solid rgba(255,215,0,0.2);
+      z-index: 1;
+    }
+
+    /* Independent text labels */
+    .diagram-tag {
+      position: absolute;
+      z-index: 10;
+      text-align: center;
+    }
+    .diagram-tag .diagram-label {
+      color: var(--text-primary);
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: block;
+    }
+    .diagram-tag .diagram-sublabel {
+      font-size: 0.65rem;
+      color: var(--text-secondary);
+      font-weight: 400;
+      display: block;
+    }
+
+    /* Position each tag separately */
+    .tag-core {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      align-items: center;
+      text-align: center;
+      min-width: 120px;
+    }
+    .tag-outer {
+      top: 46%;
+      left: calc(50% + 98px);
+      transform: translateY(-50%);
+      align-items: flex-start;
+      text-align: left;
+      min-width: 138px;
+    }
+    .tag-nfc {
+      top: calc(50% + 104px);
+      left: 50%;
+      transform: translateX(-50%);
+      align-items: center;
+      text-align: center;
+      min-width: 180px;
+    }
+
+    @media (max-width: 600px) {
+      .tag-core {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        align-items: center;
+        text-align: center;
+        min-width: 100px;
+      }
+      .tag-outer {
+        top: 46%;
+        left: calc(50% + 82px);
+        transform: translateY(-50%);
+        align-items: flex-start;
+        text-align: left;
+        min-width: 118px;
+      }
+      .tag-nfc {
+        top: calc(50% + 88px);
+        left: 50%;
+        transform: translateX(-50%);
+        align-items: center;
+        text-align: center;
+        min-width: 150px;
+      }
+    }
+    .software-content {
+      flex: 1.2;
+    }
+    .software-item {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .software-item:last-child {
+      border-bottom: none;
+    }
+    .software-item h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .software-item p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    /* SECURITY SUMMARY */
+    .security-summary {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 3rem;
+      margin-top: 4rem;
+    }
+    .security-summary h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .security-layers {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .security-layer {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid;
+    }
+    .security-layer.layer-1 {
+      background: rgba(0,212,212,0.05);
+      border-color: rgba(0,212,212,0.2);
+    }
+    .security-layer.layer-2 {
+      background: rgba(168,85,247,0.05);
+      border-color: rgba(168,85,247,0.2);
+    }
+    .security-layer.layer-3 {
+      background: rgba(255,215,0,0.05);
+      border-color: rgba(255,215,0,0.2);
+    }
+    .layer-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 700;
+      min-width: 50px;
+    }
+    .layer-1 .layer-num { color: var(--accent); }
+    .layer-2 .layer-num { color: var(--accent-purple); }
+    .layer-3 .layer-num { color: var(--accent-gold); }
+    .layer-text h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    .layer-text p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    .layer-badge {
+      margin-left: auto;
+      font-size: 0.75rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      font-weight: 600;
+    }
+    .layer-1 .layer-badge { background: rgba(0,212,212,0.1); color: var(--accent); }
+    .layer-2 .layer-badge { background: rgba(168,85,247,0.1); color: var(--accent-purple); }
+    .layer-3 .layer-badge { background: rgba(0,212,212,0.08); color: var(--accent-gold); }
+
+    /* CERTIFICATIONS */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+    .cert-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .cert-card:hover {
+      border-color: var(--border-hover);
+    }
+    .cert-card h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .cert-card p {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    /* DIFFERENTIATION */
+    .diff-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .diff-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.3s;
+    }
+    .diff-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+    }
+    .diff-card h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+    .diff-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* CTA */
+    .cta-section {
+      text-align: center;
+      padding: 6rem 2rem;
+    }
+    .cta-section h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .cta-section p {
+      color: var(--text-secondary);
+      margin-bottom: 2.5rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    /* SECTION EYEBROW */
+    .section-eyebrow {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* FEATURE DEMOS */
+    .demo-section {
+      padding: 6rem 2rem;
+    }
+    .demo-shell {
+      width: min(1100px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+    .demo-card {
+      margin-top: 2rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .demo-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .demo-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .demo-card p {
+      max-width: 700px;
+      margin: 0 auto;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      font-size: 1rem;
+    }
+    .demo-actions {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 4rem 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-tertiary);
+      font-size: 0.9rem;
+    }
+    footer a { color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--accent); }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; margin-top: 1rem; }
+
+
+    /* ANIMATIONS */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate { opacity: 0; }
+    .animate.visible {
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .specs-grid { grid-template-columns: repeat(2, 1fr); }
+      .software-layout { flex-direction: column; }
+      .cert-grid { grid-template-columns: repeat(2, 1fr); }
+      .diff-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1rem; }
+      .specs-grid { grid-template-columns: 1fr; }
+      .cert-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  
+    /* FOOTER SOCIAL ICONS */
+    .footer-socials { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0; }
+    .footer-socials a {
+      display: inline-flex; align-items: center; justify-content: center;
+      height: 42px; padding: 0;
+      border: 1px solid var(--border); border-radius: 999px;
+      color: var(--text-secondary); font-size: 0.82rem; transition: all 0.2s;
+    }
+    .footer-socials a:hover { color: var(--accent); border-color: var(--accent); background: rgba(0, 212, 212, 0.06); }
+    .footer-copy { margin-top: 1.5rem; opacity: 0.5; }
+
+    .footer-socials a.footer-icon svg { width: 20px; height: 20px; }
+    .footer-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+      padding: 0;
+    }
+    .footer-icon:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: rgba(0, 212, 212, 0.1);
+    }
+
+    .footer-brand-logo {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .footer-brand-logo img {
+      height: 24px;
+      width: auto;
+      margin-bottom: 0.75rem;
+      opacity: 0.9;
+    }
+    .footer-brand-logo p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+  
+    .nav-logo-img {
+      height: 20px;
+      width: auto;
+      display: block;
+    }
+  
+    .trademark-notice {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-top: 1rem;
+      opacity: 0.7;
+    }
+    .trademark-notice a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .trademark-notice a:hover {
+      text-decoration: underline;
+    }
+
+    /* GOOGLE SERVICES */
+    #google-services {
+      padding: 4rem 2rem;
+    }
+    .google-services-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .google-service-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.25rem 1rem;
+      width: 120px;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+    .google-service-item:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .google-service-item img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      margin-bottom: 0.75rem;
+    }
+    .google-service-item .service-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.25rem;
+    }
+    .google-service-item .service-desc {
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+    }
+    .google-disclaimer {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      max-width: 800px;
+      margin: 2rem auto 0;
+      opacity: 0.7;
+    }
+
+    /* PACKAGE CONTENTS */
+    .package-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .package-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem 1rem;
+      width: 140px;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+    .package-item:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .package-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .package-item .package-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.25rem;
+    }
+    .package-item .package-desc {
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+    }
+  </style>
+  <link rel="stylesheet" href="assets/mobile-responsive.css">
 </head>
 <body>
 
@@ -848,19 +1705,19 @@
     <button class="mobile-menu-btn" type="button" aria-label="Toggle menu"><span></span></button>
   </div>
   <ul class="nav-links">
-    <li><a href="/magne-web/tc/magne-home.html">Home</a></li>
-    <li><a href="/magne-web/tc/magne-phone.html" class="active">Phone</a></li>
-    <li><a href="/magne-web/tc/magne-security.html">Security</a></li>
-    <li><a href="/magne-web/tc/magne-compliance.html">Compliance</a></li>
-    <li><a href="/magne-web/tc/magne-network.html">Network</a></li>
-    <li><a href="/magne-web/tc/magne-progress.html">Progress</a></li>
-    <li><a href="/magne-web/tc/magne-partners.html">Partners</a></li>
-    <li><a href="/magne-web/tc/faq.html">FAQ</a></li>
-    <a href="/magne-web/magne-phone.html" class="nav-lang-switch">EN | 繁中</a></li>
+    <li><a href="/magne-web/tc/magne-home.html">首頁</a></li>
+    <li><a href="/magne-web/tc/magne-phone.html">手機</a></li>
+    <li><a href="/magne-web/tc/magne-security.html">安全</a></li>
+    <li><a href="/magne-web/tc/magne-compliance.html">合規</a></li>
+    <li><a href="/magne-web/tc/magne-network.html">網絡</a></li>
+    <li><a href="/magne-web/tc/magne-progress.html">進展</a></li>
+    <li><a href="/magne-web/tc/magne-partners.html">合作夥伴</a></li>
+    <li><a href="/magne-web/tc/faq.html">常見問題</a></li>
+    <a href="/magne-web/tc/magne-home.html" class="nav-lang-switch">EN | 繁中</a></li>
     <li><a href="https://web3.magne.ai" target="_blank" rel="noopener" class="nav-web3">Web3 Portal ↗️</a></li>
     <li class="nav-actions-mobile">
       <a href="/magne-web/tc/magne-contact.html" class="nav-contact">聯絡</a>
-      <a href="https://payment.magne.ai/buy" class="nav-cta">Preorder</a>
+      <a href="https://payment.magne.ai/buy" class="nav-cta">預訂</a>
     </li>
   </ul>
 </nav>
@@ -868,27 +1725,27 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-eyebrow">MAGNE.AI Phone Gen1</div>
-  <h1>硬體、軟體及擁有權功能，盡在一覽</h1>
-  <p class="hero-sub">配備 CC EAL6+ 安全元件、CC EAL2+ 可信執行環境、私密雙空間架構，並原生接入 MAGNE Network。</p>
+  <h1>Hardware, software, and ownership features in one product view</h1>
+  <p class="hero-sub">A production-oriented smartphone built for digital assets, private AI workflows, and secure ownership — with native Web3 access built in.</p>
   <div class="hero-ctas">
-    <a href="https://payment.magne.ai/buy" class="btn-primary">預訂 MAGNE.AI Phone</a>
-    <a href="#specs" class="btn-secondary">查看規格</a>
+    <a href="https://payment.magne.ai/buy" class="btn-primary">Preorder MAGNE Phone</a>
+    <a href="#specs" class="btn-secondary">View Specifications</a>
   </div>
 </section>
 
 <!-- PRODUCT VISUAL -->
 <div class="product-visual-section">
   <div class="product-image-stack">
-    <img src="/magne-web/assets/phone-white.png" alt="MAGNE Phone Front" class="phone-front">
-    <img src="/magne-web/assets/phone-black.png" alt="MAGNE Phone Back" class="phone-back">
+    <img src="phone-white.png" alt="MAGNE Phone Front" class="phone-front">
+    <img src="phone-black.png" alt="MAGNE Phone Back" class="phone-back">
   </div>
 </div>
 
 <!-- HARDWARE SPECS -->
 <section id="specs">
   <div class="section-title">
-    <h2>核心硬體規格</h2>
-    <p>每一項組件均圍繞真實部署、安全能力、AI 能力與日常可用性進行配置。</p>
+    <h2>核心硬件規格</h2>
+    <p>Every component selected to support real-world deployment with security, AI capability, and everyday usability in one device.</p>
   </div>
   <div class="specs-grid">
     <div class="spec-card animate">
@@ -899,7 +1756,7 @@
     <div class="spec-card animate">
       <div class="spec-icon">🔲</div>
       <span class="spec-label">CPU / GPU</span>
-      <h3>8 核心 CPU · ARM Mali-G57 MC4</h3>
+      <h3>8-core CPU · ARM Mali-G57 MC4</h3>
     </div>
     <div class="spec-card animate">
       <div class="spec-icon">🧠</div>
@@ -908,60 +1765,60 @@
     </div>
     <div class="spec-card animate">
       <div class="spec-icon">✨</div>
-      <span class="spec-label">AI 體驗</span>
-      <h3>裝置端 AI</h3>
-      <h3>Google Gemini 雲端 AI 體驗</h3>
+      <span class="spec-label">AI Experience</span>
+      <h3>On-device AI</h3>
+      <h3>Google Gemini cloud AI experience</h3>
     </div>
     <div class="spec-card spec-card-featured animate">
       <div class="spec-icon">🔒</div>
-      <span class="spec-label">安全架構</span>
-      <h3>TEE + HYPERSEED 安全元件</h3>
+      <span class="spec-label">Security Architecture</span>
+      <h3>TEE + HYPERSEED 安全元件s</h3>
       <p>TEE (CC EAL2+)</p>
       <p>HYPERSEED N60 (CC EAL6+)</p>
-      <p>HYPERSEED 72B NFC 備份卡 (CC EAL6+)</p>
+      <p>HYPERSEED 72B NFC Backup Card (CC EAL6+)</p>
     </div>
     <div class="spec-card spec-card-featured animate">
       <div class="spec-icon">💳</div>
-      <span class="spec-label">硬體錢包</span>
-      <h3>內建硬體錢包</h3>
-      <p>安全密鑰隔離與加密 NFC 備份</p>
+      <span class="spec-label">Hardware Wallet</span>
+      <h3>Built-in hardware wallet</h3>
+      <p>安全密鑰隔離和加密 NFC 備份</p>
     </div>
     <div class="spec-card spec-card-featured animate">
       <div class="spec-icon">🔐</div>
       <span class="spec-label">私密空間</span>
-      <h3>雙系統私密空間</h3>
-      <p>分隔 Web2 與 Web3 使用環境</p>
+      <h3>Dual-system private space</h3>
+      <p>Separates Web2 and Web3 environments</p>
     </div>
     <div class="spec-card animate">
       <div class="spec-icon">💾</div>
       <span class="spec-label">記憶體</span>
-      <h3>8GB / 12GB RAM + 最高 12GB 虛擬記憶體</h3>
-      <p>最高 20GB / 24GB Hyper RAM</p>
+      <h3>8GB / 12GB RAM + up to 12GB virtual memory</h3>
+      <p>Up to 20GB / 24GB Hyper RAM</p>
     </div>
     <div class="spec-card animate">
       <div class="spec-icon">💿</div>
       <span class="spec-label">儲存空間</span>
       <h3>512GB ROM</h3>
-      <p>UFS 3.1 高速儲存</p>
+      <p>UFS 3.1 high-speed storage</p>
     </div>
     <div class="spec-card animate">
       <div class="spec-icon">🖥️</div>
-      <span class="spec-label">顯示螢幕</span>
-      <h3>6.72 吋 FHD+</h3>
-      <p>1080 × 2384 · 120Hz 刷新率</p>
+      <span class="spec-label">顯示屏</span>
+      <h3>6.72-inch FHD+</h3>
+      <p>1080 × 2384 · 120Hz refresh rate</p>
     </div>
     <div class="spec-card animate">
       <div class="spec-icon">🔋</div>
-      <span class="spec-label">電池 / 充電</span>
+      <span class="spec-label">電池 / Charging</span>
       <h3>5000mAh</h3>
-      <p>33W PD 有線充電</p>
-      <p>15W 無線充電</p>
+      <p>33W PD wired charging</p>
+      <p>15W wireless charging</p>
     </div>
     <div class="spec-card animate">
       <div class="spec-icon">📷</div>
-      <span class="spec-label">相機</span>
-      <h3>5000萬 + 200萬 + 200萬 像素後鏡頭</h3>
-      <h3>1600萬 像素前鏡頭</h3>
+      <span class="spec-label">Camera</span>
+      <h3>50MP + 2MP + 2MP rear</h3>
+      <h3>16MP front</h3>
     </div>
     <div class="spec-card animate">
       <div class="spec-icon">📱</div>
@@ -970,28 +1827,28 @@
     </div>
     <div class="spec-card animate">
       <div class="spec-icon">🎬</div>
-      <span class="spec-label">媒體 DRM</span>
+      <span class="spec-label">Media DRM</span>
       <h3>Google Widevine L1</h3>
-      <p>支援高清串流</p>
+      <p>HD streaming supported</p>
     </div>
     <div class="spec-card animate">
       <div class="spec-icon">🛡️</div>
-      <span class="spec-label">耐用性</span>
+      <span class="spec-label">Durability</span>
       <h3>IP52</h3>
-      <p>防水與防塵能力</p>
+      <p>防水防塵</p>
     </div>
     <div class="spec-card animate">
       <div class="spec-icon">📶</div>
-      <span class="spec-label">連接能力</span>
+      <span class="spec-label">連接性</span>
       <h3>5G Sub-6 · LTE</h3>
-      <p>Wi-Fi 2.4GHz/5GHz · 藍牙 · NFC</p>
+      <p>Wi-Fi 2.4GHz/5GHz · Bluetooth · NFC</p>
     </div>
   </div>
 <!-- PACKAGE CONTENTS -->
 <section id="package">
   <div class="section-title">
     <h2>包裝內容</h2>
-    <p>包裝盒內所包含的內容</p>
+    <p>包裝包含所有配件</p>
   </div>
   <style>
     .package-layout {
@@ -1032,55 +1889,55 @@
   </style>
   <div class="package-layout">
     <div class="pkg-card" style="border-color: rgba(0,212,212,0.3); background: linear-gradient(135deg, rgba(0,212,212,0.08) 0%, rgba(0,0,0,0.5) 100%);">
-      <img src="/magne-web/assets/media-kit/package-page-1.png" alt="Black Package">
-      <p>黑色</p>
+      <img src="media-kit/package-page-1.png" alt="Black Package">
+      <p>Black</p>
     </div>
     <div class="pkg-card" style="border-color: rgba(0,212,212,0.3); background: linear-gradient(135deg, rgba(0,212,212,0.08) 0%, rgba(0,0,0,0.5) 100%);">
-      <img src="/magne-web/assets/media-kit/package-page-2.png" alt="White Package">
-      <p>白色</p>
+      <img src="media-kit/package-page-2.png" alt="White Package">
+      <p>White</p>
     </div>
     <div class="pkg-card unfolded" style="border-color: rgba(0,212,212,0.3); background: linear-gradient(135deg, rgba(0,212,212,0.08) 0%, rgba(0,0,0,0.5) 100%);">
-      <img src="/magne-web/assets/media-kit/package-page-5.png" alt="Package Unfolded">
-      <p>包裝展開圖</p>
+      <img src="media-kit/package-page-5.png" alt="Package Unfolded">
+      <p>Package Unfolded</p>
     </div>
     <div class="pkg-card" style="border-color: rgba(0,212,212,0.3); background: linear-gradient(135deg, rgba(0,212,212,0.08) 0%, rgba(0,0,0,0.5) 100%);">
-      <img src="/magne-web/assets/media-kit/package-page-4.png" alt="Charging Adapters">
-      <p>充電器 · SIM 取卡針 · Type-C 線</p><p style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.3rem;">插頭規格將根據出貨地區配置</p>
+      <img src="media-kit/package-page-4.png" alt="Charging Adapters">
+      <p>Charging Adapters · SIM Ejector · Type-C Cable</p><p style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.3rem;">* US/EU plug based on shipping destination</p>
     </div>
     <div class="pkg-card" style="border-color: rgba(0,212,212,0.3); background: linear-gradient(135deg, rgba(0,212,212,0.08) 0%, rgba(0,0,0,0.5) 100%);">
-      <img src="/magne-web/assets/media-kit/nfc-card.png" alt="NFC Card">
-      <p>HYPERSEED 72B NFC 備份卡</p>
+      <img src="media-kit/nfc-card.png" alt="NFC Card">
+      <p>HYPERSEED 72B NFC Backup Card</p>
     </div>
   </div>
   <div class="package-grid">
     <div class="package-item">
       <div class="package-icon">📱</div>
-      <span class="package-name">MAG1 手機</span>
-      <span class="package-desc">6.72 吋 Android 15 裝置</span>
+      <span class="package-name">MAG1 Phone</span>
+      <span class="package-desc">6.72" Android 15 device</span>
     </div>
     <div class="package-item">
       <div class="package-icon">🪪</div>
-      <span class="package-name">HYPERSEED 72B NFC 備份卡</span>
+      <span class="package-name">HYPERSEED 72B NFC Backup Card</span>
       <span class="package-desc">加密身份備份</span>
     </div>
     <div class="package-item">
       <div class="package-icon">🔌</div>
-      <span class="package-name">充電頭</span>
-      <span class="package-desc">支援美規 / 歐規插頭</span>
+      <span class="package-name">Charging Brick</span>
+      <span class="package-desc">US / EU plug compatible</span>
     </div>
     <div class="package-item">
       <div class="package-icon">⚡</div>
-      <span class="package-name">Type-C 線</span>
-      <span class="package-desc">33W PD 快充</span>
+      <span class="package-name">Type-C Cable</span>
+      <span class="package-desc">33W PD fast charging</span>
     </div>
     <div class="package-item">
       <div class="package-icon">📎</div>
-      <span class="package-name">SIM 取卡針</span>
-      <span class="package-desc">SIM 槽工具</span>
+      <span class="package-name">SIM Ejector</span>
+      <span class="package-desc">SIM tray tool</span>
     </div>
     <div class="package-item">
       <div class="package-icon">📖</div>
-      <span class="package-name">使用者手冊</span>
+      <span class="package-name">User Manual</span>
       <span class="package-desc">快速入門指南</span>
     </div>
   </div>
@@ -1090,18 +1947,18 @@
 <section id="google-services">
   <div class="section-title">
     <h2>Google 服務與 AI</h2>
-    <p>預載 Google 應用與服務，支援完整的日常手機體驗。</p>
+    <p>預裝 Google 應用程式 and services for a complete mobile experience.</p>
   </div>
   <div class="google-services-grid">
     <div class="google-service-item">
       <img src="/magne-web/assets/android-icon.png" alt="Android">
       <span class="service-name">Android 15</span>
-      <span class="service-desc">官方 Android 平台</span>
+      <span class="service-desc">Official Android platform</span>
     </div>
     <div class="google-service-item">
       <img src="/magne-web/assets/gemini-icon.png" alt="Gemini">
       <span class="service-name">Gemini AI</span>
-      <span class="service-desc">側鍵一鍵啟動</span>
+      <span class="service-desc">One-touch via side key</span>
     </div>
     <div class="google-service-item">
       <img src="/magne-web/assets/play-icon.png" alt="Google Play">
@@ -1111,7 +1968,7 @@
     <div class="google-service-item">
       <img src="/magne-web/assets/maps-icon.png" alt="Google Maps">
       <span class="service-name">Google Maps</span>
-      <span class="service-desc">導航與定位</span>
+      <span class="service-desc">Navigation & location</span>
     </div>
     <div class="google-service-item">
       <img src="/magne-web/assets/chrome-icon.png" alt="Chrome">
@@ -1121,7 +1978,7 @@
     <div class="google-service-item">
       <img src="/magne-web/assets/gmail-icon.png" alt="Gmail">
       <span class="service-name">Gmail</span>
-      <span class="service-desc">Google email</span>
+      <span class="service-desc">Google 電郵</span>
     </div>
     <div class="google-service-item">
       <img src="/magne-web/assets/drive-icon.png" alt="Google Drive">
@@ -1146,18 +2003,18 @@
     <div class="google-service-item">
       <img src="/magne-web/assets/meet-icon.png" alt="Google Meet">
       <span class="service-name">Google Meet</span>
-      <span class="service-desc">視訊會議</span>
+      <span class="service-desc">視像會議</span>
     </div>
   </div>
-  <p class="google-disclaimer">Google、Android、Gemini、Gmail、Chrome、YouTube、Google Maps、Google Drive、Google Meet 及 Google Play 為 Google LLC 的商舘。本頁提及相關名稱僅用於描述用途，不代表 Google LLC 對本項目的背書、贊助或官方合作關係。 Their presence on this page is for descriptive purposes only and does not constitute an endorsement or partnership.</p>
+  <p class="google-disclaimer">Google、Android、Gemini、Gmail、Chrome、YouTube、Google Maps、Google Drive、Google Meet 及 Google Play 為 Google LLC 的商標。本頁提及相關名稱僅用於描述用途，不代表 Google LLC 對本項目的背書、贊助或官方合作關係。</p>
 </section>
 
 
 <!-- SOFTWARE ARCHITECTURE -->
 <section id="software">
   <div class="section-title">
-    <h2>軟體架構</h2>
-    <p>MAGNE 不僅是硬體設備，亦採用雙空間架構，將日常使用與 Web3 操作分隔開來。</p>
+    <h2>Software Architecture</h2>
+    <p>Beyond hardware — MAGNE runs a dual-space architecture that separates everyday use from Web3 operations.</p>
   </div>
   <div class="software-layout">
     <div class="software-visual">
@@ -1167,7 +2024,7 @@
         <div class="diagram-circle diagram-core"></div>
 
         <div class="diagram-tag tag-nfc">
-          <span class="diagram-label">NFC Recovery</span>
+          <span class="diagram-label">NFC 復原功能</span>
           <span class="diagram-sublabel">加密離線備份</span>
         </div>
 
@@ -1184,20 +2041,20 @@
     </div>
     <div class="software-content">
       <div class="software-item animate">
-        <h4>Android 15 基礎</h4>
-        <p>基於現代 Android 架構，具備 Google GMS 相容性，確保應用程式生態系統存取及日常可用性。</p>
+        <h4>Android 15 Foundation</h4>
+        <p>Built on a modern Android foundation with Google GMS compatibility, ensuring app ecosystem access and everyday usability.</p>
       </div>
       <div class="software-item animate">
-        <h4>私密雙空間架構</h4>
+        <h4>Private 雙空間架構</h4>
         <p>A hidden Web3 space isolates wallet operations, signing flows, and blockchain interactions from the main mobile experience.</p>
       </div>
       <div class="software-item animate">
-        <h4>硬體錢包級密鑰隔離</h4>
+        <h4>硬體錢包級 密鑰隔離</h4>
         <p>Private keys are protected through dedicated secure element architecture — not software-based storage.</p>
       </div>
       <div class="software-item animate">
-        <h4>原生 Web3 接入</h4>
-        <p>錢包、兌換、質押、跨鏈橋及生態接入被直接整合至設備體驗中，無需額外裝置。</p>
+        <h4>Native Web3 Access</h4>
+        <p>Wallet, swap, stake, bridge, and ecosystem access are integrated directly — no separate devices required.</p>
       </div>
     </div>
   </div>
@@ -1206,33 +2063,33 @@
 <!-- SECURITY SUMMARY -->
 <section id="security">
   <div class="section-title">
-    <h2>安全架構</h2>
-    <p>三層防護設計於硬體之中，而非事後附加。</p>
+    <h2>Security Architecture</h2>
+    <p>Three-layer protection designed into the hardware — not added as an afterthought.</p>
   </div>
   <div class="security-summary animate">
-    <h3>三層安全所有權架構</h3>
+    <h3>Three-Layer Secure Ownership Stack</h3>
     <div class="security-layers">
       <div class="security-layer layer-1 animate">
         <div class="layer-num">L1</div>
         <div class="layer-text">
-          <h4>可信執行隔離</h4>
-          <p>在可信執行層進行流程隔離，以提升操作控制能力。</p>
+          <h4>Trusted Execution Isolation</h4>
+          <p>Process isolation at the trusted execution layer for stronger operational control.</p>
         </div>
         <span class="layer-badge">CC EAL2+</span>
       </div>
       <div class="security-layer layer-2 animate">
         <div class="layer-num">L2</div>
         <div class="layer-text">
-          <h4>安全元件簽署</h4>
-          <p>專用硬體支援私鑰儲存與交易簽署流程。</p>
+          <h4>安全元件 Signing</h4>
+          <p>Dedicated hardware for private key storage and transaction signing operations.</p>
         </div>
         <span class="layer-badge">CC EAL6+</span>
       </div>
       <div class="security-layer layer-3 animate">
         <div class="layer-num">L3</div>
         <div class="layer-text">
-          <h4>加密 NFC 復原功能</h4>
-          <p>離線備份與實體復原能力將保護延伸至設備之外。</p>
+          <h4>Encrypted NFC 復原功能</h4>
+          <p>Offline backup and physical recovery extend protection beyond the device itself.</p>
         </div>
         <span class="layer-badge">CC EAL6+</span>
       </div>
@@ -1247,40 +2104,40 @@
 <section id="certifications">
   <div class="section-title">
     <h2>認證與標準</h2>
-    <p>已取得或正在推進的關鍵認證，用於支援跨市場真實部署所需的相容性與合規準備。</p>
+    <p>Key certifications obtained or in progress to support 全球部署.</p>
   </div>
   <div class="cert-grid">
     <div class="cert-card animate">
       <h4>Google GMS</h4>
-      <p>已核准</p>
+      <p>Approved</p>
     </div>
     <div class="cert-card animate">
       <h4>Widevine L1</h4>
-      <p>已支援</p>
+      <p>Supported</p>
     </div>
     <div class="cert-card animate">
       <h4>GSMA TAC</h4>
-      <p>已取得</p>
+      <p>Obtained</p>
     </div>
     <div class="cert-card animate">
       <h4>FCC</h4>
-      <p>已公開</p>
+      <p>Public</p>
     </div>
     <div class="cert-card animate">
       <h4>CB</h4>
-      <p>已完成</p>
+      <p>Completed</p>
     </div>
     <div class="cert-card animate">
       <h4>UN38.3</h4>
-      <p>已通過</p>
+      <p>Passed</p>
     </div>
     <div class="cert-card animate">
       <h4>CP65</h4>
-      <p>已通過</p>
+      <p>Passed</p>
     </div>
     <div class="cert-card animate">
       <h4>CE</h4>
-      <p>進行中</p>
+      <p>In Progress</p>
     </div>
   </div>
   <p style="text-align: center; margin-top: 2rem;">
@@ -1291,24 +2148,24 @@
 <!-- DIFFERENTIATION -->
 <section id="difference">
   <div class="section-title">
-    <h2>MAGNE 的差異化</h2>
-    <p>這不只是另一款智能手機，而是一款從底層開始為下一代數字所有權而設計的設備。</p>
+    <h2>What Makes MAGNE Different</h2>
+    <p>Not just another smartphone — a device designed from the ground up for the next generation of digital ownership.</p>
   </div>
   <div class="diff-grid">
     <div class="diff-card animate">
-      <h4>為所有權而設計，不只是為應用而設計</h4>
+      <h4>為擁有而設計，不只是應用程式</h4>
       <p>Most phones are optimized for content consumption. MAGNE is optimized for digital asset ownership — with security architecture designed in from the start, not layered on top.</p>
     </div>
     <div class="diff-card animate">
-      <h4>私密 AI，設備端運行</h4>
-      <p>NPU 支援重視私密的設備端 AI 工作流，減少對特定使用場景雲端處理的依賴。</p>
+      <h4>Private AI, on-device</h4>
+      <p>The NPU supports privacy-sensitive on-device AI workflows, reducing reliance on cloud processing for selected use cases.</p>
     </div>
     <div class="diff-card animate">
-      <h4>Web3 是原生能力，而非單一應用</h4>
+      <h4>Web3 is native, not an app</h4>
       <p>Wallet, swap, stake, bridge — these aren't separate apps you download. They're integrated into the device experience through a secure Web3 space.</p>
     </div>
     <div class="diff-card animate">
-      <h4>支援離線復原</h4>
+      <h4>離線復原功能</h4>
       <p>NFC-based encrypted backup means your assets can be recovered even without cloud access. Physical security for digital assets.</p>
     </div>
   </div>
@@ -1318,17 +2175,17 @@
 <section class="demo-section">
   <div class="demo-shell">
     <div class="section-title">
-      <div class="section-eyebrow">設備演示</div>
-      <h2>查看 MAG1 實機演示</h2>
-      <p>觀看涵蓋錢包創建、復原、dApp 連接、私密空間及 AI 輔助工作流的真實裝置演示。</p>
+      <div class="section-eyebrow">DEVICE DEMOS</div>
+      <h2>See MAG1 in Action</h2>
+      <p>Watch real device walkthroughs covering wallet creation, recovery, dApp connection, private space, and AI-assisted workflows.</p>
     </div>
     <div class="demo-card">
       <div class="demo-copy">
-        <h3>真實設備上的真實工作流</h3>
+        <h3>在真實設備上的真實工作流</h3>
         <p>Explore guided demos showing how MAG1 works in practice — from wallet setup and encrypted recovery to private space usage, dApp connection, and AI-assisted interaction.</p>
       </div>
       <div class="demo-actions">
-        <a href="features-demo.html" class="btn-primary">開啟功能演示</a>
+        <a href="features-demo.html" class="btn-primary">Open Feature Demos</a>
       </div>
     </div>
   </div>
@@ -1336,11 +2193,11 @@
 
 <!-- FINAL CTA -->
 <section id="contact" class="cta-section">
-  <h2>想了解更多？</h2>
-  <p>無論您準備好預訂或想了解更多產品詳情，我們都在這裡為您服務。</p>
+  <h2>Ready to learn more?</h2>
+  <p>Whether you are ready to preorder or want more product details, we are here to help.</p>
   <div class="cta-buttons">
-    <a href="https://payment.magne.ai/buy" class="btn-primary">預訂 MAGNE.AI Phone</a>
-    <a href="/magne-web/tc/magne-security.html" class="btn-secondary">探索安全架構</a>
+    <a href="https://payment.magne.ai/buy" class="btn-primary">Preorder MAGNE Phone</a>
+    <a href="/magne-web/tc/magne-security.html" class="btn-secondary">Explore Security Architecture</a>
   </div>
 </section>
 
@@ -1348,7 +2205,7 @@
 <footer>
   <div class="footer-brand-logo">
       <img src="/magne-web/assets/brand/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="footer-brand-img">
-      <p>Web3 原生 AI 手機</p>
+      <p>Web3 原生 AI 安全手機</p>
     </div>
   
   <div class="footer-socials" aria-label="Official MAGNE.AI channels">
@@ -1361,16 +2218,16 @@
   </div>
 
 <div class="footer-links">
-    <a href="/magne-web/tc/magne-contact.html">法律意見書</a>
+    <a href="/magne-web/tc/magne-contact.html">隱私政策</a>
     <a href="/magne-web/tc/magne-contact.html">聯絡</a>
-    <a href="/magne-web/media-kit.html">媒體套件</a>
+    <a href="/magne-web/tc/magne-contact.html">媒體資料包</a>
     <a href="https://web3.magne.ai" target="_blank" rel="noopener">白皮書</a>
     <a href="https://web3.magne.ai/transparency" target="_blank" rel="noopener">法律意見書</a>
   </div>
-  <p class="trademark-notice">
-    MAGNE.AI™ 為 Magical Hash Global Tech Limited 的商業標誌，目前正在註冊程序中（<a href="https://tmsearch.uspto.gov/search/search-results/99311528" target="_blank" rel="noopener" style="color: var(--accent);">USPTO 序號：99311528</a>）。
+    <p class="trademark-notice">
+    MAGNE.AI™ 為 Magical Hash Global Tech Limited 的商業，目前正在註冊程序中（<a href="https://tmsearch.uspto.gov/search/search-results/99311528" target="_blank" rel="noopener" style="color: var(--accent);">USPTO 序號：99311528</a>）。
   </p>
-  <p style="margin-top: 1.5rem; opacity: 0.8;">© 2026 MAGNE.AI. 版權所有。</p>
+  <p style="margin-top: 1.5rem; opacity: 0.5;">© 2026 MAGNE.AI. 版權所有。</p>
 </footer>
 
 </div>
@@ -1467,3 +2324,4 @@
 
   <script src="/magne-web/assets/mobile-nav.js" defer></script>
 </body>
+</html>
