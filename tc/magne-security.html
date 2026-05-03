@@ -1553,22 +1553,22 @@
     <div class="arch-stack">
       <div class="arch-layer-box layer-1 animate">
         <span class="arch-layer-label">L1 — Trusted Execution</span>
-        <h3 class="arch-layer-title">Trusted Execution隔離</h3>
-        <p class="arch-layer-sub">系統層級Process Isolation，用於提升操作控制能力</p>
+        <h3 class="arch-layer-title">可信執行隔離</h3>
+        <p class="arch-layer-sub">系統層級流程隔離，用於提升操作控制能力</p>
         <span class="arch-layer-badge">CC EAL2+</span>
       </div>
       <div class="arch-connector"></div>
       <div class="arch-layer-box layer-2 animate">
         <span class="arch-layer-label">L2 — Secure Element</span>
-        <h3 class="arch-layer-title">Secure Element簽名</h3>
-        <p class="arch-layer-sub">Dedicated hardware for key storage and signing</p>
+        <h3 class="arch-layer-title">安全元件簽名</h3>
+        <p class="arch-layer-sub">專用硬件支援私鑰儲存與交易簽署</p>
         <span class="arch-layer-badge">CC EAL6+</span>
       </div>
       <div class="arch-connector"></div>
       <div class="arch-layer-box layer-3 animate">
         <span class="arch-layer-label">L3 — NFC 復原</span>
-        <h3 class="arch-layer-title">Encrypted NFC Recovery</h3>
-        <p class="arch-layer-sub">Offline backup and physical recovery beyond the device itself</p>
+        <h3 class="arch-layer-title">加密 NFC 復原</h3>
+        <p class="arch-layer-sub">離線備份與實體復原能力，將保護延伸至設備之外</p>
         <span class="arch-layer-badge">CC EAL6+</span>
       </div>
     </div>
@@ -1581,7 +1581,7 @@
   <div class="layer-detail layer-1-detail">
     <div class="layer-info">
       <div class="layer-num">L1</div>
-      <h3>Trusted Execution隔離</h3>
+      <h3>可信執行隔離</h3>
       <p>第一層防護運行於系統執行層。敏感操作會在Trusted Execution環境中隔離，並與主要操作系統分離。該隔離執行環境旨在降低主系統受到攻擊時，敏感操作暴露的風險。</p>
       <p>這並非單純的軟體隔離，而是建立在設備硬體基礎之上的架構隔離。它定義哪些流程可存取哪些資源，並為最敏感的操作建立更明確的安全邊界。</p>
       <div class="layer-badges">
@@ -1633,7 +1633,7 @@
   <div class="layer-detail layer-3-detail">
     <div class="layer-info">
       <div class="layer-num">L3</div>
-      <h3>Encrypted NFC Recovery</h3>
+      <h3>加密 NFC 復原</h3>
       <p>第三層針對數字資產管理中的核心問題：當使用者失去設備存取權時，如何恢復資產？基於 NFC 的加密備份將安全保護延伸至硬體設備之外。</p>
       <p>在設定 MAGNE 時，系統會產生一份加密備份，並將其儲存在 NFC 標籤或另一台設備中。該備份包含資產復原所需資訊，但不會以明文形式暴露私鑰。整個復原流程以實體、離線方式完成，無需依賴雲端或第三方服務。</p>
       <div class="layer-badges">
