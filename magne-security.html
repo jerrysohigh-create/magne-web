@@ -2000,46 +2000,46 @@
   <div class="section-inner">
   <div class="section-title">
     <h2>How MAGNE Compares to Software Wallets</h2>
-    <p>Software wallets make trade-offs between usability and security. MAGNE's hardware-backed architecture addresses each one.</p>
+    <p>Software wallets usually require a trade-off between usability and security; MAGNE provides system-level improvements for these key issues through a hardware-supported security architecture.</p>
   </div>
   <table class="vs-table">
     <thead>
       <tr>
-        <th>Aspect</th>
-        <th>Software Wallets</th>
+        <th>比較項目</th>
+        <th>軟體錢包</th>
         <th>MAGNE</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>Key Isolation</td>
-        <td>Keys stored in app memory, accessible to OS</td>
-        <td><span class="vs-highlight">Keys isolated in dedicated secure hardware</span></td>
+        <td>密鑰隔離</td>
+        <td>私鑰儲存在應用程式記憶體中，可被操作系統存取</td>
+        <td><span class="vs-highlight">私鑰隔離於專用安全硬體中</span></td>
       </tr>
       <tr>
-        <td>Signing Environment</td>
-        <td>Software-based signing on main processor</td>
-        <td><span class="vs-highlight">Hardware signing inside secure element boundary</span></td>
+        <td>簽名環境</td>
+        <td>在主處理器上進行軟體簽名</td>
+        <td><span class="vs-highlight">在安全元件邊界內進行硬體簽名</span></td>
       </tr>
       <tr>
-        <td>Backup Method</td>
-        <td>Seed phrase (can be stolen, lost, guessed)</td>
-        <td><span class="vs-highlight">NFC encrypted backup — physical, offline, no seed exposure</span></td>
+        <td>備份方式</td>
+        <td>助記詞（可被竊取、遺失或猜測）</td>
+        <td><span class="vs-highlight">NFC 加密備份 — 實體、離線、無助記詞暴露風險</span></td>
       </tr>
       <tr>
-        <td>Device Exposure</td>
-        <td>Entire device must be trusted and secure</td>
-        <td><span class="vs-highlight">Sensitive signing operations are isolated in secure hardware, reducing exposure to main OS risks.</span></td>
+        <td>設備暴露面</td>
+        <td>整台設備必須被視為可信且安全</td>
+        <td><span class="vs-highlight">敏感簽名操作隔離於安全硬體中，降低主系統風險暴露。</span></td>
       </tr>
       <tr>
-        <td>Recovery Model</td>
-        <td>Depends on seed phrase + third-party tools</td>
-        <td><span class="vs-highlight">Offline NFC recovery without cloud or third-party</span></td>
+        <td>復原模式</td>
+        <td>依賴助記詞與第三方工具</td>
+        <td><span class="vs-highlight">透過離線 NFC 復原，無需雲端或第三方</span></td>
       </tr>
       <tr>
-        <td>Certification</td>
-        <td>No hardware security certification</td>
-        <td><span class="vs-highlight">CC EAL2+ / EAL6+ certified secure element</span></td>
+        <td>認證</td>
+        <td>無硬體安全認證</td>
+        <td><span class="vs-highlight">CC EAL2+ / CC EAL6+ 相關組件級認證參考</span></td>
       </tr>
     </tbody>
   </table>
@@ -2050,25 +2050,25 @@
 <section id="chip-components" style="background: var(--bg-secondary);">
   <div class="section-inner">
   <div class="section-title">
-    <h2>Security Chip Components</h2>
-    <p>At the heart of MAGNE's security solution are purpose-built components designed for hardware-grade protection.</p>
+    <h2>安全晶片與系統組件</h2>
+    <p>MAGNE 的安全架構整合可信執行環境、安全元件與離線復原能力，旨在於設備層面提升密鑰保護、簽署流程與資產復原的安全性。以下內容為相關安全組件與能力說明；所述認證適用於對應組件、模組或評估範圍，並不代表整機、完整系統或所有商業配置已取得相同等級認證。</p>
   </div>
 
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:2.5rem;">
     <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:18px;padding:2rem;text-align:center;transition:all .25s ease;" onmouseover="this.style.borderColor='rgba(0,212,212,0.3)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
-      <div style="font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:700;letter-spacing:1px;color:var(--accent);background:rgba(0,212,212,.12);padding:.3rem .7rem;border-radius:999px;margin-bottom:1rem;display:inline-block;">COMPONENT</div>
-      <h4 style="font-size:1.05rem;font-weight:600;margin-bottom:.75rem;">UTEE — UNISOC TEE</h4>
-      <p style="color:var(--text-secondary);font-size:.9rem;line-height:1.65;">Custom Trusted Execution Environment developed in partnership with UNISOC. UTEE isolates sensitive data and operations from the main system, ensuring cryptographic keys and user data are securely processed within a trusted environment. <strong style="color:var(--accent);">CC EAL2+</strong> certified.</p>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:700;letter-spacing:1px;color:var(--accent);background:rgba(0,212,212,.12);padding:.3rem .7rem;border-radius:999px;margin-bottom:1rem;display:inline-block;">組件</div>
+      <h4 style="font-size:1.05rem;font-weight:600;margin-bottom:.75rem;">UTEE</h4>
+      <p style="color:var(--text-secondary);font-size:.9rem;line-height:1.65;">UTEE 是具備 CC EAL2+ 評估基礎的可信執行環境，用於將敏感資料與關鍵操作從主系統中隔離，支援加密密鑰與用戶資料在可信環境中處理。</p>
     </div>
     <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:18px;padding:2rem;text-align:center;transition:all .25s ease;" onmouseover="this.style.borderColor='rgba(0,212,212,0.3)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
-      <div style="font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:700;letter-spacing:1px;color:var(--accent);background:rgba(0,212,212,.12);padding:.3rem .7rem;border-radius:999px;margin-bottom:1rem;display:inline-block;">COMPONENT</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:700;letter-spacing:1px;color:var(--accent);background:rgba(0,212,212,.12);padding:.3rem .7rem;border-radius:999px;margin-bottom:1rem;display:inline-block;">組件</div>
       <h4 style="font-size:1.05rem;font-weight:600;margin-bottom:.75rem;">HYPERSEED N60 (CIU98M50)</h4>
-      <p style="color:var(--text-secondary);font-size:.9rem;line-height:1.65;">Custom security solution combining the CIU98M50 processor with an integrated NFC module. Offers secure cryptographic operations, key isolation, and offline key recovery. <strong style="color:var(--accent);">CC EAL6+</strong> certified.</p>
+      <p style="color:var(--text-secondary);font-size:.9rem;line-height:1.65;">HYPERSEED N60 是結合安全處理能力與整合式 NFC 模組的定制安全方案，相關安全元件具備 CC EAL6+ 認證參考。該組件支援加密操作、密鑰隔離與離線密鑰復原能力。</p>
     </div>
     <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:18px;padding:2rem;text-align:center;transition:all .25s ease;" onmouseover="this.style.borderColor='rgba(0,212,212,0.3)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
-      <div style="font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:700;letter-spacing:1px;color:var(--accent);background:rgba(0,212,212,.12);padding:.3rem .7rem;border-radius:999px;margin-bottom:1rem;display:inline-block;">COMPONENT</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:700;letter-spacing:1px;color:var(--accent);background:rgba(0,212,212,.12);padding:.3rem .7rem;border-radius:999px;margin-bottom:1rem;display:inline-block;">組件</div>
       <h4 style="font-size:1.05rem;font-weight:600;margin-bottom:.75rem;">HYPERSEED 72B (CIU9872B)</h4>
-      <p style="color:var(--text-secondary);font-size:.9rem;line-height:1.65;">Software-enhanced version of the CIU9872B, providing additional encryption and key recovery functionality. <strong style="color:var(--accent);">CC EAL6+</strong> certified.</p>
+      <p style="color:var(--text-secondary);font-size:.9rem;line-height:1.65;">HYPERSEED 72B 是具備 NFC RF 擴展接口的安全處理器組件，相關安全元件具備 CC EAL6+ 認證參考，用於支援額外加密與密鑰復原功能。</p>
     </div>
   </div>
 
@@ -2118,7 +2118,7 @@
     </div>
   </div>
   <p style="text-align:center;margin-top:2rem;color:var(--text-secondary);font-size:.9rem;line-height:1.7;">
-    To request access to certification documents, please contact the MAGNE team.<br>
+    相關文件可依合作、審閱或機構查詢需求提供。<br>
     <a href="/magne-web/magne-contact.html" style="color:var(--accent);text-decoration:none;font-weight:500;">Contact MAGNE →</a>
   </p>
   </div>
@@ -2129,7 +2129,7 @@
   <div class="section-inner">
   <div class="section-title">
     <h2>Security Certifications & Validation</h2>
-    <p>MAGNE's security architecture is backed by independent validation and certification.</p>
+    <p>MAGNE 的安全架構參考了底層組件層級的第三方安全評估與認證結果，包括 CC EAL2+ 可信執行環境相關評估，以及 CC EAL6+ 安全元件相關認證。上述認證適用於其對應的組件、模組或評估範圍，並不代表整機、完整系統或所有商業配置已取得相同等級認證。</p>
   </div>
   <div class="proof-grid">
     <div class="proof-item animate">
