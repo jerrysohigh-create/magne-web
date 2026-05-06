@@ -1367,23 +1367,7 @@
   </footer>
 
 
-<script>
-function toggleMobileMenu() {
-  var navLinks = document.getElementById('mobileNavLinks');
-  if (!navLinks) return;
-  navLinks.classList.toggle('mobile-open');
-}
-document.addEventListener('click', function(event) {
-  var navLinks = document.getElementById('mobileNavLinks');
-  var menuButton = document.querySelector('.mobile-menu-btn');
-  if (!navLinks || !menuButton) return;
-  if (!navLinks.contains(event.target) && !menuButton.contains(event.target)) {
-    navLinks.classList.remove('mobile-open');
-  }
-});
-</script>
-
-  <script src="/magne-web/assets/mobile-nav.js" defer></script>
+<script src="/magne-web/assets/mobile-nav.js" defer></script>
   <script>
     const canvas = document.getElementById("node-bg");
     const ctx = canvas.getContext("2d");
