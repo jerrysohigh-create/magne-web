@@ -1367,7 +1367,50 @@
   </footer>
 
 
-<script src="/magne-web/assets/mobile-nav.js" defer></script>
+
+<script>
+// Inline mobile menu handler - ensures hamburger works
+(function() {
+  document.addEventListener("DOMContentLoaded", function() {
+    var toggle = document.querySelector(".mobile-menu-btn");
+    var menu = document.querySelector(".nav-links");
+    
+    if (!toggle) {
+      console.log("Mobile menu toggle NOT found");
+      return;
+    }
+    if (!menu) {
+      console.log("Mobile menu (nav-links) NOT found");
+      return;
+    }
+    
+    console.log("Mobile menu init: toggle found, menu found");
+    
+    // Force toggle visible
+    toggle.style.display = "inline-flex";
+    toggle.style.visibility = "visible";
+    toggle.style.opacity = "1";
+    
+    toggle.addEventListener("click", function(e) {
+      console.log("Toggle clicked");
+      var isOpen = menu.classList.toggle("active");
+      toggle.classList.toggle("active", isOpen);
+      document.body.classList.toggle("menu-open", isOpen);
+      toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+    
+    // Close on link click
+    menu.querySelectorAll("a").forEach(function(link) {
+      link.addEventListener("click", function() {
+        menu.classList.remove("active");
+        toggle.classList.remove("active");
+        document.body.classList.remove("menu-open");
+      });
+    });
+  });
+})();
+</script>
+
   <script>
     const canvas = document.getElementById("node-bg");
     const ctx = canvas.getContext("2d");
