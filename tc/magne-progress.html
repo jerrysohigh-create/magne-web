@@ -562,7 +562,45 @@
     .footer-col a:hover {
       color: var(--accent);
     }
-    @media (max-width: 768px) {
+    
+  
+  /* CRITICAL: When nav-links has .active class, it MUST show */
+  nav ul.nav-links.active,
+  nav .nav-links.active {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    position: fixed !important;
+    top: 70px !important;
+    left: 1rem !important;
+    right: 1rem !important;
+    background: rgba(14, 15, 18, 0.98) !important;
+    border: 1px solid rgba(255,255,255,0.10) !important;
+    border-radius: 20px !important;
+    padding: 1rem !important;
+    flex-direction: column !important;
+    z-index: 10000 !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  
+  nav ul.nav-links.active li,
+  nav .nav-links.active li {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  nav ul.nav-links.active a,
+  nav .nav-links.active a {
+    display: block !important;
+    visibility: visible !important;
+    padding: 0.75rem !important;
+    color: #fff !important;
+  }
+
+@media (max-width: 768px) {
       .footer-container {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
