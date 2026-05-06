@@ -800,56 +800,79 @@
     visibility: hidden !important;
   }
   
-  /* Mobile menu panel shown when .active */
-  .mobile-menu.active,
-  .mobile-nav.active,
-  .mobile-menu-panel.active,
-  .mobile-nav-panel.active,
-  .nav-links-mobile.active {
-    display: flex !important;
-    visibility: visible !important;
-    position: fixed !important;
-    top: 70px !important;
-    left: 1rem !important;
-    right: 1rem !important;
-    background: rgba(14, 15, 18, 0.98) !important;
-    border: 1px solid rgba(255,255,255,0.10) !important;
-    border-radius: 20px !important;
-    padding: 1rem !important;
-    flex-direction: column !important;
-    z-index: 10000 !important;
-    box-shadow: 0 24px 80px rgba(0,0,0,0.5) !important;
-  }
   
-  /* Menu items in mobile panel */
-  .mobile-menu.active li,
-  .mobile-nav.active li,
-  .mobile-menu-panel.active li {
-    display: block !important;
-  }
-  
-  .mobile-menu.active a,
-  .mobile-nav.active a,
-  .mobile-menu-panel.active a {
-    display: block !important;
-    padding: 0.75rem !important;
-    color: #fff !important;
-  }
 }
 
-/* Ensure hamburger hidden on desktop (>900px) */
-@media (min-width: 901px) {
-  nav .mobile-menu-btn {
-    display: none !important;
-  }
-}
 
-@media (max-width: 768px) {
-  /* Reinforce: hamburger shows on small screens */
-  nav .mobile-menu-btn {
-    display: inline-flex !important;
-    visibility: visible !important;
-  }
+/* Mobile menu - Jerry's fix: use .mobile-open class */
+@media (max-width: 900px) {
+ nav .nav-links {
+   display: none !important;
+   visibility: hidden !important;
+   opacity: 0 !important;
+   pointer-events: none !important;
+ }
+
+ nav .nav-links.mobile-open {
+   display: flex !important;
+   visibility: visible !important;
+   opacity: 1 !important;
+   pointer-events: auto !important;
+
+   position: fixed !important;
+   top: 78px !important;
+   left: 24px !important;
+   right: 24px !important;
+   width: auto !important;
+   max-width: none !important;
+
+   flex-direction: column !important;
+   gap: 0 !important;
+
+   padding: 24px 28px !important;
+   border-radius: 22px !important;
+   background: rgba(8, 10, 14, 0.96) !important;
+   border: 1px solid rgba(255,255,255,0.12) !important;
+   box-shadow: 0 24px 80px rgba(0,0,0,0.55) !important;
+   z-index: 10000 !important;
+
+   height: auto !important;
+   overflow: visible !important;
+   box-sizing: border-box !important;
+ }
+
+ nav .nav-links.mobile-open li {
+   display: block !important;
+   height: auto !important;
+   width: 100% !important;
+   opacity: 1 !important;
+   visibility: visible !important;
+ }
+
+ nav .nav-links.mobile-open a {
+   display: block !important;
+   width: 100% !important;
+   padding: 14px 0 !important;
+   color: #fff !important;
+   font-size: 18px !important;
+   line-height: 1.4 !important;
+   text-align: left !important;
+   text-decoration: none !important;
+   writing-mode: horizontal-tb !important;
+   text-orientation: mixed !important;
+   white-space: nowrap !important;
+   word-break: keep-all !important;
+ }
+
+ nav .nav-links.mobile-open .nav-actions-mobile {
+   display: block !important;
+   visibility: visible !important;
+   opacity: 1 !important;
+   height: auto !important;
+   width: 100% !important;
+   overflow: visible !important;
+   padding-top: 12px !important;
+ }
 }
 
 </style>
@@ -862,7 +885,7 @@
 
 <nav>
   <div class="nav-brand">
-    <a href="/magne-web/magne-home.html" class="nav-logo"><img src="/magne-web/assets/brand/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="nav-logo-img"></a>
+    <a href="/magne-web/tc/magne-home.html" class="nav-logo"><img src="/magne-web/assets/brand/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="nav-logo-img"></a>
     <button class="mobile-menu-btn" type="button" aria-label="Toggle menu"><span></span></button>
   </div>
   <ul class="nav-links">
@@ -1368,48 +1391,7 @@
 
 
 
-<script>
-// Inline mobile menu handler - ensures hamburger works
-(function() {
-  document.addEventListener("DOMContentLoaded", function() {
-    var toggle = document.querySelector(".mobile-menu-btn");
-    var menu = document.querySelector(".nav-links");
-    
-    if (!toggle) {
-      console.log("Mobile menu toggle NOT found");
-      return;
-    }
-    if (!menu) {
-      console.log("Mobile menu (nav-links) NOT found");
-      return;
-    }
-    
-    console.log("Mobile menu init: toggle found, menu found");
-    
-    // Force toggle visible
-    toggle.style.display = "inline-flex";
-    toggle.style.visibility = "visible";
-    toggle.style.opacity = "1";
-    
-    toggle.addEventListener("click", function(e) {
-      console.log("Toggle clicked");
-      var isOpen = menu.classList.toggle("active");
-      toggle.classList.toggle("active", isOpen);
-      document.body.classList.toggle("menu-open", isOpen);
-      toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
-    });
-    
-    // Close on link click
-    menu.querySelectorAll("a").forEach(function(link) {
-      link.addEventListener("click", function() {
-        menu.classList.remove("active");
-        toggle.classList.remove("active");
-        document.body.classList.remove("menu-open");
-      });
-    });
-  });
-})();
-</script>
+
 
   <script>
     const canvas = document.getElementById("node-bg");
@@ -1494,5 +1476,33 @@
 
     init();
   </script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const btn = document.querySelector('.mobile-menu-btn');
+  const menu = document.querySelector('nav .nav-links');
+
+  if (!btn || !menu) return;
+
+  btn.classList.remove('active');
+  menu.classList.remove('mobile-open');
+  btn.setAttribute('aria-expanded', 'false');
+
+  btn.addEventListener('click', function () {
+    const isOpen = menu.classList.toggle('mobile-open');
+    btn.classList.toggle('active', isOpen);
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    document.body.classList.toggle('menu-open', isOpen);
+  });
+
+  menu.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      menu.classList.remove('mobile-open');
+      btn.classList.remove('active');
+      btn.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('menu-open');
+    });
+  });
+});
+</script>
 </body>
 </html>
