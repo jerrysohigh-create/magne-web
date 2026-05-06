@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FCC 設備授權查詢 — 2BVCPGC603606 — MAGNE.AI</title>
+  <link rel="icon" type="image/png" href="/magne-web/logo-icon-circle.png">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0a0c;
+      --bg-secondary: #0f0f12;
+      --bg-card: rgba(255,255,255,0.03);
+      --bg-card-hover: rgba(255,255,255,0.05);
+      --border: rgba(255,255,255,0.06);
+      --border-hover: rgba(255,255,255,0.12);
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255,255,255,0.5);
+      --text-tertiary: rgba(255,255,255,0.3);
+      --accent: #00bfff;
+      --accent-secondary: #00ff88;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      font-family:'Outfit',-apple-system,sans-serif;
+      background:var(--bg-primary);
+      color:var(--text-primary);
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+    a { color:inherit; text-decoration:none; }
+
+    /* NAV */
+    nav {
+      position:fixed; top:0; left:0; right:0; z-index:100;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:.85rem 2.5rem;
+      background:rgba(10,10,12,0.85);
+      backdrop-filter:blur(24px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav-logo { font-weight:700; font-size:1rem; letter-spacing:.5px; display:flex; align-items:center; gap:.5rem; }
+    .nav-logo img { height:26px; margin-top:2px; }
+    .nav-back { font-size:.88rem; color:var(--text-secondary); transition:color .2s; }
+    .nav-back:hover { color:var(--text-primary); }
+
+    /* HERO */
+    .hero {
+      min-height:100vh;
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      text-align:center;
+      padding:8rem 2rem 5rem;
+    }
+    .hero-eyebrow {
+      font-family:'JetBrains Mono',monospace;
+      font-size:.72rem; font-weight:700; letter-spacing:2px;
+      color:var(--accent);
+      background:rgba(0,191,255,.1);
+      border:1px solid rgba(0,191,255,.25);
+      padding:.35rem 1rem; border-radius:999px;
+      margin-bottom:1.75rem;
+    }
+    .hero h1 {
+      font-size:clamp(2rem,5vw,3.5rem);
+      font-weight:700; line-height:1.1;
+      max-width:800px; margin-bottom:1.5rem;
+    }
+    .hero-sub {
+      font-size:1.05rem; color:var(--text-secondary);
+      max-width:680px; line-height:1.75;
+      margin-bottom:2.5rem;
+    }
+    .grant-badge {
+      display:inline-flex; align-items:center; gap:.75rem;
+      background:var(--bg-card); border:1px solid var(--border);
+      border-radius:14px; padding:.85rem 1.5rem;
+      font-family:'JetBrains Mono',monospace; font-size:.88rem;
+      margin-bottom:2.5rem;
+    }
+    .grant-badge .badge-label { color:var(--text-secondary); }
+    .grant-badge .badge-value { color:var(--accent); font-weight:600; }
+    .hero-ctas { display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; }
+
+    /* BUTTONS */
+    .btn-primary {
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.75rem 1.75rem;
+      background:var(--accent); color:#000; font-weight:600; font-size:.9rem;
+      border-radius:10px; transition:all .2s;
+    }
+    .btn-primary:hover { background:#33ccff; transform:translateY(-1px); }
+    .btn-secondary {
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.75rem 1.75rem;
+      background:var(--bg-card); color:var(--text-primary); font-weight:500; font-size:.9rem;
+      border:1px solid var(--border); border-radius:10px; transition:all .2s;
+    }
+    .btn-secondary:hover { border-color:var(--border-hover); background:var(--bg-card-hover); }
+    .btn-outline {
+      display:inline-flex; align-items:center; gap:.4rem;
+      padding:.5rem 1rem;
+      border:1px solid rgba(0,191,255,.3); border-radius:8px;
+      font-size:.82rem; font-weight:500; color:var(--accent);
+      background:rgba(0,191,255,.06);
+      transition:all .2s; cursor:pointer;
+    }
+    .btn-outline:hover { background:rgba(0,191,255,.12); border-color:rgba(0,191,255,.5); }
+
+    /* SECTIONS */
+    .section { padding:5rem 2rem; }
+    .section-shell { max-width:1100px; margin:0 auto; }
+    .section-header { text-align:center; margin-bottom:3rem; }
+    .section-header h2 { font-size:1.75rem; font-weight:700; margin-bottom:.75rem; }
+    .section-header p { color:var(--text-secondary); max-width:600px; margin:0 auto; line-height:1.7; }
+    .section-intro { text-align:center; margin-bottom:3rem; }
+    .section-intro p { color:var(--text-secondary); max-width:680px; margin:0 auto 1rem; line-height:1.75; }
+
+    /* GRANT CARDS */
+    .grant-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+      gap:1.25rem;
+    }
+    .grant-card {
+      background:var(--bg-card);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:1.5rem;
+      transition:all .25s;
+    }
+    .grant-card:hover { border-color:var(--border-hover); transform:translateY(-2px); }
+    .grant-card .card-label { font-size:.72rem; font-weight:700; color:var(--text-secondary); letter-spacing:.5px; margin-bottom:.4rem; text-transform:uppercase; }
+    .grant-card .card-value { font-size:1rem; font-weight:600; }
+    .grant-card .card-value.accent { color:var(--accent); }
+    .grant-card .card-note { font-size:.82rem; color:var(--text-tertiary); margin-top:.3rem; }
+
+    /* SCOPE TABLE */
+    .scope-table { width:100%; border-collapse:collapse; margin-top:2rem; }
+    .scope-table th {
+      text-align:left; padding:.85rem 1.25rem;
+      font-size:.72rem; font-weight:700; letter-spacing:1px;
+      color:var(--text-secondary); text-transform:uppercase;
+      border-bottom:1px solid var(--border);
+    }
+    .scope-table td {
+      padding:1rem 1.25rem;
+      font-size:.9rem;
+      border-bottom:1px solid rgba(255,255,255,0.04);
+      vertical-align:top;
+    }
+    .scope-table tr:hover td { background:rgba(255,255,255,0.02); }
+    .scope-table .cat-name { font-weight:600; color:var(--accent); }
+
+    /* CAPABILITY GRID */
+    .cap-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:1rem;
+      margin-top:2rem;
+    }
+    .cap-card {
+      background:var(--bg-card);
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:1.25rem 1.5rem;
+      display:flex; align-items:flex-start; gap:1rem;
+    }
+    .cap-icon { width:36px; height:36px; border-radius:8px; background:rgba(0,191,255,.1); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1.1rem; }
+    .cap-card h4 { font-size:.92rem; font-weight:600; margin-bottom:.3rem; }
+    .cap-card p { font-size:.82rem; color:var(--text-secondary); }
+
+    /* DOC CARDS */
+    .doc-card {
+      background:var(--bg-card);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:1.5rem;
+      transition:all .25s;
+    }
+    .doc-card:hover { border-color:var(--border-hover); transform:translateY(-2px); }
+    .doc-id {
+      font-family:'JetBrains Mono',monospace;
+      font-size:.68rem; font-weight:700; letter-spacing:1.5px;
+      color:var(--accent); margin-bottom:.6rem;
+    }
+    .doc-card h4 { font-size:.95rem; font-weight:600; margin-bottom:.4rem; }
+    .doc-card .doc-summary { color:var(--text-secondary); font-size:.85rem; line-height:1.65; margin-bottom:.75rem; }
+    .doc-card .doc-meta { font-family:'JetBrains Mono',monospace; font-size:.72rem; color:var(--text-tertiary); margin-bottom:.75rem; }
+    .doc-actions { display:flex; gap:.5rem; flex-wrap:wrap; }
+    .doc-btn {
+      display:inline-flex; align-items:center; gap:.35rem;
+      padding:.4rem .85rem;
+      border:1px solid var(--border-hover); border-radius:7px;
+      font-size:.78rem; font-weight:500; color:var(--text-primary);
+      transition:all .2s;
+    }
+    .doc-btn:hover { border-color:var(--accent); color:var(--accent); }
+
+    /* ACCORDION */
+    .accordion { border:1px solid var(--border); border-radius:18px; overflow:hidden; margin-top:2rem; }
+    .accordion-item { border-bottom:1px solid var(--border); }
+    .accordion-item:last-child { border-bottom:none; }
+    .accordion-header {
+      width:100%; background:var(--bg-secondary);
+      padding:1.25rem 1.5rem;
+      display:flex; align-items:center; justify-content:space-between;
+      font-size:.95rem; font-weight:600; color:var(--text-primary);
+      cursor:pointer; border:none; text-align:left; outline:none;
+      transition:background .2s;
+    }
+    .accordion-header:hover { background:rgba(255,255,255,0.03); }
+    .accordion-header .acc-title { display:flex; align-items:center; gap:.75rem; }
+    .accordion-header .acc-arrow { transition:transform .3s; font-size:.75rem; color:var(--text-secondary); }
+    .accordion-header.open .acc-arrow { transform:rotate(180deg); }
+    .accordion-body { display:none; padding:1.25rem 1.5rem; }
+    .accordion-body.open { display:block; }
+    .accordion-body .doc-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1rem; }
+
+    /* HIGHLIGHT BOX */
+    .highlight-box {
+      background:linear-gradient(135deg,rgba(0,191,255,.06) 0%,rgba(0,255,136,.03) 100%);
+      border:1px solid rgba(0,191,255,.18);
+      border-radius:20px;
+      padding:2.5rem;
+      margin-top:2.5rem;
+    }
+    .highlight-box h3 { font-size:1.1rem; font-weight:600; margin-bottom:.75rem; }
+    .highlight-box p { color:var(--text-secondary); line-height:1.8; }
+    .highlight-box p + p { margin-top:.75rem; }
+
+    /* TAGS */
+    .tag {
+      display:inline-flex; align-items:center;
+      padding:.2rem .6rem;
+      border-radius:5px;
+      font-size:.68rem; font-weight:700; letter-spacing:.5px;
+      font-family:'JetBrains Mono',monospace;
+    }
+    .tag-sar { background:rgba(168,85,247,.15); color:#c084fc; border:1px solid rgba(168,85,247,.3); }
+    .tag-pce { background:rgba(0,191,255,.12); color:var(--accent); border:1px solid rgba(0,191,255,.25); }
+    .tag-nii { background:rgba(0,255,136,.1); color:var(--accent-secondary); border:1px solid rgba(0,255,136,.25); }
+    .tag-emc { background:rgba(255,215,0,.1); color:#ffd700; border:1px solid rgba(255,215,0,.25); }
+    .tag-filing { background:rgba(255,255,255,.06); color:var(--text-secondary); border:1px solid var(--border); }
+    .tag-antenna { background:rgba(255,100,130,.1); color:#ff6482; border:1px solid rgba(255,100,130,.25); }
+    .tag-public { background:rgba(0,191,255,.08); color:var(--accent); border:1px solid rgba(0,191,255,.2); }
+    .tag-restricted { background:rgba(255,100,130,.1); color:#ff6482; border:1px solid rgba(255,100,130,.25); }
+
+    /* CTA */
+    .cta-section { padding:5rem 2rem; text-align:center; }
+    .cta-shell { max-width:640px; margin:0 auto; }
+    .cta-shell h2 { font-size:1.75rem; font-weight:700; margin-bottom:1rem; }
+    .cta-shell p { color:var(--text-secondary); line-height:1.7; margin-bottom:2rem; }
+    .cta-buttons { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+
+    /* FOOTER */
+    footer { border-top:1px solid var(--border); padding:2rem; text-align:center; font-size:.82rem; color:var(--text-tertiary); }
+    footer a { color:var(--text-secondary); transition:color .2s; }
+    footer a:hover { color:var(--text-primary); }
+    .footer-links { display:flex; gap:1.5rem; justify-content:center; margin-bottom:.5rem; }
+
+    /* MOBILE */
+    @media (max-width:640px) {
+      nav { padding:.85rem 1.25rem; }
+      .hero { padding:7rem 1.25rem 4rem; }
+      .section { padding:3.5rem 1.25rem; }
+      .grant-grid { grid-template-columns:1fr 1fr; }
+      .cta-buttons { flex-direction:column; align-items:center; }
+    }
+      .nav-logo-img {
+      height: 20px;
+      width: auto;
+      display: block;
+    }
+
+    .trademark-notice {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-top: 1rem;
+      opacity: 0.7;
+    }
+    .trademark-notice a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .trademark-notice a:hover {
+      text-decoration: underline;
+    }
+
+    /* lang switch */
+    .lang-switch {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-left: 1rem;
+      padding-left: 1rem;
+      border-left: 1px solid var(--border);
+    }
+    .lang-switch a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+    .lang-switch a:hover,
+    .lang-switch a.active {
+      color: var(--accent);
+    }
+  </style>
+  <link rel="stylesheet" href="/magne-web/assets/mobile-responsive.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/magne-web/tc/magne-home.html" class="nav-logo">
+    <img src="/magne-web/assets/brand/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="nav-logo-img">
+  </a>
+  <div style="display: flex; align-items: center; gap: 1rem;">
+    <a href="/magne-web/tc/magne-compliance.html" class="nav-back">← 返回合規頁面</a>
+    <div class="lang-switch">
+      <a href="/magne-web/fcc-lookup.html">EN</a>
+      <span style="color: var(--text-tertiary);">|</span>
+      <a href="/magne-web/tc/fcc-lookup.html" class="active">繁中</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">FCC 授權</div>
+  <h1>MAG1 公開 FCC 設備授權及測試文件</h1>
+  <p class="hero-sub">
+    MAG1 已取得 FCC 設備授權，FCC ID 為 <strong style="color:var(--accent);">2BVCPGC603606</strong>，公開授權記錄涵蓋授權蜂窩傳輸、5GHz U-NII 運行、Bluetooth、NFC、EMC 及 SAR 評估。被授權方登載為 <strong>Magne AI Global tech limited</strong>，授權日期為 <strong>2026 年 4 月 17 日</strong>。
+  </p>
+  <div class="grant-badge">
+    <span class="badge-label">FCC ID</span>
+    <span class="badge-value">2BVCPGC603606</span>
+    <span style="color:var(--text-tertiary)">·</span>
+    <span class="badge-label">授權日期</span>
+    <span class="badge-value">2026-04-17</span>
+    <span style="color:var(--text-tertiary)">·</span>
+    <span class="badge-label">TCB</span>
+    <span class="badge-value">Sporton</span>
+  </div>
+  <div class="hero-ctas">
+    <a href="/magne-web/tc/magne-compliance.html" class="btn-secondary">← 返回合規頁面</a>
+  </div>
+</section>
+
+<!-- SECTION 1: GRANT SUMMARY CARDS -->
+<section class="section" id="grant-info">
+  <div class="section-shell">
+    <div class="section-header">
+      <h2>FCC 授權資訊</h2>
+      <p>MAG1 FCC 設備授權主要資訊，基於 FCC ID 2BVCPGC603606。</p>
+    </div>
+    <div class="grant-grid">
+      <div class="grant-card">
+        <div class="card-label">FCC ID</div>
+        <div class="card-value accent">2BVCPGC603606</div>
+        <div class="card-note">公開授權識別符</div>
+      </div>
+      <div class="grant-card">
+        <div class="card-label">被授權方</div>
+        <div class="card-value">Magne AI Global tech limited</div>
+        <div class="card-note">香港觀塘</div>
+      </div>
+      <div class="grant-card">
+        <div class="card-label">產品</div>
+        <div class="card-value">MAG1</div>
+        <div class="card-note">流動電話 / 測試樣本：MA1</div>
+      </div>
+      <div class="grant-card">
+        <div class="card-label">TCB</div>
+        <div class="card-value">Sporton International (USA) Inc.</div>
+        <div class="card-note">1175 Montague Expwy, Milpitas, CA 95035</div>
+      </div>
+      <div class="grant-card">
+        <div class="card-label">授權日期</div>
+        <div class="card-value">2026-04-17</div>
+        <div class="card-note">申請日期 2026-04-16</div>
+      </div>
+      <div class="grant-card">
+        <div class="card-label">授權類型</div>
+        <div class="card-value">認證</div>
+        <div class="card-note">依據 FCC Rules Parts 2, 15, 22, 24, 27</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: WHAT IS COVERED -->
+<section class="section" style="background:var(--bg-secondary);" id="coverage">
+  <div class="section-shell">
+    <div class="section-header">
+      <h2>FCC 授權涵蓋內容</h2>
+      <p>本頁整合 MAG1 的公開授權記錄及 FCC 測試材料。</p>
+    </div>
+    <div class="cap-grid">
+      <div class="cap-card">
+        <div class="cap-icon">📡</div>
+        <div>
+          <h4>授權蜂窩及 5G NR</h4>
+          <p>依據多個 FCC 法規章節及頻段，覆蓋 2G / 3G / LTE / 5G NR。</p>
+        </div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon">📶</div>
+        <div>
+          <h4>5GHz Wi-Fi / U-NII + DFS</h4>
+          <p>2.4GHz 及 5GHz WLAN，含 DFS 用戶端行為測試。</p>
+        </div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon">🔵</div>
+        <div>
+          <h4>Bluetooth 及 NFC</h4>
+          <p>Part 15C 設備類別，含 Bluetooth 及 13.56 MHz NFC。</p>
+        </div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon">🛡️</div>
+        <div>
+          <h4>EMC / Part 15B</h4>
+          <p>數位設備排放評估 — AC 傳導及輻射測試。</p>
+        </div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon">⚡</div>
+        <div>
+          <h4>SAR 及 RF 暴露</h4>
+          <p>頭部、身體佩戴、熱點、同時傳輸及產品特定 SAR 評估。</p>
+        </div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon">📋</div>
+        <div>
+          <h4>提交及行政文件</h4>
+          <p>授權函、標籤圖、美國代理、POA 及保密申請。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: AUTHORIZATION SCOPE TABLE -->
+<section class="section" id="scope">
+  <div class="section-shell">
+    <div class="section-header">
+      <h2>FCC 授權範圍</h2>
+      <p>MAG1 FCC 授權測試類別及覆蓋範圍摘要。</p>
+    </div>
+    <table class="scope-table">
+      <thead>
+        <tr>
+          <th>類別</th>
+          <th>覆蓋範圍</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="cat-name">授權蜂窩</td>
+          <td>依據 Part 22(H)、24(E)、27(L) 及相關子部分，覆蓋 GSM、WCDMA、LTE 及 5G NR。多份 RF 報告涵蓋傳導輸出功率、ERP/EIRP、頻段邊緣、雜散發射及頻率穩定性。</td>
+        </tr>
+        <tr>
+          <td class="cat-name">2.4GHz 無線設備</td>
+          <td>Bluetooth BR/EDR/LE 及 2.4GHz WLAN 含於 FCC 設備範圍及相關 RF 及 SAR 測試文件。</td>
+        </tr>
+        <tr>
+          <td class="cat-name">5GHz WLAN / U-NII</td>
+          <td>依據 Part 15 Subpart E §15.407 的 5GHz WLAN 運行，含獨立 U-NII 及 DFS 報告。DFS 作為用戶端設備測試（無雷達偵測功能）— 頻道移動時間、頻道關閉傳輸時間及非佔用期間均為 PASS。</td>
+        </tr>
+        <tr>
+          <td class="cat-name">NFC</td>
+          <td>13.56 MHz NFC 明確包含於設備範圍及設備類別授權路徑。</td>
+        </tr>
+        <tr>
+          <td class="cat-name">EMC / 數位設備</td>
+          <td>Part 15 Subpart B AC 傳導排放及輻射排放 — 兩項均為 PASS，在限制範圍內有餘量。</td>
+        </tr>
+        <tr>
+          <td class="cat-name">RF 暴露 / SAR</td>
+          <td>依據 47 CFR Part 2 (2.1093) 及適用 KDB 程序完成。涵蓋頭部 SAR、熱點 SAR、身體佩戴配件、產品特定 10g SAR 及同時傳輸場景。</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="highlight-box">
+      <h3>Part 15B 報告中的設備範圍說明</h3>
+      <p>MAG1 的 Part 15B EMC 報告明確列出設備支援的無線及應用功能：GSM/WCDMA/LTE/5G NR、WLAN 2.4GHz 及 5GHz、Bluetooth、GNSS、NFC 及 WPT — 確認 FCC 授權範圍涵蓋設備的全部無線功能組合。</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: SAR & RF EXPOSURE -->
+<section class="section" style="background:var(--bg-secondary);" id="sar">
+  <div class="section-shell">
+    <div class="section-header">
+      <h2>RF 暴露及 SAR 合規</h2>
+      <p>MAG1 已依據 47 CFR Part 2 (2.1093) 完成 FCC SAR 評估，涵蓋實際使用情境。</p>
+    </div>
+    <div class="section-intro">
+      <p>MAG1 不僅止於發射機授權，設備亦經過 RF 暴露評估，涵蓋近頭部使用、身體佩戴配置、熱點模式及同時多射頻運行場景。</p>
+    </div>
+    <div class="grant-grid" style="margin-bottom:2rem;">
+      <div class="grant-card">
+        <div class="card-label">SAR 報告編號</div>
+        <div class="card-value">FA612311</div>
+        <div class="card-note">Sporton International Inc. (Kunshan)</div>
+      </div>
+      <div class="grant-card">
+        <div class="card-label">報告發布日期</div>
+        <div class="card-value">2026-04-16</div>
+        <div class="card-note">授權日期前一天</div>
+      </div>
+      <div class="grant-card">
+        <div class="card-label">標準</div>
+        <div class="card-value">47 CFR Part 2 (2.1093)</div>
+        <div class="card-note">IEEE 1528 / FCC KDB 程序</div>
+      </div>
+      <div class="grant-card">
+        <div class="card-label">暴露條件</div>
+        <div class="card-value">普通民眾 / 非控制</div>
+        <div class="card-note">手持設備的 FCC 限制</div>
+      </div>
+    </div>
+    <div class="highlight-box">
+      <h3>SAR 摘要 — 評估條件</h3>
+      <p>SAR 報告涵蓋頭部 SAR、熱點 SAR、身體佩戴配件 SAR、產品特定 10g SAR 及同時傳輸條件。設備符合適用 FCC 普通民眾 / 非控制暴露限制。</p>
+      <p>SAR 測試結果依據各測試位置配置及頻段組合進行報告。完整數據見下方 SAR 報告及附錄。</p>
+    </div>
+    <div style="display:flex; gap:.75rem; flex-wrap:wrap; margin-top:1.5rem;">
+      <a class="btn-outline" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_v1.pdf" target="_blank">📄 查看 SAR 主報告</a>
+      <a class="btn-outline" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_Appendix%20E.pdf" target="_blank">📊 查看 SAR 測量數據</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: CELLULAR / 5G NR RF -->
+<section class="section" id="pce">
+  <div class="section-shell">
+    <div class="section-header">
+      <h2>授權蜂窩及 5G NR RF 測試覆蓋</h2>
+      <p>MAG1 的 FCC 文件集包含跨多個授權頻譜類別及無線世代的 RF 報告，涵蓋 2G / 3G / LTE / 5G NR。</p>
+    </div>
+    <div class="section-intro">
+      <p>這是 FCC 頁面中最強的部分之一 — MAG1 的授權基於跨多個授權頻譜類別及無線世代的廣泛 RF 報告集，而非單一簡化提交。</p>
+    </div>
+    <div class="doc-grid">
+      <div class="doc-card">
+        <div class="doc-id">PCE-01 <span class="tag tag-pce" style="margin-left:.5rem;">RF 測試</span></div>
+        <h4>2G / 3G RF 測試報告</h4>
+        <p class="doc-summary">GSM850 及 GSM1900 傳導及輻射測量，涵蓋依 Part 22(H) 及 Part 24(E) 的語音及數據模式。</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_2G,3G_v1.pdf" target="_blank">查看 PDF</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-id">PCE-02 <span class="tag tag-pce" style="margin-left:.5rem;">RF 測試</span></div>
+        <h4>LTE Band 42 (TD-LTE 2570–2620 MHz)</h4>
+        <p class="doc-summary">LTE Band 42 在 2×2 MIMO 配置及 27Q 調製下的無線電測試，依 Part 27 Subpart O。</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_27Q_B42_v1.pdf" target="_blank">查看 PDF</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-id">PCE-03 <span class="tag tag-pce" style="margin-left:.5rem;">RF 測試</span></div>
+        <h4>LTE Band 26 (FDD-LTE 814–849 MHz)</h4>
+        <p class="doc-summary">LTE Band 26 採用 90S 資源區塊配置，依 Part 90。傳導及輻射項目均為 PASS 結論。</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_90S_B26_v1.pdf" target="_blank">查看 PDF</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-id">PCE-04 <span class="tag tag-pce" style="margin-left:.5rem;">RF 測試</span></div>
+        <h4>LTE B2 / B25 / B66 / B5 / B26（第 1–2 部分）</h4>
+        <p class="doc-summary">LTE FDD Bands 2、25、66、5 及 26 的傳導及輻射測試，功率、頻段邊緣、雜散及穩定性均為 PASS 結論。</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_B2.25.66.5.26_Part1-2_v1.pdf" target="_blank">第 1 部分</a>
+          <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_B2.25.66.5.26_Part2-2.pdf" target="_blank">第 2 部分</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-id">PCE-05 <span class="tag tag-pce" style="margin-left:.5rem;">RF 測試</span></div>
+        <h4>LTE B7 / B12 / B13 / B17 / B38 / B41 / B71（第 1–3 部分）</h4>
+        <p class="doc-summary">LTE Bands 7、12、13、17、38、41、71 的輻射測試，適用監管項目均為 PASS 結論。</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_B7.12.13.17.38.41.71_Part1-3_v1.pdf" target="_blank">第 1 部分</a>
+          <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_B7.12.13.17.38.41.71_Part2-3.pdf" target="_blank">第 2 部分</a>
+          <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_B7.12.13.17.38.41.71_Part3-3.pdf" target="_blank">第 3 部分</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-id">PCE-06 <span class="tag tag-pce" style="margin-left:.5rem;">RF 測試</span></div>
+        <h4>5G NR n77 / n78 (3.45–3.98 GHz)</h4>
+        <p class="doc-summary">n77 (3300–4200 MHz) 及 n78 (3300–3800 MHz) 的 5G NR FR1 測試，含 27O 及 27Q 調製，依 Part 27 Subpart O 及 Q。</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_5G_27O_n77.78_v1.pdf" target="_blank">n77/78 27O</a>
+          <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_5G_27Q_n77.78_v2.pdf" target="_blank">n77/78 27Q</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-id">PCE-07 <span class="tag tag-pce" style="margin-left:.5rem;">RF 測試</span></div>
+        <h4>5G NR n5 / n7 / n38 / n41 / n66 / n71（第 1–3 部分）</h4>
+        <p class="doc-summary">5G NR FR1 覆蓋 n5 (850 MHz)、n7 (2600 MHz)、n38 (TD-2600)、n41 (TD-2500)、n66 (AWS)、n71 (600 MHz) — 傳導及輻射均為 PASS。</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_5G_n5.7.38.41.66.71_Part1-3_v1.pdf" target="_blank">第 1 部分</a>
+          <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_5G_n5.7.38.41.66.71_Part2-3.pdf" target="_blank">第 2 部分</a>
+          <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_5G_n5.7.38.41.66.71_Part3-3.pdf" target="_blank">第 3 部分</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: WIFI / U-NII / DFS -->
+<section class="section" style="background:var(--bg-secondary);" id="nii">
+  <div class="section-shell">
+    <div class="section-header">
+      <h2>Wi-Fi、U-NII 及 DFS 行為</h2>
+      <p>依據 FCC Part 15 Subpart E §15.407 的 5GHz WLAN 授權，含 DFS 用戶端行為測試。</p>
+    </div>
+    <div class="section-intro">
+      <p>DFS 報告說明 MAG1 被評估為<strong>無雷達偵測功能的用戶端設備</strong>。所需 DFS 檢查專注於頻道移動時間、頻道關閉傳輸時間及非佔用期間 — 在適用 U-NII-2A 及 U-NII-2C 條件下均為 PASS。</p>
+    </div>
+    <div class="doc-grid">
+      <div class="doc-card">
+        <div class="doc-id">NII-01 <span class="tag tag-nii" style="margin-left:.5rem;">RF 測試</span></div>
+        <h4>U-NII-1、2、3 RF 報告（第 1 部分，共 3 部分）</h4>
+        <p class="doc-summary">所有 U-NII 頻段 Wi-Fi 5GHz 的傳導及輻射測試 — 第 1 部分。涵蓋輸出功率、頻譜密度、佔用頻寬、不必要發射及天線端口合規性。</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_NII_U-NII-1,2,3_Part1-3_v1.pdf" target="_blank">查看 PDF</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-id">NII-02 <span class="tag tag-nii" style="margin-left:.5rem;">RF 測試</span></div>
+        <h4>U-NII-1、2、3 RF 報告（第 2 部分，共 3 部分）</h4>
+        <p class="doc-summary">所有 U-NII 頻段 Wi-Fi 5GHz 的傳導及輻射測試 — 第 2 部分。</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_NII_U-NII-1,2,3_Part2-3_v1.pdf" target="_blank">查看 PDF</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-id">NII-03 <span class="tag tag-nii" style="margin-left:.5rem;">RF 測試</span></div>
+        <h4>U-NII-1、2、3 RF 報告（第 3 部分，共 3 部分）</h4>
+        <p class="doc-summary">所有 U-NII 頻段 Wi-Fi 5GHz 的傳導及輻射測試 — 第 3 部分。</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_NII_U-NII-1,2,3_Part3-3.pdf" target="_blank">查看 PDF</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-id">DFS-01 <span class="tag tag-nii" style="margin-left:.5rem;">DFS</span></div>
+        <h4>U-NII DFS 合規報告</h4>
+        <p class="doc-summary">動態頻率選擇雷達偵測規避測試。作為無雷達偵測功能的用戶端評估 — 頻道移動時間、頻道關閉傳輸時間及非佔用期間均為 PASS。</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_NII_DFS_v1.pdf" target="_blank">查看 PDF</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: EMC / PART 15B -->
+<section class="section" id="emc">
+  <div class="section-shell">
+    <div class="section-header">
+      <h2>EMC / 數位設備排放</h2>
+      <p>FCC Part 15 Subpart B AC 傳導及輻射排放評估 — 兩項均在可接受限制範圍內。</p>
+    </div>
+    <div class="section-intro">
+      <p>對於公開合規頁面，本節有助於說明 FCC 授權不僅限於無線發射機測試。MAG1 亦經歷了與其作為商業連網消費產品角色相符的數位設備及 EMC 評估。</p>
+    </div>
+    <div class="grant-grid" style="margin-bottom:2rem;">
+      <div class="grant-card">
+        <div class="card-label">AC 傳導排放</div>
+        <div class="card-value accent">合規</div>
+        <div class="card-note">FCC Part 15 Subpart B — 在限制範圍內有餘量</div>
+      </div>
+      <div class="grant-card">
+        <div class="card-label">輻射排放</div>
+        <div class="card-value accent">合規</div>
+        <div class="card-note">FCC Part 15 Subpart B — 在限制範圍內有餘量</div>
+      </div>
+      <div class="grant-card">
+        <div class="card-label">設備類別</div>
+        <div class="card-value">Class B</div>
+        <div class="card-note">計算設備周邊 / 數位裝置</div>
+      </div>
+      <div class="grant-card">
+        <div class="card-label">標準</div>
+        <div class="card-value">ANSI C63.4</div>
+        <div class="card-note">依據 FCC MP-5 及 47 CFR Part 15B 參考</div>
+      </div>
+    </div>
+    <div class="doc-grid">
+      <div class="doc-card">
+        <div class="doc-id">JBP-01 <span class="tag tag-emc" style="margin-left:.5rem;">EMC</span></div>
+        <h4>Part 15 Class B 計算設備周邊</h4>
+        <p class="doc-summary">MAG1 作為 FCC Part 15 Subpart B Class B 數位設備的完整 AC 傳導及輻射排放測試報告。</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_JBP_v1.pdf" target="_blank">查看 PDF</a>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-id">CXX-01 <span class="tag tag-emc" style="margin-left:.5rem;">EMC</span></div>
+        <h4>通訊接收機 / 授權發射支援</h4>
+        <p class="doc-summary">與 MAG1 依 FCC 法規授權發射機路徑相關的接收機功能評估。</p>
+        <div class="doc-actions">
+          <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_CXX_v1.pdf" target="_blank">查看 PDF</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8: ANTENNA -->
+<section class="section" style="background:var(--bg-secondary);" id="antenna">
+  <div class="section-shell">
+    <div class="section-header">
+      <h2>天線配置</h2>
+      <p>FCC 天線性能說明中記錄的測試天線型號及配置。</p>
+    </div>
+    <div class="grant-grid">
+      <div class="grant-card">
+        <div class="card-label">主天線型號</div>
+        <div class="card-value">ANT6</div>
+        <div class="card-note">主蜂窩 / Wi-Fi / BT 天線</div>
+      </div>
+      <div class="grant-card">
+        <div class="card-label">天線類型</div>
+        <div class="card-value">PIFA</div>
+        <div class="card-note">平面倒 F 天線</div>
+      </div>
+      <div class="grant-card">
+        <div class="card-label">製造商</div>
+        <div class="card-value">PIFA Electronics</div>
+        <div class="card-note">中國江蘇省昆山市張浦鎮江北路 100 號</div>
+      </div>
+      <div class="grant-card">
+        <div class="card-label">WPC / NFC 天線</div>
+        <div class="card-value">W0213</div>
+        <div class="card-note">二合一 — 無線充電 + NFC</div>
+      </div>
+    </div>
+    <div style="margin-top:2rem; text-align:center;">
+      <a class="btn-outline" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_Antenna%20Report.pdf" target="_blank" style="font-size:.9rem; padding:.6rem 1.3rem;">
+        📡 查看天線性能說明 →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 9: DOCUMENT CENTER (ACCORDION) -->
+<section class="section" id="docs">
+  <div class="section-shell">
+    <div class="section-header">
+      <h2>FCC 文件中心</h2>
+      <p>與 FCC ID 2BVCPGC603606 相關的所有支持文件，按類別組織。</p>
+    </div>
+
+    <!-- A: Grant & Filing -->
+    <div class="accordion">
+      <div class="accordion-item">
+        <button class="accordion-header" onclick="toggleAcc(this)">
+          <span class="acc-title">
+            <span class="tag tag-filing" style="margin-right:.5rem;">提交文件</span>
+            授權及提交材料
+          </span>
+          <span class="acc-arrow">▼</span>
+        </button>
+        <div class="accordion-body">
+          <div class="doc-grid">
+            <div class="doc-card">
+              <div class="doc-id">提交文件 <span class="tag tag-public" style="margin-left:.5rem;">公開記錄</span></div>
+              <h4>FCC 認證函</h4>
+              <p class="doc-summary">由 Sporton International (USA) Inc. 依 47 CFR 2.911(d) 發布的主要設備授權認證函。</p>
+              <div class="doc-actions">
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_cvrltr_Certification_2.911d5(i)&(ii).pdf" target="_blank">查看</a>
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_cvrltr_Certification_2.911d5(i)&(ii).pdf" download>下載</a>
+              </div>
+            </div>
+            <div class="doc-card">
+              <div class="doc-id">提交文件</div>
+              <h4>FCC 授權 — PCE</h4>
+              <p class="doc-summary">PCS 授權發射機（蜂窩語音及數據）的 FCC 設備授權。</p>
+              <div class="doc-actions">
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_PCE.pdf" target="_blank">查看</a>
+              </div>
+            </div>
+            <div class="doc-card">
+              <div class="doc-id">提交文件</div>
+              <h4>FCC 授權 — NII</h4>
+              <p class="doc-summary">未授權國家信息基礎設施（Wi-Fi 5GHz）的 FCC 授權。</p>
+              <div class="doc-actions">
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_NII.pdf" target="_blank">查看</a>
+              </div>
+            </div>
+            <div class="doc-card">
+              <div class="doc-id">提交文件</div>
+              <h4>FCC 授權 — DSS (Bluetooth)</h4>
+              <p class="doc-summary">Part 15 Class B 數位傳輸系統（Bluetooth LE）的 FCC 授權。</p>
+              <div class="doc-actions">
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_DSS.pdf" target="_blank">查看</a>
+              </div>
+            </div>
+            <div class="doc-card">
+              <div class="doc-id">提交文件</div>
+              <h4>FCC 授權 — DTS (Wi-Fi 2.4G)</h4>
+              <p class="doc-summary">Part 15 低功率通訊設備發射機（2.4GHz WLAN）的 FCC 授權。</p>
+              <div class="doc-actions">
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_DTS.pdf" target="_blank">查看</a>
+              </div>
+            </div>
+            <div class="doc-card">
+              <div class="doc-id">提交文件</div>
+              <h4>FCC 授權 — CXX / JBP</h4>
+              <p class="doc-summary">通訊接收機及 Class B 計算設備周邊的 FCC 授權。</p>
+              <div class="doc-actions">
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_CXX.pdf" target="_blank">CXX</a>
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_JBP.pdf" target="_blank">JBP</a>
+              </div>
+            </div>
+            <div class="doc-card">
+              <div class="doc-id">標籤</div>
+              <h4>FCC 標籤圖</h4>
+              <p class="doc-summary">經核准的標籤佈局，含 MAG1 外殼上 FCC ID 的放置位置。</p>
+              <div class="doc-actions">
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_Label.pdf" target="_blank">查看</a>
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_Label.pdf" download>下載</a>
+              </div>
+            </div>
+            <div class="doc-card">
+              <div class="doc-id">標籤</div>
+              <h4>標籤位置</h4>
+              <p class="doc-summary">說明 MAG1 設備外殼上 FCC 標籤指定位置的圖示。</p>
+              <div class="doc-actions">
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_Label%20Location.pdf" target="_blank">查看</a>
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_Label%20Location.pdf" download>下載</a>
+              </div>
+            </div>
+            <div class="doc-card">
+              <div class="doc-id">提交文件 <span class="tag tag-restricted" style="margin-left:.5rem;">限制</span></div>
+              <h4>保密申請（LTC + STC）</h4>
+              <p class="doc-summary">依 FCC Rule 0.457 的長期及短期保密申請。</p>
+              <div class="doc-actions">
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_cvrltr_FCC%20Confidentiality%20Request(LTC+STC).pdf" target="_blank">查看</a>
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_cvrltr_FCC%20Confidentiality%20Request(LTC+STC).pdf" download>下載</a>
+              </div>
+            </div>
+            <div class="doc-card">
+              <div class="doc-id">提交文件 <span class="tag tag-restricted" style="margin-left:.5rem;">限制</span></div>
+              <h4>授權書（POA）</h4>
+              <p class="doc-summary">授權 Sporton International (USA) Inc. 作為指定 TCB 代表。</p>
+              <div class="doc-actions">
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_cvrltr_FCC%20POA.pdf" target="_blank">查看</a>
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_cvrltr_FCC%20POA.pdf" download>下載</a>
+              </div>
+            </div>
+            <div class="doc-card">
+              <div class="doc-id">提交文件 <span class="tag tag-restricted" style="margin-left:.5rem;">限制</span></div>
+              <h4>美國代理注意函</h4>
+              <p class="doc-summary">指定 FCC 通信及監管注意的美國代理。</p>
+              <div class="doc-actions">
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_cvrltr_Attention%20for%20U.S.%20Agent.pdf" target="_blank">查看</a>
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_cvrltr_Attention%20for%20U.S.%20Agent.pdf" download>下載</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B: SAR -->
+    <div class="accordion" style="margin-top:.75rem;">
+      <div class="accordion-item">
+        <button class="accordion-header" onclick="toggleAcc(this)">
+          <span class="acc-title">
+            <span class="tag tag-sar" style="margin-right:.5rem;">SAR</span>
+            SAR 及 RF 暴露報告
+          </span>
+          <span class="acc-arrow">▼</span>
+        </button>
+        <div class="accordion-body">
+          <div class="doc-grid">
+            <div class="doc-card">
+              <div class="doc-id">SAR-01 <span class="tag tag-sar" style="margin-left:.5rem;">SAR</span></div>
+              <h4>SAR 測試報告（主報告）</h4>
+              <p class="doc-summary">依 47 CFR 2.1093，涵蓋頭部、身體佩戴、熱點、產品特定及同時傳輸條件的完整 SAR 評估。</p>
+              <div class="doc-actions">
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_v1.pdf" target="_blank">查看</a>
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_v1.pdf" download>下載</a>
+              </div>
+            </div>
+            <div class="doc-card">
+              <div class="doc-id">SAR-02 <span class="tag tag-sar" style="margin-left:.5rem;">SAR</span></div>
+              <h4>附錄 A — 測試設置照片</h4>
+              <p class="doc-summary">SAR 測試設備及設備定位配置的攝影記錄。</p>
+              <div class="doc-actions">
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_Appendix%20A_v1.pdf" target="_blank">查看 PDF</a>
+              </div>
+            </div>
+            <div class="doc-card">
+              <div class="doc-id">SAR-03 <span class="tag tag-sar" style="margin-left:.5rem;">SAR</span></div>
+              <h4>附錄 B — 組織配方</h4>
+              <p class="doc-summary">SAR 測試所用組織模擬液體的組成及電磁特性 — 第 1 及第 2 部分。</p>
+              <div class="doc-actions">
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_Appendix%20B_Part1-2.pdf" target="_blank">第 1 部分</a>
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_Appendix%20B_Part2-2.pdf" target="_blank">第 2 部分</a>
+              </div>
+            </div>
+            <div class="doc-card">
+              <div class="doc-id">SAR-04 <span class="tag tag-sar" style="margin-left:.5rem;">SAR</span></div>
+              <h4>附錄 C — 系統驗證</h4>
+              <p class="doc-summary">每種組織配置的 SAR 系統驗證數據 — 第 1、2 及 3 部分。</p>
+              <div class="doc-actions">
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_Appendix%20C_Part1-3.pdf" target="_blank">第 1 部分</a>
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_Appendix%20C_Part2-3.pdf" target="_blank">第 2 部分</a>
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_Appendix%20C_Part3-3.pdf" target="_blank">第 3 部分</a>
+              </div>
+            </div>
+            <div class="doc-card">
+              <div class="doc-id">SAR-05 <span class="tag tag-sar" style="margin-left:.5rem;">SAR</span></div>
+              <h4>附錄 E — SAR 測量數據</h4>
+              <p class="doc-summary">所有測試位置及頻段的詳細 SAR 測量結果。</p>
+              <div class="doc-actions">
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_Appendix%20E.pdf" target="_blank">查看 PDF</a>
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_Appendix%20E.pdf" download>下載</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- C: Licensed Cellular / LTE / 5G NR -->
+    <div class="accordion" style="margin-top:.75rem;">
+      <div class="accordion-item">
+        <button class="accordion-header" onclick="toggleAcc(this)">
+          <span class="acc-title">
+            <span class="tag tag-pce" style="margin-right:.5rem;">RF 測試</span>
+            授權蜂窩 / LTE / 5G NR 報告
+          </span>
+          <span class="acc-arrow">▼</span>
+        </button>
+        <div class="accordion-body">
+          <div class="doc-grid">
+            <div class="doc-card">
+              <div class="doc-id">PCE-01</div>
+              <h4>2G / 3G RF 報告</h4>
+              <div class="doc-actions">
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_2G,3G_v1.pdf" target="_blank">查看 PDF</a>
+              </div>
+            </div>
+            <div class="doc-card">
+              <div class="doc-id">PCE-02</div>
+              <h4>LTE Band 42</h4>
+              <div class="doc-actions">
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_27Q_B42_v1.pdf" target="_blank">查看 PDF</a>
+              </div>
+            </div>
+            <div class="doc-card">
+              <div class="doc-id">PCE-03</div>
+              <h4>LTE Band 26</h4>
+              <div class="doc-actions">
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_90S_B26_v1.pdf" target="_blank">查看 PDF</a>
+              </div>
+            </div>
+            <div class="doc-card">
+              <div class="doc-id">PCE-04</div>
+              <h4>LTE B2/B25/B66/B5/B26（×2）</h4>
+              <div class="doc-actions">
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_B2.25.66.5.26_Part1-2_v1.pdf" target="_blank">第 1 部分</a>
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_B2.25.66.5.26_Part2-2.pdf" target="_blank">第 2 部分</a>
+              </div>
+            </div>
+            <div class="doc-card">
+              <div class="doc-id">PCE-05</div>
+              <h4>LTE B7/B12/B13/B17/B38/B41/B71（×3）</h4>
+              <div class="doc-actions">
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_B7.12.13.17.38.41.71_Part1-3_v1.pdf" target="_blank">第 1 部分</a>
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_B7.12.13.17.38.41.71_Part2-3.pdf" target="_blank">第 2 部分</a>
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_B7.12.13.17.38.41.71_Part3-3.pdf" target="_blank">第 3 部分</a>
+              </div>
+            </div>
+            <div class="doc-card">
+              <div class="doc-id">PCE-06</div>
+              <h4>5G NR n77 / n78</h4>
+              <div class="doc-actions">
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_5G_27O_n77.78_v1.pdf" target="_blank">27O</a>
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_5G_27Q_n77.78_v2.pdf" target="_blank">27Q</a>
+              </div>
+            </div>
+            <div class="doc-card">
+              <div class="doc-id">PCE-07</div>
+              <h4>5G NR n5/n7/n38/n41/n66/n71（×3）</h4>
+              <div class="doc-actions">
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_5G_n5.7.38.41.66.71_Part1-3_v1.pdf" target="_blank">第 1 部分</a>
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_5G_n5.7.38.41.66.71_Part2-3.pdf" target="_blank">第 2 部分</a>
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_5G_n5.7.38.41.66.71_Part3-3.pdf" target="_blank">第 3 部分</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- D: Wi-Fi / U-NII / DFS -->
+    <div class="accordion" style="margin-top:.75rem;">
+      <div class="accordion-item">
+        <button class="accordion-header" onclick="toggleAcc(this)">
+          <span class="acc-title">
+            <span class="tag tag-nii" style="margin-right:.5rem;">RF 測試</span>
+            Wi-Fi / U-NII / DFS 報告
+          </span>
+          <span class="acc-arrow">▼</span>
+        </button>
+        <div class="accordion-body">
+          <div class="doc-grid">
+            <div class="doc-card">
+              <div class="doc-id">NII-01</div>
+              <h4>U-NII-1、2、3 第 1 部分（共 3 部分）</h4>
+              <div class="doc-actions">
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_NII_U-NII-1,2,3_Part1-3_v1.pdf" target="_blank">查看 PDF</a>
+              </div>
+            </div>
+            <div class="doc-card">
+              <div class="doc-id">NII-02</div>
+              <h4>U-NII-1、2、3 第 2 部分（共 3 部分）</h4>
+              <div class="doc-actions">
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_NII_U-NII-1,2,3_Part2-3_v1.pdf" target="_blank">查看 PDF</a>
+              </div>
+            </div>
+            <div class="doc-card">
+              <div class="doc-id">NII-03</div>
+              <h4>U-NII-1、2、3 第 3 部分（共 3 部分）</h4>
+              <div class="doc-actions">
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_NII_U-NII-1,2,3_Part3-3_v1.pdf" target="_blank">查看 PDF</a>
+              </div>
+            </div>
+            <div class="doc-card">
+              <div class="doc-id">DFS-01</div>
+              <h4>U-NII DFS 合規</h4>
+              <p class="doc-summary">用戶端設備 DFS 測試：頻道移動時間、頻道關閉傳輸時間、非佔用期間 — 均為 PASS。</p>
+              <div class="doc-actions">
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_TestRpt_NII_DFS_v1.pdf" target="_blank">查看 PDF</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- E: Antenna -->
+    <div class="accordion" style="margin-top:.75rem;">
+      <div class="accordion-item">
+        <button class="accordion-header" onclick="toggleAcc(this)">
+          <span class="acc-title">
+            <span class="tag tag-antenna" style="margin-right:.5rem;">天線</span>
+            天線及支持材料
+          </span>
+          <span class="acc-arrow">▼</span>
+        </button>
+        <div class="accordion-body">
+          <div class="doc-grid">
+            <div class="doc-card">
+              <div class="doc-id">ANT-01</div>
+              <h4>天線性能說明</h4>
+              <p class="doc-summary">ANT6 主天線及 W0213 WPC/NFC 二合一天線的天線型號、類型、製造商及性能數據。</p>
+              <div class="doc-actions">
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_Antenna%20Report.pdf" target="_blank">查看 PDF</a>
+                <a class="doc-btn" href="/magne-web/assets/pdfs/fcc/2BVCPGC603606_Antenna%20Report.pdf" download>下載</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 10: QUERY GUIDE -->
+<section class="section" style="background:var(--bg-secondary);" id="verify">
+  <div class="section-shell">
+    <div class="highlight-box">
+      <h3>如何核驗此 FCC 記錄</h3>
+      <p>FCC 設備授權不使用傳統的獨立證書格式。標準核驗路徑是透過 FCC ID 及授權記錄查詢流程。</p>
+      <p style="margin-top:.75rem;">核驗 MAG1 的 FCC 授權：</p>
+      <ol style="color:var(--text-secondary); line-height:2; padding-left:1.5rem; margin-top:.5rem;">
+        <li>在 <a href="https://fccid.io" target="_blank" style="color:var(--accent);">fccid.io</a> 或官方 FCC OET 設備授權資料庫搜尋 FCC ID：<strong style="color:var(--accent);font-family:'JetBrains Mono',monospace">2BVCPGC603606</strong></li>
+        <li>確認被授權方名稱：<strong>Magne AI Global tech limited</strong></li>
+        <li>確認產品說明 / 型號參考：<strong>MAG1</strong> 或 <strong>MA1</strong></li>
+        <li>視需要審閱授權類別及支持報告</li>
+      </ol>
+      <p style="margin-top:.75rem;">本頁作為有組織的參考及底層測試報告和提交材料的接入點 — 它不取代官方 FCC 授權記錄。</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-shell">
+    <h2>需要更完整的 FCC 文件？</h2>
+    <p>如需技術合作、媒體核驗、分銷審查或機構盡調，可透過上方文件中心或聯絡 MAGNE 團隊取得額外 FCC 支持材料。</p>
+    <div class="cta-buttons">
+      <a href="/magne-web/tc/magne-compliance.html" class="btn-secondary">← 返回合規頁面</a>
+      <a href="/magne-web/tc/magne-contact.html" class="btn-primary">聯絡 MAGNE</a>
+    </div>
+  </div>
+</section>
+
+<!-- DISCLAIMER -->
+<section class="section" style="padding:2rem 0;border-top:1px solid var(--border);margin-top:2rem;">
+  <div class="section-shell" style="padding:0;">
+    <p style="font-size:0.75rem;color:var(--text-secondary);line-height:1.7;max-width:900px;">
+      <strong style="color:var(--text-primary);">免責聲明：</strong>所有 FCC 測試結果及認證均基於授權日期（2026/04/17）的設備配置及測試報告。MAGNE.AI 保留根據後續測試結果或監管變更更新認證聲明的權利。如需進一步核驗或詳細數據，請參閱上方文件中心中可用的特定測試報告，或直接聯絡 MAGNE 團隊。
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand-logo">
+      <img src="/magne-web/assets/brand/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="footer-brand-img">
+      <p>Web3 原生 AI 手機</p>
+    </div>
+
+  <div class="footer-socials" aria-label="MAGNE.AI 官方頻道">
+    <a href="https://x.com/Magne_Ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+    <a href="https://t.me/MagneAI" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+    <a href="https://discord.gg/tX2xRAkd" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
+    <a href="https://github.com/magne-ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+    <a href="https://www.youtube.com/@MagneAI" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+    <a href="https://web3.magne.ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE Web3 Docs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></a>
+  </div>
+
+  <div class="footer-links">
+    <a href="/magne-web/tc/privacy-policy.html">隱私政策</a>
+    <a href="/magne-web/tc/magne-contact.html">聯絡</a>
+    <a href="/magne-web/tc/media-kit.html">媒體資料包</a>
+    <a href="https://web3.magne.ai" target="_blank" rel="noopener">白皮書</a>
+    <a href="https://web3.magne.ai/legal" target="_blank" rel="noopener">法律意見書</a>
+  </div>
+    <p class="trademark-notice">
+    MAGNE.AI™ 為 Magical Hash Global Tech Limited 的商業標誌，目前正在註冊程序中（USPTO 序號：99311528）。
+  </p>
+  <p style="margin-top: 1.5rem; opacity: 0.5;">© 2026 MAGNE.AI. 版權所有。</p>
+</footer>
+
+</div>
+
+<!-- SCRIPTS -->
+<script>
+  function toggleAcc(btn) {
+    btn.classList.toggle('open');
+    btn.nextElementSibling.classList.toggle('open');
+  }
+</script>
+<script src="/magne-web/assets/mobile-nav.js" defer></script>
+</body>
+</html>
