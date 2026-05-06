@@ -18,6 +18,7 @@
       --text-primary: #ffffff;
       --text-secondary: rgba(255, 255, 255, 0.5);
       --text-tertiary: rgba(255, 255, 255, 0.3);
+      --text-muted: rgba(245, 245, 247, 0.4);
       --accent: #00d4d4;
       --accent-secondary: #00ff88;
       --accent-purple: #a855f7;
@@ -34,7 +35,6 @@
       overflow-x: hidden;
     }
 
-    /* NODE NETWORK BACKGROUND */
     #node-bg {
       position: fixed;
       top: 0; left: 0;
@@ -44,7 +44,6 @@
       pointer-events: none;
     }
 
-    /* NAV */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -60,7 +59,7 @@
     .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
     .nav-brand a { color: var(--text-secondary); text-decoration: none; }
     .nav-logo { font-size: 1.3rem; font-weight: 700; color: var(--accent); }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
     .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
     .nav-links a:hover { color: var(--accent); }
     .nav-links a.active { color: var(--accent); }
@@ -92,7 +91,6 @@
       color: var(--accent);
     }
 
-    /* CONTENT WRAPPER */
     .content-wrapper {
       position: relative;
       z-index: 1;
@@ -100,7 +98,6 @@
       margin: 0 auto;
     }
 
-    /* HERO */
     .hero {
       min-height: 80vh;
       display: flex;
@@ -145,7 +142,6 @@
       animation: fadeInUp 0.8s ease-out 0.2s both;
     }
 
-    /* CONTACT PATHS */
     .contact-section {
       padding: 4rem 2rem 6rem;
       max-width: 1100px;
@@ -222,7 +218,6 @@
       color: var(--accent);
     }
 
-    /* DIRECT CONTACT */
     .direct-section {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -262,7 +257,6 @@
       font-weight: 500;
     }
 
-    /* RESPONSE INFO */
     .response-info {
       text-align: center;
       padding: 2rem;
@@ -272,7 +266,6 @@
       margin: 0 auto 4rem;
     }
 
-    /* COMPLIANCE CTA */
     .compliance-cta {
       text-align: center;
       padding: 2rem;
@@ -298,7 +291,6 @@
       color: var(--accent);
     }
 
-    /* FOOTER */
     footer {
       text-align: center;
       padding: 4rem 2rem;
@@ -310,8 +302,6 @@
     footer a:hover { color: var(--accent); }
     .footer-links { display: flex; justify-content: center; gap: 2rem; margin-top: 1rem; }
 
-
-    /* ANIMATIONS */
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
@@ -321,7 +311,6 @@
       animation: fadeInUp 0.6s ease-out forwards;
     }
 
-    /* RESPONSIVE */
     @media (max-width: 900px) {
       .contact-grid { grid-template-columns: repeat(2, 1fr); }
     }
@@ -332,7 +321,6 @@
       .direct-grid { grid-template-columns: 1fr; }
     }
 
-    /* FOOTER SOCIAL ICONS */
     .footer-socials { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0; }
     .footer-socials a {
       display: inline-flex; align-items: center; justify-content: center;
@@ -386,12 +374,10 @@
 </head>
 <body>
 
-<!-- NODE NETWORK BACKGROUND -->
 <canvas id="node-bg"></canvas>
 
 <div class="content-wrapper">
 
-<!-- NAV -->
 <nav>
   <div class="nav-brand">
     <a href="/magne-web/tc/magne-home.html" class="nav-logo"><img src="/magne-web/assets/brand/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="nav-logo-img"></a>
@@ -411,22 +397,20 @@
       <span style="color: var(--text-muted);">|</span>
       <a href="/magne-web/tc/magne-contact.html" class="active">繁中</a>
     </div>
-    <li><a href="https://web3.magne.ai" target="_blank" rel="noopener" class="nav-web3">Web3 入口 ↗️</a></li>
-    <li class="nav-actions-mobile">
-      <a href="/magne-web/tc/magne-contact.html" class="nav-contact">聯絡</a>
+    <li><a href="https://web3.magne.ai" target="_blank" rel="noopener" class="nav-web3" style="color: var(--text-secondary);">Web3 入口 ↗️</a></li>
+    <li>
+      <a href="/magne-web/tc/magne-contact.html" style="color: var(--text-secondary);">聯絡</a>
       <a href="https://payment.magne.ai/buy" class="nav-cta">預購</a>
     </li>
   </ul>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-eyebrow">聯絡 MAGNE.AI</div>
   <h1>聯絡方式</h1>
-  <p class="hero-sub">提供合作夥伴、機構、媒體、開發者及用戶使用的官方聯絡渠道。</p>
+  <p class="hero-sub">如需合作洽談、媒體查詢、機構審閱、開發者協作或一般支援，請透過以下對應官方渠道聯絡 MAGNE。</p>
 </section>
 
-<!-- CONTACT PATHS -->
 <div class="contact-section">
   <div class="section-title">
     <h2>您想聯絡我們什麼事項？</h2>
@@ -435,76 +419,74 @@
   <div class="contact-grid">
     <div class="contact-card animate">
       <div class="icon">📦</div>
-      <h4>產品諮詢</h4>
-      <p>關於 MAG1 規格、功能、供貨情況或一般產品資訊的問題。</p>
-      <a href="mailto:official@magne.ai" class="email-link">official@magne.ai →</a>
-    </div>
-    <div class="contact-card animate">
-      <div class="icon">🛒</div>
-      <h4>預購</h4>
-      <p>準備預訂您的裝置，或想了解預購流程及首批時間表。</p>
+      <h4>一般諮詢</h4>
+      <p>與 MAGNE 產品、發展路線及生態資訊相關的一般問題。</p>
       <a href="mailto:official@magne.ai" class="email-link">official@magne.ai →</a>
     </div>
     <div class="contact-card animate">
       <div class="icon">🤝</div>
       <h4>合作夥伴</h4>
-      <p>經銷、渠道合作、OEM/ODM 合作，或更廣泛的商務合作。</p>
-      <a href="mailto:official@magne.ai" class="email-link">official@magne.ai →</a>
-    </div>
-    <div class="contact-card animate">
-      <div class="icon">💼</div>
-      <h4>投資者關係</h4>
-      <p>機構投資查詢、基金經理交流，或策略性資本合作。</p>
+      <p>用於生態合作、商務合作及策略性交流。</p>
       <a href="mailto:official@magne.ai" class="email-link">official@magne.ai →</a>
     </div>
     <div class="contact-card animate">
       <div class="icon">🏛️</div>
-      <h4>交易所 / 盡調</h4>
-      <p>交易所上市、盡調流程、上市要求，或機構級別計畫資訊。</p>
+      <h4>交易所與機構合作</h4>
+      <p>用於交易所盡調、機構審閱及相關溝通。</p>
+      <a href="mailto:official@magne.ai" class="email-link">official@magne.ai →</a>
+    </div>
+    <div class="contact-card animate">
+      <div class="icon">💻</div>
+      <h4>開發者合作</h4>
+      <p>用於 SDK 整合、基礎設施協作及生態開發。</p>
       <a href="mailto:official@magne.ai" class="email-link">official@magne.ai →</a>
     </div>
     <div class="contact-card animate">
       <div class="icon">📰</div>
-      <h4>媒體 / 開發者</h4>
-      <p>新聞查詢、採訪邀約、開發者生態或文檔問題。</p>
+      <h4>媒體與新聞</h4>
+      <p>用於採訪、媒體報導及新聞相關溝通。</p>
       <a href="mailto:official@magne.ai" class="email-link">official@magne.ai →</a>
-      <a href="/magne-web/tc/media-kit.html" class="sub-link">查看媒體資料包 →</a>
+    </div>
+    <div class="contact-card animate">
+      <div class="icon">💬</div>
+      <h4>社群</h4>
+      <p>MAGNE 官方社群及社交渠道。</p>
+      <a href="https://t.me/MagneAI" target="_blank" rel="noopener" class="email-link">加入 Telegram →</a>
     </div>
   </div>
 </div>
 
-<!-- DIRECT CONTACT -->
 <div class="direct-section animate">
-  <h3>直接聯絡</h3>
+  <h3>電子郵件</h3>
   <div class="direct-grid">
     <div class="direct-item">
-      <div class="label">一般諮詢</div>
+      <div class="label">官方渠道</div>
       <a href="mailto:official@magne.ai" class="email">official@magne.ai</a>
     </div>
     <div class="direct-item">
-      <div class="label">商務拓展</div>
-      <a href="mailto:official@magne.ai" class="email">official@magne.ai</a>
+      <div class="label">商務合作</div>
+      <a href="mailto:bd@magne.ai" class="email">bd@magne.ai</a>
     </div>
   </div>
 </div>
 
-<!-- RESPONSE INFO -->
 <div class="response-info">
-  <p>我們的目標是在 2-3 個工作天內回覆所有查詢。如有緊急事項，請在訊息中說明。</p>
+  <p>回覆範圍</p>
+  <p style="margin-top: 0.5rem;">回覆時間及可提供資料可能因請求類型、保密要求及合規審閱流程而有所不同。</p>
+  <p style="margin-top: 0.5rem;">部分支持資料僅會提供予符合條件的合作夥伴、交易所、機構或審閱方。</p>
+  <p style="margin-top: 0.5rem;">商務、技術及合規相關資料在披露前可能需要進一步審閱。</p>
 </div>
 
-<!-- COMPLIANCE CTA -->
 <div class="compliance-cta">
   <p>需要合規參考資料？如需認證、設備身份、測試及支持查詢參考，請前往合規頁面。</p>
   <a href="/magne-web/tc/magne-compliance.html" class="compliance-btn">開啟合規頁面</a>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-brand-logo">
-      <img src="/magne-web/assets/brand/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="footer-brand-img">
-      <p>Web3 原生 AI 安全手機</p>
-    </div>
+    <img src="/magne-web/assets/brand/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="footer-brand-img">
+    <p>Web3 原生 AI 安全手機</p>
+  </div>
 
   <div class="footer-socials" aria-label="MAGNE.AI 官方頻道">
     <a href="https://x.com/Magne_Ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
@@ -522,7 +504,7 @@
     <a href="https://web3.magne.ai" target="_blank" rel="noopener">白皮書</a>
     <a href="https://web3.magne.ai/legal" target="_blank" rel="noopener">法律意見書</a>
   </div>
-    <p class="trademark-notice">
+  <p class="trademark-notice">
     MAGNE.AI™ 為 Magical Hash Global Tech Limited 的商業標誌，目前正在註冊程序中（USPTO 序號：99311528）。
   </p>
   <p style="margin-top: 1.5rem; opacity: 0.5;">© 2026 MAGNE.AI. 版權所有。</p>
@@ -530,9 +512,7 @@
 
 </div>
 
-<!-- SCRIPTS -->
 <script>
-  // Node Network Background
   const canvas = document.getElementById('node-bg');
   const ctx = canvas.getContext('2d');
   let width, height;
@@ -572,7 +552,7 @@
   function animate() {
     ctx.clearRect(0, 0, width, height);
     const time = Date.now() * 0.0005;
-    
+
     for (let i = 0; i < nodes.length; i++) {
       for (let j = i + 1; j < nodes.length; j++) {
         const dx = nodes[i].x - nodes[j].x;
@@ -588,7 +568,7 @@
         }
       }
     }
-    
+
     for (let node of nodes) {
       const noiseX = simplex.noise2D(node.baseX * 0.001, time) * 30;
       const noiseY = simplex.noise2D(node.baseY * 0.001, time) * 30;
@@ -599,14 +579,13 @@
       ctx.fillStyle = 'rgba(0, 212, 212, 0.6)';
       ctx.fill();
     }
-    
+
     requestAnimationFrame(animate);
   }
 
   window.addEventListener('resize', () => { resize(); createNodes(); });
   init();
 
-  // Scroll animations
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, index) => {
       if (entry.isIntersecting) {
@@ -620,6 +599,6 @@
   document.querySelectorAll('.animate').forEach(el => observer.observe(el));
 </script>
 
-  <script src="/magne-web/assets/mobile-nav.js" defer></script>
+<script src="/magne-web/assets/mobile-nav.js" defer></script>
 </body>
 </html>
