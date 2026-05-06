@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>功能演示 — MAGNE.AI</title>
+  <link rel="icon" type="image/png" href="/magne-web/logo-icon-circle.png">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0a0c;
+      --bg-secondary: #0f0f12;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.1);
+      --text-primary: #f5f5f7;
+      --text-secondary: rgba(245, 245, 247, 0.6);
+      --text-muted: rgba(245, 245, 247, 0.4);
+      --accent: #00d4d4;
+      --accent-dim: rgba(0, 212, 212, 0.06);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+    }
+    .content--canvas { position: relative; z-index: 1; }
+    .content--canvas canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 12, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-decoration: none;
+    }
+    .nav-back {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: color 0.3s;
+    }
+    .nav-back:hover { color: var(--accent); }
+
+    .lang-switch {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding-left: 1rem;
+      border-left: 1px solid var(--border);
+    }
+    .lang-switch a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+    .lang-switch a:hover,
+    .lang-switch a.active {
+      color: var(--accent);
+    }
+
+    .page-header {
+      padding: 7rem 2rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .page-header .label {
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .page-header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+    }
+    .page-header .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+    }
+
+    main {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .featured-demo {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3rem;
+      align-items: center;
+      margin: 3rem 0 4rem;
+      padding: 2rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      position: relative;
+      z-index: 2;
+    }
+    .featured-copy .demo-eyebrow {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .featured-copy h3 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .featured-copy p {
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+    }
+    .featured-thumb {
+      position: relative;
+      display: block;
+      width: 100%;
+      max-width: 300px;
+      margin-left: auto;
+      aspect-ratio: 9 / 16;
+      background: #000;
+      border-radius: 28px;
+      overflow: hidden;
+    }
+    .featured-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .featured-thumb .play-button {
+      top: 45%;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .video-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    @media (max-width: 600px) {
+      .video-grid {
+        grid-template-columns: 1fr;
+        max-width: 340px;
+        margin: 0 auto;
+      }
+      .featured-demo {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .featured-thumb {
+        margin: 0 auto;
+      }
+    }
+
+    .video-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .video-card:hover {
+      border-color: rgba(0, 212, 212, 0.22);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+    }
+    .video-thumb {
+      position: relative;
+      display: block;
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      background: #000;
+      overflow: hidden;
+    }
+    .video-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .video-card:hover .video-thumb img {
+      transform: scale(1.04);
+    }
+    .video-thumb::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0.12) 35%, rgba(0,0,0,0.04) 100%);
+    }
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: rgba(10, 10, 12, 0.58);
+      border: 1px solid rgba(255,255,255,0.18);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1rem;
+      z-index: 2;
+    }
+    .video-body {
+      padding: 1.25rem 1.25rem 1.5rem;
+      text-align: center;
+    }
+    .video-body h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.35;
+      margin-bottom: 0.6rem;
+    }
+    .video-body p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .video-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    .video-link:hover {
+      opacity: 0.8;
+    }
+    .demo-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .demo-label {
+      padding: 1rem;
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    footer {
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+    footer a { color: var(--text-secondary); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+    footer p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .demo-group {
+      margin-bottom: 5rem;
+    }
+    .group-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .group-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    .group-desc {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .light-cta {
+      text-align: center;
+      padding: 5rem 2rem;
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+    .light-cta h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .light-cta p {
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      background: var(--accent);
+      color: #000;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .btn-primary:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+    .btn-secondary {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .nav-logo-img {
+      height: 20px;
+      width: auto;
+      display: block;
+    }
+    .footer-brand-logo {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .footer-brand-logo img {
+      height: 24px;
+      width: auto;
+      margin-bottom: 0.75rem;
+      opacity: 0.9;
+    }
+    .footer-brand-logo p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .trademark-notice {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-top: 1rem;
+      opacity: 0.7;
+    }
+    .trademark-notice a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .trademark-notice a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-socials { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0; }
+    .footer-socials a {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 42px; height: 42px;
+      border: 1px solid var(--border); border-radius: 50%;
+      color: rgba(255,255,255,0.55); background: rgba(255,255,255,0.02);
+      transition: all 0.2s ease;
+    }
+    .footer-socials a:hover { color: var(--accent); border-color: rgba(0,212,212,0.45); background: rgba(0,212,212,0.08); transform: translateY(-1px); }
+    .footer-socials a svg.footer-icon { width: 18px; height: 18px; fill: currentColor; }
+    .footer-icon { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border: 1px solid var(--border); border-radius: 50%; color: var(--text-secondary); transition: all 0.2s; padding: 0; }
+    .footer-icon:hover { color: var(--accent); border-color: var(--accent); background: rgba(0, 212, 212, 0.1); }
+  </style>
+  <link rel="stylesheet" href="/magne-web/assets/mobile-responsive.css">
+</head>
+<body class="content--canvas">
+  <canvas id="bg"></canvas>
+  <nav>
+    <div class="nav-brand"><a href="/magne-web/tc/magne-home.html" class="nav-logo"><img src="/magne-web/assets/brand/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="nav-logo-img"></a></div>
+    <div style="display: flex; align-items: center; gap: 1.5rem;">
+      <a href="/magne-web/tc/magne-home.html" class="nav-back">← 返回首頁</a>
+      <div class="lang-switch">
+        <a href="/magne-web/features-demo.html">EN</a>
+        <span style="color: var(--text-muted);">|</span>
+        <a href="/magne-web/tc/features-demo.html" class="active">繁中</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="label">功能演示</div>
+    <h1>查看 MAG1 實機演示</h1>
+    <p class="subtitle">觀看真實設備演示，了解錢包建立、復原、dApp 連接、私密空間與 AI 輔助工作流。</p>
+  </div>
+
+  <main>
+
+    <!-- FEATURED DEMO -->
+    <div class="featured-demo">
+      <div class="featured-copy">
+        <div class="demo-eyebrow">精選演示</div>
+        <h3>在 MAG1 上建立新錢包</h3>
+        <p>了解 MAG1 如何在設備端引導完成錢包設定，並將安全所有權流程與手機原生使用體驗結合。</p>
+        <a href="https://youtube.com/shorts/ZMhyf6yImOc" target="_blank" class="btn-primary">觀看精選演示</a>
+      </div>
+      <a href="https://youtube.com/shorts/ZMhyf6yImOc" target="_blank" class="featured-thumb">
+        <img src="https://img.youtube.com/vi/ZMhyf6yImOc/hqdefault.jpg" alt="Create a New Wallet">
+        <span class="play-button">▶</span>
+      </a>
+    </div>
+
+    <!-- WALLET SETUP -->
+    <div class="demo-group">
+      <div class="group-header">
+        <div class="group-title">安全錢包設定</div>
+        <p class="group-desc">透過引導式設備流程，直接在 MAG1 上設定並復原錢包存取權限。</p>
+      </div>
+      <div class="video-grid">
+        <article class="video-card">
+          <a href="https://youtube.com/shorts/bcHC_FbMrog" target="_blank" class="video-thumb">
+            <img src="https://img.youtube.com/vi/bcHC_FbMrog/hqdefault.jpg" alt="NFC Recovery">
+            <span class="play-button">▶</span>
+          </a>
+          <div class="video-body">
+            <h3>使用 NFC 卡復原</h3>
+            <p>透過加密 NFC 備份復原錢包存取權限。</p>
+            <a href="https://youtube.com/shorts/bcHC_FbMrog" target="_blank" class="video-link">觀看演示 →</a>
+          </div>
+        </article>
+
+        <article class="video-card">
+          <a href="https://youtube.com/shorts/naYHLTVEeWw" target="_blank" class="video-thumb">
+            <img src="https://img.youtube.com/vi/naYHLTVEeWw/hqdefault.jpg" alt="Mnemonic Recovery">
+            <span class="play-button">▶</span>
+          </a>
+          <div class="video-body">
+            <h3>使用助記詞復原</h3>
+            <p>使用標準復原短語復原錢包。</p>
+            <a href="https://youtube.com/shorts/naYHLTVEeWw" target="_blank" class="video-link">觀看演示 →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- PRIVATE & SECURE -->
+    <div class="demo-group">
+      <div class="group-header">
+        <div class="group-title">私密與安全使用</div>
+        <p class="group-desc">了解 MAG1 如何將敏感 Web3 活動與日常手機使用分隔開來。</p>
+      </div>
+      <div class="video-grid">
+        <article class="video-card">
+          <a href="https://youtube.com/shorts/1k2nQIyhDsg" target="_blank" class="video-thumb">
+            <img src="https://img.youtube.com/vi/1k2nQIyhDsg/hqdefault.jpg" alt="Connect DApp">
+            <span class="play-button">▶</span>
+          </a>
+          <div class="video-body">
+            <h3>連接錢包至 dApp</h3>
+            <p>將 MAG1 錢包連接至 Web3 應用。</p>
+            <a href="https://youtube.com/shorts/1k2nQIyhDsg" target="_blank" class="video-link">觀看演示 →</a>
+          </div>
+        </article>
+
+        <article class="video-card">
+          <a href="https://youtube.com/shorts/BZOy194iYA8" target="_blank" class="video-thumb">
+            <img src="https://img.youtube.com/vi/BZOy194iYA8/hqdefault.jpg" alt="Hide Private Space">
+            <span class="play-button">▶</span>
+          </a>
+          <div class="video-body">
+            <h3>隱藏私密空間</h3>
+            <p>將敏感 Web3 活動與日常使用分隔開來。</p>
+            <a href="https://youtube.com/shorts/BZOy194iYA8" target="_blank" class="video-link">觀看演示 →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- AI & DAILY -->
+    <div class="demo-group">
+      <div class="group-header">
+        <div class="group-title">AI 與日常工作流</div>
+        <p class="group-desc">了解 MAG1 如何將設備端智能與日常實用互動結合。</p>
+      </div>
+      <div class="video-grid">
+        <article class="video-card">
+          <a href="https://youtube.com/shorts/u61eNffrhe0" target="_blank" class="video-thumb">
+            <img src="https://img.youtube.com/vi/u61eNffrhe0/hqdefault.jpg" alt="Gemini AI">
+            <span class="play-button">▶</span>
+          </a>
+          <div class="video-body">
+            <h3>使用 Gemini AI</h3>
+            <p>用於日常工作流的設備端 AI 輔助。</p>
+            <a href="https://youtube.com/shorts/u61eNffrhe0" target="_blank" class="video-link">觀看演示 →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- LIGHT CONTACT CTA -->
+    <div class="light-cta">
+      <h3>需要更多協助？</h3>
+      <p>如有產品問題或合作查詢，請聯絡 MAGNE.AI 團隊。</p>
+      <a href="/magne-web/tc/magne-contact.html" class="btn-secondary">聯絡 MAGNE</a>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand-logo">
+      <img src="/magne-web/assets/brand/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="footer-brand-img">
+      <p>Web3 原生 AI 安全手機</p>
+    </div>
+
+    <div class="footer-socials" aria-label="MAGNE.AI 官方頻道">
+      <a href="https://x.com/Magne_Ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="https://t.me/MagneAI" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+      <a href="https://discord.gg/tX2xRAkd" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
+      <a href="https://github.com/magne-ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+      <a href="https://www.youtube.com/@MagneAI" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+      <a href="https://web3.magne.ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE Web3 Docs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></a>
+    </div>
+
+    <div class="footer-links">
+      <a href="/magne-web/tc/privacy-policy.html">隱私政策</a>
+      <a href="/magne-web/tc/magne-contact.html">聯絡</a>
+      <a href="/magne-web/tc/media-kit.html">媒體資料包</a>
+      <a href="https://web3.magne.ai" target="_blank" rel="noopener">白皮書</a>
+      <a href="https://web3.magne.ai/legal" target="_blank" rel="noopener">法律意見書</a>
+    </div>
+    <p class="trademark-notice">
+      MAGNE.AI™ 為 Magical Hash Global Tech Limited 的商業標誌，目前正在註冊程序中（<a href="https://tmsearch.uspto.gov/search/search-results/99311528" target="_blank" rel="noopener">USPTO 序號：99311528</a>）。
+    </p>
+    <p style="margin-top: 1.5rem; opacity: 0.5;">© 2026 MAGNE.AI. 版權所有。</p>
+  </footer>
+
+  <script>
+    const canvas = document.getElementById('bg');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+    const particles = [];
+    for (let i = 0; i < 60; i++) {
+      particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4, size: Math.random() * 2 + 1 });
+    }
+    function animate() {
+      ctx.fillStyle = '#0a0a0c';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(0, 212, 212, 0.25)';
+        ctx.fill();
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+      });
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+  <script src="/magne-web/assets/mobile-nav.js" defer></script>
+</body>
+</html>
