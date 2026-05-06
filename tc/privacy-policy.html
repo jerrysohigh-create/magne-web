@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>隱私政策 — MAGNE.AI</title>
+  <link rel="icon" type="image/png" href="/magne-web/logo-icon-circle.png">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0a0c;
+      --bg-secondary: #0f0f12;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.1);
+      --text-primary: #f5f5f7;
+      --text-secondary: rgba(245, 245, 247, 0.6);
+      --text-muted: rgba(245, 245, 247, 0.4);
+      --accent: #00d4d4;
+      --accent-dim: rgba(0, 212, 212, 0.06);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+    }
+    .content--canvas { position: relative; z-index: 1; }
+    .content--canvas canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 12, 0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-decoration: none;
+    }
+    .nav-back {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: color 0.3s;
+    }
+    .nav-back:hover { color: var(--accent); }
+
+    .lang-switch {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding-left: 1rem;
+      border-left: 1px solid var(--border);
+    }
+    .lang-switch a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+    .lang-switch a:hover,
+    .lang-switch a.active {
+      color: var(--accent);
+    }
+
+    .page-header {
+      padding: 8rem 2rem 3rem;
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .page-header .label {
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .page-header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .page-header .last-updated {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 2rem 6rem;
+      position: relative;
+      z-index: 1;
+    }
+    .content h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin: 2.5rem 0 1rem;
+      color: var(--text-primary);
+    }
+    .content h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.8rem;
+      color: var(--text-primary);
+    }
+    .content p {
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+    .content ul, .content ol {
+      color: var(--text-secondary);
+      margin: 0.5rem 0 1rem 1.5rem;
+      font-size: 0.95rem;
+    }
+    .content li { margin-bottom: 0.4rem; }
+    .content a { color: var(--accent); text-decoration: none; }
+    .content a:hover { text-decoration: underline; }
+    .content strong { color: var(--text-primary); font-weight: 600; }
+    .content .contact-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .content .contact-box p { margin-bottom: 0.3rem; }
+    .content .contact-box strong { color: var(--accent); }
+
+    footer {
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      position: relative;
+      z-index: 1;
+    }
+    footer a { color: var(--text-secondary); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .page-header { padding: 7rem 1.5rem 2rem; }
+      .content { padding: 1rem 1.5rem 4rem; }
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+    }
+    .footer-links a:hover {
+      color: var(--accent);
+      background: rgba(0, 212, 212, 0.1);
+    }
+    .footer-icon {
+      padding: 0.6rem !important;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .footer-icon:hover {
+      border-color: var(--accent);
+      background: rgba(0, 212, 212, 0.1);
+    }
+    .footer-logo { margin: 2rem 0 1rem; }
+
+    .nav-logo-img {
+      height: 20px;
+      width: auto;
+      display: block;
+    }
+
+    .trademark-notice {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-top: 1rem;
+      opacity: 0.7;
+    }
+    .trademark-notice a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .trademark-notice a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-socials { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0; }
+    .footer-socials a {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 42px; height: 42px;
+      border: 1px solid var(--border); border-radius: 50%;
+      color: rgba(255,255,255,0.55); background: rgba(255,255,255,0.02);
+      transition: all 0.2s ease;
+    }
+    .footer-socials a:hover { color: var(--accent); border-color: rgba(0,212,212,0.45); background: rgba(0,212,212,0.08); transform: translateY(-1px); }
+    .footer-socials a svg.footer-icon { width: 18px; height: 18px; fill: currentColor; }
+    .footer-icon { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border: 1px solid var(--border); border-radius: 50%; color: var(--text-secondary); transition: all 0.2s; padding: 0; }
+    .footer-icon:hover { color: var(--accent); border-color: var(--accent); background: rgba(0, 212, 212, 0.1); }
+
+    .footer-brand-logo {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .footer-brand-logo img {
+      height: 24px;
+      width: auto;
+      margin-bottom: 0.75rem;
+      opacity: 0.9;
+    }
+    .footer-brand-logo p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+  </style>
+  <link rel="stylesheet" href="/magne-web/assets/mobile-responsive.css">
+</head>
+<body class="content--canvas">
+  <canvas id="swirl"></canvas>
+
+  <nav>
+    <a href="/magne-web/tc/privacy-policy.html" class="nav-logo"><img src="/magne-web/assets/brand/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="nav-logo-img"></a>
+    <div style="display: flex; align-items: center; gap: 1.5rem;">
+      <a href="/magne-web/tc/magne-home.html" class="nav-back">← 返回首頁</a>
+      <div class="lang-switch">
+        <a href="/magne-web/privacy-policy.html">EN</a>
+        <span style="color: var(--text-muted);">|</span>
+        <a href="/magne-web/tc/privacy-policy.html" class="active">繁中</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="label">法律</div>
+    <h1>隱私政策</h1>
+    <p class="last-updated">最後更新日期：2025 年 7 月 31 日</p>
+  </div>
+
+  <div class="content">
+    <p>本隱私政策（「隱私政策」）說明 MagneAI® 及其子公司（統稱為「MagneAI®」、「我們」或「本公司」）如何收集、使用及披露與您相關的資訊。本隱私政策適用於您存取及使用我們營運的任何網站（「網站」）以及連結至本隱私政策的其他線上產品與服務（連同網站統稱為「服務」）時，亦適用於您聯絡我們的客戶服務團隊、在社交媒體上與我們互動，或以其他方式與我們互動時。</p>
+
+    <p>本隱私政策不適用於本文所述服務以外的產品與服務。例如，如果您是支援 MagneAI® 的行動設備或第三方 dApp 的使用者，請參閱與該等服務相關的隱私政策，以了解您的個人資訊如何被處理。</p>
+
+    <p>本隱私政策亦不適用於我們在向商業客戶提供產品或服務時所處理的資訊（例如，商業客戶向我們提供或使我們可取得其自身客戶或終端使用者的資料）。我們僅依照商業客戶的指示及與其簽訂的協議，使用自商業客戶取得的個人資訊。如果您對我們代表商業客戶處理的個人資訊有任何疑問，請直接向該商業客戶提出。</p>
+
+    <p>請仔細閱讀本隱私政策，以了解我們處理您個人資訊的做法及使用方式。</p>
+
+    <h2>聯絡我們</h2>
+    <div class="contact-box">
+      <p><strong>MagneAI®</strong></p>
+      <p>Sea Meadow House, P.O. Box 116</p>
+      <p>Road Town, Tortola, British Virgin Islands</p>
+      <p>電子郵件：<a href="mailto:official@magne.ai">official@magne.ai</a></p>
+    </div>
+
+    <h2>我們在哪裡儲存和處理您的個人資訊？</h2>
+    <p>MagneAI® 提供的服務主要託管於位於美國的伺服器和基礎設施上。使用我們的服務即表示您理解並同意，您的個人資訊可能會被收集、轉移至、儲存於及處理於美國或我們服務提供商、合作夥伴所在的其他司法管轄區。</p>
+
+    <p>美國的資料保護及隱私法律可能與您所在國家或地區的法律不同，且在某些情況下保護程度可能較低。存取或使用本服務即表示您同意將您的資訊轉移至美國，並確認該等資訊將受美國法律約束，包括適用的聯邦及州隱私法規。</p>
+
+    <p>我們會依照美國法律要求，採取合理的技術及組織措施來保護您的個人資訊。</p>
+
+    <h2>您直接提供給我們的資訊</h2>
+    <p>我們會收集您直接提供給 MagneAI® 的個人資訊。這包括您聯絡我們、填寫表格、進行購買、透過第三方平台與我們溝通、參與競賽或推廣活動、回覆調查、提交回饋、請求支援或以其他方式與我們互動時提供的資訊。</p>
+
+    <p>我們可能收集的個人資訊類別包括：</p>
+    <ul>
+      <li>聯絡及個人資料，例如您的姓名、電子郵件地址、電話號碼、郵寄地址、公司及社交媒體個人資料連結；</li>
+      <li>帳戶資料，包括使用者名稱、密碼及與您帳戶相關的其他資訊；</li>
+      <li>付款及交易資料，包括帳單資訊、錢包地址、信用卡或其他付款資訊；</li>
+      <li>行銷偏好，例如您是否同意或拒絕接收推廣訊息；</li>
+      <li>使用者生成內容，例如您提交或在我們服務中提供的訊息、評論、照片及其他內容。</li>
+    </ul>
+
+    <h2>自動收集的資訊</h2>
+    <p>當您存取或使用本服務，或以其他方式與 MagneAI® 進行交易時，我們會自動收集若干類別的個人資訊，包括：</p>
+
+    <ul>
+      <li><strong>設備與使用資訊</strong> – 有關您的設備及您如何與我們服務互動的資訊，包括硬體型號、作業系統版本、瀏覽器類型、IP 位址、行動網絡、設備識別碼、大致位置資訊及應用程式版本。</li>
+      <li><strong>線上活動資料</strong> – 例如您瀏覽的頁面、點擊的連結、瀏覽時間與持續時間，以及引導您進入我們服務的來源網頁。</li>
+      <li><strong>位置資訊</strong> – 視您的設備設定而定，我們可能會從您的設備收集地理位置資料。您可透過設備的系統偏好設定控制或停用位置追蹤。</li>
+      <li><strong>第三方網站互動</strong> – 我們可能會收集您如何與整合於或連結至我們服務的第三方網站或廣告互動的資訊。</li>
+    </ul>
+
+    <p>其中部分資訊可能透過 Cookie 及類似追蹤技術收集。詳情請參閱下方「Cookie 及其他技術」章節。</p>
+
+    <h2>我們從其他來源收集的資訊</h2>
+    <p>我們可能從第三方來源取得與您相關的個人資訊，包括但不限於：</p>
+    <ul>
+      <li>公開可取得的資料庫及網站；</li>
+      <li>身份驗證及欺詐防範服務；</li>
+      <li>資料分析提供商；</li>
+      <li>廣告及行銷合作夥伴；</li>
+      <li>郵寄名單提供商及社交媒體平台（在適用法律允許的範圍內）。</li>
+    </ul>
+
+    <p>我們可能將從這些第三方來源收到的資訊，與我們透過服務收集的其他個人資訊相結合。當我們進行此類資訊結合時，本隱私政策將約束所有可識別個人身分的合併資料之處理方式。</p>
+
+    <h2>Cookie 及其他技術</h2>
+    <p>我們可能使用 Cookie、本地儲存、分析工具及類似技術來營運網站、記住使用者偏好、改善網站效能、了解聚合使用模式，以及幫助保護我們服務的完整性。</p>
+    <p>您可以透過瀏覽器設定控制 Cookie。停用某些 Cookie 可能會影響部分網站功能、儀表板、表單或活動頁面的可用性或功能。</p>
+    <p>在適用法律要求的情況下，我們將在使用非必要 Cookie 或類似追蹤技術之前，先徵求您的同意。</p>
+
+    <h2>敏感資訊的收集與處理</h2>
+    <p>MagneAI® 不會故意收集或處理適用美國州隱私法（ 包括《加州消費者隱私法》）所定義的「敏感個人資訊」，包括揭示種族或民族出身、政治見解、宗教或哲學信仰、工會會員資格、遺傳或生物特徵資料、健康資訊、性取向或精確地理位置的資訊。</p>
+
+    <p>若您透過與我們服務整合的第三方支付提供商提交敏感財務資料（例如銀行帳戶詳細資訊或錢包憑證），我們不會直接存取或儲存此類資訊。這些提供商會根據其自身的隱私政策處理此類資料。</p>
+
+    <p>我們強烈建議您不要透過服務提交敏感個人資訊，除非明確要求且安全傳輸。</p>
+
+    <h2>我們如何使用您的個人資訊？</h2>
+
+    <h3>服務交付與營運</h3>
+    <ul>
+      <li>提供、維護及保障我們的網站與服務；</li>
+      <li>建立及維護您的帳戶（若您建立帳戶個人資料）；</li>
+      <li>傳送技術通知、安全警報及支援與管理訊息；</li>
+      <li>評估及回應您的查詢；</li>
+      <li>回覆您的意見與問題並提供客戶服務；及</li>
+      <li>就服務相關事宜與您溝通。</li>
+    </ul>
+
+    <h3>服務個人化</h3>
+    <ul>
+      <li>了解您的需求與興趣；</li>
+      <li>個人化您使用服務的體驗及服務相關溝通；及</li>
+      <li>在您瀏覽網頁時記住您的選擇與偏好。</li>
+    </ul>
+
+    <h3>服務改進、研究及分析</h3>
+    <ul>
+      <li>監控及分析與我們服務相關的趨勢、使用情況及活動；</li>
+      <li>改進服務、改進我們的整體業務、幫助我們了解使用者在服務上的活動及與我們電子郵件的互動，並開發新產品與服務；及</li>
+      <li>為您報名參加各類調查、訪談及焦點小組，以接收您對我們服務使用的回饋，並獲得關於如何改進服務的洞察；</li>
+    </ul>
+
+    <h3>活動、推廣及競賽</h3>
+    <ul>
+      <li>管理競賽、抽獎及推廣活動（包括處理及交付參賽作品與獎勵）</li>
+      <li>就您可能參與的競賽、抽獎及推廣活動與您溝通；及</li>
+      <li>舉辦及管理活動，及／或在收集您的個人資訊後與您聯絡或向您進行行銷。</li>
+    </ul>
+
+    <h3>行銷及廣告</h3>
+    <ul>
+      <li><strong>興趣導向廣告。</strong> 向您顯示個人化或目標內容，以及在第三方網站上顯示目標廣告。</li>
+      <li><strong>直效行銷。</strong> 向您發送直效行銷訊息。</li>
+    </ul>
+
+    <h3>合規與保護</h3>
+    <ul>
+      <li>偵測、調查及防止安全事件及其他惡意、欺騙、詐欺或非法活動；</li>
+      <li>保護我們、您或他人的權利、隱私、安全或財產（包括評估、提起及抗辯法律索償）；</li>
+      <li>對合規性進行內部審計，以遵守法律及合約要求或我們的政策；</li>
+      <li>執行約束服務的條款及條件；</li>
+      <li>偵錯、識別及修復我們服務中的錯誤；及</li>
+      <li>遵守我們的法律及財務義務，包括合法請求及法律程序。</li>
+    </ul>
+
+    <h3>商業交易</h3>
+    <p>促進實際或潛在的商業交易（這些商業交易在下文「我們何時分享個人資訊？」中有更詳細的說明）。</p>
+
+    <h3>創建聚合、去識別及／或匿名化資訊</h3>
+    <p>我們可能從您的個人資訊及我們收集的其他個人資訊創建聚合、去識別及／或匿名化資料。我們透過移除可使資料識別您身分的資訊，將個人資訊轉化為去識別及／或匿名化資料。我們可能將此類聚合、去識別及／或匿名化資料用於我們的合法業務目的，包括分析與改進服務及促進我們的業務。</p>
+
+    <h2>我們何時分享個人資訊？</h2>
+
+    <h3>您指定的第三方</h3>
+    <p>在我們獲得您指示或同意的情況下，我們可能會與第三方分享您的個人資訊；</p>
+
+    <h3>連結的第三方服務</h3>
+    <p>若您將服務的帳戶連結至第三方服務（例如用於登入目的或連接錢包），我們可能會與該第三方服務分享您的個人資訊。第三方對共享資訊的使用將受其隱私政策及您與該第三方服務帳戶相關設定的約束；</p>
+
+    <h3>機關及其他</h3>
+    <p>如果我們認為您的行為與我們的使用者協議或政策不符，或如果您已違反法律，或我們認為有必要保護我們的使用者、公眾或他人的權利、財產及安全或我們自身的安全，我們可能會分享個人資訊。如果我們相信披露符合或基於任何適用法律或法律程序的要求（包括公共機關為滿足國家安全或執法要求而提出的合法請求），我們也可能披露個人資訊；</p>
+
+    <h3>專業顧問</h3>
+    <p>我們在必要時會與律師及其他專業顧問分享個人資訊，以獲取建議或以其他方式保護及管理我們的業務利益；</p>
+
+    <h3>業務受讓人</h3>
+    <p>在任何業務交易相關或談判過程中，我們可能會分享個人資訊，包括任何合併、公司資產銷售、融資或另一家公司收購我們全部或部分業務的情形，或在任何破產或解散事件中——例如，我們可能需要與潛在交易對手及其顧問分享某些個人資訊；</p>
+
+    <h3>其他使用者及公眾</h3>
+    <p>您的個人資料及某些其他使用者生成內容可能對服務的其他使用者或公眾可見。例如，您可能選擇透過服務向他人提供您的個人資料，例如當您提供評論、評論、調查回覆或分享其他內容時。此類資訊可被他人查看、收集及使用，包括被他人緩存、複製、螢幕截圖或儲存於其他地方（例如搜尋引擎），我們對此類使用不承擔責任；及</p>
+
+    <h3>聚合或去識別資訊</h3>
+    <p>我們也會分享無法合理用於識別您身分的聚合或去識別資訊，以用於任何合法業務目的。</p>
+
+    <p>我們的網站可能包含指向第三方網站的連結。我們不對這些外部網站的隱私實踐負責。在向其提供個人資訊之前，請先審閱其政策。</p>
+
+    <h2>您的選擇</h2>
+
+    <h3>選擇退出通訊</h3>
+    <p>若您收到 MagneAI® 的行銷電子郵件，可隨時按電子郵件中的指示取消訂閱。您也可以選擇退出接收我們不時發送的任何其他促銷通訊（例如郵寄），方式是透過電子郵件向我們發送請求至 <a href="mailto:official@magne.ai">official@magne.ai</a>，或以書面方式向我們寄送至本隱私政策「聯絡我們」章節中提供的地址。</p>
+
+    <div class="footer-links">
+      <a href="/magne-web/tc/privacy-policy.html">隱私政策</a>
+      <a href="/magne-web/tc/magne-contact.html">聯絡</a>
+      <a href="/magne-web/tc/media-kit.html">媒體資料包</a>
+    </div>
+    <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.85rem;">© 2026 MAGNE.AI. 版權所有。</p>
+  </div>
+
+  <footer>
+  <div class="footer-brand-logo">
+      <img src="/magne-web/assets/brand/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="footer-brand-img">
+      <p>Web3 原生 AI 安全手機</p>
+    </div>
+
+  <div class="footer-socials" aria-label="MAGNE.AI 官方頻道">
+    <a href="https://x.com/Magne_Ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+    <a href="https://t.me/MagneAI" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+    <a href="https://discord.gg/tX2xRAkd" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
+    <a href="https://github.com/magne-ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+    <a href="https://www.youtube.com/@MagneAI" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+    <a href="https://web3.magne.ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE Web3 Docs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></a>
+  </div>
+
+  <div class="footer-links">
+    <a href="/magne-web/tc/privacy-policy.html">隱私政策</a>
+    <a href="/magne-web/tc/magne-contact.html">聯絡</a>
+    <a href="/magne-web/tc/media-kit.html">媒體資料包</a>
+    <a href="https://web3.magne.ai" target="_blank" rel="noopener">白皮書</a>
+    <a href="https://web3.magne.ai/legal" target="_blank" rel="noopener">法律意見書</a>
+  </div>
+  <p class="trademark-notice">
+    MAGNE.AI™ 為 Magical Hash Global Tech Limited 的商業標誌，目前正在註冊程序中（<a href="https://tmsearch.uspto.gov/search/search-results/99311528" target="_blank" rel="noopener">USPTO 序號：99311528</a>）。
+  </p>
+  <p style="margin-top: 1.5rem; opacity: 0.5;">© 2026 MAGNE.AI. 版權所有。</p>
+</footer>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
+<script>
+  const canvas = document.getElementById('swirl');
+  const ctx = canvas.getContext('2d');
+  let width, height;
+  let simplex = new SimplexNoise();
+
+  function resize() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const particles = [];
+  const count = 50;
+  for (let i = 0; i < count; i++) {
+    particles.push({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      size: Math.random() * 3 + 2
+    });
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+    for (let p of particles) {
+      const nx = simplex.noise3D(p.x * 0.001, p.y * 0.001, performance.now() * 0.00015);
+      const ny = simplex.noise3D(p.x * 0.001 + 100, p.y * 0.001 + 100, performance.now() * 0.00015);
+      p.x += p.vx + nx * 0.3;
+      p.y += p.vy + ny * 0.3;
+      if (p.x < 0) p.x = width;
+      if (p.x > width) p.x = 0;
+      if (p.y < 0) p.y = height;
+      if (p.y > height) p.y = 0;
+
+      const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 2);
+      gradient.addColorStop(0, 'rgba(0, 212, 212, 0.3)');
+      gradient.addColorStop(1, 'rgba(0, 212, 212, 0)');
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size * 2, 0, Math.PI * 2);
+      ctx.fillStyle = gradient;
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size * 0.4, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(0, 212, 212, 0.6)';
+      ctx.fill();
+    }
+    requestAnimationFrame(animate);
+  }
+  animate();
+</script>
+<script src="/magne-web/assets/mobile-nav.js" defer></script>
+</body>
+</html>
