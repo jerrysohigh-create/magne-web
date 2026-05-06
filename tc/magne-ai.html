@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAGNE AI — 端側 AI 翻譯 + Gemini 雲端智能</title>
+  <link rel="icon" type="image/png" href="/magne-web/assets/brand/logo-icon-circle.png">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #0a0a0c;
+      --bg-secondary: #0f0f12;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --bg-card-hover: rgba(255, 255, 255, 0.05);
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.12);
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.5);
+      --text-tertiary: rgba(255, 255, 255, 0.3);
+      --accent: #00d4d4;
+      --accent-secondary: #00ff88;
+      --accent-purple: #a855f7;
+      --accent-gold: #ffd700;
+      --accent-pink: #ff6482;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', -apple-system, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NODE NETWORK BACKGROUND */
+    #node-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 12, 0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-brand a { color: var(--text-secondary); text-decoration: none; }
+    .nav-logo { font-size: 1.3rem; font-weight: 700; color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a.active { color: var(--accent); }
+    .nav-actions {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    .nav-cta {
+      background: var(--accent);
+      color: #000 !important;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+    .nav-contact {
+      background: transparent;
+      border: 1px solid var(--border-hover);
+      color: var(--text-primary) !important;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 500;
+      text-decoration: none;
+    }
+    .nav-contact:hover { border-color: var(--accent); color: var(--accent) !important; }
+    .nav-web3 {
+      color: var(--accent-secondary) !important;
+      font-size: 0.85rem;
+    }
+    .nav-web3:hover { color: var(--accent) !important; }
+    .nav-lang-switch {
+      color: rgba(255,255,255,0.5) !important;
+      font-size: 0.8rem !important;
+      text-decoration: none !important;
+    }
+    .nav-lang-switch:hover { color: var(--accent) !important; }
+    .nav-actions-mobile { display: none; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-eyebrow {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      max-width: 800px;
+    }
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--text-secondary);
+      max-width: 640px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* BUTTONS */
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,212,212,0.3); }
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--border-hover);
+      color: var(--text-primary);
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-secondary-alt {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 0.8rem 1.6rem;
+      border-radius: 8px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-secondary-alt:hover { border-color: var(--border-hover); color: var(--text-primary); }
+
+    /* SECTION BASE */
+    section {
+      padding: 6rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .section-title h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .section-title p {
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1rem;
+    }
+
+    /* AI STACK DIAGRAM */
+    .ai-stack {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      gap: 2rem;
+      margin: 3rem 0;
+      flex-wrap: wrap;
+    }
+    .ai-stack-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      flex: 1;
+      min-width: 280px;
+      max-width: 360px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .ai-stack-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+    }
+    .ai-stack-card.highlight {
+      border-color: rgba(0, 212, 212, 0.3);
+      background: rgba(0, 212, 212, 0.04);
+    }
+    .ai-stack-icon {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+    }
+    .ai-stack-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .ai-stack-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    .ai-stack-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+    }
+    .label-local {
+      background: rgba(0, 255, 136, 0.1);
+      color: var(--accent-secondary);
+      border: 1px solid rgba(0, 255, 136, 0.2);
+    }
+    .label-cloud {
+      background: rgba(168, 85, 247, 0.1);
+      color: var(--accent-purple);
+      border: 1px solid rgba(168, 85, 247, 0.2);
+    }
+
+    /* FEATURE GRID */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem;
+      transition: all 0.3s;
+    }
+    .feature-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+    }
+    .feature-card h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .feature-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    /* PROCESS FLOW */
+    .process-flow {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      margin: 3rem 0;
+      flex-wrap: wrap;
+    }
+    .process-step {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      text-align: center;
+    }
+    .process-step span {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    .process-arrow {
+      color: var(--accent);
+      font-size: 1.5rem;
+    }
+
+    /* Gemini NOTE */
+    .gemini-note {
+      background: rgba(168, 85, 247, 0.05);
+      border: 1px solid rgba(168, 85, 247, 0.15);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      text-align: center;
+    }
+    .gemini-note p {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+    .gemini-note strong {
+      color: var(--accent-purple);
+    }
+
+    /* DISCLAIMER */
+    .disclaimer {
+      background: rgba(255, 215, 0, 0.03);
+      border: 1px solid rgba(255, 215, 0, 0.1);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 3rem;
+    }
+    .disclaimer h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--accent-gold);
+      margin-bottom: 0.75rem;
+    }
+    .disclaimer p {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+
+    /* CTA */
+    .cta-section {
+      text-align: center;
+      padding: 6rem 2rem;
+      background: linear-gradient(180deg, transparent 0%, rgba(0,212,212,0.02) 100%);
+    }
+    .cta-section h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .cta-section p {
+      color: var(--text-secondary);
+      max-width: 500px;
+      margin: 0 auto 2rem;
+    }
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 4rem 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-tertiary);
+      font-size: 0.9rem;
+    }
+    footer a { color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--accent); }
+    .footer-brand-logo { text-align: center; margin-bottom: 1.5rem; }
+    .footer-brand-logo img { height: 24px; width: auto; margin-bottom: 0.75rem; opacity: 0.9; }
+    .footer-socials { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0; }
+    .footer-socials a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      transition: all 0.2s;
+    }
+    .footer-socials a:hover { border-color: var(--accent); color: var(--accent); }
+    .footer-socials a.footer-icon svg { width: 18px; height: 18px; }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; margin-top: 1rem; flex-wrap: wrap; }
+    .trademark-notice { margin-top: 1.5rem; opacity: 0.5; font-size: 0.8rem; }
+
+    /* ANIMATIONS */
+    .animate { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
+    .animate.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+  <canvas id="node-bg"></canvas>
+
+  <nav>
+    <div class="nav-brand">
+      <a href="/magne-web/tc/magne-home.html" class="nav-logo">MAGNE.AI</a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="/magne-web/tc/magne-home.html">首頁</a></li>
+      <li><a href="/magne-web/tc/magne-phone.html">手機</a></li>
+      <li><a href="/magne-web/tc/magne-ai.html" class="active">AI</a></li>
+      <li><a href="/magne-web/tc/magne-security.html">安全</a></li>
+      <li><a href="/magne-web/tc/magne-compliance.html">合規</a></li>
+      <li><a href="/magne-web/tc/magne-network.html">網絡</a></li>
+      <li><a href="/magne-web/tc/magne-progress.html">進展</a></li>
+      <li><a href="/magne-web/tc/magne-partners.html">合作夥伴</a></li>
+      <li><a href="/magne-web/tc/faq.html">常見問題</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="/magne-web/magne-ai.html" class="nav-lang-switch">EN | 繁中</a>
+      <a href="https://web3.magne.ai" target="_blank" rel="noopener" class="nav-web3">Web3 入口 ↗</a>
+      <a href="/magne-web/tc/magne-contact.html" class="nav-contact">聯絡</a>
+      <a href="https://payment.magne.ai/buy" class="nav-cta">預訂</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">AI 能力</div>
+    <h1>端側 AI 翻譯 + Gemini 雲端智能</h1>
+    <p class="hero-sub">MAGNE.AI Phone Gen1 結合本地 AI 翻譯能力與 Android 原生 Gemini 雲端智能。設備端 AI 堆疊主要用於支援中英文通話翻譯，而 Gemini 則透過 Android 生態提供更廣泛的雲端 AI 功能。</p>
+    <div class="hero-ctas">
+      <a href="/magne-web/tc/magne-phone.html" class="btn-primary">探索手機</a>
+      <a href="/magne-web/tc/magne-security.html" class="btn-secondary">探索安全</a>
+    </div>
+  </section>
+
+  <!-- AI STACK OVERVIEW -->
+  <section id="stack">
+    <div class="section-title">
+      <h2>雙層 AI 架構</h2>
+      <p>MAGNE.AI 將本地 AI 翻譯工作流與雲端 AI 體驗進行區分。不同 AI 功能可能依據功能類型、軟體配置及適用服務條款，在本地或雲端處理資料。</p>
+    </div>
+    <div class="ai-stack">
+      <div class="ai-stack-card highlight animate">
+        <div class="ai-stack-icon">📱</div>
+        <span class="ai-stack-label label-local">端側</span>
+        <h3>中英文通話翻譯</h3>
+        <p>由千問 1.5B 級本地語言模型及開源 ASR 驅動。專為低延遲、隱私敏感翻譯場景設計。</p>
+      </div>
+      <div class="ai-stack-card animate">
+        <div class="ai-stack-icon">☁️</div>
+        <span class="ai-stack-label label-cloud">雲端</span>
+        <h3>Google Gemini AI</h3>
+        <p>透過 Android 生態接入 Gemini 體驗，支援推理、內容生成、搜尋輔助及生產力支援。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ON-DEVICE CALL TRANSLATION -->
+  <section id="ondevice">
+    <div class="section-title">
+      <h2>端側通話翻譯</h2>
+      <p>MAGNE.AI Phone Gen1 的主要端側 AI 能力，是中英文通話翻譯。在支援的通話場景中，語音會先透過 ASR 模型轉換為文字，再由本地語言模型處理，並呈現在通話翻譯應用中。</p>
+    </div>
+    <div class="process-flow">
+      <div class="process-step"><span>🎤 語音輸入</span></div>
+      <span class="process-arrow">→</span>
+      <div class="process-step"><span>📝 ASR（語音轉文字）</span></div>
+      <span class="process-arrow">→</span>
+      <div class="process-step"><span>🧠 千問 1.5B（本地 LLM）</span></div>
+      <span class="process-arrow">→</span>
+      <div class="process-step"><span>💬 翻譯輸出</span></div>
+    </div>
+  </section>
+
+  <!-- LOCAL MODEL STACK -->
+  <section id="local">
+    <div class="section-title">
+      <h2>本地模型堆疊</h2>
+      <p>MAGNE.AI Phone Gen1 使用部署於終端的千問 1.5B 級語言模型，用於支援特定翻譯工作流。翻譯模型在終端本地運行，有助於降低往返延遲，並支援對響應速度要求較高的使用場景。</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card animate">
+        <h4>即時翻譯</h4>
+        <p>特定 AI 工作流可在設備端運行，有助於提升響應效率，並在部分隱私敏感場景下降低對雲端處理的依賴。</p>
+      </div>
+      <div class="feature-card animate">
+        <h4>低延遲</h4>
+        <p>本地模型推理旨在支援即時翻譯場景，在這些場景中網絡往返延遲可能影響用戶體驗。</p>
+      </div>
+      <div class="feature-card animate">
+        <h4>隱私敏感</h4>
+        <p>在設備端處理翻譯意味著敏感對話內容可留在設備上，減少暴露於雲端處理的風險。</p>
+      </div>
+      <div class="feature-card animate">
+        <h4>特定工作流</h4>
+        <p>端側 AI 專為特定翻譯場景設計。更廣泛的 AI 功能在可用地區透過雲端服務支援。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ASR PIPELINE -->
+  <section id="asr">
+    <div class="section-title">
+      <h2>語音轉文字流程</h2>
+      <p>通話翻譯工作流包含一個開源 ASR 模型，用於將語音轉換為文字。翻譯結果隨後會呈現在通話翻譯應用中，為雙語通訊場景提供實用的輔助流程。</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card animate">
+        <h4>開源 ASR</h4>
+        <p>語音轉文字流程使用開源 ASR 模型，將口語轉換為文字，供本地翻譯模型進一步處理。</p>
+      </div>
+      <div class="feature-card animate">
+        <h4>雙語支援</h4>
+        <p>專為中英文翻譯場景設計，有助於在通話環境中克服語言障礙。</p>
+      </div>
+      <div class="feature-card animate">
+        <h4>應用整合</h4>
+        <p>翻譯結果透過專用通話翻譯應用呈現，為現實世界的通訊需求提供實用的用戶界面。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GEMINI CLOUD AI -->
+  <section id="gemini">
+    <div class="section-title">
+      <h2>Gemini 雲端 AI 體驗</h2>
+      <p>在更廣泛的 AI 功能場景中，例如推理、內容生成、搜尋輔助、生產力支援及多模態互動，MAGNE.AI Phone Gen1 可透過 Android 生態支援接入可用的 Gemini 體驗。</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card animate">
+        <h4>內容生成</h4>
+        <p>AI 輔助的文件、電子郵件、訊息及創意寫作任務內容創作（在被支援的情況下）。</p>
+      </div>
+      <div class="feature-card animate">
+        <h4>AI 搜尋輔助</h4>
+        <p>AI 強化的資訊查找、研究及知識探索搜尋能力。</p>
+      </div>
+      <div class="feature-card animate">
+        <h4>生產力支援</h4>
+        <p>AI 輔助的電子郵件草擬、會議摘要及日常生產力工作流。</p>
+      </div>
+      <div class="feature-card animate">
+        <h4>多模態互動</h4>
+        <p>在被支援的情況下，支援圖片理解、文件分析及跨模態 AI 互動。</p>
+      </div>
+    </div>
+    <div class="gemini-note">
+      <p>Gemini 功能由 Google 的雲端服務提供。可用性須取決於地區可用性、Google 帳戶要求、軟體配置及適用的 Google 服務條款。</p>
+    </div>
+  </section>
+
+  <!-- PROCESSING BOUNDARY -->
+  <section id="boundary">
+    <div class="section-title">
+      <h2>處理邊界</h2>
+      <p>MAGNE.AI 將本地 AI 翻譯工作流與雲端 AI 體驗進行區分。不同 AI 功能可能依據功能類型、軟體配置及適用服務條款，在本地或雲端處理資料。</p>
+    </div>
+    <div class="ai-stack">
+      <div class="ai-stack-card animate">
+        <div class="ai-stack-icon">🔒</div>
+        <h3>本地處理</h3>
+        <p>通話翻譯 — 語音輸入、ASR、本地 LLM 推理及翻譯輸出在被支援的情況下在設備端處理。</p>
+      </div>
+      <div class="ai-stack-card animate">
+        <div class="ai-stack-icon">☁️</div>
+        <h3>雲端處理</h3>
+        <p>Gemini 功能 — 更廣泛的 AI 能力在可用情況下透過 Google 雲端服務提供，並須遵守適用條款。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUTURE ROADMAP -->
+  <section id="roadmap">
+    <div class="section-title">
+      <h2>未來 AI 工作流路線圖</h2>
+      <p>MAGNE.AI 正在探索更多 AI 輔助工作流，包括 Web3 入門引導、錢包操作指引、情境化交易說明及設備端個人助手場景。</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card animate">
+        <h4>Web3 入門輔助</h4>
+        <p>未來 AI 輔助引導，幫助新用戶探索 Web3 工作流、錢包設定及 dApp 互動。</p>
+      </div>
+      <div class="feature-card animate">
+        <h4>錢包操作指引</h4>
+        <p>情境化 AI 輔助，幫助理解錢包操作、交易請求及資產管理場景。</p>
+      </div>
+      <div class="feature-card animate">
+        <h4>交易說明</h4>
+        <p>AI 輔助說明，幫助用戶在確認前理解 dApp 權限、代幣轉移及跨鏈橋互動。</p>
+      </div>
+      <div class="feature-card animate">
+        <h4>個人助手場景</h4>
+        <p>探索可能與安全執行環境整合的設備端個人助手能力。</p>
+      </div>
+    </div>
+    <div class="disclaimer">
+      <h4>路線圖免責聲明</h4>
+      <p>這些能力仍須取決於軟體開發、安全審查、用戶授權設計及適用合規要求。不暗示任何時間表或功能承諾。</p>
+    </div>
+  </section>
+
+  <!-- RESPONSIBILITY NOTICE -->
+  <section id="responsibility">
+    <div class="section-title">
+      <h2>AI 責任聲明</h2>
+    </div>
+    <div class="disclaimer">
+      <h4>重要資訊</h4>
+      <p>AI 輔助輸出僅用於通訊輔助、生產力支援及資訊參考，不構成財務、投資、法律、稅務、醫療或安全建議。用戶仍需自行審閱並確認錢包操作、dApp 權限、交易內容及任何 AI 輔助建議。</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>準備好了解更多了吗？</h2>
+    <p>探索 MAGNE.AI Phone Gen1 的完整規格及 AI 能力。</p>
+    <div class="cta-buttons">
+      <a href="/magne-web/tc/magne-phone.html" class="btn-primary">探索手機</a>
+      <a href="/magne-web/tc/magne-security.html" class="btn-secondary">探索安全</a>
+      <a href="/magne-web/tc/magne-network.html" class="btn-secondary">探索網絡</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand-logo">
+      <img src="/magne-web/assets/brand/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="footer-brand-img">
+      <p>Web3 原生 AI 安全手機</p>
+    </div>
+  
+    <div class="footer-socials" aria-label="MAGNE.AI 官方頻道">
+      <a href="https://x.com/Magne_Ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="https://t.me/MagneAI" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+      <a href="https://discord.gg/tX2xRAkd" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
+      <a href="https://github.com/magne-ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+      <a href="https://www.youtube.com/@MagneAI" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+      <a href="https://web3.magne.ai" target="_blank" rel="noopener" class="footer-icon" aria-label="Web3 文件"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></a>
+    </div>
+
+    <div class="footer-links">
+      <a href="/magne-web/tc/privacy-policy.html">隱私政策</a>
+      <a href="/magne-web/tc/magne-contact.html">聯絡</a>
+      <a href="/magne-web/tc/media-kit.html">媒體資料包</a>
+      <a href="https://web3.magne.ai" target="_blank" rel="noopener">白皮書</a>
+      <a href="https://web3.magne.ai/legal" target="_blank" rel="noopener">法律意見書</a>
+    </div>
+
+    <p class="trademark-notice">Google、Gemini、Android、Google Play 及相關名稱為 Google LLC 的商名。本頁提及相關名稱僅用於描述用途，不代表 Google LLC 對本項目的背書、贊助或官方合作關係。</p>
+    <p class="trademark-notice">MAGNE.AI™ 為 Magical Hash Global Tech Limited 的商業名稱，目前正在註冊程序中。</p>
+  </footer>
+
+  <script>
+    // NODE NETWORK BACKGROUND
+    const canvas = document.getElementById('node-bg');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let nodes = [];
+
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+
+    function createNodes() {
+      const numNodes = Math.floor((width * height) / 15000);
+      nodes = [];
+      for (let i = 0; i < numNodes; i++) {
+        nodes.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
+          radius: Math.random() * 1.5 + 0.5
+        });
+      }
+    }
+
+    function noise(x, y, t) {
+      return Math.sin(x * 0.01 + t) * 0.5 + Math.cos(y * 0.01 + t) * 0.5;
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, width, height);
+      const t = Date.now() * 0.0005;
+
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const dx = nodes[i].x - nodes[j].x;
+          const dy = nodes[i].y - nodes[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 150) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(0, 212, 212, ${0.1 * (1 - dist / 150)})`;
+            ctx.lineWidth = 0.5;
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      nodes.forEach((node, i) => {
+        const n = noise(node.x, node.y, t);
+        node.x += node.vx * (0.5 + n);
+        node.y += node.vy * (0.5 + n);
+
+        if (node.x < 0 || node.x > width) node.vx *= -1;
+        if (node.y < 0 || node.y > height) node.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0, 212, 212, ${0.3 + n * 0.3})`;
+        ctx.fill();
+      });
+
+      requestAnimationFrame(draw);
+    }
+
+    window.addEventListener('resize', () => { resize(); createNodes(); });
+    resize();
+    createNodes();
+    draw();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.animate').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
