@@ -375,32 +375,32 @@
     </table>
 
     <h3>💎 遺物系統</h3>
-    <p>遺物被設計為與遊戲內經濟互動，包括潛在的基於 MHA 的購買或準入機制，均須取決於最終遊戲設計及官方發布條款。遺物決定角色的核心能力，由神力與品質係數決定：</p>
+    <p>遺物被設計為可與遊戲內經濟系統互動，包括可能基於 MHA 的購買或接入機制；具體形式須以最終遊戲設計及官方發布條款為準。遺物決定角色的核心能力，並由神力值與品質係數共同決定：</p>
 
     <p style="font-family: 'JetBrains Mono', monospace; text-align: center; margin: 1.5rem 0;">
-    屬性 = 基礎屬性 ×（神力 ÷ 100）× 品質係數
+    屬性 = 基礎屬性 ×（神力值 ÷ 100）× 品質係數
     </p>
 
     <table>
       <tr><th>品質</th><th>神力</th><th>係數</th><th>名稱</th></tr>
       <tr><td>優秀</td><td>125–140</td><td>1.0</td><td>Hecate's Secret</td></tr>
-      <tr><td>精細</td><td>141–150</td><td>1.1</td><td>Fomor's Roar</td></tr>
+      <tr><td>精良</td><td>141–150</td><td>1.1</td><td>Fomor's Roar</td></tr>
       <tr><td>史詩</td><td>151–160</td><td>1.2</td><td>Apollo's Whisper</td></tr>
       <tr><td>傳說</td><td>161–170</td><td>1.3</td><td>Astraea's Justice</td></tr>
       <tr><td>神話</td><td>171–180</td><td>1.4</td><td>Athena's Protection</td></tr>
     </table>
 
     <h3>🔬 精煉系統</h3>
-    <p>當神力 ≤ 160 時，玩家可使用 PRIMORDIUM（PRI）進行精煉：</p>
+    <p>當神力值 ≤ 160 時，玩家可使用 PRIMORDIUM（PRI）進行精煉：</p>
 
     <table>
       <tr><th>等級</th><th>神力</th><th>PRI 消耗</th></tr>
       <tr><td>基礎</td><td>125–140</td><td>3 PRI</td></tr>
       <tr><td>中級</td><td>141–150</td><td>9 PRI</td></tr>
-      <tr><td>進階</td><td>151–160</td><td>15 PRI</td></tr>
+      <tr><td>高級</td><td>151–160</td><td>15 PRI</td></tr>
     </table>
 
-    <p>精煉具有固定的概率分布——神力越高，概率越低。此機制是 PRI 消耗與遺物價值成長的主要途徑。</p>
+    <p>精煉具有固定機率分布——神力值越高，成功機率越低。此機制是 PRI 消耗與遺物價值成長的主要途徑。</p>
 
     <h3>⚡ 強化系統</h3>
     <p>強化使用強化石進行。強化等級越高所需石頭越多，但提供穩定的屬性提升。強化成功率隨強化等級提升而下降。</p>
@@ -409,27 +409,27 @@
 
     <h3>NFT 類型與流通</h3>
     <table>
-      <tr><th>NFT 類型</th><th>獲取方式</th><th>消耗用途</th></tr>
+      <tr><th>NFT 類型</th><th>獲取方式</th><th>消耗方式</th></tr>
       <tr><td>遺物 NFT</td><td>系統商店、活動</td><td>精煉、強化</td></tr>
-      <tr><td>裝備 NFT</td><td>迷宮、競技場獎勵</td><td>拆解、重鑄</td></tr>
-      <tr><td>銘刻 NFT</td><td>戰鬥掉落、合成</td><td>覆寫、融合</td></tr>
+      <tr><td>裝備 NFT</td><td>迷宮、競技場獎勵</td><td>分解、重鑄</td></tr>
+      <tr><td>銘刻 NFT</td><td>戰鬥掉落、合成</td><td>覆蓋、融合</td></tr>
     </table>
 
     <div class="highlight-box">
       <h4>NFT 系統 = 成長引擎 × 經濟燃料 × 玩家差異化</h4>
-      <p style="margin-bottom: 0;">此系統被設計為支援遊戲內流通、資產差異化及長期遊戲參與。</p>
+      <p style="margin-bottom: 0;">該系統旨在支援遊戲內流通、資產差異化與長期玩法參與。</p>
     </div>
 
     <h2>4. 技術框架</h2>
 
     <h3>⛓️ 區塊鏈網絡</h3>
-    <p><strong>Clash of the Titans</strong> 被設計為橫跨 <strong>MAGNE L1 及 MHash L2</strong> 的應用展示案例，將玩法體驗、錢包互動、NFT 風格資產及鏈上結算流程與 MAGNE Network 架構對齊。</p>
+    <p><strong>Clash of the Titans</strong> 被設計為橫跨 <strong>MAGNE L1 及 MHash L2</strong> 的應用展示案例，將遊戲玩法、錢包互動、NFT 類資產與鏈上結算流程對齊 MAGNE Network 架構。</p>
 
     <table>
       <tr><th>模組</th><th>技術基礎</th></tr>
       <tr><td>網絡架構</td><td>MAGNE L1 + MHash L2</td></tr>
       <tr><td>智能合約標準</td><td>ERC-721（NFT）、ERC-20（MHA）、ERC-1155（NFT）</td></tr>
-      <tr><td>數據存儲</td><td>分佈式鏈上索引（IPFS）</td></tr>
+      <tr><td>數據存儲</td><td>分散式鏈上索引（IPFS）</td></tr>
       <tr><td>錢包支援</td><td>MetaMask / Rabby / Magne Wallet</td></tr>
       <tr><td>跨鏈橋</td><td>BSC、Polygon 兼容轉帳</td></tr>
     </table>
@@ -445,7 +445,7 @@
     <table>
       <tr><th>模組</th><th>功能</th></tr>
       <tr><td>RelicContract</td><td>記錄遺物 NFT 屬性及強化狀態</td></tr>
-      <tr><td>EquipContract</td><td>裝備 NFT 生成、合成及拆解邏輯</td></tr>
+      <tr><td>EquipContract</td><td>裝備 NFT 生成、合成及分解邏輯</td></tr>
       <tr><td>InscriptionContract</td><td>銘刻 NFT 存儲及套裝效果觸發</td></tr>
       <tr><td>TreasuryContract</td><td>管理 MHA 及 PRI 消耗回收池化邏輯</td></tr>
       <tr><td>RewardContract</td><td>管理符合資格的競技場及迷宮獎勵邏輯，均須取決於最終遊戲規則及官方發布條款。</td></tr>
