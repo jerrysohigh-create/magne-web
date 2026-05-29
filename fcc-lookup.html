@@ -328,6 +328,51 @@
     }
 
 }
+  
+    /* FCC Verification Card */
+    .fcc-verification-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-top: 1rem;
+    }
+    .fcc-id-info {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+    .fcc-id-info strong {
+      color: var(--accent);
+    }
+    .fcc-verify-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: #000;
+      padding: 0.7rem 1.5rem;
+      border-radius: 5px;
+      font-weight: 700;
+      font-size: 0.875rem;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      margin-top: 0.5rem;
+    }
+    .fcc-verify-btn:hover {
+      opacity: 0.85;
+    }
+    .fcc-note {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      margin-top: 1rem;
+      line-height: 1.6;
+    }
+
   </style>
   <link rel="stylesheet" href="assets/mobile-responsive.css">
 </head>
@@ -1416,44 +1461,71 @@
 <section class="section" style="background:var(--bg-secondary);" id="verify">
   <div class="section-shell">
     <div class="highlight-box">
- <h3>How to Verify This Record</h3>
- <p>
- This page is intended to organize the public FCC authorization record and related supplemental
- filing materials associated with <strong style="color:var(--accent);font-family:'JetBrains Mono',monospace;">FCC ID 2BVCPGC603606</strong>.
- It does not replace the official FCC record itself.
- </p>
+ <h3>FCC Equipment Authorization</h3>
 
- <p style="margin-top:.75rem;">
- For public lookup, a practical search path is to use <a href="https://www.fcc.gov/oet/ea/fccid" target="_blank" style="color:var(--accent);">FCC OET Equipment Authorization</a>
- and enter the following:
- </p>
+ <div class="fcc-verification-card">
+   <p class="fcc-id-info">
+     FCC ID：<strong>2BVCP-GC603606</strong><br>
+     Grantee Code：<strong>2BVCP</strong><br>
+     Product Code：<strong>GC603606</strong>
+   </p>
 
- <ul style="color:var(--text-secondary); line-height:2; padding-left:1.5rem; margin-top:.5rem;">
- <li><strong>Grantee Code:</strong> 2BVCP</li>
- <li><strong>Product Code:</strong> GC603606</li>
- </ul>
+   <form
+     method="POST"
+     action="https://apps.fcc.gov/oetcf/eas/reports/GenericSearchResult.cfm?RequestTimeout=500"
+     target="_blank"
+   >
+     <input type="hidden" name="application_status" value="">
+     <input type="hidden" name="applicant_name" value="">
+     <input type="hidden" name="grant_date_from" value="">
+     <input type="hidden" name="grant_date_to" value="">
+     <input type="hidden" name="grant_comments_label" value="">
+     <input type="hidden" name="application_purpose" value="">
+     <input type="hidden" name="application_purpose_description" value="">
+     <input type="hidden" name="grant_code_1" value="">
+     <input type="hidden" name="grant_code_2" value="">
+     <input type="hidden" name="grant_code_3" value="">
+     <input type="hidden" name="test_firm" value="">
+     <input type="hidden" name="equipment_class" value="">
+     <input type="hidden" name="equipment_class_description" value="">
+     <input type="hidden" name="lower_frequency" value="">
+     <input type="hidden" name="upper_frequency" value="">
+     <input type="hidden" name="freq_exact_match" value="checked">
+     <input type="hidden" name="bandwidth_from" value="">
+     <input type="hidden" name="emission_designator" value="">
+     <input type="hidden" name="tolerance_from" value="">
+     <input type="hidden" name="tolerance_to" value="">
+     <input type="hidden" name="tolerance_exact_match" value="checked">
+     <input type="hidden" name="power_output_from" value="">
+     <input type="hidden" name="power_output_to" value="">
+     <input type="hidden" name="power_exact_match" value="checked">
+     <input type="hidden" name="rule_part_1" value="">
+     <input type="hidden" name="rule_part_2" value="">
+     <input type="hidden" name="rule_part_3" value="">
+     <input type="hidden" name="rule_part_exact_match" value="checked">
+     <input type="hidden" name="product_description" value="">
+     <input type="hidden" name="tcb_code" value="">
+     <input type="hidden" name="tcb_code_description" value="">
+     <input type="hidden" name="tcb_scope" value="">
+     <input type="hidden" name="tcb_scope_description" value="">
+     <input type="hidden" name="fetchfrom" value="0">
+     <input type="hidden" name="calledFromFrame" value="Y">
+     <input type="hidden" name="comments" value="">
+     <input type="hidden" name="show_records" value="100">
 
- <p style="margin-top:.75rem;">
- This lookup path helps surface both the <strong>original equipment authorization</strong> entries
- and the later <strong>Class II permissive change</strong> entries associated with the same FCC ID.
- </p>
+     <input type="hidden" name="grantee_code" value="2BVCP">
+     <input type="hidden" name="product_code" value="GC603606">
 
- <p style="margin-top:.75rem;">When reviewing the record, users should confirm:</p>
- <ol style="color:var(--text-secondary); line-height:2; padding-left:1.5rem; margin-top:.5rem;">
- <li><strong>Applicant / Grantee:</strong> magne ai global tech limited</li>
- <li><strong>FCC ID:</strong> 2BVCPGC603606</li>
- <li><strong>Original Equipment authorization date:</strong> 2026-04-17</li>
- <li><strong>Latest Class II permissive change action date:</strong> 2026-05-24</li>
- </ol>
+     <button type="submit" class="fcc-verify-btn">
+       Verify FCC ID on FCC.gov
+     </button>
+   </form>
 
- <p style="margin-top:.75rem;">
- This page organizes the related grants, reports, and supplemental materials for easier review,
- while the official database record remains the primary source for public verification.
- </p>
+   <p class="fcc-note">
+     For official verification, users may also visit the FCC.gov public database and manually enter the Grantee Code and Product Code shown above.
+   </p>
+ </div>
 </div>
-  </div>
-</section>
-
 <!-- CTA -->
 <section class="cta-section">
   <div class="cta-shell">
