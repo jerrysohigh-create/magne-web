@@ -348,6 +348,51 @@
     }
 
 }
+  
+    /* FCC Verification Card */
+    .fcc-verification-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-top: 1rem;
+    }
+    .fcc-id-info {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+    .fcc-id-info strong {
+      color: var(--accent);
+    }
+    .fcc-verify-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: #000;
+      padding: 0.7rem 1.5rem;
+      border-radius: 5px;
+      font-weight: 700;
+      font-size: 0.875rem;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      margin-top: 0.5rem;
+    }
+    .fcc-verify-btn:hover {
+      opacity: 0.85;
+    }
+    .fcc-note {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      margin-top: 1rem;
+      line-height: 1.6;
+    }
+
   </style>
   <link rel="stylesheet" href="/magne-web/assets/mobile-responsive.css">
 </head>
@@ -1239,46 +1284,71 @@
 <section class="section" style="background:var(--bg-secondary);" id="verify">
   <div class="section-shell">
     <div class="highlight-box">
- <h3>如何查驗此記錄</h3>
- <p>
- 本頁旨在整理與
- <strong style="color:var(--accent);font-family:'JetBrains Mono',monospace;">FCC ID 2BVCPGC603606</strong>
- 相關的公開 FCC 授權記錄及其補充申報材料，但並不取代官方 FCC 記錄本身。
- </p>
+ <h3>FCC 設備授權</h3>
 
- <p style="margin-top:.75rem;">
- 在公開查詢時，較實用的方式是使用
- <a href="https://www.fcc.gov/oet/ea/fccid" target="_blank" style="color:var(--accent);">FCC OET Equipment Authorization</a>
- 並輸入以下欄位：
- </p>
+ <div class="fcc-verification-card">
+   <p class="fcc-id-info">
+     FCC ID：<strong>2BVCP-GC603606</strong><br>
+     Grantee Code：<strong>2BVCP</strong><br>
+     Product Code：<strong>GC603606</strong>
+   </p>
 
- <ul style="color:var(--text-secondary); line-height:2; padding-left:1.5rem; margin-top:.5rem;">
- <li><strong>Grantee Code：</strong> 2BVCP</li>
- <li><strong>Product Code：</strong> GC603606</li>
- </ul>
+   <form
+     method="POST"
+     action="https://apps.fcc.gov/oetcf/eas/reports/GenericSearchResult.cfm?RequestTimeout=500"
+     target="_blank"
+   >
+     <input type="hidden" name="application_status" value="">
+     <input type="hidden" name="applicant_name" value="">
+     <input type="hidden" name="grant_date_from" value="">
+     <input type="hidden" name="grant_date_to" value="">
+     <input type="hidden" name="grant_comments_label" value="">
+     <input type="hidden" name="application_purpose" value="">
+     <input type="hidden" name="application_purpose_description" value="">
+     <input type="hidden" name="grant_code_1" value="">
+     <input type="hidden" name="grant_code_2" value="">
+     <input type="hidden" name="grant_code_3" value="">
+     <input type="hidden" name="test_firm" value="">
+     <input type="hidden" name="equipment_class" value="">
+     <input type="hidden" name="equipment_class_description" value="">
+     <input type="hidden" name="lower_frequency" value="">
+     <input type="hidden" name="upper_frequency" value="">
+     <input type="hidden" name="freq_exact_match" value="checked">
+     <input type="hidden" name="bandwidth_from" value="">
+     <input type="hidden" name="emission_designator" value="">
+     <input type="hidden" name="tolerance_from" value="">
+     <input type="hidden" name="tolerance_to" value="">
+     <input type="hidden" name="tolerance_exact_match" value="checked">
+     <input type="hidden" name="power_output_from" value="">
+     <input type="hidden" name="power_output_to" value="">
+     <input type="hidden" name="power_exact_match" value="checked">
+     <input type="hidden" name="rule_part_1" value="">
+     <input type="hidden" name="rule_part_2" value="">
+     <input type="hidden" name="rule_part_3" value="">
+     <input type="hidden" name="rule_part_exact_match" value="checked">
+     <input type="hidden" name="product_description" value="">
+     <input type="hidden" name="tcb_code" value="">
+     <input type="hidden" name="tcb_code_description" value="">
+     <input type="hidden" name="tcb_scope" value="">
+     <input type="hidden" name="tcb_scope_description" value="">
+     <input type="hidden" name="fetchfrom" value="0">
+     <input type="hidden" name="calledFromFrame" value="Y">
+     <input type="hidden" name="comments" value="">
+     <input type="hidden" name="show_records" value="100">
 
- <p style="margin-top:.75rem;">
- 透過這個查詢方式，可以同時看到與同一 FCC ID 相關的
- <strong>Original Equipment</strong> 記錄，以及後續的
- <strong>Class II permissive change</strong> 記錄。
- </p>
+     <input type="hidden" name="grantee_code" value="2BVCP">
+     <input type="hidden" name="product_code" value="GC603606">
 
- <p style="margin-top:.75rem;">查驗時建議確認以下資訊：</p>
- <ol style="color:var(--text-secondary); line-height:2; padding-left:1.5rem; margin-top:.5rem;">
- <li><strong>Applicant / Grantee：</strong> magne ai global tech limited</li>
- <li><strong>FCC ID：</strong> 2BVCPGC603606</li>
- <li><strong>Original Equipment 授權日期：</strong> 2026-04-17</li>
- <li><strong>最新 Class II permissive change 動作日期：</strong> 2026-05-24</li>
- </ol>
+     <button type="submit" class="fcc-verify-btn">
+       前往 FCC.gov 官方查詢
+     </button>
+   </form>
 
- <p style="margin-top:.75rem;">
- 本頁的作用是將相關 grant、測試報告與補充材料整理成較易閱讀的結構；
- 若需最終公開核驗，仍應以官方資料庫記錄為準。
- </p>
+   <p class="fcc-note">
+     用戶亦可前往 FCC.gov 官方公開資料庫，手動輸入上述 Grantee Code 及 Product Code 進行核驗。
+   </p>
+ </div>
 </div>
-  </div>
-</section>
-
 <!-- CTA -->
 <section class="cta-section">
   <div class="cta-shell">
