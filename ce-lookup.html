@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>California Proposition 65 Test Detail — MAGNE.AI</title>
+  <title>CE Certification Detail — MAGNE.AI</title>
   <link rel="icon" type="image/png" href="logo-icon-circle.png">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -159,6 +159,18 @@
     }
     .summary-card h4 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.75rem; }
     .summary-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.65; }
+    .badge-pass {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--accent);
+      background: rgba(0, 212, 212, 0.10);
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      margin-top: 0.5rem;
+    }
 
     .identifier-grid {
       display: grid;
@@ -213,6 +225,137 @@
       max-width: 760px;
       margin: 0 auto;
       line-height: 1.8;
+    }
+
+    .req-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .req-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.75rem;
+      transition: all 0.25s ease;
+    }
+    .req-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+    .req-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.85rem;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .req-head h4 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .req-head .badge {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      color: var(--accent);
+      background: rgba(0, 212, 212, 0.12);
+    }
+    .req-block {
+      margin-top: 0.9rem;
+    }
+    .req-block-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+    .req-block-text {
+      color: var(--text-secondary);
+      font-size: 0.86rem;
+      line-height: 1.65;
+      font-family: 'JetBrains Mono', monospace;
+      word-break: break-word;
+    }
+
+    .notes-list {
+      max-width: 900px;
+      margin: 2.5rem auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .note-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .note-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: rgba(0, 212, 212, 0.10);
+      padding: 0.25rem 0.55rem;
+      border-radius: 999px;
+      flex-shrink: 0;
+    }
+    .note-body {
+      flex: 1;
+    }
+    .note-en {
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      line-height: 1.65;
+      margin-bottom: 0.4rem;
+    }
+    .note-zh {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    .obligations-list {
+      max-width: 900px;
+      margin: 2.5rem auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .obligation-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .obligation-marker {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: rgba(0, 212, 212, 0.10);
+      padding: 0.25rem 0.55rem;
+      border-radius: 999px;
+      flex-shrink: 0;
+    }
+    .obligation-text {
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      line-height: 1.7;
     }
 
     .docs-grid {
@@ -315,7 +458,8 @@
       .section { padding: 3rem 1.5rem; }
       .summary-grid,
       .identifier-grid,
-      .docs-grid { grid-template-columns: 1fr; }
+      .docs-grid,
+      .req-grid { grid-template-columns: 1fr; }
       .doc-actions { flex-direction: column; }
       nav { padding: 0.9rem 1.25rem; }
       .nav-back { font-size: 0.82rem; }
@@ -393,169 +537,354 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-eyebrow">COMPLIANCE SUPPORTING PAGE</div>
-    <h1>California Proposition 65 Test Detail</h1>
+    <div class="hero-eyebrow">EU TYPE EXAMINATION · NB 2907</div>
+    <h1>CE Certification Detail — MAGNE.AI</h1>
     <p class="hero-sub">
-      A supporting page for partners, exchanges, and institutional reviewers who require
-      deeper verification of MAG1's CP65 test result and report reference.
+      A supporting page for partners, exchanges, and institutional reviewers who require deeper
+      verification of MAG1's European Conformity (CE) marking status, based on the EU-Type Examination
+      Certificate (RED 2014/53/EU Module B, Cert No. SN26C0174) issued by Notified Body NB 2907.
     </p>
     <div class="hero-ctas">
       <a href="/magne-web/magne-compliance.html" class="btn-secondary">← Back to Compliance</a>
     </div>
   </section>
 
-  <!-- SECTION 1: TEST SUMMARY -->
+  <!-- SECTION 1: CERTIFICATION SUMMARY -->
   <section class="section">
     <div class="section-shell">
       <div class="section-header">
-        <h2>Test Summary</h2>
-        <p>A concise overview of MAG1's California Proposition 65 test result and supporting report context.</p>
+        <h2>Certification Summary</h2>
+        <p>A concise overview of MAG1's CE certification status and issuing Notified Body.</p>
       </div>
       <div class="section-intro">
         <p>
-          MAG1 has completed California Proposition 65 testing for the relevant reported scope,
-          with a passing result for the documented substances covered by the report. This page
-          is intended to provide a structured supporting reference for parties who require a
-          more detailed review of the result, report identity, and testing context.
-        </p>
-        <p style="margin-top:1rem;">
-          Rather than functioning as a broad market-readiness summary, this page is focused on
-          a single compliance-supporting report and should be read together with MAG1's broader
-          safety and compliance materials.
+          MAG1 has completed the European Conformity (CE) EU-Type Examination assessment and
+          received Certificate No. SN26C0174 from Notified Body NB 2907 (Sporton International (USA) Inc.),
+          covering all five essential requirements of RED 2014/53/EU
+          (Safety, Health, EMC, Radio Spectrum, Emergency Service) — all assessments: PASS.
+          This page provides a structured supporting reference for partners, exchanges, and
+          institutional reviewers who require deeper verification of the certification result,
+          certificate identity, and the harmonised standards used in the assessment.
         </p>
       </div>
       <div class="summary-grid">
         <div class="summary-card">
           <h4>Result</h4>
           <p>Pass</p>
+          <span class="badge-pass">5/5 ESSENTIAL REQUIREMENTS</span>
         </div>
         <div class="summary-card">
-          <h4>Scope</h4>
-          <p>Phthalates &amp; Lead Content</p>
+          <h4>Directive / Module</h4>
+          <p>RED 2014/53/EU · Module B</p>
+        </div>
+        <div class="summary-card">
+          <h4>Notified Body</h4>
+          <p>NB 2907 · Sporton International (USA) Inc.</p>
         </div>
         <div class="summary-card">
           <h4>Product</h4>
-          <p>5G Smartphone (MAG1)</p>
-        </div>
-        <div class="summary-card">
-          <h4>Review Purpose</h4>
-          <p>Supporting compliance reference</p>
+          <p>5G Smartphone (MAG1 · MA1)</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SECTION 2: REPORT DETAILS -->
+  <!-- SECTION 2: CERTIFICATE IDENTIFICATION -->
   <section class="section" style="background: var(--bg-secondary);">
     <div class="section-shell">
       <div class="section-header">
-        <h2>Report Details</h2>
-        <p>Key report fields associated with MAG1's CP65 test result.</p>
+        <h2>Certificate Identification</h2>
+        <p>Core identification fields of the EU-Type Examination Certificate (static reference data).</p>
       </div>
       <div class="section-intro">
         <p>
-          The following fields identify the report and testing context associated with MAG1's
-          California Proposition 65 result.
+          The following fields identify the MAG1 EU-Type Examination Certificate and its associated
+          Technical Documentation File (TDF) reference.
         </p>
       </div>
       <div class="identifier-grid">
         <div class="identifier-card">
-          <div class="identifier-label">REPORT NO.</div>
-          <div class="identifier-value">27220370a 001</div>
+          <div class="identifier-label">CERTIFICATE NO.</div>
+          <div class="identifier-value">SN26C0174</div>
+        </div>
+        <div class="identifier-card">
+          <div class="identifier-label">REVISION / ISSUE DATE</div>
+          <div class="identifier-value">Rev A · 2026-07-02</div>
+        </div>
+        <div class="identifier-card">
+          <div class="identifier-label">TDF REFERENCE</div>
+          <div class="identifier-value">EN612311 (2026-05-26)</div>
+        </div>
+        <div class="identifier-card">
+          <div class="identifier-label">NOTIFIED BODY</div>
+          <div class="identifier-value">SPORTON INTERNATIONAL (USA) INC · NB 2907</div>
+        </div>
+        <div class="identifier-card">
+          <div class="identifier-label">MANUFACTURER</div>
+          <div class="identifier-value">Magne AI Global tech limited</div>
+        </div>
+        <div class="identifier-card">
+          <div class="identifier-label">MANUFACTURER ADDRESS</div>
+          <div class="identifier-value">FLAT 1019B, 10/F, LIVEN HOUSE, NO.61-63 KING YIP STREET, KWUN TONG, HK</div>
         </div>
         <div class="identifier-card">
           <div class="identifier-label">PRODUCT</div>
-          <div class="identifier-value">5G Smartphone (MAG1)</div>
+          <div class="identifier-value">MAG1</div>
         </div>
         <div class="identifier-card">
-          <div class="identifier-label">LAB</div>
-          <div class="identifier-value">TÜV Rheinland (Shenzhen) Co., Ltd.</div>
+          <div class="identifier-label">BRAND</div>
+          <div class="identifier-value">MaQ</div>
         </div>
         <div class="identifier-card">
-          <div class="identifier-label">TESTING PERIOD</div>
-          <div class="identifier-value">2026-02-06 to 2026-03-30</div>
+          <div class="identifier-label">MODEL</div>
+          <div class="identifier-value">MA1</div>
         </div>
         <div class="identifier-card">
-          <div class="identifier-label">DATE OF REPORT</div>
-          <div class="identifier-value">2026-04-07</div>
+          <div class="identifier-label">HARDWARE VERSION</div>
+          <div class="identifier-value">MGU_MB_V2</div>
+        </div>
+        <div class="identifier-card">
+          <div class="identifier-label">SOFTWARE VERSION</div>
+          <div class="identifier-value">MAG1WW58-2</div>
+        </div>
+        <div class="identifier-card">
+          <div class="identifier-label">SIGNATORY</div>
+          <div class="identifier-value">Alexander Ho</div>
         </div>
       </div>
       <div class="highlight-box">
         <h3>Structured Review Context</h3>
         <p>
-          These report details are presented as a supporting reference for structured review
-          and should be interpreted together with the report itself and MAG1's broader
-          compliance materials.
+          These fields are presented as a structured review reference for the EU-Type Examination
+          Certificate and should be interpreted together with the original certificate and MAG1's
+          broader compliance materials.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- SECTION 3: WHAT THIS TEST COVERS -->
+  <!-- SECTION 3: RED 2014/53/EU ESSENTIAL REQUIREMENTS -->
   <section class="section">
     <div class="section-shell">
       <div class="section-header">
-        <h2>What This Test Covers</h2>
-        <p>How MAG1's CP65 result should be interpreted in the context of product compliance review.</p>
+        <h2>RED 2014/53/EU Essential Requirements</h2>
+        <p>All five essential requirements of the Radio Equipment Directive assessed for MAG1, with harmonised standards and test report references.</p>
       </div>
       <div class="section-intro">
         <p>
-          This CP65 result relates to the specific reported scope covered by the test and
-          should be understood as one component of MAG1's broader compliance profile. It is
-          intended to provide supporting evidence for review of product-related substance
-          testing within the relevant reporting framework.
-        </p>
-        <p style="margin-top:1rem;">
-          This page does not replace broader safety, logistics, or market-access certifications.
-          Instead, it should be interpreted alongside MAG1's wider compliance materials,
-          including shipping, certification, and device approval references where applicable.
+          The following sections list every essential requirement of RED 2014/53/EU covered by the
+          MAG1 EU-Type Examination Certificate (SN26C0174), each assessed as PASS by Notified Body
+          NB 2907. Harmonised standards and test report numbers are provided for cross-reference
+          by institutional reviewers.
         </p>
       </div>
-      <div class="summary-grid">
-        <div class="summary-card">
-          <h4>Compliance Context</h4>
-          <p>This CP65 result forms part of MAG1's broader product compliance profile.</p>
+      <div class="req-grid">
+
+        <div class="req-card">
+          <div class="req-head">
+            <h4>(a) Safety — Art 3.1a</h4>
+            <span class="badge">PASS</span>
+          </div>
+          <div class="req-block">
+            <div class="req-block-label">HARMONISED STANDARDS</div>
+            <div class="req-block-text">EN IEC 62368-1:2020+A11:2020<br>EN 50332-2:2013</div>
+          </div>
+          <div class="req-block">
+            <div class="req-block-label">TEST REPORTS</div>
+            <div class="req-block-text">L612311KS012, EO612311</div>
+          </div>
         </div>
-        <div class="summary-card">
-          <h4>Interpretation Scope</h4>
-          <p>It should be read together with MAG1's broader safety, logistics, and market-readiness materials.</p>
+
+        <div class="req-card">
+          <div class="req-head">
+            <h4>(b) Health — Art 3.1a</h4>
+            <span class="badge">PASS</span>
+          </div>
+          <div class="req-block">
+            <div class="req-block-label">HARMONISED STANDARDS</div>
+            <div class="req-block-text">EN 50360:2017, EN 50360:2017/A1:2023<br>EN 50566:2017, EN 50566:2017/A1:2023<br>EN 62479:2010, EN 50663:2017<br>EN IEC 62311:2020, EN 50665:2017</div>
+          </div>
+          <div class="req-block">
+            <div class="req-block-label">TEST REPORTS</div>
+            <div class="req-block-text">EA612311</div>
+          </div>
         </div>
+
+        <div class="req-card">
+          <div class="req-head">
+            <h4>(c) EMC — Art 3.1b</h4>
+            <span class="badge">PASS</span>
+          </div>
+          <div class="req-block">
+            <div class="req-block-label">HARMONISED STANDARDS</div>
+            <div class="req-block-text">EN 301 489-1 V2.2.3<br>EN 301 489-3 V2.3.2<br>EN 301 489-17 V3.3.1<br>EN 301 489-19 V2.2.1<br>EN 301 489-52 V1.3.1<br>EN 55032:2015+A11:2020<br>EN 55035:2017+A11:2020<br>EN IEC 61000-3-2:2019+A1:2021<br>EN 61000-3-3:2013+A2:2021</div>
+          </div>
+          <div class="req-block">
+            <div class="req-block-label">TEST REPORTS</div>
+            <div class="req-block-text">EC612311, EW612311</div>
+          </div>
+        </div>
+
+        <div class="req-card">
+          <div class="req-head">
+            <h4>(d) Radio Spectrum — Art 3.2</h4>
+            <span class="badge">PASS</span>
+          </div>
+          <div class="req-block">
+            <div class="req-block-label">HARMONISED STANDARDS</div>
+            <div class="req-block-text">EN 301 511 V12.5.1<br>EN 301 908-1 V15.2.1<br>EN 301 908-2 V13.1.1<br>EN 301 908-13 V13.3.1<br>EN 301 908-25 V15.1.1<br>EN 300 328 V2.2.2<br>EN 301 893 V2.2.1<br>EN 300 440 V2.2.1<br>EN 303 413 V1.2.1<br>EN 300 330 V2.1.1<br>EN 303 417 V1.1.1</div>
+          </div>
+          <div class="req-block">
+            <div class="req-block-label">TEST REPORTS</div>
+            <div class="req-block-text">EG612311, EM612311A, EM612311B, EM612311C<br>EQ612311, ER612311A, ER612311B, ER612311C, ER612311D, ER612311E</div>
+          </div>
+        </div>
+
+        <div class="req-card">
+          <div class="req-head">
+            <h4>(e) Emergency Service — Art 3.3g</h4>
+            <span class="badge">PASS</span>
+          </div>
+          <div class="req-block">
+            <div class="req-block-label">HARMONISED STANDARDS</div>
+            <div class="req-block-text">European Commission Guidelines for compliance with delegated regulation (EU) 2019/320</div>
+          </div>
+          <div class="req-block">
+            <div class="req-block-label">TEST REPORTS</div>
+            <div class="req-block-text">RA612311</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="highlight-box">
+        <h3>All Requirements Passed</h3>
+        <p>
+          All five essential requirements of RED 2014/53/EU — Safety, Health, EMC, Radio Spectrum,
+          and Emergency Service — have been assessed as PASS under the MAG1 EU-Type Examination
+          Certificate (SN26C0174).
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- SECTION 4: SUPPORTING REPORT -->
+  <!-- SECTION 4: CERTIFICATE NOTES -->
   <section class="section" style="background: var(--bg-secondary);">
     <div class="section-shell">
       <div class="section-header">
-        <h2>Supporting Report</h2>
-        <p>The official report reference associated with MAG1's CP65 result.</p>
+        <h2>Certificate Notes</h2>
+        <p>Usage restrictions and functional notes recorded on the MAG1 EU-Type Examination Certificate.</p>
       </div>
       <div class="section-intro">
         <p>
-          The report below is provided as the primary supporting document for MAG1's
-          California Proposition 65 result. Reviewers who require the underlying test
-          record may open or download the report directly.
+          The following notes originate from the original certificate and describe limitations and
+          functional disclosures applicable to MAG1 when placed on the EU market.
+        </p>
+      </div>
+      <div class="notes-list">
+
+        <div class="note-item">
+          <div class="note-num">1</div>
+          <div class="note-body">
+            <div class="note-en">When operating in the 5250–5350 MHz band, the device is restricted to indoor use only.</div>
+            <div class="note-zh">設備在 5250~5350 MHz 頻段操作時，僅限室內使用。</div>
+          </div>
+        </div>
+
+        <div class="note-item">
+          <div class="note-num">2</div>
+          <div class="note-body">
+            <div class="note-en">The transmitting antenna must be installed and operated with a minimum separation distance of at least 5 mm from all persons.</div>
+            <div class="note-zh">發射天線之安裝須與所有人員保持至少 5mm 之距離。</div>
+          </div>
+        </div>
+
+        <div class="note-item">
+          <div class="note-num">3</div>
+          <div class="note-body">
+            <div class="note-en">The device also supports radio frequency bands not designated for the EU.</div>
+            <div class="note-zh">設備亦支援非歐盟指定之射頻頻段。</div>
+          </div>
+        </div>
+
+        <div class="note-item">
+          <div class="note-num">4</div>
+          <div class="note-body">
+            <div class="note-en">The device also supports 5G NR n38 (HPUE), which was not assessed under the current version of the standard.</div>
+            <div class="note-zh">設備亦支援 5G NR n38 (HPUE)，該項於現行標準版本下未予評估。</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: MANUFACTURER OBLIGATIONS -->
+  <section class="section">
+    <div class="section-shell">
+      <div class="section-header">
+        <h2>Manufacturer Obligations (Summary)</h2>
+        <p>Key obligations MAGNE's manufacturer must fulfil under RED 2014/53/EU and the EU-Type Examination regime.</p>
+      </div>
+      <div class="section-intro">
+        <p>
+          The following is a concise summary of the manufacturer's principal obligations under the
+          RED 2014/53/EU EU-Type Examination regime. The complete obligations are governed by EU
+          regulation and the certificate itself.
+        </p>
+      </div>
+      <div class="obligations-list">
+
+        <div class="obligation-item">
+          <div class="obligation-marker">§1</div>
+          <div class="obligation-text">CE marking height must be at least 5 mm; the marking must also be visible on the packaging.</div>
+        </div>
+
+        <div class="obligation-item">
+          <div class="obligation-marker">§2</div>
+          <div class="obligation-text">Any change affecting compliance must be notified to NB 2907.</div>
+        </div>
+
+        <div class="obligation-item">
+          <div class="obligation-marker">§3</div>
+          <div class="obligation-text">The certificate and technical documentation must be retained by the manufacturer for 10 years.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: SUPPORTING CERTIFICATE -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="section-shell">
+      <div class="section-header">
+        <h2>Supporting Certificate</h2>
+        <p>The original PDF reference for the MAG1 EU-Type Examination Certificate.</p>
+      </div>
+      <div class="section-intro">
+        <p>
+          The document below is the original PDF of MAG1's EU-Type Examination Certificate.
+          Reviewers who require the underlying certificate record may view or download it directly.
         </p>
       </div>
       <div class="docs-grid" style="max-width: 760px; margin: 0 auto;">
         <div class="doc-card">
-          <div class="doc-id">CP65</div>
-          <h4>TÜV Rheinland CP65 Test Report</h4>
+          <div class="doc-id">CE · SN26C0174</div>
+          <h4>Sporton EU-Type Examination Certificate</h4>
           <p class="doc-summary">
-            Primary supporting report associated with MAG1's California Proposition 65
-            test result and documented reporting scope.
+            Original EU-Type Examination Certificate PDF issued by Notified Body NB 2907
+            (Sporton International (USA) Inc.) for MAG1 (Model MA1), covering all five essential
+            requirements of RED 2014/53/EU.
           </p>
           <div class="doc-actions">
-            <a href="assets/pdfs/cp65/TUV-Rheinland-CP65-Report-27220370a-001.pdf" target="_blank" class="doc-btn">View PDF</a>
-            <a href="assets/pdfs/cp65/TUV-Rheinland-CP65-Report-27220370a-001.pdf" download class="doc-btn">Download</a>
+            <a href="/magne-web/assets/ce/SN26C0174-Sporton-CE-Certificate.pdf" target="_blank" rel="noopener" class="doc-btn">View PDF</a>
+            <a href="/magne-web/assets/ce/SN26C0174-Sporton-CE-Certificate.pdf" download class="doc-btn">Download</a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SECTION 5: INTERPRETATION NOTE -->
+  <!-- SECTION 7: INTERPRETATION NOTE -->
   <section class="section">
     <div class="section-shell">
       <div class="section-header">
@@ -565,11 +894,11 @@
       <div class="highlight-box">
         <h3>How this page should be used</h3>
         <p>
-          This page is intended as a supporting compliance reference and should be read
-          together with the broader Compliance page and related supporting materials. It
-          is designed to help partners, exchanges, and institutional reviewers understand
-          the identity and scope of MAG1's CP65 result without expanding beyond the
-          underlying report context.
+          This page is intended as a supporting reference for the EU-Type Examination Certificate
+          and should be read together with the original certificate and the broader Compliance page.
+          It is designed to help partners, exchanges, and institutional reviewers understand the
+          identity, scope, and limitations of MAG1's CE certification without expanding beyond
+          the underlying certificate context.
         </p>
       </div>
     </div>
@@ -580,8 +909,8 @@
     <div class="cta-shell">
       <h2>Need broader compliance materials?</h2>
       <p>
-        For broader compliance references, commercial materials, or institutional review
-        support, contact MAGNE directly or return to the broader Compliance page.
+        For broader compliance references, commercial materials, or institutional review support,
+        contact MAGNE directly or return to the broader Compliance page.
       </p>
       <div class="cta-buttons">
         <a href="/magne-web/magne-compliance.html" class="btn-secondary">← Back to Compliance</a>
@@ -617,6 +946,7 @@
         <a href="/magne-web/cb-lookup.html">CB Lookup</a>
         <a href="/magne-web/un383-lookup.html">UN38.3</a>
         <a href="/magne-web/cp65-lookup.html">CP65</a>
+        <a href="/magne-web/ce-lookup.html">CE</a>
       </div>
       <div class="footer-col">
         <h4>Company</h4>

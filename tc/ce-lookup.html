@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CB 證書查詢 — MAGNE.AI</title>
+  <title>CE 認證詳情 — MAGNE.AI</title>
   <link rel="icon" type="image/png" href="/magne-web/logo-icon-circle.png">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -159,6 +159,18 @@
     }
     .summary-card h4 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.75rem; }
     .summary-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.65; }
+    .badge-pass {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--accent);
+      background: rgba(0, 212, 212, 0.10);
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      margin-top: 0.5rem;
+    }
 
     .identifier-grid {
       display: grid;
@@ -213,6 +225,137 @@
       max-width: 760px;
       margin: 0 auto;
       line-height: 1.8;
+    }
+
+    .req-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .req-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.75rem;
+      transition: all 0.25s ease;
+    }
+    .req-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+    .req-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.85rem;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .req-head h4 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .req-head .badge {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      color: var(--accent);
+      background: rgba(0, 212, 212, 0.12);
+    }
+    .req-block {
+      margin-top: 0.9rem;
+    }
+    .req-block-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+    .req-block-text {
+      color: var(--text-secondary);
+      font-size: 0.86rem;
+      line-height: 1.65;
+      font-family: 'JetBrains Mono', monospace;
+      word-break: break-word;
+    }
+
+    .notes-list {
+      max-width: 900px;
+      margin: 2.5rem auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .note-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .note-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: rgba(0, 212, 212, 0.10);
+      padding: 0.25rem 0.55rem;
+      border-radius: 999px;
+      flex-shrink: 0;
+    }
+    .note-body {
+      flex: 1;
+    }
+    .note-zh {
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      line-height: 1.65;
+      margin-bottom: 0.4rem;
+    }
+    .note-en {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    .obligations-list {
+      max-width: 900px;
+      margin: 2.5rem auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .obligation-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .obligation-marker {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: rgba(0, 212, 212, 0.10);
+      padding: 0.25rem 0.55rem;
+      border-radius: 999px;
+      flex-shrink: 0;
+    }
+    .obligation-text {
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      line-height: 1.7;
     }
 
     .docs-grid {
@@ -315,7 +458,8 @@
       .section { padding: 3rem 1.5rem; }
       .summary-grid,
       .identifier-grid,
-      .docs-grid { grid-template-columns: 1fr; }
+      .docs-grid,
+      .req-grid { grid-template-columns: 1fr; }
       .doc-actions { flex-direction: column; }
       nav { padding: 0.9rem 1.25rem; }
       .nav-back { font-size: 0.82rem; }
@@ -412,224 +556,360 @@
     <div style="display: flex; align-items: center; gap: 1rem;">
       <a href="/magne-web/tc/magne-compliance.html" class="nav-back">← 返回合規頁面</a>
       <div class="lang-switch">
-        <a href="/magne-web/cb-lookup.html">EN</a>
+        <a href="/magne-web/ce-lookup.html">EN</a>
         <span style="color: var(--text-muted);">|</span>
-        <a href="/magne-web/tc/cb-lookup.html" class="active">繁中</a>
+        <a href="/magne-web/tc/ce-lookup.html" class="active">繁中</a>
       </div>
     </div>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-eyebrow">合規支持頁面</div>
-    <h1>CB 證書查詢</h1>
+    <div class="hero-eyebrow">EU TYPE EXAMINATION · NB 2907</div>
+    <h1>CE 認證詳情 — MAGNE.AI</h1>
     <p class="hero-sub">
-      本頁面供合作夥伴、交易所及機構審閱方進一步核驗 MAG1 的 CB 認證參考及相關安全測試背景。
+      本頁面供合作夥伴、交易所及機構審閱方進一步核驗 MAG1 的歐盟符合性（CE）標誌狀態，
+      基於 RED 2014/53/EU Module B（EU-Type Examination）出具之證書（Cert No. SN26C0174）。
     </p>
     <div class="hero-ctas">
       <a href="/magne-web/tc/magne-compliance.html" class="btn-secondary">← 返回合規頁面</a>
     </div>
   </section>
 
-  <!-- SECTION 1: CERTIFICATE SUMMARY -->
+  <!-- SECTION 1: CERTIFICATION SUMMARY -->
   <section class="section">
     <div class="section-shell">
       <div class="section-header">
-        <h2>CB 摘要</h2>
-        <p>MAG1 的 CB 認證參考摘要。</p>
+        <h2>認證摘要</h2>
+        <p>MAG1 的 CE 認證狀態與發證機構摘要。</p>
       </div>
       <div class="section-intro">
         <p>
-          MAG1 已完成與設備及電池系統相關報告範圍內的 CB 安全認證測試。本頁為需要核驗 CB 參考、報告識別資訊及適用測試框架的審閱方提供結構化支持資訊。
-        </p>
-        <p style="margin-top:1rem;">
-          本頁並非完整的安全或物流摘要，而是聚焦於單一證書級別參考，並應與 MAG1 更廣泛的合規及產品就緒資料一併閱讀。
+          MAG1 已通過歐盟符合性（CE）標誌之 EU-Type Examination 認證程序，
+          並由公告機構（Notified Body）NB 2907 核發證書（Cert No. SN26C0174），
+          涵蓋 RED 2014/53/EU 五大條款（Safety、Health、EMC、Radio Spectrum、Emergency Service），
+          全部通過。本頁旨在為需要進一步審閱認證結果、證書識別資訊及測試標準的合作夥伴、交易所及機構審查者，提供結構化合規支持參考。
         </p>
       </div>
       <div class="summary-grid">
         <div class="summary-card">
-          <h4>狀態</h4>
-          <p>已認證 / 已完成</p>
+          <h4>結果</h4>
+          <p>通過 PASS</p>
+          <span class="badge-pass">5/5 ESSENTIAL REQUIREMENTS</span>
         </div>
         <div class="summary-card">
-          <h4>識別類型</h4>
-          <p>CB 證書</p>
+          <h4>指令／標準</h4>
+          <p>RED 2014/53/EU Module B</p>
+        </div>
+        <div class="summary-card">
+          <h4>公告機構</h4>
+          <p>NB 2907 · Sporton International (USA) Inc.</p>
         </div>
         <div class="summary-card">
           <h4>產品</h4>
-          <p>MAGNE.AI Phone Gen1 / MAG1</p>
-        </div>
-        <div class="summary-card">
-          <h4>審閱目的</h4>
-          <p>安全認證核驗</p>
+          <p>5G 智能手機（MAG1 · MA1）</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SECTION 2: CERTIFICATE DETAILS -->
+  <!-- SECTION 2: CERTIFICATE IDENTIFICATION -->
   <section class="section" style="background: var(--bg-secondary);">
     <div class="section-shell">
       <div class="section-header">
-        <h2>認證參考</h2>
-        <p>與 MAG1 CB 認證記錄相關的主要欄位。</p>
+        <h2>證書識別</h2>
+        <p>EU-Type Examination 證書之核心識別欄位（靜態資料區）。</p>
       </div>
       <div class="section-intro">
         <p>
-          以下資訊為 MAG1 的 CB 認證及相關安全測試背景提供結構化參考。
+          以下欄位為識別 MAG1 EU-Type Examination 證書及其技術文件參考之主要項目。
         </p>
       </div>
       <div class="identifier-grid">
         <div class="identifier-card">
           <div class="identifier-label">證書編號</div>
-          <div class="identifier-value">JPTUV-182068</div>
+          <div class="identifier-value">SN26C0174</div>
         </div>
         <div class="identifier-card">
-          <div class="identifier-label">認證機構</div>
-          <div class="identifier-value">TÜV Rheinland Japan Ltd.</div>
+          <div class="identifier-label">證書版本 / 簽發日</div>
+          <div class="identifier-value">Rev A · 2026-07-02</div>
         </div>
         <div class="identifier-card">
-          <div class="identifier-label">產品</div>
-          <div class="identifier-value">可充電鋰離子聚合物電池</div>
+          <div class="identifier-label">TDF Reference</div>
+          <div class="identifier-value">EN612311（2026-05-26）</div>
         </div>
         <div class="identifier-card">
-          <div class="identifier-label">型號</div>
-          <div class="identifier-value">MGU</div>
+          <div class="identifier-label">Notified Body</div>
+          <div class="identifier-value">SPORTON INTERNATIONAL (USA) INC · NB 2907</div>
         </div>
         <div class="identifier-card">
-          <div class="identifier-label">規格</div>
-          <div class="identifier-value">3.87V / 5000mAh (typ) / 4900mAh (rated)</div>
+          <div class="identifier-label">製造商</div>
+          <div class="identifier-value">Magne AI Global tech limited</div>
         </div>
         <div class="identifier-card">
-          <div class="identifier-label">標準</div>
-          <div class="identifier-value">IEC 62133-2:2017 + AMD1:2021</div>
+          <div class="identifier-label">製造商地址</div>
+          <div class="identifier-value">FLAT 1019B, 10/F, LIVEN HOUSE, NO.61-63 KING YIP STREET, KWUN TONG, HK</div>
+        </div>
+        <div class="identifier-card">
+          <div class="identifier-label">產品 / Product</div>
+          <div class="identifier-value">MAG1</div>
+        </div>
+        <div class="identifier-card">
+          <div class="identifier-label">品牌 / Brand</div>
+          <div class="identifier-value">MaQ</div>
+        </div>
+        <div class="identifier-card">
+          <div class="identifier-label">型號 / Model</div>
+          <div class="identifier-value">MA1</div>
+        </div>
+        <div class="identifier-card">
+          <div class="identifier-label">硬體版本</div>
+          <div class="identifier-value">MGU_MB_V2</div>
+        </div>
+        <div class="identifier-card">
+          <div class="identifier-label">軟體版本</div>
+          <div class="identifier-value">MAG1WW58-2</div>
+        </div>
+        <div class="identifier-card">
+          <div class="identifier-label">簽署人</div>
+          <div class="identifier-value">Alexander Ho</div>
         </div>
       </div>
       <div class="highlight-box">
         <h3>結構化審閱背景</h3>
         <p>
-          這些欄位旨在協助合作夥伴、交易所及機構審閱方核驗 MAG1 的 CB 認證參考及相關測試框架。
+          上述欄位作為 EU-Type Examination 證書之結構化審閱支持參考，應與原始證書及 MAG1 更廣泛的合規資料一併解讀。
         </p>
       </div>
     </div>
   </section>
 
-  <!-- SECTION 3: WHAT THIS CERTIFICATE MEANS -->
+  <!-- SECTION 3: RED 2014/53/EU ESSENTIAL REQUIREMENTS -->
   <section class="section">
     <div class="section-shell">
       <div class="section-header">
-        <h2>CB 認證涵蓋內容</h2>
-        <p>如何在設備合規審閱背景下解讀 CB 認證。</p>
+        <h2>RED 2014/53/EU 五大條款</h2>
+        <p>MAG1 通過的歐盟無線電設備指令（RED）所有基本要求及其協調標準。</p>
       </div>
       <div class="section-intro">
         <p>
-          CB 認證涉及依適用 IEC 框架進行的國際電氣安全及電池相關測試。該認證參考有助於支持更廣泛的產品安全國際審閱，但應與地區性認證、物流批准及平台相關合規資料一併解讀。
-        </p>
-        <p style="margin-top:1rem;">
-          CB 認證不取代 FCC、CE、GSMA TAC、GMS、Widevine、CP65 或物流相關批准。它是更廣泛設備安全與合規資料中的一部分。
+          以下為 MAG1 EU-Type Examination 證書所涵蓋之 RED 2014/53/EU 全部基本要求（Essential Requirements），
+          每一條款均已通過公告機構 NB 2907 之評估。支援標準與測試報告編號列出如下供機構審閱方交叉核驗。
         </p>
       </div>
-      <div class="summary-grid">
-        <div class="summary-card">
-          <h4>安全背景</h4>
-          <p>本證書支持在適用 IEC 框架內的電池安全合規審閱。</p>
-        </div>
-        <div class="summary-card">
-          <h4>解讀範圍</h4>
-          <p>應與 MAG1 更廣泛的安全、物流及市場準備資料一併閱讀。</p>
-        </div>
-      </div>
-    </div>
-  </section>
+      <div class="req-grid">
 
-  <!-- SECTION 4: SUPPORTING CERTIFICATE -->
-  <section class="section" style="background: var(--bg-secondary);">
-    <div class="section-shell">
-      <div class="section-header">
-        <h2>支持資料</h2>
-        <p>與 MAG1 CB 認證相關的支持文件。</p>
-      </div>
-      <div class="section-intro">
-        <p>
-          CB 支持資料可依申請提供，相關報告參考、證書記錄、截圖或支持文件可提供予符合條件的合作夥伴、交易所及機構審閱方。
-        </p>
-      </div>
-      <div class="docs-grid" style="max-width: 800px; margin: 0 auto;">
-        <div class="doc-card">
-          <div class="doc-id">CERT</div>
-          <h4>CB 電池證書</h4>
-          <p class="doc-summary">
-            由 TÜV Rheinland Japan Ltd. 發布的 MAG1 電池官方 CB 證書（JPTUV-182068）。
-          </p>
-          <div class="doc-actions">
-            <a href="/magne-web/assets/pdfs/cb/JPTUV-182068_MGU_62133_Certificate.pdf" target="_blank" class="doc-btn">查看 PDF</a>
-            <a href="/magne-web/assets/pdfs/cb/JPTUV-182068_MGU_62133_Certificate.pdf" download class="doc-btn">下載</a>
+        <div class="req-card">
+          <div class="req-head">
+            <h4>(a) Safety — Art 3.1a</h4>
+            <span class="badge">PASS</span>
+          </div>
+          <div class="req-block">
+            <div class="req-block-label">HARMONISED STANDARDS</div>
+            <div class="req-block-text">EN IEC 62368-1:2020+A11:2020<br>EN 50332-2:2013</div>
+          </div>
+          <div class="req-block">
+            <div class="req-block-label">TEST REPORTS</div>
+            <div class="req-block-text">L612311KS012, EO612311</div>
           </div>
         </div>
-        <div class="doc-card">
-          <div class="doc-id">REPORT</div>
-          <h4>CB 測試報告</h4>
-          <p class="doc-summary">
-            與 MAG1 電池 CB 認證及 IEC 62133-2:2017 合規範圍相關的支持測試報告。
-          </p>
-          <div class="doc-actions">
-            <a href="/magne-web/assets/pdfs/cb/CN25UQGP_001_TR_MGU_62133_Test-Report.pdf" target="_blank" class="doc-btn">查看 PDF</a>
-            <a href="/magne-web/assets/pdfs/cb/CN25UQGP_001_TR_MGU_62133_Test-Report.pdf" download class="doc-btn">下載</a>
+
+        <div class="req-card">
+          <div class="req-head">
+            <h4>(b) Health — Art 3.1a</h4>
+            <span class="badge">PASS</span>
+          </div>
+          <div class="req-block">
+            <div class="req-block-label">HARMONISED STANDARDS</div>
+            <div class="req-block-text">EN 50360:2017, EN 50360:2017/A1:2023<br>EN 50566:2017, EN 50566:2017/A1:2023<br>EN 62479:2010, EN 50663:2017<br>EN IEC 62311:2020, EN 50665:2017</div>
+          </div>
+          <div class="req-block">
+            <div class="req-block-label">TEST REPORTS</div>
+            <div class="req-block-text">EA612311</div>
           </div>
         </div>
-      </div>
-      <p style="text-align: center; color: var(--text-muted); font-size: 0.88rem; margin-top: 2rem; line-height: 1.7;">
-        亦可透過官方 IECEE 資料庫查詢：CB 證書編號 JPTUV-182068
-      </p>
-    </div>
-  </section>
 
-  <!-- SECTION 5: HOW TO VERIFY -->
-  <section class="section">
-    <div class="section-shell">
-      <div class="section-header">
-        <h2>核驗指引</h2>
-        <p>審閱方可如何核驗 CB 認證資訊。</p>
-      </div>
-      <div class="section-intro">
-        <p>
-          審閱方可透過支持文件、認證參考或 MAGNE 依申請提供的相關資料核驗 CB 資訊。如需進一步審閱，MAGNE 可向符合條件的合作夥伴及機構審閱方提供支持截圖、報告參考、證書記錄或相關文件。核驗時應視情況與 FCC、CE、電池運輸及平台相關合規參考資料一併進行。
-        </p>
-      </div>
-      <div class="identifier-grid">
-        <div class="identifier-card">
-          <div class="identifier-label">步驟 1</div>
-          <div class="identifier-value">打開官方 IECEE 證書搜尋頁面</div>
+        <div class="req-card">
+          <div class="req-head">
+            <h4>(c) EMC — Art 3.1b</h4>
+            <span class="badge">PASS</span>
+          </div>
+          <div class="req-block">
+            <div class="req-block-label">HARMONISED STANDARDS</div>
+            <div class="req-block-text">EN 301 489-1 V2.2.3<br>EN 301 489-3 V2.3.2<br>EN 301 489-17 V3.3.1<br>EN 301 489-19 V2.2.1<br>EN 301 489-52 V1.3.1<br>EN 55032:2015+A11:2020<br>EN 55035:2017+A11:2020<br>EN IEC 61000-3-2:2019+A1:2021<br>EN 61000-3-3:2013+A2:2021</div>
+          </div>
+          <div class="req-block">
+            <div class="req-block-label">TEST REPORTS</div>
+            <div class="req-block-text">EC612311, EW612311</div>
+          </div>
         </div>
-        <div class="identifier-card">
-          <div class="identifier-label">步驟 2</div>
-          <div class="identifier-value">輸入 CB 證書編號：JPTUV-182068</div>
+
+        <div class="req-card">
+          <div class="req-head">
+            <h4>(d) Radio Spectrum — Art 3.2</h4>
+            <span class="badge">PASS</span>
+          </div>
+          <div class="req-block">
+            <div class="req-block-label">HARMONISED STANDARDS</div>
+            <div class="req-block-text">EN 301 511 V12.5.1<br>EN 301 908-1 V15.2.1<br>EN 301 908-2 V13.1.1<br>EN 301 908-13 V13.3.1<br>EN 301 908-25 V15.1.1<br>EN 300 328 V2.2.2<br>EN 301 893 V2.2.1<br>EN 300 440 V2.2.1<br>EN 303 413 V1.2.1<br>EN 300 330 V2.1.1<br>EN 303 417 V1.1.1</div>
+          </div>
+          <div class="req-block">
+            <div class="req-block-label">TEST REPORTS</div>
+            <div class="req-block-text">EG612311, EM612311A, EM612311B, EM612311C<br>EQ612311, ER612311A, ER612311B, ER612311C, ER612311D, ER612311E</div>
+          </div>
         </div>
-        <div class="identifier-card">
-          <div class="identifier-label">步驟 3</div>
-          <div class="identifier-value">審閱相應的證書記錄</div>
+
+        <div class="req-card">
+          <div class="req-head">
+            <h4>(e) Emergency Service — Art 3.3g</h4>
+            <span class="badge">PASS</span>
+          </div>
+          <div class="req-block">
+            <div class="req-block-label">HARMONISED STANDARDS</div>
+            <div class="req-block-text">European Commission Guidelines for compliance with delegated regulation (EU) 2019/320</div>
+          </div>
+          <div class="req-block">
+            <div class="req-block-label">TEST REPORTS</div>
+            <div class="req-block-text">RA612311</div>
+          </div>
         </div>
+
       </div>
       <div class="highlight-box">
-        <h3>核驗說明</h3>
+        <h3>全部條款通過</h3>
         <p>
-          此核驗路徑作為額外參考層提供，應與 CB 證書 PDF 及 MAG1 更廣泛的合規資料一併閱讀。
+          RED 2014/53/EU 之 Safety、Health、EMC、Radio Spectrum、Emergency Service 五大基本要求，
+          已於 MAG1 EU-Type Examination 證書（SN26C0174）範圍內全部通過評估。
         </p>
       </div>
     </div>
   </section>
 
-  <!-- SECTION 6: INTERPRETATION NOTE -->
+  <!-- SECTION 4: CERTIFICATE NOTES -->
   <section class="section" style="background: var(--bg-secondary);">
+    <div class="section-shell">
+      <div class="section-header">
+        <h2>證書註記</h2>
+        <p>MAG1 EU-Type Examination 證書所列之使用限制與功能註記。</p>
+      </div>
+      <div class="section-intro">
+        <p>
+          以下註記源自證書原文，列出 MAG1 在歐盟市場部署時應遵循之限制與功能說明。
+        </p>
+      </div>
+      <div class="notes-list">
+
+        <div class="note-item">
+          <div class="note-num">1</div>
+          <div class="note-body">
+            <div class="note-zh">設備在 5250~5350 MHz 頻段操作時，僅限室內使用。</div>
+            <div class="note-en">When operating in the 5250–5350 MHz band, the device is restricted to indoor use only.</div>
+          </div>
+        </div>
+
+        <div class="note-item">
+          <div class="note-num">2</div>
+          <div class="note-body">
+            <div class="note-zh">發射天線之安裝須與所有人員保持至少 5mm 之距離。</div>
+            <div class="note-en">The transmitting antenna must be installed and operated with a minimum separation distance of at least 5 mm from all persons.</div>
+          </div>
+        </div>
+
+        <div class="note-item">
+          <div class="note-num">3</div>
+          <div class="note-body">
+            <div class="note-zh">設備亦支援非歐盟指定之射頻頻段。</div>
+            <div class="note-en">The device also supports radio frequency bands not designated for the EU.</div>
+          </div>
+        </div>
+
+        <div class="note-item">
+          <div class="note-num">4</div>
+          <div class="note-body">
+            <div class="note-zh">設備亦支援 5G NR n38 (HPUE)，該項於現行標準版本下未予評估。</div>
+            <div class="note-en">The device also supports 5G NR n38 (HPUE), which was not assessed under the current version of the standard.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: MANUFACTURER OBLIGATIONS -->
+  <section class="section">
+    <div class="section-shell">
+      <div class="section-header">
+        <h2>製造商義務（摘要）</h2>
+        <p>MAG1 製造商依 RED 2014/53/EU 及 EU-Type Examination 制度應履行之主要義務。</p>
+      </div>
+      <div class="section-intro">
+        <p>
+          下列為 MAG1 製造商在 EU-Type Examination 制度下應履行之關鍵義務摘要。完整義務以歐盟法規及證書內容為準。
+        </p>
+      </div>
+      <div class="obligations-list">
+
+        <div class="obligation-item">
+          <div class="obligation-marker">§1</div>
+          <div class="obligation-text">CE 標誌高度至少 5mm；包裝亦須可見。</div>
+        </div>
+
+        <div class="obligation-item">
+          <div class="obligation-marker">§2</div>
+          <div class="obligation-text">任何影響合規之變更須通知 NB 2907。</div>
+        </div>
+
+        <div class="obligation-item">
+          <div class="obligation-marker">§3</div>
+          <div class="obligation-text">證書 + 技術文件須由製造商保存 10 年。</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: SUPPORTING CERTIFICATE -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="section-shell">
+      <div class="section-header">
+        <h2>支持文件</h2>
+        <p>MAG1 EU-Type Examination 證書之原始 PDF 參考。</p>
+      </div>
+      <div class="section-intro">
+        <p>
+          以下為 MAG1 EU-Type Examination 證書之原始 PDF 文件。需要底層證書紀錄之審閱方可直接查看或下載該證書。
+        </p>
+      </div>
+      <div class="docs-grid" style="max-width: 760px; margin: 0 auto;">
+        <div class="doc-card">
+          <div class="doc-id">CE · SN26C0174</div>
+          <h4>Sporton EU-Type Examination 證書</h4>
+          <p class="doc-summary">
+            由 Notified Body NB 2907（Sporton International (USA) Inc.）核發之 EU-Type Examination 證書原始 PDF，
+            涵蓋 MAG1（MA1）於 RED 2014/53/EU 五大條款之評估結果。
+          </p>
+          <div class="doc-actions">
+            <a href="/magne-web/assets/ce/SN26C0174-Sporton-CE-Certificate.pdf" target="_blank" rel="noopener" class="doc-btn">查看 PDF</a>
+            <a href="/magne-web/assets/ce/SN26C0174-Sporton-CE-Certificate.pdf" download class="doc-btn">下載</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: INTERPRETATION NOTE -->
+  <section class="section">
     <div class="section-shell">
       <div class="section-header">
         <h2>解讀說明</h2>
-        <p>本頁使用方式</p>
+        <p>如何在合規審閱背景下使用本頁。</p>
       </div>
       <div class="highlight-box">
         <h3>本頁使用方式</h3>
         <p>
-          本頁作為合規與安全認證支持參考，應與 MAG1 更完整的合規頁面及相關支持資料一併閱讀。本頁旨在幫助合作夥伴、交易所及機構審閱方了解 MAG1 CB 認證參考資訊的身份與適用範圍，且不超出底層測試與認證背景。
+          本頁作為 EU-Type Examination 證書之合規支持參考，應與原始證書及更完整的合規頁面一併閱讀。
+          本頁旨在幫助合作夥伴、交易所及機構審閱方理解 MAG1 CE 認證結果之證書識別、涵蓋範圍與使用限制，
+          且不超出底層證書所涵蓋的背景。
         </p>
       </div>
     </div>
@@ -676,6 +956,7 @@
         <a href="/magne-web/tc/cb-lookup.html">CB 查詢</a>
         <a href="/magne-web/tc/un383-lookup.html">UN38.3 查詢</a>
         <a href="/magne-web/tc/cp65-lookup.html">CP65 查詢</a>
+        <a href="/magne-web/tc/ce-lookup.html">CE 查詢</a>
       </div>
       <div class="footer-col">
         <h4>公司</h4>
