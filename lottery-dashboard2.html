@@ -1,0 +1,1544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAGNE.AI Season 2 Campaign Center</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0a0c;
+      --bg-secondary: #0f0f12;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.12);
+      --text-primary: #f5f5f7;
+      --text-secondary: rgba(245, 245, 247, 0.6);
+      --accent: #00ff88;
+      --accent-glow: rgba(0, 255, 136, 0.3);
+      --gold: #ffd700;
+      --gold-dim: rgba(255, 215, 0, 0.2);
+      --green-dim: rgba(0, 255, 136, 0.15);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Outfit', -apple-system, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 12, 0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-brand a { color: var(--text-secondary); text-decoration: none; }
+    .nav-logo { font-size: 1.3rem; font-weight: 700; color: var(--accent); }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      background: var(--accent);
+      color: #000 !important;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .nav-cta:hover { opacity: 0.9; }
+
+    .content-wrapper {
+      position: relative;
+      z-index: 1;
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+      padding-top: 6rem;
+      padding-bottom: 3rem;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 2rem 1rem 1.5rem;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 300px;
+      background: radial-gradient(ellipse at center, rgba(0,255,136,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.85) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-sub {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      max-width: 680px;
+      margin: 0 auto 0.85rem;
+    }
+    .hero-highlight {
+      display: inline-block;
+      color: var(--gold);
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 0.5rem 1.1rem;
+      background: rgba(255, 215, 0, 0.07);
+      border: 1px solid rgba(255, 215, 0, 0.25);
+      border-radius: 999px;
+    }
+
+    .back-home { margin-bottom: 1.5rem; }
+    .back-home a {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .back-home a:hover { color: var(--accent); }
+
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 1rem;
+      margin-top: 3rem;
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    /* 6-card dashboard grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .stat-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem 1.25rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .stat-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+    .stat-card.gold {
+      border-color: rgba(255, 215, 0, 0.25);
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.06), transparent);
+    }
+    .stat-card.gold::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+    .stat-icon { font-size: 1.6rem; margin-bottom: 0.7rem; }
+    .stat-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .stat-card.gold .stat-value { color: var(--gold); }
+    .stat-label {
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+    }
+    .stat-trend {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.4);
+      margin-top: 0.5rem;
+    }
+    .stat-trend.acc { color: var(--accent); }
+
+    /* Progress bar */
+    .progress-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 1.75rem;
+      margin-top: 1rem;
+    }
+    .progress-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .progress-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    .progress-round-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--gold-dim);
+      color: var(--gold);
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+    .progress-bar {
+      height: 44px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 22px;
+      overflow: hidden;
+      position: relative;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, rgba(0,255,136,0.3), var(--accent) 50%, var(--gold));
+      border-radius: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 1rem;
+      transition: width 1s ease;
+    }
+    .progress-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #000;
+    }
+    .progress-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    /* Reward flow */
+    .reward-flow {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+    }
+    .reward-flow h3 {
+      font-size: 1.2rem;
+      margin-bottom: 1.25rem;
+      color: var(--text-primary);
+    }
+    .reward-flow-tree {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+    }
+    .reward-total {
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--gold);
+      padding-bottom: 1rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px dashed rgba(255, 215, 0, 0.25);
+    }
+    .reward-flow-tree ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+    .reward-flow-tree li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      padding: 0.55rem 0.75rem;
+      background: rgba(255,255,255,0.02);
+      border-radius: 8px;
+    }
+    .reward-amount {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      color: var(--accent);
+      min-width: 78px;
+      flex-shrink: 0;
+    }
+    .reward-disclaimer {
+      margin-top: 1.25rem;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.35);
+      font-style: italic;
+      text-align: center;
+    }
+
+    /* Package cards */
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+    }
+    .package-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      transition: all 0.3s;
+      position: relative;
+    }
+    .package-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+    .package-card.featured {
+      border-color: var(--gold);
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.07), transparent);
+    }
+    .package-card.featured::before {
+      content: 'BEST VALUE';
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: #000;
+      font-size: 0.62rem;
+      font-weight: 700;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      letter-spacing: 1.5px;
+    }
+    .package-amount {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+    .package-card.featured .package-amount { color: var(--gold); }
+    .package-chances {
+      font-size: 0.95rem;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+    .package-desc {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+    }
+
+    /* CTA buttons */
+    .cta-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 2.5rem;
+    }
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      font-family: 'Outfit', sans-serif;
+      border-radius: 999px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: 1px solid transparent;
+    }
+    .cta-primary {
+      background: linear-gradient(135deg, var(--accent), #0088aa);
+      color: #000;
+    }
+    .cta-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px var(--accent-glow);
+    }
+    .cta-secondary {
+      background: transparent;
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+    .cta-secondary:hover {
+      background: rgba(0, 255, 136, 0.08);
+    }
+    .cta-tertiary {
+      background: transparent;
+      color: var(--text-primary);
+      border-color: var(--border-hover);
+    }
+    .cta-tertiary:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* Tables (Recent Draws + Leaderboard) */
+    .data-table-wrap {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 1.5rem;
+      overflow-x: auto;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    .data-table th {
+      text-align: left;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .data-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      color: var(--text-primary);
+    }
+    .data-table tbody tr:hover { background: rgba(0, 255, 136, 0.04); }
+    .data-table tbody tr:last-child td { border-bottom: none; }
+    .data-table .mono {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      color: var(--accent);
+    }
+    .data-table a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .data-table a:hover { text-decoration: underline; }
+    .data-table .rank-badge {
+      display: inline-block;
+      width: 28px; height: 28px;
+      line-height: 28px;
+      text-align: center;
+      background: rgba(255, 215, 0, 0.12);
+      color: var(--gold);
+      border-radius: 8px;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+    }
+    .data-table .share-pct {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .data-table .empty-state {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+    }
+    .leaderboard-footnote {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.35);
+      margin-top: 0.75rem;
+      font-style: italic;
+    }
+
+    /* MS2 Staking module */
+    .staking-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    .staking-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.4rem 1.2rem;
+    }
+    .staking-label {
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      margin-bottom: 0.55rem;
+    }
+    .staking-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .staking-sub {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.4);
+    }
+    .staking-status-pill {
+      display: inline-block;
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-top: 0.4rem;
+    }
+    .staking-status-pill.active {
+      background: var(--green-dim);
+      color: var(--accent);
+    }
+    .staking-status-pill.idle {
+      background: rgba(255,255,255,0.05);
+      color: var(--text-secondary);
+    }
+
+    /* Staking rules table */
+    .staking-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+    }
+    .staking-table th {
+      text-align: left;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .staking-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .staking-table .tier-name {
+      font-weight: 600;
+      color: var(--gold);
+    }
+    .staking-table .tier-boost {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .staking-caption {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.35);
+      margin-top: 0.85rem;
+      font-style: italic;
+    }
+
+    /* Contract references */
+    .contracts-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 1.75rem;
+    }
+    .contract-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .contract-row:last-child { border-bottom: none; }
+    .contract-label {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    .contract-addr {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+    }
+    .contract-addr a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .contract-addr a:hover { text-decoration: underline; }
+
+    details.tech-refs {
+      margin-top: 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.5rem 1rem;
+    }
+    details.tech-refs summary {
+      cursor: pointer;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+      padding: 0.4rem 0;
+      list-style: none;
+    }
+    details.tech-refs summary::-webkit-details-marker { display: none; }
+    details.tech-refs summary::before {
+      content: '▸';
+      display: inline-block;
+      margin-right: 0.5rem;
+      transition: transform 0.2s;
+    }
+    details.tech-refs[open] summary::before { transform: rotate(90deg); }
+    .tech-refs-body {
+      padding-top: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .tech-ref-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      padding: 0.4rem 0;
+    }
+    .tech-ref-row .contract-label { color: rgba(255,255,255,0.45); }
+    .proxy-note {
+      margin-top: 0.85rem;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.4);
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    /* Compliance */
+    .compliance {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem;
+      margin-top: 2.5rem;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.7;
+    }
+    .compliance h4 {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+      font-weight: 700;
+    }
+    .compliance p + h4 { margin-top: 1.25rem; }
+
+    /* Footer */
+    .dashboard-footer {
+      margin-top: 2.5rem;
+      padding: 1.5rem 0 1rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      text-align: center;
+      color: rgba(255,255,255,0.35);
+      font-size: 0.82rem;
+    }
+    .dashboard-footer a {
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+    }
+    .dashboard-footer a:hover { color: var(--accent); }
+    .footer-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .packages-grid { grid-template-columns: repeat(3, 1fr); }
+      .staking-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0.75rem 1.25rem; }
+      .nav-links { display: none; }
+      .content-wrapper { width: calc(100% - 24px); padding-top: 5rem; }
+      .hero { padding: 1.5rem 0.5rem 1rem; }
+      .hero h1 { font-size: 1.85rem; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+      .stat-value { font-size: 1.7rem; }
+      .stat-card { padding: 1.2rem 1rem; }
+      .packages-grid { grid-template-columns: repeat(2, 1fr); }
+      .staking-grid { grid-template-columns: repeat(2, 1fr); }
+      .cta-row { flex-direction: column; align-items: stretch; }
+      .cta { justify-content: center; padding: 0.9rem 1.5rem; }
+      .data-table th, .data-table td { padding: 0.65rem 0.5rem; font-size: 0.82rem; }
+      .reward-flow, .progress-card, .data-table-wrap, .contracts-card, .compliance { padding: 1.25rem; }
+    }
+    @media (max-width: 480px) {
+      .packages-grid { grid-template-columns: 1fr 1fr; }
+      .staking-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+    }
+  
+/* === Season 1 NAV/FOOTER CSS (appended for Season 2 dashboard) === */
+
+/* NAV - Base styles */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(10, 10, 12, 0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-brand { display: flex; align-items: center; gap: 0.5rem; }
+.nav-brand a { color: var(--text-secondary); text-decoration: none; }
+.nav-logo { font-size: 1.3rem; font-weight: 700; color: var(--accent); }
+.nav-logo-img {
+  height: 20px;
+  width: auto;
+  display: block;
+}
+.nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+.nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+.nav-links a:hover { color: var(--accent); }
+.nav-links a.active { color: var(--accent); }
+.nav-actions { display: flex; gap: 0.75rem; align-items: center; }
+.nav-cta {
+  background: var(--accent);
+  color: #000 !important;
+  padding: 0.6rem 1.4rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+.nav-contact {
+  background: transparent;
+  border: 1px solid var(--border-hover);
+  color: var(--text-primary) !important;
+  padding: 0.6rem 1.4rem;
+  border-radius: 8px;
+  font-weight: 500;
+  text-decoration: none;
+}
+.nav-contact:hover { border-color: var(--accent); color: var(--accent) !important; }
+.nav-web3 {
+  color: var(--accent-secondary) !important;
+  font-size: 0.85rem;
+}
+.nav-web3:hover { color: var(--accent) !important; }
+.nav-lang-switch {
+  color: rgba(255,255,255,0.5) !important;
+  font-size: 0.8rem !important;
+  text-decoration: none !important;
+  padding: 0.2rem 0.5rem !important;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 6px;
+}
+.nav-lang-switch:hover {
+  color: var(--accent) !important;
+  border-color: var(--accent);
+}
+.nav-actions-mobile { display: contents; }
+
+/* Mobile menu button */
+.mobile-menu-btn {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  border-radius: 6px;
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+}
+.mobile-menu-btn span,
+.mobile-menu-btn::before,
+.mobile-menu-btn::after {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--text-primary);
+  margin: 4px 0;
+}
+
+/* NAV - Responsive */
+@media (max-width: 768px) {
+  nav {
+    padding: 0.75rem 1.5rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .mobile-menu-btn { display: block; }
+  .nav-links {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-top: 0.5rem;
+  }
+  .nav-links.is-open { display: flex; }
+  .nav-actions-mobile { display: flex; gap: 0.5rem; }
+}
+
+/* FOOTER */
+footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto 3rem;
+  text-align: left;
+}
+.footer-col h4 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+.footer-col a {
+  display: block;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.85rem;
+  padding: 0.6rem 0;
+  transition: color 0.2s;
+}
+.footer-col a:hover {
+  color: var(--accent);
+}
+.footer-brand-logo {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.footer-brand-logo img {
+  height: 24px;
+  width: auto;
+  margin-bottom: 0.75rem;
+  opacity: 0.9;
+}
+.footer-brand-logo p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+.footer-socials {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+.footer-socials a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  transition: all 0.2s;
+}
+.footer-socials a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: rgba(0, 212, 212, 0.06);
+}
+.footer-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text-secondary);
+  transition: all 0.2s;
+  padding: 0;
+}
+.footer-icon:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: rgba(0, 212, 212, 0.1);
+}
+.footer-socials a.footer-icon svg { width: 20px; height: 20px; }
+.footer-copy { margin-top: 1.5rem; opacity: 0.5; }
+.trademark-notice {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-top: 1rem;
+  opacity: 0.7;
+}
+.trademark-notice a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.trademark-notice a:hover {
+  text-decoration: underline;
+}
+
+/* FOOTER - Responsive */
+@media (max-width: 768px) {
+  .footer-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+@media (max-width: 480px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* === End Season 1 NAV/FOOTER CSS === */
+
+  </style>
+</head>
+<body>
+
+  <nav>
+  <div class="nav-brand">
+    <a href="/magne-web/magne-home.html" class="nav-logo"><img src="/magne-web/assets/brand/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="nav-logo-img"></a>
+    <button class="mobile-menu-btn" type="button" aria-label="Toggle menu"><span></span></button>
+  </div>
+  <ul class="nav-links">
+    <li><a href="/magne-web/magne-home.html">Home</a></li>
+    <li><a href="/magne-web/magne-phone.html">Phone</a></li>
+    <li><a href="/magne-web/magne-ai.html">AI</a></li>
+    <li><a href="/magne-web/magne-security.html">Security</a></li>
+    <li><a href="/magne-web/magne-compliance.html">Compliance</a></li>
+    <li><a href="/magne-web/magne-network.html">Network</a></li>
+    <li><a href="/magne-web/magne-progress.html">Progress</a></li>
+    <li><a href="/magne-web/magne-partners.html">Partners</a></li>
+    <li><a href="/magne-web/faq.html">FAQ</a></li>
+    <a href="tc/lottery-dashboard.html" class="nav-lang-switch">EN | 繁中</a></li>
+    <li><a href="https://web3.magne.ai" target="_blank" rel="noopener" class="nav-web3">Web3 Portal ↗️</a></li>
+    <li class="nav-actions-mobile">
+      <a href="/magne-web/magne-contact.html" class="nav-contact">Contact</a>
+      <a href="https://payment.magne.ai/buy" class="nav-cta">Preorder</a>
+    </li>
+  </ul>
+</nav>
+
+
+<div class="content-wrapper">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">MAGNE.AI Season 2</div>
+    <h1>MAGNE.AI Season 2 Campaign Center</h1>
+    <p class="hero-sub">Phone Gen1 Lottery, MS2 Campaign Credits, Staking Weight, and Team Rewards in one transparent campaign dashboard.</p>
+    <p class="hero-highlight">17 USDT per entry • 10 MS2 Campaign Credits per valid entry • Every 100 entries = 1 Phone Gen1 selection</p>
+  </section>
+
+  <div class="back-home">
+    <a href="index.html">← Back to Home</a>
+  </div>
+
+  <!-- 6 DASHBOARD CARDS -->
+  <div class="section-label">Season 2 Overview</div>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon">👥</div>
+      <div class="stat-value" id="participants">—</div>
+      <div class="stat-label">Total Participants</div>
+      <div class="stat-trend">Season 2</div>
+    </div>
+
+    <div class="stat-card gold">
+      <div class="stat-icon">📱</div>
+      <div class="stat-value" id="phones-given">—</div>
+      <div class="stat-label">Phones Given</div>
+      <div class="stat-trend" id="phones-remaining">— remaining</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">🎯</div>
+      <div class="stat-value" id="curr-round">—</div>
+      <div class="stat-label">Current Round</div>
+      <div class="stat-trend">Round number</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">🎟️</div>
+      <div class="stat-value" id="total-entries">—</div>
+      <div class="stat-label">Total Entries</div>
+      <div class="stat-trend">Cumulative</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">⏭️</div>
+      <div class="stat-value" id="entries-next">—</div>
+      <div class="stat-label">Entries to Next Phone</div>
+      <div class="stat-trend">Until next draw</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">🪙</div>
+      <div class="stat-value" id="ms2-credits">—</div>
+      <div class="stat-label">MS2 Campaign Credits Recorded</div>
+      <div class="stat-trend">calculated from entries</div>
+    </div>
+  </div>
+
+  <!-- PROGRESS BAR -->
+  <div class="progress-card">
+    <div class="progress-header">
+      <div class="progress-title">Round Progress</div>
+      <div class="progress-round-badge">📱 1 Phone Selected per 100 Entries</div>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress-fill" style="width: 0%;">
+        <span class="progress-text"><span id="progress-text">0</span>/100</span>
+      </div>
+    </div>
+    <div class="progress-labels">
+      <span>Entries toward the next Phone Gen1 selection</span>
+      <span id="progress-needed">— more entries</span>
+      <span style="color: rgba(255,255,255,0.4); font-size: 0.78rem;">1,700 USDT per round revenue</span>
+    </div>
+  </div>
+
+  <!-- 17 USDT REWARD FLOW -->
+  <div class="section-label">Entry Allocation</div>
+  <div class="reward-flow">
+    <h3>17 USDT per entry allocation</h3>
+    <div class="reward-flow-tree">
+      <div class="reward-total">17 USDT per entry</div>
+      <ul>
+        <li><span class="reward-amount">4 USDT</span><span>Trading liquidity preparation</span></li>
+        <li><span class="reward-amount">4 USDT</span><span>Eligible inviter referral reward</span></li>
+        <li><span class="reward-amount">1.5 USDT</span><span>Top Contributor Reward Pool</span></li>
+        <li><span class="reward-amount">7.5 USDT</span><span>Treasury / campaign operations / other configured pools</span></li>
+      </ul>
+    </div>
+    <p class="reward-disclaimer">Allocation descriptions are based on current campaign rules and may be updated according to official campaign notices.</p>
+  </div>
+
+  <!-- PACKAGES -->
+  <div class="section-label">Participation Packages</div>
+  <div class="packages-grid" id="packages-grid"></div>
+  <p style="text-align:center; font-size:0.78rem; color:rgba(255,255,255,0.4); margin-top:0.85rem;">Each package contributes to the season-wide 1,700 USDT-per-round revenue pool.</p>
+
+  <!-- CTA BUTTONS -->
+  <div class="cta-row">
+    <a class="cta cta-primary" href="https://payment.magne.ai/lottery">🎲 Join Season 2</a>
+    <a class="cta cta-secondary" href="https://payment.magne.ai/ms2-staking">🪙 Stake MS2</a>
+    <a class="cta cta-tertiary" href="https://jerrysohigh-create.github.io/magne-web3/tc/session2.html#join" target="_blank" rel="noopener">📄 View Rules</a>
+  </div>
+
+  <!-- RECENT DRAWS -->
+  <div class="section-label">Activity</div>
+  <h2 class="section-title">🏆 Recent Draws</h2>
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>TX Hash</th>
+          <th>Time</th>
+          <th>Result</th>
+        </tr>
+      </thead>
+      <tbody id="draws-body">
+        <tr><td colspan="3" class="empty-state">No draws yet.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- TEAM REWARDS LEADERBOARD -->
+  <h2 class="section-title">👥 Team Rewards Leaderboard</h2>
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Reward Share</th>
+          <th>USDT Reward</th>
+          <th>Inviter Address</th>
+        </tr>
+      </thead>
+      <tbody id="leaderboard-body"></tbody>
+    </table>
+    <p class="leaderboard-footnote">Reward Share percentages are fixed campaign rules. USDT Reward and Inviter Address update as the leaderboard fills in.</p>
+  </div>
+
+  <!-- MS2 STAKING MODULE -->
+  <div class="section-label">MS2 Staking</div>
+  <h2 class="section-title">🪙 MS2 Staking Module</h2>
+  <div class="staking-grid">
+    <div class="staking-card">
+      <div class="staking-label">MS2 Staking</div>
+      <div class="staking-value" id="staking-status-val">—</div>
+      <span class="staking-status-pill idle" id="staking-pill">Idle</span>
+      <div class="staking-sub" style="margin-top:0.4rem;">Connect wallet to view status</div>
+    </div>
+    <div class="staking-card">
+      <div class="staking-label">Campaign Weight</div>
+      <div class="staking-value" id="campaign-weight">×1.00</div>
+      <div class="staking-sub">Base weight multiplier</div>
+    </div>
+    <div class="staking-card">
+      <div class="staking-label">Staking Status</div>
+      <div class="staking-value" id="staking-active">—</div>
+      <div class="staking-sub">Eligible tiers &amp; boosts</div>
+    </div>
+    <div class="staking-card">
+      <div class="staking-label">Total MS2 Staked</div>
+      <div class="staking-value" id="total-ms2-staked">—</div>
+      <div class="staking-sub">Across all participants</div>
+    </div>
+  </div>
+
+  <!-- STAKING RULES -->
+  <h2 class="section-title">📋 Staking Tiers &amp; Boosts</h2>
+  <div class="data-table-wrap">
+    <table class="staking-table">
+      <thead>
+        <tr>
+          <th>Tier</th>
+          <th>Team Requirement</th>
+          <th>Boost</th>
+        </tr>
+      </thead>
+      <tbody id="staking-tiers-body"></tbody>
+    </table>
+    <p class="staking-caption">Boosts are used for campaign weight and eligibility calculations only. They do not represent fixed yield, fixed APY, or guaranteed return.</p>
+  </div>
+
+  <!-- CONTRACT REFERENCES -->
+  <div class="section-label">Contract References</div>
+  <h2 class="section-title">🔗 On-chain Contracts</h2>
+  <div class="contracts-card">
+    <div class="contract-row">
+      <span class="contract-label">MS2 Token</span>
+      <span class="contract-addr"><a href="https://bscscan.com/address/0xC46A54BBD2716C436Aaaed6Ed2f555a9b054ebD1" target="_blank" rel="noopener">0xC46A…ebD1 ↗</a></span>
+    </div>
+    <div class="contract-row">
+      <span class="contract-label">Season 2 Lottery Contract</span>
+      <span class="contract-addr"><a href="https://bscscan.com/address/0x6DE61D8438176741fc8150Aef53256830a6Dd635" target="_blank" rel="noopener">0x6DE6…d635 ↗</a></span>
+    </div>
+    <div class="contract-row">
+      <span class="contract-label">MS2 Staking Contract</span>
+      <span class="contract-addr"><a href="https://bscscan.com/address/0xB6Ed72808fb34a3Ac118D397f49332abBAA484D8" target="_blank" rel="noopener">0xB6Ed…84D8 ↗</a></span>
+    </div>
+
+    <details class="tech-refs">
+      <summary>Collapsible Technical References</summary>
+      <div class="tech-refs-body">
+        <div class="tech-ref-row">
+          <span class="contract-label">MagneLotteryS2 Implementation</span>
+          <span class="contract-addr"><a href="https://bscscan.com/address/0x877f5C053F3F3b43063572b432fF7B7F7B08226B" target="_blank" rel="noopener">0x877f…226B ↗</a></span>
+        </div>
+        <div class="tech-ref-row">
+          <span class="contract-label">MS2Staking Implementation</span>
+          <span class="contract-addr"><a href="https://bscscan.com/address/0x9a7d5E82aB8bb64e279D02F80FF87aD42397532C" target="_blank" rel="noopener">0x9a7d…532C ↗</a></span>
+        </div>
+      </div>
+    </details>
+
+    <p class="proxy-note">The Season 2 Lottery and MS2 Staking contracts use upgradeable proxy architecture. Proxy addresses are the primary user-facing contract references.</p>
+  </div>
+
+  <!-- COMPLIANCE -->
+  <div class="compliance">
+    <h4>MS2 Disclaimer</h4>
+    <p>MS2 is a campaign participation token / campaign credit. It is not MHA, has no guaranteed value, has no fixed exchange ratio, and does not represent a fixed-yield, savings, or investment product.</p>
+
+    <h4>Campaign Disclaimer</h4>
+    <p>Campaign data is provided for visibility purposes only. MS2 and MHA-related information does not represent investment advice, guaranteed value, fixed return, or guaranteed distribution. All rewards, credits, eligibility, staking weight, ranking, and distribution timing are subject to official campaign rules, verification, anti-abuse review, TGE-related schedules, regional restrictions, and applicable rules.</p>
+  </div>
+
+  <!-- FOOTER -->
+    <footer>
+    <div class="footer-container">
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="/magne-web/magne-phone.html">Phone</a>
+        <a href="/magne-web/magne-security.html">Security</a>
+        <a href="/magne-web/magne-compliance.html">Compliance</a>
+        <a href="/magne-web/magne-network.html">Network</a>
+        <a href="/magne-web/magne-progress.html">Progress</a>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="/magne-web/faq.html">FAQ</a>
+        <a href="/magne-web/media-kit.html">Media Kit</a>
+        <a href="/magne-web/features-demo.html">Features Demo</a>
+        <a href="/magne-web/lottery-dashboard.html">Lottery Dashboard</a>
+        <a href="/magne-web/clash-of-titans.html">Clash of the Titans</a>
+      </div>
+      <div class="footer-col">
+        <h4>Compliance</h4>
+        <a href="/magne-web/google-approval.html">Google GMS</a>
+        <a href="/magne-web/fcc-lookup.html">FCC Lookup</a>
+        <a href="/magne-web/gsma-tac-lookup.html">GSMA TAC</a>
+        <a href="/magne-web/cb-lookup.html">CB Lookup</a>
+        <a href="/magne-web/un383-lookup.html">UN38.3</a>
+        <a href="/magne-web/cp65-lookup.html">CP65</a>
+        <a href="/magne-web/ce-lookup.html">CE</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/magne-web/magne-partners.html">Partners</a>
+        <a href="/magne-web/magne-contact.html">Contact</a>
+        <a href="/magne-web/privacy-policy.html">Privacy Policy</a>
+        <a href="index.html" target="_blank" rel="noopener">Web3 Portal</a>
+        <a href="#" target="_blank" rel="noopener">Legal Opinion</a>
+      </div>
+    </div>
+
+    <div class="footer-brand-logo">
+      <img src="/magne-web/assets/brand/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="footer-brand-img">
+      <p>The Web3-native AI Phone for Secure Ownership</p>
+    </div>
+
+    <div class="footer-socials" aria-label="Official MAGNE.AI channels">
+      <a href="https://x.com/Magne_Ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="https://t.me/MagneAI" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+      <a href="https://discord.gg/tX2xRAkd" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
+      <a href="https://github.com/magne-ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+      <a href="https://www.youtube.com/@MagneAI" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+      <a href="index.html" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE Web3 Docs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></a>
+    </div>
+
+    <p class="trademark-notice">
+      MAGNE.AI™ is a trademark of Magical Hash Global Tech Limited, currently in registration process
+      (<a href="https://tmsearch.uspto.gov/search/search-results/99311528" target="_blank" rel="noopener">USPTO Serial: 99311528</a>).
+    </p>
+    <p style="margin-top: 1.5rem; opacity: 0.5;">© 2026 MAGNE.AI. All rights reserved.</p>
+  </footer>
+
+
+</div>
+
+<script>
+  // =================== CONSTANTS ===================
+  const ENTRY_FEE_USDT      = 17;
+  const MS2_PER_ENTRY       = 10;
+  const ENTRIES_PER_ROUND   = 100;
+  const ROUND_REVENUE_USDT  = 1700;
+  const TOTAL_PHONES        = 1000;
+
+  const REWARD_FLOW = [
+    { label: 'Trading liquidity preparation',            amount: 4.0  },
+    { label: 'Eligible inviter referral reward',         amount: 4.0  },
+    { label: 'Top Contributor Reward Pool',              amount: 1.5  },
+    { label: 'Treasury / campaign operations / other',   amount: 7.5  },
+  ];
+
+  const LEADERBOARD_RATIOS = [
+    { rank: 1,  share: 40 },
+    { rank: 2,  share: 15 },
+    { rank: 3,  share: 10 },
+    { rank: 4,  share: 8  },
+    { rank: 5,  share: 7  },
+    { rank: 6,  share: 6  },
+    { rank: 7,  share: 5  },
+    { rank: 8,  share: 4  },
+    { rank: 9,  share: 3  },
+    { rank: 10, share: 2  },
+  ];
+
+  const STAKING_TIERS = [
+    { tier: 'Bronze',  teamReq: '1K USD',   boost: '+2%' },
+    { tier: 'Silver',  teamReq: '5K USD',   boost: '+5%' },
+    { tier: 'Gold',    teamReq: '20K USD',  boost: '+10%' },
+    { tier: 'Diamond', teamReq: '100K USD', boost: '+10% + pool share' },
+    { tier: 'King',    teamReq: '500K USD', boost: '+10% + pool share + bonus' },
+  ];
+
+  const PACKAGES = [
+    { usdt: 17,   chances: 1   },
+    { usdt: 34,   chances: 2   },
+    { usdt: 85,   chances: 5   },
+    { usdt: 170,  chances: 10  },
+    { usdt: 1700, chances: 100 },
+  ];
+
+  // =================== APIs ===================
+  const DASHBOARD_API   = 'https://payment.magne.ai/api/v1/lottery2/dashboard';
+  const LIST_API        = 'https://payment.magne.ai/api/v1/lottery2/list';
+  const LEADERBOARD_API = 'https://payment.magne.ai/api/v1/lottery2/leaderboard';
+
+  // =================== HELPERS ===================
+  function fmtAddr(a) {
+    if (!a || a.length < 10) return '—';
+    return a.slice(0, 6) + '…' + a.slice(-4);
+  }
+  function fmtNum(n) {
+    if (n === null || n === undefined || isNaN(n)) return '—';
+    return Number(n).toLocaleString();
+  }
+  function fmtTime(ts) {
+    if (!ts) return '—';
+    const d = new Date(ts);
+    if (isNaN(d.getTime())) return '—';
+    return d.toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' });
+  }
+
+  // =================== STATIC RENDERERS ===================
+  function renderPackages() {
+    const grid = document.getElementById('packages-grid');
+    if (!grid) return;
+    grid.innerHTML = PACKAGES.map((p, i) => {
+      const featured = (i === 2 || p.usdt === 1700);
+      return `
+        <div class="package-card${featured ? ' featured' : ''}">
+          <div class="package-amount">${p.usdt.toLocaleString()} USDT</div>
+          <div class="package-chances">🎯 ${p.chances} ${p.chances === 1 ? 'Chance' : 'Chances'}</div>
+          <div class="package-desc">${p.chances} valid ${p.chances === 1 ? 'entry' : 'entries'} × ${ENTRY_FEE_USDT} USDT</div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function renderStakingTiers() {
+    const body = document.getElementById('staking-tiers-body');
+    if (!body) return;
+    body.innerHTML = STAKING_TIERS.map(t => `
+      <tr>
+        <td><span class="tier-name">${t.tier}</span></td>
+        <td>${t.teamReq}</td>
+        <td><span class="tier-boost">${t.boost}</span></td>
+      </tr>
+    `).join('');
+  }
+
+  function renderLeaderboardStatic(apiRows) {
+    const body = document.getElementById('leaderboard-body');
+    if (!body) return;
+    const dataMap = {};
+    if (Array.isArray(apiRows)) {
+      apiRows.forEach(r => {
+        if (r && r.rank) dataMap[r.rank] = r;
+      });
+    }
+    body.innerHTML = LEADERBOARD_RATIOS.map(row => {
+      const api = dataMap[row.rank] || {};
+      const usdt = (api.usdt !== undefined && api.usdt !== null) ? api.usdt : '—';
+      const addr = api.address || '—';
+      const addrHtml = (api.address && api.address.length > 10)
+        ? `<a href="https://bscscan.com/address/${api.address}" target="_blank" rel="noopener" class="mono">${fmtAddr(api.address)} ↗</a>`
+        : '<span style="color:rgba(255,255,255,0.35);">—</span>';
+      return `
+        <tr>
+          <td><span class="rank-badge">${row.rank}</span></td>
+          <td><span class="share-pct">${row.share}%</span></td>
+          <td class="mono">${(typeof usdt === 'number') ? usdt.toLocaleString() + ' USDT' : usdt}</td>
+          <td>${addrHtml}</td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  function showEmptyLeaderboard() {
+    const body = document.getElementById('leaderboard-body');
+    if (!body) return;
+    // Still show fixed ratios even when API is empty; just add a row note.
+    renderLeaderboardStatic([]);
+  }
+
+  // =================== DASHBOARD RENDER ===================
+  function renderDashboard(d) {
+    d = d || {};
+    const totalParticipants = d.totalParticipants ?? null;
+    const totalMobile       = d.totalMobile ?? null;
+    const currRound         = d.currRound ?? null;
+    const totalDraws        = d.totalDraws ?? null;
+    const nextDrawNeed      = d.nextDrawNeed ?? null;
+
+    document.getElementById('participants').textContent = fmtNum(totalParticipants);
+    document.getElementById('phones-given').textContent = fmtNum(totalMobile);
+    document.getElementById('phones-remaining').textContent =
+      (totalMobile !== null) ? (TOTAL_PHONES - Number(totalMobile)).toLocaleString() + ' remaining' : '— remaining';
+    document.getElementById('curr-round').textContent = fmtNum(currRound);
+    document.getElementById('total-entries').textContent = fmtNum(totalDraws);
+
+    // MS2 Campaign Credits = totalDraws × 10 (calculated from entries)
+    const ms2Credits = (totalDraws !== null && !isNaN(totalDraws))
+      ? Number(totalDraws) * MS2_PER_ENTRY
+      : null;
+    document.getElementById('ms2-credits').textContent = (ms2Credits !== null)
+      ? ms2Credits.toLocaleString()
+      : '—';
+
+    // Progress bar: prefer nextDrawNeed, else fallback to totalDraws % 100
+    let entriesNow = null;
+    let entriesNeeded = null;
+    if (nextDrawNeed !== null && nextDrawNeed !== undefined && !isNaN(nextDrawNeed)) {
+      entriesNow = ENTRIES_PER_ROUND - Number(nextDrawNeed);
+      entriesNeeded = Number(nextDrawNeed);
+    } else if (totalDraws !== null && totalDraws !== undefined && !isNaN(totalDraws)) {
+      const td = Number(totalDraws);
+      entriesNow = td % ENTRIES_PER_ROUND;
+      entriesNeeded = ENTRIES_PER_ROUND - entriesNow;
+    } else {
+      entriesNow = 0;
+      entriesNeeded = ENTRIES_PER_ROUND;
+    }
+    // Edge: totalDraws=0 and nextDrawNeed=100 → display 0/100
+    if (entriesNow < 0) entriesNow = 0;
+    if (entriesNow > ENTRIES_PER_ROUND) entriesNow = ENTRIES_PER_ROUND;
+
+    const pct = ((ENTRIES_PER_ROUND - (nextDrawNeed ?? entriesNeeded)) / ENTRIES_PER_ROUND) * 100;
+    const pctClamped = Math.max(0, Math.min(100, pct));
+
+    document.getElementById('progress-fill').style.width = pctClamped + '%';
+    document.getElementById('progress-text').textContent = entriesNow;
+    document.getElementById('entries-next').textContent = fmtNum(entriesNeeded);
+    document.getElementById('progress-needed').textContent =
+      (entriesNeeded !== null) ? (entriesNeeded + ' more entries') : '— more entries';
+  }
+
+  function showEmptyDashboard() {
+    renderDashboard({});
+    // Soft fallback values
+    ['participants','phones-given','curr-round','total-entries','entries-next','ms2-credits']
+      .forEach(id => { const el = document.getElementById(id); if (el) el.textContent = '—'; });
+    const phonesRem = document.getElementById('phones-remaining');
+    if (phonesRem) phonesRem.textContent = '— remaining';
+    document.getElementById('progress-fill').style.width = '0%';
+    document.getElementById('progress-text').textContent = '0';
+    document.getElementById('entries-next').textContent = '—';
+    document.getElementById('progress-needed').textContent = '— more entries';
+  }
+
+  // =================== DRAWS LIST ===================
+  function renderDraws(rows) {
+    const body = document.getElementById('draws-body');
+    if (!body) return;
+    if (!Array.isArray(rows) || rows.length === 0) {
+      body.innerHTML = '<tr><td colspan="3" class="empty-state">No draws yet.</td></tr>';
+      return;
+    }
+    body.innerHTML = rows.map(r => {
+      const tx = r.txHash || r.tx || '';
+      const time = r.time || r.timestamp || r.blockTime || null;
+      const result = r.result || r.winner || r.prize || '—';
+      const txShort = tx ? (tx.length > 14 ? tx.slice(0, 8) + '…' + tx.slice(-4) : tx) : '—';
+      const txLink = tx ? `<a href="https://bscscan.com/tx/${tx}" target="_blank" rel="noopener" class="mono">${txShort} ↗</a>` : '<span style="color:rgba(255,255,255,0.35);">—</span>';
+      const resultText = (typeof result === 'string') ? result : JSON.stringify(result);
+      return `
+        <tr>
+          <td>${txLink}</td>
+          <td>${fmtTime(time)}</td>
+          <td>${resultText}</td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  // =================== API CALLS ===================
+  async function loadDashboard() {
+    try {
+      const res = await fetch(DASHBOARD_API);
+      const json = await res.json();
+      if (json.code === 900401 || !json.data) { showEmptyDashboard(); return; }
+      if (json.code !== 200) { showEmptyDashboard(); return; }
+      renderDashboard(json.data);
+    } catch (e) {
+      console.warn('Dashboard unavailable:', e);
+      showEmptyDashboard();
+    }
+  }
+
+  async function loadList() {
+    try {
+      const res = await fetch(LIST_API);
+      const json = await res.json();
+      if (json.code === 900401 || !json.data) { renderDraws([]); return; }
+      if (json.code !== 200) { renderDraws([]); return; }
+      const rows = Array.isArray(json.data) ? json.data : (json.data.list || json.data.rows || []);
+      renderDraws(rows);
+    } catch (e) {
+      console.warn('Draws list unavailable:', e);
+      renderDraws([]);
+    }
+  }
+
+  async function loadLeaderboard() {
+    try {
+      const res = await fetch(LEADERBOARD_API);
+      const json = await res.json();
+      if (json.code === 900401 || !json.data) { showEmptyLeaderboard(); return; }
+      if (json.code !== 200) { showEmptyLeaderboard(); return; }
+      const rows = Array.isArray(json.data) ? json.data : (json.data.list || json.data.rows || []);
+      if (!rows || rows.length === 0) {
+        // Show fixed ratios + a single empty-state banner above
+        renderLeaderboardStatic([]);
+        return;
+      }
+      renderLeaderboardStatic(rows);
+    } catch (e) {
+      console.warn('Leaderboard unavailable:', e);
+      showEmptyLeaderboard();
+    }
+  }
+
+  // =================== INIT ===================
+  renderPackages();
+  renderStakingTiers();
+  renderLeaderboardStatic([]); // Always show fixed ratios on first paint
+  renderDraws([]);
+  showEmptyDashboard();
+
+  loadDashboard();
+  loadList();
+  loadLeaderboard();
+
+  // Refresh every 30 seconds
+  setInterval(() => { loadDashboard(); loadList(); }, 30000);
+  setInterval(() => { loadLeaderboard(); }, 60000);
+</script>
+
+</body>
+</html>
