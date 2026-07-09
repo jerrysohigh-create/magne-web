@@ -1019,8 +1019,8 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
   <section class="hero">
     <div class="hero-eyebrow">MAGNE.AI Season 2</div>
     <h1>MAGNE.AI Season 2 活動中心</h1>
-    <p class="hero-sub">Phone Gen1 抽獎、MS2 活動點數、質押權重及團隊獎勵，於同一透明活動儀表板呈現。</p>
-    <p class="hero-highlight">17 USDT per entry • 10 MS2 活動點數 per valid entry • 每 100 個參與名額 = 1 支 Phone Gen1</p>
+    <p class="hero-sub">Phone Gen1 抽獎活動 • MS2 活動點數 • 質押權重 • 團隊獎勵</p>
+    <p class="hero-highlight">17 USDT per entry • 每 100 個參與名額觸發 1 次 Phone Gen1 中選</p>
   </section>
 
   <div class="back-home">
@@ -1033,14 +1033,14 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
     <div class="stat-card">
       <div class="stat-icon">👥</div>
       <div class="stat-value" id="participants">—</div>
-      <div class="stat-label">總參與人數</div>
+      <div class="stat-label">總參與區塊鏈地址數</div>
       <div class="stat-trend">Season 2</div>
     </div>
 
     <div class="stat-card gold">
       <div class="stat-icon">📱</div>
       <div class="stat-value" id="phones-given">—</div>
-      <div class="stat-label">已抽出手機</div>
+      <div class="stat-label">已中選手機</div>
       <div class="stat-trend" id="phones-remaining">— 支剩餘</div>
     </div>
 
@@ -1077,7 +1077,7 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
   <div class="progress-card">
     <div class="progress-header">
       <div class="progress-title">輪次進度</div>
-      <div class="progress-round-badge">📱 每 100 個參與名額抽出 1 支手機</div>
+      <div class="progress-round-badge">📱 Round —</div>
     </div>
     <div class="progress-bar">
       <div class="progress-fill" id="progress-fill" style="width: 0%;">
@@ -1093,7 +1093,7 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
   <!-- PACKAGES -->
   <div class="section-label">參與組合</div>
   <div class="packages-grid" id="packages-grid"></div>
-  <p style="text-align:center; font-size:0.78rem; color:rgba(255,255,255,0.4); margin-top:0.85rem;">每個組合均投入全季每輪 1,700 USDT 的活動營收池。</p>
+  <p style="text-align:center; font-size:0.78rem; color:rgba(255,255,255,0.4); margin-top:0.85rem;">每輪 100 個參與名額，對應 1,700 USDT 活動營收。</p>
 
 <!-- ALL WINNERS -->
   <section id="all-winners">
@@ -1104,10 +1104,10 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
         <thead>
           <tr>
             <th>Round</th>
-            <th>Winner Address</th>
+            <th>中選 Address</th>
             <th>Phone Model</th>
             <th>Entries</th>
-            <th>Tx Hash</th>
+            <th>交易雜湊</th>
             <th>Status</th>
           </tr>
         </thead>
@@ -1119,11 +1119,23 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
     <p class="winners-empty-state" id="winners-empty-state">
       暫無完整中獎紀錄，Season 2 開始後將自動同步。
     </p>
+    <div class="winners-pagination">
+      <button class="pagination-btn" id="winners-prev" disabled>← 上一頁</button>
+      <span class="pagination-info" id="winners-page-info">第 1 / 1 頁</span>
+      <button class="pagination-btn" id="winners-next" disabled>下一頁 →</button>
+    </div>
   </section>
 
   <!-- 17 USDT REWARD FLOW -->
   <div class="section-label">參與名額配置</div>
-  <div class="reward-flow">
+  
+  <!-- 標準參與選項 -->
+  <div class="participation-option-card">
+    <div class="participation-option-price">17 USDT</div>
+    <div class="participation-option-label">標準參與</div>
+    <div class="participation-option-detail">1 個參與名額 + 10 MS2 活動點數</div>
+  </div>
+<div class="reward-flow">
     <h3>17 USDT per entry 配置</h3>
     <div class="reward-flow-tree">
       <div class="reward-total">17 USDT per entry</div>
@@ -1139,9 +1151,9 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
 
   <!-- CTA BUTTONS -->
   <div class="cta-row">
-    <a class="cta cta-primary" href="https://payment.magne.ai/lottery">🎲 加入 Season 2</a>
+    <a class="cta cta-primary" href="https://payment.magne.ai/lottery">🎲 參與 Season 2</a>
     <a class="cta cta-secondary" href="https://payment.magne.ai/ms2-staking">🪙 質押 MS2</a>
-    <a class="cta cta-tertiary" href="https://jerrysohigh-create.github.io/magne-web3/tc/session2.html#join" target="_blank" rel="noopener">📄 查看規則</a>
+    <a class="cta cta-tertiary" href="https://jerrysohigh-create.github.io/magne-web3/tc/session2.html#join" target="_blank" rel="noopener">📄 查看活動規則</a>
   </div>
 
   <!-- RECENT DRAWS -->
@@ -1262,7 +1274,7 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
   <!-- COMPLIANCE -->
   <div class="compliance">
     <h4>MS2 免責聲明</h4>
-    <p>MS2 為活動參與代幣 / 活動點數。並非 MHA，無保證價值，無固定兌換比例，亦不代表固定收益、儲蓄或投資產品。</p>
+    <p>活動數據僅供透明度展示之用。MS2 與 MHA 相關資訊並非投資建議、價值保證、固定回報或保證分配。</p>
 
     <h4>活動免責聲明</h4>
     <p>活動資料僅供資訊透明用途。MS2 與 MHA 相關資訊並非投資建議、保證價值、固定回報或保證分配。所有獎勵、點數、合資格、質押權重、排名及分配時程均依官方活動規則、身份驗證、防濫用審查、TGE 相關時程、區域限制及適用規定辦理。</p>
