@@ -941,6 +941,41 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
 
 /* === End Season 1 NAV/FOOTER CSS === */
 
+
+/* === ALL WINNERS TABLE === */
+.winners-table-wrapper {
+  overflow-x: auto;
+  margin-top: 1rem;
+  border: 1px solid var(--border, rgba(255,255,255,0.06));
+  border-radius: 12px;
+}
+.winners-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px;
+}
+.winners-table th,
+.winners-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border, rgba(255,255,255,0.06));
+  font-size: 0.9rem;
+}
+.winners-table th {
+  background: var(--bg-card, rgba(255,255,255,0.03));
+  color: var(--text-secondary, rgba(245,245,247,0.6));
+  font-weight: 600;
+}
+.winners-table tbody tr:last-child td {
+  border-bottom: none;
+}
+.winners-empty-state {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--text-secondary, rgba(245,245,247,0.6));
+  font-size: 0.95rem;
+}
+/* === End ALL WINNERS TABLE === */
   </style>
 </head>
 <body>
@@ -1110,6 +1145,33 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
     </table>
     <p class="leaderboard-footnote">獎勵比例為活動固定規則。USDT 獎勵與邀請人地址將隨排行榜資料更新。</p>
   </div>
+
+
+  <!-- ALL WINNERS -->
+  <section id="all-winners">
+    <div class="section-label">🏆 全部中獎紀錄</div>
+    <h2 class="section-title">全部中獎紀錄</h2>
+    <div class="winners-table-wrapper">
+      <table class="winners-table">
+        <thead>
+          <tr>
+            <th>Round</th>
+            <th>Winner Address</th>
+            <th>Phone Model</th>
+            <th>Entries</th>
+            <th>Tx Hash</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="all-winners-body">
+          <!-- Filled by renderAllWinners() -->
+        </tbody>
+      </table>
+    </div>
+    <p class="winners-empty-state" id="winners-empty-state">
+      暫無完整中獎紀錄，Season 2 開始後將自動同步。
+    </p>
+  </section>
 
   <!-- MS2 STAKING MODULE -->
   <div class="section-label">MS2 質押</div>
@@ -1537,6 +1599,60 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
   // Refresh every 30 seconds
   setInterval(() => { loadDashboard(); loadList(); }, 30000);
   setInterval(() => { loadLeaderboard(); }, 60000);
+
+  // =================== ALL WINNERS ===================
+  // 全域變數：保留結構，等待後續 API 接入
+  let winnersData = [];
+
+  function renderAllWinners() {
+    const tbody = document.getElementById('all-winners-body');
+    const emptyState = document.getElementById('winners-empty-state');
+    if (!tbody || !emptyState) return;
+
+    if (!winnersData || winnersData.length === 0) {
+      tbody.innerHTML = '';
+      emptyState.style.display = 'block';
+      return;
+    }
+
+    emptyState.style.display = 'none';
+    tbody.innerHTML = winnersData.map(w => `
+      <tr>
+        <td>${w.round ?? ''}</td>
+        <td>${w.winnerAddress ?? ''}</td>
+        <td>${w.phoneModel ?? ''}</td>
+        <td>${w.entries ?? ''}</td>
+        <td>${w.txHash ?? ''}</td>
+        <td>${w.status ?? ''}</td>
+      </tr>
+    `).join('');
+  }
+
+  // TODO: 接入真正的中獎資料來源（後續實作）
+  // 候選方案（依優先順序）：
+  //   1. Season 2 Lottery 合約事件監聽（MagneLotteryS2 Proxy: 0x6DE61D8438176741fc8150Aef53256830a6Dd635）
+  //      監聽 SelectionCompleted / WinnerSelected 之類 event logs
+  //   2. BscScan logs API（https://api.bscscan.com/api?module=logs&action=getLogs）
+  //      查詢合約 event history
+  //   3. 自建後端 API：聚合 on-chain events + 離線資料，回傳 JSON
+  // 目前版本：直接 return 空陣列，等 Season 2 開始後自動接入
+  async function fetchAllWinners() {
+    // 暫時返回空陣列，避免渲染假數據
+    // 等 API 方案選定後，在此實作真正的 fetch 邏輯
+    return [];
+  }
+
+  // 初始化：呼叫 fetch → render
+  (async function initAllWinners() {
+    try {
+      winnersData = await fetchAllWinners();
+      renderAllWinners();
+    } catch (e) {
+      console.warn('All Winners fetch unavailable:', e);
+      renderAllWinners(); // 仍然渲染空狀態
+    }
+  })();
+
 </script>
 
 </body>
