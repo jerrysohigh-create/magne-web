@@ -144,6 +144,14 @@
       gap: 0.6rem;
     }
 
+    .section-title .en-label {
+      font-size: 0.6em;
+      color: rgba(245,245,247,0.6);
+      font-weight: 400;
+      margin-left: 0.5rem;
+      letter-spacing: 0.02em;
+    }
+
     /* 6-card dashboard grid */
     .stats-grid {
       display: grid;
@@ -1083,6 +1091,32 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
     </div>
   </div>
 
+<!-- ALL WINNERS -->
+  <section id="all-winners">
+    <div class="section-label">🏆 全部中獎紀錄</div>
+    <h2 class="section-title">全部中獎紀錄 <small class="en-label">All Winners</small></h2>
+    <div class="winners-table-wrapper">
+      <table class="winners-table">
+        <thead>
+          <tr>
+            <th>Round</th>
+            <th>Winner Address</th>
+            <th>Phone Model</th>
+            <th>Entries</th>
+            <th>Tx Hash</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="all-winners-body">
+          <!-- Filled by renderAllWinners() -->
+        </tbody>
+      </table>
+    </div>
+    <p class="winners-empty-state" id="winners-empty-state">
+      暫無完整中獎紀錄，Season 2 開始後將自動同步。
+    </p>
+  </section>
+
   <!-- 17 USDT REWARD FLOW -->
   <div class="section-label">參與名額配置</div>
   <div class="reward-flow">
@@ -1147,31 +1181,7 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
   </div>
 
 
-  <!-- ALL WINNERS -->
-  <section id="all-winners">
-    <div class="section-label">🏆 全部中獎紀錄</div>
-    <h2 class="section-title">全部中獎紀錄</h2>
-    <div class="winners-table-wrapper">
-      <table class="winners-table">
-        <thead>
-          <tr>
-            <th>Round</th>
-            <th>Winner Address</th>
-            <th>Phone Model</th>
-            <th>Entries</th>
-            <th>Tx Hash</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody id="all-winners-body">
-          <!-- Filled by renderAllWinners() -->
-        </tbody>
-      </table>
-    </div>
-    <p class="winners-empty-state" id="winners-empty-state">
-      暫無完整中獎紀錄，Season 2 開始後將自動同步。
-    </p>
-  </section>
+  
 
   <!-- MS2 STAKING MODULE -->
   <div class="section-label">MS2 質押</div>
