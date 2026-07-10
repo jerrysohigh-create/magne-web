@@ -146,6 +146,55 @@
   height: 28px;
   vertical-align: -6px;
 }
+/* === On-Chain Verification (WEB-20260710-002) === */
+.onchain-status {
+  display: inline-block;
+  font-size: 0.65rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  margin-left: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  vertical-align: middle;
+}
+.onchain-status.loading { background: rgba(255,193,7,0.15); color: #ffc107; }
+.onchain-status.live    { background: rgba(76,175,80,0.15);  color: #4caf50; }
+.onchain-status.error   { background: rgba(244,67,54,0.15);  color: #f44336; }
+.onchain-status.partial { background: rgba(33,150,243,0.15); color: #2196f3; }
+
+.onchain-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.85rem;
+  margin: 1rem 0;
+}
+.onchain-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+}
+.onchain-card-label { font-size: 0.7rem; color: rgba(255,255,255,0.55); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem; }
+.onchain-card-value { font-size: 1.3rem; font-weight: 700; color: #fff; font-family: 'JetBrains Mono', monospace; margin-bottom: 0.3rem; }
+.onchain-card-sub { font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-bottom: 0.25rem; }
+.onchain-card-meta { font-size: 0.7rem; color: rgba(255,255,255,0.4); font-family: 'JetBrains Mono', monospace; }
+.onchain-disclaimer { font-size: 0.7rem; color: rgba(255,255,255,0.4); line-height: 1.5; margin-top: 0.8rem; }
+.onchain-disclaimer code { background: rgba(255,255,255,0.06); padding: 0.05rem 0.3rem; border-radius: 3px; font-size: 0.85em; }
+
+.onchain-badge {
+  display: inline-block;
+  font-size: 0.6rem;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  background: rgba(76,175,80,0.15);
+  color: #4caf50;
+  margin-left: 0.4rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  vertical-align: middle;
+}
+
+
 
 @media (max-width: 768px) {
   .ms2-hero-logo { width: clamp(220px, 32vw, 280px); margin-bottom: 1rem; }
@@ -1028,7 +1077,11 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
   font-size: 0.95rem;
 }
 /* === End ALL WINNERS TABLE === */
-  </style>
+  
+    /* === On-chain KPI dots (WEB-20260710-002) === */
+    .onchain-dot { font-size: 0.6rem; color: #4caf50; font-family: 'JetBrains Mono', monospace; margin-left: 0.3rem; }
+
+</style>
 </head>
 <body>
 
@@ -1074,48 +1127,55 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
 
   <!-- 6 DASHBOARD CARDS -->
   <div class="section-label">Season 2 總覽</div>
-  <div class="stats-grid">
+    <span class="onchain-badge" id="onchain-top-badge">loading</span>
+<div class="stats-grid">
     <div class="stat-card">
       <div class="stat-icon">👥</div>
       <div class="stat-value" id="participants">—</div>
       <div class="stat-label">總參與區塊鏈地址數</div>
       <div class="stat-trend">Season 2</div>
-    </div>
+    <span class="onchain-dot" id="oc-dot-participants" style="display:none"> On-chain</span>
+      </div>
 
     <div class="stat-card gold">
       <div class="stat-icon">📱</div>
       <div class="stat-value" id="phones-given">—</div>
       <div class="stat-label">已中選手機</div>
       <div class="stat-trend" id="phones-remaining">— 支剩餘</div>
-    </div>
+    <span class="onchain-dot" id="oc-dot-phones-given" style="display:none"> On-chain</span>
+      </div>
 
     <div class="stat-card">
       <div class="stat-icon">🎯</div>
       <div class="stat-value" id="curr-round">—</div>
       <div class="stat-label">目前輪次</div>
       <div class="stat-trend">輪次編號</div>
-    </div>
+    <span class="onchain-dot" id="oc-dot-curr-round" style="display:none"> On-chain</span>
+      </div>
 
     <div class="stat-card">
       <div class="stat-icon">🎟️</div>
       <div class="stat-value" id="total-entries">—</div>
       <div class="stat-label">總參與名額</div>
       <div class="stat-trend">累計</div>
-    </div>
+    <span class="onchain-dot" id="oc-dot-total-entries" style="display:none"> On-chain</span>
+      </div>
 
     <div class="stat-card">
       <div class="stat-icon">⏭️</div>
       <div class="stat-value" id="entries-next">—</div>
       <div class="stat-label">距離下一支手機名額</div>
       <div class="stat-trend">距下次開獎</div>
-    </div>
+    <span class="onchain-dot" id="oc-dot-entries-next" style="display:none"> On-chain</span>
+      </div>
 
     <div class="stat-card">
       <img class="ms2-stat-icon" loading="lazy" decoding="async" src="/magne-web/assets/img/ms2/ms2-icon.svg" alt="MS2 by MAGNE.AI">
       <div class="stat-value" id="ms2-credits">—</div>
       <div class="stat-label">MS2 活動點數記錄</div>
       <div class="stat-trend">（由參與名額計算）</div>
-    </div>
+    <span class="onchain-dot" id="oc-dot-ms2-credits" style="display:none"> On-chain</span>
+      </div>
   </div>
 
   <!-- PROGRESS BAR -->
@@ -1239,7 +1299,33 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
 
   
 
-  <!-- MS2 STAKING MODULE -->
+  
+<!-- ON-CHAIN VERIFICATION PANEL (WEB-20260710-002) -->
+<section id="onchain-panel">
+  <div class="section-label">⛓️ 鏈上驗證 <span id="onchain-status" class="onchain-status loading">⏳ 鏈上讀取中…</span></div>
+  <h2 class="section-title">On-Chain Verification <small class="en-label">公開 BSC RPC</small></h2>
+  <div class="onchain-grid">
+    <div class="onchain-card">
+      <div class="onchain-card-label">MS2 Token</div>
+      <div class="onchain-card-value" id="onchain-token-name">—</div>
+      <div class="onchain-card-sub" id="onchain-token-symbol">—</div>
+      <div class="onchain-card-meta" id="onchain-token-supply">Total Supply: —</div>
+    </div>
+    <div class="onchain-card">
+      <div class="onchain-card-label">MS2 Staking 總量</div>
+      <div class="onchain-card-value" id="onchain-staking-total">—</div>
+      <div class="onchain-card-sub">合約: 0xB6Ed…84D8</div>
+    </div>
+    <div class="onchain-card">
+      <div class="onchain-card-label">Lottery 狀態</div>
+      <div class="onchain-card-value" id="onchain-lottery-round">—</div>
+      <div class="onchain-card-sub" id="onchain-lottery-meta">Round / Entries —</div>
+    </div>
+  </div>
+  <p class="onchain-disclaimer">以上資料由 <code>eth_call</code> 直接讀取 BSC 主網公開合約，無需登入或 API key。事件資料由 <code>eth_getLogs</code> 取得。所有原始 RPC endpoint 為 <span id="onchain-rpc-url">—</span>。Implementation 合約僅作 ABI 邏輯參考，未直接讀取狀態。</p>
+</section>
+
+<!-- MS2 STAKING MODULE -->
   <div class="section-label"><img class="ms2-module-icon" src="/magne-web/assets/img/ms2/ms2-icon.svg" loading="lazy" decoding="async" alt="MS2 by MAGNE.AI">MS2 質押</div>
   <h2 class="section-title"><img class="ms2-module-icon ms2-module-icon-lg" src="/magne-web/assets/img/ms2/ms2-icon.svg" loading="lazy" decoding="async" alt="MS2 by MAGNE.AI">MS2 質押模組</h2>
   <div class="staking-grid">
@@ -1387,8 +1473,201 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
 
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.13.0/dist/ethers.umd.min.js" defer></script>
 <script>
   // =================== CONSTANTS ===================
+
+// =================== ON-CHAIN RPC LAYER (WEB-20260710-002) ===================
+const BSC_RPC_URLS = [
+  'https://bsc-dataseed.bnbchain.org/',
+  'https://bsc-dataseed1.bnbchain.org/',
+  'https://bsc-dataseed2.bnbchain.org/',
+  'https://bsc-rpc.publicnode.com',
+  'https://1rpc.io/bnb'
+];
+
+const CONTRACT_ADDRESSES = {
+  ms2Token:   '0xC46A54BBD2716C436Aaaed6Ed2f555a9b054ebD1',
+  lottery:    '0x6DE61D8438176741fc8150Aef53256830a6Dd635',
+  staking:    '0xB6Ed72808fb34a3Ac118D397f49332abBAA484D8',
+  lotteryImpl:'0x877f5C053F3F3b43063572bF7B7F7B08226B',
+  stakingImpl:'0x9a7d5E82aB8bb64e279D02F80FF87aD42397532C'
+};
+
+const MS2_TOKEN_ABI = [
+  'function name() view returns (string)',
+  'function symbol() view returns (string)',
+  'function decimals() view returns (uint8)',
+  'function totalSupply() view returns (uint256)',
+  'function balanceOf(address account) view returns (uint256)',
+  'event Transfer(address indexed from, address indexed to, uint256 value)'
+];
+
+const LOTTERY_PROXY_ABI = [
+  'function currentRound() view returns (uint256)',
+  'function totalEntries() view returns (uint256)',
+  'function currentRoundEntries() view returns (uint256)',
+  'function totalWinners() view returns (uint256)',
+  'function ENTRIES_PER_ROUND() view returns (uint256)',
+  'event DrawCompleted(uint256 indexed round, address indexed winner, uint256 entries, uint256 timestamp)',
+  'event WinnerSelected(uint256 indexed round, address indexed winner, uint256 entries)',
+  'event RoundStarted(uint256 indexed round, uint256 timestamp)'
+];
+
+const STAKING_PROXY_ABI = [
+  'function totalStaked() view returns (uint256)',
+  'function stakeOf(address account) view returns (uint256)',
+  'function weightOf(address account) view returns (uint256)',
+  'event Staked(address indexed user, uint256 amount)',
+  'event Withdrawn(address indexed user, uint256 amount)'
+];
+
+let _rpcProvider = null;
+let _rpcProviderUrl = null;
+
+async function getRpcProvider() {
+  if (_rpcProvider) {
+    try {
+      await Promise.race([
+        _rpcProvider.getBlockNumber(),
+        new Promise(function(_, rej) { setTimeout(function() { rej(new Error('timeout')); }, 3000); })
+      ]);
+      return _rpcProvider;
+    } catch (e) {
+      console.warn('[RPC] cached provider failed, reconnecting:', e.message);
+      _rpcProvider = null;
+      _rpcProviderUrl = null;
+    }
+  }
+  for (var i = 0; i < BSC_RPC_URLS.length; i++) {
+    var url = BSC_RPC_URLS[i];
+    try {
+      var p = new ethers.JsonRpcProvider(url, 56, { staticNetwork: true });
+      var bn = await Promise.race([
+        p.getBlockNumber(),
+        new Promise(function(_, rej) { setTimeout(function() { rej(new Error('timeout')); }, 4000); })
+      ]);
+      if (typeof bn === 'number' && bn > 0) {
+        _rpcProvider = p;
+        _rpcProviderUrl = url;
+        console.info('[RPC] connected:', url, 'block', bn);
+        return p;
+      }
+    } catch (e) {
+      console.warn('[RPC] failed:', url, e.message);
+    }
+  }
+  throw new Error('All BSC RPC endpoints failed');
+}
+
+function tokenContract()   { return new ethers.Contract(CONTRACT_ADDRESSES.ms2Token, MS2_TOKEN_ABI, _rpcProvider); }
+function lotteryContract() { return new ethers.Contract(CONTRACT_ADDRESSES.lottery, LOTTERY_PROXY_ABI, _rpcProvider); }
+function stakingContract() { return new ethers.Contract(CONTRACT_ADDRESSES.staking, STAKING_PROXY_ABI, _rpcProvider); }
+
+async function readTokenInfo() {
+  try {
+    var c = tokenContract();
+    var results = await Promise.allSettled([
+      c.name(),
+      c.symbol(),
+      c.decimals(),
+      c.totalSupply()
+    ]);
+    var vals = results.map(function(r) { return r.status === 'fulfilled' ? r.value : null; });
+    return {
+      name: vals[0],
+      symbol: vals[1],
+      decimals: vals[2] !== null ? Number(vals[2]) : null,
+      totalSupply: vals[3]
+    };
+  } catch (e) {
+    console.warn('[Token] read failed:', e.message);
+    return null;
+  }
+}
+
+async function readLotteryState() {
+  try {
+    var c = lotteryContract();
+    var results = await Promise.allSettled([
+      c.currentRound(), c.totalEntries(), c.currentRoundEntries(), c.totalWinners(), c.ENTRIES_PER_ROUND()
+    ]);
+    var vals = results.map(function(r) { return r.status === 'fulfilled' ? r.value : null; });
+    return {
+      currentRound: vals[0] !== null ? Number(vals[0]) : null,
+      totalEntries: vals[1] !== null ? Number(vals[1]) : null,
+      currentRoundEntries: vals[2] !== null ? Number(vals[2]) : null,
+      totalWinners: vals[3] !== null ? Number(vals[3]) : null,
+      entriesPerRound: vals[4] !== null ? Number(vals[4]) : 100
+    };
+  } catch (e) {
+    console.warn('[Lottery] read failed:', e.message);
+    return null;
+  }
+}
+
+async function readStakingState() {
+  try {
+    var c = stakingContract();
+    var ts = await c.totalStaked();
+    return { totalStaked: ts };
+  } catch (e) {
+    console.warn('[Staking] read failed:', e.message);
+    return null;
+  }
+}
+
+async function fetchAllWinnersOnChain(fromBlock, chunkSize) {
+  fromBlock = fromBlock || 0;
+  chunkSize = chunkSize || 5000;
+  try {
+    var provider = await getRpcProvider();
+    var address = CONTRACT_ADDRESSES.lottery;
+    var latestBlock = await provider.getBlockNumber();
+    var eventTopics = [
+      ethers.id('DrawCompleted(uint256,address,uint256,uint256)'),
+      ethers.id('WinnerSelected(uint256,address,uint256)'),
+      ethers.id('WinnerSelected(uint256,address)')
+    ];
+    var allLogs = [];
+    for (var start = fromBlock; start <= latestBlock; start += chunkSize) {
+      var end = Math.min(start + chunkSize - 1, latestBlock);
+      var filter = { address: address, topics: [eventTopics], fromBlock: start, toBlock: end };
+      try {
+        var logs = await provider.getLogs(filter);
+        allLogs = allLogs.concat(logs);
+      } catch (e) {
+        console.warn('[getLogs] ' + start + '-' + end + ' failed:', e.message);
+      }
+      await new Promise(function(r) { setTimeout(r, 200); });
+    }
+    var iface = new ethers.Interface([
+      'event DrawCompleted(uint256 indexed round, address indexed winner, uint256 entries, uint256 timestamp)',
+      'event WinnerSelected(uint256 indexed round, address indexed winner, uint256 entries)'
+    ]);
+    var winners = [];
+    for (var j = 0; j < allLogs.length; j++) {
+      try {
+        var parsed = iface.parseLog(allLogs[j]);
+        if (!parsed) continue;
+        winners.push({
+          round: Number(parsed.args.round),
+          winnerAddress: parsed.args.winner,
+          entries: parsed.args.entries !== undefined ? Number(parsed.args.entries) : null,
+          txHash: allLogs[j].transactionHash,
+          blockNumber: allLogs[j].blockNumber,
+          phoneModel: 'Phone Gen1'
+        });
+      } catch (e) { continue; }
+    }
+    winners.sort(function(a, b) { return b.round - a.round; });
+    return winners;
+  } catch (e) {
+    console.warn('[AllWinners] read failed:', e.message);
+    return [];
+  }
+}
+
   const ENTRY_FEE_USDT      = 17;
   const MS2_PER_ENTRY       = 10;
   const ENTRIES_PER_ROUND   = 100;
@@ -1658,12 +1937,14 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
   renderDraws([]);
   showEmptyDashboard();
 
+  loadOnChain();
   loadDashboard();
   loadList();
   loadLeaderboard();
 
-  // Refresh every 30 seconds
-  setInterval(() => { loadDashboard(); loadList(); }, 30000);
+  // Refresh intervals (拉長到 60s 避免 RPC rate limit)
+  setInterval(() => { loadOnChain(); loadDashboard(); }, 60000);
+  setInterval(() => { loadList(); }, 30000);
   setInterval(() => { loadLeaderboard(); }, 60000);
 
   // =================== ALL WINNERS ===================
@@ -1694,21 +1975,142 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
     `).join('');
   }
 
-  // TODO: 接入真正的中獎資料來源（後續實作）
-  // 候選方案（依優先順序）：
-  //   1. Season 2 Lottery 合約事件監聽（MagneLotteryS2 Proxy: 0x6DE61D8438176741fc8150Aef53256830a6Dd635）
-  //      監聽 SelectionCompleted / WinnerSelected 之類 event logs
-  //   2. BscScan logs API（https://api.bscscan.com/api?module=logs&action=getLogs）
-  //      查詢合約 event history
-  //   3. 自建後端 API：聚合 on-chain events + 離線資料，回傳 JSON
-  // 目前版本：直接 return 空陣列，等 Season 2 開始後自動接入
-  async function fetchAllWinners() {
-    // 暫時返回空陣列，避免渲染假數據
-    // 等 API 方案選定後，在此實作真正的 fetch 邏輯
-    return [];
+  // fetchAllWinners — powered by BSC RPC eth_getLogs (WEB-20260710-002)
+async function fetchAllWinners() {
+  // 優先用鏈上 RPC；若失敗 fallback 到空陣列（不填假數據）
+  try {
+    var winners = await fetchAllWinnersOnChain();
+    if (winners && winners.length > 0) return winners;
+  } catch (e) {
+    console.warn('[AllWinners] RPC failed:', e.message);
   }
+  return [];
+}
 
-  // 初始化：呼叫 fetch → render
+
+  
+// =================== ON-CHAIN STATUS HELPERS (WEB-20260710-002) ===================
+function setOnChainStatus(status, msg) {
+  var el = document.getElementById('onchain-status');
+  if (el) {
+    el.className = 'onchain-status ' + status;
+    el.textContent = msg || (status === 'live' ? 'Live' : status === 'error' ? 'Error' : status === 'loading' ? '⏳ 鏈上讀取中…' : 'Loading');
+  }
+  var topBadge = document.getElementById('onchain-top-badge');
+  if (topBadge) {
+    topBadge.className = 'onchain-badge ' + status;
+    topBadge.textContent = msg || (status === 'live' ? 'Live' : status === 'error' ? 'Error' : status === 'loading' ? 'loading' : 'Loading');
+  }
+}
+
+function markOnchain(el) {
+  if (!el || !el.parentElement) return;
+  if (el.parentElement.querySelector('.onchain-badge')) return;
+  var badge = document.createElement('span');
+  badge.className = 'onchain-badge';
+  badge.textContent = 'On-chain';
+  badge.title = '此數據由 BSC public RPC 直接讀取鏈上資料';
+  el.parentElement.appendChild(badge);
+}
+
+function renderOnChainPanel(oc) {
+  var nameEl = document.getElementById('onchain-token-name');
+  var symbolEl = document.getElementById('onchain-token-symbol');
+  var supplyEl = document.getElementById('onchain-token-supply');
+  if (oc.token && nameEl) {
+    nameEl.textContent = oc.token.name || '—';
+    if (symbolEl) {
+      symbolEl.textContent = oc.token.symbol ? 'Symbol: ' + oc.token.symbol + ' • Decimals: ' + (oc.token.decimals || 18) : '—';
+    }
+    if (supplyEl) {
+      if (oc.token.totalSupply !== undefined && oc.token.totalSupply !== null) {
+        var ts = Number(oc.token.totalSupply) / Math.pow(10, oc.token.decimals || 18);
+        supplyEl.textContent = 'Total Supply: ' + ts.toLocaleString() + ' ' + (oc.token.symbol || '');
+      } else {
+        supplyEl.textContent = 'Total Supply: —';
+      }
+    }
+  }
+  var stakeEl = document.getElementById('onchain-staking-total');
+  if (oc.staking && stakeEl) {
+    var ts2 = Number(oc.staking.totalStaked) / 1e18;
+    stakeEl.textContent = ts2.toLocaleString();
+  }
+  var roundEl = document.getElementById('onchain-lottery-round');
+  var metaEl = document.getElementById('onchain-lottery-meta');
+  if (oc.lottery && roundEl) {
+    roundEl.textContent = oc.lottery.currentRound !== null ? 'Round ' + oc.lottery.currentRound : '—';
+    if (metaEl) {
+      metaEl.textContent = 'Entries ' + (oc.lottery.totalEntries !== null ? oc.lottery.totalEntries : '—') + ' / Winners ' + (oc.lottery.totalWinners !== null ? oc.lottery.totalWinners : '—');
+    }
+  }
+  var rpcUrlEl = document.getElementById('onchain-rpc-url');
+  if (rpcUrlEl && typeof _rpcProviderUrl !== 'undefined' && _rpcProviderUrl) {
+    rpcUrlEl.textContent = _rpcProviderUrl;
+  }
+}
+
+function augmentKPIsFromOnChain(oc) {
+  if (oc.lottery) {
+    if (oc.lottery.currentRound !== null) {
+      var el = document.getElementById('curr-round');
+      if (el) { el.textContent = oc.lottery.currentRound.toLocaleString(); markOnchain(el); }
+    }
+    if (oc.lottery.totalEntries !== null) {
+      var el = document.getElementById('total-entries');
+      if (el) { el.textContent = oc.lottery.totalEntries.toLocaleString(); markOnchain(el); }
+    }
+    if (oc.lottery.totalWinners !== null) {
+      var el = document.getElementById('phones-given');
+      if (el) { el.textContent = oc.lottery.totalWinners.toLocaleString(); markOnchain(el); }
+    }
+    if (oc.lottery.totalEntries !== null && oc.lottery.entriesPerRound > 0) {
+      var entriesNow = oc.lottery.totalEntries % oc.lottery.entriesPerRound;
+      var entriesNeeded = oc.lottery.entriesPerRound - entriesNow;
+      var pct = (entriesNow / oc.lottery.entriesPerRound) * 100;
+      var pf = document.getElementById('progress-fill');
+      var pt = document.getElementById('progress-text');
+      var pe = document.getElementById('entries-next');
+      var pn = document.getElementById('progress-needed');
+      if (pf) pf.style.width = pct + '%';
+      if (pt) pt.textContent = entriesNow;
+      if (pe) pe.textContent = entriesNeeded.toLocaleString();
+      if (pn) pn.textContent = entriesNeeded + ' 個名額';
+    }
+  }
+  if (oc.staking && oc.staking.totalStaked !== undefined) {
+    var el = document.getElementById('total-ms2-staked');
+    if (el) {
+      var ts3 = Number(oc.staking.totalStaked) / 1e18;
+      el.textContent = ts3.toLocaleString();
+      markOnchain(el);
+    }
+  }
+}
+
+// =================== ON-CHAIN INIT (WEB-20260710-002) ===================
+async function loadOnChain() {
+  setOnChainStatus('loading', '⏳ 鏈上讀取中…');
+  try {
+    await getRpcProvider();
+    var tokenInfo = await readTokenInfo();
+    var lotteryInfo = await readLotteryState();
+    var stakingInfo = await readStakingState();
+    var oc = { token: tokenInfo, lottery: lotteryInfo, staking: stakingInfo };
+    window.__onchain = oc;
+    renderOnChainPanel(oc);
+    augmentKPIsFromOnChain(oc);
+    setOnChainStatus('live', '✓ 鏈上已驗證');
+  } catch (e) {
+    console.warn('[OnChain] layer failed:', e.message);
+    setOnChainStatus('error', '⚠ RPC 暫時無法讀取');
+  }
+}
+
+// Kick off on-chain reads after page load
+
+
+// 初始化：呼叫 fetch → render
   (async function initAllWinners() {
     try {
       winnersData = await fetchAllWinners();
