@@ -2025,6 +2025,11 @@ async function fetchAllWinnersOnChain(fromBlock, chunkSize) {
     document.getElementById('progress-fill').style.width = pctClamped + '%';
     document.getElementById('progress-text').textContent = entriesNow;
     document.getElementById('progress-number').textContent = entriesNow + '/100';
+    // 動態更新輪次標題
+    const progressTitleEl = document.getElementById('progress-title');
+    if (progressTitleEl && currRound !== null) {
+      progressTitleEl.textContent = '🎰 第 ' + Number(currRound).toLocaleString() + ' 輪';
+    }
     // KPI #5 TGE 後 MHA 獎勵狀態（仿 Season 1 公式：(currRound - 1) * 99 * 100）
     if (currRound !== null) {
       const completedRounds = Math.max(0, Number(currRound) - 1);
