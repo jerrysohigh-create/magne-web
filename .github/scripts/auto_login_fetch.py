@@ -134,34 +134,106 @@ def login_and_get_token(private_key, wallet_address):
 def fetch_with_token(token, ep):
     return get_json(f"{BASE}/lottery2/{ep}", headers={"token": token})
 
-# === On-chain data (WEB-20260710-012) ===
-def fetch_onchain_data():
-    """Read MS2 totalSupply and Staking totalStaked from BSC chain."""
-    result = {"ms2Issued": None, "liquidityPrepared": None, "baseRate": None}
+# === Page scrape (WEB-20260710-013) - hardcode + Playwright fallback ===
+HARDCODED_MS2_ISSUED = 5_110_000.0
+
+def scrape_tvl_via_browser(private_key, wallet_address):
+    """登入 + 載入 ms2-staking 頁面 + 抓 TOTAL VALUE LOCKED 數字。
+    Playwright 必須在 sync 環境跑（在 thread 內）。"""
     try:
-        # 1. MS2.totalSupply()
-        ts = eth_call(MS2_TOKEN_ADDRESS, SEL_TOTAL_SUPPLY)
-        decimals = eth_call(MS2_TOKEN_ADDRESS, SEL_DECIMALS)
-        result["ms2Issued"] = ts / (10 ** decimals)
-        print(f"  ✅ MS2.totalSupply: {result['ms2Issued']:,.2f}")
+        from playwright.sync_api import sync_playwright
+
+        # Step 1: 拿 session token
+        token = login_and_get_token(private_key, wallet_address)
+
+        with sync_playwright() as p:
+            browser = p.chromium.launch(
+                headless=True,
+                args=['--no-sandbox', '--disable-dev-shm-usage', '--disable-gpu']
+            )
+            context = browser.new_context(
+                user_agent='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36',
+                viewport={'width': 1280, 'height': 800}
+            )
+
+            # 攔截所有 API 請求加上 token header
+            def handle_route(route):
+                headers = dict(route.request.headers)
+                headers['token'] = token
+                route.continue_(headers=headers)
+            context.route('**/api/v1/**', handle_route)
+
+            page = context.new_page()
+            page.goto('https://payment.magne.ai/ms2-staking', wait_until='domcontentloaded', timeout=60000)
+            try:
+                page.wait_for_selector('text=TOTAL VALUE LOCKED', timeout=30000)
+            except Exception:
+                browser.close()
+                raise RuntimeError("TVL label not found after 30s")
+
+            tvl = page.evaluate('''() => {
+                const all = Array.from(document.querySelectorAll(\'*\'));
+                const h = all.find(el => el.textContent.trim() === \'TOTAL VALUE LOCKED\');
+                if (!h) return null;
+                const body = h.nextElementSibling;
+                if (!body) return null;
+                const value = body.querySelector(\'div\');
+                return value ? value.textContent.trim() : null;
+            }''')
+            browser.close()
+            if not tvl:
+                raise RuntimeError("TVL not found in DOM")
+            # 解析 "26,380.02" → 26380.02
+            cleaned = tvl.replace(",", "").strip()
+            return float(cleaned)
     except Exception as e:
-        print(f"  ❌ MS2.totalSupply failed: {e}", file=sys.stderr)
+        print(f"  WARN: Playwright scrape 失敗 ({e.__class__.__name__}: {str(e)[:80]})", file=sys.stderr)
+        return None
+
+# === On-chain data (WEB-20260710-012 / WEB-20260710-013) ===
+def fetch_onchain_data(private_key=None, wallet_address=None, use_browser=True):
+    """優先用 Playwright scrape 拿 TVL（即時），失敗 fallback 到 BSC eth_call。"""
+    result = {"ms2Issued": HARDCODED_MS2_ISSUED, "liquidityPrepared": None, "baseRate": None}
+
+    # 1. ms2Issued 已 hardcode
+    print(f"  ✅ MS2.totalSupply (hardcoded): {result['ms2Issued']:,.2f}")
+
+    # 2. liquidityPrepared：優先 Playwright 抓頁面（即時），失敗 fallback BSC
+    if use_browser and private_key and wallet_address:
+        try:
+            tvl = scrape_tvl_via_browser(private_key, wallet_address)
+            if tvl is not None:
+                result["liquidityPrepared"] = tvl
+                print(f"  ✅ TVL (Playwright scrape): {tvl:,.2f}")
+            else:
+                raise RuntimeError("scrape returned None")
+        except Exception as e:
+            print(f"  ⚠️ Playwright 失敗 ({e.__class__.__name__}: {str(e)[:60]})，fallback 到 BSC", file=sys.stderr)
+            try:
+                staked = eth_call(STAKING_PROXY_ADDRESS, SEL_STAKING_TOTAL_STAKED)
+                decimals = eth_call(MS2_TOKEN_ADDRESS, SEL_DECIMALS)
+                result["liquidityPrepared"] = staked / (10 ** decimals)
+                print(f"  ✅ TVL (BSC fallback): {result['liquidityPrepared']:,.2f}")
+            except Exception as ee:
+                print(f"  ❌ BSC 也失敗: {ee}", file=sys.stderr)
+    else:
+        try:
+            staked = eth_call(STAKING_PROXY_ADDRESS, SEL_STAKING_TOTAL_STAKED)
+            decimals = eth_call(MS2_TOKEN_ADDRESS, SEL_DECIMALS)
+            result["liquidityPrepared"] = staked / (10 ** decimals)
+            print(f"  ✅ TVL (BSC): {result['liquidityPrepared']:,.2f}")
+        except Exception as e:
+            print(f"  ❌ BSC 失敗: {e}", file=sys.stderr)
+
+    # 3. baseRate 從 BSC 讀
     try:
-        # 2. Staking.totalStaked()
-        staked = eth_call(STAKING_PROXY_ADDRESS, SEL_STAKING_TOTAL_STAKED)
-        decimals = eth_call(MS2_TOKEN_ADDRESS, SEL_DECIMALS)
-        result["liquidityPrepared"] = staked / (10 ** decimals)
-        print(f"  ✅ Staking.totalStaked: {result['liquidityPrepared']:,.2f}")
-    except Exception as e:
-        print(f"  ❌ Staking.totalStaked failed: {e}", file=sys.stderr)
-    try:
-        # 3. Staking.baseRate()
         rate = eth_call(STAKING_PROXY_ADDRESS, SEL_STAKING_BASE_RATE)
-        result["baseRate"] = rate / 10000  # basis points → percent
-        print(f"  ✅ Staking.baseRate: {result['baseRate']:.2%}")
+        result["baseRate"] = rate / 10000
+        print(f"  ✅ baseRate (BSC): {result['baseRate']:.2%}")
     except Exception as e:
-        print(f"  ❌ Staking.baseRate failed: {e}", file=sys.stderr)
+        print(f"  ❌ baseRate 失敗: {e}", file=sys.stderr)
     return result
+
 
 def sanitize(ep, raw):
     now = datetime.datetime.now(datetime.timezone.utc).isoformat()
