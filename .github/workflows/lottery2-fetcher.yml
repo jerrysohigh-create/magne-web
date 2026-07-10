@@ -1,0 +1,58 @@
+name: Lottery2 Dashboard Auto-Fetch
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: "Manual trigger reason"
+        required: false
+        default: "manual"
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: .
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install ethers
+        run: pip install eth-account
+
+      - name: Auto SIWE login + fetch lottery2 data
+        env:
+          LOTTERY2_PRIVATE_KEY: ${{ secrets.LOTTERY2_PRIVATE_KEY }}
+          LOTTERY2_WALLET_ADDRESS: ${{ secrets.LOTTERY2_WALLET_ADDRESS }}
+          RECON_OUT_DIR: ${{ github.workspace }}/assets/data
+        run: |
+          chmod +x .github/scripts/auto_login_fetch.py
+          python3 .github/scripts/auto_login_fetch.py
+
+      - name: Auto-commit if changed
+        run: |
+          git config user.name "lottery2-bot"
+          git config user.email "bot@magne.ai"
+          git add assets/data/lottery2-*.json
+          if git diff --cached --quiet; then echo "No changes"
+          else
+            TS=$(date -u +%FT%TZ)
+            git commit -m "chore(data): auto-refresh lottery2 ($TS)"
+            git push
+          fi
+
+      - name: On failure, open issue reminder
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue create --title "Lottery2 Auto-Fetch FAILED" --body "Check LOTTERY2_PRIVATE_KEY" --label lottery2 || true
