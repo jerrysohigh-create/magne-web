@@ -115,6 +115,50 @@
       border-radius: 999px;
     }
 
+/* === MS2 Brand Integration (WEB-20260710-001) === */
+.ms2-hero-logo {
+  display: block;
+  width: clamp(260px, 28vw, 360px);
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto 1.25rem;
+}
+
+.ms2-stat-icon {
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin: 0 auto 0.7rem;
+  opacity: 0.95;
+}
+
+.ms2-module-icon {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  vertical-align: -4px;
+  margin-right: 0.4rem;
+  opacity: 0.9;
+}
+
+.ms2-module-icon-lg {
+  width: 28px;
+  height: 28px;
+  vertical-align: -6px;
+}
+
+@media (max-width: 768px) {
+  .ms2-hero-logo { width: clamp(220px, 32vw, 280px); margin-bottom: 1rem; }
+}
+
+@media (max-width: 480px) {
+  .ms2-hero-logo { width: clamp(180px, 60vw, 240px); margin-bottom: 0.85rem; }
+  .ms2-stat-icon { width: 26px; height: 26px; }
+  .ms2-module-icon { width: 22px; height: 22px; vertical-align: -4px; }
+  .ms2-module-icon-lg { width: 22px; height: 22px; vertical-align: -4px; }
+}
+
+
     .back-home { margin-bottom: 1.5rem; }
     .back-home a {
       font-size: 0.85rem;
@@ -1017,6 +1061,7 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
 
   <!-- HERO -->
   <section class="hero">
+    <img class="ms2-hero-logo" src="/magne-web/assets/img/ms2/ms2-logo-horizontal-transparent.png" alt="MS2 by MAGNE.AI" loading="eager" decoding="async">
     <div class="hero-eyebrow">MAGNE.AI Season 2</div>
     <h1>MAGNE.AI Season 2 活動中心</h1>
     <p class="hero-sub">Phone Gen1 抽獎活動 • MS2 活動點數 • 質押權重 • 團隊獎勵</p>
@@ -1066,7 +1111,7 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
     </div>
 
     <div class="stat-card">
-      <div class="stat-icon">🪙</div>
+      <img class="ms2-stat-icon" loading="lazy" decoding="async" src="/magne-web/assets/img/ms2/ms2-icon.svg" alt="MS2 by MAGNE.AI">
       <div class="stat-value" id="ms2-credits">—</div>
       <div class="stat-label">MS2 活動點數記錄</div>
       <div class="stat-trend">（由參與名額計算）</div>
@@ -1097,7 +1142,7 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
 
 <!-- ALL WINNERS -->
   <section id="all-winners">
-    <div class="section-label">🏆 全部中獎紀錄</div>
+    <div class="section-label"><img class="ms2-module-icon" src="/magne-web/assets/img/ms2/ms2-icon.svg" loading="lazy" decoding="async" alt="MS2 by MAGNE.AI">全部中獎紀錄</div>
     <h2 class="section-title">全部中獎紀錄 <small class="en-label">All Winners</small></h2>
     <div class="winners-table-wrapper">
       <table class="winners-table">
@@ -1195,8 +1240,8 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
   
 
   <!-- MS2 STAKING MODULE -->
-  <div class="section-label">MS2 質押</div>
-  <h2 class="section-title">🪙 MS2 質押模組</h2>
+  <div class="section-label"><img class="ms2-module-icon" src="/magne-web/assets/img/ms2/ms2-icon.svg" loading="lazy" decoding="async" alt="MS2 by MAGNE.AI">MS2 質押</div>
+  <h2 class="section-title"><img class="ms2-module-icon ms2-module-icon-lg" src="/magne-web/assets/img/ms2/ms2-icon.svg" loading="lazy" decoding="async" alt="MS2 by MAGNE.AI">MS2 質押模組</h2>
   <div class="staking-grid">
     <div class="staking-card">
       <div class="staking-label">MS2 質押</div>
