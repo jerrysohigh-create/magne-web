@@ -1979,7 +1979,7 @@ async function fetchAllWinnersOnChain(fromBlock, chunkSize) {
     const totalParticipants = d.totalParticipants ?? null;
     const totalMobile       = d.totalMobile ?? null;
     const currRound         = d.currRound ?? null;
-    const totalDraws        = d.totalDraws ?? null;
+    const totalEntries        = d.totalEntries ?? null;
     const nextDrawNeed      = d.nextDrawNeed ?? null;
 
     document.getElementById('participants').textContent = fmtNum(totalParticipants);
@@ -1987,35 +1987,35 @@ async function fetchAllWinnersOnChain(fromBlock, chunkSize) {
     document.getElementById('phones-remaining').textContent =
       (totalMobile !== null) ? (TOTAL_PHONES - Number(totalMobile)).toLocaleString() + ' 支剩餘' : '— 支剩餘';
     // KPI #3 改為 USDT 活動池 = 總參與名額 × 17 USDT
-    if (totalDraws !== null) {
+    if (totalEntries !== null) {
       const usdtEl = document.getElementById('usdt-pool');
-      if (usdtEl) usdtEl.textContent = '$' + (Number(totalDraws) * 17).toLocaleString();
+      if (usdtEl) usdtEl.textContent = '$' + (Number(totalEntries) * 17).toLocaleString();
     }
-    document.getElementById('total-entries').textContent = fmtNum(totalDraws);
+    document.getElementById('total-entries').textContent = fmtNum(totalEntries);
 
     // MS2 活動點數 = 總參與名額 × 10（由參與名額計算）
-    const ms2Credits = (totalDraws !== null && !isNaN(totalDraws))
-      ? Number(totalDraws) * MS2_PER_ENTRY
+    const ms2Credits = (totalEntries !== null && !isNaN(totalEntries))
+      ? Number(totalEntries) * MS2_PER_ENTRY
       : null;
     document.getElementById('ms2-credits').textContent = (ms2Credits !== null)
       ? ms2Credits.toLocaleString()
       : '—';
 
-    // Progress bar: prefer nextDrawNeed, else fallback to totalDraws % 100
+    // Progress bar: prefer nextDrawNeed, else fallback to totalEntries % 100
     let entriesNow = null;
     let entriesNeeded = null;
     if (nextDrawNeed !== null && nextDrawNeed !== undefined && !isNaN(nextDrawNeed)) {
       entriesNow = ENTRIES_PER_ROUND - Number(nextDrawNeed);
       entriesNeeded = Number(nextDrawNeed);
-    } else if (totalDraws !== null && totalDraws !== undefined && !isNaN(totalDraws)) {
-      const td = Number(totalDraws);
+    } else if (totalEntries !== null && totalEntries !== undefined && !isNaN(totalEntries)) {
+      const td = Number(totalEntries);
       entriesNow = td % ENTRIES_PER_ROUND;
       entriesNeeded = ENTRIES_PER_ROUND - entriesNow;
     } else {
       entriesNow = 0;
       entriesNeeded = ENTRIES_PER_ROUND;
     }
-    // Edge: totalDraws=0 and nextDrawNeed=100 → display 0/100
+    // Edge: totalEntries=0 and nextDrawNeed=100 → display 0/100
     if (entriesNow < 0) entriesNow = 0;
     if (entriesNow > ENTRIES_PER_ROUND) entriesNow = ENTRIES_PER_ROUND;
 
