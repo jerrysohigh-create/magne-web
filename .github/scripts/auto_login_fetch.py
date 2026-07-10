@@ -21,6 +21,26 @@ DEFAULT_HEADERS = {
     "accept-language": "en-US,en;q=0.9",
 }
 
+# === BSC Chain Constants (WEB-20260710-012) ===
+BSC_RPC_URLS = [
+    "https://bsc-dataseed.bnbchain.org/",
+    "https://bsc-dataseed1.bnbchain.org/",
+    "https://bsc-dataseed2.bnbchain.org/",
+    "https://bsc-rpc.publicnode.com",
+    "https://1rpc.io/bnb",
+]
+MS2_TOKEN_ADDRESS = "0xc46a54bbd2716c436aaaed6ed2f555a9b054ebd1"
+STAKING_PROXY_ADDRESS = "0xb6ed72808fb34a3ac118d397f49332abbaa484d8"
+
+# Function selectors (4 bytes)
+SEL_TOTAL_SUPPLY = "0x18160ddd"        # ERC20.totalSupply()
+SEL_BALANCE_OF = "0x70a08231"          # ERC20.balanceOf(address)
+SEL_DECIMALS = "0x313ce567"            # ERC20.decimals()
+SEL_NAME = "0x06fdde03"                # ERC20.name()
+SEL_SYMBOL = "0x95d89b41"              # ERC20.symbol()
+SEL_STAKING_TOTAL_STAKED = "0x817b1cd2"  # Staking.totalStaked()
+SEL_STAKING_BASE_RATE = "0xc8fc9729"     # Staking.baseRate()
+
 try:
     from eth_account import Account
     from eth_account.messages import encode_defunct
@@ -47,6 +67,40 @@ def post_json(url, payload):
     req = urllib.request.Request(url, data=data, headers=h)
     with urllib.request.urlopen(req, timeout=15) as r:
         return json.loads(r.read().decode())
+
+# === BSC Chain eth_call (WEB-20260710-012) ===
+def eth_call(to, data_hex, rpc_url=None):
+    """Call BSC RPC eth_call. Tries multiple RPC endpoints."""
+    payload = {
+        "jsonrpc": "2.0", "id": 0,
+        "method": "eth_call",
+        "params": [{"to": to, "data": data_hex}, "latest"]
+    }
+    urls = [rpc_url] if rpc_url else BSC_RPC_URLS
+    last_err = None
+    for url in urls:
+        try:
+            req = urllib.request.Request(
+                url,
+                data=json.dumps(payload).encode(),
+                headers={"content-type": "application/json"}
+            )
+            with urllib.request.urlopen(req, timeout=10) as r:
+                resp = json.loads(r.read().decode())
+            if "error" in resp:
+                last_err = resp["error"]
+                continue
+            return int(resp["result"], 16)
+        except Exception as e:
+            last_err = str(e)
+            continue
+    raise RuntimeError(f"All BSC RPCs failed: {last_err}")
+
+def pad_address(addr):
+    return "0x" + addr[2:].lower().rjust(64, "0")
+
+def encode_erc20_balance_of(addr):
+    return SEL_BALANCE_OF + pad_address(addr)
 
 def get_json(url, headers=None):
     h = dict(DEFAULT_HEADERS)
@@ -79,6 +133,35 @@ def login_and_get_token(private_key, wallet_address):
 
 def fetch_with_token(token, ep):
     return get_json(f"{BASE}/lottery2/{ep}", headers={"token": token})
+
+# === On-chain data (WEB-20260710-012) ===
+def fetch_onchain_data():
+    """Read MS2 totalSupply and Staking totalStaked from BSC chain."""
+    result = {"ms2Issued": None, "liquidityPrepared": None, "baseRate": None}
+    try:
+        # 1. MS2.totalSupply()
+        ts = eth_call(MS2_TOKEN_ADDRESS, SEL_TOTAL_SUPPLY)
+        decimals = eth_call(MS2_TOKEN_ADDRESS, SEL_DECIMALS)
+        result["ms2Issued"] = ts / (10 ** decimals)
+        print(f"  ✅ MS2.totalSupply: {result['ms2Issued']:,.2f}")
+    except Exception as e:
+        print(f"  ❌ MS2.totalSupply failed: {e}", file=sys.stderr)
+    try:
+        # 2. Staking.totalStaked()
+        staked = eth_call(STAKING_PROXY_ADDRESS, SEL_STAKING_TOTAL_STAKED)
+        decimals = eth_call(MS2_TOKEN_ADDRESS, SEL_DECIMALS)
+        result["liquidityPrepared"] = staked / (10 ** decimals)
+        print(f"  ✅ Staking.totalStaked: {result['liquidityPrepared']:,.2f}")
+    except Exception as e:
+        print(f"  ❌ Staking.totalStaked failed: {e}", file=sys.stderr)
+    try:
+        # 3. Staking.baseRate()
+        rate = eth_call(STAKING_PROXY_ADDRESS, SEL_STAKING_BASE_RATE)
+        result["baseRate"] = rate / 10000  # basis points → percent
+        print(f"  ✅ Staking.baseRate: {result['baseRate']:.2%}")
+    except Exception as e:
+        print(f"  ❌ Staking.baseRate failed: {e}", file=sys.stderr)
+    return result
 
 def sanitize(ep, raw):
     now = datetime.datetime.now(datetime.timezone.utc).isoformat()
@@ -123,13 +206,18 @@ def main():
         print("ERROR: 缺少 secrets", file=sys.stderr)
         sys.exit(1)
     out_dir.mkdir(parents=True, exist_ok=True)
+
+    # === Step 1: SIWE 自動登入 ===
     try:
         token = login_and_get_token(private_key, wallet_address)
         print(f"OK SIWE 登入 token={len(token)}")
     except Exception as e:
         print(f"ERROR 登入: {e}", file=sys.stderr)
         sys.exit(1)
+
+    # === Step 2: 抓 3 個 API（dashboard / list / leaderboard）===
     expired = False
+    api_data = {}
     for ep in ENDPOINTS:
         try:
             raw = fetch_with_token(token, ep)
@@ -141,10 +229,27 @@ def main():
                 expired = True
                 continue
             (out_dir / FIELDS[ep]).write_text(json.dumps(clean, indent=2, ensure_ascii=False))
+            api_data[ep] = clean
             print(f"OK {ep}")
         except Exception as e:
             print(f"ERROR {ep}: {e}", file=sys.stderr)
             expired = True
+
+    # === Step 3: 抓鏈上資料（ms2Issued + liquidityPrepared + baseRate）===
+    print("\nFetching on-chain data...")
+    onchain = fetch_onchain_data()
+
+    # === Step 4: 合併鏈上資料到 dashboard.json ===
+    if "dashboard" in api_data:
+        d = api_data["dashboard"]
+        d["data"]["ms2Issued"] = onchain.get("ms2Issued")
+        d["data"]["liquidityPrepared"] = onchain.get("liquidityPrepared")
+        d["data"]["baseRate"] = onchain.get("baseRate")
+        d["_meta"]["onchainFetchedAt"] = datetime.datetime.now(datetime.timezone.utc).isoformat()
+        d["_meta"]["onchainSource"] = "BSC chain via public RPC eth_call"
+        (out_dir / FIELDS["dashboard"]).write_text(json.dumps(d, indent=2, ensure_ascii=False))
+        print(f"OK dashboard (含鏈上 ms2Issued + liquidityPrepared + baseRate)")
+
     sys.exit(2 if expired else 0)
 
 if __name__ == "__main__":
