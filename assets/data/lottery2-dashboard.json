@@ -1,12 +1,12 @@
 {
   "_meta": {
     "endpoint": "https://payment.magne.ai/api/v1/dashboard",
-    "fetchedAt": "2026-07-10T14:16:05.330147+00:00"
+    "fetchedAt": "2026-07-10T14:37:32.016298+00:00"
   },
   "code": 200,
   "msg": "ok",
   "data": {
-    "totalParticipants": 20,
+    "totalParticipants": 21,
     "totalEntries": 5,
     "totalMobile": 0,
     "currRound": 1,
