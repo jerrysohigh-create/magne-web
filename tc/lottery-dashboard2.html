@@ -1192,14 +1192,6 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
     <div class="progress-labels">
       <span>朝下支 Phone Gen1 中選累積的參與名額</span>
       <span id="progress-needed">— 個名額</span>
-      <span style="color: rgba(255,255,255,0.4); font-size: 0.78rem;">每輪 1,700 USDT 活動營收</span>
-    </div>
-  </div>
-  <!-- PACKAGES -->
-  <div class="section-label">參與組合</div>
-  <div class="packages-grid" id="packages-grid"></div>
-  <p style="text-align:center; font-size:0.78rem; color:rgba(255,255,255,0.4); margin-top:0.85rem;">每輪 100 個參與名額，對應 1,700 USDT 活動營收。</p>
-
 <!-- ALL WINNERS -->
   <section id="all-winners">
     <div class="section-label"><img class="ms2-module-icon" src="/magne-web/assets/img/ms2/ms2-icon.svg" loading="lazy" decoding="async" alt="MS2 by MAGNE.AI">全部中獎紀錄</div>
@@ -1230,6 +1222,15 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
       <button class="pagination-btn" id="winners-next" disabled>下一頁 →</button>
     </div>
   </section>
+
+      <span style="color: rgba(255,255,255,0.4); font-size: 0.78rem;">每輪 1,700 USDT 活動營收</span>
+    </div>
+  </div>
+  <!-- PACKAGES -->
+  <div class="section-label">輪次營收模型</div>
+  <div class="packages-grid" id="packages-grid"></div>
+  <p style="text-align:center; font-size:0.78rem; color:rgba(255,255,255,0.4); margin-top:0.85rem;">每輪 100 個參與名額，對應 1,700 USDT 活動營收，並依活動規則進行配置。</p>
+
 
   <!-- 17 USDT REWARD FLOW -->
   <div class="section-label">參與名額配置</div>
@@ -1263,7 +1264,7 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
 
   <!-- RECENT DRAWS -->
   <div class="section-label">活動</div>
-  <h2 class="section-title">🏆 最新開獎</h2>
+  <h2 class="section-title">最新一次中選 <small class="en-label">Latest Draw</small></h2>
   <div class="data-table-wrap">
     <table class="data-table">
       <thead>
@@ -1274,7 +1275,7 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
         </tr>
       </thead>
       <tbody id="draws-body">
-        <tr><td colspan="3" class="empty-state">暫無開獎紀錄。</td></tr>
+        <tr><td colspan="3" class="empty-state">暫無最新中選紀錄。</td></tr>
       </tbody>
     </table>
   </div>
@@ -1863,24 +1864,24 @@ async function fetchAllWinnersOnChain(fromBlock, chunkSize) {
     const body = document.getElementById('draws-body');
     if (!body) return;
     if (!Array.isArray(rows) || rows.length === 0) {
-      body.innerHTML = '<tr><td colspan="3" class="empty-state">暫無開獎紀錄。</td></tr>';
+      body.innerHTML = '<tr><td colspan="3" class="empty-state">暫無最新中選紀錄。</td></tr>';
       return;
     }
-    body.innerHTML = rows.map(r => {
-      const tx = r.txHash || r.tx || '';
-      const time = r.time || r.timestamp || r.blockTime || null;
-      const result = r.result || r.winner || r.prize || '—';
-      const txShort = tx ? (tx.length > 14 ? tx.slice(0, 8) + '…' + tx.slice(-4) : tx) : '—';
-      const txLink = tx ? `<a href="https://bscscan.com/tx/${tx}" target="_blank" rel="noopener" class="mono">${txShort} ↗</a>` : '<span style="color:rgba(255,255,255,0.35);">—</span>';
-      const resultText = (typeof result === 'string') ? result : JSON.stringify(result);
-      return `
-        <tr>
-          <td>${txLink}</td>
-          <td>${fmtTime(time)}</td>
-          <td>${resultText}</td>
-        </tr>
-      `;
-    }).join('');
+    // 只渲染最近 1 筆（rows[0] = 最新）
+    const r = rows[0];
+    const tx = r.txHash || r.tx || '';
+    const time = r.time || r.timestamp || r.blockTime || null;
+    const result = r.result || r.winner || r.prize || '—';
+    const txShort = tx ? (tx.length > 14 ? tx.slice(0, 8) + '…' + tx.slice(-4) : tx) : '—';
+    const txLink = tx ? `<a href="https://bscscan.com/tx/${tx}" target="_blank" rel="noopener" class="mono">${txShort} ↗</a>` : '<span style="color:rgba(255,255,255,0.35);">—</span>';
+    const resultText = (typeof result === 'string') ? result : JSON.stringify(result);
+    body.innerHTML = `
+      <tr>
+        <td>${txLink}</td>
+        <td>${fmtTime(time)}</td>
+        <td>${resultText}</td>
+      </tr>
+    `;
   }
 
   // =================== API CALLS ===================
