@@ -1987,9 +1987,9 @@ async function fetchAllWinnersOnChain(fromBlock, chunkSize) {
     document.getElementById('phones-remaining').textContent =
       (totalMobile !== null) ? (TOTAL_PHONES - Number(totalMobile)).toLocaleString() + ' 支剩餘' : '— 支剩餘';
     // KPI #3 改為 USDT 活動池 = 總參與名額 × 17 USDT
-    if (totalEntries !== null) {
+    if (totalDraws !== null) {
       const usdtEl = document.getElementById('usdt-pool');
-      if (usdtEl) usdtEl.textContent = '$' + (Number(totalEntries) * 17).toLocaleString();
+      if (usdtEl) usdtEl.textContent = '$' + (Number(totalDraws) * 17).toLocaleString();
     }
     document.getElementById('total-entries').textContent = fmtNum(totalDraws);
 
