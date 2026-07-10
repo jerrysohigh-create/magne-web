@@ -1333,10 +1333,10 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
 
     <div class="stat-card">
       <div class="stat-icon">⏭️</div>
-      <div class="stat-value" id="entries-next">—</div>
-      <div class="stat-label">距離下一支手機名額</div>
-      <div class="stat-trend">距下次開獎</div>
-    <span class="onchain-dot" id="oc-dot-entries-next" style="display:none"> On-chain</span>
+      <div class="stat-value" id="mha-status">—</div>
+      <div class="stat-label">TGE 後 MHA 獎勵狀態</div>
+      <div class="stat-trend">MHA 代幣</div>
+    <span class="onchain-dot" id="oc-dot-mha-status" style="display:none"> On-chain</span>
       </div>
 
     <div class="stat-card">
@@ -2025,7 +2025,7 @@ async function fetchAllWinnersOnChain(fromBlock, chunkSize) {
     document.getElementById('progress-fill').style.width = pctClamped + '%';
     document.getElementById('progress-text').textContent = entriesNow;
     document.getElementById('progress-number').textContent = entriesNow + '/100';
-    document.getElementById('entries-next').textContent = fmtNum(entriesNeeded);
+    document.getElementById('mha-status').textContent = fmtNum(entriesNeeded);
     document.getElementById('progress-needed').textContent =
       (entriesNeeded !== null) ? entriesNeeded.toLocaleString() : '—';
 
@@ -2035,14 +2035,14 @@ async function fetchAllWinnersOnChain(fromBlock, chunkSize) {
   function showEmptyDashboard() {
     renderDashboard({});
     // Soft fallback values
-    ['participants','phones-given','usdt-pool','total-entries','entries-next','ms2-credits']
+    ['participants','phones-given','usdt-pool','total-entries','mha-status','ms2-credits']
       .forEach(id => { const el = document.getElementById(id); if (el) el.textContent = '—'; });
     const phonesRem = document.getElementById('phones-remaining');
     if (phonesRem) phonesRem.textContent = '— 支剩餘';
     document.getElementById('progress-fill').style.width = '0%';
     document.getElementById('progress-text').textContent = '0';
     document.getElementById('progress-number').textContent = '0/100';
-    document.getElementById('entries-next').textContent = '—';
+    document.getElementById('mha-status').textContent = '—';
     document.getElementById('progress-needed').textContent = '—';
 
     // WEB-20260710-005: distance-to-next-draw card reset (removed in WEB-20260710-006 — using progress-card)
@@ -2286,7 +2286,7 @@ function augmentKPIsFromOnChain(oc) {
       var pct = (entriesNow / oc.lottery.entriesPerRound) * 100;
       var pf = document.getElementById('progress-fill');
       var pt = document.getElementById('progress-text');
-      var pe = document.getElementById('entries-next');
+      var pe = document.getElementById('mha-status');
       var pn = document.getElementById('progress-needed');
       var pnum = document.getElementById('progress-number');
       if (pf) pf.style.width = pct + '%';
