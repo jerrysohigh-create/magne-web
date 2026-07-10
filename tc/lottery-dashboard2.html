@@ -365,6 +365,45 @@
       gap: 0.5rem;
     }
 
+    /* === Progress Distance Card (WEB-20260710-005) === */
+    .progress-distance-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: linear-gradient(135deg, rgba(0,255,136,0.06), rgba(255,215,0,0.04));
+      border: 1px solid rgba(0,255,136,0.15);
+      border-radius: 16px;
+      padding: 1.25rem 1.5rem;
+      margin-top: 1rem;
+    }
+    .distance-icon {
+      font-size: 1.8rem;
+      line-height: 1;
+    }
+    .distance-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .distance-label {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.55);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 600;
+    }
+    .distance-value {
+      font-size: 1.15rem;
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+    .distance-value strong {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.4rem;
+      color: var(--accent);
+      margin: 0 0.15rem;
+    }
+
     /* Reward flow */
     .reward-flow {
       background: var(--bg-secondary);
@@ -448,7 +487,7 @@
       background: linear-gradient(135deg, rgba(255, 215, 0, 0.07), transparent);
     }
     .package-card.featured::before {
-      content: 'BEST VALUE';
+      content: 'FULL ROUND';
       position: absolute;
       top: -10px;
       left: 50%;
@@ -478,6 +517,27 @@
     .package-desc {
       font-size: 0.78rem;
       color: var(--text-secondary);
+    }
+
+    /* === Package Card Label & Entries (WEB-20260710-005) === */
+    .package-label {
+      font-size: 0.85rem;
+      color: var(--text-primary);
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.3px;
+    }
+    .package-entries {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.7);
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 0.4rem;
+    }
+    .package-trigger {
+      font-size: 0.7rem;
+      color: var(--gold);
+      margin-top: 0.4rem;
+      font-style: italic;
     }
 
     /* CTA buttons */
@@ -1188,12 +1248,15 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
     </div>
     <div class="progress-bar">
       <div class="progress-fill" id="progress-fill" style="width: 0%;">
-        <span class="progress-text"><span id="progress-text">0</span>/100</span>
+        <span class="progress-text"><span id="progress-text">0</span> / 100 Entries</span>
       </div>
     </div>
     <div class="progress-labels">
       <span>朝下支 Phone Gen1 中選累積的參與名額</span>
       <span id="progress-needed">— 個名額</span>
+      <span style="color: rgba(255,255,255,0.4); font-size: 0.78rem;">每輪 1,700 USDT 活動營收</span>
+    </div>
+  </div>
 <!-- ALL WINNERS -->
   <section id="all-winners">
     <div class="section-label"><img class="ms2-module-icon" src="/magne-web/assets/img/ms2/ms2-icon.svg" loading="lazy" decoding="async" alt="MS2 by MAGNE.AI">全部中獎紀錄</div>
@@ -1225,7 +1288,14 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
     </div>
   </section>
 
-      <span style="color: rgba(255,255,255,0.4); font-size: 0.78rem;">每輪 1,700 USDT 活動營收</span>
+  <!-- DISTANCE TO NEXT PHONE GEN1 (WEB-20260710-005) -->
+  <div class="progress-distance-card">
+    <div class="distance-icon">📱</div>
+    <div class="distance-content">
+      <div class="distance-label">距下一支 Phone Gen1 中選</div>
+      <div class="distance-value">
+        還需 <strong id="progress-distance-needed">—</strong> 個參與名額
+      </div>
     </div>
   </div>
   <!-- PACKAGES -->
@@ -1236,13 +1306,7 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
 
   <!-- 17 USDT REWARD FLOW -->
   <div class="section-label">參與名額配置</div>
-  
-  <!-- 標準參與選項 -->
-  <div class="participation-option-card">
-    <div class="participation-option-price">17 USDT</div>
-    <div class="participation-option-label">標準參與</div>
-    <div class="participation-option-detail">1 個參與名額 + 10 MS2 活動點數</div>
-  </div>
+
 <div class="reward-flow">
     <h3>17 USDT per entry 配置</h3>
     <div class="reward-flow-tree">
@@ -1706,11 +1770,11 @@ async function fetchAllWinnersOnChain(fromBlock, chunkSize) {
   ];
 
   const PACKAGES = [
-    { usdt: 17,   chances: 1   },
-    { usdt: 34,   chances: 2   },
-    { usdt: 85,   chances: 5   },
-    { usdt: 170,  chances: 10  },
-    { usdt: 1700, chances: 100 },
+    { usdt: 17,   label: 'Standard Entry', entries: 1,   ms2: 10,   featured: false },
+    { usdt: 34,   label: 'Double Entry',    entries: 2,   ms2: 20,   featured: false },
+    { usdt: 85,   label: 'Multi Entry',     entries: 5,   ms2: 50,   featured: false },
+    { usdt: 170,  label: 'Team Entry',      entries: 10,  ms2: 100,  featured: false },
+    { usdt: 1700, label: 'Full Round',      entries: 100, ms2: 1000, featured: true, trigger: 'Triggers one Phone Gen1 draw round' },
   ];
 
   // =================== APIs ===================
@@ -1738,13 +1802,15 @@ async function fetchAllWinnersOnChain(fromBlock, chunkSize) {
   function renderPackages() {
     const grid = document.getElementById('packages-grid');
     if (!grid) return;
-    grid.innerHTML = PACKAGES.map((p, i) => {
-      const featured = (i === 2 || p.usdt === 1700);
+    grid.innerHTML = PACKAGES.map(p => {
+      const featured = !!p.featured;
+      const trigger = p.trigger ? `<div class="package-trigger">${p.trigger}</div>` : '';
       return `
         <div class="package-card${featured ? ' featured' : ''}">
           <div class="package-amount">${p.usdt.toLocaleString()} USDT</div>
-          <div class="package-chances">🎯 ${p.chances} 個參與名額</div>
-          <div class="package-desc">相當於 ${p.chances} 個有效參與名額 × ${ENTRY_FEE_USDT} USDT</div>
+          <div class="package-label">${p.label}</div>
+          <div class="package-entries">${p.entries} Entries + ${p.ms2} MS2 Activity Points</div>
+          ${trigger}
         </div>
       `;
     }).join('');
@@ -1846,6 +1912,18 @@ async function fetchAllWinnersOnChain(fromBlock, chunkSize) {
     document.getElementById('entries-next').textContent = fmtNum(entriesNeeded);
     document.getElementById('progress-needed').textContent =
       (entriesNeeded !== null) ? (entriesNeeded + ' 個名額') : '— 個名額';
+
+    // WEB-20260710-005: distance-to-next-draw card
+    var distEl = document.getElementById('progress-distance-needed');
+    if (distEl) {
+      if (entriesNeeded !== null && entriesNeeded > 0) {
+        distEl.textContent = entriesNeeded.toLocaleString();
+      } else if (entriesNeeded === 0) {
+        distEl.textContent = '即將觸發';
+      } else {
+        distEl.textContent = '—';
+      }
+    }
   }
 
   function showEmptyDashboard() {
@@ -1859,6 +1937,10 @@ async function fetchAllWinnersOnChain(fromBlock, chunkSize) {
     document.getElementById('progress-text').textContent = '0';
     document.getElementById('entries-next').textContent = '—';
     document.getElementById('progress-needed').textContent = '— more entries';
+
+    // WEB-20260710-005: distance-to-next-draw card reset
+    var distEmpty = document.getElementById('progress-distance-needed');
+    if (distEmpty) distEmpty.textContent = '—';
   }
 
   // =================== DRAWS LIST ===================
