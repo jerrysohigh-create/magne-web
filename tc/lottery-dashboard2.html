@@ -1317,10 +1317,10 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
 
     <div class="stat-card">
       <div class="stat-icon">🎯</div>
-      <div class="stat-value" id="curr-round">—</div>
-      <div class="stat-label">目前輪次</div>
-      <div class="stat-trend">輪次編號</div>
-    <span class="onchain-dot" id="oc-dot-curr-round" style="display:none"> On-chain</span>
+      <div class="stat-value" id="usdt-pool">—</div>
+      <div class="stat-label">鏈上活動資產</div>
+      <div class="stat-trend">USDT 活動池</div>
+    <span class="onchain-dot" id="oc-dot-usdt-pool" style="display:none"> On-chain</span>
       </div>
 
     <div class="stat-card">
@@ -1986,7 +1986,11 @@ async function fetchAllWinnersOnChain(fromBlock, chunkSize) {
     document.getElementById('phones-given').textContent = fmtNum(totalMobile);
     document.getElementById('phones-remaining').textContent =
       (totalMobile !== null) ? (TOTAL_PHONES - Number(totalMobile)).toLocaleString() + ' 支剩餘' : '— 支剩餘';
-    document.getElementById('curr-round').textContent = fmtNum(currRound);
+    // KPI #3 改為 USDT 活動池 = 總參與名額 × 17 USDT
+    if (totalEntries !== null) {
+      const usdtEl = document.getElementById('usdt-pool');
+      if (usdtEl) usdtEl.textContent = '$' + (Number(totalEntries) * 17).toLocaleString();
+    }
     document.getElementById('total-entries').textContent = fmtNum(totalDraws);
 
     // MS2 活動點數 = 總參與名額 × 10（由參與名額計算）
@@ -2031,7 +2035,7 @@ async function fetchAllWinnersOnChain(fromBlock, chunkSize) {
   function showEmptyDashboard() {
     renderDashboard({});
     // Soft fallback values
-    ['participants','phones-given','curr-round','total-entries','entries-next','ms2-credits']
+    ['participants','phones-given','usdt-pool','total-entries','entries-next','ms2-credits']
       .forEach(id => { const el = document.getElementById(id); if (el) el.textContent = '—'; });
     const phonesRem = document.getElementById('phones-remaining');
     if (phonesRem) phonesRem.textContent = '— 支剩餘';
@@ -2265,7 +2269,7 @@ function renderOnChainPanel(oc) {
 function augmentKPIsFromOnChain(oc) {
   if (oc.lottery) {
     if (oc.lottery.currentRound !== null) {
-      var el = document.getElementById('curr-round');
+      var el = document.getElementById('usdt-pool');
       if (el) { el.textContent = oc.lottery.currentRound.toLocaleString(); markOnchain(el); }
     }
     if (oc.lottery.totalEntries !== null) {
