@@ -118,7 +118,7 @@
 /* === MS2 Brand Integration (WEB-20260710-001) === */
 .ms2-hero-logo {
   display: block;
-  width: clamp(260px, 28vw, 360px);
+  width: clamp(140px, 16vw, 200px);
   max-width: 100%;
   height: auto;
   margin: 0 auto 1.25rem;
@@ -194,14 +194,105 @@
   vertical-align: middle;
 }
 
+/* === Season 2 Rules Section (WEB-20260710-006) === */
+.rules-section {
+  background: rgba(0, 212, 212, 0.05);
+  border: 1px solid rgba(0, 212, 212, 0.15);
+  border-radius: 16px;
+  padding: 1.5rem 2rem;
+  margin-top: 2rem;
+}
+.rules-header {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(0, 212, 212, 0.7);
+  margin-bottom: 1.25rem;
+}
+.rules-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+.rule-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.5;
+}
+.rule-item strong { color: var(--accent); font-weight: 700; }
+.rule-icon {
+  font-size: 1.1rem;
+  line-height: 1.2;
+  flex-shrink: 0;
+}
+.rules-note {
+  margin-top: 1rem;
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.4);
+  text-align: center;
+  font-style: italic;
+}
+@media (max-width: 768px) {
+  .rules-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .rules-grid { grid-template-columns: 1fr; }
+}
+
+/* === Participation Options Section (WEB-20260710-006) === */
+.participation-options-section {
+  margin-top: 2rem;
+}
+.participation-options-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+.participation-card {
+  background: linear-gradient(135deg, rgba(0,255,136,0.06), rgba(255,215,0,0.04));
+  border: 1px solid rgba(0,255,136,0.15);
+  border-radius: 16px;
+  padding: 1.75rem 2rem;
+}
+.participation-price {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.participation-label {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+.participation-detail {
+  font-size: 0.95rem;
+  color: var(--gold);
+  margin-bottom: 0.6rem;
+}
+.participation-note {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.4);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+
 
 
 @media (max-width: 768px) {
-  .ms2-hero-logo { width: clamp(220px, 32vw, 280px); margin-bottom: 1rem; }
+  .ms2-hero-logo { width: clamp(120px, 22vw, 160px); margin-bottom: 1rem; }
 }
 
 @media (max-width: 480px) {
-  .ms2-hero-logo { width: clamp(180px, 60vw, 240px); margin-bottom: 0.85rem; }
+  .ms2-hero-logo { width: clamp(100px, 30vw, 160px); margin-bottom: 0.85rem; }
   .ms2-stat-icon { width: 26px; height: 26px; }
   .ms2-module-icon { width: 22px; height: 22px; vertical-align: -4px; }
   .ms2-module-icon-lg { width: 22px; height: 22px; vertical-align: -4px; }
@@ -339,6 +430,21 @@
       overflow: hidden;
       position: relative;
     }
+    .progress-center {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .progress-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -1px;
+      line-height: 1;
+    }
+    @media (max-width: 480px) {
+      .progress-number { font-size: 2.5rem; }
+    }
     .progress-fill {
       height: 100%;
       background: linear-gradient(90deg, rgba(0,255,136,0.3), var(--accent) 50%, var(--gold));
@@ -365,44 +471,6 @@
       gap: 0.5rem;
     }
 
-    /* === Progress Distance Card (WEB-20260710-005) === */
-    .progress-distance-card {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      background: linear-gradient(135deg, rgba(0,255,136,0.06), rgba(255,215,0,0.04));
-      border: 1px solid rgba(0,255,136,0.15);
-      border-radius: 16px;
-      padding: 1.25rem 1.5rem;
-      margin-top: 1rem;
-    }
-    .distance-icon {
-      font-size: 1.8rem;
-      line-height: 1;
-    }
-    .distance-content {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-    }
-    .distance-label {
-      font-size: 0.75rem;
-      color: rgba(255,255,255,0.55);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      font-weight: 600;
-    }
-    .distance-value {
-      font-size: 1.15rem;
-      color: var(--text-primary);
-      font-weight: 600;
-    }
-    .distance-value strong {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 1.4rem;
-      color: var(--accent);
-      margin: 0 0.15rem;
-    }
 
     /* Reward flow */
     .reward-flow {
@@ -1180,8 +1248,36 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
     <div class="hero-eyebrow">MAGNE.AI Season 2</div>
     <h1>MAGNE.AI Season 2 活動中心</h1>
     <p class="hero-sub">Phone Gen1 抽獎活動 • MS2 活動點數 • 質押權重 • 團隊獎勵</p>
-    <p class="hero-highlight">17 USDT per entry • 每 100 個參與名額觸發 1 次 Phone Gen1 中選</p>
+    <p class="hero-highlight">17 USDT per entry • 10 MS2 per valid entry • 每 100 個參與名額觸發 1 次 Phone Gen1 中選</p>
   </section>
+
+  <!-- SEASON 2 活動規則 (WEB-20260710-006) -->
+  <div class="rules-section" id="season2-rules">
+    <div class="rules-header">📜 Season 2 活動規則</div>
+    <div class="rules-grid">
+      <div class="rule-item">
+        <div class="rule-icon">💰</div>
+        <div class="rule-text">每個<strong>參與名額</strong>為 <strong>17 USDT</strong></div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-icon">🪙</div>
+        <div class="rule-text">每個<strong>有效參與名額</strong>可獲得 <strong>10 MS2 活動點數</strong> + <strong>100 MHA 後續合資格分配記錄</strong></div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-icon">🎯</div>
+        <div class="rule-text">每 <strong>100 個參與名額</strong>觸發 <strong>1 次 Phone Gen1 中選</strong></div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-icon">💎</div>
+        <div class="rule-text">MS2 可用於<strong>活動權重、質押權重及合資格計算</strong></div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-icon">⚖️</div>
+        <div class="rule-text">MAGNE.AI 保留對<strong>活動規則的最終解釋權</strong></div>
+      </div>
+    </div>
+    <div class="rules-note">100 MHA 為後續合資格分配記錄，最終以官方活動規則、TGE 時程及合資格審查為準。</div>
+  </div>
 
   <div class="back-home">
     <a href="index.html">← 返回首頁</a>
@@ -1243,8 +1339,11 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
   <!-- PROGRESS BAR -->
   <div class="progress-card">
     <div class="progress-header">
-      <div class="progress-title">輪次進度</div>
-      <div class="progress-round-badge">📱 Round —</div>
+      <div class="progress-title">Round —</div>
+      <div class="progress-round-badge">📱 1 部 Phone Gen1 待中選</div>
+    </div>
+    <div class="progress-center">
+      <div class="progress-number" id="progress-number">0/100</div>
     </div>
     <div class="progress-bar">
       <div class="progress-fill" id="progress-fill" style="width: 0%;">
@@ -1252,9 +1351,8 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
       </div>
     </div>
     <div class="progress-labels">
-      <span>朝下支 Phone Gen1 中選累積的參與名額</span>
-      <span id="progress-needed">— 個名額</span>
-      <span style="color: rgba(255,255,255,0.4); font-size: 0.78rem;">每輪 1,700 USDT 活動營收</span>
+      <span>距下次中選仍需 <span id="progress-needed">—</span> 個參與名額</span>
+      <span>每輪 100 個參與名額，對應 1,700 USDT 活動營收</span>
     </div>
   </div>
 <!-- ALL WINNERS -->
@@ -1266,10 +1364,10 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
         <thead>
           <tr>
             <th>Round</th>
-            <th>中選 Address</th>
+            <th>Winner Address</th>
             <th>Phone Model</th>
             <th>Entries</th>
-            <th>交易雜湊</th>
+            <th>Tx Hash</th>
             <th>Status</th>
           </tr>
         </thead>
@@ -1288,16 +1386,19 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
     </div>
   </section>
 
-  <!-- DISTANCE TO NEXT PHONE GEN1 (WEB-20260710-005) -->
-  <div class="progress-distance-card">
-    <div class="distance-icon">📱</div>
-    <div class="distance-content">
-      <div class="distance-label">距下一支 Phone Gen1 中選</div>
-      <div class="distance-value">
-        還需 <strong id="progress-distance-needed">—</strong> 個參與名額
+  <!-- 參與選項 (WEB-20260710-006) -->
+  <div class="participation-options-section">
+    <div class="section-label">參與選項</div>
+    <div class="participation-options-grid">
+      <div class="participation-card">
+        <div class="participation-price">17 USDT</div>
+        <div class="participation-label">標準參與</div>
+        <div class="participation-detail">1 個參與名額 + 10 MS2 活動點數</div>
+        <div class="participation-note">每個有效參與名額另可獲得 100 MHA 後續合資格分配記錄，最終以官方活動規則、TGE 時程及合資格審查為準。</div>
       </div>
     </div>
   </div>
+
   <!-- PACKAGES -->
   <div class="section-label">輪次營收模型</div>
   <div class="packages-grid" id="packages-grid"></div>
@@ -1313,9 +1414,9 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
       <div class="reward-total">17 USDT per entry</div>
       <ul>
         <li><span class="reward-amount">4 USDT</span><span>交易流動性準備</span></li>
-        <li><span class="reward-amount">4 USDT</span><span>合資格邀請人推薦獎勵</span></li>
+        <li><span class="reward-amount">4 USDT</span><span>運營市場</span></li>
         <li><span class="reward-amount">1.5 USDT</span><span>頂級貢獻者獎勵池</span></li>
-        <li><span class="reward-amount">7.5 USDT</span><span>國庫 / 活動運營 / 其他配置池</span></li>
+        <li><span class="reward-amount">7.5 USDT</span><span>國庫 / 設備製造 / 其他配置池</span></li>
       </ul>
     </div>
     <p class="reward-disclaimer">配置說明依現行活動規則，最終以官方活動公告為準。</p>
@@ -1325,7 +1426,7 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
   <div class="cta-row">
     <a class="cta cta-primary" href="https://payment.magne.ai/lottery">🎲 參與 Season 2</a>
     <a class="cta cta-secondary" href="https://payment.magne.ai/ms2-staking">🪙 質押 MS2</a>
-    <a class="cta cta-tertiary" href="https://jerrysohigh-create.github.io/magne-web3/tc/session2.html#join" target="_blank" rel="noopener">📄 查看活動規則</a>
+    <a class="cta cta-tertiary" href="#season2-rules">📄 查看活動規則</a>
   </div>
 
   <!-- RECENT DRAWS -->
@@ -1341,7 +1442,7 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
         </tr>
       </thead>
       <tbody id="draws-body">
-        <tr><td colspan="3" class="empty-state">暫無最新中選紀錄。</td></tr>
+        <tr><td colspan="3" class="empty-state">暫無最新中選紀錄，Season 2 開始後將由 RPC 鏈上資料自動同步。</td></tr>
       </tbody>
     </table>
   </div>
@@ -1360,37 +1461,8 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
       </thead>
       <tbody id="leaderboard-body"></tbody>
     </table>
-    <p class="leaderboard-footnote">獎勵比例為活動固定規則。USDT 獎勵與邀請人地址將隨排行榜資料更新。</p>
+    <p class="leaderboard-footnote">暫無團隊獎勵分配紀錄，最終以官方活動規則及合資格審查為準。</p>
   </div>
-
-
-  
-
-  
-<!-- ON-CHAIN VERIFICATION PANEL (WEB-20260710-002) -->
-<section id="onchain-panel">
-  <div class="section-label">⛓️ 鏈上驗證 <span id="onchain-status" class="onchain-status loading">⏳ 鏈上讀取中…</span></div>
-  <h2 class="section-title">On-Chain Verification <small class="en-label">公開 BSC RPC</small></h2>
-  <div class="onchain-grid">
-    <div class="onchain-card">
-      <div class="onchain-card-label">MS2 Token</div>
-      <div class="onchain-card-value" id="onchain-token-name">—</div>
-      <div class="onchain-card-sub" id="onchain-token-symbol">—</div>
-      <div class="onchain-card-meta" id="onchain-token-supply">Total Supply: —</div>
-    </div>
-    <div class="onchain-card">
-      <div class="onchain-card-label">MS2 Staking 總量</div>
-      <div class="onchain-card-value" id="onchain-staking-total">—</div>
-      <div class="onchain-card-sub">合約: 0xB6Ed…84D8</div>
-    </div>
-    <div class="onchain-card">
-      <div class="onchain-card-label">Lottery 狀態</div>
-      <div class="onchain-card-value" id="onchain-lottery-round">—</div>
-      <div class="onchain-card-sub" id="onchain-lottery-meta">Round / Entries —</div>
-    </div>
-  </div>
-  <p class="onchain-disclaimer">以上資料由 <code>eth_call</code> 直接讀取 BSC 主網公開合約，無需登入或 API key。事件資料由 <code>eth_getLogs</code> 取得。所有原始 RPC endpoint 為 <span id="onchain-rpc-url">—</span>。Implementation 合約僅作 ABI 邏輯參考，未直接讀取狀態。</p>
-</section>
 
 <!-- MS2 STAKING MODULE -->
   <div class="section-label"><img class="ms2-module-icon" src="/magne-web/assets/img/ms2/ms2-icon.svg" loading="lazy" decoding="async" alt="MS2 by MAGNE.AI">MS2 質押</div>
@@ -1432,10 +1504,35 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
       </thead>
       <tbody id="staking-tiers-body"></tbody>
     </table>
-    <p class="staking-caption">加成僅用於活動權重與合資格計算，並不代表固定收益、固定年化回報或保證回報。</p>
+    <p class="staking-caption">暫無質押狀態，請先連結錢包查詢。</p>
   </div>
 
-  <!-- CONTRACT REFERENCES -->
+<!-- ON-CHAIN VERIFICATION PANEL (WEB-20260710-002) -->
+<section id="onchain-panel">
+  <div class="section-label">⛓️ 鏈上驗證 <span id="onchain-status" class="onchain-status loading">⏳ 鏈上讀取中…</span></div>
+  <h2 class="section-title">On-Chain Verification <small class="en-label">公開 BSC RPC</small></h2>
+  <div class="onchain-grid">
+    <div class="onchain-card">
+      <div class="onchain-card-label">MS2 Token</div>
+      <div class="onchain-card-value" id="onchain-token-name">—</div>
+      <div class="onchain-card-sub" id="onchain-token-symbol">—</div>
+      <div class="onchain-card-meta" id="onchain-token-supply">Total Supply: —</div>
+    </div>
+    <div class="onchain-card">
+      <div class="onchain-card-label">MS2 Staking 總量</div>
+      <div class="onchain-card-value" id="onchain-staking-total">—</div>
+      <div class="onchain-card-sub">合約: 0xB6Ed…84D8</div>
+    </div>
+    <div class="onchain-card">
+      <div class="onchain-card-label">Lottery 狀態</div>
+      <div class="onchain-card-value" id="onchain-lottery-round">—</div>
+      <div class="onchain-card-sub" id="onchain-lottery-meta">Round / Entries —</div>
+    </div>
+  </div>
+  <p class="onchain-disclaimer">以上資料由 <code>eth_call</code> 直接讀取 BSC 主網公開合約，無需登入或 API key。事件資料由 <code>eth_getLogs</code> 取得。所有原始 RPC endpoint 為 <span id="onchain-rpc-url">—</span>。Implementation 合約僅作 ABI 邏輯參考，未直接讀取狀態。</p>
+</section>
+
+<!-- CONTRACT REFERENCES -->
   <div class="section-label">合約參考</div>
   <h2 class="section-title">🔗 鏈上合約</h2>
   <div class="contracts-card">
@@ -1742,10 +1839,10 @@ async function fetchAllWinnersOnChain(fromBlock, chunkSize) {
   const TOTAL_PHONES        = 1000;
 
   const REWARD_FLOW = [
-    { label: '交易流動性準備',            amount: 4.0  },
-    { label: '合資格邀請人推薦獎勵',         amount: 4.0  },
-    { label: '頂級貢獻者獎勵池',              amount: 1.5  },
-    { label: '國庫 / 活動運營 / 其他配置池',   amount: 7.5  },
+    { label: '交易流動性準備',                  amount: 4.0  },
+    { label: '運營市場',                        amount: 4.0  },
+    { label: '頂級貢獻者獎勵池',                 amount: 1.5  },
+    { label: '國庫 / 設備製造 / 其他配置池',        amount: 7.5  },
   ];
 
   const LEADERBOARD_RATIOS = [
@@ -1909,21 +2006,12 @@ async function fetchAllWinnersOnChain(fromBlock, chunkSize) {
 
     document.getElementById('progress-fill').style.width = pctClamped + '%';
     document.getElementById('progress-text').textContent = entriesNow;
+    document.getElementById('progress-number').textContent = entriesNow + '/100';
     document.getElementById('entries-next').textContent = fmtNum(entriesNeeded);
     document.getElementById('progress-needed').textContent =
-      (entriesNeeded !== null) ? (entriesNeeded + ' 個名額') : '— 個名額';
+      (entriesNeeded !== null) ? entriesNeeded.toLocaleString() : '—';
 
-    // WEB-20260710-005: distance-to-next-draw card
-    var distEl = document.getElementById('progress-distance-needed');
-    if (distEl) {
-      if (entriesNeeded !== null && entriesNeeded > 0) {
-        distEl.textContent = entriesNeeded.toLocaleString();
-      } else if (entriesNeeded === 0) {
-        distEl.textContent = '即將觸發';
-      } else {
-        distEl.textContent = '—';
-      }
-    }
+    // WEB-20260710-005: distance-to-next-draw card (removed in WEB-20260710-006 — using progress-card)
   }
 
   function showEmptyDashboard() {
@@ -1935,12 +2023,11 @@ async function fetchAllWinnersOnChain(fromBlock, chunkSize) {
     if (phonesRem) phonesRem.textContent = '— 支剩餘';
     document.getElementById('progress-fill').style.width = '0%';
     document.getElementById('progress-text').textContent = '0';
+    document.getElementById('progress-number').textContent = '0/100';
     document.getElementById('entries-next').textContent = '—';
-    document.getElementById('progress-needed').textContent = '— more entries';
+    document.getElementById('progress-needed').textContent = '—';
 
-    // WEB-20260710-005: distance-to-next-draw card reset
-    var distEmpty = document.getElementById('progress-distance-needed');
-    if (distEmpty) distEmpty.textContent = '—';
+    // WEB-20260710-005: distance-to-next-draw card reset (removed in WEB-20260710-006 — using progress-card)
   }
 
   // =================== DRAWS LIST ===================
@@ -2157,10 +2244,12 @@ function augmentKPIsFromOnChain(oc) {
       var pt = document.getElementById('progress-text');
       var pe = document.getElementById('entries-next');
       var pn = document.getElementById('progress-needed');
+      var pnum = document.getElementById('progress-number');
       if (pf) pf.style.width = pct + '%';
       if (pt) pt.textContent = entriesNow;
+      if (pnum) pnum.textContent = entriesNow + '/100';
       if (pe) pe.textContent = entriesNeeded.toLocaleString();
-      if (pn) pn.textContent = entriesNeeded + ' 個名額';
+      if (pn) pn.textContent = entriesNeeded.toLocaleString();
     }
   }
   if (oc.staking && oc.staking.totalStaked !== undefined) {
