@@ -1,17 +1,23 @@
 {
   "_meta": {
-    "source": "payment.magne.ai/api/v1/lottery2/dashboard",
-    "generatedAt": "2026-07-10T20:44:54+08:00",
-    "purpose": "Season 2 Dashboard 公開展示用靜態資料快照",
-    "updateGuide": "Jerry 定期用 payment.magne.ai session 取一次 dashboard JSON，覆寫此檔後 commit。"
+    "endpoint": "https://payment.magne.ai/api/v1/dashboard",
+    "fetchedAt": "2026-07-10T14:16:05.330147+00:00"
   },
   "code": 200,
   "msg": "ok",
   "data": {
-    "totalParticipants": 19,
-    "totalDraws": 5,
+    "totalParticipants": 20,
+    "totalEntries": 5,
     "totalMobile": 0,
     "currRound": 1,
     "nextDrawNeed": 95
-  }
+  },
+  "fieldMapping": {
+    "totalEntries": "後端 totalDraws 重新命名"
+  },
+  "fieldsRequestedButNotInResponse": [
+    "ms2Issued",
+    "liquidityPrepared"
+  ],
+  "safeForPublicDashboard": true
 }
