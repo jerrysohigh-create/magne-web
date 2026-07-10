@@ -212,7 +212,7 @@
 }
 .rules-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
 }
 .rule-item {
@@ -1261,22 +1261,30 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
       </div>
       <div class="rule-item">
         <div class="rule-icon">🪙</div>
-        <div class="rule-text">每個<strong>有效參與名額</strong>可獲得 <strong>10 MS2 活動點數</strong> + <strong>100 MHA 後續合資格分配記錄</strong></div>
+        <div class="rule-text">每個<strong>有效參與名額</strong>累積 <strong>10 個 MS2 活動積分</strong> + <strong>100 MHA 後續合資格分配記錄</strong></div>
       </div>
       <div class="rule-item">
         <div class="rule-icon">🎯</div>
-        <div class="rule-text">每 <strong>100 個參與名額</strong>觸發 <strong>1 次 Phone Gen1 中選</strong></div>
+        <div class="rule-text">每輪滿 <strong>100 個參與名額</strong>觸發 <strong>1 次 MAGNE.AI Phone Gen1 中選</strong></div>
       </div>
       <div class="rule-item">
         <div class="rule-icon">💎</div>
-        <div class="rule-text">MS2 可用於<strong>活動權重、質押權重及合資格計算</strong></div>
+        <div class="rule-text">MS2 可用於<strong>活動追蹤、排名、質押權重及未來合資格審核</strong></div>
       </div>
       <div class="rule-item">
         <div class="rule-icon">⚖️</div>
         <div class="rule-text">MAGNE.AI 保留對<strong>活動規則的最終解釋權</strong></div>
       </div>
+      <div class="rule-item">
+        <div class="rule-icon">🌊</div>
+        <div class="rule-text"><strong>流動性池</strong>預計在符合條件的設備總數達到 <strong>200 台</strong>時正式啟動</div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-icon">🏦</div>
+        <div class="rule-text">活動結束後，<strong>質押合約中的所有 MS2 代幣（含未提取的）</strong>將根據最終合資格質押記錄，<strong>按比例參與 35,000,000 MHA 的後續分配安排</strong></div>
+      </div>
     </div>
-    <div class="rules-note">100 MHA 為後續合資格分配記錄，最終以官方活動規則、TGE 時程及合資格審查為準。</div>
+    <div class="rules-note">相關 MHA 預計於 TGE 後 1 個月內按活動規則發放，最終以 TGE 時程、合資格審核、防濫用審查、地區限制及官方活動規則為準。</div>
   </div>
 
   <div class="back-home">
@@ -1394,7 +1402,7 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
         <div class="participation-price">17 USDT</div>
         <div class="participation-label">標準參與</div>
         <div class="participation-detail">1 個參與名額 + 10 MS2 活動點數</div>
-        <div class="participation-note">每個有效參與名額另可獲得 100 MHA 後續合資格分配記錄，最終以官方活動規則、TGE 時程及合資格審查為準。</div>
+        <div class="participation-note">每個有效參與名額可獲得 100 MHA 後續合資格分配記錄，相關 MHA 預計於 TGE 後 1 個月內按活動規則發放，最終以 TGE 時程、合資格審核、防濫用審查、地區限制及官方活動規則為準。</div>
       </div>
     </div>
   </div>
@@ -1414,7 +1422,7 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
       <div class="reward-total">17 USDT per entry</div>
       <ul>
         <li><span class="reward-amount">4 USDT</span><span>交易流動性準備</span></li>
-        <li><span class="reward-amount">4 USDT</span><span>運營市場</span></li>
+        <li><span class="reward-amount">4 USDT</span><span>運營市場（包括但不限於合格邀請人的推薦獎勵、市場推廣及活動運營）</span></li>
         <li><span class="reward-amount">1.5 USDT</span><span>頂級貢獻者獎勵池</span></li>
         <li><span class="reward-amount">7.5 USDT</span><span>國庫 / 設備製造 / 其他配置池</span></li>
       </ul>
@@ -1573,6 +1581,8 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
 
     <h4>活動免責聲明</h4>
     <p>活動資料僅供資訊透明用途。MS2 與 MHA 相關資訊並非投資建議、保證價值、固定回報或保證分配。所有獎勵、點數、合資格、質押權重、排名及分配時程均依官方活動規則、身份驗證、防濫用審查、TGE 相關時程、區域限制及適用規定辦理。</p>
+
+    <p><strong>明確聲明：</strong>MS2 活動積分並非 MHA，不代表金融產品，不構成投資建議、收益承諾、上市承諾或價值保證。</p>
   </div>
 
   <!-- FOOTER -->
@@ -1840,7 +1850,7 @@ async function fetchAllWinnersOnChain(fromBlock, chunkSize) {
 
   const REWARD_FLOW = [
     { label: '交易流動性準備',                  amount: 4.0  },
-    { label: '運營市場',                        amount: 4.0  },
+    { label: '運營市場（包括但不限於合格邀請人的推薦獎勵、市場推廣及活動運營）', amount: 4.0  },
     { label: '頂級貢獻者獎勵池',                 amount: 1.5  },
     { label: '國庫 / 設備製造 / 其他配置池',        amount: 7.5  },
   ];
