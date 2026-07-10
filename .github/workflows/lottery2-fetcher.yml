@@ -13,7 +13,7 @@ on:
 jobs:
   fetch:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     permissions:
       contents: write
 
@@ -26,8 +26,19 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install ethers
-        run: pip install eth-account
+      - name: Install deps
+        run: pip install eth-account playwright
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('.github/scripts/auto_login_fetch.py') }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-
+
+      - name: Install Playwright chromium
+        run: playwright install chromium-headless-shell --with-deps
 
       - name: Auto SIWE login + fetch lottery2 data
         env:
@@ -48,6 +59,7 @@ jobs:
             TS=$(date -u +%FT%TZ)
             git commit -m "chore(data): auto-refresh lottery2 ($TS)"
             git push
+            echo "Pushed"
           fi
 
       - name: On failure, open issue reminder
