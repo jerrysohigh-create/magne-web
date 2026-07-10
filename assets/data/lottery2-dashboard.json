@@ -1,0 +1,17 @@
+{
+  "_meta": {
+    "source": "payment.magne.ai/api/v1/lottery2/dashboard",
+    "generatedAt": "2026-07-10T20:44:54+08:00",
+    "purpose": "Season 2 Dashboard 公開展示用靜態資料快照",
+    "updateGuide": "Jerry 定期用 payment.magne.ai session 取一次 dashboard JSON，覆寫此檔後 commit。"
+  },
+  "code": 200,
+  "msg": "ok",
+  "data": {
+    "totalParticipants": 19,
+    "totalDraws": 5,
+    "totalMobile": 0,
+    "currRound": 1,
+    "nextDrawNeed": 95
+  }
+}

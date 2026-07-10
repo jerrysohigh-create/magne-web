@@ -2066,7 +2066,33 @@ async function fetchAllWinnersOnChain(fromBlock, chunkSize) {
   }
 
   // =================== API CALLS ===================
+  // WEB-20260710-009：優先讀取靜態 JSON 快照
+  // 路徑：/magne-web/assets/data/lottery2-dashboard.json
+  // 由 Jerry 定期從 payment.magne.ai session 取回後覆寫 commit
+  const STATIC_DASHBOARD_URL = '/magne-web/assets/data/lottery2-dashboard.json';
+
+  async function loadStaticDashboard() {
+    try {
+      const res = await fetch(STATIC_DASHBOARD_URL + '?t=' + Date.now());
+      if (!res.ok) return null;
+      const json = await res.json();
+      if (json.code !== 200 || !json.data) return null;
+      console.info('[Dashboard] 從靜態 JSON 載入', json._meta?.generatedAt || '');
+      return json.data;
+    } catch (e) {
+      console.warn('[Dashboard] 靜態 JSON 載入失敗:', e.message);
+      return null;
+    }
+  }
+
   async function loadDashboard() {
+    // 1. 優先嘗試靜態 JSON
+    const staticData = await loadStaticDashboard();
+    if (staticData) {
+      renderDashboard(staticData);
+      return;
+    }
+    // 2. fallback 到 DASHBOARD_API（需 session，前端通常 900401）
     try {
       const res = await fetch(DASHBOARD_API);
       const json = await res.json();
