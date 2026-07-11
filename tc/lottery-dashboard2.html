@@ -1173,40 +1173,184 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
 /* === End Season 1 NAV/FOOTER CSS === */
 
 
-/* === ALL WINNERS TABLE === */
-.winners-table-wrapper {
-  overflow-x: auto;
-  margin-top: 1rem;
+/* === ALL WINNERS LIST (WEB-20260711-001) === */
+/* Pattern mirrors tc/lottery-dashboard.html (所有中獎者 board, L1896+) */
+
+.recent-activity {
+  background: var(--bg-secondary, #0f0f12);
   border: 1px solid var(--border, rgba(255,255,255,0.06));
-  border-radius: 12px;
+  border-radius: 20px;
+  padding: 1.75rem;
+  margin-top: 1.5rem;
 }
-.winners-table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 700px;
+
+.activity-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding-bottom: 0.75rem;
 }
-.winners-table th,
-.winners-table td {
-  padding: 0.75rem 1rem;
-  text-align: left;
-  border-bottom: 1px solid var(--border, rgba(255,255,255,0.06));
-  font-size: 0.9rem;
+
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
 }
-.winners-table th {
+
+.activity-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
   background: var(--bg-card, rgba(255,255,255,0.03));
+  border-radius: 12px;
+  border: 1px solid transparent;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.activity-item:hover {
+  border-color: var(--accent, #00ff88);
+  transform: translateX(3px);
+}
+
+.activity-winner {
+  background: var(--gold-dim, rgba(255, 215, 0, 0.2));
+  border: 1px solid rgba(255, 215, 0, 0.25);
+}
+
+.activity-winner:hover {
+  border-color: var(--gold, #ffd700);
+}
+
+.winners-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.winners-pagination .winners-count {
+  font-size: 0.82rem;
   color: var(--text-secondary, rgba(245,245,247,0.6));
+}
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.page-btn {
+  padding: 0.4rem 1rem;
+  border: 1px solid var(--border-hover, rgba(255,255,255,0.12));
+  border-radius: 8px;
+  background: var(--bg-card, rgba(255,255,255,0.03));
+  color: var(--text-primary, #f5f5f7);
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.page-btn:hover:not(:disabled) {
+  border-color: var(--accent, #00ff88);
+  color: var(--accent, #00ff88);
+}
+.page-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+.page-indicator {
+  font-size: 0.82rem;
+  color: var(--text-secondary, rgba(245,245,247,0.6));
+  font-family: 'JetBrains Mono', monospace;
+  white-space: nowrap;
+}
+
+.activity-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+.activity-icon.phone {
+  background: rgba(0, 212, 212, 0.2);
+}
+.activity-icon.mha {
+  background: rgba(0, 255, 136, 0.2);
+}
+
+.activity-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.activity-text {
+  font-size: 0.9rem;
+  color: var(--text-primary, #f5f5f7);
+  margin-bottom: 0.2rem;
+}
+
+.activity-round {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--text-secondary, rgba(245,245,247,0.6));
+  margin-bottom: 0.2rem;
+}
+
+.activity-addr {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--accent, #00ff88);
+  text-decoration: none;
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+.activity-addr:hover { opacity: 0.8; }
+
+.winner-status {
+  font-size: 0.72rem;
   font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  margin-left: 0.4rem;
 }
-.winners-table tbody tr:last-child td {
-  border-bottom: none;
+.winner-status.confirmed {
+  background: var(--green-dim, rgba(0, 255, 136, 0.15));
+  color: var(--accent, #00ff88);
 }
+.winner-status.pending {
+  background: rgba(255, 193, 7, 0.15);
+  color: #ffc107;
+}
+.winner-status.unknown {
+  background: rgba(255,255,255,0.05);
+  color: var(--text-secondary, rgba(245,245,247,0.6));
+}
+
 .winners-empty-state {
   text-align: center;
   padding: 2rem 1rem;
   color: var(--text-secondary, rgba(245,245,247,0.6));
   font-size: 0.95rem;
 }
-/* === End ALL WINNERS TABLE === */
+
+/* Responsive (WEB-20260711-001) */
+@media (max-width: 768px) {
+  .recent-activity { padding: 1.25rem; }
+  .activity-item { padding: 0.85rem; gap: 0.75rem; }
+  .winners-pagination { flex-direction: column; align-items: flex-start; }
+  .activity-icon { width: 38px; height: 38px; font-size: 1.1rem; }
+  .activity-text { font-size: 0.85rem; }
+}
+/* === End ALL WINNERS LIST === */
+
   
     /* === On-chain KPI dots (WEB-20260710-002) === */
     .onchain-dot { font-size: 0.6rem; color: #4caf50; font-family: 'JetBrains Mono', monospace; margin-left: 0.3rem; }
@@ -1264,12 +1408,8 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
         <div class="rule-text">每個錢包最多可獲得 <strong>100 個</strong>參與名額</div>
       </div>
       <div class="rule-item">
-        <div class="rule-icon">💰</div>
-        <div class="rule-text">每個<strong>參與名額</strong>為 <strong>17 USDT</strong></div>
-      </div>
-      <div class="rule-item">
-        <div class="rule-icon">🪙</div>
-        <div class="rule-text">每個<strong>有效參與名額</strong>累積 <strong>10 個 MS2 活動積分</strong></div>
+        <div class="rule-icon">💎</div>
+        <div class="rule-text">每個<strong>參與名額</strong>為 <strong>17 USDT</strong>，每個<strong>有效參與名額</strong>累積 <strong>10 個 MS2 活動積分</strong></div>
       </div>
       <div class="rule-item">
         <div class="rule-icon">🎯</div>
@@ -1307,7 +1447,7 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
       <div class="stat-icon">👥</div>
       <div class="stat-value" id="participants">—</div>
       <div class="stat-label">總參與區塊鏈地址數</div>
-      <div class="stat-trend">Season 2</div>
+      <div class="stat-trend">Season 2(質押+抽獎)</div>
     <span class="onchain-dot" id="oc-dot-participants" style="display:none"> On-chain</span>
       </div>
 
@@ -1321,10 +1461,10 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
 
     <div class="stat-card">
       <div class="stat-icon">🎯</div>
-      <div class="stat-value" id="curr-round">—</div>
-      <div class="stat-label">目前輪次</div>
-      <div class="stat-trend">輪次編號</div>
-    <span class="onchain-dot" id="oc-dot-curr-round" style="display:none"> On-chain</span>
+      <div class="stat-value" id="usdt-pool">—</div>
+      <div class="stat-label">鏈上活動資產</div>
+      <div class="stat-trend">USDT 活動池</div>
+    <span class="onchain-dot" id="oc-dot-usdt-pool" style="display:none"> On-chain</span>
       </div>
 
     <div class="stat-card">
@@ -1337,10 +1477,10 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
 
     <div class="stat-card">
       <div class="stat-icon">⏭️</div>
-      <div class="stat-value" id="entries-next">—</div>
-      <div class="stat-label">距離下一支手機名額</div>
-      <div class="stat-trend">距下次開獎</div>
-    <span class="onchain-dot" id="oc-dot-entries-next" style="display:none"> On-chain</span>
+      <div class="stat-value" id="mha-status">—</div>
+      <div class="stat-label">TGE 後 MHA 獎勵狀態</div>
+      <div class="stat-trend">MHA 代幣</div>
+    <span class="onchain-dot" id="oc-dot-mha-status" style="display:none"> On-chain</span>
       </div>
 
     <div class="stat-card">
@@ -1355,8 +1495,8 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
   <!-- PROGRESS BAR -->
   <div class="progress-card">
     <div class="progress-header">
-      <div class="progress-title">Round —</div>
-      <div class="progress-round-badge">📱 1 部 Phone Gen1 待中選</div>
+      <div class="progress-title" id="progress-title">🎰 第 1 輪</div>
+      <div class="progress-round-badge">📱 1 部 MAGNE.AI Phone Gen1 待中選</div>
     </div>
     <div class="progress-center">
       <div class="progress-number" id="progress-number">0/100</div>
@@ -1373,35 +1513,24 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
   </div>
 <!-- ALL WINNERS -->
   <section id="all-winners">
-    <div class="section-label"><img class="ms2-module-icon" src="/magne-web/assets/img/ms2/ms2-icon.svg" loading="lazy" decoding="async" alt="MS2 by MAGNE.AI">全部中獎紀錄</div>
+    <div class="section-label">全部中獎紀錄</div>
     <h2 class="section-title">全部中獎紀錄 <small class="en-label">All Winners</small></h2>
-    <div class="winners-table-wrapper">
-      <table class="winners-table">
-        <thead>
-          <tr>
-            <th>Round</th>
-            <th>Winner Address</th>
-            <th>Phone Model</th>
-            <th>Entries</th>
-            <th>Tx Hash</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody id="all-winners-body">
-          <!-- Filled by renderAllWinners() -->
-        </tbody>
-      </table>
-    </div>
-    <p class="winners-empty-state" id="winners-empty-state">
-      暫無完整中獎紀錄，Season 2 開始後將自動同步。
-    </p>
-    <div class="winners-pagination">
-      <button class="pagination-btn" id="winners-prev" disabled>← 上一頁</button>
-      <span class="pagination-info" id="winners-page-info">第 1 / 1 頁</span>
-      <button class="pagination-btn" id="winners-next" disabled>下一頁 →</button>
+    <div class="recent-activity">
+      <div class="activity-title">🏆 全部中獎紀錄</div>
+      <div class="winners-pagination">
+        <span id="winners-count" class="winners-count"></span>
+        <div class="pagination-controls">
+          <button class="page-btn" id="winners-prev" onclick="changeWinnersPage(-1)" disabled>← 上一頁</button>
+          <span class="page-indicator" id="winners-page-info">第 1 / 1 頁</span>
+          <button class="page-btn" id="winners-next" onclick="changeWinnersPage(1)" disabled>下一頁 →</button>
+        </div>
+      </div>
+      <div class="activity-list" id="winners-list"></div>
+      <p class="winners-empty-state" id="winners-empty-state">
+        暫無完整中獎紀錄，Season 2 開始後將自動同步。
+      </p>
     </div>
   </section>
-
   <!-- 參與選項 (WEB-20260710-006) -->
   <div class="participation-options-section">
     <div class="section-label">參與選項</div>
@@ -1854,7 +1983,7 @@ async function fetchAllWinnersOnChain(fromBlock, chunkSize) {
   const MS2_PER_ENTRY       = 10;
   const ENTRIES_PER_ROUND   = 100;
   const ROUND_REVENUE_USDT  = 1700;
-  const TOTAL_PHONES        = 1000;
+  const TOTAL_PHONES        = 1600;
 
   const REWARD_FLOW = [
     { label: '交易流動性準備',                  amount: 4.0  },
@@ -1983,39 +2112,43 @@ async function fetchAllWinnersOnChain(fromBlock, chunkSize) {
     const totalParticipants = d.totalParticipants ?? null;
     const totalMobile       = d.totalMobile ?? null;
     const currRound         = d.currRound ?? null;
-    const totalDraws        = d.totalDraws ?? null;
+    const totalEntries        = d.totalEntries ?? null;
     const nextDrawNeed      = d.nextDrawNeed ?? null;
 
     document.getElementById('participants').textContent = fmtNum(totalParticipants);
     document.getElementById('phones-given').textContent = fmtNum(totalMobile);
     document.getElementById('phones-remaining').textContent =
       (totalMobile !== null) ? (TOTAL_PHONES - Number(totalMobile)).toLocaleString() + ' 支剩餘' : '— 支剩餘';
-    document.getElementById('curr-round').textContent = fmtNum(currRound);
-    document.getElementById('total-entries').textContent = fmtNum(totalDraws);
+    // KPI #3 改為 USDT 活動池 = 總參與名額 × 17 USDT
+    if (totalEntries !== null) {
+      const usdtEl = document.getElementById('usdt-pool');
+      if (usdtEl) usdtEl.textContent = '$' + (Number(totalEntries) * 17).toLocaleString();
+    }
+    document.getElementById('total-entries').textContent = fmtNum(totalEntries);
 
     // MS2 活動點數 = 總參與名額 × 10（由參與名額計算）
-    const ms2Credits = (totalDraws !== null && !isNaN(totalDraws))
-      ? Number(totalDraws) * MS2_PER_ENTRY
+    const ms2Credits = (totalEntries !== null && !isNaN(totalEntries))
+      ? Number(totalEntries) * MS2_PER_ENTRY
       : null;
     document.getElementById('ms2-credits').textContent = (ms2Credits !== null)
       ? ms2Credits.toLocaleString()
       : '—';
 
-    // Progress bar: prefer nextDrawNeed, else fallback to totalDraws % 100
+    // Progress bar: prefer nextDrawNeed, else fallback to totalEntries % 100
     let entriesNow = null;
     let entriesNeeded = null;
     if (nextDrawNeed !== null && nextDrawNeed !== undefined && !isNaN(nextDrawNeed)) {
       entriesNow = ENTRIES_PER_ROUND - Number(nextDrawNeed);
       entriesNeeded = Number(nextDrawNeed);
-    } else if (totalDraws !== null && totalDraws !== undefined && !isNaN(totalDraws)) {
-      const td = Number(totalDraws);
+    } else if (totalEntries !== null && totalEntries !== undefined && !isNaN(totalEntries)) {
+      const td = Number(totalEntries);
       entriesNow = td % ENTRIES_PER_ROUND;
       entriesNeeded = ENTRIES_PER_ROUND - entriesNow;
     } else {
       entriesNow = 0;
       entriesNeeded = ENTRIES_PER_ROUND;
     }
-    // Edge: totalDraws=0 and nextDrawNeed=100 → display 0/100
+    // Edge: totalEntries=0 and nextDrawNeed=100 → display 0/100
     if (entriesNow < 0) entriesNow = 0;
     if (entriesNow > ENTRIES_PER_ROUND) entriesNow = ENTRIES_PER_ROUND;
 
@@ -2025,7 +2158,19 @@ async function fetchAllWinnersOnChain(fromBlock, chunkSize) {
     document.getElementById('progress-fill').style.width = pctClamped + '%';
     document.getElementById('progress-text').textContent = entriesNow;
     document.getElementById('progress-number').textContent = entriesNow + '/100';
-    document.getElementById('entries-next').textContent = fmtNum(entriesNeeded);
+    // 動態更新輪次標題
+    const progressTitleEl = document.getElementById('progress-title');
+    if (progressTitleEl && currRound !== null) {
+      progressTitleEl.textContent = '🎰 第 ' + Number(currRound).toLocaleString() + ' 輪';
+    }
+    // KPI #5 TGE 後 MHA 獎勵狀態（仿 Season 1 公式：(currRound - 1) * 99 * 100）
+    if (currRound !== null) {
+      const completedRounds = Math.max(0, Number(currRound) - 1);
+      const pendingMha = completedRounds * 99 * 100;
+      document.getElementById('mha-status').textContent = pendingMha.toLocaleString();
+    } else {
+      document.getElementById('mha-status').textContent = '—';
+    }
     document.getElementById('progress-needed').textContent =
       (entriesNeeded !== null) ? entriesNeeded.toLocaleString() : '—';
 
@@ -2035,14 +2180,14 @@ async function fetchAllWinnersOnChain(fromBlock, chunkSize) {
   function showEmptyDashboard() {
     renderDashboard({});
     // Soft fallback values
-    ['participants','phones-given','curr-round','total-entries','entries-next','ms2-credits']
+    ['participants','phones-given','usdt-pool','total-entries','mha-status','ms2-credits']
       .forEach(id => { const el = document.getElementById(id); if (el) el.textContent = '—'; });
     const phonesRem = document.getElementById('phones-remaining');
     if (phonesRem) phonesRem.textContent = '— 支剩餘';
     document.getElementById('progress-fill').style.width = '0%';
     document.getElementById('progress-text').textContent = '0';
     document.getElementById('progress-number').textContent = '0/100';
-    document.getElementById('entries-next').textContent = '—';
+    document.getElementById('mha-status').textContent = '—';
     document.getElementById('progress-needed').textContent = '—';
 
     // WEB-20260710-005: distance-to-next-draw card reset (removed in WEB-20260710-006 — using progress-card)
@@ -2167,28 +2312,108 @@ async function fetchAllWinnersOnChain(fromBlock, chunkSize) {
   // 全域變數：保留結構，等待後續 API 接入
   let winnersData = [];
 
-  function renderAllWinners() {
-    const tbody = document.getElementById('all-winners-body');
-    const emptyState = document.getElementById('winners-empty-state');
-    if (!tbody || !emptyState) return;
+  // Pagination state (WEB-20260711-001: list-based rendering pattern)
+  let winnersCurrentPage = 1;
+  const WINNERS_PAGE_SIZE = 20;
 
-    if (!winnersData || winnersData.length === 0) {
-      tbody.innerHTML = '';
+  // Status badge helper — maps raw status string → CSS class + label
+  function winnerStatusClass(s) {
+    if (!s) return 'unknown';
+    const k = String(s).toLowerCase();
+    if (k === 'confirmed' || k === 'claimable' || k === 'claimed' || k === 'fulfilled' || k === 'completed') return 'confirmed';
+    if (k === 'pending' || k === 'awaiting' || k === 'queued') return 'pending';
+    return 'unknown';
+  }
+  function winnerStatusLabel(s) {
+    const c = winnerStatusClass(s);
+    if (c === 'confirmed') return '✓ ' + s;
+    if (c === 'pending')   return '⏳ ' + s;
+    return s || '—';
+  }
+
+  // BSCScan URL for tx hash (used for tx link)
+  function bscTxUrl(hash) {
+    if (!hash) return '#';
+    return 'https://bscscan.com/tx/' + hash;
+  }
+
+  function renderAllWinners() {
+    const list = document.getElementById('winners-list');
+    const emptyState = document.getElementById('winners-empty-state');
+    const pageInfo = document.getElementById('winners-page-info');
+    const prevBtn = document.getElementById('winners-prev');
+    const nextBtn = document.getElementById('winners-next');
+    const countEl = document.getElementById('winners-count');
+    if (!list || !emptyState) return;
+
+    const total = (winnersData || []).length;
+
+    // Empty state
+    if (total === 0) {
+      list.innerHTML = '';
       emptyState.style.display = 'block';
+      if (pageInfo) pageInfo.textContent = '第 1 / 1 頁';
+      if (prevBtn)  prevBtn.disabled = true;
+      if (nextBtn)  nextBtn.disabled = true;
+      if (countEl)  countEl.textContent = '0 名中獎者';
       return;
     }
 
     emptyState.style.display = 'none';
-    tbody.innerHTML = winnersData.map(w => `
-      <tr>
-        <td>${w.round ?? ''}</td>
-        <td>${w.winnerAddress ?? ''}</td>
-        <td>${w.phoneModel ?? ''}</td>
-        <td>${w.entries ?? ''}</td>
-        <td>${w.txHash ?? ''}</td>
-        <td>${w.status ?? ''}</td>
-      </tr>
-    `).join('');
+
+    const totalPages = Math.max(1, Math.ceil(total / WINNERS_PAGE_SIZE));
+    if (winnersCurrentPage < 1) winnersCurrentPage = 1;
+    if (winnersCurrentPage > totalPages) winnersCurrentPage = totalPages;
+    const start = (winnersCurrentPage - 1) * WINNERS_PAGE_SIZE;
+    const pageWinners = winnersData.slice(start, start + WINNERS_PAGE_SIZE);
+
+    list.innerHTML = pageWinners.map(w => {
+      const round = (w.round !== undefined && w.round !== null) ? w.round : '—';
+      const addr = w.winnerAddress || w.address || '';
+      const phoneModel = w.phoneModel || 'Phone Gen1';
+      const entries = (w.entries !== undefined && w.entries !== null) ? w.entries : '—';
+      const txHash = w.txHash || '';
+      const status = w.status || '';
+      const statusCls = winnerStatusClass(status);
+      const statusLabel = winnerStatusLabel(status);
+      const bscUrl = addr ? ('https://bscscan.com/address/' + addr) : '#';
+      const txUrl = bscTxUrl(txHash);
+      return `
+        <div class="activity-item activity-winner">
+          <div class="activity-icon phone">📱</div>
+          <div class="activity-content">
+            <div class="activity-text">
+              Round <strong>${round}</strong>
+              · <span>${phoneModel}</span>
+              · ${entries} entries
+              <span class="winner-status ${statusCls}">${statusLabel}</span>
+            </div>
+            <div class="activity-round">Tx: ${txHash
+              ? `<a href="${txUrl}" target="_blank" rel="noopener" class="activity-addr" title="View on BSC Scan">${fmtAddr(txHash)} ↗</a>`
+              : '—'}</div>
+            <div>${addr
+              ? `<a href="${bscUrl}" target="_blank" rel="noopener" class="activity-addr" title="View winner on BSC Scan">${fmtAddr(addr)} ↗</a>`
+              : '<span class="activity-addr">—</span>'}</div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    if (pageInfo) pageInfo.textContent = `第 ${winnersCurrentPage} / ${totalPages} 頁`;
+    if (prevBtn)  prevBtn.disabled = winnersCurrentPage <= 1;
+    if (nextBtn)  nextBtn.disabled = winnersCurrentPage >= totalPages;
+    if (countEl)  countEl.textContent = `${total} 名中獎者`;
+  }
+
+  // Pagination handler — called by onclick in section HTML
+  function changeWinnersPage(delta) {
+    if (!winnersData || winnersData.length === 0) return;
+    const totalPages = Math.max(1, Math.ceil(winnersData.length / WINNERS_PAGE_SIZE));
+    const newPage = winnersCurrentPage + delta;
+    if (newPage < 1 || newPage > totalPages) return;
+    renderAllWinners();
+    // Smooth-scroll to top of winners list after re-render
+    document.querySelector('#all-winners .recent-activity')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   // fetchAllWinners — powered by BSC RPC eth_getLogs (WEB-20260710-002)
@@ -2269,7 +2494,7 @@ function renderOnChainPanel(oc) {
 function augmentKPIsFromOnChain(oc) {
   if (oc.lottery) {
     if (oc.lottery.currentRound !== null) {
-      var el = document.getElementById('curr-round');
+      var el = document.getElementById('usdt-pool');
       if (el) { el.textContent = oc.lottery.currentRound.toLocaleString(); markOnchain(el); }
     }
     if (oc.lottery.totalEntries !== null) {
@@ -2286,7 +2511,7 @@ function augmentKPIsFromOnChain(oc) {
       var pct = (entriesNow / oc.lottery.entriesPerRound) * 100;
       var pf = document.getElementById('progress-fill');
       var pt = document.getElementById('progress-text');
-      var pe = document.getElementById('entries-next');
+      var pe = document.getElementById('mha-status');
       var pn = document.getElementById('progress-needed');
       var pnum = document.getElementById('progress-number');
       if (pf) pf.style.width = pct + '%';
