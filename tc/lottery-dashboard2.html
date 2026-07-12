@@ -1225,6 +1225,165 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
     /* === On-chain KPI dots (WEB-20260710-002) === */
     .onchain-dot { font-size: 0.6rem; color: #4caf50; font-family: 'JetBrains Mono', monospace; margin-left: 0.3rem; }
 
+
+    /* ===== WEB-20260712-010 — How to Join Stepper ===== */
+    .section-subtitle {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin: -0.5rem 0 1.5rem;
+      max-width: 720px;
+    }
+
+    .htj-stepper {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0 1rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      position: relative;
+    }
+    .htj-step {
+      background: var(--bg-secondary, rgba(255,255,255,0.03));
+      border: 1px solid var(--border, rgba(255,255,255,0.08));
+      border-radius: 14px;
+      padding: 1.25rem 1rem 1.1rem;
+      position: relative;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .htj-step:hover {
+      border-color: var(--accent, rgba(0,212,212,0.5));
+    }
+    .htj-step-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      color: var(--accent, #00d4d4);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+    .htj-step-icon {
+      font-size: 1.1rem;
+      opacity: 0.7;
+      margin-bottom: 0.4rem;
+      display: inline-block;
+    }
+    .htj-step-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary, #fff);
+      margin: 0 0 0.35rem;
+    }
+    .htj-step-desc {
+      font-size: 0.82rem;
+      color: var(--text-secondary, rgba(255,255,255,0.65));
+      line-height: 1.5;
+      margin: 0;
+    }
+    .htj-compliance {
+      font-size: 0.72rem;
+      color: var(--text-tertiary, rgba(255,255,255,0.4));
+      line-height: 1.55;
+      margin-top: 1.5rem;
+      padding: 0.75rem 1rem;
+      border-left: 2px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.02);
+    }
+
+    /* ===== WEB-20260712-010 — Campaign Parameters Panel ===== */
+    .cp-panel {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1.25rem;
+      margin: 1.5rem 0 1rem;
+    }
+    .cp-main-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    .cp-param-card {
+      background: var(--bg-secondary, rgba(255,255,255,0.03));
+      border: 1px solid var(--border, rgba(255,255,255,0.08));
+      border-radius: 14px;
+      padding: 1.5rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .cp-param-card:hover {
+      border-color: var(--accent, rgba(0,212,212,0.5));
+    }
+    .cp-param-primary {
+      background: linear-gradient(135deg, rgba(0,212,212,0.06), rgba(0,212,212,0.02));
+    }
+    .cp-param-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: var(--accent, #00d4d4);
+      line-height: 1.1;
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.5px;
+    }
+    .cp-unit {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: rgba(0,212,212,0.75);
+      margin-left: 0.15rem;
+    }
+    .cp-param-label {
+      font-size: 0.78rem;
+      color: var(--text-secondary, rgba(255,255,255,0.65));
+      letter-spacing: 0.3px;
+    }
+    .cp-side-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .cp-side-card {
+      background: var(--bg-secondary, rgba(255,255,255,0.03));
+      border: 1px solid var(--border, rgba(255,255,255,0.08));
+      border-radius: 14px;
+      padding: 1.1rem 1.1rem 1rem;
+      flex: 1;
+    }
+    .cp-side-title {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-primary, #fff);
+      margin: 0 0 0.45rem;
+    }
+    .cp-side-content {
+      font-size: 0.78rem;
+      color: var(--text-secondary, rgba(255,255,255,0.65));
+      line-height: 1.55;
+      margin: 0;
+    }
+    .cp-disclaimer {
+      font-size: 0.72rem;
+      color: var(--text-tertiary, rgba(255,255,255,0.4));
+      line-height: 1.55;
+      margin-top: 1.25rem;
+      padding: 0.75rem 1rem;
+      border-left: 2px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.02);
+    }
+
+    /* Mobile responsive (WEB-20260712-010) */
+    @media (max-width: 900px) {
+      .htj-stepper { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .htj-stepper { grid-template-columns: 1fr; }
+      .cp-panel { grid-template-columns: 1fr; }
+      .cp-main-grid { grid-template-columns: 1fr; }
+      .cp-param-value { font-size: 1.45rem; }
+    }
+
 </style>
 </head>
 <body>
@@ -1310,91 +1469,90 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
   </div>
 
 
-  <!-- 如何參與 (WEB-20260712-009) -->
+  <!-- 如何參與 (WEB-20260712-010 — Stepper redesign) -->
   <section id="how-to-join">
-    <div class="section-label">📋 如何參與</div>
     <h2 class="section-title">如何參與 <small class="en-label">How to Join</small></h2>
-    <div class="steps-grid">
-      <div class="step-item">
-        <div class="step-number">1</div>
-        <div class="step-icon">🔗</div>
-        <h3>連接錢包</h3>
-        <p>連接 Web3 錢包即可查看或參與符合資格的活動流程。部分功能可能需經資格審核、適用地區的 KYC/AML 要求及區域限制。</p>
-      </div>
-      <div class="step-item">
-        <div class="step-number">2</div>
-        <div class="step-icon">🎁</div>
-        <h3>輸入邀請碼（可選）</h3>
-        <p>輸入邀請人的邀請碼（選填）。邀請獎勵僅適用於一級直接邀請；如無邀請碼可使用官方預設入口。</p>
-      </div>
-      <div class="step-item">
-        <div class="step-number">3</div>
-        <div class="step-icon">💰</div>
-        <h3>支付 17 USDT</h3>
-        <p>支付 17 USDT 獲得 1 個參與名額。每個錢包最多可獲得 100 個參與名額。</p>
-      </div>
-      <div class="step-item">
-        <div class="step-number">4</div>
-        <div class="step-icon">📱</div>
-        <h3>抽獎領手機</h3>
-        <p>每 100 個參與名額觸發 1 次 MAGNE.AI Phone Gen1 中選，從該輪符合資格的參與者中抽出中獎者。</p>
-      </div>
-      <div class="step-item">
-        <div class="step-number">5</div>
-        <div class="step-icon">🪙</div>
-        <h3>獲得 10 MS2 + MHA 記錄</h3>
-        <p>有效參與名額累積 10 MS2 活動積分；未中選名額可獲得 100 MHA 後續合資格分配記錄（最終以官方活動規則及合資格審核為準）。</p>
-      </div>
-      <div class="step-item">
-        <div class="step-number">6</div>
-        <div class="step-icon">📈</div>
-        <h3>質押提升權重</h3>
-        <p>質押 MS2，用於活動權重、排名及未來合資格審核；質押權重非固定收益或保證回報。</p>
-      </div>
-    </div>
+    <p class="section-subtitle">從連接錢包到參與、抽選、積分與質押，Season 2 流程分為 6 個步驟。</p>
+    <ol class="htj-stepper">
+      <li class="htj-step">
+        <div class="htj-step-num">STEP 01</div>
+        <div class="htj-step-icon" aria-hidden="true">🔗</div>
+        <h3 class="htj-step-title">連接錢包</h3>
+        <p class="htj-step-desc">連接 Web3 錢包，查看可參與的 Season 2 活動流程。</p>
+      </li>
+      <li class="htj-step">
+        <div class="htj-step-num">STEP 02</div>
+        <div class="htj-step-icon" aria-hidden="true">🎁</div>
+        <h3 class="htj-step-title">輸入邀請碼</h3>
+        <p class="htj-step-desc">可選填邀請碼；邀請獎勵僅適用於一級直接邀請。</p>
+      </li>
+      <li class="htj-step">
+        <div class="htj-step-num">STEP 03</div>
+        <div class="htj-step-icon" aria-hidden="true">💰</div>
+        <h3 class="htj-step-title">支付 17 USDT</h3>
+        <p class="htj-step-desc">每 17 USDT 獲得 1 個參與名額，每錢包最多 100 個名額。</p>
+      </li>
+      <li class="htj-step">
+        <div class="htj-step-num">STEP 04</div>
+        <div class="htj-step-icon" aria-hidden="true">📱</div>
+        <h3 class="htj-step-title">Phone Gen1 中選</h3>
+        <p class="htj-step-desc">每 100 個參與名額觸發 1 次 Phone Gen1 中選。</p>
+      </li>
+      <li class="htj-step">
+        <div class="htj-step-num">STEP 05</div>
+        <div class="htj-step-icon" aria-hidden="true">🪙</div>
+        <h3 class="htj-step-title">累積 MS2 / MHA 記錄</h3>
+        <p class="htj-step-desc">有效名額累積 10 MS2；未中選名額記錄 100 MHA 後續合資格分配。</p>
+      </li>
+      <li class="htj-step">
+        <div class="htj-step-num">STEP 06</div>
+        <div class="htj-step-icon" aria-hidden="true">📈</div>
+        <h3 class="htj-step-title">質押 MS2</h3>
+        <p class="htj-step-desc">質押 MS2 可用於活動權重、排名及未來合資格審核。</p>
+      </li>
+    </ol>
+    <p class="htj-compliance">所有參與名額、MS2 活動積分、MHA 後續合資格分配、邀請獎勵及質押權重，均以官方活動規則、合資格審核、防濫用審查、TGE 時程、地區限制及適用規定為準。</p>
   </section>
 
 
-  <!-- 活動參數 (WEB-20260712-009) -->
+
+  <!-- 活動參數 (WEB-20260712-010 — Panel redesign) -->
   <section id="campaign-params">
-    <div class="section-label">📊 活動參數</div>
     <h2 class="section-title">活動參數 <small class="en-label">Campaign Parameters</small></h2>
-    <div class="params-grid">
-      <div class="param-card">
-        <div class="param-icon">🎫</div>
-        <div class="param-label">每參與名額</div>
-        <div class="param-value">17 USDT</div>
+    <p class="section-subtitle">Season 2 的主要參與、抽選、積分與分配參數。</p>
+    <div class="cp-panel">
+      <div class="cp-main-grid">
+        <div class="cp-param-card cp-param-primary">
+          <div class="cp-param-value">17 <span class="cp-unit">USDT</span></div>
+          <div class="cp-param-label">每個參與名額</div>
+        </div>
+        <div class="cp-param-card cp-param-primary">
+          <div class="cp-param-value">100</div>
+          <div class="cp-param-label">每輪參與名額</div>
+        </div>
+        <div class="cp-param-card cp-param-primary">
+          <div class="cp-param-value">1,600</div>
+          <div class="cp-param-label">Phone Gen1 活動名額</div>
+        </div>
+        <div class="cp-param-card cp-param-primary">
+          <div class="cp-param-value">35,000,000 <span class="cp-unit">MHA</span></div>
+          <div class="cp-param-label">後續合資格分配池</div>
+        </div>
       </div>
-      <div class="param-card">
-        <div class="param-icon">👤</div>
-        <div class="param-label">每錢包最多</div>
-        <div class="param-value">100 個參與名額</div>
-      </div>
-      <div class="param-card">
-        <div class="param-icon">📱</div>
-        <div class="param-label">Phone Gen1 活動名額</div>
-        <div class="param-value">1,600 台</div>
-      </div>
-      <div class="param-card">
-        <div class="param-icon">🪙</div>
-        <div class="param-label">MHA 後續合資格分配池</div>
-        <div class="param-value">35,000,000 MHA</div>
-      </div>
-      <div class="param-card">
-        <div class="param-icon">💧</div>
-        <div class="param-label">流動性池</div>
-        <div class="param-value">200 台後啟動</div>
-        <div class="param-sub">符合條件的設備總數達到 200 台</div>
-      </div>
-      <div class="param-card">
-        <div class="param-icon">⏱️</div>
-        <div class="param-label">MS2 / MHA 安排</div>
-        <div class="param-value">以 TGE 時程為準</div>
-        <div class="param-sub">官方活動規則及合資格審核為準</div>
+      <div class="cp-side-grid">
+        <div class="cp-side-card">
+          <h4 class="cp-side-title">流動性池</h4>
+          <p class="cp-side-content">符合條件的設備總數達到 200 台後，預計啟動流動性池，具體以官方公告、合規審核及市場條件為準。</p>
+        </div>
+        <div class="cp-side-card">
+          <h4 class="cp-side-title">TGE 安排</h4>
+          <p class="cp-side-content">MS2 解鎖與 MHA 發放以 TGE 時程、官方活動規則、合資格審核及地區限制為準。</p>
+        </div>
       </div>
     </div>
-    <p class="params-disclaimer">MS2 解鎖與 MHA 發放以 TGE 時程、官方活動規則及合資格審核為準；不構成固定收益或保證分配。</p>
+    <p class="cp-disclaimer">以上參數僅用於活動資訊展示，不構成固定收益、保證分配、上市承諾或價值保證。</p>
   </section>
+
 
   <!-- 6 DASHBOARD CARDS -->
   <div class="section-label">Season 2 總覽</div>
