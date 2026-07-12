@@ -1881,11 +1881,11 @@ async function fetchAllWinnersOnChain(fromBlock, chunkSize) {
   ];
 
   const PACKAGES = [
-    { usdt: 17,   label: 'Standard Entry', entries: 1,   ms2: 10,   featured: false },
-    { usdt: 34,   label: 'Double Entry',    entries: 2,   ms2: 20,   featured: false },
-    { usdt: 85,   label: 'Multi Entry',     entries: 5,   ms2: 50,   featured: false },
-    { usdt: 170,  label: 'Team Entry',      entries: 10,  ms2: 100,  featured: false },
-    { usdt: 1700, label: 'Full Round',      entries: 100, ms2: 1000, featured: true, trigger: 'Triggers one Phone Gen1 draw round' },
+    { usdt: 17,   label: '標準參與', entries: 1,   ms2: 10,   featured: false },
+    { usdt: 34,   label: '雙倍參與',    entries: 2,   ms2: 20,   featured: false },
+    { usdt: 85,   label: '多重參與',     entries: 5,   ms2: 50,   featured: false },
+    { usdt: 170,  label: '團隊參與',      entries: 10,  ms2: 100,  featured: false },
+    { usdt: 1700, label: '整輪（滿 100 名額）',      entries: 100, ms2: 1000, featured: true, trigger: '觸發 1 次 MAGNE.AI Phone Gen1 開獎' },
   ];
 
   // =================== APIs ===================
@@ -1920,7 +1920,7 @@ async function fetchAllWinnersOnChain(fromBlock, chunkSize) {
         <div class="package-card${featured ? ' featured' : ''}">
           <div class="package-amount">${p.usdt.toLocaleString()} USDT</div>
           <div class="package-label">${p.label}</div>
-          <div class="package-entries">${p.entries} Entries + ${p.ms2} MS2 Activity Points</div>
+          <div class="package-entries">${p.entries} 個參與名額 + ${p.ms2} 個 MS2 活動點數</div>
           ${trigger}
         </div>
       `;
