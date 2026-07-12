@@ -1384,6 +1384,213 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
       .cp-param-value { font-size: 1.45rem; }
     }
 
+
+    /* ===== WEB-20260712-011 — MS2 說明中心 ===== */
+    .ms2g-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .ms2g-card {
+      background: var(--bg-secondary, rgba(255,255,255,0.03));
+      border: 1px solid var(--border, rgba(255,255,255,0.08));
+      border-radius: 14px;
+      padding: 1.25rem 1.1rem 1.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .ms2g-card:hover {
+      border-color: var(--accent, rgba(0,255,136,0.5));
+    }
+    .ms2g-card-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border, rgba(255,255,255,0.06));
+    }
+    .ms2g-card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary, #f5f5f7);
+      margin: 0;
+    }
+    .ms2g-card-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: var(--accent, #00ff88);
+      text-transform: uppercase;
+      align-self: flex-start;
+    }
+    .ms2g-card-body {
+      font-size: 0.82rem;
+      color: var(--text-secondary, rgba(245,245,247,0.6));
+      line-height: 1.55;
+      margin: 0;
+    }
+    .ms2g-formula {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--text-primary, #f5f5f7);
+      padding: 0.6rem 0.75rem;
+      background: rgba(0,255,136,0.06);
+      border-left: 2px solid var(--accent, #00ff88);
+      border-radius: 4px;
+      line-height: 1.4;
+      word-break: break-word;
+    }
+    .ms2g-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .ms2g-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.3rem 0.65rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border, rgba(255,255,255,0.08));
+      border-radius: 999px;
+      font-size: 0.72rem;
+    }
+    .ms2g-chip-label {
+      color: var(--text-secondary, rgba(245,245,247,0.6));
+    }
+    .ms2g-chip-value {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent, #00ff88);
+      font-weight: 600;
+    }
+    .ms2g-card-note {
+      font-size: 0.7rem;
+      color: var(--text-tertiary, rgba(255,255,255,0.4));
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* MS2 生命周期 mini timeline (inside Card 3) */
+    .ms2g-mini-timeline {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .ms2g-mini-stage {
+      display: grid;
+      grid-template-columns: 24px 1fr;
+      grid-template-rows: auto auto;
+      column-gap: 0.6rem;
+      align-items: start;
+    }
+    .ms2g-mini-num {
+      grid-row: 1 / 3;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent, #00ff88);
+      color: #0f0f12;
+      border-radius: 50%;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+    .ms2g-mini-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-primary, #f5f5f7);
+    }
+    .ms2g-mini-desc {
+      font-size: 0.74rem;
+      color: var(--text-secondary, rgba(245,245,247,0.6));
+      line-height: 1.45;
+    }
+
+    /* ===== WEB-20260712-011 — Campaign Timeline (independent) ===== */
+    .ct-timeline {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+    }
+    .ct-timeline::before {
+      content: '';
+      position: absolute;
+      left: 22px;
+      top: 14px;
+      bottom: 14px;
+      width: 1px;
+      background: var(--border, rgba(255,255,255,0.12));
+    }
+    .ct-stage {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 0.8rem;
+      align-items: start;
+      padding: 0.75rem 0;
+      position: relative;
+    }
+    .ct-stage-marker {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      background: var(--bg-secondary, rgba(255,255,255,0.04));
+      border: 1px solid var(--accent, rgba(0,255,136,0.4));
+      border-radius: 50%;
+      z-index: 1;
+      position: relative;
+    }
+    .ct-stage-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent, #00ff88);
+    }
+    .ct-stage-content {
+      padding-top: 0.4rem;
+    }
+    .ct-stage-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary, #f5f5f7);
+      margin: 0 0 0.3rem;
+    }
+    .ct-stage-desc {
+      font-size: 0.84rem;
+      color: var(--text-secondary, rgba(245,245,247,0.6));
+      line-height: 1.55;
+      margin: 0;
+    }
+    .ct-compliance {
+      font-size: 0.72rem;
+      color: var(--text-tertiary, rgba(255,255,255,0.4));
+      line-height: 1.55;
+      margin-top: 1.25rem;
+      padding: 0.75rem 1rem;
+      border-left: 2px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.02);
+    }
+
+    /* Mobile responsive */
+    @media (max-width: 900px) {
+      .ms2g-grid { grid-template-columns: 1fr; }
+    }
+
 </style>
 </head>
 <body>
@@ -1781,46 +1988,93 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
       <tbody id="staking-tiers-body"></tbody>
     </table>
     <p class="staking-caption">暫無質押狀態，請先連結錢包查詢。</p>
-  </div>
-
-
-  <!-- 質押權重如何計算 (WEB-20260712-009) -->
-  <details class="compliance-collapse">
-    <summary>📐 質押權重如何計算</summary>
-    <div class="collapse-body">
-      <div class="weight-formula">有效權重 = MS2 數量 × 質押時長係數 × 社群等級係數</div>
-      <h4 style="margin-bottom: 0.75rem; color: var(--accent);">時長係數</h4>
-      <div class="weight-tiers">
-        <div class="weight-tier">
-          <div class="tier-name">短期</div>
-          <div class="tier-req">少於 7 天</div>
-          <div class="tier-bonus">0.5x</div>
+  </div>  <!-- MS2 說明中心 (WEB-20260712-011 — 整合 3 個 sections) -->
+  <section id="ms2-guide">
+    <h2 class="section-title">MS2 說明中心 <small class="en-label">MS2 Guide</small></h2>
+    <p class="section-subtitle">理解 MS2 的用途、質押權重、生命周期及合資格審核邏輯。</p>
+    <div class="ms2g-grid">
+      <!-- Card 1: MS2 是什麼 -->
+      <div class="ms2g-card ms2g-card-what">
+        <div class="ms2g-card-header">
+          <h3 class="ms2g-card-title">MS2 是什麼</h3>
+          <span class="ms2g-card-tag">MS2 ≠ MHA</span>
         </div>
-        <div class="weight-tier">
-          <div class="tier-name">標準</div>
-          <div class="tier-req">7–14 天</div>
-          <div class="tier-bonus">1.0x</div>
-        </div>
-        <div class="weight-tier">
-          <div class="tier-name">中期</div>
-          <div class="tier-req">15–30 天</div>
-          <div class="tier-bonus">1.2x</div>
-        </div>
-        <div class="weight-tier">
-          <div class="tier-name">長期</div>
-          <div class="tier-req">30 天以上</div>
-          <div class="tier-bonus">1.5x</div>
-        </div>
+        <p class="ms2g-card-body">MS2 是 Season 2 活動積分 / 活動代幣，用於活動追蹤、排名、質押權重及未來合資格審核。MS2 並非 MHA，兩者不存在固定兌換比例。MS2 不代表金融產品、固定收益、保證回報或上市權益。</p>
       </div>
-      <p class="rule-note">社群等級加成僅作合資格權重參考，最終以官方活動規則、資格審核及風控審查為準。</p>
+      <!-- Card 2: 質押權重 -->
+      <div class="ms2g-card ms2g-card-staking">
+        <div class="ms2g-card-header">
+          <h3 class="ms2g-card-title">質押權重</h3>
+          <span class="ms2g-card-tag">Staking Weight</span>
+        </div>
+        <div class="ms2g-formula">有效權重 = MS2 數量 × 質押時長係數 × 社群等級係數</div>
+        <div class="ms2g-chips">
+          <span class="ms2g-chip"><span class="ms2g-chip-label">少於 7 天</span><span class="ms2g-chip-value">0.5x</span></span>
+          <span class="ms2g-chip"><span class="ms2g-chip-label">7–14 天</span><span class="ms2g-chip-value">1.0x</span></span>
+          <span class="ms2g-chip"><span class="ms2g-chip-label">15–30 天</span><span class="ms2g-chip-value">1.2x</span></span>
+          <span class="ms2g-chip"><span class="ms2g-chip-label">30 天以上</span><span class="ms2g-chip-value">1.5x</span></span>
+        </div>
+        <p class="ms2g-card-note">質押權重僅用於活動排名、權重計算及未來合資格審核，不代表固定收益或保證分配。</p>
+      </div>
+      <!-- Card 3: MS2 生命周期 -->
+      <div class="ms2g-card ms2g-card-lifecycle">
+        <div class="ms2g-card-header">
+          <h3 class="ms2g-card-title">MS2 生命周期</h3>
+          <span class="ms2g-card-tag">MS2 Lifecycle</span>
+        </div>
+        <ol class="ms2g-mini-timeline">
+          <li class="ms2g-mini-stage"><span class="ms2g-mini-num">1</span><span class="ms2g-mini-label">活動期</span><span class="ms2g-mini-desc">MS2 通過符合資格的活動參與行為釋放</span></li>
+          <li class="ms2g-mini-stage"><span class="ms2g-mini-num">2</span><span class="ms2g-mini-label">質押期</span><span class="ms2g-mini-desc">用於計算潛在 MHA 分配資格</span></li>
+          <li class="ms2g-mini-stage"><span class="ms2g-mini-num">3</span><span class="ms2g-mini-label">快照期</span><span class="ms2g-mini-desc">記錄有效質押權重</span></li>
+          <li class="ms2g-mini-stage"><span class="ms2g-mini-num">4</span><span class="ms2g-mini-label">解鎖期</span><span class="ms2g-mini-desc">TGE 後按規則申請解除 MS2 質押</span></li>
+          <li class="ms2g-mini-stage"><span class="ms2g-mini-num">5</span><span class="ms2g-mini-label">結算期</span><span class="ms2g-mini-desc">未釋放、未領取、被罰沒或官方合約中可回收的 MS2，可依最終規則被銷毀、永久鎖定或另行處理</span></li>
+        </ol>
+      </div>
     </div>
-  </details>
+  </section>
 
-
-  <!-- MS2 是什麼 / MS2 ≠ MHA (WEB-20260712-009) -->
-  <section class="ms2-notice">
-    <div class="ms2-notice-title">MS2 是什麼 / MS2 ≠ MHA</div>
-    <p>MS2 是 Season 2 活動積分 / 活動代幣，用於活動追蹤、排名、質押權重及未來合資格審核。MS2 並非 MHA，兩者不存在固定兌換比例。MS2 不代表金融產品、固定收益、保證回報或上市權益。</p>
+  <!-- 活動時間線 (WEB-20260712-011 — Timeline redesign) -->
+  <section id="campaign-timeline">
+    <h2 class="section-title">活動時間線 <small class="en-label">Campaign Timeline</small></h2>
+    <p class="section-subtitle">Season 2 的參與、抽選、質押、TGE 及結算安排將分階段推進。</p>
+    <ol class="ct-timeline">
+      <li class="ct-stage">
+        <div class="ct-stage-marker"><span class="ct-stage-num">01</span></div>
+        <div class="ct-stage-content">
+          <h3 class="ct-stage-title">活動啟動</h3>
+          <p class="ct-stage-desc">Session 2 開放參與，抽獎輪次開始。</p>
+        </div>
+      </li>
+      <li class="ct-stage">
+        <div class="ct-stage-marker"><span class="ct-stage-num">02</span></div>
+        <div class="ct-stage-content">
+          <h3 class="ct-stage-title">達到預定條件後</h3>
+          <p class="ct-stage-desc">MS2 流動性池如啟動，將以官方公告、合規審核及市場條件為準。</p>
+        </div>
+      </li>
+      <li class="ct-stage">
+        <div class="ct-stage-marker"><span class="ct-stage-num">03</span></div>
+        <div class="ct-stage-content">
+          <h3 class="ct-stage-title">進行中</h3>
+          <p class="ct-stage-desc">每 100 個參與名額觸發 1 次 Phone Gen1 中選。</p>
+        </div>
+      </li>
+      <li class="ct-stage">
+        <div class="ct-stage-marker"><span class="ct-stage-num">04</span></div>
+        <div class="ct-stage-content">
+          <h3 class="ct-stage-title">活動結束</h3>
+          <p class="ct-stage-desc">最後輪次完成後，進入質押快照及結算準備。</p>
+        </div>
+      </li>
+      <li class="ct-stage">
+        <div class="ct-stage-marker"><span class="ct-stage-num">05</span></div>
+        <div class="ct-stage-content">
+          <h3 class="ct-stage-title">TGE 相關安排</h3>
+          <p class="ct-stage-desc">MHA 後續合資格分配、MS2 解鎖及其他安排均以 TGE 時程、官方活動規則及合資格審核為準。</p>
+        </div>
+      </li>
+    </ol>
+    <p class="ct-compliance">以上時間線僅用於活動流程說明，實際執行時間、解鎖、分配及結算安排均以官方公告、TGE 時程、合資格審核及適用規定為準。</p>
   </section>
 
   <!-- ON-CHAIN VERIFICATION PANEL (WEB-20260710-002) -->
@@ -1846,38 +2100,7 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
     </div>
   </div>
   <p class="onchain-disclaimer">以上資料由 <code>eth_call</code> 直接讀取 BSC 主網公開合約，無需登入或 API key。事件資料由 <code>eth_getLogs</code> 取得。所有原始 RPC endpoint 為 <span id="onchain-rpc-url">—</span>。Implementation 合約僅作 ABI 邏輯參考，未直接讀取狀態。</p>
-</section>
-
-
-  <!-- MS2 生命周期 (WEB-20260712-009) -->
-  <section id="ms2-lifecycle">
-    <div class="section-label">⏳ MS2 生命周期</div>
-    <h2 class="section-title">MS2 生命周期 <small class="en-label">MS2 Lifecycle</small></h2>
-    <ol class="lifecycle-timeline">
-      <li class="lifecycle-stage">
-        <span class="stage-label">活動期</span>
-        <span class="stage-desc">MS2 通過符合資格的活動參與行為釋放</span>
-      </li>
-      <li class="lifecycle-stage">
-        <span class="stage-label">質押期</span>
-        <span class="stage-desc">用於計算潛在 MHA 分配資格</span>
-      </li>
-      <li class="lifecycle-stage">
-        <span class="stage-label">快照期</span>
-        <span class="stage-desc">記錄有效質押權重</span>
-      </li>
-      <li class="lifecycle-stage">
-        <span class="stage-label">解鎖期</span>
-        <span class="stage-desc">TGE 後按規則申請解除 MS2 質押</span>
-      </li>
-      <li class="lifecycle-stage">
-        <span class="stage-label">結算期</span>
-        <span class="stage-desc">未釋放、未領取、被罰沒或官方合約中可回收的 MS2，可依最終規則被銷毀、永久鎖定或另行處理</span>
-      </li>
-    </ol>
-  </section>
-
-  <!-- CONTRACT REFERENCES -->
+</section><!-- CONTRACT REFERENCES -->
   <div class="section-label">合約參考</div>
   <h2 class="section-title">🔗 鏈上合約</h2>
   <div class="contracts-card">
@@ -1909,38 +2132,7 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
     </details>
 
     <p class="proxy-note">Season 2 抽獎與 MS2 質押合約採用可升級代理架構。代理地址為主要對外公開的合約參考。</p>
-  </div>
-
-
-  <!-- 活動時間線 (WEB-20260712-009) -->
-  <section id="campaign-timeline">
-    <div class="section-label">🗓️ 活動時間線</div>
-    <h2 class="section-title">活動時間線 <small class="en-label">Campaign Timeline</small></h2>
-    <ol class="lifecycle-timeline">
-      <li class="lifecycle-stage">
-        <span class="stage-label">活動啟動</span>
-        <span class="stage-desc">Session 2 開放參與，抽獎輪次開始</span>
-      </li>
-      <li class="lifecycle-stage">
-        <span class="stage-label">達到預定條件後</span>
-        <span class="stage-desc">MS2 流動性池如啟動，將以官方公告、合規審核及市場條件為準</span>
-      </li>
-      <li class="lifecycle-stage">
-        <span class="stage-label">進行中</span>
-        <span class="stage-desc">每 100 個參與名額觸發 1 次 Phone Gen1 中選</span>
-      </li>
-      <li class="lifecycle-stage">
-        <span class="stage-label">活動結束</span>
-        <span class="stage-desc">最後輪次完成後，進入質押快照及結算準備</span>
-      </li>
-      <li class="lifecycle-stage">
-        <span class="stage-label">TGE 相關安排</span>
-        <span class="stage-desc">MHA 後續合資格分配、MS2 解鎖及其他安排均以 TGE 時程、官方活動規則及合資格審核為準</span>
-      </li>
-    </ol>
-  </section>
-
-  <!-- COMPLIANCE -->
+  </div><!-- COMPLIANCE -->
   <div class="compliance">
     <h4>MS2 免責聲明</h4>
     <p>活動數據僅供透明度展示之用。MS2 與 MHA 相關資訊並非投資建議、價值保證、固定回報或保證分配。</p>
