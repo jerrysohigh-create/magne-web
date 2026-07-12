@@ -1,8 +1,8 @@
 {
   "_meta": {
     "endpoint": "https://payment.magne.ai/api/v1/dashboard",
-    "fetchedAt": "2026-07-12T08:37:02.377076+00:00",
-    "onchainFetchedAt": "2026-07-12T08:37:03.255964+00:00",
+    "fetchedAt": "2026-07-12T10:12:18.064474+00:00",
+    "onchainFetchedAt": "2026-07-12T10:12:19.235683+00:00",
     "onchainSource": "BSC chain via public RPC eth_call"
   },
   "code": 200,
@@ -14,7 +14,7 @@
     "currRound": 1,
     "nextDrawNeed": 94,
     "ms2Issued": 5110000.0,
-    "liquidityPrepared": 39688.107131281955,
+    "liquidityPrepared": 39738.107131281955,
     "baseRate": 0.02
   },
   "fieldMapping": {
