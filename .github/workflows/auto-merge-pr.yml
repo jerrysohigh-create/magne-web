@@ -1,0 +1,103 @@
+name: Auto-merge release PRs
+
+# 🚦 為什麼要這個 workflow
+#
+# Jerry 每次 push release branch 後都要手動上 github.com 按 "Merge pull request" — 很煩。
+# 解法：這個 workflow 在 push 觸發後自動對 release/** 對應的 PR 開啟 auto-merge。
+#
+# 前置條件（你已做好）：
+#   - repo Settings → General → Pull Requests → Allow auto-merge ✅ 已勾
+#
+# 觸發條件：
+#   - 任何 push 到 release/** branch
+#   - 或手動 workflow_dispatch（可選）
+#
+# 行為：
+#   - 找到該 branch 對應的開啟中 PR
+#   - 透過 GitHub API 啟用 auto-merge (squash)
+#   - GitHub 自動等所有 check 過完 + branch protection rule 滿足 → 自動 merge push 到 main
+#
+# 為什麼用 actions/github-script 而不是 shell gh CLI：
+#   - 不需 repo 預裝 gh
+#   - GITHUB_TOKEN 內建，可控權限範圍
+#   - 失敗訊息直接打到 Actions log
+
+on:
+  push:
+    branches:
+      - 'release/**'
+  workflow_dispatch:
+
+jobs:
+  auto-merge:
+    name: Find PR & enable auto-merge
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    permissions:
+      contents: write        # enable-auto-merge 後由 GitHub 接管，contents 寫入由 GitHub 控制
+      pull-requests: write   # enableAutoMerge 需要
+    steps:
+      - name: Find open PR for pushed branch
+        id: find-pr
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const branch = context.ref.replace('refs/heads/', '');
+            const { owner, repo } = context.repo;
+            console.log(`🔍 Looking up open PR for ${owner}/${repo}@${branch} ...`);
+
+            // 用 head=owner:branch 過濾，只取該 branch 的 PR
+            const { data: prs } = await github.rest.pulls.list({
+              owner,
+              repo,
+              head: `${owner}:${branch}`,
+              state: 'open',
+              per_page: 10,
+            });
+
+            if (prs.length === 0) {
+              core.setFailed(`❌ No open PR found for branch '${branch}'. `
+                + `Did you push release branch without opening a PR? `
+                + `Auto-merge only works on existing PRs.`);
+              return;
+            }
+
+            const pr = prs[0]; // 第一個匹配的 PR
+            console.log(`✅ Found PR #${pr.number}: "${pr.title}" (${pr.html_url})`);
+            core.setOutput('pr_number', pr.number);
+            core.setOutput('pr_title', pr.title);
+            core.setOutput('pr_url', pr.html_url);
+
+      - name: Enable auto-merge
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const prNumber = ${{ steps.find-pr.outputs.pr_number }};
+            const prUrl = ${{ steps.find-pr.outputs.pr_url }};
+            const prTitle = ${{ steps.find-pr.outputs.pr_title }};
+            const { owner, repo } = context.repo;
+
+            if (!prNumber) {
+              core.setFailed('No PR number from previous step');
+              return;
+            }
+
+            console.log(`🚀 Enabling auto-merge (squash) on #${prNumber}: ${prTitle}`);
+
+            try {
+              await github.rest.pulls.enableAutoMerge({
+                owner,
+                repo,
+                pull_number: prNumber,
+                merge_method: 'squash',
+              });
+              console.log(`✅ Auto-merge enabled. GitHub will auto-merge after checks pass.`);
+              console.log(`   PR: ${prUrl}`);
+            } catch (err) {
+              if (err.status === 422) {
+                core.setFailed(`❌ GitHub rejected auto-merge (HTTP 422). `
+                  + `Repo 可能沒啟用 Allow auto-merge — Settings → General → Pull Requests → Allow auto-merge`);
+              } else {
+                core.setFailed(`❌ enableAutoMerge failed: ${err.message}`);
+              }
+            }
