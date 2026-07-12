@@ -1,0 +1,34 @@
+name: On-Push Logger
+
+on:
+  push:
+
+jobs:
+  log-push:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Print push event as a Markdown table
+        env:
+          REPO: ${{ github.repository }}
+          REF: ${{ github.ref }}
+          BRANCH: ${{ github.ref_name }}
+          SHA: ${{ github.sha }}
+          ACTOR: ${{ github.actor }}
+          MSG: ${{ github.event.head_commit.message }}
+        run: |
+          echo "## ✅ Push recorded @ $(date -u +%FT%TZ)"
+          echo ""
+          echo "| Field | Value |"
+          echo "|-------|-------|"
+          echo "| Repo   | \`$REPO\` |"
+          echo "| Ref    | \`$REF\` |"
+          echo "| Branch | \`$BRANCH\` |"
+          echo "| Commit | \`$SHA\` |"
+          echo "| Author | \`$ACTOR\` |"
+          echo "| Trigger | \`push\` |"
+          echo ""
+          echo "**Commit message:**"
+          echo '```'
+          echo "$MSG"
+          echo '```'
