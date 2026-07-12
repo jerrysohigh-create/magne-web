@@ -392,6 +392,20 @@
     }
     .stat-trend.acc { color: var(--accent); }
 
+    /* Device Info (WEB-20260712-007) */
+    .device-info {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      padding: 1rem 0;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .device-info-item {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+    }
+
     /* Progress bar */
     .progress-card {
       background: var(--bg-secondary);
@@ -1346,6 +1360,13 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
       <div class="stat-trend">（由參與名額計算）</div>
     <span class="onchain-dot" id="oc-dot-ms2-credits" style="display:none"> On-chain</span>
       </div>
+  </div>
+
+  <!-- Device Info (WEB-20260712-007) -->
+  <div class="device-info">
+    <div class="device-info-item">📱 <strong>設備：</strong> 8GB + 256GB</div>
+    <div class="device-info-item">🚚 <strong>出貨：</strong> 首批 2026 年 8–10 月</div>
+    <div class="device-info-item">🪙 <strong>MHA 獎勵：</strong>於 TGE 後 30 天內完成分配，並須符合活動規則及資格驗證</div>
   </div>
 
   <!-- PROGRESS BAR -->
