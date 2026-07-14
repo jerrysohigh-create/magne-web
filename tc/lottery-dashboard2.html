@@ -2836,7 +2836,7 @@ function renderOnChainPanel(oc) {
   var roundEl = document.getElementById('onchain-lottery-round');
   var metaEl = document.getElementById('onchain-lottery-meta');
   if (oc.lottery && roundEl) {
-    roundEl.textContent = oc.lottery.currentRound !== null ? 'Round ' + oc.lottery.currentRound : '—';
+    roundEl.textContent = oc.lottery.totalEntries !== null ? oc.lottery.totalEntries : '—';
     if (metaEl) {
       metaEl.textContent = 'Entries ' + (oc.lottery.totalEntries !== null ? oc.lottery.totalEntries : '—') + ' / Winners ' + (oc.lottery.totalWinners !== null ? oc.lottery.totalWinners : '—');
     }
