@@ -1550,7 +1550,75 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
       .ms2g-grid { grid-template-columns: 1fr; }
     }
 
-</style>
+/* === Invitation & Anti-Abuse Rules Card (LOTTERY-DASHBOARD2-INVITE-CARD-SYNC-001) === */
+.invite-rules-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.75rem 2rem;
+  margin-top: 2rem;
+}
+.invite-rules-card .section-label {
+  margin-bottom: 0.85rem;
+  margin-top: 0;
+}
+.invite-rules-card .section-title {
+  margin-bottom: 1.25rem;
+}
+.invite-rules-list {
+  list-style: none;
+  counter-reset: invite-rule-counter;
+  padding: 0;
+  margin: 1rem 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem 1.5rem;
+}
+.invite-rules-list li {
+  counter-increment: invite-rule-counter;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  background: rgba(255,255,255,0.02);
+  border-radius: 10px;
+  border-left: 2px solid rgba(0,212,212,0.4);
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  line-height: 1.55;
+}
+.invite-rules-list li::before {
+  content: counter(invite-rule-counter);
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,212,212,0.15);
+  color: var(--accent);
+  border-radius: 50%;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-top: 1px;
+}
+.invite-rules-note {
+  margin-top: 1rem;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.45);
+  font-style: italic;
+  text-align: center;
+  line-height: 1.5;
+}
+@media (max-width: 768px) {
+  .invite-rules-list { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .invite-rules-list { grid-template-columns: 1fr; }
+}
+
+  </style>
 </head>
 <body>
 
@@ -1897,20 +1965,20 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
   </div>
 
 
-  <!-- 邀請與反作弊規則 (WEB-20260712-009) -->
-  <details class="compliance-collapse">
-    <summary>🛡️ 邀請與反作弊規則</summary>
-    <div class="collapse-body">
-      <ul class="rule-list">
-        <li>邀請獎勵僅適用於一級直接邀請，不存在二級、三級或多級返獎。</li>
-        <li>被邀請人完成首次有效參與後，邀請關係不可更改。</li>
-        <li>官方默認入口不產生邀請獎勵，也不計入排行榜。</li>
-        <li>市場買入 MS2、二級市場交易量或外部轉入 MS2，不產生直接邀請獎勵。</li>
-        <li>自邀請、機器人、刷量、循環資金、同控制人批量地址、女巫行為或其他異常行為，可能導致獎勵取消及資格失效。</li>
-        <li>大額獎勵、排行榜資格及獎池分配，可能需通過額外資格審核、KYC/AML 要求及適用地區限制。</li>
-      </ul>
-    </div>
-  </details>
+  <!-- 邀請與反作弊規則 (LOTTERY-DASHBOARD2-INVITE-CARD-SYNC-001) -->
+  <section class="invite-rules-card">
+    <div class="section-label">🛡️ 邀請與反作弊規則 <span class="rules-source">僅限一級直接邀請</span></div>
+    <h2 class="section-title">🛡️ 邀請與反作弊規則 <small class="en-label">Invitation &amp; Anti-Abuse Rules</small></h2>
+    <ol class="invite-rules-list">
+      <li>邀請獎勵僅適用於一級直接邀請，不存在二級、三級或多級返獎。</li>
+      <li>被邀請人完成首次有效參與後，邀請關係不可更改。</li>
+      <li>官方默認入口不產生邀請獎勵，也不計入排行榜。</li>
+      <li>市場買入 MS2、二級市場交易量或外部轉入 MS2，不產生直接邀請獎勵。</li>
+      <li>自邀請、機器人、刷量、循環資金、同控制人批量地址、女巫行為或其他異常行為，可能導致獎勵取消及資格失效。</li>
+      <li>大額獎勵、排行榜資格及獎池分配，可能需通過額外資格審核、KYC/AML 要求及適用地區限制。</li>
+    </ol>
+    <p class="invite-rules-note">所有規則以官方活動規則、資格審核、防濫用檢查、TGE 時程、地區限制及適用規定為準。MAGNE.AI 保留對活動規則的最終解釋權。</p>
+  </section>
 
   <!-- MS2 STAKING MODULE -->
   <div class="section-label"><img class="ms2-module-icon" src="/magne-web/assets/img/ms2/ms2-icon.svg" loading="lazy" decoding="async" alt="MS2 by MAGNE.AI">MS2 質押</div>
@@ -1989,7 +2057,7 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
         <div class="ct-stage-marker"><span class="ct-stage-num">01</span></div>
         <div class="ct-stage-content">
           <h3 class="ct-stage-title">活動啟動</h3>
-          <p class="ct-stage-desc">Session 2 開放參與，抽獎輪次開始。</p>
+          <p class="ct-stage-desc">Season 2 開放參與，抽獎輪次開始。</p>
         </div>
       </li>
       <li class="ct-stage">

@@ -941,6 +941,74 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
 
 /* === End Season 1 NAV/FOOTER CSS === */
 
+  /* === Invitation & Anti-Abuse Rules Card (LOTTERY-DASHBOARD2-INVITE-CARD-SYNC-001) === */
+.invite-rules-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.75rem 2rem;
+  margin-top: 2rem;
+}
+.invite-rules-card .section-label {
+  margin-bottom: 0.85rem;
+  margin-top: 0;
+}
+.invite-rules-card .section-title {
+  margin-bottom: 1.25rem;
+}
+.invite-rules-list {
+  list-style: none;
+  counter-reset: invite-rule-counter;
+  padding: 0;
+  margin: 1rem 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem 1.5rem;
+}
+.invite-rules-list li {
+  counter-increment: invite-rule-counter;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  background: rgba(255,255,255,0.02);
+  border-radius: 10px;
+  border-left: 2px solid rgba(0,212,212,0.4);
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  line-height: 1.55;
+}
+.invite-rules-list li::before {
+  content: counter(invite-rule-counter);
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,212,212,0.15);
+  color: var(--accent);
+  border-radius: 50%;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-top: 1px;
+}
+.invite-rules-note {
+  margin-top: 1rem;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.45);
+  font-style: italic;
+  text-align: center;
+  line-height: 1.5;
+}
+@media (max-width: 768px) {
+  .invite-rules-list { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .invite-rules-list { grid-template-columns: 1fr; }
+}
+
   </style>
 </head>
 <body>
@@ -1110,6 +1178,21 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
     </table>
     <p class="leaderboard-footnote">Reward Share percentages are fixed campaign rules. USDT Reward and Inviter Address update as the leaderboard fills in.</p>
   </div>
+
+  <!-- INVITATION & ANTI-ABUSE RULES (LOTTERY-DASHBOARD2-INVITE-CARD-SYNC-001) -->
+  <section class="invite-rules-card">
+    <div class="section-label">🛡️ Invitation & Anti-Abuse Rules</div>
+    <h2 class="section-title">🛡️ Invitation &amp; Anti-Abuse Rules</h2>
+    <ol class="invite-rules-list">
+      <li>Referral rewards apply only to first-level direct invitations. No second-, third-, or multi-level rewards exist.</li>
+      <li>After the invitee completes their first valid participation, the invitation relationship cannot be changed.</li>
+      <li>The official default entry point does not generate referral rewards and is not counted toward the leaderboard.</li>
+      <li>Secondary market MS2 purchases, secondary market trading volume, or external MS2 transfers do not generate direct referral rewards.</li>
+      <li>Self-invitation, bots, wash trading, circular funds, same-controller bulk addresses, sybil behavior, or other abnormal patterns may result in reward cancellation and disqualification.</li>
+      <li>Large rewards, leaderboard eligibility, and reward pool distribution may require additional eligibility review, KYC/AML compliance, and applicable regional restrictions.</li>
+    </ol>
+    <p class="invite-rules-note">All rules above are subject to official campaign rules, eligibility review, anti-abuse checks, TGE timing, regional restrictions, and applicable regulations.</p>
+  </section>
 
   <!-- MS2 STAKING MODULE -->
   <div class="section-label">MS2 Staking</div>
