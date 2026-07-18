@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MAGNE.AI Season 2 Campaign Center</title>
+  <title>MAGNE.AI Season 2 Campaign Hub</title>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -115,6 +115,149 @@
       border-radius: 999px;
     }
 
+/* === MS2 Brand Integration (WEB-20260710-001) === */
+.ms2-hero-logo {
+  display: block;
+  width: clamp(140px, 16vw, 200px);
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto 1.25rem;
+}
+
+.ms2-stat-icon {
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin: 0 0 0.7rem;
+  opacity: 0.95;
+}
+
+.ms2-module-icon {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  vertical-align: -4px;
+  margin-right: 0.4rem;
+  opacity: 0.9;
+}
+
+.ms2-module-icon-lg {
+  width: 28px;
+  height: 28px;
+  vertical-align: -6px;
+}
+/* === On-Chain Verification (WEB-20260710-002) === */
+.onchain-status {
+  display: inline-block;
+  font-size: 0.65rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  margin-left: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  vertical-align: middle;
+}
+.onchain-status.loading { background: rgba(255,193,7,0.15); color: #ffc107; }
+.onchain-status.live    { background: rgba(76,175,80,0.15);  color: #4caf50; }
+.onchain-status.error   { background: rgba(244,67,54,0.15);  color: #f44336; }
+.onchain-status.partial { background: rgba(33,150,243,0.15); color: #2196f3; }
+
+.onchain-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.85rem;
+  margin: 1rem 0;
+}
+.onchain-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+}
+.onchain-card-label { font-size: 0.7rem; color: rgba(255,255,255,0.55); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem; }
+.onchain-card-value { font-size: 1.3rem; font-weight: 700; color: #fff; font-family: 'JetBrains Mono', monospace; margin-bottom: 0.3rem; }
+.onchain-card-sub { font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-bottom: 0.25rem; }
+.onchain-card-meta { font-size: 0.7rem; color: rgba(255,255,255,0.4); font-family: 'JetBrains Mono', monospace; }
+.onchain-disclaimer { font-size: 0.7rem; color: rgba(255,255,255,0.4); line-height: 1.5; margin-top: 0.8rem; }
+.onchain-disclaimer code { background: rgba(255,255,255,0.06); padding: 0.05rem 0.3rem; border-radius: 3px; font-size: 0.85em; }
+
+.onchain-badge {
+  display: inline-block;
+  font-size: 0.6rem;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  background: rgba(76,175,80,0.15);
+  color: #4caf50;
+  margin-left: 0.4rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  vertical-align: middle;
+}
+
+/* === Season 2 Rules Section (WEB-20260710-006) === */
+.rules-section {
+  background: rgba(0, 212, 212, 0.05);
+  border: 1px solid rgba(0, 212, 212, 0.15);
+  border-radius: 16px;
+  padding: 1.5rem 2rem;
+  margin-top: 2rem;
+}
+.rules-header {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(0, 212, 212, 0.7);
+  margin-bottom: 1.25rem;
+}
+.rules-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.rule-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.5;
+}
+.rule-item strong { color: var(--accent); font-weight: 700; }
+.rule-icon {
+  font-size: 1.1rem;
+  line-height: 1.2;
+  flex-shrink: 0;
+}
+.rules-note {
+  margin-top: 1rem;
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.4);
+  text-align: center;
+  font-style: italic;
+}
+@media (max-width: 768px) {
+  .rules-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .rules-grid { grid-template-columns: 1fr; }
+}
+
+/* === Participation Options Section (WEB-20260710-006) === */
+
+
+@media (max-width: 768px) {
+  .ms2-hero-logo { width: clamp(120px, 22vw, 160px); margin-bottom: 1rem; }
+}
+
+@media (max-width: 480px) {
+  .ms2-hero-logo { width: clamp(100px, 30vw, 160px); margin-bottom: 0.85rem; }
+  .ms2-stat-icon { width: 26px; height: 26px; }
+  .ms2-module-icon { width: 22px; height: 22px; vertical-align: -4px; }
+  .ms2-module-icon-lg { width: 22px; height: 22px; vertical-align: -4px; }
+}
+
+
     .back-home { margin-bottom: 1.5rem; }
     .back-home a {
       font-size: 0.85rem;
@@ -132,6 +275,7 @@
       color: rgba(255,255,255,0.3);
       margin-bottom: 1rem;
       margin-top: 3rem;
+      text-align: left;  /* WEB-20260710-004: defensive left alignment */
     }
 
     .section-title {
@@ -142,6 +286,15 @@
       display: flex;
       align-items: center;
       gap: 0.6rem;
+      text-align: left;  /* WEB-20260710-004: defensive left alignment */
+    }
+
+    .section-title .en-label {
+      font-size: 0.6em;
+      color: rgba(245,245,247,0.6);
+      font-weight: 400;
+      margin-left: 0.5rem;
+      letter-spacing: 0.02em;
     }
 
     /* 6-card dashboard grid */
@@ -198,6 +351,20 @@
     }
     .stat-trend.acc { color: var(--accent); }
 
+    /* Device Info (WEB-20260712-007) */
+    .device-info {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      padding: 1rem 0;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .device-info-item {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+    }
+
     /* Progress bar */
     .progress-card {
       background: var(--bg-secondary);
@@ -236,6 +403,21 @@
       overflow: hidden;
       position: relative;
     }
+    .progress-center {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .progress-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -1px;
+      line-height: 1;
+    }
+    @media (max-width: 480px) {
+      .progress-number { font-size: 2.5rem; }
+    }
     .progress-fill {
       height: 100%;
       background: linear-gradient(90deg, rgba(0,255,136,0.3), var(--accent) 50%, var(--gold));
@@ -261,6 +443,7 @@
       flex-wrap: wrap;
       gap: 0.5rem;
     }
+
 
     /* Reward flow */
     .reward-flow {
@@ -345,7 +528,7 @@
       background: linear-gradient(135deg, rgba(255, 215, 0, 0.07), transparent);
     }
     .package-card.featured::before {
-      content: 'BEST VALUE';
+      content: 'FULL ROUND';
       position: absolute;
       top: -10px;
       left: 50%;
@@ -375,6 +558,27 @@
     .package-desc {
       font-size: 0.78rem;
       color: var(--text-secondary);
+    }
+
+    /* === Package Card Label & Entries (WEB-20260710-005) === */
+    .package-label {
+      font-size: 0.85rem;
+      color: var(--text-primary);
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.3px;
+    }
+    .package-entries {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.7);
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 0.4rem;
+    }
+    .package-trigger {
+      font-size: 0.7rem;
+      color: var(--gold);
+      margin-top: 0.4rem;
+      font-style: italic;
     }
 
     /* CTA buttons */
@@ -425,7 +629,7 @@
       color: var(--gold);
     }
 
-    /* Tables (Recent Draws + Leaderboard) */
+    /* 表格（最新開獎 + 排行榜） */
     .data-table-wrap {
       background: var(--bg-secondary);
       border: 1px solid var(--border);
@@ -495,7 +699,7 @@
       font-style: italic;
     }
 
-    /* MS2 Staking module */
+    /* MS2 Staking Module */
     .staking-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -719,7 +923,7 @@
       .staking-grid { grid-template-columns: 1fr; }
       .stats-grid { grid-template-columns: 1fr 1fr; }
     }
-  
+
 /* === Season 1 NAV/FOOTER CSS (appended for Season 2 dashboard) === */
 
 /* NAV - Base styles */
@@ -941,7 +1145,412 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
 
 /* === End Season 1 NAV/FOOTER CSS === */
 
-  /* === Invitation & Anti-Abuse Rules Card (LOTTERY-DASHBOARD2-INVITE-CARD-SYNC-001) === */
+
+/* === ALL WINNERS TABLE === */
+.winners-table-wrapper {
+  overflow-x: auto;
+  margin-top: 1rem;
+  border: 1px solid var(--border, rgba(255,255,255,0.06));
+  border-radius: 12px;
+}
+.winners-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px;
+}
+.winners-table th,
+.winners-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border, rgba(255,255,255,0.06));
+  font-size: 0.9rem;
+}
+.winners-table th {
+  background: var(--bg-card, rgba(255,255,255,0.03));
+  color: var(--text-secondary, rgba(245,245,247,0.6));
+  font-weight: 600;
+}
+.winners-table tbody tr:last-child td {
+  border-bottom: none;
+}
+.winners-empty-state {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--text-secondary, rgba(245,245,247,0.6));
+  font-size: 0.95rem;
+}
+/* === End ALL WINNERS TABLE === */
+
+    /* === On-chain KPI dots (WEB-20260710-002) === */
+    .onchain-dot { font-size: 0.6rem; color: #4caf50; font-family: 'JetBrains Mono', monospace; margin-left: 0.3rem; }
+
+
+    /* ===== WEB-20260712-010 — How to Join Stepper ===== */
+    .section-subtitle {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin: -0.5rem 0 1.5rem;
+      max-width: 720px;
+    }
+
+    .htj-stepper {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0 1rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      position: relative;
+    }
+    .htj-step {
+      background: var(--bg-secondary, rgba(255,255,255,0.03));
+      border: 1px solid var(--border, rgba(255,255,255,0.08));
+      border-radius: 14px;
+      padding: 1.25rem 1rem 1.1rem;
+      position: relative;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .htj-step:hover {
+      border-color: var(--accent, rgba(0,212,212,0.5));
+    }
+    .htj-step-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      color: var(--accent, #00d4d4);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+    .htj-step-icon {
+      font-size: 1.1rem;
+      opacity: 0.7;
+      margin-bottom: 0.4rem;
+      display: inline-block;
+    }
+    .htj-step-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary, #fff);
+      margin: 0 0 0.35rem;
+    }
+    .htj-step-desc {
+      font-size: 0.82rem;
+      color: var(--text-secondary, rgba(255,255,255,0.65));
+      line-height: 1.5;
+      margin: 0;
+    }
+    .htj-compliance {
+      font-size: 0.72rem;
+      color: var(--text-tertiary, rgba(255,255,255,0.4));
+      line-height: 1.55;
+      margin-top: 1.5rem;
+      padding: 0.75rem 1rem;
+      border-left: 2px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.02);
+    }
+
+    /* ===== WEB-20260712-010 — Campaign Parameters Panel ===== */
+    .cp-panel {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1.25rem;
+      margin: 1.5rem 0 1rem;
+    }
+    .cp-main-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    .cp-param-card {
+      background: var(--bg-secondary, rgba(255,255,255,0.03));
+      border: 1px solid var(--border, rgba(255,255,255,0.08));
+      border-radius: 14px;
+      padding: 1.5rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .cp-param-card:hover {
+      border-color: var(--accent, rgba(0,212,212,0.5));
+    }
+    .cp-param-primary {
+      background: linear-gradient(135deg, rgba(0,212,212,0.06), rgba(0,212,212,0.02));
+    }
+    .cp-param-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: var(--accent, #00d4d4);
+      line-height: 1.1;
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.5px;
+    }
+    .cp-unit {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: rgba(0,212,212,0.75);
+      margin-left: 0.15rem;
+    }
+    .cp-param-label {
+      font-size: 0.78rem;
+      color: var(--text-secondary, rgba(255,255,255,0.65));
+      letter-spacing: 0.3px;
+    }
+    .cp-side-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .cp-side-card {
+      background: var(--bg-secondary, rgba(255,255,255,0.03));
+      border: 1px solid var(--border, rgba(255,255,255,0.08));
+      border-radius: 14px;
+      padding: 1.1rem 1.1rem 1rem;
+      flex: 1;
+    }
+    .cp-side-title {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-primary, #fff);
+      margin: 0 0 0.45rem;
+    }
+    .cp-side-content {
+      font-size: 0.78rem;
+      color: var(--text-secondary, rgba(255,255,255,0.65));
+      line-height: 1.55;
+      margin: 0;
+    }
+    .cp-disclaimer {
+      font-size: 0.72rem;
+      color: var(--text-tertiary, rgba(255,255,255,0.4));
+      line-height: 1.55;
+      margin-top: 1.25rem;
+      padding: 0.75rem 1rem;
+      border-left: 2px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.02);
+    }
+
+    /* Mobile responsive (WEB-20260712-010) */
+    @media (max-width: 900px) {
+      .htj-stepper { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .htj-stepper { grid-template-columns: 1fr; }
+      .cp-panel { grid-template-columns: 1fr; }
+      .cp-main-grid { grid-template-columns: 1fr; }
+      .cp-param-value { font-size: 1.45rem; }
+    }
+
+
+    /* ===== WEB-20260712-011 — MS2 Guide ===== */
+    .ms2g-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .ms2g-card {
+      background: var(--bg-secondary, rgba(255,255,255,0.03));
+      border: 1px solid var(--border, rgba(255,255,255,0.08));
+      border-radius: 14px;
+      padding: 1.25rem 1.1rem 1.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .ms2g-card:hover {
+      border-color: var(--accent, rgba(0,255,136,0.5));
+    }
+    .ms2g-card-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border, rgba(255,255,255,0.06));
+    }
+    .ms2g-card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary, #f5f5f7);
+      margin: 0;
+    }
+    .ms2g-card-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: var(--accent, #00ff88);
+      text-transform: uppercase;
+      align-self: flex-start;
+    }
+    .ms2g-card-body {
+      font-size: 0.82rem;
+      color: var(--text-secondary, rgba(245,245,247,0.6));
+      line-height: 1.55;
+      margin: 0;
+    }
+    .ms2g-formula {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--text-primary, #f5f5f7);
+      padding: 0.6rem 0.75rem;
+      background: rgba(0,255,136,0.06);
+      border-left: 2px solid var(--accent, #00ff88);
+      border-radius: 4px;
+      line-height: 1.4;
+      word-break: break-word;
+    }
+    .ms2g-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .ms2g-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.3rem 0.65rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border, rgba(255,255,255,0.08));
+      border-radius: 999px;
+      font-size: 0.72rem;
+    }
+    .ms2g-chip-label {
+      color: var(--text-secondary, rgba(245,245,247,0.6));
+    }
+    .ms2g-chip-value {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent, #00ff88);
+      font-weight: 600;
+    }
+    .ms2g-card-note {
+      font-size: 0.7rem;
+      color: var(--text-tertiary, rgba(255,255,255,0.4));
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* MS2 Lifecycle mini timeline (inside Card 3) */
+    .ms2g-mini-timeline {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .ms2g-mini-stage {
+      display: grid;
+      grid-template-columns: 24px 1fr;
+      grid-template-rows: auto auto;
+      column-gap: 0.6rem;
+      align-items: start;
+    }
+    .ms2g-mini-num {
+      grid-row: 1 / 3;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent, #00ff88);
+      color: #0f0f12;
+      border-radius: 50%;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+    .ms2g-mini-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-primary, #f5f5f7);
+    }
+    .ms2g-mini-desc {
+      font-size: 0.74rem;
+      color: var(--text-secondary, rgba(245,245,247,0.6));
+      line-height: 1.45;
+    }
+
+    /* ===== WEB-20260712-011 — Campaign Timeline (independent) ===== */
+    .ct-timeline {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+    }
+    .ct-timeline::before {
+      content: '';
+      position: absolute;
+      left: 22px;
+      top: 14px;
+      bottom: 14px;
+      width: 1px;
+      background: var(--border, rgba(255,255,255,0.12));
+    }
+    .ct-stage {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 0.8rem;
+      align-items: start;
+      padding: 0.75rem 0;
+      position: relative;
+    }
+    .ct-stage-marker {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      background: var(--bg-secondary, rgba(255,255,255,0.04));
+      border: 1px solid var(--accent, rgba(0,255,136,0.4));
+      border-radius: 50%;
+      z-index: 1;
+      position: relative;
+    }
+    .ct-stage-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent, #00ff88);
+    }
+    .ct-stage-content {
+      padding-top: 0.4rem;
+    }
+    .ct-stage-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary, #f5f5f7);
+      margin: 0 0 0.3rem;
+    }
+    .ct-stage-desc {
+      font-size: 0.84rem;
+      color: var(--text-secondary, rgba(245,245,247,0.6));
+      line-height: 1.55;
+      margin: 0;
+    }
+    .ct-compliance {
+      font-size: 0.72rem;
+      color: var(--text-tertiary, rgba(255,255,255,0.4));
+      line-height: 1.55;
+      margin-top: 1.25rem;
+      padding: 0.75rem 1rem;
+      border-left: 2px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.02);
+    }
+
+    /* Mobile responsive */
+    @media (max-width: 900px) {
+      .ms2g-grid { grid-template-columns: 1fr; }
+    }
+
+/* === Invitation & Anti-Abuse Rules Card (LOTTERY-DASHBOARD2-INVITE-CARD-SYNC-001) === */
 .invite-rules-card {
   background: var(--bg-secondary);
   border: 1px solid var(--border);
@@ -1028,11 +1637,11 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
     <li><a href="/magne-web/magne-progress.html">Progress</a></li>
     <li><a href="/magne-web/magne-partners.html">Partners</a></li>
     <li><a href="/magne-web/faq.html">FAQ</a></li>
-    <a href="tc/lottery-dashboard.html" class="nav-lang-switch">EN | 繁中</a></li>
+    <a href="tc/lottery-dashboard2.html" class="nav-lang-switch">EN | 繁中</a></li>
     <li><a href="https://web3.magne.ai" target="_blank" rel="noopener" class="nav-web3">Web3 Portal ↗️</a></li>
     <li class="nav-actions-mobile">
       <a href="/magne-web/magne-contact.html" class="nav-contact">Contact</a>
-      <a href="https://payment.magne.ai/buy" class="nav-cta">Preorder</a>
+      <a href="https://payment.magne.ai/buy" class="nav-cta">Pre-order</a>
     </li>
   </ul>
 </nav>
@@ -1042,128 +1651,304 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
 
   <!-- HERO -->
   <section class="hero">
+    <img class="ms2-hero-logo" src="/magne-web/assets/img/ms2/ms2-logo-horizontal-transparent.png" alt="MS2 by MAGNE.AI" loading="eager" decoding="async">
     <div class="hero-eyebrow">MAGNE.AI Season 2</div>
-    <h1>MAGNE.AI Season 2 Campaign Center</h1>
-    <p class="hero-sub">Phone Gen1 Lottery, MS2 Campaign Credits, Staking Weight, and Team Rewards in one transparent campaign dashboard.</p>
-    <p class="hero-highlight">17 USDT per entry • 10 MS2 Campaign Credits per valid entry • Every 100 entries = 1 Phone Gen1 selection</p>
+    <h1>MAGNE.AI Season 2 Campaign Hub</h1>
+    <p class="hero-sub">Phone Gen1 Lottery • MS2 Campaign Credits • Staking Weight • Team Rewards</p>
+    <p class="hero-highlight">17 USDT per entry • 10 MS2 per valid entry • One Phone Gen1 winner every 100 entries</p>
   </section>
+
+  <!-- SEASON 2 Campaign規則 (WEB-20260710-014：依 Jerry 官方公告更新) -->
+  <div class="rules-section" id="season2-rules">
+    <div class="rules-header">📜 Season 2 Campaign Rules <span class="rules-source">Subject to official announcements on payment.magne.ai</span></div>
+    <div class="rules-grid">
+      <div class="rule-item">
+        <div class="rule-icon">📱</div>
+        <div class="rule-text"><strong>1,600</strong> MAGNE.AI Phone Gen1 campaign units</div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-icon">👤</div>
+        <div class="rule-text">Each wallet may receive up to <strong>100</strong> entries</div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-icon">💎</div>
+        <div class="rule-text">Each <strong>entry</strong> costs <strong>17 USDT</strong>, and each <strong>valid entry</strong> earns <strong>10 MS2 campaign credits</strong></div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-icon">🎯</div>
+        <div class="rule-text">Every <strong>100 entries</strong> triggers <strong>one MAGNE.AI Phone Gen1 (8+256) winner</strong></div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-icon">🎁</div>
+        <div class="rule-text">MHA rewards for eligible non-winning participants follow <strong>official campaign rules, eligibility verification, and the applicable token distribution schedule</strong></div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-icon">💎</div>
+        <div class="rule-text">MS2 supports <strong>campaign tracking, rankings, staking weight, and future eligibility reviews</strong></div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-icon">🌊</div>
+        <div class="rule-text">The <strong>liquidity pool</strong> is expected to launch when eligible devices reach <strong>200</strong></div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-icon">🏦</div>
+        <div class="rule-text">After the campaign, <strong>all MS2 tokens in the staking contract (including unclaimed tokens)</strong> will, based on final eligible staking records, <strong>participate pro rata in the subsequent distribution of 35,000,000 MHA</strong></div>
+      </div>
+    </div>
+    <div class="rules-note">MHA distribution timing and eligibility are subject to official campaign rules, the TGE schedule, eligibility and anti-abuse reviews, regional restrictions, and applicable regulations. MAGNE.AI reserves final interpretation of the campaign rules.</div>
+  </div>
 
   <div class="back-home">
     <a href="index.html">← Back to Home</a>
   </div>
 
+
+  <!-- How to Join (WEB-20260712-010 — Stepper redesign) -->
+  <section id="how-to-join">
+    <h2 class="section-title">How to Join <small class="en-label">Participation Flow</small></h2>
+    <p class="section-subtitle">From wallet connection through entry, drawing, credits, and staking, Season 2 follows six steps.</p>
+    <ol class="htj-stepper">
+      <li class="htj-step">
+        <div class="htj-step-num">STEP 01</div>
+        <div class="htj-step-icon" aria-hidden="true">🔗</div>
+        <h3 class="htj-step-title">Connect Wallet</h3>
+        <p class="htj-step-desc">Connect a Web3 wallet to view the available Season 2 campaign flow.</p>
+      </li>
+      <li class="htj-step">
+        <div class="htj-step-num">STEP 02</div>
+        <div class="htj-step-icon" aria-hidden="true">🎁</div>
+        <h3 class="htj-step-title">Enter Referral Code</h3>
+        <p class="htj-step-desc">A referral code is optional; referral rewards apply only to direct first-level referrals.</p>
+      </li>
+      <li class="htj-step">
+        <div class="htj-step-num">STEP 03</div>
+        <div class="htj-step-icon" aria-hidden="true">💰</div>
+        <h3 class="htj-step-title">Pay 17 USDT</h3>
+        <p class="htj-step-desc">Receive one entry per 17 USDT, up to 100 entries per wallet.</p>
+      </li>
+      <li class="htj-step">
+        <div class="htj-step-num">STEP 04</div>
+        <div class="htj-step-icon" aria-hidden="true">📱</div>
+        <h3 class="htj-step-title">Win Phone Gen1</h3>
+        <p class="htj-step-desc">One Phone Gen1 winner is selected every 100 entries.</p>
+      </li>
+      <li class="htj-step">
+        <div class="htj-step-num">STEP 05</div>
+        <div class="htj-step-icon" aria-hidden="true">🪙</div>
+        <h3 class="htj-step-title">Accumulate MS2 / MHA Records</h3>
+        <p class="htj-step-desc">Each valid entry earns 10 MS2; non-winning entries record 100 MHA for subsequent eligible distribution.</p>
+      </li>
+      <li class="htj-step">
+        <div class="htj-step-num">STEP 06</div>
+        <div class="htj-step-icon" aria-hidden="true">📈</div>
+        <h3 class="htj-step-title">Stake MS2</h3>
+        <p class="htj-step-desc">Staked MS2 supports campaign weighting, rankings, and future eligibility reviews.</p>
+      </li>
+    </ol>
+    <p class="htj-compliance">All entries, MS2 campaign credits, subsequent eligible MHA distributions, referral rewards, and staking weights are subject to official campaign rules, eligibility and anti-abuse reviews, the TGE schedule, regional restrictions, and applicable regulations.</p>
+  </section>
+
+
+
+  <!-- Campaign Parameters (WEB-20260712-010 — Panel redesign) -->
+  <section id="campaign-params">
+    <h2 class="section-title">Campaign Parameters <small class="en-label">Key Settings</small></h2>
+    <p class="section-subtitle">Key Season 2 entry, drawing, credit, and distribution parameters.</p>
+    <div class="cp-panel">
+      <div class="cp-main-grid">
+        <div class="cp-param-card cp-param-primary">
+          <div class="cp-param-value">17 <span class="cp-unit">USDT</span></div>
+          <div class="cp-param-label">Per Entry</div>
+        </div>
+        <div class="cp-param-card cp-param-primary">
+          <div class="cp-param-value">100</div>
+          <div class="cp-param-label">Entries per Round</div>
+        </div>
+        <div class="cp-param-card cp-param-primary">
+          <div class="cp-param-value">1,600</div>
+          <div class="cp-param-label">Phone Gen1 Campaign Units</div>
+        </div>
+        <div class="cp-param-card cp-param-primary">
+          <div class="cp-param-value">35,000,000 <span class="cp-unit">MHA</span></div>
+          <div class="cp-param-label">Subsequent Eligible Distribution Pool</div>
+        </div>
+      </div>
+      <div class="cp-side-grid">
+        <div class="cp-side-card">
+          <h4 class="cp-side-title">Liquidity Pool</h4>
+          <p class="cp-side-content">The liquidity pool is expected to launch after 200 eligible devices, subject to official announcements, compliance review, and market conditions.</p>
+        </div>
+        <div class="cp-side-card">
+          <h4 class="cp-side-title">TGE Arrangements</h4>
+          <p class="cp-side-content">MS2 unlocking and MHA distribution are subject to the TGE schedule, official campaign rules, eligibility review, and regional restrictions.</p>
+        </div>
+      </div>
+    </div>
+    <p class="cp-disclaimer">These parameters are for campaign information only and do not constitute fixed returns, guaranteed distributions, listing commitments, or value guarantees.</p>
+  </section>
+
+
   <!-- 6 DASHBOARD CARDS -->
   <div class="section-label">Season 2 Overview</div>
-  <div class="stats-grid">
+    <span class="onchain-badge" id="onchain-top-badge">Loading</span>
+<div class="stats-grid">
     <div class="stat-card">
       <div class="stat-icon">👥</div>
       <div class="stat-value" id="participants">—</div>
-      <div class="stat-label">Total Participants</div>
+      <div class="stat-label">Total Participating Addresses</div>
       <div class="stat-trend">Season 2</div>
-    </div>
+    <span class="onchain-dot" id="oc-dot-participants" style="display:none"> On-chain</span>
+      </div>
 
     <div class="stat-card gold">
       <div class="stat-icon">📱</div>
       <div class="stat-value" id="phones-given">—</div>
-      <div class="stat-label">Phones Given</div>
-      <div class="stat-trend" id="phones-remaining">— remaining</div>
-    </div>
+      <div class="stat-label">Phone Winners</div>
+      <div class="stat-trend" id="phones-remaining">— Remaining</div>
+    <span class="onchain-dot" id="oc-dot-phones-given" style="display:none"> On-chain</span>
+      </div>
 
     <div class="stat-card">
       <div class="stat-icon">🎯</div>
-      <div class="stat-value" id="curr-round">—</div>
-      <div class="stat-label">Current Round</div>
-      <div class="stat-trend">Round number</div>
-    </div>
+      <div class="stat-value" id="usdt-pool">—</div>
+      <div class="stat-label">On-chain Campaign Assets</div>
+      <div class="stat-trend">USDT Campaign Pool</div>
+    <span class="onchain-dot" id="oc-dot-usdt-pool" style="display:none"> On-chain</span>
+      </div>
 
     <div class="stat-card">
       <div class="stat-icon">🎟️</div>
       <div class="stat-value" id="total-entries">—</div>
       <div class="stat-label">Total Entries</div>
       <div class="stat-trend">Cumulative</div>
-    </div>
+    <span class="onchain-dot" id="oc-dot-total-entries" style="display:none"> On-chain</span>
+      </div>
 
     <div class="stat-card">
       <div class="stat-icon">⏭️</div>
-      <div class="stat-value" id="entries-next">—</div>
-      <div class="stat-label">Entries to Next Phone</div>
-      <div class="stat-trend">Until next draw</div>
-    </div>
+      <div class="stat-value" id="mha-status">—</div>
+      <div class="stat-label">Post-TGE MHA Reward Status</div>
+      <div class="stat-trend">MHA Tokens</div>
+    <span class="onchain-dot" id="oc-dot-mha-status" style="display:none"> On-chain</span>
+      </div>
 
     <div class="stat-card">
-      <div class="stat-icon">🪙</div>
+      <img class="ms2-stat-icon" loading="lazy" decoding="async" src="/magne-web/assets/img/ms2/ms2-icon.svg" alt="MS2 by MAGNE.AI">
       <div class="stat-value" id="ms2-credits">—</div>
-      <div class="stat-label">MS2 Campaign Credits Recorded</div>
-      <div class="stat-trend">calculated from entries</div>
-    </div>
+      <div class="stat-label">MS2 Campaign Credit Record</div>
+      <div class="stat-trend">(Calculated from entries)</div>
+    <span class="onchain-dot" id="oc-dot-ms2-credits" style="display:none"> On-chain</span>
+      </div>
+  </div>
+
+  <!-- Device Info (WEB-20260712-007) -->
+  <div class="device-info">
+    <div class="device-info-item">📱 <strong>Device:</strong> 8GB + 256GB</div>
+    <div class="device-info-item">🚚 <strong>Shipping:</strong> First batch: Aug–Oct 2026</div>
+    <div class="device-info-item">🪙 <strong>MHA Rewards:</strong> Distributed within 30 days after TGE, subject to campaign rules and eligibility verification</div>
   </div>
 
   <!-- PROGRESS BAR -->
   <div class="progress-card">
     <div class="progress-header">
-      <div class="progress-title">Round Progress</div>
-      <div class="progress-round-badge">📱 1 Phone Selected per 100 Entries</div>
+      <div class="progress-title" id="progress-title">🎰 Round 1</div>
+      <div class="progress-round-badge">📱 1 MAGNE.AI Phone Gen1 awaiting selection</div>
+    </div>
+    <div class="progress-center">
+      <div class="progress-number" id="progress-number">0/100</div>
     </div>
     <div class="progress-bar">
       <div class="progress-fill" id="progress-fill" style="width: 0%;">
-        <span class="progress-text"><span id="progress-text">0</span>/100</span>
+        <span class="progress-text"><span id="progress-text">0</span> / 100 entries</span>
       </div>
     </div>
     <div class="progress-labels">
-      <span>Entries toward the next Phone Gen1 selection</span>
-      <span id="progress-needed">— more entries</span>
-      <span style="color: rgba(255,255,255,0.4); font-size: 0.78rem;">1,700 USDT per round revenue</span>
+      <span>Until next winner: <span id="progress-needed">—</span> entries</span>
+      <span>100 entries per round, representing 1,700 USDT in campaign revenue</span>
     </div>
   </div>
+<!-- ALL WINNERS -->
+  <section id="all-winners">
+    <div class="section-label"><img class="ms2-module-icon" src="/magne-web/assets/img/ms2/ms2-icon.svg" loading="lazy" decoding="async" alt="MS2 by MAGNE.AI">All Winners</div>
+    <h2 class="section-title">All Winners <small class="en-label">Winner History</small></h2>
+    <div class="winners-table-wrapper">
+      <table class="winners-table">
+        <thead>
+          <tr>
+            <th>Round</th>
+            <th>Winner Address</th>
+            <th>Phone Model</th>
+            <th>Entries</th>
+            <th>Tx Hash</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="all-winners-body">
+          <!-- Filled by renderAllWinners() -->
+        </tbody>
+      </table>
+    </div>
+    <p class="winners-empty-state" id="winners-empty-state">
+      No complete winner records yet. Records will sync automatically after Season 2 begins.
+    </p>
+    <div class="winners-pagination">
+      <button class="pagination-btn" id="winners-prev" disabled>← Previous</button>
+      <span class="pagination-info" id="winners-page-info">Page 1 / 1</span>
+      <button class="pagination-btn" id="winners-next" disabled>Next →</button>
+    </div>
+  </section>
+
+
+  <!-- PACKAGES -->
+  <div class="section-label">Round Revenue Model</div>
+  <div class="packages-grid" id="packages-grid"></div>
+  <p style="text-align:center; font-size:0.78rem; color:rgba(255,255,255,0.4); margin-top:0.85rem;">100 entries per round represent 1,700 USDT in campaign revenue, allocated according to campaign rules.</p>
+
 
   <!-- 17 USDT REWARD FLOW -->
   <div class="section-label">Entry Allocation</div>
-  <div class="reward-flow">
-    <h3>17 USDT per entry allocation</h3>
+
+<div class="reward-flow">
+    <h3>17 USDT per Entry Allocation</h3>
     <div class="reward-flow-tree">
-      <div class="reward-total">17 USDT per entry</div>
+      <div class="reward-total">17 USDT per Entry</div>
       <ul>
-        <li><span class="reward-amount">4 USDT</span><span>Trading liquidity preparation</span></li>
-        <li><span class="reward-amount">4 USDT</span><span>Eligible inviter referral reward</span></li>
+        <li><span class="reward-amount">4 USDT</span><span>Trading Liquidity Reserve</span></li>
+        <li><span class="reward-amount">4 USDT</span><span>Operations and Marketing (including eligible referral rewards, promotion, and campaign operations)</span></li>
         <li><span class="reward-amount">1.5 USDT</span><span>Top Contributor Reward Pool</span></li>
-        <li><span class="reward-amount">7.5 USDT</span><span>Treasury / campaign operations / other configured pools</span></li>
+        <li><span class="reward-amount">7.5 USDT</span><span>Treasury / Device Manufacturing / Other Allocation Pool</span></li>
       </ul>
     </div>
-    <p class="reward-disclaimer">Allocation descriptions are based on current campaign rules and may be updated according to official campaign notices.</p>
+    <p class="reward-disclaimer">Allocation details follow current campaign rules and are subject to final official announcements.</p>
   </div>
-
-  <!-- PACKAGES -->
-  <div class="section-label">Participation Packages</div>
-  <div class="packages-grid" id="packages-grid"></div>
-  <p style="text-align:center; font-size:0.78rem; color:rgba(255,255,255,0.4); margin-top:0.85rem;">Each package contributes to the season-wide 1,700 USDT-per-round revenue pool.</p>
 
   <!-- CTA BUTTONS -->
   <div class="cta-row">
     <a class="cta cta-primary" href="https://payment.magne.ai/lottery">🎲 Join Season 2</a>
     <a class="cta cta-secondary" href="https://payment.magne.ai/ms2-staking">🪙 Stake MS2</a>
-    <a class="cta cta-tertiary" href="https://jerrysohigh-create.github.io/magne-web3/tc/session2.html#join" target="_blank" rel="noopener">📄 View Rules</a>
+    <a class="cta cta-tertiary" href="#season2-rules">📄 View Campaign Rules</a>
   </div>
 
   <!-- RECENT DRAWS -->
-  <div class="section-label">Activity</div>
-  <h2 class="section-title">🏆 Recent Draws</h2>
+  <div class="section-label">Campaign</div>
+  <h2 class="section-title">Latest Draw <small class="en-label">Latest Result</small></h2>
   <div class="data-table-wrap">
     <table class="data-table">
       <thead>
         <tr>
-          <th>TX Hash</th>
+          <th>Tx Hash</th>
           <th>Time</th>
           <th>Result</th>
         </tr>
       </thead>
       <tbody id="draws-body">
-        <tr><td colspan="3" class="empty-state">No draws yet.</td></tr>
+        <tr><td colspan="3" class="empty-state">No recent winner records. RPC on-chain data will sync automatically after Season 2 begins.</td></tr>
       </tbody>
     </table>
   </div>
 
   <!-- TEAM REWARDS LEADERBOARD -->
-  <h2 class="section-title">👥 Team Rewards Leaderboard</h2>
+  <h2 class="section-title">👥 Team Reward Leaderboard</h2>
   <div class="data-table-wrap">
     <table class="data-table">
       <thead>
@@ -1171,75 +1956,168 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
           <th>Rank</th>
           <th>Reward Share</th>
           <th>USDT Reward</th>
-          <th>Inviter Address</th>
+          <th>Referrer Address</th>
         </tr>
       </thead>
       <tbody id="leaderboard-body"></tbody>
     </table>
-    <p class="leaderboard-footnote">Reward Share percentages are fixed campaign rules. USDT Reward and Inviter Address update as the leaderboard fills in.</p>
+    <p class="leaderboard-footnote">No team reward distribution records yet. Final results are subject to official campaign rules and eligibility review.</p>
   </div>
 
-  <!-- INVITATION & ANTI-ABUSE RULES (LOTTERY-DASHBOARD2-INVITE-CARD-SYNC-001) -->
+
+  <!-- 邀請與反作弊規則 (LOTTERY-DASHBOARD2-INVITE-CARD-SYNC-001) -->
   <section class="invite-rules-card">
-    <div class="section-label">🛡️ Invitation & Anti-Abuse Rules</div>
-    <h2 class="section-title">🛡️ Invitation &amp; Anti-Abuse Rules</h2>
+    <div class="section-label">🛡️ Referral & Anti-Abuse Rules <span class="rules-source">Direct first-level referrals only</span></div>
+    <h2 class="section-title">🛡️ Referral & Anti-Abuse Rules <small class="en-label">Referral Rules</small></h2>
     <ol class="invite-rules-list">
-      <li>Referral rewards apply only to first-level direct invitations. No second-, third-, or multi-level rewards exist.</li>
-      <li>After the invitee completes their first valid participation, the invitation relationship cannot be changed.</li>
-      <li>The official default entry point does not generate referral rewards and is not counted toward the leaderboard.</li>
-      <li>Secondary market MS2 purchases, secondary market trading volume, or external MS2 transfers do not generate direct referral rewards.</li>
-      <li>Self-invitation, bots, wash trading, circular funds, same-controller bulk addresses, sybil behavior, or other abnormal patterns may result in reward cancellation and disqualification.</li>
-      <li>Large rewards, leaderboard eligibility, and reward pool distribution may require additional eligibility review, KYC/AML compliance, and applicable regional restrictions.</li>
+      <li>Referral rewards apply only to direct first-level referrals; there are no second-, third-, or multi-level rewards.</li>
+      <li>The referral relationship cannot be changed after the invitee completes their first valid entry.</li>
+      <li>The official default entry point generates no referral rewards and does not count toward the leaderboard.</li>
+      <li>Market purchases, secondary-market volume, or externally transferred MS2 do not generate direct referral rewards.</li>
+      <li>Self-referrals, bots, wash activity, circular funds, batches of commonly controlled addresses, Sybil behavior, or other anomalies may result in reward cancellation and loss of eligibility.</li>
+      <li>Large rewards, leaderboard eligibility, and pool distributions may require additional eligibility review, KYC/AML requirements, and applicable regional restrictions.</li>
     </ol>
-    <p class="invite-rules-note">All rules above are subject to official campaign rules, eligibility review, anti-abuse checks, TGE timing, regional restrictions, and applicable regulations.</p>
+    <p class="invite-rules-note">All rules are subject to official campaign rules, eligibility and anti-abuse checks, the TGE schedule, regional restrictions, and applicable regulations. MAGNE.AI reserves final interpretation of the campaign rules.</p>
   </section>
 
   <!-- MS2 STAKING MODULE -->
-  <div class="section-label">MS2 Staking</div>
-  <h2 class="section-title">🪙 MS2 Staking Module</h2>
-  <div class="staking-grid">
-    <div class="staking-card">
-      <div class="staking-label">MS2 Staking</div>
-      <div class="staking-value" id="staking-status-val">—</div>
-      <span class="staking-status-pill idle" id="staking-pill">Idle</span>
-      <div class="staking-sub" style="margin-top:0.4rem;">Connect wallet to view status</div>
-    </div>
-    <div class="staking-card">
-      <div class="staking-label">Campaign Weight</div>
-      <div class="staking-value" id="campaign-weight">×1.00</div>
-      <div class="staking-sub">Base weight multiplier</div>
-    </div>
-    <div class="staking-card">
-      <div class="staking-label">Staking Status</div>
-      <div class="staking-value" id="staking-active">—</div>
-      <div class="staking-sub">Eligible tiers &amp; boosts</div>
-    </div>
-    <div class="staking-card">
+  <div class="section-label"><img class="ms2-module-icon" src="/magne-web/assets/img/ms2/ms2-icon.svg" loading="lazy" decoding="async" alt="MS2 by MAGNE.AI">MS2 Staking</div>
+  <h2 class="section-title"><img class="ms2-module-icon ms2-module-icon-lg" src="/magne-web/assets/img/ms2/ms2-icon.svg" loading="lazy" decoding="async" alt="MS2 by MAGNE.AI">MS2 Staking Module</h2>
+  <div class="staking-card staking-card--solo">
       <div class="staking-label">Total MS2 Staked</div>
       <div class="staking-value" id="total-ms2-staked">—</div>
-      <div class="staking-sub">Across all participants</div>
+      <div class="staking-sub">All Participants Combined</div>
     </div>
-  </div>
 
   <!-- STAKING RULES -->
-  <h2 class="section-title">📋 Staking Tiers &amp; Boosts</h2>
+  <h2 class="section-title">📋 Staking Tiers & Boosts</h2>
   <div class="data-table-wrap">
     <table class="staking-table">
       <thead>
         <tr>
           <th>Tier</th>
-          <th>Team Requirement</th>
+          <th>Team Threshold</th>
           <th>Boost</th>
         </tr>
       </thead>
       <tbody id="staking-tiers-body"></tbody>
     </table>
-    <p class="staking-caption">Boosts are used for campaign weight and eligibility calculations only. They do not represent fixed yield, fixed APY, or guaranteed return.</p>
-  </div>
+    <p class="staking-caption">No staking status available. Connect a wallet to check.</p>
+  </div>  <!-- MS2 Guide (WEB-20260712-011 — 整合 3 個 sections) -->
+  <section id="ms2-guide">
+    <h2 class="section-title">MS2 Guide <small class="en-label">User Guide</small></h2>
+    <p class="section-subtitle">Understand MS2 utility, staking weight, lifecycle, and eligibility logic.</p>
+    <div class="ms2g-grid">
+      <!-- Card 1: What Is MS2? -->
+      <div class="ms2g-card ms2g-card-what">
+        <div class="ms2g-card-header">
+          <h3 class="ms2g-card-title">What Is MS2?</h3>
+          <span class="ms2g-card-tag">MS2 ≠ MHA</span>
+        </div>
+        <p class="ms2g-card-body">MS2 is a Season 2 campaign credit/token used for campaign tracking, rankings, staking weight, and future eligibility reviews. MS2 is not MHA, and there is no fixed conversion ratio between them. MS2 does not represent a financial product, fixed return, guaranteed return, or listing right.</p>
+      </div>
+      <!-- Card 2: Staking Weight -->
+      <div class="ms2g-card ms2g-card-staking">
+        <div class="ms2g-card-header">
+          <h3 class="ms2g-card-title">Staking Weight</h3>
+          <span class="ms2g-card-tag">Staking Weight</span>
+        </div>
+        <div class="ms2g-formula">Effective Weight = MS2 Amount × Staking Duration Factor × Community Tier Factor</div>
+        <div class="ms2g-chips">
+          <span class="ms2g-chip"><span class="ms2g-chip-label">Under 7 Days</span><span class="ms2g-chip-value">0.5x</span></span>
+          <span class="ms2g-chip"><span class="ms2g-chip-label">7–14 Days</span><span class="ms2g-chip-value">1.0x</span></span>
+          <span class="ms2g-chip"><span class="ms2g-chip-label">15–30 Days</span><span class="ms2g-chip-value">1.2x</span></span>
+          <span class="ms2g-chip"><span class="ms2g-chip-label">30 Days or More</span><span class="ms2g-chip-value">1.5x</span></span>
+        </div>
+        <p class="ms2g-card-note">Staking weight is used only for campaign rankings, weight calculations, and future eligibility review; it does not represent fixed returns or guaranteed distributions.</p>
+      </div>
+      <!-- Card 3: MS2 Lifecycle -->
+      <div class="ms2g-card ms2g-card-lifecycle">
+        <div class="ms2g-card-header">
+          <h3 class="ms2g-card-title">MS2 Lifecycle</h3>
+          <span class="ms2g-card-tag">MS2 Lifecycle</span>
+        </div>
+        <ol class="ms2g-mini-timeline">
+          <li class="ms2g-mini-stage"><span class="ms2g-mini-num">1</span><span class="ms2g-mini-label">Campaign Phase</span><span class="ms2g-mini-desc">MS2 is released through eligible campaign participation</span></li>
+          <li class="ms2g-mini-stage"><span class="ms2g-mini-num">2</span><span class="ms2g-mini-label">Staking Phase</span><span class="ms2g-mini-desc">Used to calculate potential MHA distribution eligibility</span></li>
+          <li class="ms2g-mini-stage"><span class="ms2g-mini-num">3</span><span class="ms2g-mini-label">Snapshot Phase</span><span class="ms2g-mini-desc">Records effective staking weight</span></li>
+          <li class="ms2g-mini-stage"><span class="ms2g-mini-num">4</span><span class="ms2g-mini-label">Unlock Phase</span><span class="ms2g-mini-desc">Apply to unstake MS2 after TGE according to the rules</span></li>
+          <li class="ms2g-mini-stage"><span class="ms2g-mini-num">5</span><span class="ms2g-mini-label">Settlement Phase</span><span class="ms2g-mini-desc">Unreleased, unclaimed, forfeited, or recoverable MS2 in official contracts may be burned, permanently locked, or otherwise handled under the final rules.</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
 
-  <!-- CONTRACT REFERENCES -->
+  <!-- Campaign Timeline (WEB-20260712-011 — Timeline redesign) -->
+  <section id="campaign-timeline">
+    <h2 class="section-title">Campaign Timeline <small class="en-label">Phased Schedule</small></h2>
+    <p class="section-subtitle">Season 2 participation, drawings, staking, TGE, and settlement arrangements will proceed in phases.</p>
+    <ol class="ct-timeline">
+      <li class="ct-stage">
+        <div class="ct-stage-marker"><span class="ct-stage-num">01</span></div>
+        <div class="ct-stage-content">
+          <h3 class="ct-stage-title">Campaign Launch</h3>
+          <p class="ct-stage-desc">Season 2 participation opens and lottery rounds begin.</p>
+        </div>
+      </li>
+      <li class="ct-stage">
+        <div class="ct-stage-marker"><span class="ct-stage-num">02</span></div>
+        <div class="ct-stage-content">
+          <h3 class="ct-stage-title">After Target Conditions Are Met</h3>
+          <p class="ct-stage-desc">If the MS2 liquidity pool launches, it will be subject to official announcements, compliance review, and market conditions.</p>
+        </div>
+      </li>
+      <li class="ct-stage">
+        <div class="ct-stage-marker"><span class="ct-stage-num">03</span></div>
+        <div class="ct-stage-content">
+          <h3 class="ct-stage-title">Ongoing</h3>
+          <p class="ct-stage-desc">One Phone Gen1 winner is selected every 100 entries.</p>
+        </div>
+      </li>
+      <li class="ct-stage">
+        <div class="ct-stage-marker"><span class="ct-stage-num">04</span></div>
+        <div class="ct-stage-content">
+          <h3 class="ct-stage-title">Campaign End</h3>
+          <p class="ct-stage-desc">After the final round, staking snapshots and settlement preparations begin.</p>
+        </div>
+      </li>
+      <li class="ct-stage">
+        <div class="ct-stage-marker"><span class="ct-stage-num">05</span></div>
+        <div class="ct-stage-content">
+          <h3 class="ct-stage-title">TGE Arrangements</h3>
+          <p class="ct-stage-desc">Subsequent eligible MHA distributions, MS2 unlocking, and other arrangements are subject to the TGE schedule, official campaign rules, and eligibility review.</p>
+        </div>
+      </li>
+    </ol>
+    <p class="ct-compliance">This timeline explains the campaign flow only. Actual timing, unlocking, distribution, and settlement are subject to official announcements, the TGE schedule, eligibility review, and applicable regulations.</p>
+  </section>
+
+  <!-- ON-CHAIN VERIFICATION PANEL (WEB-20260710-002) -->
+<section id="onchain-panel">
+  <div class="section-label">⛓️ On-Chain Verification <span id="onchain-status" class="onchain-status loading">⏳ Loading on-chain data…</span></div>
+  <h2 class="section-title">On-Chain Verification <small class="en-label">Public BSC RPC</small></h2>
+  <div class="onchain-grid">
+    <div class="onchain-card">
+      <div class="onchain-card-label">MS2 Token</div>
+      <div class="onchain-card-value" id="onchain-token-name">—</div>
+      <div class="onchain-card-sub" id="onchain-token-symbol">—</div>
+      <div class="onchain-card-meta" id="onchain-token-supply">Total Supply: —</div>
+    </div>
+    <div class="onchain-card">
+      <div class="onchain-card-label">Total MS2 Staked</div>
+      <div class="onchain-card-value" id="onchain-staking-total">—</div>
+      <div class="onchain-card-sub">Contract: 0xB6Ed…84D8</div>
+    </div>
+    <div class="onchain-card">
+      <div class="onchain-card-label">Lottery Status</div>
+      <div class="onchain-card-value" id="onchain-lottery-round">—</div>
+      <div class="onchain-card-sub" id="onchain-lottery-meta">Entries — / Phone Winners —</div>
+    </div>
+  </div>
+  <p class="onchain-disclaimer">The data above is read directly from public contracts on BSC Mainnet via <code>eth_call</code>, with no login or API key required. Events are retrieved via <code>eth_getLogs</code>. The active RPC endpoint is <span id="onchain-rpc-url">—</span>. Implementation contracts are provided only as ABI logic references; their state is not read directly.</p>
+</section><!-- CONTRACT REFERENCES -->
   <div class="section-label">Contract References</div>
-  <h2 class="section-title">🔗 On-chain Contracts</h2>
+  <h2 class="section-title">🔗 On-Chain Contracts</h2>
   <div class="contracts-card">
     <div class="contract-row">
       <span class="contract-label">MS2 Token</span>
@@ -1255,36 +2133,36 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
     </div>
 
     <details class="tech-refs">
-      <summary>Collapsible Technical References</summary>
+      <summary>Expand Technical References</summary>
       <div class="tech-refs-body">
         <div class="tech-ref-row">
-          <span class="contract-label">MagneLotteryS2 Implementation</span>
+          <span class="contract-label">MagneLotteryS2 Implementation Contract</span>
           <span class="contract-addr"><a href="https://bscscan.com/address/0x877f5C053F3F3b43063572b432fF7B7F7B08226B" target="_blank" rel="noopener">0x877f…226B ↗</a></span>
         </div>
         <div class="tech-ref-row">
-          <span class="contract-label">MS2Staking Implementation</span>
+          <span class="contract-label">MS2Staking Implementation Contract</span>
           <span class="contract-addr"><a href="https://bscscan.com/address/0x9a7d5E82aB8bb64e279D02F80FF87aD42397532C" target="_blank" rel="noopener">0x9a7d…532C ↗</a></span>
         </div>
       </div>
     </details>
 
-    <p class="proxy-note">The Season 2 Lottery and MS2 Staking contracts use upgradeable proxy architecture. Proxy addresses are the primary user-facing contract references.</p>
-  </div>
-
-  <!-- COMPLIANCE -->
+    <p class="proxy-note">The Season 2 lottery and MS2 staking contracts use an upgradeable proxy architecture. Proxy addresses are the primary public contract references.</p>
+  </div><!-- COMPLIANCE -->
   <div class="compliance">
     <h4>MS2 Disclaimer</h4>
-    <p>MS2 is a campaign participation token / campaign credit. It is not MHA, has no guaranteed value, has no fixed exchange ratio, and does not represent a fixed-yield, savings, or investment product.</p>
+    <p>Campaign data is displayed for transparency only. MS2- and MHA-related information is not investment advice, a value guarantee, a fixed return, or a guaranteed distribution.</p>
 
     <h4>Campaign Disclaimer</h4>
-    <p>Campaign data is provided for visibility purposes only. MS2 and MHA-related information does not represent investment advice, guaranteed value, fixed return, or guaranteed distribution. All rewards, credits, eligibility, staking weight, ranking, and distribution timing are subject to official campaign rules, verification, anti-abuse review, TGE-related schedules, regional restrictions, and applicable rules.</p>
+    <p>Campaign data is for transparency only. MS2- and MHA-related information is not investment advice, a value guarantee, a fixed return, or a guaranteed distribution. All rewards, credits, eligibility, staking weights, rankings, and distribution schedules are subject to official campaign rules, identity verification, anti-abuse reviews, TGE-related schedules, regional restrictions, and applicable regulations.</p>
+
+    <p><strong>Explicit Notice: </strong>MS2 campaign credits are not MHA and do not represent a financial product, investment advice, a return promise, a listing commitment, or a value guarantee.</p>
   </div>
 
   <!-- FOOTER -->
     <footer>
     <div class="footer-container">
       <div class="footer-col">
-        <h4>Product</h4>
+        <h4>Products</h4>
         <a href="/magne-web/magne-phone.html">Phone</a>
         <a href="/magne-web/magne-security.html">Security</a>
         <a href="/magne-web/magne-compliance.html">Compliance</a>
@@ -1295,47 +2173,46 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
         <h4>Resources</h4>
         <a href="/magne-web/faq.html">FAQ</a>
         <a href="/magne-web/media-kit.html">Media Kit</a>
-        <a href="/magne-web/features-demo.html">Features Demo</a>
-        <a href="/magne-web/lottery-dashboard.html">Lottery Dashboard</a>
+        <a href="/magne-web/features-demo.html">Feature Demo</a>
+        <a href="/magne-web/lottery-dashboard2.html">Campaign Dashboard</a>
         <a href="/magne-web/clash-of-titans.html">Clash of the Titans</a>
       </div>
       <div class="footer-col">
         <h4>Compliance</h4>
-        <a href="/magne-web/google-approval.html">Google GMS</a>
+        <a href="/magne-web/google-approval.html">Google GMS Reference</a>
         <a href="/magne-web/fcc-lookup.html">FCC Lookup</a>
-        <a href="/magne-web/gsma-tac-lookup.html">GSMA TAC</a>
+        <a href="/magne-web/gsma-tac-lookup.html">GSMA TAC Lookup</a>
         <a href="/magne-web/cb-lookup.html">CB Lookup</a>
-        <a href="/magne-web/un383-lookup.html">UN38.3</a>
-        <a href="/magne-web/cp65-lookup.html">CP65</a>
-        <a href="/magne-web/ce-lookup.html">CE</a>
+        <a href="/magne-web/un383-lookup.html">UN38.3 Lookup</a>
+        <a href="/magne-web/cp65-lookup.html">CP65 Lookup</a>
+        <a href="/magne-web/ce-lookup.html">CE Lookup</a>
       </div>
       <div class="footer-col">
         <h4>Company</h4>
         <a href="/magne-web/magne-partners.html">Partners</a>
         <a href="/magne-web/magne-contact.html">Contact</a>
         <a href="/magne-web/privacy-policy.html">Privacy Policy</a>
-        <a href="index.html" target="_blank" rel="noopener">Web3 Portal</a>
+        <a href="#" target="_blank" rel="noopener">Web3 Portal</a>
         <a href="#" target="_blank" rel="noopener">Legal Opinion</a>
       </div>
     </div>
 
     <div class="footer-brand-logo">
       <img src="/magne-web/assets/brand/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="footer-brand-img">
-      <p>The Web3-native AI Phone for Secure Ownership</p>
+      <p>Web3-Native AI Secure Phone</p>
     </div>
 
-    <div class="footer-socials" aria-label="Official MAGNE.AI channels">
+    <div class="footer-socials" aria-label="MAGNE.AI Official Channels">
       <a href="https://x.com/Magne_Ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
       <a href="https://t.me/MagneAI" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
       <a href="https://discord.gg/tX2xRAkd" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
       <a href="https://github.com/magne-ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
       <a href="https://www.youtube.com/@MagneAI" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-      <a href="index.html" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE Web3 Docs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></a>
+      <a href="#" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE Web3 Docs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></a>
     </div>
 
     <p class="trademark-notice">
-      MAGNE.AI™ is a trademark of Magical Hash Global Tech Limited, currently in registration process
-      (<a href="https://tmsearch.uspto.gov/search/search-results/99311528" target="_blank" rel="noopener">USPTO Serial: 99311528</a>).
+      MAGNE.AI™ is a trademark of Magical Hash Global Tech Limited and is currently under registration (<a href="https://tmsearch.uspto.gov/search/search-results/99311528" target="_blank" rel="noopener">USPTO Serial No.: 99311528</a>).
     </p>
     <p style="margin-top: 1.5rem; opacity: 0.5;">© 2026 MAGNE.AI. All rights reserved.</p>
   </footer>
@@ -1343,19 +2220,212 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
 
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.13.0/dist/ethers.umd.min.js" defer></script>
 <script>
   // =================== CONSTANTS ===================
+
+// =================== ON-CHAIN RPC LAYER (WEB-20260710-002) ===================
+const BSC_RPC_URLS = [
+  'https://bsc-dataseed.bnbchain.org/',
+  'https://bsc-dataseed1.bnbchain.org/',
+  'https://bsc-dataseed2.bnbchain.org/',
+  'https://bsc-rpc.publicnode.com',
+  'https://1rpc.io/bnb'
+];
+
+const CONTRACT_ADDRESSES = {
+  ms2Token:   '0xC46A54BBD2716C436Aaaed6Ed2f555a9b054ebD1',
+  lottery:    '0x6DE61D8438176741fc8150Aef53256830a6Dd635',
+  staking:    '0xB6Ed72808fb34a3Ac118D397f49332abBAA484D8',
+  lotteryImpl:'0x877f5C053F3F3b43063572bF7B7F7B08226B',
+  stakingImpl:'0x9a7d5E82aB8bb64e279D02F80FF87aD42397532C'
+};
+
+const MS2_TOKEN_ABI = [
+  'function name() view returns (string)',
+  'function symbol() view returns (string)',
+  'function decimals() view returns (uint8)',
+  'function totalSupply() view returns (uint256)',
+  'function balanceOf(address account) view returns (uint256)',
+  'event Transfer(address indexed from, address indexed to, uint256 value)'
+];
+
+const LOTTERY_PROXY_ABI = [
+  'function currentRound() view returns (uint256)',
+  'function totalEntries() view returns (uint256)',
+  'function currentRoundEntries() view returns (uint256)',
+  'function totalWinners() view returns (uint256)',
+  'function ENTRIES_PER_ROUND() view returns (uint256)',
+  'event DrawCompleted(uint256 indexed round, address indexed winner, uint256 entries, uint256 timestamp)',
+  'event WinnerSelected(uint256 indexed round, address indexed winner, uint256 entries)',
+  'event RoundStarted(uint256 indexed round, uint256 timestamp)'
+];
+
+const STAKING_PROXY_ABI = [
+  'function totalStaked() view returns (uint256)',
+  'function stakeOf(address account) view returns (uint256)',
+  'function weightOf(address account) view returns (uint256)',
+  'event Staked(address indexed user, uint256 amount)',
+  'event Withdrawn(address indexed user, uint256 amount)'
+];
+
+let _rpcProvider = null;
+let _rpcProviderUrl = null;
+
+async function getRpcProvider() {
+  if (_rpcProvider) {
+    try {
+      await Promise.race([
+        _rpcProvider.getBlockNumber(),
+        new Promise(function(_, rej) { setTimeout(function() { rej(new Error('timeout')); }, 3000); })
+      ]);
+      return _rpcProvider;
+    } catch (e) {
+      console.warn('[RPC] cached provider failed, reconnecting:', e.message);
+      _rpcProvider = null;
+      _rpcProviderUrl = null;
+    }
+  }
+  for (var i = 0; i < BSC_RPC_URLS.length; i++) {
+    var url = BSC_RPC_URLS[i];
+    try {
+      var p = new ethers.JsonRpcProvider(url, 56, { staticNetwork: true });
+      var bn = await Promise.race([
+        p.getBlockNumber(),
+        new Promise(function(_, rej) { setTimeout(function() { rej(new Error('timeout')); }, 4000); })
+      ]);
+      if (typeof bn === 'number' && bn > 0) {
+        _rpcProvider = p;
+        _rpcProviderUrl = url;
+        console.info('[RPC] connected:', url, 'block', bn);
+        return p;
+      }
+    } catch (e) {
+      console.warn('[RPC] failed:', url, e.message);
+    }
+  }
+  throw new Error('All BSC RPC endpoints failed');
+}
+
+function tokenContract()   { return new ethers.Contract(CONTRACT_ADDRESSES.ms2Token, MS2_TOKEN_ABI, _rpcProvider); }
+function lotteryContract() { return new ethers.Contract(CONTRACT_ADDRESSES.lottery, LOTTERY_PROXY_ABI, _rpcProvider); }
+function stakingContract() { return new ethers.Contract(CONTRACT_ADDRESSES.staking, STAKING_PROXY_ABI, _rpcProvider); }
+
+async function readTokenInfo() {
+  try {
+    var c = tokenContract();
+    var results = await Promise.allSettled([
+      c.name(),
+      c.symbol(),
+      c.decimals(),
+      c.totalSupply()
+    ]);
+    var vals = results.map(function(r) { return r.status === 'fulfilled' ? r.value : null; });
+    return {
+      name: vals[0],
+      symbol: vals[1],
+      decimals: vals[2] !== null ? Number(vals[2]) : null,
+      totalSupply: vals[3]
+    };
+  } catch (e) {
+    console.warn('[Token] read failed:', e.message);
+    return null;
+  }
+}
+
+async function readLotteryState() {
+  try {
+    var c = lotteryContract();
+    var results = await Promise.allSettled([
+      c.currentRound(), c.totalEntries(), c.currentRoundEntries(), c.totalWinners(), c.ENTRIES_PER_ROUND()
+    ]);
+    var vals = results.map(function(r) { return r.status === 'fulfilled' ? r.value : null; });
+    return {
+      currentRound: vals[0] !== null ? Number(vals[0]) : null,
+      totalEntries: vals[1] !== null ? Number(vals[1]) : null,
+      currentRoundEntries: vals[2] !== null ? Number(vals[2]) : null,
+      totalWinners: vals[3] !== null ? Number(vals[3]) : null,
+      entriesPerRound: vals[4] !== null ? Number(vals[4]) : 100
+    };
+  } catch (e) {
+    console.warn('[Lottery] read failed:', e.message);
+    return null;
+  }
+}
+
+async function readStakingState() {
+  try {
+    var c = stakingContract();
+    var ts = await c.totalStaked();
+    return { totalStaked: ts };
+  } catch (e) {
+    console.warn('[Staking] read failed:', e.message);
+    return null;
+  }
+}
+
+async function fetchAllWinnersOnChain(fromBlock, chunkSize) {
+  fromBlock = fromBlock || 0;
+  chunkSize = chunkSize || 5000;
+  try {
+    var provider = await getRpcProvider();
+    var address = CONTRACT_ADDRESSES.lottery;
+    var latestBlock = await provider.getBlockNumber();
+    var eventTopics = [
+      ethers.id('DrawCompleted(uint256,address,uint256,uint256)'),
+      ethers.id('WinnerSelected(uint256,address,uint256)'),
+      ethers.id('WinnerSelected(uint256,address)')
+    ];
+    var allLogs = [];
+    for (var start = fromBlock; start <= latestBlock; start += chunkSize) {
+      var end = Math.min(start + chunkSize - 1, latestBlock);
+      var filter = { address: address, topics: [eventTopics], fromBlock: start, toBlock: end };
+      try {
+        var logs = await provider.getLogs(filter);
+        allLogs = allLogs.concat(logs);
+      } catch (e) {
+        console.warn('[getLogs] ' + start + '-' + end + ' failed:', e.message);
+      }
+      await new Promise(function(r) { setTimeout(r, 200); });
+    }
+    var iface = new ethers.Interface([
+      'event DrawCompleted(uint256 indexed round, address indexed winner, uint256 entries, uint256 timestamp)',
+      'event WinnerSelected(uint256 indexed round, address indexed winner, uint256 entries)'
+    ]);
+    var winners = [];
+    for (var j = 0; j < allLogs.length; j++) {
+      try {
+        var parsed = iface.parseLog(allLogs[j]);
+        if (!parsed) continue;
+        winners.push({
+          round: Number(parsed.args.round),
+          winnerAddress: parsed.args.winner,
+          entries: parsed.args.entries !== undefined ? Number(parsed.args.entries) : null,
+          txHash: allLogs[j].transactionHash,
+          blockNumber: allLogs[j].blockNumber,
+          phoneModel: 'Phone Gen1'
+        });
+      } catch (e) { continue; }
+    }
+    winners.sort(function(a, b) { return b.round - a.round; });
+    return winners;
+  } catch (e) {
+    console.warn('[AllWinners] read failed:', e.message);
+    return [];
+  }
+}
+
   const ENTRY_FEE_USDT      = 17;
   const MS2_PER_ENTRY       = 10;
   const ENTRIES_PER_ROUND   = 100;
   const ROUND_REVENUE_USDT  = 1700;
-  const TOTAL_PHONES        = 1000;
+  const TOTAL_PHONES        = 1600;
 
   const REWARD_FLOW = [
-    { label: 'Trading liquidity preparation',            amount: 4.0  },
-    { label: 'Eligible inviter referral reward',         amount: 4.0  },
-    { label: 'Top Contributor Reward Pool',              amount: 1.5  },
-    { label: 'Treasury / campaign operations / other',   amount: 7.5  },
+    { label: 'Trading Liquidity Reserve',                  amount: 4.0  },
+    { label: 'Operations and Marketing (including eligible referral rewards, promotion, and campaign operations)', amount: 4.0  },
+    { label: 'Top Contributor Reward Pool',                 amount: 1.5  },
+    { label: 'Treasury / Device Manufacturing / Other Allocation Pool',        amount: 7.5  },
   ];
 
   const LEADERBOARD_RATIOS = [
@@ -1376,21 +2446,22 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
     { tier: 'Silver',  teamReq: '5K USD',   boost: '+5%' },
     { tier: 'Gold',    teamReq: '20K USD',  boost: '+10%' },
     { tier: 'Diamond', teamReq: '100K USD', boost: '+10% + pool share' },
-    { tier: 'King',    teamReq: '500K USD', boost: '+10% + pool share + bonus' },
+    { tier: 'Champion',    teamReq: '500K USD', boost: '+10% + pool share + bonus' },
   ];
 
   const PACKAGES = [
-    { usdt: 17,   chances: 1   },
-    { usdt: 34,   chances: 2   },
-    { usdt: 85,   chances: 5   },
-    { usdt: 170,  chances: 10  },
-    { usdt: 1700, chances: 100 },
+    { usdt: 17,   label: 'Standard Entry', entries: 1,   ms2: 10,   featured: false },
+    { usdt: 34,   label: 'Double Entry',    entries: 2,   ms2: 20,   featured: false },
+    { usdt: 85,   label: 'Multi Entry',     entries: 5,   ms2: 50,   featured: false },
+    { usdt: 170,  label: 'Team Entry',      entries: 10,  ms2: 100,  featured: false },
+    { usdt: 1700, label: 'Full Round (100 Entries)',      entries: 100, ms2: 1000, featured: true, trigger: 'Triggers one MAGNE.AI Phone Gen1 draw' },
   ];
 
   // =================== APIs ===================
   const DASHBOARD_API   = 'https://payment.magne.ai/api/v1/lottery2/dashboard';
   const LIST_API        = 'https://payment.magne.ai/api/v1/lottery2/list';
   const LEADERBOARD_API = 'https://payment.magne.ai/api/v1/lottery2/leaderboard';
+  let dashboardData = null;
 
   // =================== HELPERS ===================
   function fmtAddr(a) {
@@ -1412,13 +2483,15 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
   function renderPackages() {
     const grid = document.getElementById('packages-grid');
     if (!grid) return;
-    grid.innerHTML = PACKAGES.map((p, i) => {
-      const featured = (i === 2 || p.usdt === 1700);
+    grid.innerHTML = PACKAGES.map(p => {
+      const featured = !!p.featured;
+      const trigger = p.trigger ? `<div class="package-trigger">${p.trigger}</div>` : '';
       return `
         <div class="package-card${featured ? ' featured' : ''}">
           <div class="package-amount">${p.usdt.toLocaleString()} USDT</div>
-          <div class="package-chances">🎯 ${p.chances} ${p.chances === 1 ? 'Chance' : 'Chances'}</div>
-          <div class="package-desc">${p.chances} valid ${p.chances === 1 ? 'entry' : 'entries'} × ${ENTRY_FEE_USDT} USDT</div>
+          <div class="package-label">${p.label}</div>
+          <div class="package-entries">${p.entries} entries + ${p.ms2} MS2 campaign credits</div>
+          ${trigger}
         </div>
       `;
     }).join('');
@@ -1473,42 +2546,47 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
   // =================== DASHBOARD RENDER ===================
   function renderDashboard(d) {
     d = d || {};
+    dashboardData = d;
     const totalParticipants = d.totalParticipants ?? null;
     const totalMobile       = d.totalMobile ?? null;
     const currRound         = d.currRound ?? null;
-    const totalDraws        = d.totalDraws ?? null;
+    const totalEntries        = d.totalEntries ?? null;
     const nextDrawNeed      = d.nextDrawNeed ?? null;
 
     document.getElementById('participants').textContent = fmtNum(totalParticipants);
     document.getElementById('phones-given').textContent = fmtNum(totalMobile);
     document.getElementById('phones-remaining').textContent =
-      (totalMobile !== null) ? (TOTAL_PHONES - Number(totalMobile)).toLocaleString() + ' remaining' : '— remaining';
-    document.getElementById('curr-round').textContent = fmtNum(currRound);
-    document.getElementById('total-entries').textContent = fmtNum(totalDraws);
+      (totalMobile !== null) ? (TOTAL_PHONES - Number(totalMobile)).toLocaleString() + ' Remaining' : '— Remaining';
+    // KPI #3 改為 USDT Campaign Pool = Total Entries × 17 USDT
+    if (totalEntries !== null) {
+      const usdtEl = document.getElementById('usdt-pool');
+      if (usdtEl) usdtEl.textContent = '$' + (Number(totalEntries) * 17).toLocaleString();
+    }
+    document.getElementById('total-entries').textContent = fmtNum(totalEntries);
 
-    // MS2 Campaign Credits = totalDraws × 10 (calculated from entries)
-    const ms2Credits = (totalDraws !== null && !isNaN(totalDraws))
-      ? Number(totalDraws) * MS2_PER_ENTRY
+    // MS2 Campaign點數 = Total Entries × 10(Calculated from entries)
+    const ms2Credits = (totalEntries !== null && !isNaN(totalEntries))
+      ? Number(totalEntries) * MS2_PER_ENTRY
       : null;
     document.getElementById('ms2-credits').textContent = (ms2Credits !== null)
       ? ms2Credits.toLocaleString()
       : '—';
 
-    // Progress bar: prefer nextDrawNeed, else fallback to totalDraws % 100
+    // Progress bar: prefer nextDrawNeed, else fallback to totalEntries % 100
     let entriesNow = null;
     let entriesNeeded = null;
     if (nextDrawNeed !== null && nextDrawNeed !== undefined && !isNaN(nextDrawNeed)) {
       entriesNow = ENTRIES_PER_ROUND - Number(nextDrawNeed);
       entriesNeeded = Number(nextDrawNeed);
-    } else if (totalDraws !== null && totalDraws !== undefined && !isNaN(totalDraws)) {
-      const td = Number(totalDraws);
+    } else if (totalEntries !== null && totalEntries !== undefined && !isNaN(totalEntries)) {
+      const td = Number(totalEntries);
       entriesNow = td % ENTRIES_PER_ROUND;
       entriesNeeded = ENTRIES_PER_ROUND - entriesNow;
     } else {
       entriesNow = 0;
       entriesNeeded = ENTRIES_PER_ROUND;
     }
-    // Edge: totalDraws=0 and nextDrawNeed=100 → display 0/100
+    // Edge: totalEntries=0 and nextDrawNeed=100 → display 0/100
     if (entriesNow < 0) entriesNow = 0;
     if (entriesNow > ENTRIES_PER_ROUND) entriesNow = ENTRIES_PER_ROUND;
 
@@ -1517,22 +2595,41 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
 
     document.getElementById('progress-fill').style.width = pctClamped + '%';
     document.getElementById('progress-text').textContent = entriesNow;
-    document.getElementById('entries-next').textContent = fmtNum(entriesNeeded);
+    document.getElementById('progress-number').textContent = entriesNow + '/100';
+    // 動態更新Round標題
+    const progressTitleEl = document.getElementById('progress-title');
+    if (progressTitleEl && currRound !== null) {
+      progressTitleEl.textContent = '🎰 Round ' + Number(currRound).toLocaleString() + '';
+    }
+    // KPI #5 Post-TGE MHA Reward Status（仿 Season 1 公式：(currRound - 1) * 99 * 100）
+    if (currRound !== null) {
+      const completedRounds = Math.max(0, Number(currRound) - 1);
+      const pendingMha = completedRounds * 99 * 100;
+      document.getElementById('mha-status').textContent = pendingMha.toLocaleString();
+    } else {
+      document.getElementById('mha-status').textContent = '—';
+    }
     document.getElementById('progress-needed').textContent =
-      (entriesNeeded !== null) ? (entriesNeeded + ' more entries') : '— more entries';
+      (entriesNeeded !== null) ? entriesNeeded.toLocaleString() : '—';
+    renderLotterySummary();
+
+    // WEB-20260710-005: distance-to-next-draw card (removed in WEB-20260710-006 — using progress-card)
   }
 
   function showEmptyDashboard() {
     renderDashboard({});
     // Soft fallback values
-    ['participants','phones-given','curr-round','total-entries','entries-next','ms2-credits']
+    ['participants','phones-given','usdt-pool','total-entries','mha-status','ms2-credits']
       .forEach(id => { const el = document.getElementById(id); if (el) el.textContent = '—'; });
     const phonesRem = document.getElementById('phones-remaining');
-    if (phonesRem) phonesRem.textContent = '— remaining';
+    if (phonesRem) phonesRem.textContent = '— Remaining';
     document.getElementById('progress-fill').style.width = '0%';
     document.getElementById('progress-text').textContent = '0';
-    document.getElementById('entries-next').textContent = '—';
-    document.getElementById('progress-needed').textContent = '— more entries';
+    document.getElementById('progress-number').textContent = '0/100';
+    document.getElementById('mha-status').textContent = '—';
+    document.getElementById('progress-needed').textContent = '—';
+
+    // WEB-20260710-005: distance-to-next-draw card reset (removed in WEB-20260710-006 — using progress-card)
   }
 
   // =================== DRAWS LIST ===================
@@ -1540,28 +2637,54 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
     const body = document.getElementById('draws-body');
     if (!body) return;
     if (!Array.isArray(rows) || rows.length === 0) {
-      body.innerHTML = '<tr><td colspan="3" class="empty-state">No draws yet.</td></tr>';
+      body.innerHTML = '<tr><td colspan="3" class="empty-state">No recent winner records.</td></tr>';
       return;
     }
-    body.innerHTML = rows.map(r => {
-      const tx = r.txHash || r.tx || '';
-      const time = r.time || r.timestamp || r.blockTime || null;
-      const result = r.result || r.winner || r.prize || '—';
-      const txShort = tx ? (tx.length > 14 ? tx.slice(0, 8) + '…' + tx.slice(-4) : tx) : '—';
-      const txLink = tx ? `<a href="https://bscscan.com/tx/${tx}" target="_blank" rel="noopener" class="mono">${txShort} ↗</a>` : '<span style="color:rgba(255,255,255,0.35);">—</span>';
-      const resultText = (typeof result === 'string') ? result : JSON.stringify(result);
-      return `
-        <tr>
-          <td>${txLink}</td>
-          <td>${fmtTime(time)}</td>
-          <td>${resultText}</td>
-        </tr>
-      `;
-    }).join('');
+    // 只渲染最近 1 筆（rows[0] = 最新）
+    const r = rows[0];
+    const tx = r.txHash || r.tx || '';
+    const time = r.time || r.timestamp || r.blockTime || null;
+    const result = r.result || r.winner || r.prize || '—';
+    const txShort = tx ? (tx.length > 14 ? tx.slice(0, 8) + '…' + tx.slice(-4) : tx) : '—';
+    const txLink = tx ? `<a href="https://bscscan.com/tx/${tx}" target="_blank" rel="noopener" class="mono">${txShort} ↗</a>` : '<span style="color:rgba(255,255,255,0.35);">—</span>';
+    const resultText = (typeof result === 'string') ? result : JSON.stringify(result);
+    body.innerHTML = `
+      <tr>
+        <td>${txLink}</td>
+        <td>${fmtTime(time)}</td>
+        <td>${resultText}</td>
+      </tr>
+    `;
   }
 
   // =================== API CALLS ===================
+  // WEB-20260710-009：優先讀取靜態 JSON 快照
+  // 路徑：/magne-web/assets/data/lottery2-dashboard.json
+  // 由 Jerry 定期從 payment.magne.ai session 取回後覆寫 commit
+  const STATIC_DASHBOARD_URL = '/magne-web/assets/data/lottery2-dashboard.json';
+
+  async function loadStaticDashboard() {
+    try {
+      const res = await fetch(STATIC_DASHBOARD_URL + '?t=' + Date.now());
+      if (!res.ok) return null;
+      const json = await res.json();
+      if (json.code !== 200 || !json.data) return null;
+      console.info('[Dashboard] 從靜態 JSON 載入', json._meta?.generatedAt || '');
+      return json.data;
+    } catch (e) {
+      console.warn('[Dashboard] 靜態 JSON 載入失敗:', e.message);
+      return null;
+    }
+  }
+
   async function loadDashboard() {
+    // 1. 優先嘗試靜態 JSON
+    const staticData = await loadStaticDashboard();
+    if (staticData) {
+      renderDashboard(staticData);
+      return;
+    }
+    // 2. fallback 到 DASHBOARD_API（需 session，前端通常 900401）
     try {
       const res = await fetch(DASHBOARD_API);
       const json = await res.json();
@@ -1614,13 +2737,166 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
   renderDraws([]);
   showEmptyDashboard();
 
+  loadOnChain();
   loadDashboard();
   loadList();
   loadLeaderboard();
 
-  // Refresh every 30 seconds
-  setInterval(() => { loadDashboard(); loadList(); }, 30000);
+  // Refresh intervals (拉長到 60s 避免 RPC rate limit)
+  setInterval(() => { loadOnChain(); loadDashboard(); }, 60000);
+  setInterval(() => { loadList(); }, 30000);
   setInterval(() => { loadLeaderboard(); }, 60000);
+
+  // =================== ALL WINNERS ===================
+  // 全域變數：保留結構，等待後續 API 接入
+  let winnersData = [];
+
+  function renderAllWinners() {
+    const tbody = document.getElementById('all-winners-body');
+    const emptyState = document.getElementById('winners-empty-state');
+    if (!tbody || !emptyState) return;
+
+    if (!winnersData || winnersData.length === 0) {
+      tbody.innerHTML = '';
+      emptyState.style.display = 'block';
+      return;
+    }
+
+    emptyState.style.display = 'none';
+    tbody.innerHTML = winnersData.map(w => `
+      <tr>
+        <td>${w.round ?? ''}</td>
+        <td>${w.winnerAddress ?? ''}</td>
+        <td>${w.phoneModel ?? ''}</td>
+        <td>${w.entries ?? ''}</td>
+        <td>${w.txHash ?? ''}</td>
+        <td>${w.status ?? ''}</td>
+      </tr>
+    `).join('');
+  }
+
+  // fetchAllWinners — powered by BSC RPC eth_getLogs (WEB-20260710-002)
+async function fetchAllWinners() {
+  // 優先用鏈上 RPC；若失敗 fallback 到空陣列（不填假數據）
+  try {
+    var winners = await fetchAllWinnersOnChain();
+    if (winners && winners.length > 0) return winners;
+  } catch (e) {
+    console.warn('[AllWinners] RPC failed:', e.message);
+  }
+  return [];
+}
+
+
+
+// =================== ON-CHAIN STATUS HELPERS (WEB-20260710-002) ===================
+function setOnChainStatus(status, msg) {
+  var el = document.getElementById('onchain-status');
+  if (el) {
+    el.className = 'onchain-status ' + status;
+    el.textContent = msg || (status === 'live' ? 'Live' : status === 'error' ? 'Error' : 'Loading');
+  }
+  var topBadge = document.getElementById('onchain-top-badge');
+  if (topBadge) {
+    topBadge.className = 'onchain-badge ' + status;
+    topBadge.textContent = msg || (status === 'live' ? 'Live' : status === 'error' ? 'Error' : 'Loading');
+  }
+}
+
+function markOnchain(el) {
+  if (!el || !el.parentElement) return;
+  if (el.parentElement.querySelector('.onchain-badge')) return;
+  var badge = document.createElement('span');
+  badge.className = 'onchain-badge';
+  badge.textContent = 'On-chain';
+  badge.title = 'This data is read directly on-chain through a public BSC RPC endpoint';
+  el.parentElement.appendChild(badge);
+}
+
+function renderOnChainPanel(oc) {
+  var nameEl = document.getElementById('onchain-token-name');
+  var symbolEl = document.getElementById('onchain-token-symbol');
+  var supplyEl = document.getElementById('onchain-token-supply');
+  if (oc.token && nameEl) {
+    nameEl.textContent = oc.token.name || '—';
+    if (symbolEl) {
+      symbolEl.textContent = oc.token.symbol ? 'Symbol: ' + oc.token.symbol + ' • Decimals: ' + (oc.token.decimals || 18) : '—';
+    }
+    if (supplyEl) {
+      if (oc.token.totalSupply !== undefined && oc.token.totalSupply !== null) {
+        var ts = Number(oc.token.totalSupply) / Math.pow(10, oc.token.decimals || 18);
+        supplyEl.textContent = 'Total Supply: ' + ts.toLocaleString() + ' ' + (oc.token.symbol || '');
+      } else {
+        supplyEl.textContent = 'Total Supply: —';
+      }
+    }
+  }
+  var stakeEl = document.getElementById('onchain-staking-total');
+  if (oc.staking && stakeEl) {
+    var ts2 = Number(oc.staking.totalStaked) / 1e18;
+    stakeEl.textContent = ts2.toLocaleString();
+  }
+  renderLotterySummary();
+  var rpcUrlEl = document.getElementById('onchain-rpc-url');
+  if (rpcUrlEl && typeof _rpcProviderUrl !== 'undefined' && _rpcProviderUrl) {
+    rpcUrlEl.textContent = _rpcProviderUrl;
+  }
+}
+
+function renderLotterySummary() {
+  var roundEl = document.getElementById('onchain-lottery-round');
+  var metaEl = document.getElementById('onchain-lottery-meta');
+  var d = dashboardData || {};
+  var entries = d.totalEntries ?? null;
+  var mobile = d.totalMobile ?? null;
+  if (roundEl) roundEl.textContent = fmtNum(entries);
+  if (metaEl) metaEl.textContent = 'Entries ' + fmtNum(entries) + ' / Phone Winners ' + fmtNum(mobile);
+}
+
+function augmentKPIsFromOnChain(oc) {
+  if (oc.staking && oc.staking.totalStaked !== undefined) {
+    var el = document.getElementById('total-ms2-staked');
+    if (el) {
+      var ts3 = Number(oc.staking.totalStaked) / 1e18;
+      el.textContent = ts3.toLocaleString();
+      markOnchain(el);
+    }
+  }
+}
+
+// =================== ON-CHAIN INIT (WEB-20260710-002) ===================
+async function loadOnChain() {
+  setOnChainStatus('loading', '⏳ Loading on-chain data…');
+  try {
+    await getRpcProvider();
+    var tokenInfo = await readTokenInfo();
+    var lotteryInfo = await readLotteryState();
+    var stakingInfo = await readStakingState();
+    var oc = { token: tokenInfo, lottery: lotteryInfo, staking: stakingInfo };
+    window.__onchain = oc;
+    renderOnChainPanel(oc);
+    augmentKPIsFromOnChain(oc);
+    setOnChainStatus('live', '✓ On-chain verified');
+  } catch (e) {
+    console.warn('[OnChain] layer failed:', e.message);
+    setOnChainStatus('error', '⚠ RPC temporarily unavailable');
+  }
+}
+
+// Kick off on-chain reads after page load
+
+
+// 初始化：呼叫 fetch → render
+  (async function initAllWinners() {
+    try {
+      winnersData = await fetchAllWinners();
+      renderAllWinners();
+    } catch (e) {
+      console.warn('All Winners fetch unavailable:', e);
+      renderAllWinners(); // 仍然渲染空Status
+    }
+  })();
+
 </script>
 
 </body>
