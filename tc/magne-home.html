@@ -1408,15 +1408,15 @@
 }
 .season2-highlights {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 .season2-stat {
   background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(0,255,136,0.15);
-  border-radius: 12px;
-  padding: 1.25rem 1rem;
+  border: 1px solid rgba(0,255,136,0.2);
+  border-radius: 14px;
+  padding: 1.5rem 1.25rem 1.25rem;
   text-align: center;
   transition: all 0.2s;
 }
@@ -1425,29 +1425,38 @@
   background: rgba(0,255,136,0.04);
   transform: translateY(-2px);
 }
-.season2-stat-value {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 1.65rem;
-  font-weight: 700;
-  color: #00ff88;
-  line-height: 1.1;
-  margin-bottom: 0.4rem;
-}
-.season2-stat-unit {
-  font-size: 0.85rem;
-  color: rgba(0,255,136,0.7);
-  font-weight: 600;
-}
 .season2-stat-label {
   font-size: 0.78rem;
   color: var(--text-secondary);
   letter-spacing: 0.3px;
+  margin-bottom: 0.6rem;
+  min-height: 2.6em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.3;
+}
+.season2-stat-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(2.2rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: #00ff88;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  letter-spacing: -1px;
+  font-variant-numeric: tabular-nums;
+}
+.season2-stat-sub {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.2px;
 }
 .season2-cta {
   display: flex;
   gap: 0.85rem;
   flex-wrap: wrap;
   align-items: center;
+  margin-top: 0.5rem;
 }
 .season2-btn-primary,
 .season2-btn-secondary {
@@ -1481,17 +1490,25 @@
   background: rgba(0,255,136,0.08);
   border-color: #00ff88;
 }
+.season2-disclaimer {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.35);
+  margin-top: 1.5rem;
+  line-height: 1.5;
+  font-style: italic;
+  text-align: center;
+}
 @media (max-width: 900px) {
-  .season2-highlights { grid-template-columns: repeat(2, 1fr); }
+  .season2-highlights { grid-template-columns: 1fr; gap: 0.75rem; }
 }
 @media (max-width: 768px) {
   .season2-panel { padding: 0 1.25rem; }
   .season2-container { padding: 2rem 1.5rem; }
   .season2-title { font-size: 1.85rem; }
-  .season2-stat-value { font-size: 1.4rem; }
+  .season2-stat-value { font-size: 2.2rem; }
+  .season2-stat-label { min-height: auto; }
 }
 @media (max-width: 480px) {
-  .season2-highlights { grid-template-columns: 1fr 1fr; }
   .season2-cta { flex-direction: column; align-items: stretch; }
   .season2-btn-primary,
   .season2-btn-secondary { justify-content: center; }
@@ -1931,28 +1948,27 @@
         <span class="season2-live-dot"></span>
         進行中
       </span>
-      <span class="season2-tagline">Season 2 活動現正進行</span>
+      <span class="season2-tagline">Season 2 活動現正進行，鏈上資料每 10 分鐘同步</span>
     </div>
 
     <h2 class="season2-title">MAGNE.AI SEASON 2</h2>
-    <p class="season2-sub">Phone Gen1 抽獎活動 • MS2 活動積分 • 質押權重 • 團隊獎勵 — Season 2 是 MAGNE.AI 社區活動的下一章。</p>
+    <p class="season2-sub">Phone Gen1 抽獎活動進行中。連結錢包即可查看個人化活動數據、MS2 積分及質押狀態。</p>
 
     <div class="season2-highlights">
       <div class="season2-stat">
-        <div class="season2-stat-value">17 <span class="season2-stat-unit">USDT</span></div>
-        <div class="season2-stat-label">每個參與名額</div>
+        <div class="season2-stat-label">總參與區塊鏈地址數</div>
+        <div class="season2-stat-value" id="s2-participants">—</div>
+        <div class="season2-stat-sub">獨立錢包地址</div>
       </div>
       <div class="season2-stat">
-        <div class="season2-stat-value">100</div>
-        <div class="season2-stat-label">個名額 → 1 台 Phone Gen1 中選</div>
+        <div class="season2-stat-label">總參與名額</div>
+        <div class="season2-stat-value" id="s2-entries">—</div>
+        <div class="season2-stat-sub">每個名額 17 USDT</div>
       </div>
       <div class="season2-stat">
-        <div class="season2-stat-value">1,600</div>
-        <div class="season2-stat-label">Phone Gen1 活動名額</div>
-      </div>
-      <div class="season2-stat">
-        <div class="season2-stat-value">10 <span class="season2-stat-unit">MS2</span></div>
-        <div class="season2-stat-label">每有效名額累積</div>
+        <div class="season2-stat-label">Phone Gen1 活動名額剩餘</div>
+        <div class="season2-stat-value" id="s2-phones-remaining">—</div>
+        <div class="season2-stat-sub">1,600 台活動名額</div>
       </div>
     </div>
 
@@ -1960,6 +1976,8 @@
       <a href="https://payment.magne.ai/lottery" target="_blank" rel="noopener" class="btn-primary season2-btn-primary">🎲 參與 Season 2</a>
       <a href="lottery-dashboard2.html" class="btn-secondary season2-btn-secondary">📊 查看活動儀表板</a>
     </div>
+
+    <p class="season2-disclaimer">資料由鏈上公開 RPC + 官方 Season 2 API 同步，依官方活動規則、合規審核及地區限制為準。</p>
   </div>
 </section>
 <section id="momentum">
@@ -2288,5 +2306,60 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 
+
+<script>
+  (function () {
+    var DASHBOARD_JSON = '../assets/data/lottery2-dashboard.json';
+    var TOTAL_UNITS = 1600;
+    var POLL_MS = 60000;
+
+    function fmt(n) {
+      if (n == null || isNaN(n)) return '—';
+      return Number(n).toLocaleString();
+    }
+    function setVal(id, val) {
+      var el = document.getElementById(id);
+      if (el) el.textContent = val;
+    }
+    function setBadge(state) {
+      var el = document.querySelector('.season2-live-badge');
+      if (!el) return;
+      if (state === 'live') {
+        el.style.background = 'rgba(0,255,136,0.15)';
+        el.style.color = '#00ff88';
+        el.style.borderColor = 'rgba(0,255,136,0.3)';
+        var dot = el.querySelector('.season2-live-dot');
+        if (dot) dot.style.background = '#00ff88';
+      } else if (state === 'error') {
+        el.style.background = 'rgba(244,67,54,0.12)';
+        el.style.color = '#f44336';
+        el.style.borderColor = 'rgba(244,67,54,0.3)';
+        var dot = el.querySelector('.season2-live-dot');
+        if (dot) dot.style.background = '#f44336';
+        var tag = el.parentNode && el.parentNode.querySelector('.season2-tagline');
+        if (tag) tag.textContent = '資料同步暫時無法使用 — 顯示最後一次成功同步的數值';
+      }
+    }
+    async function loadSeason2Live() {
+      try {
+        var res = await fetch(DASHBOARD_JSON, { cache: 'no-store' });
+        if (!res.ok) { setBadge('error'); return; }
+        var json = await res.json();
+        if (json.code !== 200 || !json.data) { setBadge('error'); return; }
+        var d = json.data;
+        setVal('s2-participants', fmt(d.totalParticipants));
+        setVal('s2-entries', fmt(d.totalEntries));
+        var remaining = TOTAL_UNITS - (Number(d.totalMobile) || 0);
+        setVal('s2-phones-remaining', fmt(remaining));
+        setBadge('live');
+      } catch (e) {
+        console.warn('[Season2] live data unavailable:', e);
+        setBadge('error');
+      }
+    }
+    loadSeason2Live();
+    setInterval(loadSeason2Live, POLL_MS);
+  })();
+</script>
 </body>
 </html>
