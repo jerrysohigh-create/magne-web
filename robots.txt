@@ -1,5 +1,5 @@
-# MAGNE.AI robots.txt
-# https://jerrysohigh-create.github.io/magne-web/
+﻿# MAGNE.AI robots.txt
+# https://www.magne.ai/
 
 User-agent: *
 Allow: /
@@ -24,4 +24,5 @@ Disallow: /TOOLS.md
 Disallow: /USER.md
 Disallow: /node_modules/
 
-Sitemap: https://jerrysohigh-create.github.io/magne-web/sitemap.xml
+Sitemap: https://www.magne.ai/sitemap.xml
+
