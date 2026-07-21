@@ -1,0 +1,27 @@
+# MAGNE.AI robots.txt
+# https://jerrysohigh-create.github.io/magne-web/
+
+User-agent: *
+Allow: /
+
+# Internal API data dumps (auto-refreshed, not for public indexing)
+Disallow: /assets/data/
+
+# Stale / dev / backup files
+Disallow: /magne-home.html.bak
+Disallow: /magne-home-github.html
+Disallow: /test-centering.html
+Disallow: /milestone_2026-03-31.html
+
+# Hidden / agent system files
+Disallow: /.openclaw/
+Disallow: /.github/
+Disallow: /AGENTS.md
+Disallow: /HEARTBEAT.md
+Disallow: /IDENTITY.md
+Disallow: /SOUL.md
+Disallow: /TOOLS.md
+Disallow: /USER.md
+Disallow: /node_modules/
+
+Sitemap: https://jerrysohigh-create.github.io/magne-web/sitemap.xml
