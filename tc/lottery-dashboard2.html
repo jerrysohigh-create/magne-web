@@ -1,9 +1,19 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MAGNE.AI Season 2 活動中心</title>
+  <meta name="description" content="MAGNE.AI Season 2 活動中心：Phone Gen1 抽獎活動、MS2 活動積分、質押權重、團隊獎勵等資訊總覽，鏈上資料即時驗證。">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MAGNE.AI Season 2 活動中心">
+  <meta property="og:description" content="Phone Gen1 抽獎活動、MS2 活動積分、質押權重、團隊獎勵總覽，鏈上資料即時驗證。">
+  <meta property="og:url" content="https://jerrysohigh-create.github.io/magne-web/tc/lottery-dashboard2.html">
+  <meta property="og:image" content="https://jerrysohigh-create.github.io/magne-web/assets/img/ms2/ms2-logo-horizontal-transparent.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MAGNE.AI Season 2 活動中心">
+  <meta name="twitter:description" content="Phone Gen1 抽獎活動、MS2 活動積分、質押權重、團隊獎勵總覽，鏈上資料即時驗證。">
+  <meta name="twitter:image" content="https://jerrysohigh-create.github.io/magne-web/assets/img/ms2/ms2-logo-horizontal-transparent.png">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/mobile-responsive.css">
 <style>
@@ -162,6 +172,10 @@
 .onchain-status.live    { background: rgba(76,175,80,0.15);  color: #4caf50; }
 .onchain-status.error   { background: rgba(244,67,54,0.15);  color: #f44336; }
 .onchain-status.partial { background: rgba(33,150,243,0.15); color: #2196f3; }
+.onchain-badge.loading { background: rgba(255,193,7,0.15); color: #ffc107; }
+.onchain-badge.live    { background: rgba(76,175,80,0.15);  color: #4caf50; }
+.onchain-badge.error   { background: rgba(244,67,54,0.15);  color: #f44336; }
+.onchain-badge.partial { background: rgba(33,150,243,0.15); color: #2196f3; }
 
 .onchain-grid {
   display: grid;
@@ -1790,8 +1804,7 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
 
 
   <!-- 6 DASHBOARD CARDS -->
-  <div class="section-label">Season 2 總覽</div>
-    <span class="onchain-badge" id="onchain-top-badge">載入中</span>
+  <div class="section-label">Season 2 總覽 <span class="onchain-badge" id="onchain-top-badge">載入中</span></div>
 <div class="stats-grid">
     <div class="stat-card">
       <div class="stat-icon">👥</div>
@@ -2902,3 +2915,4 @@ async function loadOnChain() {
 
 </body>
 </html>
+
