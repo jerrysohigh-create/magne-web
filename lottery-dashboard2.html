@@ -1,22 +1,11 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MAGNE.AI Season 2 Campaign Hub</title>
-  <meta name="description" content="MAGNE.AI Season 2 Campaign Hub: Phone Gen1 lottery, MS2 points, staking weights, team rewards — with real-time on-chain verification.">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="MAGNE.AI Season 2 Campaign Hub">
-  <meta property="og:description" content="Phone Gen1 lottery, MS2 points, staking weights, team rewards — with real-time on-chain verification.">
-  <meta property="og:url" content="https://jerrysohigh-create.github.io/magne-web/lottery-dashboard2.html">
-  <meta property="og:image" content="https://jerrysohigh-create.github.io/magne-web/assets/img/ms2/ms2-logo-horizontal-transparent.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="MAGNE.AI Season 2 Campaign Hub">
-  <meta name="twitter:description" content="Phone Gen1 lottery, MS2 points, staking weights, team rewards — with real-time on-chain verification.">
-  <meta name="twitter:image" content="https://jerrysohigh-create.github.io/magne-web/assets/img/ms2/ms2-logo-horizontal-transparent.png">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/mobile-responsive.css">
-<style>
+  <style>
     :root {
       --bg-primary: #0a0a0c;
       --bg-secondary: #0f0f12;
@@ -172,10 +161,6 @@
 .onchain-status.live    { background: rgba(76,175,80,0.15);  color: #4caf50; }
 .onchain-status.error   { background: rgba(244,67,54,0.15);  color: #f44336; }
 .onchain-status.partial { background: rgba(33,150,243,0.15); color: #2196f3; }
-.onchain-badge.loading { background: rgba(255,193,7,0.15); color: #ffc107; }
-.onchain-badge.live    { background: rgba(76,175,80,0.15);  color: #4caf50; }
-.onchain-badge.error   { background: rgba(244,67,54,0.15);  color: #f44336; }
-.onchain-badge.partial { background: rgba(33,150,243,0.15); color: #2196f3; }
 
 .onchain-grid {
   display: grid;
@@ -1714,7 +1699,7 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
   </div>
 
   <div class="back-home">
-    <a href="https://web3.magne.ai">← Back to Home</a>
+    <a href="index.html">← Back to Home</a>
   </div>
 
 
@@ -1804,7 +1789,8 @@ footer { padding: 3rem 1.5rem 1.5rem; text-align: center; }
 
 
   <!-- 6 DASHBOARD CARDS -->
-  <div class="section-label">Season 2 Overview <span class="onchain-badge" id="onchain-top-badge">Loading</span></div>
+  <div class="section-label">Season 2 Overview</div>
+    <span class="onchain-badge" id="onchain-top-badge">Loading</span>
 <div class="stats-grid">
     <div class="stat-card">
       <div class="stat-icon">👥</div>
@@ -2915,4 +2901,3 @@ async function loadOnChain() {
 
 </body>
 </html>
-
