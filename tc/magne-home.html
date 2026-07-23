@@ -1,17 +1,9 @@
-<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MAGNE.AI — AI 原生安全硬體入口</title>
-  <meta property="og:title" content="MAGNE.AI — AI 原生安全硬體入口">
-  <meta property="og:description" content="全球首款 Web3 原生 AI 智能手機，配備 CC EAL6+ 安全晶片、CC EAL2+ TEE 信任執行環境、私密雙空間架構，並原生支援 MAGNE Network。">
-  <meta property="og:image" content="https://jerrysohigh-create.github.io/magne-web/phone-white.png">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="MAGNE.AI — AI 原生安全硬體入口">
-  <meta name="twitter:description" content="全球首款 Web3 原生 AI 智能手機，配備 CC EAL6+ 安全晶片、CC EAL2+ TEE 信任執行環境、私密雙空間架構，並原生支援 MAGNE Network。">
-  <meta name="twitter:image" content="https://jerrysohigh-create.github.io/magne-web/phone-white.png">
   <link rel="icon" type="image/png" href="/magne-web/assets/brand/logo-icon-circle.png">
   <link rel="alternate" hreflang="en" href="https://jerrysohigh-create.github.io/magne-web/magne-home.html">
   <link rel="alternate" hreflang="zh-Hant" href="https://jerrysohigh-create.github.io/magne-web/tc/magne-home.html">
@@ -1334,6 +1326,194 @@
  }
 }
 
+
+/* === SEASON 2 PANEL (LIVE) === */
+.season2-panel {
+  position: relative;
+  max-width: 1120px;
+  margin: 4rem auto 2rem;
+  padding: 0 2rem;
+  box-sizing: border-box;
+}
+.season2-container {
+  position: relative;
+  background: linear-gradient(135deg, rgba(0,255,136,0.08) 0%, rgba(0,212,212,0.04) 100%);
+  border: 1px solid rgba(0,255,136,0.3);
+  border-radius: 24px;
+  padding: 2.5rem 3rem;
+  overflow: hidden;
+}
+.season2-container::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #00ff88, #00d4d4, #00ff88);
+}
+.season2-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+.season2-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(0,255,136,0.15);
+  color: #00ff88;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0,255,136,0.3);
+}
+.season2-live-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: #00ff88;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(0,255,136,0.6);
+  animation: season2-pulse 2s ease-in-out infinite;
+}
+@keyframes season2-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.3); }
+}
+.season2-tagline {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.season2-title {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 0.75rem;
+  background: linear-gradient(135deg, #00ff88 0%, #00d4d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.season2-sub {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 720px;
+}
+.season2-highlights {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.season2-stat {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(0,255,136,0.2);
+  border-radius: 14px;
+  padding: 1.5rem 1.25rem 1.25rem;
+  text-align: center;
+  transition: all 0.2s;
+}
+.season2-stat:hover {
+  border-color: rgba(0,255,136,0.4);
+  background: rgba(0,255,136,0.04);
+  transform: translateY(-2px);
+}
+.season2-stat-label {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.3px;
+  margin-bottom: 0.6rem;
+  min-height: 2.6em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.3;
+}
+.season2-stat-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(2.2rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: #00ff88;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  letter-spacing: -1px;
+  font-variant-numeric: tabular-nums;
+}
+.season2-stat-sub {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.2px;
+}
+.season2-cta {
+  display: flex;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+.season2-btn-primary,
+.season2-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.85rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: inherit;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+.season2-btn-primary {
+  background: linear-gradient(135deg, #00ff88, #00d4d4);
+  color: #000;
+}
+.season2-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0,255,136,0.25);
+}
+.season2-btn-secondary {
+  background: transparent;
+  color: #00ff88;
+  border-color: rgba(0,255,136,0.4);
+}
+.season2-btn-secondary:hover {
+  background: rgba(0,255,136,0.08);
+  border-color: #00ff88;
+}
+.season2-disclaimer {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.35);
+  margin-top: 1.5rem;
+  line-height: 1.5;
+  font-style: italic;
+  text-align: center;
+}
+@media (max-width: 900px) {
+  .season2-highlights { grid-template-columns: 1fr; gap: 0.75rem; }
+}
+@media (max-width: 768px) {
+  .season2-panel { padding: 0 1.25rem; }
+  .season2-container { padding: 2rem 1.5rem; }
+  .season2-title { font-size: 1.85rem; }
+  .season2-stat-value { font-size: 2.2rem; }
+  .season2-stat-label { min-height: auto; }
+}
+@media (max-width: 480px) {
+  .season2-cta { flex-direction: column; align-items: stretch; }
+  .season2-btn-primary,
+  .season2-btn-secondary { justify-content: center; }
+}
+/* === End SEASON 2 PANEL === */
 </style>
 </head>
 <body>
@@ -1360,7 +1540,6 @@
     </li>
   </ul>
 </nav>
-<body>
 
 <!-- NODE NETWORK BACKGROUND -->
 <canvas id="node-bg"></canvas>
@@ -1395,61 +1574,6 @@
   <p class="hero-supporting">安全簽名 · 私人 AI · Web3 入口 — 為未來 DePIN 參與場景而造。</p>
 </section>
 
-<!-- ALPHA REVIEW RESOURCES -->
-<section id="alpha-review" style="padding:5rem 2rem;max-width:1200px;margin:0 auto;">
-  <div class="section-title">
-    <h2>Alpha 評審資源</h2>
-    <p>快速查看 MAGNE.AI 的 Web3 Portal、Token 披露、透明中心與開發者資源。</p>
-  </div>
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:2rem;" class="alpha-grid">
-    <a href="https://jerrysohigh-create.github.io/magne-web/tc/index.html" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
-      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:2rem;height:100%;transition:all 0.3s;" class="alpha-card">
-        <div style="font-size:0.75rem;color:var(--accent);letter-spacing:2px;text-transform:uppercase;margin-bottom:0.75rem;font-weight:600;">入口</div>
-        <h3 style="font-size:1.2rem;font-weight:600;margin-bottom:0.75rem;color:var(--text-primary);">Web3 Portal</h3>
-        <p style="font-size:0.9rem;color:var(--text-secondary);line-height:1.6;">Web3 鏈上敘事、錢包連接規劃、測試網資源與未來 DePIN 參與入口。</p>
-        <div style="margin-top:1.5rem;font-size:0.85rem;color:var(--accent);">前往 →</div>
-      </div>
-    </a>
-    <a href="https://jerrysohigh-create.github.io/magne-web/tc/token.html" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
-      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:2rem;height:100%;transition:all 0.3s;" class="alpha-card">
-        <div style="font-size:0.75rem;color:var(--accent);letter-spacing:2px;text-transform:uppercase;margin-bottom:0.75rem;font-weight:600;">披露</div>
-        <h3 style="font-size:1.2rem;font-weight:600;margin-bottom:0.75rem;color:var(--text-primary);">Token Disclosure</h3>
-        <p style="font-size:0.9rem;color:var(--text-secondary);line-height:1.6;">$MHA 規劃分配、用途框架，解鎖原則、合約與審計狀態披露。</p>
-        <div style="margin-top:1.5rem;font-size:0.85rem;color:var(--accent);">前往 →</div>
-      </div>
-    </a>
-    <a href="https://jerrysohigh-create.github.io/magne-web/tc/transparency.html" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
-      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:2rem;height:100%;transition:all 0.3s;" class="alpha-card">
-        <div style="font-size:0.75rem;color:var(--accent);letter-spacing:2px;text-transform:uppercase;margin-bottom:0.75rem;font-weight:600;">透明度</div>
-        <h3 style="font-size:1.2rem;font-weight:600;margin-bottom:0.75rem;color:var(--text-primary);">Transparency Center</h3>
-        <p style="font-size:0.9rem;color:var(--text-secondary);line-height:1.6;">活動披露、未來錢包綁定與 SBT 記錄規劃、MHA 相關資格追蹤說明。</p>
-        <div style="margin-top:1.5rem;font-size:0.85rem;color:var(--accent);">前往 →</div>
-      </div>
-    </a>
-    <a href="https://jerrysohigh-create.github.io/magne-web/tc/developers.html" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
-      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:2rem;height:100%;transition:all 0.3s;" class="alpha-card">
-        <div style="font-size:0.75rem;color:var(--accent);letter-spacing:2px;text-transform:uppercase;margin-bottom:0.75rem;font-weight:600;">開發</div>
-        <h3 style="font-size:1.2rem;font-weight:600;margin-bottom:0.75rem;color:var(--text-primary);">Developer Resources</h3>
-        <p style="font-size:0.9rem;color:var(--text-secondary);line-height:1.6;">RPC、Chain ID、Explorer、API 文檔及 SDK 接入指南，相關資料將依技術驗證進度更新。</p>
-        <div style="margin-top:1.5rem;font-size:0.85rem;color:var(--accent);">前往 →</div>
-      </div>
-    </a>
-  </div>
-</section>
-
-<style>
-@media (max-width:900px){
-  .alpha-grid{grid-template-columns:repeat(2,1fr)!important;}
-}
-@media (max-width:500px){
-  .alpha-grid{grid-template-columns:1fr!important;}
-}
-.alpha-card:hover{
-  border-color:var(--accent)!important;
-  transform:translateY(-4px);
-  box-shadow:0 15px 35px rgba(0,212,212,0.1);
-}
-</style>
 
 <!-- SCREEN 1.5: LIVE COMMUNITY MOMENTUM -->
 
@@ -1755,7 +1879,7 @@
 </section>
   <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin:2rem 0">
     <a href="/magne-web/tc/magne-network.html" class="btn-secondary">探索 MAGNE 網絡</a>
-    <a href="#" target="_blank" rel="noopener" class="btn-secondary">開啟 Web3 入口 ↗️</a>
+    <a href="https://web3.magne.ai" target="_blank" rel="noopener" class="btn-secondary">開啟 Web3 入口 ↗️</a>
   </div>
 
 
@@ -1815,17 +1939,56 @@
   </div>
 
 
+<section id="season2" class="season2-panel">
+  <div class="season2-container">
+    <div class="season2-header">
+      <span class="season2-live-badge">
+        <span class="season2-live-dot"></span>
+        進行中
+      </span>
+      <span class="season2-tagline">Season 2 活動現正進行，鏈上資料每 10 分鐘同步</span>
+    </div>
+
+    <h2 class="season2-title">MAGNE.AI SEASON 2</h2>
+    <p class="season2-sub">Phone Gen1 抽獎活動進行中。連結錢包即可查看個人化活動數據、MS2 積分及質押狀態。</p>
+
+    <div class="season2-highlights">
+      <div class="season2-stat">
+        <div class="season2-stat-label">總參與區塊鏈地址數</div>
+        <div class="season2-stat-value" id="s2-participants">—</div>
+        <div class="season2-stat-sub">獨立錢包地址</div>
+      </div>
+      <div class="season2-stat">
+        <div class="season2-stat-label">總參與名額</div>
+        <div class="season2-stat-value" id="s2-entries">—</div>
+        <div class="season2-stat-sub">活動期間累計</div>
+      </div>
+      <div class="season2-stat">
+        <div class="season2-stat-label">Phone Gen1 活動名額剩餘</div>
+        <div class="season2-stat-value" id="s2-phones-remaining">—</div>
+        <div class="season2-stat-sub">1,600 台活動名額</div>
+      </div>
+    </div>
+
+    <div class="season2-cta">
+      <a href="https://payment.magne.ai/lottery" target="_blank" rel="noopener" class="btn-primary season2-btn-primary">🎲 參與 Season 2</a>
+      <a href="lottery-dashboard2.html" class="btn-secondary season2-btn-secondary">📊 查看活動儀表板</a>
+    </div>
+
+    <p class="season2-disclaimer">資料由鏈上公開 RPC + 官方 Season 2 API 同步，依官方活動規則、合規審核及地區限制為準。</p>
+  </div>
+</section>
 <section id="momentum">
   <div class="momentum-container">
     <div class="momentum-eyebrow">社區參與活動</div>
-    <h2 class="momentum-title">MAGNE.AI Phone Gen1 抽獎活動</h2>
-    <p class="momentum-sub">SEASON 1 活動抽獎獎品為 MAGNE.AI Phone Gen1 8GB + 256GB 版本；正式銷售版本與其他 SKU 請以產品規格頁及官方銷售頁面為準。</p>
+    <h2 class="momentum-title">MAGNE.AI SEASON 1 活動（已完结）</h2>
+    <p class="momentum-sub">SEASON 1 活動獎品為 MAGNE.AI Phone Gen1 8GB + 256GB 版本；正式銷售版本與其他 SKU 請以產品規格頁及官方銷售頁面為準。</p>
 
     <div class="stats-grid" style="display:none"></div>
 
     <div style="text-align:center;padding:2rem 1rem;background:rgba(0,212,212,0.05);border:1px solid rgba(0,212,212,0.2);border-radius:16px;margin-bottom:2rem">
-      <p style="color:var(--text-primary);font-size:1.1rem;margin-bottom:1rem">即時活動數據請查看 MAGNE.AI Phone Gen1 Campaign Dashboard。</p>
-      <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:1.5rem">活動參與、抽獎進度及 MHA 相關資格記錄將以 Campaign Dashboard、正式活動規則及適用合規要求為準。</p>
+      <p style="color:var(--text-primary);font-size:1.1rem;margin-bottom:1rem">即時活動數據請查看 MAGNE.AI SEASON 1 Dashboard。</p>
+      <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:1.5rem">活動參與、抽獎進度及 MHA 相關資格記錄將以 Dashboard、正式活動規則及適用合規要求為準。</p>
     </div>
 
     <div class="momentum-footer">
@@ -1915,6 +2078,64 @@
 </section>
 
 <!-- FOOTER -->
+
+<footer>
+    <div class="footer-container">
+      <div class="footer-col">
+        <h4>產品</h4>
+        <a href="/magne-web/tc/magne-phone.html">手機</a>
+        <a href="/magne-web/tc/magne-security.html">安全</a>
+        <a href="/magne-web/tc/magne-compliance.html">合規</a>
+        <a href="/magne-web/tc/magne-network.html">網絡</a>
+        <a href="/magne-web/tc/magne-progress.html">進展</a>
+      </div>
+      <div class="footer-col">
+        <h4>資源</h4>
+        <a href="/magne-web/tc/faq.html">常見問題</a>
+        <a href="/magne-web/tc/media-kit.html">媒體資料包</a>
+        <a href="/magne-web/tc/features-demo.html">功能演示</a>
+        <a href="/magne-web/tc/lottery-dashboard.html">活動儀表板</a>
+        <a href="/magne-web/tc/clash-of-titans.html">Clash of the Titans</a>
+      </div>
+      <div class="footer-col">
+        <h4>合規</h4>
+        <a href="/magne-web/tc/google-approval.html">Google GMS 參考</a>
+        <a href="/magne-web/tc/fcc-lookup.html">FCC 查詢</a>
+        <a href="/magne-web/tc/gsma-tac-lookup.html">GSMA TAC 查詢</a>
+        <a href="/magne-web/tc/cb-lookup.html">CB 查詢</a>
+        <a href="/magne-web/tc/un383-lookup.html">UN38.3 查詢</a>
+        <a href="/magne-web/tc/cp65-lookup.html">CP65 查詢</a>
+        <a href="/magne-web/tc/ce-lookup.html">CE 查詢</a>
+      </div>
+      <div class="footer-col">
+        <h4>公司</h4>
+        <a href="/magne-web/tc/magne-partners.html">合作夥伴</a>
+        <a href="/magne-web/tc/magne-contact.html">聯絡</a>
+        <a href="/magne-web/tc/privacy-policy.html">隱私政策</a>
+        <a href="https://web3.magne.ai" target="_blank" rel="noopener">Web3 入口</a>
+        <a href="#" target="_blank" rel="noopener">法律意見書</a>
+      </div>
+    </div>
+
+    <div class="footer-brand-logo">
+      <img src="/magne-web/assets/brand/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="footer-brand-img">
+      <p>AI 原生安全硬體入口</p>
+    </div>
+
+    <div class="footer-socials" aria-label="MAGNE.AI 官方頻道">
+      <a href="https://x.com/Magne_Ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="https://t.me/MagneAI" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+      <a href="https://discord.gg/tX2xRAkd" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
+      <a href="https://github.com/magne-ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+      <a href="https://www.youtube.com/@MagneAI" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+      <a href="https://web3.magne.ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE Web3 Docs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></a>
+    </div>
+
+    <p class="trademark-notice">
+      MAGNE.AI™ 為 Magical Hash Global Tech Limited 的商業標誌，目前正在註冊程序中（<a href="https://tmsearch.uspto.gov/search/search-results/99311528" target="_blank" rel="noopener">USPTO 序號：99311528</a>）。
+    </p>
+    <p style="margin-top: 1.5rem; opacity: 0.5;">© 2026 MAGNE.AI. 版權所有。</p>
+  </footer>
 
 
 </div>
@@ -2082,62 +2303,62 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 </script>
-<footer>
-    <div class="footer-container">
-      <div class="footer-col">
-        <h4>產品</h4>
-        <a href="/magne-web/tc/magne-phone.html">手機</a>
-        <a href="/magne-web/tc/magne-security.html">安全</a>
-        <a href="/magne-web/tc/magne-compliance.html">合規</a>
-        <a href="/magne-web/tc/magne-network.html">網絡</a>
-        <a href="/magne-web/tc/magne-progress.html">進展</a>
-      </div>
-      <div class="footer-col">
-        <h4>資源</h4>
-        <a href="/magne-web/tc/faq.html">常見問題</a>
-        <a href="/magne-web/tc/media-kit.html">媒體資料包</a>
-        <a href="/magne-web/tc/features-demo.html">功能演示</a>
-        <a href="/magne-web/tc/lottery-dashboard.html">活動儀表板</a>
-        <a href="/magne-web/tc/clash-of-titans.html">Clash of the Titans</a>
-      </div>
-      <div class="footer-col">
-        <h4>合規</h4>
-        <a href="/magne-web/tc/google-approval.html">Google GMS 參考</a>
-        <a href="/magne-web/tc/fcc-lookup.html">FCC 查詢</a>
-        <a href="/magne-web/tc/gsma-tac-lookup.html">GSMA TAC 查詢</a>
-        <a href="/magne-web/tc/cb-lookup.html">CB 查詢</a>
-        <a href="/magne-web/tc/un383-lookup.html">UN38.3 查詢</a>
-        <a href="/magne-web/tc/cp65-lookup.html">CP65 查詢</a>
-        <a href="/magne-web/tc/ce-lookup.html">CE 查詢</a>
-      </div>
-      <div class="footer-col">
-        <h4>公司</h4>
-        <a href="/magne-web/tc/magne-partners.html">合作夥伴</a>
-        <a href="/magne-web/tc/magne-contact.html">聯絡</a>
-        <a href="/magne-web/tc/privacy-policy.html">隱私政策</a>
-        <a href="#" target="_blank" rel="noopener">Web3 入口</a>
-        <a href="#" target="_blank" rel="noopener">法律意見書</a>
-      </div>
-    </div>
 
-    <div class="footer-brand-logo">
-      <img src="/magne-web/assets/brand/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="footer-brand-img">
-      <p>AI 原生安全硬體入口</p>
-    </div>
 
-    <div class="footer-socials" aria-label="MAGNE.AI 官方頻道">
-      <a href="https://x.com/Magne_Ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-      <a href="https://t.me/MagneAI" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
-      <a href="https://discord.gg/tX2xRAkd" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
-      <a href="https://github.com/magne-ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
-      <a href="https://www.youtube.com/@MagneAI" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-      <a href="#" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE Web3 Docs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></a>
-    </div>
+<script>
+  (function () {
+    var DASHBOARD_JSON = '../assets/data/lottery2-dashboard.json';
+    var TOTAL_UNITS = 1600;
+    var POLL_MS = 60000;
 
-    <p class="trademark-notice">
-      MAGNE.AI™ 為 Magical Hash Global Tech Limited 的商業標誌，目前正在註冊程序中（<a href="https://tmsearch.uspto.gov/search/search-results/99311528" target="_blank" rel="noopener">USPTO 序號：99311528</a>）。
-    </p>
-    <p style="margin-top: 1.5rem; opacity: 0.5;">© 2026 MAGNE.AI. 版權所有。</p>
-  </footer>
+    function fmt(n) {
+      if (n == null || isNaN(n)) return '—';
+      return Number(n).toLocaleString();
+    }
+    function setVal(id, val) {
+      var el = document.getElementById(id);
+      if (el) el.textContent = val;
+    }
+    function setBadge(state) {
+      var el = document.querySelector('.season2-live-badge');
+      if (!el) return;
+      if (state === 'live') {
+        el.style.background = 'rgba(0,255,136,0.15)';
+        el.style.color = '#00ff88';
+        el.style.borderColor = 'rgba(0,255,136,0.3)';
+        var dot = el.querySelector('.season2-live-dot');
+        if (dot) dot.style.background = '#00ff88';
+      } else if (state === 'error') {
+        el.style.background = 'rgba(244,67,54,0.12)';
+        el.style.color = '#f44336';
+        el.style.borderColor = 'rgba(244,67,54,0.3)';
+        var dot = el.querySelector('.season2-live-dot');
+        if (dot) dot.style.background = '#f44336';
+        var tag = el.parentNode && el.parentNode.querySelector('.season2-tagline');
+        if (tag) tag.textContent = '資料同步暫時無法使用 — 顯示最後一次成功同步的數值';
+      }
+    }
+    async function loadSeason2Live() {
+      try {
+        var res = await fetch(DASHBOARD_JSON, { cache: 'no-store' });
+        if (!res.ok) { setBadge('error'); return; }
+        var json = await res.json();
+        if (json.code !== 200 || !json.data) { setBadge('error'); return; }
+        var d = json.data;
+        setVal('s2-participants', fmt(d.totalParticipants));
+        setVal('s2-entries', fmt(d.totalEntries));
+        var remaining = TOTAL_UNITS - (Number(d.totalMobile) || 0);
+        setVal('s2-phones-remaining', fmt(remaining));
+        setBadge('live');
+      } catch (e) {
+        console.warn('[Season2] live data unavailable:', e);
+        setBadge('error');
+      }
+    }
+    loadSeason2Live();
+    setInterval(loadSeason2Live, POLL_MS);
+  })();
+</script>
 </body>
 </html>
+
