@@ -1,8 +1,8 @@
 {
   "_meta": {
     "endpoint": "https://payment.magne.ai/api/v1/dashboard",
-    "fetchedAt": "2026-07-26T22:42:28.381917+00:00",
-    "onchainFetchedAt": "2026-07-26T22:42:29.271591+00:00",
+    "fetchedAt": "2026-07-26T23:42:44.150053+00:00",
+    "onchainFetchedAt": "2026-07-26T23:42:45.364666+00:00",
     "onchainSource": "BSC chain via public RPC eth_call"
   },
   "code": 200,
