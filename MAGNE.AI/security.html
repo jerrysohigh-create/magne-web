@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101a17">
+  <meta name="description" content="MAG1 三層硬件安全架構：可信執行環境、安全元件與離線 NFC 復原。">
+  <title>安全架構｜MAGNE.AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans+TC:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css?v=12">
+  <script src="assets/site.js" defer></script>
+</head>
+<body class="page-security">
+  <a class="skip-link" href="#main">跳至主要內容</a>
+  <div class="reading-progress" aria-hidden="true"><span></span></div>
+  <header class="masthead">
+    <div class="masthead__edition"><span>MAGNE.AI</span><span>信任剖面 · FILE 04</span></div>
+      <a class="wordmark" href="./" aria-label="MAGNE.AI 首頁"><span class="wordmark__mark" aria-hidden="true">///</span><span class="wordmark__logo"><img src="assets/images/magne-logo-black-wide.png" width="1181" height="116" alt="MAGNE.AI"></span></a>
+    <div class="masthead__meta"><span>HARDWARE TRUST</span><span>THREE INDEPENDENT LAYERS</span></div>
+  </header>
+  <nav class="site-nav" aria-label="主要導覽">
+    <a class="site-nav__brand" href="./">INDEX</a>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu"><span class="sr-only">開啟導覽</span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
+    <div class="site-nav__menu" id="site-menu"><a href="./">INDEX</a><a href="phone.html">PHONE</a><a href="ai.html">AI</a><a href="network.html">NETWORK</a><a href="security.html" aria-current="page">SECURITY</a><a href="partners.html">PARTNERS</a><a href="contact.html">CONTACT</a></div>
+    <div class="site-nav__actions"><div class="language-menu"><span>繁中</span><a href="../magne-security.html" lang="en">EN</a></div><a class="nav-cta" href="https://payment.magne.ai/buy">預購 MAG1 ↗</a></div>
+  </nav>
+  <main id="main">
+    <section class="security-hero">
+      <div class="security-hero__stamp reveal"><span>TRUST / 03</span><strong>獨立<br>防線</strong><small>NO SINGLE POINT OF TRUST</small></div>
+      <div class="security-hero__copy">
+        <p class="eyebrow reveal">HARDWARE BEFORE PROMISES</p>
+        <h1><span class="reveal">安全不是</span><span class="reveal">一堵牆。</span><span class="reveal">是三道門。</span></h1>
+        <p class="reveal">主系統、簽章與復原被分開設計。即使其中一層面對風險，其他層仍保有自己的邊界。</p>
+      </div>
+    </section>
+
+    <section class="section trust-blueprint" aria-labelledby="trust-title">
+      <header class="section-heading"><span class="chapter-index">I</span><div><p class="eyebrow">信任藍圖 · TRUST BLUEPRINT</p><h2 id="trust-title">每一層只做一件事。<br>也只相信自己該相信的。</h2></div></header>
+      <div class="trust-layers">
+        <article class="trust-layer trust-layer--tee reveal"><span class="trust-layer__index">01</span><div><p class="eyebrow">ISOLATE</p><h3>可信執行隔離</h3><strong>UTEE · CC EAL2+</strong></div><p>將敏感資料與關鍵操作從一般 Android 環境隔離，在受控邊界內處理。</p><small>PROCESS BOUNDARY</small></article>
+        <article class="trust-layer trust-layer--se reveal"><span class="trust-layer__index">02</span><div><p class="eyebrow">SIGN</p><h3>安全元件簽章</h3><strong>HYPERSEED N60 · CC EAL6+</strong></div><p>密鑰被設計為留在安全硬件內；敏感簽章操作不必暴露給主系統。</p><small>KEY BOUNDARY</small></article>
+        <article class="trust-layer trust-layer--nfc reveal"><span class="trust-layer__index">03</span><div><p class="eyebrow">RECOVER</p><h3>離線 NFC 復原</h3><strong>HYPERSEED 72B · CC EAL6+</strong></div><p>復原材料可離線保存，讓裝置遺失與所有權遺失不再是同一件事。</p><small>RECOVERY BOUNDARY</small></article>
+      </div>
+    </section>
+
+    <section class="section section--dark threat-section" aria-labelledby="threat-title">
+      <header class="section-heading"><span class="chapter-index">II</span><div><p class="eyebrow">威脅路徑 · THREAT PATHS</p><h2 id="threat-title">風險會走捷徑。<br>架構不能。</h2></div></header>
+      <div class="threat-matrix">
+        <div class="threat-matrix__head"><span>事件</span><span>被保護的邊界</span><span>系統回應</span></div>
+        <div class="reveal"><strong>一般系統遭到攻擊</strong><span>TEE / 安全元件</span><p>敏感簽章操作與密鑰仍在隔離硬件路徑內。</p></div>
+        <div class="reveal"><strong>裝置遺失或損壞</strong><span>離線復原</span><p>以獨立 NFC 復原材料重建所有權路徑。</p></div>
+        <div class="reveal"><strong>雲端服務不可用</strong><span>端側能力</span><p>本地金庫與硬件簽章不以雲端可用性為前提。</p></div>
+        <div class="reveal"><strong>惡意應用請求簽章</strong><span>使用者確認</span><p>簽章路徑與應用請求分離，讓授權發生在受控邊界。</p></div>
+      </div>
+      <p class="scope-note reveal"><strong>認證範圍說明：</strong>CC EAL2+ 與 CC EAL6+ 為對應組件、模組或評估範圍的認證參考，不代表整機或所有商業配置取得相同等級認證。</p>
+    </section>
+
+    <section class="section security-proof" aria-labelledby="proof-title">
+      <div><p class="eyebrow">PROOF, NOT POSTURE</p><h2 id="proof-title">可信，不靠一句<br>「請相信我們」。</h2><p>安全架構與市場准入是兩組不同證據：前者說明密鑰如何被保護；後者說明裝置如何接受公開測試。</p></div>
+      <div class="proof-links reveal"><a href="compliance.html"><span>01</span><strong>查看設備護照</strong><small>GMS · FCC · CB · UN38.3 · CE</small></a><a href="phone.html"><span>02</span><strong>查看承載它的終端</strong><small>MAG1 PRODUCT DOSSIER</small></a><a href="mailto:official@magne.ai"><span>03</span><strong>索取技術資料</strong><small>OFFICIAL@MAGNE.AI</small></a></div>
+      <div class="page-next reveal"><span>NEXT FILE</span><a href="compliance.html">安全之後，是可被查驗的市場路徑 <strong>COMPLIANCE →</strong></a></div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="footer__brand"><span class="wordmark__mark" aria-hidden="true">///</span><strong>MAGNE.AI</strong><p>三層各自可信，不靠彼此背書。</p></div>
+    <div class="footer__column"><strong>閱讀</strong><a href="./">INDEX</a><a href="phone.html">Phone</a><a href="ai.html">AI</a></div>
+    <div class="footer__column"><strong>驗證</strong><a href="compliance.html">合規總覽</a><a href="../fcc-lookup.html">FCC</a><a href="../gsma-tac-lookup.html">GSMA TAC</a></div>
+    <div class="footer__column"><strong>連接</strong><a href="partners.html">合作</a><a href="contact.html">聯絡</a><a href="https://github.com/magne-ai">GitHub</a></div>
+    <div class="footer__legal"><span>© 2026 MAGNE.AI</span><span>信任剖面 · FILE 04</span><a href="../tc/privacy-policy.html">隱私政策</a></div>
+  </footer>
+</body>
+</html>

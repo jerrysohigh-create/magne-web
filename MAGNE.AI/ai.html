@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11110f">
+  <meta name="description" content="MAG1 的端側 AI 架構：IMG AX3596 8 TOPS、本地模型、選擇性雲端與硬件安全邊界。">
+  <title>端側 AI｜MAGNE.AI</title>
+  <link rel="canonical" href="https://jerrysohigh-create.github.io/magne-web/MAGNE.AI/ai.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans+TC:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css?v=12">
+  <script src="assets/site.js" defer></script>
+</head>
+<body class="page-ai">
+  <a class="skip-link" href="#main">跳至主要內容</a>
+  <div class="reading-progress" aria-hidden="true"><span></span></div>
+  <header class="masthead">
+    <div class="masthead__edition"><span>MAGNE.AI</span><span>技術剖面 · SECTION 02</span></div>
+      <a class="wordmark" href="./" aria-label="MAGNE.AI 首頁"><span class="wordmark__mark" aria-hidden="true">///</span><span class="wordmark__logo"><img src="assets/images/magne-logo-black-wide.png" width="1181" height="116" alt="MAGNE.AI"></span></a>
+    <div class="masthead__meta"><span>ON-DEVICE AI</span><span>8 TOPS · LOCAL FIRST</span></div>
+  </header>
+  <nav class="site-nav" aria-label="主要導覽">
+    <a class="site-nav__brand" href="./">INDEX</a>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu"><span class="sr-only">開啟導覽</span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
+    <div class="site-nav__menu" id="site-menu"><a href="./">INDEX</a><a href="phone.html">PHONE</a><a href="ai.html" aria-current="page">AI</a><a href="network.html">NETWORK</a><a href="security.html">SECURITY</a><a href="partners.html">PARTNERS</a><a href="contact.html">CONTACT</a></div>
+    <div class="site-nav__actions"><div class="language-menu"><span>繁中</span><a href="../magne-ai.html" lang="en">EN</a></div><a class="nav-cta" href="https://payment.magne.ai/buy">預購 MAG1 ↗</a></div>
+  </nav>
+
+  <main id="main">
+    <section class="ai-hero">
+      <div class="ai-hero__number reveal"><span>8</span><small>TOPS</small></div>
+      <div class="ai-hero__copy">
+        <p class="eyebrow reveal">ON-DEVICE, BY DEFAULT</p>
+        <h1><span class="reveal">智能留在</span><span class="reveal">裝置上。</span></h1>
+        <p class="reveal">不是因為雲端沒有能力。是因為有些上下文，不應先離開你。</p>
+      </div>
+      <div class="ai-hero__status reveal">
+        <span>LOCAL INFERENCE</span><strong>DEFAULT</strong>
+        <span>CLOUD AI</span><strong>OPT-IN</strong>
+        <span>PRIVATE KEYS</span><strong>NEVER EXPOSED</strong>
+      </div>
+    </section>
+
+    <section class="section ai-stack" aria-labelledby="ai-stack-title">
+      <header class="section-heading">
+        <span class="chapter-index">I</span>
+        <div><p class="eyebrow">運算堆疊 · COMPUTE STACK</p><h2 id="ai-stack-title">模型不是一個 App。<br>它是一條穿過硬件的路。</h2></div>
+      </header>
+      <div class="compute-stack">
+        <article class="compute-layer reveal"><span>04</span><div><p class="eyebrow">EXPERIENCE</p><h3>助理、翻譯、摘要與 Agent</h3></div><p>使用者看見的是答案；系統先判斷工作應留在本地，還是需要雲端能力。</p></article>
+        <article class="compute-layer reveal"><span>03</span><div><p class="eyebrow">MODEL</p><h3>本地小型語言模型</h3></div><p>權重儲存在 UFS 3.1，以端側模型承擔私密上下文與低延遲工作。</p></article>
+        <article class="compute-layer reveal"><span>02</span><div><p class="eyebrow">NPU</p><h3>IMG AX3596 · 8 TOPS</h3></div><p>專用神經運算處理持續型推論，不必把每一次請求送往遠端伺服器。</p></article>
+        <article class="compute-layer compute-layer--base reveal"><span>01</span><div><p class="eyebrow">BOUNDARY</p><h3>TEE + HyperSeed 安全元件</h3></div><p>雲端路徑與金鑰路徑被硬件分開。政策可以改，晶片上的拒絕不靠措辭。</p></article>
+      </div>
+    </section>
+
+    <section class="section section--dark ai-routing" aria-labelledby="routing-title">
+      <header class="section-heading">
+        <span class="chapter-index">II</span>
+        <div><p class="eyebrow">路由 · REQUEST ROUTING</p><h2 id="routing-title">本地是預設。<br>雲端是一個動詞。</h2></div>
+      </header>
+      <div class="route-map">
+        <div class="route-origin reveal"><span>01 / YOU ASK</span><strong>一個請求</strong><p>語音、文字、圖像或裝置狀態。</p></div>
+        <div class="route-gate reveal"><span>02 / CLASSIFY</span><strong>邊界判斷</strong><p>是否含私密上下文？是否能在本地完成？</p></div>
+        <div class="route-split">
+          <article class="reveal"><span>03A / LOCAL</span><strong>端側模型</strong><p>翻譯、摘要、私密資料推理與離線工作。</p><em>DEFAULT</em></article>
+          <article class="reveal"><span>03B / CLOUD</span><strong>選擇性 Gemini</strong><p>需要更廣泛知識、搜尋或多模態能力時，由使用者選擇。</p><em>OPT-IN</em></article>
+        </div>
+      </div>
+      <blockquote class="pull-quote pull-quote--center reveal">「先問裝置。<br>再問世界。」</blockquote>
+    </section>
+
+    <section class="section ai-boundary" aria-labelledby="boundary-title">
+      <header class="section-heading">
+        <span class="chapter-index">III</span>
+        <div><p class="eyebrow">邊界 · THE BOUNDARY</p><h2 id="boundary-title">不是所有資料，<br>都應該變成提示詞。</h2></div>
+      </header>
+      <div class="boundary-table">
+        <div class="boundary-table__head"><span>資料類型</span><span>預設路徑</span><span>原則</span></div>
+        <div class="reveal"><strong>私鑰與簽章</strong><span class="status-local">安全元件</span><p>不可匯出，不進入本地模型，也不進入雲端模型。</p></div>
+        <div class="reveal"><strong>Web3 金庫內容</strong><span class="status-local">隔離空間</span><p>與一般 Android 空間分離，由硬件邊界拒絕雲端路徑。</p></div>
+        <div class="reveal"><strong>私人文件與上下文</strong><span class="status-local">本地優先</span><p>能在端側完成的工作，預設不離開裝置。</p></div>
+        <div class="reveal"><strong>搜尋與廣泛知識</strong><span class="status-cloud">使用者選擇</span><p>需要雲端時，讓選擇發生在請求之前，而不是事後通知。</p></div>
+      </div>
+    </section>
+
+    <section class="section ai-device section--dark" aria-labelledby="device-title">
+      <div class="ai-device__visual reveal"><img src="assets/images/phone-black.webp" width="1100" height="820" alt="運行端側 AI 的黑色 MAG1 智能終端" loading="lazy"></div>
+      <div class="ai-device__copy">
+        <p class="eyebrow">THE DEVICE</p>
+        <h2 id="device-title">一座山，<br>不是一朵雲。</h2>
+        <p>端側智能的價值，不只在速度。沒有網絡時仍能工作；面對私密上下文時不必先作一次資料交換。</p>
+        <dl><div><dt>NPU</dt><dd>IMG AX3596</dd></div><div><dt>PERFORMANCE</dt><dd>8 TOPS</dd></div><div><dt>MEMORY</dt><dd>最高 24GB Hyper RAM</dd></div><div><dt>STORAGE</dt><dd>最高 512GB UFS 3.1</dd></div></dl>
+        <a class="text-link text-link--light" href="phone.html">查看承載 AI 的 MAG1 <span>↗</span></a>
+      </div>
+      <div class="page-next reveal"><span>NEXT FILE</span><a href="network.html">當裝置需要留下可驗證的紀錄 <strong>NETWORK →</strong></a></div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="footer__brand"><span class="wordmark__mark" aria-hidden="true">///</span><strong>MAGNE.AI</strong><p>本地優先。雲端次之。使用者選擇。</p></div>
+    <div class="footer__column"><strong>閱讀</strong><a href="./">INDEX</a><a href="phone.html">Phone</a><a href="network.html">Network</a></div>
+    <div class="footer__column"><strong>驗證</strong><a href="security.html">安全架構</a><a href="compliance.html">合規總覽</a><a href="https://github.com/magne-ai">GitHub</a></div>
+    <div class="footer__column"><strong>連接</strong><a href="https://payment.magne.ai/buy">預購</a><a href="contact.html">聯絡</a><a href="mailto:partners@magne.ai">合作</a></div>
+    <div class="footer__legal"><span>© 2026 MAGNE.AI</span><span>技術剖面 · SECTION 02</span><a href="../tc/privacy-policy.html">隱私政策</a></div>
+  </footer>
+</body>
+</html>
