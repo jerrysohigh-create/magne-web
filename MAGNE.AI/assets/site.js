@@ -1,18 +1,129 @@
 (() => {
+  const ga4MeasurementId = "G-NGKT224G39";
+  const consentKey = "magne.analytics-consent";
+  const pageLanguage = document.documentElement.lang.toLowerCase();
+  const isEnglishPage = pageLanguage.startsWith("en");
+  const languageCode = pageLanguage.startsWith("ja")
+    ? "ja"
+    : pageLanguage.startsWith("ko")
+      ? "ko"
+      : isEnglishPage
+        ? "en"
+        : "zh-Hant";
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function gtag() { window.dataLayer.push(arguments); };
+  window.gtag("consent", "default", {
+    analytics_storage: "denied",
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+    wait_for_update: 500,
+  });
+  window.gtag("js", new Date());
+
+  let analyticsConsent = null;
+  try { analyticsConsent = window.localStorage.getItem(consentKey); } catch {}
+  if (analyticsConsent === "granted") {
+    window.gtag("consent", "update", { analytics_storage: "granted" });
+  }
+
+  const analyticsScript = document.createElement("script");
+  analyticsScript.async = true;
+  analyticsScript.src = `https://www.googletagmanager.com/gtag/js?id=${ga4MeasurementId}`;
+  document.head.append(analyticsScript);
+  window.gtag("config", ga4MeasurementId, { anonymize_ip: true });
+  document.documentElement.dataset.ga4 = ga4MeasurementId;
+
+  if (!analyticsConsent) {
+    const consentStyles = document.createElement("style");
+    consentStyles.textContent = '.analytics-consent{position:fixed;z-index:1200;right:18px;bottom:18px;width:min(420px,calc(100vw - 36px));box-sizing:border-box;padding:18px;color:#f2eee4;background:#11110f;border:1px solid #5d5a50;box-shadow:0 18px 45px rgb(0 0 0/.24);font-family:Arial,sans-serif}.analytics-consent p{margin:0;font-size:13px;line-height:1.55}.analytics-consent div{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}.analytics-consent button{min-height:38px;padding:0 13px;color:#f2eee4;background:transparent;border:1px solid #777267;font:500 10px/1 monospace;cursor:pointer}.analytics-consent button:last-child{color:#11110f;background:#f2eee4;border-color:#f2eee4}';
+    document.head.append(consentStyles);
+    const consentNotice = document.createElement("aside");
+    consentNotice.className = "analytics-consent";
+    consentNotice.setAttribute("role", "dialog");
+    const consentCopy = {
+      en: ["Analytics preferences", "We use privacy-conscious analytics to understand site performance.", "Decline", "Allow analytics"],
+      ja: ["アクセス解析の設定", "サイトの改善に役立てるため、プライバシーに配慮したアクセス解析を使用します。", "拒否", "解析を許可"],
+      ko: ["분석 설정", "사이트 성능을 이해하기 위해 개인정보를 고려한 분석을 사용합니다.", "거부", "분석 허용"],
+      "zh-Hant": ["分析偏好", "我們使用重視私隱的網站分析，了解網站效能。", "拒絕", "允許分析"],
+    }[languageCode];
+    consentNotice.setAttribute("aria-label", consentCopy[0]);
+    consentNotice.innerHTML = `<p>${consentCopy[1]}</p><div><button type="button" data-consent="denied">${consentCopy[2]}</button><button type="button" data-consent="granted">${consentCopy[3]}</button></div>`;
+    document.body.append(consentNotice);
+    consentNotice.querySelectorAll("[data-consent]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const value = button.dataset.consent;
+        try { window.localStorage.setItem(consentKey, value); } catch {}
+        window.gtag("consent", "update", { analytics_storage: value });
+        consentNotice.remove();
+      });
+    });
+  }
+
   const menuButton = document.querySelector(".menu-button");
   const menu = document.querySelector("#site-menu");
+  const languageMenu = document.querySelector(".language-menu");
+
+  if (languageMenu) {
+    const localizedMatch = window.location.pathname.match(/\/(?:en|ja|ko)\/([^/]*)$/);
+    const currentFile = localizedMatch?.[1] || window.location.pathname.split("/").pop() || "index.html";
+    const localizedCorePages = new Set(["index.html", "phone.html", "phone-specs.html"]);
+    const englishPages = new Set([
+      "index.html", "phone.html", "phone-specs.html", "phone-architecture.html", "mainboard-3d.html",
+      "ai.html", "network.html", "security.html", "compliance.html", "progress.html", "stories.html",
+      "partners.html", "media-kit.html", "privacy-policy.html", "contact.html", "google-approval.html",
+      "fcc-lookup.html", "gsma-tac-lookup.html", "cb-lookup.html", "un383-lookup.html", "cp65-lookup.html",
+      "ce-lookup.html",
+    ]);
+    const root = localizedMatch ? "../" : "./";
+    const coreSuffix = localizedCorePages.has(currentFile) ? currentFile : "";
+    const englishSuffix = englishPages.has(currentFile) ? currentFile : "index.html";
+    const labels = { en: "EN", "zh-Hant": "\u7e41\u4e2d" };
+    const languageLabels = { en: "Language", "zh-Hant": "\u8a9e\u8a00" };
+    const destinations = {
+      en: `${root}en/${englishSuffix}`,
+      "zh-Hant": `${root}${currentFile}`,
+    };
+    const select = document.createElement("select");
+    select.setAttribute("aria-label", languageLabels[languageCode]);
+    select.className = "language-select";
+    Object.entries(labels).forEach(([code, label]) => {
+      const option = document.createElement("option");
+      option.value = destinations[code];
+      option.textContent = label;
+      option.selected = code === languageCode;
+      select.append(option);
+    });
+    select.addEventListener("change", () => { window.location.href = select.value; });
+    languageMenu.replaceChildren(select);
+  }
+
+  const setMenuButtonState = (expanded) => {
+    if (!menuButton) return;
+    const navigationLabels = {
+      en: ["Open navigation", "Close navigation"],
+      ja: ["ナビゲーションを開く", "ナビゲーションを閉じる"],
+      ko: ["탐색 열기", "탐색 닫기"],
+      "zh-Hant": ["開啟導覽", "關閉導覽"],
+    }[languageCode];
+    menuButton.setAttribute("aria-expanded", String(expanded));
+    menuButton.setAttribute("aria-label", expanded ? navigationLabels[1] : navigationLabels[0]);
+  };
 
   const closeMenu = () => {
     if (!menuButton || !menu) return;
-    menuButton.setAttribute("aria-expanded", "false");
+    setMenuButtonState(false);
     menu.classList.remove("is-open");
   };
 
   menuButton?.addEventListener("click", () => {
     const expanded = menuButton.getAttribute("aria-expanded") === "true";
-    menuButton.setAttribute("aria-expanded", String(!expanded));
+    setMenuButtonState(!expanded);
     menu?.classList.toggle("is-open", !expanded);
   });
+
+  setMenuButtonState(false);
 
   menu?.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
 
@@ -64,4 +175,44 @@
     }, { rootMargin: "-20% 0px -65% 0px", threshold: [0.05, 0.25] });
     sections.forEach((section) => sectionObserver.observe(section));
   }
+
+  const timelineFilters = document.querySelector("[data-timeline-filters]");
+  if (timelineFilters) {
+    const buttons = [...timelineFilters.querySelectorAll("[data-timeline-filter]")];
+    const rows = [...document.querySelectorAll(".timeline-list [data-track]")];
+    const status = document.querySelector("[data-timeline-status]");
+
+    const applyTimelineFilter = (filter) => {
+      let visible = 0;
+      buttons.forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.timelineFilter === filter));
+      });
+      rows.forEach((row) => {
+        const show = filter === "all" || row.dataset.track === filter;
+        row.hidden = !show;
+        if (show) visible += 1;
+      });
+      if (status) status.textContent = `顯示 ${visible} 個時間線節點`;
+    };
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => applyTimelineFilter(button.dataset.timelineFilter));
+    });
+  }
+
+  document.querySelectorAll("[data-youtube-id]").forEach((trigger) => {
+    trigger.addEventListener("click", () => {
+      const videoId = trigger.dataset.youtubeId;
+      const media = trigger.closest(".story-video-card__media");
+      if (!videoId || !media) return;
+
+      const frame = document.createElement("iframe");
+      frame.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?autoplay=1&rel=0`;
+      frame.title = trigger.dataset.videoTitle || "MAGNE.AI video";
+      frame.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      frame.referrerPolicy = "strict-origin-when-cross-origin";
+      frame.allowFullscreen = true;
+      media.replaceChildren(frame);
+    }, { once: true });
+  });
 })();

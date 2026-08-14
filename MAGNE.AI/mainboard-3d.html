@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090b0a">
+  <meta name="description" content="以 MAG1 EVT PCBA 實拍資料呈現主板元件面與屏蔽面，支援切換、縮放與細節查看。">
+  <title>MAG1 主板正反面實拍｜MAGNE.AI</title>
+  <link rel="canonical" href="https://www.magne.ai/mainboard-3d.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+TC:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+TC:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/mainboard-3d/mainboard-3d.css?v=2">
+  <script defer src="assets/site.js?v=lang-4-ga4-2"></script>
+  <script defer src="assets/mainboard-3d/mainboard-3d.js?v=3"></script>
+</head>
+<body>
+  <a class="skip-link" href="#mainboard-stage">跳至主板實拍</a>
+  <header class="viewer-header">
+    <a class="viewer-brand" href="./" aria-label="返回 MAGNE.AI 首頁"><span aria-hidden="true">///</span> MAGNE.AI</a>
+    <div class="viewer-header__meta"><span>MAG1 / EVT PCBA</span><span>PHOTOGRAPHIC EVIDENCE 01</span></div>
+    <a class="viewer-close" href="phone-architecture.html" aria-label="返回手機工程視圖">返回工程視圖</a>
+  </header>
+
+  <main class="viewer-layout">
+    <section class="viewer-copy" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">EVT PCBA · TWO-SIDED RECORD</p>
+        <h1 id="page-title">兩個表面。<br>同一塊<br>真實主板。</h1>
+        <p class="viewer-copy__deck">只呈現 MAG1 EVT 階段的主板實拍，不補造厚度，也不以代理幾何取代真實輪廓。元件面與屏蔽面保留各自的原始視角與可見細節。</p>
+      </div>
+      <dl class="viewer-facts">
+        <div><dt>SOURCE</dt><dd>EVT PCBA 實拍</dd></div>
+        <div><dt>VIEWS</dt><dd>元件面 / 屏蔽面</dd></div>
+        <div><dt>CONTROL</dt><dd>拖曳查看 / 縮放細節</dd></div>
+      </dl>
+    </section>
+
+    <section class="viewer-stage" id="mainboard-stage" aria-label="MAG1 主板正反面實拍查看器">
+      <div class="photo-viewport" id="photo-viewport" tabindex="0" aria-label="可拖曳與縮放的主板實拍">
+        <img id="board-photo" alt="MAG1 EVT PCBA 元件面實拍" draggable="false">
+      </div>
+      <div class="loading-state" id="loading-state" role="status"><span>LOADING EVT PCBA RECORD</span><i><b></b></i></div>
+      <div class="stage-index" aria-hidden="true"><span>EVT PCBA / PHOTO</span><span id="view-index">01 / 02</span></div>
+      <p class="view-caption" id="view-caption">元件面 · COMPONENT SIDE</p>
+      <div class="viewer-controls" aria-label="主板實拍查看控制">
+        <div class="segmented-control" aria-label="選擇主板表面">
+          <button class="is-active" type="button" data-side="component" aria-pressed="true">元件面</button>
+          <button type="button" data-side="shield" aria-pressed="false">屏蔽面</button>
+        </div>
+        <button class="icon-control" id="zoom-out" type="button" title="縮小" aria-label="縮小"><span aria-hidden="true">−</span></button>
+        <button class="icon-control" id="zoom-in" type="button" title="放大" aria-label="放大"><span aria-hidden="true">＋</span></button>
+        <button class="icon-control" id="reset-view" type="button" title="重置視圖" aria-label="重置視圖"><span aria-hidden="true">⌂</span></button>
+      </div>
+      <aside class="source-note"><strong>影像證據邊界</strong><span>展示使用修復後實拍影像；畫面可放大查看，但不宣稱為尺寸量測、ECAD 或三維模型。</span></aside>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0d1012" />
+    <link rel="preload" as="image" href="./poster/magne-v10-poster.png" />
+    <title>MAGNE.AI 结构查看器</title>
+    <script type="module" crossorigin src="./assets/index-sT9IqMHI.js?v=2"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CwlD5pN0.css">
+  </head>
+  <body>
+    <div id="app">
+      <header class="topbar">
+        <div class="brand-block">
+          <strong>MAGNE.AI</strong>
+          <span>结构查看器</span>
+        </div>
+        <nav class="mode-switch" aria-label="显示模式">
+          <button type="button" data-mode="showcase">展示</button>
+          <button type="button" data-mode="engineering">工程</button>
+        </nav>
+        <div class="toolbar" aria-label="视图工具">
+          <div class="color-switch" aria-label="机身颜色">
+            <button type="button" data-color="white" title="白色机型" aria-label="白色机型"><i class="color-swatch white"></i><span>白色</span></button>
+            <button type="button" data-color="black" title="黑色机型" aria-label="黑色机型"><i class="color-swatch black"></i><span>黑色</span></button>
+          </div>
+          <span class="toolbar-separator engineering-tools"></span>
+          <div class="preset-tools desktop-tools engineering-tools">
+            <button class="icon-button active" data-view="iso" title="等轴视图" aria-label="等轴视图"><i data-lucide="box"></i></button>
+            <button class="icon-button" data-view="front" title="正面视图" aria-label="正面视图"><i data-lucide="smartphone"></i></button>
+            <button class="icon-button" data-view="side" title="侧面视图" aria-label="侧面视图"><i data-lucide="panel-left"></i></button>
+            <button class="icon-button" data-view="top" title="顶部视图" aria-label="顶部视图"><i data-lucide="arrow-down-to-line"></i></button>
+          </div>
+          <span class="toolbar-separator desktop-tools engineering-tools"></span>
+          <button id="reset-camera" class="icon-button engineering-tools" title="复位相机" aria-label="复位相机"><i data-lucide="rotate-ccw"></i></button>
+          <button id="capture" class="icon-button desktop-tools engineering-tools" title="保存截图" aria-label="保存截图"><i data-lucide="camera"></i></button>
+          <button id="fullscreen" class="icon-button engineering-tools" title="全屏" aria-label="全屏"><i data-lucide="maximize-2"></i></button>
+          <button id="toggle-panel" class="icon-button panel-toggle engineering-tools" title="组件列表" aria-label="组件列表"><i data-lucide="panel-right"></i></button>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <div id="viewport" class="viewport" aria-label="MAGNE.AI 手机 3D 爆炸结构">
+          <canvas id="scene"></canvas>
+          <div class="viewport-note engineering-tools">
+            <span class="status-dot"></span>
+            <span id="model-status">正在载入结构模型</span>
+          </div>
+          <div class="axis-hint engineering-tools" aria-hidden="true">
+            <span class="axis x">X</span><span class="axis y">Y</span><span class="axis z">Z</span>
+          </div>
+          <div id="selection-label" class="selection-label" hidden></div>
+          <div id="loading" class="loading-state">
+            <img class="loading-poster" src="./poster/magne-v10-poster.png" alt="" />
+            <div class="loading-shade"></div>
+            <div class="loading-mark"><span></span><span></span><span></span></div>
+            <strong>装载结构数据</strong>
+            <small id="loading-detail">准备 3D 引擎</small>
+          </div>
+        </div>
+
+        <aside id="stage-rail" class="stage-rail engineering-tools" aria-label="拆解阶段">
+          <span class="rail-label">拆解阶段</span>
+          <div id="stage-buttons" class="stage-buttons"></div>
+        </aside>
+
+        <aside id="component-panel" class="component-panel engineering-tools" aria-label="组件浏览器">
+          <div class="panel-heading">
+            <div>
+              <span class="eyebrow">装配结构</span>
+              <h1>组件浏览器</h1>
+            </div>
+            <button id="close-panel" class="icon-button mobile-only" title="收起组件列表" aria-label="收起组件列表"><i data-lucide="x"></i></button>
+          </div>
+          <div class="inventory-summary">
+            <span><strong id="visible-count">31</strong> 可见</span>
+            <span><i class="source-mark exact"></i>STEP 精确件</span>
+            <span><i class="source-mark v51"></i>V51 外观</span>
+            <span><i class="source-mark proxy"></i>建模补件</span>
+          </div>
+          <div id="selected-details" class="selected-details empty">
+            <div class="selection-copy">
+              <span class="eyebrow">当前选择</span>
+              <strong id="selected-name">点击模型或列表选择组件</strong>
+              <small id="selected-meta">可聚焦、隐藏或单独查看</small>
+            </div>
+            <div class="selection-actions">
+              <button id="focus-part" class="action-button" disabled><i data-lucide="focus"></i><span>聚焦</span></button>
+              <button id="hide-part" class="action-button" disabled><i data-lucide="eye-off"></i><span>隐藏</span></button>
+              <button id="isolate-part" class="action-button" disabled><i data-lucide="scan"></i><span>单独</span></button>
+            </div>
+          </div>
+          <div class="component-scroll">
+            <div id="component-tree" class="component-tree"></div>
+          </div>
+          <div class="panel-footer">
+            <button id="show-all" class="text-button"><i data-lucide="eye"></i>全部显示</button>
+            <span id="source-summary">6 STEP / 13 V51 / 12 建模</span>
+          </div>
+        </aside>
+
+        <section class="timeline" aria-label="爆炸进度控制">
+          <button id="play-toggle" class="play-button" aria-label="播放拆解动画"><i data-lucide="play"></i></button>
+          <div class="timeline-main">
+            <div class="timeline-labels">
+              <span id="stage-name">完整装配</span>
+              <strong id="progress-value">0%</strong>
+            </div>
+            <input id="explode-slider" type="range" min="0" max="100" step="1" value="0" aria-label="爆炸拆解进度" />
+            <div class="timeline-ticks" aria-hidden="true"><span>装配</span><span>外壳</span><span>摄像</span><span>核心</span><span>完全拆解</span></div>
+          </div>
+          <button id="reset-explode" class="icon-button" title="恢复装配" aria-label="恢复装配"><i data-lucide="refresh-cw"></i></button>
+        </section>
+      </main>
+    </div>
+    <script src="./en-localizer.js?v=2"></script>
+  </body>
+</html>

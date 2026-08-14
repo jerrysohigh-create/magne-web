@@ -1,128 +1,128 @@
 <!doctype html>
-<html lang="zh-Hant">
+<html lang="en" data-asset-base="../">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#101a17">
   
-  <title>安全架構｜MAGNE.AI</title>
+  <title>Security Architecture | MAGNE.AI</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans+TC:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/site.css?v=lang-4-ga4-2">
-  <script src="assets/site.js?v=lang-4-ga4-2" defer></script>
-  <meta name="description" content="了解 MAG1 的三層硬件安全架構：可信執行環境、安全元件與離線 NFC 復原。">
+  <link rel="stylesheet" href="../assets/site.css?v=lang-4-ga4-2">
+  <script src="../assets/site.js?v=lang-4-ga4-2" defer></script>
+  <meta name="description" content="Learn about MAG1's three-layer hardware security architecture: Trusted Execution Environment, Secure Element, and Offline NFC Resilience.">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
-  <link rel="canonical" href="https://www.magne.ai/security.html">
-  <meta property="og:locale" content="zh_TW">
+  <link rel="canonical" href="https://www.magne.ai/en/security.html">
+  <meta property="og:locale" content="en_US">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="MAGNE.AI">
-  <meta property="og:title" content="安全架構｜MAGNE.AI">
-  <meta property="og:description" content="了解 MAG1 的三層硬件安全架構：可信執行環境、安全元件與離線 NFC 復原。">
-  <meta property="og:url" content="https://www.magne.ai/security.html">
+  <meta property="og:title" content="Security Architecture | MAGNE.AI">
+  <meta property="og:description" content="Learn about MAG1's three-layer hardware security architecture: Trusted Execution Environment, Secure Element, and Offline NFC Resilience.">
+  <meta property="og:url" content="https://www.magne.ai/en/security.html">
   <meta property="og:image" content="https://www.magne.ai/assets/images/cover-hold-the-future.webp">
-  <meta property="og:image:alt" content="MAGNE.AI MAG1 智能終端">
+  <meta property="og:image:alt" content="MAGNE.AI MAG1 intelligent terminal">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="安全架構｜MAGNE.AI">
-  <meta name="twitter:description" content="了解 MAG1 的三層硬件安全架構：可信執行環境、安全元件與離線 NFC 復原。">
+  <meta name="twitter:title" content="Security Architecture | MAGNE.AI">
+  <meta name="twitter:description" content="Learn about MAG1's three-layer hardware security architecture: Trusted Execution Environment, Secure Element, and Offline NFC Resilience.">
   <meta name="twitter:image" content="https://www.magne.ai/assets/images/cover-hold-the-future.webp">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="manifest" href="site.webmanifest">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../site.webmanifest">
 </head>
 <body class="page-security">
-  <a class="skip-link" href="#main">跳至主要內容</a>
+  <a class="skip-link" href="#main">Skip to main content</a>
   <div class="reading-progress" aria-hidden="true"><span></span></div>
   <header class="masthead">
-    <div class="masthead__edition"><span>MAGNE.AI</span><span>信任剖面 · FILE 04</span></div>
-      <a class="wordmark" href="./" aria-label="MAGNE.AI 首頁"><span class="wordmark__mark" aria-hidden="true">///</span><span class="wordmark__logo"><img src="assets/images/magne-logo-black-wide.png" width="1181" height="116" alt="MAGNE.AI"></span></a>
+    <div class="masthead__edition"><span>MAGNE.AI</span><span>Trust Profile · FILE 04</span></div>
+      <a class="wordmark" href="./" aria-label="MAGNE.AI Home Page"><span class="wordmark__mark" aria-hidden="true">///</span><span class="wordmark__logo"><img src="../assets/images/magne-logo-black-wide.png" width="1181" height="116" alt="MAGNE.AI"></span></a>
     <div class="masthead__meta"><span>HARDWARE TRUST</span><span>THREE INDEPENDENT LAYERS</span></div>
   </header>
-  <nav class="site-nav" aria-label="主要導覽">
-    <a class="site-nav__brand" href="./" aria-label="MAGNE.AI 首頁">MAGNE.AI</a>
-    <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu"><span class="sr-only">開啟導覽</span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
+  <nav class="site-nav" aria-label="Primary navigation">
+    <a class="site-nav__brand" href="./" aria-label="MAGNE.AI Home Page">MAGNE.AI</a>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu"><span class="sr-only">Open navigation</span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
     <div class="site-nav__menu" id="site-menu"><a href="./">INDEX</a><a href="phone.html">PHONE</a><a href="ai.html">AI</a><a href="network.html">NETWORK</a><a href="security.html" aria-current="page">SECURITY</a><a href="compliance.html">COMPLIANCE</a><a href="progress.html">PROGRESS</a><a href="partners.html">PARTNERS</a><a href="media-kit.html">MEDIA KIT</a><a href="contact.html">CONTACT</a></div>
-    <div class="site-nav__actions"><div class="language-menu"><span>繁中</span></div><a class="nav-cta" href="https://payment.magne.ai/buy">預購 MAG1 ↗</a></div>
+    <div class="site-nav__actions"><div class="language-menu"><span>EN</span></div><a class="nav-cta" href="https://payment.magne.ai/buy">Pre-order MAG1 ↗</a></div>
   </nav>
   <main id="main">
     <section class="security-hero">
-      <div class="security-hero__stamp reveal"><span>TRUST / 03</span><strong>獨立<br>防線</strong><small>NO SINGLE POINT OF TRUST</small></div>
+      <div class="security-hero__stamp reveal"><span>TRUST / 03</span><strong>independent<br>line of defense</strong><small>NO SINGLE POINT OF TRUST</small></div>
       <div class="security-hero__copy">
         <p class="eyebrow reveal">HARDWARE BEFORE PROMISES</p>
-        <h1><span class="reveal">安全不是</span><span class="reveal">一堵牆。</span><span class="reveal">是三道門。</span></h1>
-        <p class="reveal">主系統、簽章與復原被分開設計。即使其中一層面對風險，其他層仍保有自己的邊界。</p>
+        <h1><span class="reveal">Security is not</span><span class="reveal">one wall.</span><span class="reveal">It is three distinct gates.</span></h1>
+        <p class="reveal">The main system, signature and recovery are designed separately. Even if one layer faces risks, the other layers still maintain their boundaries.</p>
       </div>
     </section>
 
     <section class="section trust-blueprint" aria-labelledby="trust-title">
-      <header class="section-heading"><span class="chapter-index">I</span><div><p class="eyebrow">信任藍圖 · TRUST BLUEPRINT</p><h2 id="trust-title">每一層只做一件事。<br>也只相信自己該相信的。</h2></div></header>
+      <header class="section-heading"><span class="chapter-index">I</span><div><p class="eyebrow">TRUST BLUEPRINT · TRUST BLUEPRINT</p><h2 id="trust-title">Each layer only does one thing.<br>Only believe what you should believe.</h2></div></header>
       <div class="trust-layers">
-        <article class="trust-layer trust-layer--tee reveal"><span class="trust-layer__index">01</span><div><p class="eyebrow">ISOLATE</p><h3>可信執行隔離</h3><strong>UTEE · CC EAL2+</strong></div><p>將敏感資料與關鍵操作從一般 Android 環境隔離，在受控邊界內處理。</p><small>PROCESS BOUNDARY</small></article>
-        <article class="trust-layer trust-layer--se reveal"><span class="trust-layer__index">02</span><div><p class="eyebrow">SIGN</p><h3>安全元件簽章</h3><strong>HYPERSEED N60 · CC EAL6+</strong></div><p>密鑰被設計為留在安全硬件內；敏感簽章操作不必暴露給主系統。</p><small>KEY BOUNDARY</small></article>
-        <article class="trust-layer trust-layer--nfc reveal"><span class="trust-layer__index">03</span><div><p class="eyebrow">RECOVER</p><h3>離線 NFC 復原</h3><strong>HYPERSEED 72B · CC EAL6+</strong></div><p>復原材料可離線保存，讓裝置遺失與所有權遺失不再是同一件事。</p><small>RECOVERY BOUNDARY</small></article>
+        <article class="trust-layer trust-layer--tee reveal"><span class="trust-layer__index">01</span><div><p class="eyebrow">ISOLATE</p><h3>Trusted execution isolation</h3><strong>UTEE · CC EAL2+</strong></div><p>Isolate sensitive data and critical operations from the general Android environment and process them within controlled boundaries.</p><small>PROCESS BOUNDARY</small></article>
+        <article class="trust-layer trust-layer--se reveal"><span class="trust-layer__index">02</span><div><p class="eyebrow">SIGN</p><h3>Secure element signature</h3><strong>HYPERSEED N60 · CC EAL6+</strong></div><p>Keys are designed to remain within the secure hardware; sensitive signing operations do not have to be exposed to the main system.</p><small>KEY BOUNDARY</small></article>
+        <article class="trust-layer trust-layer--nfc reveal"><span class="trust-layer__index">03</span><div><p class="eyebrow">RECOVER</p><h3>Offline NFC recovery</h3><strong>HYPERSEED 72B · CC EAL6+</strong></div><p>Recovery materials can be saved offline, so device loss and ownership loss are no longer the same thing.</p><small>RECOVERY BOUNDARY</small></article>
       </div>
     </section>
 
     <section class="section section--dark se-runtime" aria-labelledby="se-runtime-title">
-      <header class="section-heading"><span class="chapter-index">II</span><div><p class="eyebrow">實機安全路徑 · ADB VERIFIED</p><h2 id="se-runtime-title">N60 不只存在於規格表。<br>它已進入 Android 的安全路徑。</h2></div></header>
+      <header class="section-heading"><span class="chapter-index">II</span><div><p class="eyebrow">Real machine security path · ADB VERIFIED</p><h2 id="se-runtime-title">The N60 isn't just about spec sheets.<br>It has entered the safe path of Android.</h2></div></header>
 
       <div class="se-runtime__identity reveal">
-        <div><span>PRODUCT CONFIRMED</span><strong>HYPERSEED N60</strong><p>MAG1 的產品整合確認採用 HyperSeed N60。這是產品與供應鏈確認，不依賴 ADB 猜測商業型號。</p></div>
-        <div><span>ADB VISIBLE</span><code>vendor.hed.hednfc_aidl.IHedNfc/default</code><p>實機系統返回 HED NFC 供應商服務，證明 N60 / NFCC 已接入 Android NFC 與安全元件通道。</p></div>
+        <div><span>PRODUCT CONFIRMED</span><strong>HYPERSEED N60</strong><p>MAG1’s product integration is confirmed using the HyperSeed N60. This is product and supply chain confirmation and does not rely on ADB to guess commercial models.</p></div>
+        <div><span>ADB VISIBLE</span><code>vendor.hed.hednfc_aidl.IHedNfc/default</code><p>The actual system returns to the HED NFC provider service to prove that the N60 / NFCC has been connected to the Android NFC and secure element channel.</p></div>
       </div>
 
-      <div class="se-stack reveal" role="img" aria-label="MAG1 Android 與 HyperSeed N60 安全元件整合架構圖">
+      <div class="se-stack reveal" role="img" aria-label="MAG1 Android and HyperSeed N60 secure element integration architecture diagram">
         <div class="se-stack__layer se-stack__layer--apps">
-          <div class="se-stack__label"><span>01</span><strong>APP LAYER</strong><small>使用者意圖</small></div>
+          <div class="se-stack__label"><span>01</span><strong>APP LAYER</strong><small>user intent</small></div>
           <div class="se-stack__nodes se-stack__nodes--3"><span>WALLET / DAPP</span><span>AGENTPAY</span><span>IDENTITY / RECOVERY</span></div>
         </div>
         <div class="se-stack__layer se-stack__layer--android">
-          <div class="se-stack__label"><span>02</span><strong>ANDROID FRAMEWORK</strong><small>授權與標準介面</small></div>
+          <div class="se-stack__label"><span>02</span><strong>ANDROID FRAMEWORK</strong><small>Authorization and standard interface</small></div>
           <div class="se-stack__nodes se-stack__nodes--4"><span>USER AUTHORIZATION</span><span>OMAPI API</span><span>SECURE ELEMENT SERVICE</span><span>APDU ACCESS RULES</span></div>
         </div>
         <div class="se-stack__layer se-stack__layer--vendor">
-          <div class="se-stack__label"><span>03</span><strong>VENDOR BRIDGE</strong><small>實機服務路徑</small></div>
+          <div class="se-stack__label"><span>03</span><strong>VENDOR BRIDGE</strong><small>Real machine service path</small></div>
           <div class="se-stack__nodes se-stack__nodes--3"><span>ANDROID NFC SERVICE</span><span>HED NFC AIDL</span><span>eSE1 · CONNECTED</span></div>
         </div>
         <div class="se-stack__layer se-stack__layer--hardware">
-          <div class="se-stack__label"><span>04</span><strong>HARDWARE BOUNDARY</strong><small>密鑰不離開</small></div>
-          <div class="se-stack__hardware"><strong>HYPERSEED N60</strong><div><span>KEY STORE</span><span>CRYPTO</span><span>RNG</span><span>ANTI-TAMPER</span></div><small>只返回簽章或受控運算結果</small></div>
+          <div class="se-stack__label"><span>04</span><strong>HARDWARE BOUNDARY</strong><small>key does not leave</small></div>
+          <div class="se-stack__hardware"><strong>HYPERSEED N60</strong><div><span>KEY STORE</span><span>CRYPTO</span><span>RNG</span><span>ANTI-TAMPER</span></div><small>Only returns signatures or controlled operation results</small></div>
         </div>
       </div>
 
-      <div class="se-runtime__mechanism" aria-label="N60 安全請求運行機制">
-        <article class="reveal"><span>01 / INTENT</span><strong>應用提出請求</strong><p>App 或 DApp 發起簽章、身份或安全資料操作，不直接接觸安全元件。</p></article>
-        <article class="reveal"><span>02 / AUTHORIZE</span><strong>系統先做授權</strong><p>Android 權限、使用者確認與 OMAPI 存取規則共同判斷呼叫方。</p></article>
-        <article class="reveal"><span>03 / ROUTE</span><strong>標準服務路由</strong><p>Secure Element Service 將受控 APDU 交給 HED NFC 供應商服務。</p></article>
-        <article class="reveal"><span>04 / EXECUTE</span><strong>N60 內部執行</strong><p>請求經 eSE1 進入 N60；密鑰、隨機數與加密操作留在硬件邊界內。</p></article>
-        <article class="reveal"><span>05 / RETURN</span><strong>只返回結果</strong><p>Android 與應用只取得簽章或受控結果，私鑰本體不被匯出。</p></article>
+      <div class="se-runtime__mechanism" aria-label="N60 security request operation mechanism">
+        <article class="reveal"><span>01 / INTENT</span><strong>Application makes a request</strong><p>Apps or DApps initiate signature, identity, or security data operations without directly contacting the secure element.</p></article>
+        <article class="reveal"><span>02 / AUTHORIZE</span><strong>The system performs authorization first</strong><p>Android permissions, user confirmation, and OMAPI access rules work together to determine the caller.</p></article>
+        <article class="reveal"><span>03 / ROUTE</span><strong>Standard service routing</strong><p>The Secure Element Service hands over controlled APDUs to the HED NFC provider service.</p></article>
+        <article class="reveal"><span>04 / EXECUTE</span><strong>N60 internal execution</strong><p>Requests enter N60 via eSE1; keys, nonces, and cryptographic operations remain within the hardware boundary.</p></article>
+        <article class="reveal"><span>05 / RETURN</span><strong>Only results are returned</strong><p>Android and applications only obtain signatures or controlled results, and the private key body is not exported.</p></article>
       </div>
 
-      <aside class="se-runtime__parallel reveal"><span>PARALLEL ANDROID SECURITY</span><strong>Keystore2 → KeyMint → Hardware-backed key operations</strong><p>Keystore2 與 KeyMint 是 Android 的並行硬件金鑰服務。它們與 OMAPI / eSE 路徑共同構成 MAG1 的系統安全層，但本圖不把 KeyMint 錯畫成 N60 內部模組。</p></aside>
+      <aside class="se-runtime__parallel reveal"><span>PARALLEL ANDROID SECURITY</span><strong>Keystore2 → KeyMint → Hardware-backed key operations</strong><p>Keystore2 and KeyMint are parallel hardware key services for Android. Together with the OMAPI / eSE path, they form the system security layer of MAG1, but this picture does not mistakenly draw KeyMint as an N60 internal module.</p></aside>
 
       <div class="se-runtime__evidence">
-        <article class="reveal"><span>SYSTEM FEATURE</span><code>android.hardware.nfc.ese</code><p>Android 宣告內嵌安全元件能力，NFC 堆疊可識別 eSE 路徑。</p></article>
-        <article class="reveal"><span>OMAPI FEATURE</span><code>android.hardware.se.omapi.ese</code><p>系統提供標準 OMAPI eSE 介面，應用不直接接觸底層硬件總線。</p></article>
-        <article class="reveal"><span>ANDROID SERVICE</span><code>secure_element · ISecureElementService</code><p>Secure Element Service 已註冊並由 Android 安全元件框架管理。</p></article>
-        <article class="reveal"><span>LIVE TERMINAL</span><code>eSE1 · mIsConnected:true</code><p>實機回報 eSE1 終端在線，安全元件通道處於連接狀態。</p></article>
-        <article class="reveal"><span>KEY SERVICES</span><code>KeyMint · Keystore2</code><p>硬件金鑰服務與 Android Keystore2 同時存在，承接金鑰生命週期與受控操作。</p></article>
-        <article class="reveal"><span>ACCESS CONTROL</span><code>APDU RULES · FILTERS PRESENT</code><p>實機返回逐應用存取與 APDU 過濾狀態；具體規則、雜湊與識別資料不公開。</p></article>
+        <article class="reveal"><span>SYSTEM FEATURE</span><code>android.hardware.nfc.ese</code><p>Android announces the ability to embed secure elements and NFC stacks to recognize eSE paths.</p></article>
+        <article class="reveal"><span>OMAPI FEATURE</span><code>android.hardware.se.omapi.ese</code><p>The system provides a standard OMAPI eSE interface, and the application does not directly contact the underlying hardware bus.</p></article>
+        <article class="reveal"><span>ANDROID SERVICE</span><code>secure_element · ISecureElementService</code><p>The Secure Element Service is registered and managed by the Android Secure Element Framework.</p></article>
+        <article class="reveal"><span>LIVE TERMINAL</span><code>eSE1 · mIsConnected:true</code><p>The actual machine reports that the eSE1 terminal is online and the secure element channel is connected.</p></article>
+        <article class="reveal"><span>KEY SERVICES</span><code>KeyMint · Keystore2</code><p>The hardware key service exists at the same time as Android Keystore2, undertaking the key life cycle and controlled operations.</p></article>
+        <article class="reveal"><span>ACCESS CONTROL</span><code>APDU RULES · FILTERS PRESENT</code><p>The actual machine returns per-application access and APDU filtering status; the specific rules, hashing and identification data are not made public.</p></article>
       </div>
 
-      <p class="se-runtime__scope reveal"><strong>證據邊界：</strong>ADB 無法保證直接讀出安全元件的完整商業型號；N60 型號來自 MAG1 已確認的產品整合，ADB 則驗證 HED、OMAPI、eSE1 與 Android 安全服務確實運行。本頁不披露其他安全芯片料號。</p>
+      <p class="se-runtime__scope reveal"><strong>Evidence boundaries:</strong>ADB cannot guarantee full commercial models for direct readout of the secure element; the N60 model is from MAG1's confirmed product integration, and ADB verifies that HED, OMAPI, eSE1 and Android security services are actually running. This page does not disclose other security chip part numbers.</p>
     </section>
 
     <section class="section chip-architecture" aria-labelledby="chip-title">
-      <header class="section-heading"><span class="chapter-index">III</span><div><p class="eyebrow">安全因素 · CHIP ARCHITECTURE</p><h2 id="chip-title">三個安全因素，<br>三條不能混淆的路徑。</h2></div></header>
-      <div class="architecture-strip reveal" aria-label="MAG1 三層安全因素">
-        <article class="architecture-node architecture-node--tee"><span>L1</span><strong>UTEE</strong><p>把敏感流程放進可信執行邊界。</p></article>
+      <header class="section-heading"><span class="chapter-index">III</span><div><p class="eyebrow">Safety factors · CHIP ARCHITECTURE</p><h2 id="chip-title">Three safety factors,<br>Three paths that cannot be confused.</h2></div></header>
+      <div class="architecture-strip reveal" aria-label="MAG1 three layers of security factors">
+        <article class="architecture-node architecture-node--tee"><span>L1</span><strong>UTEE</strong><p>Put sensitive processes into trusted execution boundaries.</p></article>
         <i class="architecture-connector" aria-hidden="true"></i>
-        <article class="architecture-node architecture-node--se"><span>L2</span><strong>HYPERSEED N60</strong><p>以安全元件保存密鑰並完成簽章。</p></article>
+        <article class="architecture-node architecture-node--se"><span>L2</span><strong>HYPERSEED N60</strong><p>Store the key in a secure element and complete the signature.</p></article>
         <i class="architecture-connector" aria-hidden="true"></i>
-        <article class="architecture-node architecture-node--nfc"><span>L3</span><strong>HYPERSEED 72B</strong><p>以獨立 NFC 晶片保存復原路徑。</p></article>
+        <article class="architecture-node architecture-node--nfc"><span>L3</span><strong>HYPERSEED 72B</strong><p>Save the recovery path with a separate NFC chip.</p></article>
       </div>
       <div class="chip-diagrams">
         <article class="chip-card reveal">
-          <div class="chip-card__head"><span>L1 / UTEE</span><div><h3>可信執行環境</h3><p>Normal World 與 Secure World 以 TrustZone 邊界分離，敏感 API、密鑰服務與安全儲存只在可信側完成。</p></div></div>
+          <div class="chip-card__head"><span>L1 / UTEE</span><div><h3>Trusted execution environment</h3><p>Normal World and Secure World are separated by the TrustZone boundary, and sensitive APIs, key services and secure storage are only completed on the trusted side.</p></div></div>
           <svg class="chip-diagram chip-diagram--legacy" viewBox="0 0 900 420" style="width:100%;max-width:900px;height:auto;display:block;margin:0 auto;">
         
         <!-- HLOS Section (Left) -->
@@ -246,14 +246,14 @@
         <rect x="690" y="373" width="20" height="4" rx="2" fill="rgba(255,100,100,0.5)"/><text x="715" y="380" fill="rgba(255,200,200,0.9)" font-size="7">TOE</text>
         
       </svg>
-          <div class="chip-summary chip-summary--tee" aria-label="UTEE 讀圖摘要">
-            <span>讀圖摘要</span>
+          <div class="chip-summary chip-summary--tee" aria-label="UTEE Image Reading Summary">
+            <span>Reading summary</span>
             <strong>Normal World</strong>
             <i aria-hidden="true">TrustZone</i>
             <strong>Secure World</strong>
-            <p>一般系統可以發起請求，但敏感 API、密鑰服務與安全儲存留在可信執行邊界內。</p>
+            <p>General systems can initiate requests, but sensitive APIs, key services, and secure storage remain within the trusted execution boundary.</p>
           </div>
-          <svg class="chip-mobile-diagram chip-mobile-diagram--tee" viewBox="0 0 420 380" role="img" aria-label="UTEE 移動版簡化架構圖">
+          <svg class="chip-mobile-diagram chip-mobile-diagram--tee" viewBox="0 0 420 380" role="img" aria-label="Simplified architecture diagram of UTEE mobile version">
             <text class="mobile-diagram-kicker" x="24" y="34">Mobile Diagram</text>
             <rect class="mobile-diagram-panel mobile-diagram-panel--normal" x="24" y="60" width="372" height="82" rx="10"></rect>
             <text class="mobile-diagram-title" x="210" y="96">Normal World</text>
@@ -270,7 +270,7 @@
         </article>
 
         <article class="chip-card reveal">
-          <div class="chip-card__head"><span>L2 / N60</span><div><h3>安全元件簽章</h3><p>NFC Controller 與 eSE 以受控通道連接。密鑰儲存、隨機數、加密加速與防拆偵測收斂在安全元件內。</p></div></div>
+          <div class="chip-card__head"><span>L2 / N60</span><div><h3>Secure element signature</h3><p>The NFC Controller is connected to the eSE via a controlled channel. Key storage, random numbers, encryption acceleration, and tamper detection converge within the secure element.</p></div></div>
           <svg class="chip-diagram chip-diagram--legacy" viewBox="0 0 900 260" style="width: 100%; max-width: 900px; height: auto; display: block; margin: 0 auto;">
         <!-- NFCC Section -->
         <rect x="15" y="10" width="410" height="240" rx="12" fill="rgba(255,180,0,0.05)" stroke="rgba(255,180,0,0.2)" stroke-width="1"/>
@@ -347,14 +347,14 @@
         <rect x="680" y="203" width="60" height="14" rx="3" fill="rgba(0,180,180,0.2)"/><text x="687" y="213" fill="rgba(0,255,255,0.9)" font-size="7">Sensor</text>
         <rect x="750" y="203" width="110" height="14" rx="3" fill="rgba(0,180,180,0.2)"/><text x="757" y="213" fill="rgba(0,255,255,0.9)" font-size="7">Anti-tamper</text>
       </svg>
-          <div class="chip-summary chip-summary--se" aria-label="HYPERSEED N60 讀圖摘要">
-            <span>讀圖摘要</span>
+          <div class="chip-summary chip-summary--se" aria-label="HYPERSEED N60 image reading summary">
+            <span>Reading summary</span>
             <strong>NFCC</strong>
             <i aria-hidden="true">SWP</i>
             <strong>eSE</strong>
-            <p>NFC 通訊與安全元件分工，簽章、密鑰、隨機數與防拆偵測收斂在硬件安全邊界。</p>
+            <p>NFC communication and security components work separately, and signatures, keys, random numbers, and tamper detection converge at the hardware security boundary.</p>
           </div>
-          <svg class="chip-mobile-diagram chip-mobile-diagram--se" viewBox="0 0 420 400" role="img" aria-label="HYPERSEED N60 移動版簡化架構圖">
+          <svg class="chip-mobile-diagram chip-mobile-diagram--se" viewBox="0 0 420 400" role="img" aria-label="HYPERSEED N60 mobile version simplified architecture diagram">
             <text class="mobile-diagram-kicker" x="24" y="34">Mobile Diagram</text>
             <rect class="mobile-diagram-panel mobile-diagram-panel--warm" x="24" y="58" width="372" height="104" rx="10"></rect>
             <text class="mobile-diagram-title" x="210" y="94">NFCC</text>
@@ -371,7 +371,7 @@
         </article>
 
         <article class="chip-card reveal">
-          <div class="chip-card__head"><span>L3 / 72B</span><div><h3>NFC 復原晶片</h3><p>獨立安全處理器負責離線復原材料。它不替主系統背書，只保存一條可被授權喚回的所有權路徑。</p></div></div>
+          <div class="chip-card__head"><span>L3 / 72B</span><div><h3>NFC recovery chip</h3><p>A dedicated secure processor protects offline recovery material. It does not vouch for the main system; it preserves an independently authorized path back to ownership.</p></div></div>
           <svg class="chip-diagram chip-diagram--legacy" viewBox="0 0 900 240" style="width: 100%; max-width: 900px; height: auto; display: block; margin: 0 auto;">
         <!-- SC000 Core -->
         <rect x="15" y="10" width="165" height="65" rx="8" fill="rgba(255, 140, 0, 0.1)" stroke="rgba(255, 140, 0, 0.3)"/>
@@ -419,14 +419,14 @@
         <rect x="700" y="62" width="175" height="18" rx="4" fill="rgba(200,150,0,0.2)"/><text x="707" y="75" fill="rgba(255,220,150,0.9)" font-size="7">ISO7816 (CLK/RST/IO)</text>
         <rect x="700" y="86" width="90" height="14" rx="3" fill="rgba(200,150,0,0.15)"/><text x="707" y="97" fill="rgba(255,220,150,0.8)" font-size="7">NFC RF</text>
       </svg>
-          <div class="chip-summary chip-summary--nfc" aria-label="HYPERSEED 72B 讀圖摘要">
-            <span>讀圖摘要</span>
+          <div class="chip-summary chip-summary--nfc" aria-label="HYPERSEED 72B Image Reading Summary">
+            <span>Reading summary</span>
             <strong>Secure Core</strong>
             <i aria-hidden="true">NFC RF</i>
             <strong>Recovery Payload</strong>
-            <p>復原資料走獨立晶片路徑，讓裝置遺失、主系統失效與所有權復原保持分離。</p>
+            <p>Recovery data follows a separate chip path to keep device loss, primary system failure, and ownership recovery separate.</p>
           </div>
-          <svg class="chip-mobile-diagram chip-mobile-diagram--nfc" viewBox="0 0 420 400" role="img" aria-label="HYPERSEED 72B 移動版簡化架構圖">
+          <svg class="chip-mobile-diagram chip-mobile-diagram--nfc" viewBox="0 0 420 400" role="img" aria-label="HYPERSEED 72B mobile version simplified architecture diagram">
             <text class="mobile-diagram-kicker" x="24" y="34">Mobile Diagram</text>
             <rect class="mobile-diagram-panel mobile-diagram-panel--warm" x="24" y="58" width="372" height="82" rx="10"></rect>
             <text class="mobile-diagram-title" x="210" y="94">Secure Core</text>
@@ -445,29 +445,29 @@
     </section>
 
     <section class="section section--dark threat-section" aria-labelledby="threat-title">
-      <header class="section-heading"><span class="chapter-index">IV</span><div><p class="eyebrow">威脅路徑 · THREAT PATHS</p><h2 id="threat-title">風險會走捷徑。<br>架構不能。</h2></div></header>
+      <header class="section-heading"><span class="chapter-index">IV</span><div><p class="eyebrow">Threat Paths · THREAT PATHS</p><h2 id="threat-title">Risk takes shortcuts.<br>Architecture cannot.</h2></div></header>
       <div class="threat-matrix">
-        <div class="threat-matrix__head"><span>事件</span><span>被保護的邊界</span><span>系統回應</span></div>
-        <div class="reveal"><strong>一般系統遭到攻擊</strong><span>TEE / 安全元件</span><p>敏感簽章操作與密鑰仍在隔離硬件路徑內。</p></div>
-        <div class="reveal"><strong>裝置遺失或損壞</strong><span>離線復原</span><p>以獨立 NFC 復原材料重建所有權路徑。</p></div>
-        <div class="reveal"><strong>雲端服務不可用</strong><span>端側能力</span><p>本地金庫與硬件簽章不以雲端可用性為前提。</p></div>
-        <div class="reveal"><strong>惡意應用請求簽章</strong><span>使用者確認</span><p>簽章路徑與應用請求分離，讓授權發生在受控邊界。</p></div>
+        <div class="threat-matrix__head"><span>event</span><span>protected borders</span><span>System response</span></div>
+        <div class="reveal"><strong>General system is under attack</strong><span>TEE/Secure Element</span><p>Sensitive signing operations and keys remain within isolated hardware paths.</p></div>
+        <div class="reveal"><strong>Device is missing or damaged</strong><span>Offline recovery</span><p>Reconstruct the ownership path with stand-alone NFC recovery material.</p></div>
+        <div class="reveal"><strong>Cloud service is unavailable</strong><span>End-side capability</span><p>Local vaults and hardware signing are not subject to cloud availability.</p></div>
+        <div class="reveal"><strong>Malicious application requests signature</strong><span>User confirmation</span><p>The signature path is separated from the application request, allowing authorization to occur at a controlled boundary.</p></div>
       </div>
-      <p class="scope-note reveal"><strong>認證範圍說明：</strong>CC EAL2+ 與 CC EAL6+ 為對應組件、模組或評估範圍的認證參考，不代表整機或所有商業配置取得相同等級認證。</p>
+      <p class="scope-note reveal"><strong>Certification scope description:</strong>CC EAL2+ and CC EAL6+ are certification references for corresponding components, modules or evaluation scopes, and do not mean that the entire machine or all commercial configurations have obtained the same level of certification.</p>
     </section>
 
     <section class="section security-proof" aria-labelledby="proof-title">
-      <div><p class="eyebrow">PROOF, NOT POSTURE</p><h2 id="proof-title">可信，不靠一句<br>「請相信我們」。</h2><p>安全架構與市場准入是兩組不同證據：前者說明密鑰如何被保護；後者說明裝置如何接受公開測試。</p></div>
-      <div class="proof-links reveal"><a href="compliance.html"><span>01</span><strong>查看設備護照</strong><small>GMS · FCC · CB · UN38.3 · CE</small></a><a href="phone.html"><span>02</span><strong>查看承載它的終端</strong><small>MAG1 PRODUCT DOSSIER</small></a><a href="mailto:official@magne.ai"><span>03</span><strong>索取技術資料</strong><small>OFFICIAL@MAGNE.AI</small></a></div>
-      <div class="page-next reveal"><span>NEXT FILE</span><a href="compliance.html">安全之後，是可被查驗的市場路徑 <strong>COMPLIANCE →</strong></a></div>
+      <div><p class="eyebrow">PROOF, NOT POSTURE</p><h2 id="proof-title">Trustworthy, without relying on a word<br>"Please trust us."</h2><p>Security architecture and market access are two different pieces of evidence: the former shows how keys are protected; the latter shows how devices are subjected to public testing.</p></div>
+      <div class="proof-links reveal"><a href="compliance.html"><span>01</span><strong>View device passport</strong><small>GMS · FCC · CB · UN38.3 · CE</small></a><a href="phone.html"><span>02</span><strong>View the terminal hosting it</strong><small>MAG1 PRODUCT DOSSIER</small></a><a href="mailto:official@magne.ai"><span>03</span><strong>Request technical information</strong><small>OFFICIAL@MAGNE.AI</small></a></div>
+      <div class="page-next reveal"><span>NEXT FILE</span><a href="compliance.html">After security, there is a market path that can be verified <strong>COMPLIANCE →</strong></a></div>
     </section>
   </main>
   <footer class="footer">
-    <div class="footer__brand"><span class="wordmark__mark" aria-hidden="true">///</span><strong>MAGNE.AI</strong><p>三層各自可信，不靠彼此背書。</p></div>
-    <div class="footer__column"><strong>閱讀</strong><a href="./">INDEX</a><a href="phone.html">Phone</a><a href="ai.html">AI</a></div>
-    <div class="footer__column"><strong>驗證</strong><a href="compliance.html">合規總覽</a><a href="fcc-lookup.html">FCC</a><a href="gsma-tac-lookup.html">GSMA TAC</a></div>
-    <div class="footer__column"><strong>連接</strong><a href="partners.html">合作</a><a href="contact.html">聯絡</a></div>
-    <div class="footer__external"><div class="footer__external-group"><strong>資源</strong><a href="media-kit.html">Media Kit</a><a href="https://web3.magne.ai" target="_blank" rel="noopener">白皮書 ↗</a></div><div class="footer__external-group"><strong>關注</strong><a href="https://github.com/magne-ai" target="_blank" rel="noopener">GitHub</a><a href="https://x.com/Magne_Ai" target="_blank" rel="noopener">X</a><a href="https://t.me/MagneAI" target="_blank" rel="noopener">Telegram</a><a href="https://www.youtube.com/@MagneAI" target="_blank" rel="noopener">YouTube</a><a href="https://discord.gg/tX2xRAkd" target="_blank" rel="noopener">Discord</a></div></div><div class="footer__legal"><span>© 2026 MAGNE.AI</span><span>信任剖面 · FILE 04</span><a href="privacy-policy.html">隱私政策</a></div>
+    <div class="footer__brand"><span class="wordmark__mark" aria-hidden="true">///</span><strong>MAGNE.AI</strong><p>Three independently verifiable layers. No layer relies on another to vouch for it.</p></div>
+    <div class="footer__column"><strong>read</strong><a href="./">INDEX</a><a href="phone.html">Phone</a><a href="ai.html">AI</a></div>
+    <div class="footer__column"><strong>verify</strong><a href="compliance.html">Compliance Overview</a><a href="fcc-lookup.html">FCC</a><a href="gsma-tac-lookup.html">GSMA TAC</a></div>
+    <div class="footer__column"><strong>connect</strong><a href="partners.html">cooperate</a><a href="contact.html">contact</a></div>
+    <div class="footer__external"><div class="footer__external-group"><strong>Resources</strong><a href="media-kit.html">Media Kit</a><a href="https://web3.magne.ai" target="_blank" rel="noopener">White paper ↗</a></div><div class="footer__external-group"><strong>Follow</strong><a href="https://github.com/magne-ai" target="_blank" rel="noopener">GitHub</a><a href="https://x.com/Magne_Ai" target="_blank" rel="noopener">X</a><a href="https://t.me/MagneAI" target="_blank" rel="noopener">Telegram</a><a href="https://www.youtube.com/@MagneAI" target="_blank" rel="noopener">YouTube</a><a href="https://discord.gg/tX2xRAkd" target="_blank" rel="noopener">Discord</a></div></div><div class="footer__legal"><span>© 2026 MAGNE.AI</span><span>Trust Profile · FILE 04</span><a href="privacy-policy.html">Privacy Policy</a></div>
   </footer>
 </body>
 </html>

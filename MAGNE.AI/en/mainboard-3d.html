@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" data-asset-base="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090b0a">
+  <meta name="description" content="The real-shot data of MAG1 EVT PCBA is used to present the component side and shielding side of the motherboard, supporting switching, zooming and detailed viewing.">
+  <title>MAG1 Mainboard, Front and Back | MAGNE.AI</title>
+  <link rel="canonical" href="https://www.magne.ai/en/mainboard-3d.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+TC:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+TC:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/mainboard-3d/mainboard-3d.css?v=2">
+  <script defer src="../assets/site.js?v=lang-4-ga4-2"></script>
+  <script defer src="../assets/mainboard-3d/mainboard-3d.js?v=3"></script>
+</head>
+<body>
+  <a class="skip-link" href="#mainboard-stage">Jump to the real shot of the motherboard</a>
+  <header class="viewer-header">
+    <a class="viewer-brand" href="./" aria-label="Return to MAGNE.AI home page"><span aria-hidden="true">///</span> MAGNE.AI</a>
+    <div class="viewer-header__meta"><span>MAG1 / EVT PCBA</span><span>PHOTOGRAPHIC EVIDENCE 01</span></div>
+    <a class="viewer-close" href="phone-architecture.html" aria-label="Return to mobile phone project view">Return to drawing view</a>
+  </header>
+
+  <main class="viewer-layout">
+    <section class="viewer-copy" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">EVT PCBA · TWO-SIDED RECORD</p>
+        <h1 id="page-title">Two sides.<br>One real<br>mainboard.</h1>
+        <p class="viewer-copy__deck">This viewer uses photographs of the MAG1 EVT mainboard. It does not invent board thickness or substitute proxy geometry for the real outline. Both component and shield sides preserve their original perspective and visible detail.</p>
+      </div>
+      <dl class="viewer-facts">
+        <div><dt>SOURCE</dt><dd>EVT PCBA real shot</dd></div>
+        <div><dt>VIEWS</dt><dd>Component side/Shielding side</dd></div>
+        <div><dt>CONTROL</dt><dd>Drag to view/zoom details</dd></div>
+      </dl>
+    </section>
+
+    <section class="viewer-stage" id="mainboard-stage" aria-label="MAG1 motherboard front and back real shot viewer">
+      <div class="photo-viewport" id="photo-viewport" tabindex="0" aria-label="Real shots of the motherboard that can be dragged and zoomed">
+        <img id="board-photo" alt="MAG1 EVT PCBA component surface real shot" draggable="false">
+      </div>
+      <div class="loading-state" id="loading-state" role="status"><span>LOADING EVT PCBA RECORD</span><i><b></b></i></div>
+      <div class="stage-index" aria-hidden="true"><span>EVT PCBA / PHOTO</span><span id="view-index">01 / 02</span></div>
+      <p class="view-caption" id="view-caption">Component side · COMPONENT SIDE</p>
+      <div class="viewer-controls" aria-label="Motherboard real shot view control">
+        <div class="segmented-control" aria-label="Select motherboard surface">
+          <button class="is-active" type="button" data-side="component" aria-pressed="true">Component side</button>
+          <button type="button" data-side="shield" aria-pressed="false">Shielding surface</button>
+        </div>
+        <button class="icon-control" id="zoom-out" type="button" title="zoom out" aria-label="zoom out"><span aria-hidden="true">−</span></button>
+        <button class="icon-control" id="zoom-in" type="button" title="enlarge" aria-label="enlarge"><span aria-hidden="true">＋</span></button>
+        <button class="icon-control" id="reset-view" type="button" title="reset view" aria-label="reset view"><span aria-hidden="true">⌂</span></button>
+      </div>
+      <aside class="source-note"><strong>Image Evidence Boundary</strong><span>The restored photographs can be enlarged for inspection, but they are not presented as dimensional measurements, ECAD data or a 3D model.</span></aside>
+    </section>
+  </main>
+</body>
+</html>

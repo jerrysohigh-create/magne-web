@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#d34b2b"><meta name="description" content="說明 MAG1 與 Android / Google Mobile Services / Widevine L1 相關的生態接入文件，幫助審閱方理解這組資料為何重要。">
+  <title>Google GMS 參考資料｜MAGNE.AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans+TC:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css?v=lang-4-ga4-2"><script src="assets/site.js?v=lang-4-ga4-2" defer></script>
+</head>
+<body class="page-compliance page-compliance-detail">
+  <a class="skip-link" href="#main">跳至主要內容</a><div class="reading-progress" aria-hidden="true"><span></span></div>
+  <header class="masthead"><div class="masthead__edition"><span>MAGNE.AI</span><span>合規查驗 · GMS</span></div><a class="wordmark" href="./" aria-label="MAGNE.AI 首頁"><span class="wordmark__mark" aria-hidden="true">///</span><span class="wordmark__logo"><img src="assets/images/magne-logo-black-wide.png" width="1181" height="116" alt="MAGNE.AI"></span></a><div class="masthead__meta"><span>MAG1 · TAC 01681300</span><span>SUPPORTING PAGE</span></div></header>
+
+  <nav class="site-nav" aria-label="主要導覽"><a class="site-nav__brand" href="./">INDEX</a><button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu"><span class="sr-only">開啟導覽</span><span aria-hidden="true"></span><span aria-hidden="true"></span></button><div class="site-nav__menu" id="site-menu"><a href="./">INDEX</a><a href="phone.html">PHONE</a><a href="ai.html">AI</a><a href="network.html">NETWORK</a><a href="security.html">SECURITY</a><a href="compliance.html" aria-current="false">COMPLIANCE</a><a href="progress.html">PROGRESS</a><a href="partners.html">PARTNERS</a><a href="contact.html">CONTACT</a></div><div class="site-nav__actions"><div class="language-menu"><span>繁中</span></div><a class="nav-cta" href="https://payment.magne.ai/buy">預購 MAG1 ↗</a></div></nav>
+  <main id="main">
+    <section class="detail-hero">
+      <a class="back-link reveal" href="compliance.html">← 返回 Compliance</a>
+      <p class="eyebrow reveal">ANDROID ECOSYSTEM</p>
+      <h1 class="reveal">Google GMS 參考資料</h1>
+      <p class="detail-lead reveal">說明 MAG1 與 Android / Google Mobile Services / Widevine L1 相關的生態接入文件，幫助審閱方理解這組資料為何重要。</p>
+      <div class="detail-switcher reveal" aria-label="其他查驗頁"><a href="google-approval.html">GMS</a><a href="fcc-lookup.html">FCC</a><a href="gsma-tac-lookup.html">TAC</a><a href="cb-lookup.html">CB</a><a href="un383-lookup.html">UN38.3</a><a href="cp65-lookup.html">CP65</a><a href="ce-lookup.html">CE</a></div>
+    </section>
+    <section class="section detail-section detail-summary" aria-labelledby="google-approval.html-summary">
+      <header class="section-heading"><span class="chapter-index">I</span><div><p class="eyebrow">CERTIFICATE ROLE</p><h2 id="google-approval.html-summary">這份資料解決什麼問題。</h2></div></header>
+      <div class="detail-grid">
+        <div><span>平台</span><strong>Android 15 + GMS</strong></div><div><span>內容保護</span><strong>Widevine L1</strong></div><div><span>用途</span><strong>Google 生態接入與合作審閱</strong></div><div><span>資料層級</span><strong>公開 PDF + 夥伴參考</strong></div>
+      </div>
+      <div class="detail-copy reveal">
+        <p>GMS 參考資料不是單一證書，而是一組與 Android 相容性、Google Play 生態、授權與裝置資訊相關的 supporting records。</p><p>Widevine L1 用於說明裝置具備高等級內容保護能力，通常會被串流影音、媒體相容性與平台合作方納入審閱。</p><p>G0 Explanatory Note 作為入口說明文件，用來降低審閱方第一次閱讀整包 Google 相關 PDF 的門檻。</p>
+      </div>
+    </section>
+    <section class="section section--dark detail-section" aria-labelledby="google-approval.html-route">
+      <header class="section-heading"><span class="chapter-index">II</span><div><p class="eyebrow">EVIDENCE ROUTE</p><h2 id="google-approval.html-route">如何查驗。</h2></div></header>
+      <div class="route-steps">
+        <article class="reveal"><span>01</span><strong>先閱讀 G0 Explanatory Note</strong><p>理解這組文件的邊界、用途與閱讀順序。</p></article><article class="reveal"><span>02</span><strong>核對 Android / Partner / Regional 資料</strong><p>確認平台相容性與合作審閱所需的基礎資訊。</p></article><article class="reveal"><span>03</span><strong>再查看 Widevine L1 相關資料</strong><p>將內容保護能力與裝置平台資料一起解讀。</p></article>
+      </div>
+      
+    </section>
+    <section class="section detail-section detail-docs-section" aria-labelledby="google-approval.html-docs">
+      <header class="section-heading"><span class="chapter-index">III</span><div><p class="eyebrow">SUPPORTING PDF</p><h2 id="google-approval.html-docs">底層文件。</h2></div></header>
+      <div class="detail-docs detail-docs--grouped reveal">
+        
+        <section class="detail-doc-group">
+          <header class="detail-doc-group__head"><h3>說明文件 / Explanatory Note</h3><p>先讀入口說明，再進入 Google / Android 全套文件。</p><span>1 PDF</span></header>
+          <div class="detail-docs-list">
+            
+          <div class="detail-doc">
+            <span>G0</span>
+            <strong>G0 Explanatory Note</strong>
+            <div><a href="assets/pdfs/G0-Explanatory_Note.pdf" target="_blank" rel="noopener">查看</a><a href="assets/pdfs/G0-Explanatory_Note.pdf" download>下載</a></div>
+          </div>
+          </div>
+        </section>
+        <section class="detail-doc-group">
+          <header class="detail-doc-group__head"><h3>平台與合作參考 / Android Records</h3><p>Android、Partner、Regional、Worldwide、device info、build 與 approvals 相關資料。</p><span>14 PDF</span></header>
+          <div class="detail-docs-list">
+            
+          <div class="detail-doc">
+            <span>G1</span>
+            <strong>G1 Regional</strong>
+            <div><a href="assets/pdfs/G1-Regional.pdf" target="_blank" rel="noopener">查看</a><a href="assets/pdfs/G1-Regional.pdf" download>下載</a></div>
+          </div>
+          <div class="detail-doc">
+            <span>G2</span>
+            <strong>G2 Worldwide</strong>
+            <div><a href="assets/pdfs/G2-Worldwide.pdf" target="_blank" rel="noopener">查看</a><a href="assets/pdfs/G2-Worldwide.pdf" download>下載</a></div>
+          </div>
+          <div class="detail-doc">
+            <span>G3</span>
+            <strong>G3 build</strong>
+            <div><a href="assets/pdfs/G3-build.pdf" target="_blank" rel="noopener">查看</a><a href="assets/pdfs/G3-build.pdf" download>下載</a></div>
+          </div>
+          <div class="detail-doc">
+            <span>G4</span>
+            <strong>G4 Details</strong>
+            <div><a href="assets/pdfs/G4-Details.pdf" target="_blank" rel="noopener">查看</a><a href="assets/pdfs/G4-Details.pdf" download>下載</a></div>
+          </div>
+          <div class="detail-doc">
+            <span>G5</span>
+            <strong>G5 device</strong>
+            <div><a href="assets/pdfs/G5-device.pdf" target="_blank" rel="noopener">查看</a><a href="assets/pdfs/G5-device.pdf" download>下載</a></div>
+          </div>
+          <div class="detail-doc">
+            <span>G6</span>
+            <strong>G6 overview</strong>
+            <div><a href="assets/pdfs/G6-overview.pdf" target="_blank" rel="noopener">查看</a><a href="assets/pdfs/G6-overview.pdf" download>下載</a></div>
+          </div>
+          <div class="detail-doc">
+            <span>G7</span>
+            <strong>G7 product</strong>
+            <div><a href="assets/pdfs/G7-product.pdf" target="_blank" rel="noopener">查看</a><a href="assets/pdfs/G7-product.pdf" download>下載</a></div>
+          </div>
+          <div class="detail-doc">
+            <span>G8</span>
+            <strong>G8 sublicense</strong>
+            <div><a href="assets/pdfs/G8-sublicense.pdf" target="_blank" rel="noopener">查看</a><a href="assets/pdfs/G8-sublicense.pdf" download>下載</a></div>
+          </div>
+          <div class="detail-doc">
+            <span>G10</span>
+            <strong>G10 Android Partner Approvals</strong>
+            <div><a href="assets/pdfs/G10-Android_Partner_Approvals.pdf" target="_blank" rel="noopener">查看</a><a href="assets/pdfs/G10-Android_Partner_Approvals.pdf" download>下載</a></div>
+          </div>
+          <div class="detail-doc">
+            <span>G11</span>
+            <strong>G11 Extended Info</strong>
+            <div><a href="assets/pdfs/G11-Extended_Info.pdf" target="_blank" rel="noopener">查看</a><a href="assets/pdfs/G11-Extended_Info.pdf" download>下載</a></div>
+          </div>
+          <div class="detail-doc">
+            <span>G12</span>
+            <strong>G12 Reports</strong>
+            <div><a href="assets/pdfs/G12-Reports.pdf" target="_blank" rel="noopener">查看</a><a href="assets/pdfs/G12-Reports.pdf" download>下載</a></div>
+          </div>
+          <div class="detail-doc">
+            <span>G13</span>
+            <strong>G13 Tests</strong>
+            <div><a href="assets/pdfs/G13-Tests.pdf" target="_blank" rel="noopener">查看</a><a href="assets/pdfs/G13-Tests.pdf" download>下載</a></div>
+          </div>
+          <div class="detail-doc">
+            <span>G14</span>
+            <strong>G14 deviceinfo</strong>
+            <div><a href="assets/pdfs/G14-deviceinfo.pdf" target="_blank" rel="noopener">查看</a><a href="assets/pdfs/G14-deviceinfo.pdf" download>下載</a></div>
+          </div>
+          <div class="detail-doc">
+            <span>G15</span>
+            <strong>G15 SE</strong>
+            <div><a href="assets/pdfs/G15-SE.pdf" target="_blank" rel="noopener">查看</a><a href="assets/pdfs/G15-SE.pdf" download>下載</a></div>
+          </div>
+          </div>
+        </section>
+        <section class="detail-doc-group">
+          <header class="detail-doc-group__head"><h3>內容保護 / Widevine</h3><p>Widevine L1 相關 supporting record。</p><span>1 PDF</span></header>
+          <div class="detail-docs-list">
+            
+          <div class="detail-doc">
+            <span>G9</span>
+            <strong>G9 WidevineL1</strong>
+            <div><a href="assets/pdfs/G9-WidevineL1.pdf" target="_blank" rel="noopener">查看</a><a href="assets/pdfs/G9-WidevineL1.pdf" download>下載</a></div>
+          </div>
+          </div>
+        </section>
+      </div>
+      <p class="scope-note reveal"><strong>審閱邊界：</strong>Google / Android 相關資料應與裝置配置、銷售市場與合作情境一起閱讀，不應被解讀為所有地區、所有商業配置的單一總括承諾。</p>
+      <div class="detail-next reveal"><a href="compliance.html">回到 PDF 資料室</a><a href="contact.html">需要機構審閱協助</a></div>
+    </section>
+  </main>
+  <footer class="footer"><div class="footer__brand"><span class="wordmark__mark" aria-hidden="true">///</span><strong>MAGNE.AI</strong><p>把每一個市場承諾，變成可查的編號。</p></div><div class="footer__column"><strong>查驗頁</strong><a href="google-approval.html">GMS</a><a href="fcc-lookup.html">FCC</a><a href="gsma-tac-lookup.html">TAC</a><a href="cb-lookup.html">CB</a><a href="un383-lookup.html">UN38.3</a><a href="cp65-lookup.html">CP65</a><a href="ce-lookup.html">CE</a></div><div class="footer__column"><strong>閱讀</strong><a href="compliance.html">Compliance</a><a href="security.html">Security</a><a href="phone.html">Phone</a></div><div class="footer__column"><strong>連接</strong><a href="partners.html">合作</a><a href="contact.html">聯絡</a><a href="mailto:jerry_kao@magne.ai">資料索取</a></div><div class="footer__legal"><span>© 2026 MAGNE.AI</span><span>合規查驗 · GMS</span><a href="privacy-policy.html">隱私政策</a></div></footer>
+</body>
+</html>

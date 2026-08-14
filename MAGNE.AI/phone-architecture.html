@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080a0b">
+  
+  <title>MAG1 互動工程視圖｜MAGNE.AI</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans+TC:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css?v=lang-4-ga4-2">
+  <script src="assets/site.js?v=lang-4-ga4-2" defer></script>
+  <meta name="description" content="互動拆解 MAGNE.AI MAG1，查看影像、供電、主板、安全元件與離線復原硬件架構。">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <link rel="canonical" href="https://www.magne.ai/phone-architecture.html">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="MAGNE.AI">
+  <meta property="og:title" content="MAG1 互動工程視圖｜MAGNE.AI">
+  <meta property="og:description" content="互動拆解 MAGNE.AI MAG1，查看影像、供電、主板、安全元件與離線復原硬件架構。">
+  <meta property="og:url" content="https://www.magne.ai/phone-architecture.html">
+  <meta property="og:image" content="https://www.magne.ai/assets/images/cover-hold-the-future.webp">
+  <meta property="og:image:alt" content="MAGNE.AI MAG1 智能終端">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MAG1 互動工程視圖｜MAGNE.AI">
+  <meta name="twitter:description" content="互動拆解 MAGNE.AI MAG1，查看影像、供電、主板、安全元件與離線復原硬件架構。">
+  <meta name="twitter:image" content="https://www.magne.ai/assets/images/cover-hold-the-future.webp">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="site.webmanifest">
+</head>
+<body class="page-architecture">
+  <a class="skip-link" href="#viewer">跳至互動模型</a>
+
+  <nav class="site-nav" aria-label="主要導覽">
+    <a class="site-nav__brand" href="./" aria-label="MAGNE.AI 首頁">MAGNE.AI</a>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu"><span class="sr-only">開啟導覽</span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
+    <div class="site-nav__menu" id="site-menu">
+      <a href="./">INDEX</a><a href="phone.html" aria-current="page">PHONE</a><a href="ai.html">AI</a><a href="network.html">NETWORK</a><a href="security.html">SECURITY</a><a href="compliance.html">COMPLIANCE</a><a href="progress.html">PROGRESS</a><a href="partners.html">PARTNERS</a><a href="media-kit.html">MEDIA KIT</a><a href="contact.html">CONTACT</a>
+    </div>
+    <div class="site-nav__actions"><div class="language-menu"><span>繁中</span><span lang="en">EN</span></div><a class="nav-cta" href="https://payment.magne.ai/buy">預購 MAG1 ↗</a></div>
+  </nav>
+
+  <main>
+    <header class="architecture-intro">
+      <div class="architecture-intro__index"><span>01-A</span><small>ENGINEERING FILE</small></div>
+      <div class="architecture-intro__title">
+        <p class="eyebrow">MAG1 · INTERACTIVE ARCHITECTURE</p>
+        <h1>從外殼，<br>一直看到信任根。</h1>
+      </div>
+      <div class="architecture-intro__copy">
+        <p>旋轉、拆解並定位 MAG1 的 52 個結構組件。展示模式看見產品，工程模式看清每一層如何工作。</p>
+        <div><span>V51 HYBRID MODEL</span><span>WHITE / BLACK</span><span>7-STAGE EXPLODE</span></div>
+      </div>
+    </header>
+
+    <section class="architecture-viewer" id="viewer" aria-labelledby="viewer-title">
+      <div class="architecture-viewer__bar">
+        <h2 id="viewer-title">MAG1 結構查看器</h2>
+        <p>拖動旋轉 · 滾輪縮放 · 切換工程模式查看組件</p>
+        <a href="assets/phone-architecture-viewer/index.html?mode=engineering&amp;color=white&amp;step=0" target="_blank" rel="noopener">獨立全屏開啟 ↗</a>
+      </div>
+      <iframe
+        src="assets/phone-architecture-viewer/index.html?mode=showcase&amp;color=white&amp;step=0"
+        title="MAG1 可旋轉、可拆解的完整 3D 工程模型"
+        allow="fullscreen"
+        allowfullscreen
+      ></iframe>
+    </section>
+
+    <section class="section architecture-system-section" id="system-stack" aria-labelledby="architecture-system-title">
+      <header class="phone-system-map__header">
+        <div><p class="eyebrow">LOGICAL ARCHITECTURE</p><h2 id="architecture-system-title">物理結構之上，<br>是完整的系統堆疊。</h2></div>
+        <div><p>這張總圖將使用者體驗、Android 服務、異構運算、安全元件與硬件子系統放回同一條路徑。產品確認、ADB 實證與開發中能力分開標示。</p><div class="system-stack__legend"><span>PRODUCT CONFIRMED</span><span>ADB VERIFIED</span><span>IN DEVELOPMENT</span></div></div>
+      </header>
+
+      <div class="system-stack system-stack--full">
+        <article class="system-stack__layer system-stack__layer--experience"><header><span>01</span><div><strong>使用者體驗層</strong><small>USER EXPERIENCE</small></div></header><div class="system-stack__items"><span><b>Google Gemini</b><small>DEFAULT ASSISTANT</small></span><span><b>端側 AI 翻譯</b><small>QWEN2.5 1.5B</small></span><span><b>本地語音 AI</b><small>ASR · TTS</small></span><span><b>AI 影像</b><small>CAMERA · VISION</small></span><span><b>錢包與身份</b><small>WEB3 ENTRY</small></span><span><b>Agent 工作流</b><small>IN DEVELOPMENT</small></span></div></article>
+
+        <article class="system-stack__layer system-stack__layer--services"><header><span>02</span><div><strong>應用與服務層</strong><small>APPLICATION &amp; SERVICES</small></div></header><div class="system-stack__groups"><div><strong>FIH AI SERVICES</strong><p><span>LlmService</span><span>AsrService</span><span>TtsService</span><span>TranslateService</span></p></div><div><strong>ANDROID 15 + GMS</strong><p><span>Google Services</span><span>Gemini Default Assistant</span></p></div><div><strong>SECURITY SERVICES</strong><p><span>Keystore2</span><span>KeyMint</span><span>OMAPI</span><span>App Attestation</span></p></div><div><strong>MAGNE WEB3 SERVICES</strong><p><span>MAGNE L1</span><span>MHash L2</span><span>AgentPay</span><span>On-chain Identity</span></p><small>IN DEVELOPMENT</small></div></div></article>
+
+        <article class="system-stack__layer system-stack__layer--compute"><header><span>03</span><div><strong>核心平台層</strong><small>UNISOC T9100</small></div></header><div class="system-stack__groups system-stack__groups--compute"><div><strong>HETEROGENEOUS COMPUTE</strong><p><span>CPU</span><span>GPU</span><span>ISP</span><span>AX3596 NPU</span></p></div><div><strong>AI RUNTIME</strong><p><span>Android NN HAL</span><span>UNISOC UniAI</span><span>Vision Runtime</span><span>Dynamic Routing</span></p></div><div><strong>ADB VERIFIED NNA</strong><p><span>1.2GHz</span><span>10 TOPS INT8</span><span>Series3NX</span><span>4,096 MAC/clk</span></p></div></div></article>
+
+        <article class="system-stack__layer system-stack__layer--trust"><header><span>04</span><div><strong>安全與連接層</strong><small>TRUST &amp; CONNECTIVITY</small></div></header><div class="system-stack__groups"><div><strong>HYPERSEED N60</strong><p><span>Key Store</span><span>Trusted Signing</span><span>RNG</span><span>Anti-tamper</span></p><small>PRODUCT CONFIRMED</small></div><div><strong>ANDROID INTEGRATION</strong><p><span>HED NFC AIDL</span><span>Secure Element Service</span><span>OMAPI</span><span>eSE1 Connected</span></p><small>ADB VERIFIED</small></div><div><strong>CONNECTIVITY</strong><p><span>5G</span><span>Wi-Fi</span><span>Bluetooth</span><span>NFC</span><span>Dual SIM</span><span>3.5mm Audio</span></p></div></div></article>
+
+        <article class="system-stack__layer system-stack__layer--hardware"><header><span>05</span><div><strong>硬件子系統層</strong><small>HARDWARE SUBSYSTEM</small></div></header><div class="system-stack__items"><span><b>6.78" FHD+</b><small>60 / 90 / 120Hz</small></span><span><b>50MP + 2MP + 2MP</b><small>16MP FRONT</small></span><span><b>8GB / 12GB</b><small>最高 512GB UFS</small></span><span><b>5000mAh</b><small>33W · 15W WIRELESS</small></span><span><b>Android 15</b><small>GMS · DUAL SIM</small></span></div></article>
+      </div>
+
+      <p class="architecture-system-section__note"><strong>架構邊界：</strong>海外版本以 Google Gemini 作為預設系統 AI 助手，並整合側鍵快速進入；Qwen、ASR 與 TTS 承擔獨立的端側語言和語音工作，影像 AI 走 ISP / Vision 路徑。Gemini 可用性取決於地區、Google 帳戶、軟件版本和適用服務條款。Keystore2 / KeyMint 與 OMAPI / eSE 是並行安全服務，不被錯畫成 N60 的同一內部模組。</p>
+    </section>
+
+    <section class="architecture-guide" aria-label="工程視圖使用說明">
+      <article><span>01 / EXPLODE</span><h2>七段拆解</h2><p>從完整裝配到完全拆解，沿著真實裝配關係逐層展開。</p></article>
+      <article><span>02 / INSPECT</span><h2>組件定位</h2><p>進入工程模式，聚焦、隱藏或隔離安全元件、主板與各功能模組。</p></article>
+      <article><span>03 / VERIFY</span><h2>硬件可讀</h2><p>把端側運算、硬件簽章與離線復原，落到可被看見的物理結構。</p></article>
+      <a class="architecture-guide__back" href="phone.html"><span>返回 MAG1 產品檔案</span><strong>PHONE ←</strong></a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__brand"><span class="wordmark__mark" aria-hidden="true">///</span><strong>MAGNE.AI</strong><p>智能終端，不只是智能手機。</p></div>
+    <div class="footer__column"><strong>閱讀</strong><a href="phone.html">Phone</a><a href="ai.html">AI</a><a href="network.html">Network</a></div>
+    <div class="footer__column"><strong>驗證</strong><a href="security.html">安全架構</a><a href="compliance.html">合規總覽</a><a href="partners.html">合作夥伴</a></div>
+    <div class="footer__column"><strong>連接</strong><a href="https://payment.magne.ai/buy">預購</a><a href="contact.html">聯絡</a><a href="media-kit.html">Media Kit</a></div>
+    <div class="footer__external"><div class="footer__external-group"><strong>資源</strong><a href="media-kit.html">Media Kit</a><a href="https://web3.magne.ai" target="_blank" rel="noopener">白皮書 ↗</a></div><div class="footer__external-group"><strong>關注</strong><a href="https://github.com/magne-ai" target="_blank" rel="noopener">GitHub</a><a href="https://x.com/Magne_Ai" target="_blank" rel="noopener">X</a><a href="https://t.me/MagneAI" target="_blank" rel="noopener">Telegram</a><a href="https://www.youtube.com/@MagneAI" target="_blank" rel="noopener">YouTube</a><a href="https://discord.gg/tX2xRAkd" target="_blank" rel="noopener">Discord</a></div></div><div class="footer__legal"><span>© 2026 MAGNE.AI</span><span>產品檔案 · ENGINEERING 01-A</span><a href="privacy-policy.html">隱私政策</a></div>
+  </footer>
+</body>
+</html>

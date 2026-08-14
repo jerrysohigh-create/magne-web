@@ -15,7 +15,7 @@ export default {
     }
 
     if (url.pathname === "/") {
-      url.pathname = "/index.html";
+      return Response.redirect(new URL("/en/", url), 308);
     }
 
     if (!env.ASSETS?.fetch) return notFound();
