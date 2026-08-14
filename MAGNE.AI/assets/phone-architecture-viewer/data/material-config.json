@@ -1,0 +1,64 @@
+{
+  "version": "v10-dual-color-05",
+  "defaultColor": "white",
+  "rules": [
+    {
+      "match": "V51 deep cool-graphite satin rear shell",
+      "white": { "color": "#d9dbdc", "metalness": 0.08, "roughness": 0.34, "envMapIntensity": 1.18 },
+      "black": { "color": "#25282a", "metalness": 0.16, "roughness": 0.38, "envMapIntensity": 1.05 },
+      "blackShowcase": { "color": "#30363a", "metalness": 0.22, "roughness": 0.32, "envMapIntensity": 1.50, "emissive": "#111820", "emissiveIntensity": 0.22, "detachMap": true }
+    },
+    {
+      "match": "V50 semi-polished cool gunmetal mid-frame",
+      "white": { "color": "#bfc3c6", "metalness": 0.90, "roughness": 0.22, "envMapIntensity": 1.50 },
+      "black": { "color": "#34383b", "metalness": 0.88, "roughness": 0.25, "envMapIntensity": 1.35 },
+      "blackShowcase": { "color": "#42484e", "roughness": 0.18, "envMapIntensity": 1.85, "emissive": "#080b0e", "emissiveIntensity": 0.10, "detachMap": true }
+    },
+    {
+      "match": "V51 deep matte-black camera island face",
+      "white": { "color": "#c5c7c8", "metalness": 0.82, "roughness": 0.33, "envMapIntensity": 1.42 },
+      "black": { "color": "#202325", "metalness": 0.76, "roughness": 0.34, "envMapIntensity": 1.25 },
+      "blackShowcase": { "color": "#292e33", "roughness": 0.26, "envMapIntensity": 1.75, "emissive": "#0d1115", "emissiveIntensity": 0.18, "detachMap": true }
+    },
+    {
+      "match": "V50 polished black camera island wall",
+      "white": { "color": "#aeb2b5", "metalness": 0.96, "roughness": 0.15, "envMapIntensity": 1.70 },
+      "black": { "color": "#303438", "metalness": 0.95, "roughness": 0.17, "envMapIntensity": 1.48 },
+      "blackShowcase": { "color": "#3a4148", "roughness": 0.11, "envMapIntensity": 2.00, "detachMap": true }
+    },
+    {
+      "match": "V50 dark gunmetal raised lens surround top",
+      "white": { "color": "#aeb2b6", "metalness": 0.94, "roughness": 0.18, "envMapIntensity": 1.62 },
+      "black": { "color": "#3b3f43", "metalness": 0.92, "roughness": 0.20, "envMapIntensity": 1.44 },
+      "blackShowcase": { "color": "#434a51", "roughness": 0.14, "envMapIntensity": 1.95, "detachMap": true }
+    },
+    {
+      "match": "V50 polished black raised lens surround wall",
+      "white": { "color": "#8f9498", "metalness": 0.97, "roughness": 0.13, "envMapIntensity": 1.74 },
+      "black": { "color": "#24282c", "metalness": 0.97, "roughness": 0.15, "envMapIntensity": 1.52 },
+      "blackShowcase": { "color": "#30363d", "roughness": 0.10, "envMapIntensity": 2.10, "detachMap": true }
+    },
+    {
+      "match": "V50 dark satin gunmetal button face",
+      "white": { "color": "#b9bdc0", "metalness": 0.88, "roughness": 0.25, "envMapIntensity": 1.46 },
+      "black": { "color": "#3a3e42", "metalness": 0.86, "roughness": 0.28, "envMapIntensity": 1.30 }
+    },
+    {
+      "match": "V50 darker anodized button sidewall",
+      "white": { "color": "#93989c", "metalness": 0.92, "roughness": 0.20, "envMapIntensity": 1.58 },
+      "black": { "color": "#25292d", "metalness": 0.91, "roughness": 0.22, "envMapIntensity": 1.38 }
+    },
+    {
+      "match": "V51 restrained dark-silver rear emblem",
+      "white": { "color": "#f3f6f8", "metalness": 0.92, "roughness": 0.08, "envMapIntensity": 2.25, "emissive": "#aeb7bd", "emissiveIntensity": 0.18 },
+      "black": { "color": "#8a8f93", "metalness": 0.84, "roughness": 0.22, "envMapIntensity": 1.42 },
+      "blackShowcase": { "color": "#8f969d", "envMapIntensity": 1.65, "emissive": "#13171a", "emissiveIntensity": 0.16, "detachMap": true }
+    },
+    {
+      "match": "V36 soft charcoal AI print",
+      "white": { "color": "#34383b", "metalness": 0.15, "roughness": 0.40, "envMapIntensity": 1.0 },
+      "black": { "color": "#8e9498", "metalness": 0.25, "roughness": 0.36, "envMapIntensity": 1.08 },
+      "blackShowcase": { "color": "#9aa1a7", "metalness": 0.32, "roughness": 0.30, "envMapIntensity": 1.28, "emissive": "#11161a", "emissiveIntensity": 0.10, "detachMap": true }
+    }
+  ]
+}

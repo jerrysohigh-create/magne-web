@@ -1,0 +1,837 @@
+{
+  "version": "v51-hybrid-v10",
+  "components": [
+    {
+      "id": "audio_jack_rubber",
+      "group": "audio_io",
+      "source_kind": "step_exact",
+      "source_label": "AUDIO_JACK_RUBBER_GK5",
+      "assembled_position_m": [
+        -0.00022870000975672156,
+        0.0008500000694766641,
+        0.005437600426375866
+      ],
+      "explode_vector_mm": [
+        -10,
+        -6,
+        38
+      ]
+    },
+    {
+      "id": "bottom_speaker_proxy",
+      "group": "audio_io",
+      "source_kind": "proxy",
+      "source_label": "Modeled acoustic enclosure",
+      "assembled_position_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "explode_vector_mm": [
+        17,
+        -6,
+        50
+      ]
+    },
+    {
+      "id": "haptic_motor_proxy",
+      "group": "audio_io",
+      "source_kind": "proxy",
+      "source_label": "EVT-referenced coin vibrator",
+      "assembled_position_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "explode_vector_mm": [
+        -23,
+        -5,
+        47
+      ]
+    },
+    {
+      "id": "receiver_proxy",
+      "group": "audio_io",
+      "source_kind": "proxy",
+      "source_label": "Modeled receiver and mesh",
+      "assembled_position_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "explode_vector_mm": [
+        36,
+        5,
+        106
+      ]
+    },
+    {
+      "id": "top_speaker_proxy",
+      "group": "audio_io",
+      "source_kind": "proxy",
+      "source_label": "Modeled acoustic enclosure",
+      "assembled_position_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "explode_vector_mm": [
+        7,
+        7,
+        39
+      ]
+    },
+    {
+      "id": "camera_capsule_glass",
+      "group": "camera",
+      "source_kind": "v51_exterior",
+      "source_label": "V51 PVT optical cover glass",
+      "assembled_position_m": [
+        0,
+        0,
+        0
+      ],
+      "explode_vector_mm": [
+        -27,
+        0,
+        -128
+      ]
+    },
+    {
+      "id": "camera_flex_proxy",
+      "group": "camera",
+      "source_kind": "proxy",
+      "source_label": "Modeled camera flex and sockets",
+      "assembled_position_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "explode_vector_mm": [
+        -6,
+        5,
+        -72
+      ]
+    },
+    {
+      "id": "camera_frame",
+      "group": "camera",
+      "source_kind": "v51_exterior",
+      "source_label": "V51 refined exterior model",
+      "assembled_position_m": [
+        0,
+        0,
+        0
+      ],
+      "explode_vector_mm": [
+        -25,
+        0,
+        -120
+      ]
+    },
+    {
+      "id": "camera_island",
+      "group": "camera",
+      "source_kind": "v51_exterior",
+      "source_label": "V51 refined exterior model",
+      "assembled_position_m": [
+        0,
+        0,
+        0
+      ],
+      "explode_vector_mm": [
+        -30,
+        0,
+        -140
+      ]
+    },
+    {
+      "id": "flash_lens",
+      "group": "camera",
+      "source_kind": "v51_exterior",
+      "source_label": "V51 refined exterior model",
+      "assembled_position_m": [
+        0,
+        0,
+        0
+      ],
+      "explode_vector_mm": [
+        -38,
+        -4,
+        -132
+      ]
+    },
+    {
+      "id": "main_camera",
+      "group": "camera",
+      "source_kind": "v51_exterior",
+      "source_label": "V51 refined exterior model",
+      "assembled_position_m": [
+        0,
+        0,
+        0
+      ],
+      "explode_vector_mm": [
+        -10,
+        8,
+        -106
+      ]
+    },
+    {
+      "id": "main_camera_barrel",
+      "group": "camera",
+      "source_kind": "proxy",
+      "source_label": "PVT camera module detail",
+      "assembled_position_m": [
+        0,
+        0,
+        0
+      ],
+      "explode_vector_mm": [
+        7.300000000000001,
+        0,
+        -90
+      ]
+    },
+    {
+      "id": "main_camera_flex",
+      "group": "camera",
+      "source_kind": "proxy",
+      "source_label": "PVT camera module detail",
+      "assembled_position_m": [
+        0,
+        0,
+        0
+      ],
+      "explode_vector_mm": [
+        7.300000000000001,
+        0,
+        -42
+      ]
+    },
+    {
+      "id": "main_camera_pcb",
+      "group": "camera",
+      "source_kind": "proxy",
+      "source_label": "PVT camera module detail",
+      "assembled_position_m": [
+        0,
+        0,
+        0
+      ],
+      "explode_vector_mm": [
+        7.300000000000001,
+        0,
+        -58
+      ]
+    },
+    {
+      "id": "main_camera_sensor",
+      "group": "camera",
+      "source_kind": "proxy",
+      "source_label": "PVT camera module detail",
+      "assembled_position_m": [
+        0,
+        0,
+        0
+      ],
+      "explode_vector_mm": [
+        7.300000000000001,
+        0,
+        -74
+      ]
+    },
+    {
+      "id": "secondary_camera_a",
+      "group": "camera",
+      "source_kind": "v51_exterior",
+      "source_label": "V51 refined exterior model",
+      "assembled_position_m": [
+        0,
+        0,
+        0
+      ],
+      "explode_vector_mm": [
+        -16,
+        -3,
+        -102
+      ]
+    },
+    {
+      "id": "secondary_camera_a_barrel",
+      "group": "camera",
+      "source_kind": "proxy",
+      "source_label": "PVT camera module detail",
+      "assembled_position_m": [
+        0,
+        0,
+        0
+      ],
+      "explode_vector_mm": [
+        7.300000000000001,
+        0,
+        -86
+      ]
+    },
+    {
+      "id": "secondary_camera_a_flex",
+      "group": "camera",
+      "source_kind": "proxy",
+      "source_label": "PVT camera module detail",
+      "assembled_position_m": [
+        0,
+        0,
+        0
+      ],
+      "explode_vector_mm": [
+        7.300000000000001,
+        0,
+        -38
+      ]
+    },
+    {
+      "id": "secondary_camera_a_pcb",
+      "group": "camera",
+      "source_kind": "proxy",
+      "source_label": "PVT camera module detail",
+      "assembled_position_m": [
+        0,
+        0,
+        0
+      ],
+      "explode_vector_mm": [
+        7.300000000000001,
+        0,
+        -54
+      ]
+    },
+    {
+      "id": "secondary_camera_a_sensor",
+      "group": "camera",
+      "source_kind": "proxy",
+      "source_label": "PVT camera module detail",
+      "assembled_position_m": [
+        0,
+        0,
+        0
+      ],
+      "explode_vector_mm": [
+        7.300000000000001,
+        0,
+        -70
+      ]
+    },
+    {
+      "id": "secondary_camera_b",
+      "group": "camera",
+      "source_kind": "v51_exterior",
+      "source_label": "V51 refined exterior model",
+      "assembled_position_m": [
+        0,
+        0,
+        0
+      ],
+      "explode_vector_mm": [
+        -23,
+        4,
+        -98
+      ]
+    },
+    {
+      "id": "secondary_camera_b_barrel",
+      "group": "camera",
+      "source_kind": "proxy",
+      "source_label": "PVT camera module detail",
+      "assembled_position_m": [
+        0,
+        0,
+        0
+      ],
+      "explode_vector_mm": [
+        -7.3,
+        0,
+        -82
+      ]
+    },
+    {
+      "id": "secondary_camera_b_flex",
+      "group": "camera",
+      "source_kind": "proxy",
+      "source_label": "PVT camera module detail",
+      "assembled_position_m": [
+        0,
+        0,
+        0
+      ],
+      "explode_vector_mm": [
+        -7.3,
+        0,
+        -34
+      ]
+    },
+    {
+      "id": "secondary_camera_b_pcb",
+      "group": "camera",
+      "source_kind": "proxy",
+      "source_label": "PVT camera module detail",
+      "assembled_position_m": [
+        0,
+        0,
+        0
+      ],
+      "explode_vector_mm": [
+        -7.3,
+        0,
+        -50
+      ]
+    },
+    {
+      "id": "secondary_camera_b_sensor",
+      "group": "camera",
+      "source_kind": "proxy",
+      "source_label": "PVT camera module detail",
+      "assembled_position_m": [
+        0,
+        0,
+        0
+      ],
+      "explode_vector_mm": [
+        -7.3,
+        0,
+        -66
+      ]
+    },
+    {
+      "id": "front_housing",
+      "group": "chassis",
+      "source_kind": "v51_exterior",
+      "source_label": "V51 refined exterior model",
+      "assembled_position_m": [
+        0,
+        0,
+        0
+      ],
+      "explode_vector_mm": [
+        8,
+        0,
+        85
+      ]
+    },
+    {
+      "id": "mid_frame",
+      "group": "chassis",
+      "source_kind": "v51_exterior",
+      "source_label": "V51 refined exterior model",
+      "assembled_position_m": [
+        0,
+        0,
+        0
+      ],
+      "explode_vector_mm": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "display_assembly",
+      "group": "display",
+      "source_kind": "v51_exterior",
+      "source_label": "V51 refined exterior model",
+      "assembled_position_m": [
+        0,
+        0,
+        0
+      ],
+      "explode_vector_mm": [
+        24,
+        -2,
+        170
+      ]
+    },
+    {
+      "id": "rear_cover",
+      "group": "external",
+      "source_kind": "v51_exterior",
+      "source_label": "V51 refined exterior model",
+      "assembled_position_m": [
+        0,
+        0,
+        0
+      ],
+      "explode_vector_mm": [
+        -12,
+        0,
+        -170
+      ]
+    },
+    {
+      "id": "rear_cover_film",
+      "group": "external",
+      "source_kind": "step_exact",
+      "source_label": "BAT_COV_FILM_GK5",
+      "assembled_position_m": [
+        -0.00022870000975672156,
+        0.0008500000694766641,
+        0.005437600426375866
+      ],
+      "explode_vector_mm": [
+        -16,
+        0,
+        -152
+      ]
+    },
+    {
+      "id": "side_key_caps",
+      "group": "external",
+      "source_kind": "v51_exterior",
+      "source_label": "V51 refined exterior model",
+      "assembled_position_m": [
+        0,
+        0,
+        0
+      ],
+      "explode_vector_mm": [
+        38,
+        0,
+        26
+      ]
+    },
+    {
+      "id": "side_key_rubber",
+      "group": "external",
+      "source_kind": "step_exact",
+      "source_label": "SIDE_KEY_RUBBER_GK5",
+      "assembled_position_m": [
+        -0.00022870000975672156,
+        0.0008500000694766641,
+        0.005437600426375866
+      ],
+      "explode_vector_mm": [
+        31,
+        0,
+        18
+      ]
+    },
+    {
+      "id": "sim_tray",
+      "group": "external",
+      "source_kind": "v51_exterior",
+      "source_label": "V51 refined exterior model",
+      "assembled_position_m": [
+        0,
+        0,
+        0
+      ],
+      "explode_vector_mm": [
+        -40,
+        2,
+        34
+      ]
+    },
+    {
+      "id": "sim_tray_metal",
+      "group": "external",
+      "source_kind": "v51_exterior",
+      "source_label": "V51 refined exterior model",
+      "assembled_position_m": [
+        0,
+        0,
+        0
+      ],
+      "explode_vector_mm": [
+        -32,
+        2,
+        27
+      ]
+    },
+    {
+      "id": "sim_tray_rubber",
+      "group": "external",
+      "source_kind": "step_exact",
+      "source_label": "SIM_TRAY_RUBBER_DVT_GK5",
+      "assembled_position_m": [
+        -0.00022870000975672156,
+        0.0008500000694766641,
+        0.005437600426375866
+      ],
+      "explode_vector_mm": [
+        -24,
+        2,
+        20
+      ]
+    },
+    {
+      "id": "fasteners",
+      "group": "fasteners",
+      "source_kind": "step_exact",
+      "source_label": "0038_SCREW_ASSY_GK5_ASM",
+      "assembled_position_m": [
+        -0.00022870000975672156,
+        0.0008500000694766641,
+        0.005437600426375866
+      ],
+      "explode_vector_mm": [
+        2,
+        0,
+        58
+      ]
+    },
+    {
+      "id": "coax_cable_proxy",
+      "group": "logic",
+      "source_kind": "proxy",
+      "source_label": "Modeled antenna coaxial line",
+      "assembled_position_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "explode_vector_mm": [
+        -15,
+        0,
+        18
+      ]
+    },
+    {
+      "id": "fingerprint_module",
+      "group": "logic",
+      "source_kind": "step_exact",
+      "source_label": "FINGER_POINT_ASSY_GK5_ASM_17_AS_ASM",
+      "assembled_position_m": [
+        -0.00022870000975672156,
+        0.0008500000694766641,
+        0.005437600426375866
+      ],
+      "explode_vector_mm": [
+        16,
+        0,
+        44
+      ]
+    },
+    {
+      "id": "hyperseed_n60",
+      "group": "logic",
+      "source_kind": "proxy",
+      "source_label": "HyperSeed N60 NFC + Secure Element chip; model placement pending PVT PCBA confirmation",
+      "assembled_position_m": [
+        0,
+        0,
+        0
+      ],
+      "explode_vector_mm": [
+        28,
+        2,
+        -60
+      ]
+    },
+    {
+      "id": "main_flex_proxy",
+      "group": "logic",
+      "source_kind": "proxy",
+      "source_label": "Modeled multi-branch flex interconnect",
+      "assembled_position_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "explode_vector_mm": [
+        31,
+        -8,
+        -18
+      ]
+    },
+    {
+      "id": "mainboard_memory",
+      "group": "logic",
+      "source_kind": "proxy",
+      "source_label": "Modeled mainboard chip package from EVT PCBA placement",
+      "assembled_position_m": [
+        0,
+        0,
+        0
+      ],
+      "explode_vector_mm": [
+        20,
+        -4,
+        -62
+      ]
+    },
+    {
+      "id": "mainboard_pmic",
+      "group": "logic",
+      "source_kind": "proxy",
+      "source_label": "Modeled mainboard chip package from EVT PCBA placement",
+      "assembled_position_m": [
+        0,
+        0,
+        0
+      ],
+      "explode_vector_mm": [
+        -12,
+        4,
+        -58
+      ]
+    },
+    {
+      "id": "mainboard_proxy",
+      "group": "logic",
+      "source_kind": "proxy",
+      "source_label": "Modeled from STEP placements and internal envelope",
+      "assembled_position_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "explode_vector_mm": [
+        10,
+        8,
+        -42
+      ]
+    },
+    {
+      "id": "mainboard_rf_transceiver",
+      "group": "logic",
+      "source_kind": "proxy",
+      "source_label": "Modeled mainboard chip package from EVT PCBA placement",
+      "assembled_position_m": [
+        0,
+        0,
+        0
+      ],
+      "explode_vector_mm": [
+        12,
+        8,
+        -56
+      ]
+    },
+    {
+      "id": "mainboard_soc",
+      "group": "logic",
+      "source_kind": "proxy",
+      "source_label": "Modeled mainboard chip package from EVT PCBA placement",
+      "assembled_position_m": [
+        0,
+        0,
+        0
+      ],
+      "explode_vector_mm": [
+        -20,
+        12,
+        -66
+      ]
+    },
+    {
+      "id": "nfc_proxy",
+      "group": "logic",
+      "source_kind": "proxy",
+      "source_label": "Modeled NFC antenna coil and ferrite shielding sheet; not the N60 chip",
+      "assembled_position_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "explode_vector_mm": [
+        -42,
+        -14,
+        -78
+      ]
+    },
+    {
+      "id": "thermal_shield_proxy",
+      "group": "logic",
+      "source_kind": "proxy",
+      "source_label": "Modeled graphite heat spreader",
+      "assembled_position_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "explode_vector_mm": [
+        5,
+        3,
+        -27
+      ]
+    },
+    {
+      "id": "usb_subboard_proxy",
+      "group": "logic",
+      "source_kind": "proxy",
+      "source_label": "Modeled USB daughterboard and connector",
+      "assembled_position_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "explode_vector_mm": [
+        13,
+        -7,
+        31
+      ]
+    },
+    {
+      "id": "battery_pack_proxy",
+      "group": "power",
+      "source_kind": "proxy",
+      "source_label": "Modeled from STEP cavity and product teardown conventions",
+      "assembled_position_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "explode_vector_mm": [
+        -68,
+        -10,
+        -58
+      ]
+    },
+    {
+      "id": "wireless_charging_coil",
+      "group": "power",
+      "source_kind": "proxy",
+      "source_label": "Modeled wireless charging copper coil, ferrite backing and flex tail from product architecture",
+      "assembled_position_m": [
+        0,
+        0,
+        0
+      ],
+      "explode_vector_mm": [
+        -34,
+        -9,
+        -84
+      ]
+    },
+    {
+      "id": "wireless_charging_controller",
+      "group": "power",
+      "source_kind": "proxy",
+      "source_label": "Modeled wireless charging controller package; exact PVT part number and board coordinate pending confirmation",
+      "assembled_position_m": [
+        0,
+        0,
+        0
+      ],
+      "explode_vector_mm": [
+        24,
+        -2,
+        -68
+      ]
+    },
+    {
+      "id": "wireless_charging_magnet_ring",
+      "group": "power",
+      "source_kind": "proxy",
+      "source_label": "Modeled segmented wireless charging alignment magnet ring; PVT diameter pending confirmation",
+      "assembled_position_m": [
+        0,
+        0,
+        0
+      ],
+      "explode_vector_mm": [
+        -41,
+        -5,
+        -94
+      ]
+    }
+  ]
+}
