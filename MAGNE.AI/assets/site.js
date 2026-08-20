@@ -1,6 +1,11 @@
 (() => {
   const ga4MeasurementId = "G-NGKT224G39";
   const consentKey = "magne.analytics-consent";
+  const restrictedAnalyticsRegions = [
+    "AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR",
+    "HU", "IS", "IE", "IT", "LV", "LI", "LT", "LU", "MT", "NL", "NO", "PL",
+    "PT", "RO", "SK", "SI", "ES", "SE", "GB", "CH",
+  ];
   const pageLanguage = document.documentElement.lang.toLowerCase();
   const isEnglishPage = pageLanguage.startsWith("en");
   const languageCode = pageLanguage.startsWith("ja")
@@ -14,18 +19,25 @@
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function gtag() { window.dataLayer.push(arguments); };
   window.gtag("consent", "default", {
+    analytics_storage: "granted",
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+  });
+  window.gtag("consent", "default", {
     analytics_storage: "denied",
     ad_storage: "denied",
     ad_user_data: "denied",
     ad_personalization: "denied",
+    region: restrictedAnalyticsRegions,
     wait_for_update: 500,
   });
   window.gtag("js", new Date());
 
   let analyticsConsent = null;
   try { analyticsConsent = window.localStorage.getItem(consentKey); } catch {}
-  if (analyticsConsent === "granted") {
-    window.gtag("consent", "update", { analytics_storage: "granted" });
+  if (analyticsConsent === "granted" || analyticsConsent === "denied") {
+    window.gtag("consent", "update", { analytics_storage: analyticsConsent });
   }
 
   const analyticsScript = document.createElement("script");
@@ -35,22 +47,29 @@
   window.gtag("config", ga4MeasurementId, { anonymize_ip: true });
   document.documentElement.dataset.ga4 = ga4MeasurementId;
 
-  if (!analyticsConsent) {
-    const consentStyles = document.createElement("style");
-    consentStyles.textContent = '.analytics-consent{position:fixed;z-index:1200;right:18px;bottom:18px;width:min(420px,calc(100vw - 36px));box-sizing:border-box;padding:18px;color:#f2eee4;background:#11110f;border:1px solid #5d5a50;box-shadow:0 18px 45px rgb(0 0 0/.24);font-family:Arial,sans-serif}.analytics-consent p{margin:0;font-size:13px;line-height:1.55}.analytics-consent div{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}.analytics-consent button{min-height:38px;padding:0 13px;color:#f2eee4;background:transparent;border:1px solid #777267;font:500 10px/1 monospace;cursor:pointer}.analytics-consent button:last-child{color:#11110f;background:#f2eee4;border-color:#f2eee4}';
-    document.head.append(consentStyles);
+  const privacyHref = pageLanguage.startsWith("ja") || pageLanguage.startsWith("ko")
+    ? "../en/privacy-policy.html"
+    : "privacy-policy.html";
+  const consentCopy = {
+    en: ["Analytics settings", "Google Analytics helps us understand site performance. Advertising storage stays disabled.", "Privacy Policy", "Disable analytics", "Allow analytics", "Analytics settings"],
+    ja: ["アクセス解析の設定", "Google Analyticsをサイト改善のために使用します。広告用ストレージは無効のままです。", "プライバシーポリシー", "解析を無効にする", "解析を許可", "Cookie設定"],
+    ko: ["분석 설정", "사이트 개선을 위해 Google Analytics를 사용합니다. 광고 저장소는 계속 비활성화됩니다.", "개인정보 처리방침", "분석 비활성화", "분석 허용", "쿠키 설정"],
+    "zh-Hant": ["分析設定", "我們使用 Google Analytics 了解網站效能；廣告儲存功能始終停用。", "隱私政策", "停用分析", "允許分析", "Cookie 設定"],
+  }[languageCode];
+  const consentStyles = document.createElement("style");
+  consentStyles.textContent = '.analytics-consent{position:fixed;z-index:1200;right:18px;bottom:18px;width:min(440px,calc(100vw - 36px));box-sizing:border-box;padding:18px;color:#f2eee4;background:#11110f;border:1px solid #5d5a50;box-shadow:0 18px 45px rgb(0 0 0/.24);font-family:Arial,sans-serif}.analytics-consent strong{display:block;margin:0 0 8px;font-size:14px}.analytics-consent p{margin:0;font-size:13px;line-height:1.55}.analytics-consent a{color:#f2eee4;text-decoration:underline;text-underline-offset:3px}.analytics-consent__actions{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:8px;margin-top:14px}.analytics-consent button{min-height:38px;padding:0 13px;color:#f2eee4;background:transparent;border:1px solid #777267;font:500 10px/1 monospace;cursor:pointer}.analytics-consent button:last-child{color:#11110f;background:#f2eee4;border-color:#f2eee4}.analytics-settings{padding:0;color:inherit;background:none;border:0;font:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer}';
+  document.head.append(consentStyles);
+
+  const openConsentNotice = () => {
+    document.querySelector(".analytics-consent")?.remove();
     const consentNotice = document.createElement("aside");
     consentNotice.className = "analytics-consent";
     consentNotice.setAttribute("role", "dialog");
-    const consentCopy = {
-      en: ["Analytics preferences", "We use privacy-conscious analytics to understand site performance.", "Decline", "Allow analytics"],
-      ja: ["アクセス解析の設定", "サイトの改善に役立てるため、プライバシーに配慮したアクセス解析を使用します。", "拒否", "解析を許可"],
-      ko: ["분석 설정", "사이트 성능을 이해하기 위해 개인정보를 고려한 분석을 사용합니다.", "거부", "분석 허용"],
-      "zh-Hant": ["分析偏好", "我們使用重視私隱的網站分析，了解網站效能。", "拒絕", "允許分析"],
-    }[languageCode];
+    consentNotice.setAttribute("aria-modal", "false");
     consentNotice.setAttribute("aria-label", consentCopy[0]);
-    consentNotice.innerHTML = `<p>${consentCopy[1]}</p><div><button type="button" data-consent="denied">${consentCopy[2]}</button><button type="button" data-consent="granted">${consentCopy[3]}</button></div>`;
+    consentNotice.innerHTML = `<strong>${consentCopy[0]}</strong><p>${consentCopy[1]} <a href="${privacyHref}">${consentCopy[2]}</a></p><div class="analytics-consent__actions"><button type="button" data-consent="denied">${consentCopy[3]}</button><button type="button" data-consent="granted">${consentCopy[4]}</button></div>`;
     document.body.append(consentNotice);
+    consentNotice.querySelector("button")?.focus();
     consentNotice.querySelectorAll("[data-consent]").forEach((button) => {
       button.addEventListener("click", () => {
         const value = button.dataset.consent;
@@ -59,6 +78,22 @@
         consentNotice.remove();
       });
     });
+    const closeOnEscape = (event) => {
+      if (event.key !== "Escape") return;
+      consentNotice.remove();
+      document.removeEventListener("keydown", closeOnEscape);
+    };
+    document.addEventListener("keydown", closeOnEscape);
+  };
+
+  const footerLegal = document.querySelector(".footer__legal");
+  if (footerLegal) {
+    const settingsButton = document.createElement("button");
+    settingsButton.className = "analytics-settings";
+    settingsButton.type = "button";
+    settingsButton.textContent = consentCopy[5];
+    settingsButton.addEventListener("click", openConsentNotice);
+    footerLegal.append(settingsButton);
   }
 
   const menuButton = document.querySelector(".menu-button");
