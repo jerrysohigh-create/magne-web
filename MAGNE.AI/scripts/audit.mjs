@@ -1,9 +1,13 @@
 import { readdir, readFile, stat } from "node:fs/promises";
 import { dirname, extname, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { publishedPages, standalonePages } from "./site-pages.mjs";
 
-const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const ignoredDirectories = new Set(["assets", "dist", "ja", "ko", "node_modules", "worker"]);
+const sourceRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+const root = resolve(sourceRoot, "dist", "client");
+const ignoredDirectories = new Set(["assets", "dist", "node_modules", "worker"]);
+const publishedPageSet = new Set(publishedPages);
+const expectedPageSet = new Set([...publishedPages, ...standalonePages]);
 
 async function collectHtml(directory = root) {
   const pages = [];
@@ -22,6 +26,18 @@ const warnings = [];
 const localReferencePattern = /(?:href|src)=["']([^"']+)["']/g;
 const idPattern = /\sid=["']([^"']+)["']/g;
 
+function publicUrl(page) {
+  if (page === "index.html") return "https://www.magne.ai/";
+  if (page === "en/index.html") return "https://www.magne.ai/en/";
+  return `https://www.magne.ai/${page}`;
+}
+
+function alternateUrl(file, language) {
+  const page = file.split("/").at(-1);
+  if (page === "index.html") return language === "zh-Hant" ? "https://www.magne.ai/" : `https://www.magne.ai/${language}/`;
+  return language === "zh-Hant" ? `https://www.magne.ai/${page}` : `https://www.magne.ai/${language}/${page}`;
+}
+
 for (const absolute of pages) {
   const page = relative(root, absolute).replaceAll("\\", "/");
   const html = await readFile(absolute, "utf8");
@@ -32,6 +48,22 @@ for (const absolute of pages) {
   if (!/<meta\s+name=["']description["'][^>]+content=["'][^"']+/i.test(html)) failures.push(`${page}: missing meta description`);
   if (!/<h1(?:\s|>)/i.test(html)) failures.push(`${page}: missing h1`);
   if (duplicateIds.length) failures.push(`${page}: duplicate ids ${duplicateIds.join(", ")}`);
+
+  const expectedLanguage = page.startsWith("en/") || page === "404.html" ? "en" : "zh-Hant";
+  if (!new RegExp(`<html\\b[^>]*\\blang=["']${expectedLanguage}["']`, "i").test(html)) {
+    failures.push(`${page}: expected html lang ${expectedLanguage}`);
+  }
+
+  if (publishedPageSet.has(page)) {
+    const canonical = publicUrl(page);
+    if (!html.includes(`rel="canonical" href="${canonical}"`)) failures.push(`${page}: incorrect or missing canonical`);
+    for (const language of ["zh-Hant", "en"]) {
+      const expected = alternateUrl(page, language);
+      if (!html.includes(`hreflang="${language}" href="${expected}"`)) failures.push(`${page}: missing ${language} hreflang`);
+    }
+    const fallback = alternateUrl(page, "en");
+    if (!html.includes(`hreflang="x-default" href="${fallback}"`)) failures.push(`${page}: x-default must point to English`);
+  }
 
   for (const match of html.matchAll(localReferencePattern)) {
     const raw = match[1].replaceAll("&amp;", "&");
@@ -56,7 +88,13 @@ const sitemapUrls = new Set([...sitemap.matchAll(/<loc>https:\/\/www\.magne\.ai\
 }));
 for (const absolute of pages) {
   const page = relative(root, absolute).replaceAll("\\", "/");
-  if (!sitemapUrls.has(page)) failures.push(`${page}: missing from sitemap.xml`);
+  if (publishedPageSet.has(page) && !sitemapUrls.has(page)) failures.push(`${page}: missing from sitemap.xml`);
+}
+for (const sitemapPage of sitemapUrls) {
+  if (!publishedPageSet.has(sitemapPage)) failures.push(`sitemap.xml: unpublished page ${sitemapPage}`);
+}
+for (const expectedPage of expectedPageSet) {
+  if (!pages.some((absolute) => relative(root, absolute).replaceAll("\\", "/") === expectedPage)) failures.push(`${expectedPage}: expected source page missing`);
 }
 
 const allHtml = await Promise.all(pages.map((page) => readFile(page, "utf8")));

@@ -8,13 +8,7 @@
   ];
   const pageLanguage = document.documentElement.lang.toLowerCase();
   const isEnglishPage = pageLanguage.startsWith("en");
-  const languageCode = pageLanguage.startsWith("ja")
-    ? "ja"
-    : pageLanguage.startsWith("ko")
-      ? "ko"
-      : isEnglishPage
-        ? "en"
-        : "zh-Hant";
+  const languageCode = isEnglishPage ? "en" : "zh-Hant";
 
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function gtag() { window.dataLayer.push(arguments); };
@@ -47,13 +41,9 @@
   window.gtag("config", ga4MeasurementId, { anonymize_ip: true });
   document.documentElement.dataset.ga4 = ga4MeasurementId;
 
-  const privacyHref = pageLanguage.startsWith("ja") || pageLanguage.startsWith("ko")
-    ? "../en/privacy-policy.html"
-    : "privacy-policy.html";
+  const privacyHref = "privacy-policy.html";
   const consentCopy = {
     en: ["Analytics settings", "Google Analytics helps us understand site performance. Advertising storage stays disabled.", "Privacy Policy", "Disable analytics", "Allow analytics", "Analytics settings"],
-    ja: ["アクセス解析の設定", "Google Analyticsをサイト改善のために使用します。広告用ストレージは無効のままです。", "プライバシーポリシー", "解析を無効にする", "解析を許可", "Cookie設定"],
-    ko: ["분석 설정", "사이트 개선을 위해 Google Analytics를 사용합니다. 광고 저장소는 계속 비활성화됩니다.", "개인정보 처리방침", "분석 비활성화", "분석 허용", "쿠키 설정"],
     "zh-Hant": ["分析設定", "我們使用 Google Analytics 了解網站效能；廣告儲存功能始終停用。", "隱私政策", "停用分析", "允許分析", "Cookie 設定"],
   }[languageCode];
   const consentStyles = document.createElement("style");
@@ -101,9 +91,8 @@
   const languageMenu = document.querySelector(".language-menu");
 
   if (languageMenu) {
-    const localizedMatch = window.location.pathname.match(/\/(?:en|ja|ko)\/([^/]*)$/);
+    const localizedMatch = window.location.pathname.match(/\/en\/([^/]*)$/);
     const currentFile = localizedMatch?.[1] || window.location.pathname.split("/").pop() || "index.html";
-    const localizedCorePages = new Set(["index.html", "phone.html", "phone-specs.html"]);
     const englishPages = new Set([
       "index.html", "phone.html", "phone-specs.html", "phone-architecture.html", "mainboard-3d.html",
       "ai.html", "network.html", "security.html", "compliance.html", "progress.html", "stories.html",
@@ -112,7 +101,6 @@
       "ce-lookup.html",
     ]);
     const root = localizedMatch ? "../" : "./";
-    const coreSuffix = localizedCorePages.has(currentFile) ? currentFile : "";
     const englishSuffix = englishPages.has(currentFile) ? currentFile : "index.html";
     const labels = { en: "EN", "zh-Hant": "\u7e41\u4e2d" };
     const languageLabels = { en: "Language", "zh-Hant": "\u8a9e\u8a00" };
@@ -138,8 +126,6 @@
     if (!menuButton) return;
     const navigationLabels = {
       en: ["Open navigation", "Close navigation"],
-      ja: ["ナビゲーションを開く", "ナビゲーションを閉じる"],
-      ko: ["탐색 열기", "탐색 닫기"],
       "zh-Hant": ["開啟導覽", "關閉導覽"],
     }[languageCode];
     menuButton.setAttribute("aria-expanded", String(expanded));

@@ -184,8 +184,6 @@ function localizeHtml(source, page, cache) {
     html = html.replace('href="contact.html"', 'href="media-kit.html">MEDIA KIT</a><a href="contact.html"');
   }
   html = html.replace(/<meta\s+property="og:locale"\s+content="[^"]+"\s*\/?>/i, '<meta property="og:locale" content="en_US">');
-  html = html.replace(/\s*<link\s+rel="alternate"\s+hreflang="(?:ja|ko)"[^>]*>\s*/gi, "\n");
-
   codeBlocks.forEach((block, index) => { html = html.replace(`___MAGNE_CODE_BLOCK_${index}___`, block); });
 
   html = html.replace(/\b(href|src)="(?!https?:|mailto:|tel:|#|\/\/)([^"]+)"/gi, (full, attr, target) => {
@@ -195,9 +193,6 @@ function localizeHtml(source, page, cache) {
   });
 
   const canonicalPath = page === "index.html" ? "en/" : `en/${page}`;
-  if (page === "index.html") {
-    html = html.replace('hreflang="zh-Hant" href="https://www.magne.ai/"', 'hreflang="zh-Hant" href="https://www.magne.ai/index.html"');
-  }
   if (page === "phone-architecture.html") {
     html = html.replaceAll("step=0", "step=0&amp;lang=en&amp;v=2");
   }
@@ -206,10 +201,13 @@ function localizeHtml(source, page, cache) {
   }
   html = html.replace(/(<link\s+rel="canonical"\s+href=")https:\/\/www\.magne\.ai\/[^\"]*(")/i, `$1https://www.magne.ai/${canonicalPath}$2`);
   html = html.replace(/(<meta\s+property="og:url"\s+content=")https:\/\/www\.magne\.ai\/[^\"]*(")/i, `$1https://www.magne.ai/${canonicalPath}$2`);
-  if (!/<link\s+rel="canonical"/i.test(html)) {
-    const traditionalPath = page === "index.html" ? "" : page;
-    const seoLinks = `  <link rel="canonical" href="https://www.magne.ai/${canonicalPath}">\n  <link rel="alternate" hreflang="en" href="https://www.magne.ai/${canonicalPath}">\n  <link rel="alternate" hreflang="zh-Hant" href="https://www.magne.ai/${traditionalPath}">\n`;
-    html = html.replace(/<\/head>/i, `${seoLinks}</head>`);
+  html = html.replace(/\s*<link\s+rel="alternate"[^>]*>\s*/gi, "\n");
+  const traditionalPath = page === "index.html" ? "" : page;
+  const alternateLinks = `  <link rel="alternate" hreflang="en" href="https://www.magne.ai/${canonicalPath}">\n  <link rel="alternate" hreflang="zh-Hant" href="https://www.magne.ai/${traditionalPath}">\n  <link rel="alternate" hreflang="x-default" href="https://www.magne.ai/${canonicalPath}">`;
+  if (/<link\s+rel="canonical"/i.test(html)) {
+    html = html.replace(/(<link\s+rel="canonical"[^>]*>)/i, `$1\n${alternateLinks}`);
+  } else {
+    html = html.replace(/<\/head>/i, `  <link rel="canonical" href="https://www.magne.ai/${canonicalPath}">\n${alternateLinks}\n</head>`);
   }
 
   return html;

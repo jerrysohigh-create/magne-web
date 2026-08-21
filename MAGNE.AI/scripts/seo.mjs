@@ -126,7 +126,12 @@ function escapeAttribute(value) {
 }
 
 export function canonicalUrl(page) {
-  return page === "index.html" ? `${siteOrigin}/index.html` : `${siteOrigin}/${page}`;
+  return page === "index.html" ? `${siteOrigin}/` : `${siteOrigin}/${page}`;
+}
+
+function localeUrl(page, language) {
+  if (page === "index.html") return language === "zh-Hant" ? `${siteOrigin}/` : `${siteOrigin}/${language}/`;
+  return language === "zh-Hant" ? `${siteOrigin}/${page}` : `${siteOrigin}/${language}/${page}`;
 }
 
 export function injectSeo(html, page) {
@@ -146,13 +151,20 @@ export function injectSeo(html, page) {
     })
     .replace(/<link\b[^>]*>/gi, (tag) => {
       const rel = attributeValue(tag, "rel");
-      return rel === "canonical" || rel === "manifest" || rel === "icon" ? "" : tag;
+      return rel === "canonical" || rel === "alternate" || rel === "manifest" || rel === "icon" ? "" : tag;
     });
+
+  const alternates = [
+    `  <link rel="alternate" hreflang="zh-Hant" href="${localeUrl(page, "zh-Hant")}">`,
+    `  <link rel="alternate" hreflang="en" href="${localeUrl(page, "en")}">`,
+    `  <link rel="alternate" hreflang="x-default" href="${localeUrl(page, "en")}">`,
+  ];
 
   const tags = [
     `  <meta name="description" content="${description}">`,
     '  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">',
     `  <link rel="canonical" href="${url}">`,
+    ...alternates,
     '  <meta property="og:locale" content="zh_TW">',
     '  <meta property="og:type" content="website">',
     '  <meta property="og:site_name" content="MAGNE.AI">',
@@ -171,4 +183,22 @@ export function injectSeo(html, page) {
 
   output = output.replace(/\s*<\/head>/i, `\n${tags}\n</head>`);
   return output;
+}
+
+export function injectEnglishAlternates(html, page) {
+  const sourcePage = page.replace(/^en\//, "");
+  const canonical = localeUrl(sourcePage, "en");
+  const links = [
+    `  <link rel="canonical" href="${canonical}">`,
+    `  <link rel="alternate" hreflang="zh-Hant" href="${localeUrl(sourcePage, "zh-Hant")}">`,
+    `  <link rel="alternate" hreflang="en" href="${canonical}">`,
+    `  <link rel="alternate" hreflang="x-default" href="${canonical}">`,
+  ].join("\n");
+
+  return html
+    .replace(/<link\b[^>]*>/gi, (tag) => {
+      const rel = attributeValue(tag, "rel");
+      return rel === "canonical" || rel === "alternate" ? "" : tag;
+    })
+    .replace(/\s*<\/head>/i, `\n${links}\n</head>`);
 }
