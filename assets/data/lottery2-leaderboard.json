@@ -1,7 +1,7 @@
 {
   "_meta": {
     "endpoint": "https://payment.magne.ai/api/v1/leaderboard",
-    "fetchedAt": "2026-08-23T17:30:07.522667+00:00"
+    "fetchedAt": "2026-08-23T17:47:33.613424+00:00"
   },
   "code": 200,
   "msg": "ok",
