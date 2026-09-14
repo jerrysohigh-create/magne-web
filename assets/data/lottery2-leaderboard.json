@@ -1,7 +1,7 @@
 {
   "_meta": {
     "endpoint": "https://payment.magne.ai/api/v1/leaderboard",
-    "fetchedAt": "2026-09-14T01:19:02.240923+00:00"
+    "fetchedAt": "2026-09-14T06:25:01.554026+00:00"
   },
   "code": 200,
   "msg": "ok",
@@ -9,9 +9,9 @@
     {
       "rank": 1,
       "address": "0x011d...6569",
-      "totalAmount": 332469,
+      "totalAmount": 332656,
       "drawAmount": 0,
-      "inviteAmount": 332469
+      "inviteAmount": 332656
     },
     {
       "rank": 2,
