@@ -41,7 +41,7 @@
   window.gtag("config", ga4MeasurementId, { anonymize_ip: true });
   document.documentElement.dataset.ga4 = ga4MeasurementId;
 
-  const privacyHref = "privacy-policy.html";
+  const privacyHref = document.querySelector('.footer__legal a[href*="privacy-policy.html"]')?.getAttribute("href") || "privacy-policy.html";
   const consentCopy = {
     en: {
       label: "PRIVACY / 01",
@@ -162,7 +162,8 @@
     const englishSuffix = englishPages.has(currentFile) ? currentFile : "index.html";
     const labels = { en: "EN", "zh-Hant": "\u7e41\u4e2d" };
     const languageLabels = { en: "Language", "zh-Hant": "\u8a9e\u8a00" };
-    const destinations = {
+    const destinations = document.documentElement.dataset.guideAlternates
+      ? JSON.parse(document.documentElement.dataset.guideAlternates) : {
       en: `${root}en/${englishSuffix}`,
       "zh-Hant": `${root}${currentFile}`,
     };
@@ -170,6 +171,7 @@
     select.setAttribute("aria-label", languageLabels[languageCode]);
     select.className = "language-select";
     Object.entries(labels).forEach(([code, label]) => {
+      if (!destinations[code]) return;
       const option = document.createElement("option");
       option.value = destinations[code];
       option.textContent = label;

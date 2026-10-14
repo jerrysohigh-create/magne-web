@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-Hant" data-guide-alternates="{&quot;zh-Hant&quot;:&quot;find-hub.html&quot;,&quot;en&quot;:&quot;../../en/mag1-guide/pages/find-hub.html&quot;}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f2eee4">
+  <title>尋找裝置：Find Hub 與遺失手機保護 | MAG1 User Guide</title>
+  <meta name="description" content="找到 MAG1 的裝置查找設定，了解目前已核驗的範圍，以及遠端尋回前需要確認的條件。">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="guide-firmware" content="MAG1WW53">
+  <meta name="guide-revision" content="2026.10.14-review.15">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans+TC:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../assets/site.css?v=lang-4-ga4-2">
+  <link rel="stylesheet" href="../../assets/mag1-guide/guide.css?v=main-1">
+  <script src="../../assets/site.js?v=guide-1" defer></script>
+  <script src="../../assets/mag1-guide/guide.js?v=2026.10.14-review.15" defer></script>
+</head>
+<body class="page-mag1-guide">
+<a class="skip-link" href="#main">跳至主要內容</a>
+  <div class="reading-progress" aria-hidden="true"><span></span></div>
+
+  <header class="masthead">
+    <div class="masthead__edition"><span>MAGNE.AI</span><span>產品檔案 · DOSSIER 01</span></div>
+      <a class="wordmark" href="../../" aria-label="MAGNE.AI 首頁"><span class="wordmark__mark" aria-hidden="true">///</span><span class="wordmark__logo"><img src="../../assets/images/magne-logo-black-wide.png" width="1181" height="116" alt="MAGNE.AI"></span></a>
+    <div class="masthead__meta"><span>MAG1 · GEN 1</span><span>PRODUCT FILE</span></div>
+  </header>
+  <nav class="site-nav" aria-label="主要導覽">
+    <a class="site-nav__brand" href="../../" aria-label="MAGNE.AI 首頁">MAGNE.AI</a>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu"><span class="sr-only">開啟導覽</span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
+    <div class="site-nav__menu" id="site-menu">
+      <a href="../../">INDEX</a><a href="../../phone.html" aria-current="page">PHONE</a><a href="../../ai.html">AI</a><a href="../../network.html">NETWORK</a><a href="../../security.html">SECURITY</a><a href="../../compliance.html">COMPLIANCE</a><a href="../../progress.html">PROGRESS</a><a href="../../partners.html">PARTNERS</a><a href="../../media-kit.html">MEDIA KIT</a><a href="../../contact.html">CONTACT</a><a href="https://w3.magne.ai/" target="_blank" rel="noopener">W3 ↗</a>
+    </div>
+    <div class="site-nav__actions"><div class="language-menu"><span>繁中</span></div><a class="nav-cta" href="https://payment.magne.ai/buy">預購 MAG1 ↗</a></div>
+  </nav>
+<div class="mag1-guide">
+<nav class="guide-nav" aria-label="指南導覽"><a href="../quickstart.html">快速入門</a><a href="../index.html#catalog">完整指南</a><a href="../troubleshooting.html">故障排查</a><a href="../status.html">核驗狀態</a><a href="../media.html">截圖與影片</a><a href="../full-manual.html">整冊閱讀 / 列印</a></nav><div class="review-note"><strong>內部審閱稿 · 未釋出</strong><span>English UI · MAG1WW53 · 採集 2026-10-14 · 尚未由同事複核</span></div><div class="reading-layout"><aside><details open><summary>本頁目錄</summary><a href="../index.html#catalog">← 全部功能</a><a href="#conditions">前置條件</a><a href="#steps">逐步操作</a><a href="#options">按鈕與選項</a><a href="#remote-reference">手機遺失時：官方服務參考</a><a href="#result">正常結果與本次證據</a><a href="#undo">取消、關閉與恢復</a><a href="#trouble">報錯與排查</a><a href="#limits">限制與版本</a><a href="#evidence">截圖與影片</a></details></aside><main id="main"><p class="eyebrow">安全與恢復 / find-hub</p><h1 id="find-hub">尋找裝置：Find Hub 與遺失手機保護</h1><p class="lead">找到 MAG1 的裝置查找設定，了解目前已核驗的範圍，以及遠端尋回前需要確認的條件。</p><div class="callout"><strong>入口與設定已核對 · 遠端操作待驗證</strong><p>MAG1WW53 · Android 15 · 2026-10-14</p></div><p class="path">Settings → Security &amp; privacy → Device finders → Find Hub</p><section id="conditions"><h2>前置條件</h2><ul><li>使用 Google 帳號型的 Find Hub 尋回功能時，請使用與手機關聯的帳號，並保留可在其他裝置完成帳號驗證的方法。</li><li>在手機遺失前確認 Location 及 Allow device to be located；準備條件請參閱下方 Google 官方說明。</li><li>若製作示範，請避免在公開素材中呈現帳號、地圖座標及其他裝置資料。</li></ul></section><section id="steps"><h2>本機已核對的操作路徑</h2><ol><li>開啟 Settings → Security &amp; privacy → Device finders。本次 MAG1 頁面顯示 Find Hub，摘要為 On。</li><li>進入 Find Hub，查看 Allow device to be located。本次核查為開啟，沒有變更開關。</li><li>進入 Remote Lock 查看獨立設定。本機 Use Remote Lock 為 Off；僅核對設定時，查看後返回即可。</li><li>Find Hub 設定頁提供 Find Hub app 與 Find Hub web 入口。已確認入口可見，本次沒有開啟帳號裝置列表或地圖。</li></ol></section><section id="options"><h2>按鈕與目前設定</h2><div class="table-wrap" tabindex="0" role="region" aria-label="Find Hub"><table><thead><tr><th scope="col">選項</th><th scope="col">核查狀態與限制</th></tr></thead><tbody><tr><td>Allow device to be located</td><td>本次為 On。這是設定狀態，不代表已成功執行遠端定位。</td></tr><tr><td>系統 Location</td><td>ADB 核查為開啟；定位精度未測試。</td></tr><tr><td>Remote Lock / Use Remote Lock</td><td>本次為 Off。頁面說明可透過手機號碼遠端鎖屏；此選項與 Find Hub 主開關分開。</td></tr><tr><td>Find Hub app / Find Hub web</td><td>兩個入口均可見；未執行帳號存取或遠端指令。</td></tr><tr><td>離線／關機查找</td><td>所檢查設定頁沒有顯示離線查找選項；不能據此斷言支援或不支援。MAG1 的這兩項能力仍待驗證。</td></tr></tbody></table></div></section><section id="remote-reference"><h2>手機遺失時：官方服務參考</h2><p>下列為 Google 通用操作參考，並非 MAG1 實測錄影。</p><ol><li>在另一台裝置開啟 Find Hub，登入與手機關聯的 Google 帳號，選擇正確手機，並完成所要求的身分驗證。</li><li>查看位置及更新時間。手機在附近時可使用 Play sound；遺失時可用 Mark as lost 鎖定並留下聯絡資訊。實際可用性取決於服務與裝置狀態。</li><li>Factory reset 會永久清除裝置資料，之後無法再透過 Find Hub 尋找該手機；SD 卡可能不會被清除。此操作應作最後手段，不作日常測試。</li></ol><p><a href="https://support.google.com/android/answer/6160491?hl=en">Google: Find, secure, or erase a lost Android device ↗</a></p></section><section id="result"><h2>已核驗結果</h2><p>2026-10-14 唯讀核查已確認設定路徑、Find Hub 為 On、Allow device to be located 為 On、系統定位開啟，以及 Remote Lock 為 Off。沒有執行遠端請求。</p></section><section id="undo"><h2>退出與還原</h2><p>使用返回鍵從 Remote Lock 返回 Find Hub。本次沒有變更開關、帳號或權限，也沒有發送遠端指令。</p></section><section id="trouble"><h2>疑難排解</h2><ul><li>若服務中沒有顯示手機，先核對關聯 Google 帳號並依官方準備清單檢查。僅安裝 App 不代表已成功註冊。</li><li>位置未更新或不可用時，不要將舊位置當作即時位置；請核對畫面時間及連線狀態。</li><li>選單不同時，先記錄韌體、Find Hub 及 Google Play 服務版本，再對照操作說明。</li></ul></section><section id="limits"><h2>限制與版本</h2><p>基準：MAG1WW53 / Android 15，2026-10-14。Find Hub 3.1.763-04 為已更新的系統 App，另有出廠版本 3.1.337-2；Google Play 服務為 26.37.37。未測定位、響鈴、遺失模式、遠端鎖屏、清除、離線及關機查找。韌體或 Google 元件更新後須重新核對本章。</p></section><section id="evidence"><h2>證據</h2><p>證據為 ADB 唯讀套件清點及設定頁文字。本章尚未加入公開截圖或影片，沒有採集帳號地圖或裝置列表。</p></section><section id="references"><h2>參考資料與相關章節</h2><p><a href="https://support.google.com/android/answer/3265955?hl=en">Google: Be ready to find a lost Android device ↗</a></p><p>另見：位置設定，以及重置與帳號保護。 <a href="location.html">Location</a> · <a href="first-boot.html#activation-types">Setup / FRP</a></p></section><section id="coverage-update"><h2>功能補充 · 2026-10-14</h2><p>相關章節：<a href="theft-protection.html">防盜保護與自動鎖定</a> · <a href="unknown-trackers.html">未知追蹤器提醒與手動掃描</a></p></section></main></div>
+</div>
+<footer class="footer">
+    <div class="footer__brand"><span class="wordmark__mark" aria-hidden="true">///</span><strong>MAGNE.AI</strong><p>智能終端，不只是智能手機。</p></div>
+    <div class="footer__column"><strong>閱讀</strong><a href="../../">INDEX</a><a href="../../ai.html">AI</a><a href="../../network.html">Network</a></div>
+    <div class="footer__column"><strong>驗證</strong><a href="../../compliance.html">合規總覽</a><a href="../../fcc-lookup.html">FCC</a><a href="../../gsma-tac-lookup.html">GSMA TAC</a></div>
+    <div class="footer__column"><strong>連接</strong><a href="https://payment.magne.ai/buy">預購</a><a href="../../contact.html">聯絡</a></div>
+    <div class="footer__external"><div class="footer__external-group"><strong>資源</strong><a href="../../media-kit.html">Media Kit</a><a href="../index.html">MAG1 使用指南</a><a href="https://w3.magne.ai" target="_blank" rel="noopener">W3 Web3 入口 ↗</a><a href="https://web3.magne.ai" target="_blank" rel="noopener">白皮書 ↗</a></div><div class="footer__external-group"><strong>關注</strong><a href="https://github.com/magne-ai" target="_blank" rel="noopener">GitHub</a><a href="https://x.com/Magne_Ai" target="_blank" rel="noopener">X</a><a href="https://t.me/MagneAI" target="_blank" rel="noopener">Telegram</a><a href="https://www.youtube.com/@MagneAI" target="_blank" rel="noopener">YouTube</a><a href="https://discord.gg/tX2xRAkd" target="_blank" rel="noopener">Discord</a></div></div><div class="footer__legal"><span>© 2026 MAGNE.AI</span><span>產品檔案 · DOSSIER 01</span><a href="../../privacy-policy.html">隱私政策</a></div>
+  </footer>
+</body>
+</html>

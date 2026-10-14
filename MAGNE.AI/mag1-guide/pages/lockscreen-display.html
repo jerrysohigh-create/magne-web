@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-Hant" data-guide-alternates="{&quot;zh-Hant&quot;:&quot;lockscreen-display.html&quot;,&quot;en&quot;:&quot;../../en/mag1-guide/pages/lockscreen-display.html&quot;}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f2eee4">
+  <title>鎖屏內容、文字、裝置控制元件與喚醒 | MAG1 使用指南</title>
+  <meta name="description" content="MAG1 使用指南內部審閱版；適用 MAG1WW53 / Android 15，英文真機畫面。">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="guide-firmware" content="MAG1WW53">
+  <meta name="guide-revision" content="2026.10.14-review.15">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans+TC:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../assets/site.css?v=lang-4-ga4-2">
+  <link rel="stylesheet" href="../../assets/mag1-guide/guide.css?v=main-1">
+  <script src="../../assets/site.js?v=guide-1" defer></script>
+  <script src="../../assets/mag1-guide/guide.js?v=2026.10.14-review.15" defer></script>
+</head>
+<body class="page-mag1-guide">
+<a class="skip-link" href="#main">跳至主要內容</a>
+  <div class="reading-progress" aria-hidden="true"><span></span></div>
+
+  <header class="masthead">
+    <div class="masthead__edition"><span>MAGNE.AI</span><span>產品檔案 · DOSSIER 01</span></div>
+      <a class="wordmark" href="../../" aria-label="MAGNE.AI 首頁"><span class="wordmark__mark" aria-hidden="true">///</span><span class="wordmark__logo"><img src="../../assets/images/magne-logo-black-wide.png" width="1181" height="116" alt="MAGNE.AI"></span></a>
+    <div class="masthead__meta"><span>MAG1 · GEN 1</span><span>PRODUCT FILE</span></div>
+  </header>
+  <nav class="site-nav" aria-label="主要導覽">
+    <a class="site-nav__brand" href="../../" aria-label="MAGNE.AI 首頁">MAGNE.AI</a>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu"><span class="sr-only">開啟導覽</span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
+    <div class="site-nav__menu" id="site-menu">
+      <a href="../../">INDEX</a><a href="../../phone.html" aria-current="page">PHONE</a><a href="../../ai.html">AI</a><a href="../../network.html">NETWORK</a><a href="../../security.html">SECURITY</a><a href="../../compliance.html">COMPLIANCE</a><a href="../../progress.html">PROGRESS</a><a href="../../partners.html">PARTNERS</a><a href="../../media-kit.html">MEDIA KIT</a><a href="../../contact.html">CONTACT</a><a href="https://w3.magne.ai/" target="_blank" rel="noopener">W3 ↗</a>
+    </div>
+    <div class="site-nav__actions"><div class="language-menu"><span>繁中</span></div><a class="nav-cta" href="https://payment.magne.ai/buy">預購 MAG1 ↗</a></div>
+  </nav>
+<div class="mag1-guide">
+<nav class="guide-nav" aria-label="指南導覽"><a href="../quickstart.html">快速入門</a><a href="../index.html#catalog">完整指南</a><a href="../troubleshooting.html">故障排查</a><a href="../status.html">核驗狀態</a><a href="../media.html">截圖與影片</a><a href="../full-manual.html">整冊閱讀 / 列印</a></nav><div class="review-note"><strong>內部審閱稿 · 未釋出</strong><span>English UI · MAG1WW53 · 採集 2026-10-14 · 尚未由同事複核</span></div><div class="reading-layout"><aside><details open><summary>本頁目錄</summary><a href="../index.html#catalog">← 全部功能</a><a href="#conditions">前置條件</a><a href="#steps">逐步操作</a><a href="#options">按鈕與選項</a><a href="#result">正常結果與本次證據</a><a href="#undo">取消、關閉與恢復</a><a href="#trouble">報錯與排查</a><a href="#limits">限制與版本</a><a href="#evidence">截圖與影片</a></details></aside><main id="main"><p class="eyebrow">系統設定 / lockscreen-display</p><h1 id="lockscreen-display">鎖屏內容、文字、裝置控制元件與喚醒</h1><p class="lead">控制鎖屏展示；通知隱私與實際裝置解鎖是不同設定。</p><div class="callout"><strong>入口已核驗 · 操作待核驗</strong><p>適用基線：MA1 · Android 15 · MAG1WW53。採集：2026-10-14。本頁為編輯草稿；除明確說明的操作外，步驟未執行驗證。</p></div><p class="path">Settings → Display → Lock screen</p><section id="conditions"><h2>前置條件</h2><ul><li>不用真實聯絡資訊做鎖屏文字示範</li><li>記下原值</li><li>喚醒效果使用無敏感通知的測試環境</li></ul></section><section id="steps"><h2>逐步操作</h2><ol><li>進入 Lock screen，核對 Privacy 與 Add text on lock screen。</li><li>需要留言時僅輸入非敏感測試文字；公開電話號碼等可能被任何看到鎖屏的人讀到。</li><li>檢視 Show device controls 與 Use device controls，讀懂是否允許未解鎖操作；當前不改變許可權。</li><li>Dynamic clock 改變時鐘展示，效果要在實際鎖屏狀態核驗。</li><li>Lift to check phone、Wake screen for notifications 分別對應抬起和通知喚醒；本批不發真實通知。</li><li>返回鎖屏檢查安全展示，再恢復測試更改。</li></ol></section><section id="options"><h2>按鈕與選項</h2><div class="table-wrap" tabindex="0" role="region" aria-label="按鈕 / 選項 / 用途與邊界"><table><thead><tr><th scope="col">按鈕 / 選項</th><th scope="col">用途與邊界</th></tr></thead><tbody><tr><td>Privacy</td><td>鎖屏展示隱私</td></tr><tr><td>Add text on lock screen</td><td>鎖屏文字</td></tr><tr><td>Show / Use device controls</td><td>控制元件展示和使用許可</td></tr><tr><td>Dynamic clock</td><td>動態時鐘</td></tr><tr><td>Lift to check phone</td><td>抬起檢視</td></tr><tr><td>Wake screen for notifications</td><td>通知喚醒</td></tr></tbody></table></div><details><summary>本批實際看到的英文標籤</summary><ul><li>What to show</li><li>Privacy</li><li>Add text on lock screen</li><li>Show device controls</li><li>Use device controls</li><li>Dynamic clock</li><li>When to show</li><li>Lift to check phone</li><li>Wake screen for notifications</li></ul><p>標籤出現只證明入口/選項可見；此列表不代表所有專案已操作。</p></details></section><section id="result"><h2>正常結果與本次證據</h2><p>選單已採集；鎖屏展示、未解鎖控制和喚醒效果未復現。</p></section><section id="undo"><h2>取消、關閉與恢復</h2><p>刪除測試文字，恢復控制元件、時鐘與喚醒的原設定。</p></section><section id="trouble"><h2>報錯與排查</h2><ul><li>通知內容仍露出：同時檢查 Notifications 的敏感內容設定</li><li>抬起無反應：檢查目標開關與狀態</li><li>不需要控制元件：關閉相關開關並核對鎖屏</li></ul></section><section id="limits"><h2>限制與版本</h2><p>展示設定不等於關閉裝置鎖定；認證憑據不在本頁修改。</p><p>同事複核：未進行。釋出狀態：未釋出。</p></section><section id="evidence"><h2>截圖與影片</h2><div class="media-grid"><figure><a href="../../assets/mag1-guide/MAG1WW53/screenshots/lock-screen-1.png" aria-label="放大手機畫面"><div class="mag1-device" aria-label="白色 MAG1 展示框"><span class="device-key key-volume" aria-hidden="true"></span><span class="device-key key-power" aria-hidden="true"></span><div class="device-bezel"><div class="device-screen"><img loading="lazy" width="1080" height="2388" src="../../assets/mag1-guide/MAG1WW53/screenshots/lock-screen-1.png" alt="MAG1 英文介面：鎖屏內容、文字、裝置控制元件與喚醒，2026-10-14 原始截圖"><span class="device-camera" aria-hidden="true"></span></div></div></div></a><figcaption>真機截圖 · MAG1WW53 · 點選放大<br>白色機身展示框 · 原始螢幕畫面</figcaption></figure></div></section></main></div>
+</div>
+<footer class="footer">
+    <div class="footer__brand"><span class="wordmark__mark" aria-hidden="true">///</span><strong>MAGNE.AI</strong><p>智能終端，不只是智能手機。</p></div>
+    <div class="footer__column"><strong>閱讀</strong><a href="../../">INDEX</a><a href="../../ai.html">AI</a><a href="../../network.html">Network</a></div>
+    <div class="footer__column"><strong>驗證</strong><a href="../../compliance.html">合規總覽</a><a href="../../fcc-lookup.html">FCC</a><a href="../../gsma-tac-lookup.html">GSMA TAC</a></div>
+    <div class="footer__column"><strong>連接</strong><a href="https://payment.magne.ai/buy">預購</a><a href="../../contact.html">聯絡</a></div>
+    <div class="footer__external"><div class="footer__external-group"><strong>資源</strong><a href="../../media-kit.html">Media Kit</a><a href="../index.html">MAG1 使用指南</a><a href="https://w3.magne.ai" target="_blank" rel="noopener">W3 Web3 入口 ↗</a><a href="https://web3.magne.ai" target="_blank" rel="noopener">白皮書 ↗</a></div><div class="footer__external-group"><strong>關注</strong><a href="https://github.com/magne-ai" target="_blank" rel="noopener">GitHub</a><a href="https://x.com/Magne_Ai" target="_blank" rel="noopener">X</a><a href="https://t.me/MagneAI" target="_blank" rel="noopener">Telegram</a><a href="https://www.youtube.com/@MagneAI" target="_blank" rel="noopener">YouTube</a><a href="https://discord.gg/tX2xRAkd" target="_blank" rel="noopener">Discord</a></div></div><div class="footer__legal"><span>© 2026 MAGNE.AI</span><span>產品檔案 · DOSSIER 01</span><a href="../../privacy-policy.html">隱私政策</a></div>
+  </footer>
+</body>
+</html>

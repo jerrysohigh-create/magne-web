@@ -1,4 +1,5 @@
 import { complianceDetailPages } from "./generate-compliance-detail-pages.mjs";
+import { guidePages } from "./mag1-guide-config.mjs";
 
 export const tcPages = [
   "index.html",
@@ -21,5 +22,5 @@ export const tcPages = [
 
 export const enPages = tcPages.map((page) => `en/${page}`);
 export const publishedPages = [...tcPages, ...enPages];
-export const standalonePages = ["404.html"];
+export const standalonePages = ["404.html", ...guidePages];
 export const buildPages = [...publishedPages, ...standalonePages];

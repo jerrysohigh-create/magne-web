@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-Hant" data-guide-alternates="{&quot;zh-Hant&quot;:&quot;camera.html&quot;,&quot;en&quot;:&quot;../../en/mag1-guide/pages/camera.html&quot;}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f2eee4">
+  <title>相機、照片、影片與模式 | MAG1 使用指南</title>
+  <meta name="description" content="MAG1 使用指南內部審閱版；適用 MAG1WW53 / Android 15，英文真機畫面。">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="guide-firmware" content="MAG1WW53">
+  <meta name="guide-revision" content="2026.10.14-review.15">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans+TC:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../assets/site.css?v=lang-4-ga4-2">
+  <link rel="stylesheet" href="../../assets/mag1-guide/guide.css?v=main-1">
+  <script src="../../assets/site.js?v=guide-1" defer></script>
+  <script src="../../assets/mag1-guide/guide.js?v=2026.10.14-review.15" defer></script>
+</head>
+<body class="page-mag1-guide">
+<a class="skip-link" href="#main">跳至主要內容</a>
+  <div class="reading-progress" aria-hidden="true"><span></span></div>
+
+  <header class="masthead">
+    <div class="masthead__edition"><span>MAGNE.AI</span><span>產品檔案 · DOSSIER 01</span></div>
+      <a class="wordmark" href="../../" aria-label="MAGNE.AI 首頁"><span class="wordmark__mark" aria-hidden="true">///</span><span class="wordmark__logo"><img src="../../assets/images/magne-logo-black-wide.png" width="1181" height="116" alt="MAGNE.AI"></span></a>
+    <div class="masthead__meta"><span>MAG1 · GEN 1</span><span>PRODUCT FILE</span></div>
+  </header>
+  <nav class="site-nav" aria-label="主要導覽">
+    <a class="site-nav__brand" href="../../" aria-label="MAGNE.AI 首頁">MAGNE.AI</a>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu"><span class="sr-only">開啟導覽</span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
+    <div class="site-nav__menu" id="site-menu">
+      <a href="../../">INDEX</a><a href="../../phone.html" aria-current="page">PHONE</a><a href="../../ai.html">AI</a><a href="../../network.html">NETWORK</a><a href="../../security.html">SECURITY</a><a href="../../compliance.html">COMPLIANCE</a><a href="../../progress.html">PROGRESS</a><a href="../../partners.html">PARTNERS</a><a href="../../media-kit.html">MEDIA KIT</a><a href="../../contact.html">CONTACT</a><a href="https://w3.magne.ai/" target="_blank" rel="noopener">W3 ↗</a>
+    </div>
+    <div class="site-nav__actions"><div class="language-menu"><span>繁中</span></div><a class="nav-cta" href="https://payment.magne.ai/buy">預購 MAG1 ↗</a></div>
+  </nav>
+<div class="mag1-guide">
+<nav class="guide-nav" aria-label="指南導覽"><a href="../quickstart.html">快速入門</a><a href="../index.html#catalog">完整指南</a><a href="../troubleshooting.html">故障排查</a><a href="../status.html">核驗狀態</a><a href="../media.html">截圖與影片</a><a href="../full-manual.html">整冊閱讀 / 列印</a></nav><div class="review-note"><strong>內部審閱稿 · 未釋出</strong><span>English UI · MAG1WW53 · 採集 2026-10-14 · 尚未由同事複核</span></div><div class="reading-layout"><aside><details open><summary>本頁目錄</summary><a href="../index.html#catalog">← 全部功能</a><a href="#conditions">前置條件</a><a href="#steps">逐步操作</a><a href="#options">按鈕與選項</a><a href="#result">正常結果與本次證據</a><a href="#undo">取消、關閉與恢復</a><a href="#trouble">報錯與排查</a><a href="#limits">限制與版本</a><a href="#evidence">截圖與影片</a></details></aside><main id="main"><p class="eyebrow">相機與工具 / camera</p><h1 id="camera">相機、照片、影片與模式</h1><p class="lead">按當前相機 UI 清點模式與引數，不用硬體 HAL 或宣傳替代使用者可操作的按鈕。</p><div class="callout"><strong>安裝與版本已核驗 · 介面待核驗</strong><p>適用基線：MA1 · Android 15 · MAG1WW53。採集：2026-10-14。本頁為編輯草稿；除明確說明的操作外，步驟未執行驗證。</p></div><p class="path">應用列表 → Camera（com.android.camera2）</p><section id="conditions"><h2>前置條件</h2><ul><li>無隱私測試場景及充足空間</li><li>本機相機 1.0000.18</li><li>不採集真實相簿縮圖、人物或室內私密場景</li></ul></section><section id="steps"><h2>逐步操作</h2><ol><li>開啟前準備無隱私測試場景。當前任務不直接拍攝未知周邊場景。</li><li>逐項清點照片、影片、前後攝切換、變焦、閃光、定時、網格、畫幅、解析度與儲存位置的實際選單。</li><li>影片模式分別核對解析度、幀率、HDR 與防抖的實際組合，錄製測試片段後再檢視檔案引數。</li><li>前置和後置選項分開記錄，不能用後置規格描述自拍功能。</li><li>拍照後透過無隱私測試檔案複核清晰度、方向與儲存路徑。</li><li>若選單沒有慢動作或 OIS，不增加此類步驟；官網明確當前不列慢動作且不支援 OIS。</li></ol></section><section id="options"><h2>按鈕與選項</h2><div class="table-wrap" tabindex="0" role="region" aria-label="按鈕 / 選項 / 用途與邊界"><table><thead><tr><th scope="col">按鈕 / 選項</th><th scope="col">用途與邊界</th></tr></thead><tbody><tr><td>照片 / 影片</td><td>選單模式不代表所有最高引數可同時使用</td></tr><tr><td>HDR / EIS</td><td>組合必須以 UI 和輸出片段核驗</td></tr><tr><td>相簿縮圖</td><td>可能暴露個人照片，不在當前素材採集</td></tr></tbody></table></div></section><section id="result"><h2>正常結果與本次證據</h2><p>包版本已核驗；本次沒有新的照片、影片模式或成像結果證據。</p></section><section id="undo"><h2>取消、關閉與恢復</h2><p>停止拍攝返回；刪除測試作品須確認僅為測試檔案。</p></section><section id="trouble"><h2>報錯與排查</h2><ul><li>打不開：檢查許可權和其他 App 佔用</li><li>拍攝停止：檢查儲存、溫度和版本</li><li>引數缺項：記錄實際模式，不強行解釋為硬體故障</li></ul></section><section id="limits"><h2>限制與版本</h2><p>官網公佈後置最高 4K30 / 前置 FHD30、HDR 和 EIS；這些是現行廠商描述，本批未重新實測。</p><p>同事複核：未進行。釋出狀態：未釋出。</p></section><section id="evidence"><h2>截圖與影片</h2><p>對應安全素材尚未採集。沒有用示意圖或其他型號截圖替代真機。</p></section><section id="coverage-update"><h2>功能補充 · 2026-10-14</h2><p>歷史測試（2026-10-13）：選擇 4K 30 fps 後 HDR 與 EIS 關閉；開啟 HDR 後設定轉為 1080p 30 fps，EIS 仍關閉。較早的 4K／EIS 組合亦回到 1080p。變更 HDR 或防震後應重新核對解析度。10 月 14 日選單核查未重測，亦不代表畫質或防震效果評測。</p></section></main></div>
+</div>
+<footer class="footer">
+    <div class="footer__brand"><span class="wordmark__mark" aria-hidden="true">///</span><strong>MAGNE.AI</strong><p>智能終端，不只是智能手機。</p></div>
+    <div class="footer__column"><strong>閱讀</strong><a href="../../">INDEX</a><a href="../../ai.html">AI</a><a href="../../network.html">Network</a></div>
+    <div class="footer__column"><strong>驗證</strong><a href="../../compliance.html">合規總覽</a><a href="../../fcc-lookup.html">FCC</a><a href="../../gsma-tac-lookup.html">GSMA TAC</a></div>
+    <div class="footer__column"><strong>連接</strong><a href="https://payment.magne.ai/buy">預購</a><a href="../../contact.html">聯絡</a></div>
+    <div class="footer__external"><div class="footer__external-group"><strong>資源</strong><a href="../../media-kit.html">Media Kit</a><a href="../index.html">MAG1 使用指南</a><a href="https://w3.magne.ai" target="_blank" rel="noopener">W3 Web3 入口 ↗</a><a href="https://web3.magne.ai" target="_blank" rel="noopener">白皮書 ↗</a></div><div class="footer__external-group"><strong>關注</strong><a href="https://github.com/magne-ai" target="_blank" rel="noopener">GitHub</a><a href="https://x.com/Magne_Ai" target="_blank" rel="noopener">X</a><a href="https://t.me/MagneAI" target="_blank" rel="noopener">Telegram</a><a href="https://www.youtube.com/@MagneAI" target="_blank" rel="noopener">YouTube</a><a href="https://discord.gg/tX2xRAkd" target="_blank" rel="noopener">Discord</a></div></div><div class="footer__legal"><span>© 2026 MAGNE.AI</span><span>產品檔案 · DOSSIER 01</span><a href="../../privacy-policy.html">隱私政策</a></div>
+  </footer>
+</body>
+</html>

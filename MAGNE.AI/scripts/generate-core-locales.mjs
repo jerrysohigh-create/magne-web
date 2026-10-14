@@ -281,11 +281,15 @@ function renderSpecs(c) {
 }
 
 export async function generateCoreLocales() {
+  const withGuideEntry = (html, language) => language === "en"
+    ? html.replace('</h1>', '</h1><p class="folio-meta" data-mag1-guide-entry><a class="text-link" href="mag1-guide/index.html">MAG1 User Guide <span>↗</span></a></p>')
+      .replace('<strong>Resources</strong><a href="media-kit.html">Media Kit</a>', '<strong>Resources</strong><a href="media-kit.html">Media Kit</a><a href="mag1-guide/index.html">MAG1 User Guide</a>')
+    : html;
   for (const language of languages) {
     const directory = resolve(root, language);
     await mkdir(directory, { recursive: true });
-    await writeFile(resolve(directory, "phone.html"), renderPhone(copy[language]), "utf8");
-    await writeFile(resolve(directory, "phone-specs.html"), renderSpecs(copy[language]), "utf8");
+    await writeFile(resolve(directory, "phone.html"), withGuideEntry(renderPhone(copy[language]), language), "utf8");
+    await writeFile(resolve(directory, "phone-specs.html"), withGuideEntry(renderSpecs(copy[language]), language), "utf8");
   }
 }
 

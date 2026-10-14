@@ -3,12 +3,14 @@ import { createHash } from "node:crypto";
 import { dirname, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { generateSitemap } from "./generate-sitemap.mjs";
+import { buildMag1Guide } from "./build-mag1-guide.mjs";
 import { injectEnglishAlternates, injectSeo, seoByPage } from "./seo.mjs";
 import { buildPages as pages, enPages, tcPages } from "./site-pages.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const dist = resolve(root, "dist");
 
+await buildMag1Guide(root);
 await generateSitemap(root);
 
 await rm(dist, { recursive: true, force: true });
@@ -35,7 +37,7 @@ const assetRoot = resolve(root, "assets");
 const publishedAssetRoot = resolve(dist, "client", "assets");
 const referencedAssets = new Set();
 const rawAssetReferences = new Map();
-const assetPattern = /(?:href|src)=["'](?:\.\.\/)?assets\/([^"'?#]+)(?:[?#][^"']*)?["']/g;
+const assetPattern = /(?:href|src)=["'](?:\.\.\/)*assets\/([^"'?#]+)(?:[?#][^"']*)?["']/g;
 
 for (const page of pages) {
   const html = await readFile(resolve(root, page), "utf8");
@@ -91,7 +93,7 @@ for (const page of pages) {
 }
 
 // These viewers resolve models, Draco decoders and data files dynamically.
-for (const bundle of ["phone-3d", "phone-architecture-viewer", "mainboard-3d"]) {
+for (const bundle of ["phone-3d", "phone-architecture-viewer", "mainboard-3d", "mag1-guide"]) {
   await cp(resolve(assetRoot, bundle), resolve(publishedAssetRoot, bundle), { recursive: true });
 }
 
@@ -152,4 +154,4 @@ await writeFile(resolve(dist, "client", "_headers"), [
   ""
 ].join("\n"));
 
-console.log(`Built MAGNE.AI with ${pages.length} pages, ${publishedAssets.length} unique assets, ${duplicateAssetAliases.size} aliases and 3 runtime bundles`);
+console.log(`Built MAGNE.AI with ${pages.length} pages, ${publishedAssets.length} unique assets, ${duplicateAssetAliases.size} aliases and 4 runtime bundles`);

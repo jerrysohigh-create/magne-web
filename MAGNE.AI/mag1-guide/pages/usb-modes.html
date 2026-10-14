@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-Hant" data-guide-alternates="{&quot;zh-Hant&quot;:&quot;usb-modes.html&quot;,&quot;en&quot;:&quot;../../en/mag1-guide/pages/usb-modes.html&quot;}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f2eee4">
+  <title>USB 模式、AVC 轉換與對外供電 | MAG1 使用指南</title>
+  <meta name="description" content="MAG1 使用指南內部審閱版；適用 MAG1WW53 / Android 15，英文真機畫面。">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="guide-firmware" content="MAG1WW53">
+  <meta name="guide-revision" content="2026.10.14-review.15">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans+TC:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../assets/site.css?v=lang-4-ga4-2">
+  <link rel="stylesheet" href="../../assets/mag1-guide/guide.css?v=main-1">
+  <script src="../../assets/site.js?v=guide-1" defer></script>
+  <script src="../../assets/mag1-guide/guide.js?v=2026.10.14-review.15" defer></script>
+</head>
+<body class="page-mag1-guide">
+<a class="skip-link" href="#main">跳至主要內容</a>
+  <div class="reading-progress" aria-hidden="true"><span></span></div>
+
+  <header class="masthead">
+    <div class="masthead__edition"><span>MAGNE.AI</span><span>產品檔案 · DOSSIER 01</span></div>
+      <a class="wordmark" href="../../" aria-label="MAGNE.AI 首頁"><span class="wordmark__mark" aria-hidden="true">///</span><span class="wordmark__logo"><img src="../../assets/images/magne-logo-black-wide.png" width="1181" height="116" alt="MAGNE.AI"></span></a>
+    <div class="masthead__meta"><span>MAG1 · GEN 1</span><span>PRODUCT FILE</span></div>
+  </header>
+  <nav class="site-nav" aria-label="主要導覽">
+    <a class="site-nav__brand" href="../../" aria-label="MAGNE.AI 首頁">MAGNE.AI</a>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu"><span class="sr-only">開啟導覽</span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
+    <div class="site-nav__menu" id="site-menu">
+      <a href="../../">INDEX</a><a href="../../phone.html" aria-current="page">PHONE</a><a href="../../ai.html">AI</a><a href="../../network.html">NETWORK</a><a href="../../security.html">SECURITY</a><a href="../../compliance.html">COMPLIANCE</a><a href="../../progress.html">PROGRESS</a><a href="../../partners.html">PARTNERS</a><a href="../../media-kit.html">MEDIA KIT</a><a href="../../contact.html">CONTACT</a><a href="https://w3.magne.ai/" target="_blank" rel="noopener">W3 ↗</a>
+    </div>
+    <div class="site-nav__actions"><div class="language-menu"><span>繁中</span></div><a class="nav-cta" href="https://payment.magne.ai/buy">預購 MAG1 ↗</a></div>
+  </nav>
+<div class="mag1-guide">
+<nav class="guide-nav" aria-label="指南導覽"><a href="../quickstart.html">快速入門</a><a href="../index.html#catalog">完整指南</a><a href="../troubleshooting.html">故障排查</a><a href="../status.html">核驗狀態</a><a href="../media.html">截圖與影片</a><a href="../full-manual.html">整冊閱讀 / 列印</a></nav><div class="review-note"><strong>內部審閱稿 · 未釋出</strong><span>English UI · MAG1WW53 · 採集 2026-10-14 · 尚未由同事複核</span></div><div class="reading-layout"><aside><details open><summary>本頁目錄</summary><a href="../index.html#catalog">← 全部功能</a><a href="#conditions">前置條件</a><a href="#steps">逐步操作</a><a href="#options">按鈕與選項</a><a href="#result">正常結果與本次證據</a><a href="#undo">取消、關閉與恢復</a><a href="#trouble">報錯與排查</a><a href="#limits">限制與版本</a><a href="#evidence">截圖與影片</a></details></aside><main id="main"><p class="eyebrow">網路與連線 / usb-modes</p><h1 id="usb-modes">USB 模式、AVC 轉換與對外供電</h1><p class="lead">解釋本機實際模式列表，包括檔案、照片、MIDI 和電源選項。</p><div class="callout"><strong>入口已核驗 · 操作待核驗</strong><p>適用基線：MA1 · Android 15 · MAG1WW53。採集：2026-10-14。本頁為編輯草稿；除明確說明的操作外，步驟未執行驗證。</p></div><p class="path">Settings → Connected devices → USB</p><section id="conditions"><h2>前置條件</h2><ul><li>可信電腦或相容裝置</li><li>資料線</li><li>測試檔案及配件；本次不切換當前 ADB 通道</li></ul></section><section id="steps"><h2>逐步操作</h2><ol><li>開啟 USB，先檢視 USB controlled by：Connected device / This device。</li><li>Use USB for 下本機顯示 File Transfer、USB tethering、MIDI、PTP、No data transfer。每次只選擇一種目的。</li><li>檔案傳輸用 File Transfer；僅需要照片傳輸可按接收端支援選擇 PTP；MIDI 需要音樂裝置/軟體。</li><li>Convert videos to AVC 是 File transfer options 下的開關；實際轉換範圍、輸出結果及耗時未測試。</li><li>向下檢視 Power options → Charge connected device；這是電源選項，不表示已測到反向功率或相容所有裝置。</li><li>完成時回到安全的無資料方式並結束對端傳輸後拔線；不在正在寫入時切模式。</li></ol></section><section id="options"><h2>按鈕與選項</h2><div class="table-wrap" tabindex="0" role="region" aria-label="按鈕 / 選項 / 用途與邊界"><table><thead><tr><th scope="col">按鈕 / 選項</th><th scope="col">用途與邊界</th></tr></thead><tbody><tr><td>File Transfer</td><td>檔案傳輸</td></tr><tr><td>USB tethering</td><td>網路共享</td></tr><tr><td>MIDI</td><td>音樂控制資料用途</td></tr><tr><td>PTP</td><td>照片傳輸協議</td></tr><tr><td>No data transfer</td><td>不開放資料傳輸</td></tr><tr><td>Convert videos to AVC</td><td>影片相容轉換開關，結果待測</td></tr><tr><td>Charge connected device</td><td>連線裝置供電開關，配件測試待完成</td></tr></tbody></table></div><details><summary>本批實際看到的英文標籤</summary><ul><li>USB controlled by</li><li>Connected device</li><li>This device</li><li>Use USB for</li><li>File Transfer</li><li>USB tethering</li><li>MIDI</li><li>PTP</li><li>No data transfer</li><li>File transfer options</li><li>Convert videos to AVC</li><li>Power options</li><li>Charge connected device</li></ul><p>標籤出現只證明入口/選項可見；此列表不代表所有專案已操作。</p></details></section><section id="result"><h2>正常結果與本次證據</h2><p>模式和選項列表已真機看到；當前 ADB 通道保持原樣，沒有切模式、轉換檔案或測反向供電。</p></section><section id="undo"><h2>取消、關閉與恢復</h2><p>恢復原控制方、USB 模式與兩個開關；確認寫入結束後拔線。</p></section><section id="trouble"><h2>報錯與排查</h2><ul><li>模式切換導致 ADB 斷連：由機主在 USB 設定恢復所需用途和除錯</li><li>照片軟體不識別：核對 PTP 與電腦驅動</li><li>供電不工作：檢查配件、線材及電量條件</li></ul></section><section id="limits"><h2>限制與版本</h2><p>選項存在不等於對應外設測試透過；USB-C 影片輸出未證明。</p><p>同事複核：未進行。釋出狀態：未釋出。</p></section><section id="evidence"><h2>截圖與影片</h2><div class="media-grid"><figure><a href="../../assets/mag1-guide/MAG1WW53/screenshots/usb-1.png" aria-label="放大手機畫面"><div class="mag1-device" aria-label="白色 MAG1 展示框"><span class="device-key key-volume" aria-hidden="true"></span><span class="device-key key-power" aria-hidden="true"></span><div class="device-bezel"><div class="device-screen"><img loading="lazy" width="1080" height="2388" src="../../assets/mag1-guide/MAG1WW53/screenshots/usb-1.png" alt="MAG1 英文介面：USB 模式、AVC 轉換與對外供電，2026-10-14 原始截圖"><span class="device-camera" aria-hidden="true"></span></div></div></div></a><figcaption>真機截圖 · MAG1WW53 · 點選放大<br>白色機身展示框 · 原始螢幕畫面</figcaption></figure><figure><a href="../../assets/mag1-guide/MAG1WW53/screenshots/usb-2.png" aria-label="放大手機畫面"><div class="mag1-device" aria-label="白色 MAG1 展示框"><span class="device-key key-volume" aria-hidden="true"></span><span class="device-key key-power" aria-hidden="true"></span><div class="device-bezel"><div class="device-screen"><img loading="lazy" width="1080" height="2388" src="../../assets/mag1-guide/MAG1WW53/screenshots/usb-2.png" alt="MAG1 英文介面：USB 模式、AVC 轉換與對外供電，2026-10-14 原始截圖"><span class="device-camera" aria-hidden="true"></span></div></div></div></a><figcaption>真機截圖 · MAG1WW53 · 點選放大<br>白色機身展示框 · 原始螢幕畫面</figcaption></figure></div></section></main></div>
+</div>
+<footer class="footer">
+    <div class="footer__brand"><span class="wordmark__mark" aria-hidden="true">///</span><strong>MAGNE.AI</strong><p>智能終端，不只是智能手機。</p></div>
+    <div class="footer__column"><strong>閱讀</strong><a href="../../">INDEX</a><a href="../../ai.html">AI</a><a href="../../network.html">Network</a></div>
+    <div class="footer__column"><strong>驗證</strong><a href="../../compliance.html">合規總覽</a><a href="../../fcc-lookup.html">FCC</a><a href="../../gsma-tac-lookup.html">GSMA TAC</a></div>
+    <div class="footer__column"><strong>連接</strong><a href="https://payment.magne.ai/buy">預購</a><a href="../../contact.html">聯絡</a></div>
+    <div class="footer__external"><div class="footer__external-group"><strong>資源</strong><a href="../../media-kit.html">Media Kit</a><a href="../index.html">MAG1 使用指南</a><a href="https://w3.magne.ai" target="_blank" rel="noopener">W3 Web3 入口 ↗</a><a href="https://web3.magne.ai" target="_blank" rel="noopener">白皮書 ↗</a></div><div class="footer__external-group"><strong>關注</strong><a href="https://github.com/magne-ai" target="_blank" rel="noopener">GitHub</a><a href="https://x.com/Magne_Ai" target="_blank" rel="noopener">X</a><a href="https://t.me/MagneAI" target="_blank" rel="noopener">Telegram</a><a href="https://www.youtube.com/@MagneAI" target="_blank" rel="noopener">YouTube</a><a href="https://discord.gg/tX2xRAkd" target="_blank" rel="noopener">Discord</a></div></div><div class="footer__legal"><span>© 2026 MAGNE.AI</span><span>產品檔案 · DOSSIER 01</span><a href="../../privacy-policy.html">隱私政策</a></div>
+  </footer>
+</body>
+</html>
