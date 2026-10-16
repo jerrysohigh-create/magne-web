@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 980" role="img" aria-labelledby="title desc">
+  <title id="title">MAGNE.AI Public Evidence Index</title>
+  <desc id="desc">A traceable evidence path covering operable results, public identifiers, published documents, and open repositories.</desc>
+  <defs>
+    <pattern id="grid" width="56" height="56" patternUnits="userSpaceOnUse">
+      <path d="M56 0H0V56" fill="none" stroke="#29302e" stroke-width="1"/>
+    </pattern>
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1400" height="980" fill="#0d1111"/>
+  <rect x="1" y="1" width="1398" height="978" fill="url(#grid)" stroke="#46504d" stroke-width="2"/>
+  <path d="M80 86H1320M80 894H1320" stroke="#46504d" stroke-width="2"/>
+
+  <g font-family="'IBM Plex Mono','SFMono-Regular',Consolas,monospace" letter-spacing="3">
+    <text x="80" y="61" fill="#aeb8b3" font-size="18">MAGNE.AI / PUBLIC RECORD</text>
+    <text x="1320" y="61" fill="#aeb8b3" font-size="18" text-anchor="end">INDEX 2026.08</text>
+  </g>
+
+  <g transform="translate(80 132)">
+    <text fill="#f2eee4" font-family="Georgia,'Times New Roman',serif" font-size="72" font-weight="600">
+      <tspan x="0" y="0">Every milestone</tspan>
+      <tspan x="0" y="84">leads back to evidence.</tspan>
+    </text>
+    <text x="0" y="210" fill="#9ea9a4" font-family="'IBM Plex Mono',Consolas,monospace" font-size="18" letter-spacing="2">OPERABLE · IDENTIFIED · PUBLISHED · INSPECTABLE</text>
+  </g>
+
+  <g transform="translate(80 410)">
+    <path d="M34 0V390" stroke="#9a3b2e" stroke-width="3"/>
+
+    <g transform="translate(0 0)">
+      <circle cx="34" cy="26" r="9" fill="#e2505b" filter="url(#glow)"/>
+      <text x="76" y="17" fill="#e2505b" font-family="'IBM Plex Mono',Consolas,monospace" font-size="16" font-weight="700" letter-spacing="3">01 / OPERABLE</text>
+      <text x="76" y="51" fill="#f2eee4" font-family="Arial,sans-serif" font-size="28" font-weight="700">Operable product and engineering views</text>
+      <path d="M850 26H1210" stroke="#46504d" stroke-width="2"/>
+      <rect x="1070" y="3" width="140" height="46" fill="none" stroke="#e2505b" stroke-width="2"/>
+      <text x="1140" y="32" fill="#e2505b" text-anchor="middle" font-family="'IBM Plex Mono',Consolas,monospace" font-size="14" font-weight="700" letter-spacing="2">LIVE</text>
+    </g>
+
+    <g transform="translate(0 100)">
+      <circle cx="34" cy="26" r="9" fill="#d5b944"/>
+      <text x="76" y="17" fill="#d5b944" font-family="'IBM Plex Mono',Consolas,monospace" font-size="16" font-weight="700" letter-spacing="3">02 / IDENTIFIED</text>
+      <text x="76" y="51" fill="#f2eee4" font-family="Arial,sans-serif" font-size="28" font-weight="700">FCC ID · GSMA TAC · Public identifiers</text>
+      <path d="M850 26H1210" stroke="#46504d" stroke-width="2"/>
+      <rect x="1070" y="3" width="140" height="46" fill="none" stroke="#d5b944" stroke-width="2"/>
+      <text x="1140" y="32" fill="#d5b944" text-anchor="middle" font-family="'IBM Plex Mono',Consolas,monospace" font-size="14" font-weight="700" letter-spacing="2">TRACE</text>
+    </g>
+
+    <g transform="translate(0 200)">
+      <circle cx="34" cy="26" r="9" fill="#6f9d8a"/>
+      <text x="76" y="17" fill="#7fb39d" font-family="'IBM Plex Mono',Consolas,monospace" font-size="16" font-weight="700" letter-spacing="3">03 / PUBLISHED</text>
+      <text x="76" y="51" fill="#f2eee4" font-family="Arial,sans-serif" font-size="28" font-weight="700">Certificates · Test reports · Verification notes</text>
+      <path d="M850 26H1210" stroke="#46504d" stroke-width="2"/>
+      <rect x="1070" y="3" width="140" height="46" fill="none" stroke="#7fb39d" stroke-width="2"/>
+      <text x="1140" y="32" fill="#7fb39d" text-anchor="middle" font-family="'IBM Plex Mono',Consolas,monospace" font-size="14" font-weight="700" letter-spacing="2">VERIFY</text>
+    </g>
+
+    <g transform="translate(0 300)">
+      <circle cx="34" cy="26" r="9" fill="#7791a0"/>
+      <text x="76" y="17" fill="#8caaba" font-family="'IBM Plex Mono',Consolas,monospace" font-size="16" font-weight="700" letter-spacing="3">04 / INSPECTABLE</text>
+      <text x="76" y="51" fill="#f2eee4" font-family="Arial,sans-serif" font-size="28" font-weight="700">MAGNE L1 · M Hash L2 public repositories</text>
+      <path d="M850 26H1210" stroke="#46504d" stroke-width="2"/>
+      <rect x="1070" y="3" width="140" height="46" fill="none" stroke="#8caaba" stroke-width="2"/>
+      <text x="1140" y="32" fill="#8caaba" text-anchor="middle" font-family="'IBM Plex Mono',Consolas,monospace" font-size="14" font-weight="700" letter-spacing="2">OPEN</text>
+    </g>
+  </g>
+
+  <g font-family="'IBM Plex Mono',Consolas,monospace" font-size="15" letter-spacing="2">
+    <text x="80" y="938" fill="#7f8a85">CLAIMS FOLLOW EVIDENCE</text>
+    <text x="1320" y="938" fill="#e2505b" text-anchor="end">PUBLIC / TRACEABLE / CURRENT</text>
+  </g>
+</svg>

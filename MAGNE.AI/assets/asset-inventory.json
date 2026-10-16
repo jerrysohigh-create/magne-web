@@ -1,0 +1,3354 @@
+﻿{
+    "generated_at":  "2026-07-30T01:35:16",
+    "public_pdf_count":  95,
+    "brand_asset_count":  573,
+    "withheld_public_downloads":  [
+                                      "assets/pdfs/security/UNISOC_TEE_CCert_CC-23-0492117.pdf",
+                                      "assets/pdfs/security/CIU98M50_CCert_NSCIB-CC-2300121-01.pdf",
+                                      "assets/pdfs/security/CIU9872B_CCert_NSCIB-CC-2400053-01.pdf"
+                                  ],
+    "public_pdfs":  [
+                        {
+                            "source":  "assets/ce/SN26C0174-Sporton-CE-Certificate.pdf",
+                            "dest":  "assets/ce/SN26C0174-Sporton-CE-Certificate.pdf",
+                            "bytes":  140110
+                        },
+                        {
+                            "source":  "assets/pdfs/cb/CN25UQGP_001_TR_MGU_62133_Test-Report.pdf",
+                            "dest":  "assets/pdfs/cb/CN25UQGP_001_TR_MGU_62133_Test-Report.pdf",
+                            "bytes":  4025140
+                        },
+                        {
+                            "source":  "assets/pdfs/cb/JPTUV-182068_MGU_62133_Certificate.pdf",
+                            "dest":  "assets/pdfs/cb/JPTUV-182068_MGU_62133_Certificate.pdf",
+                            "bytes":  481957
+                        },
+                        {
+                            "source":  "assets/pdfs/cp65/TUV-Rheinland-CP65-Report-27220370a-001.pdf",
+                            "dest":  "assets/pdfs/cp65/TUV-Rheinland-CP65-Report-27220370a-001.pdf",
+                            "bytes":  1635250
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_Antenna Report II.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_Antenna Report II.pdf",
+                            "bytes":  347785
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_Antenna Report.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_Antenna Report.pdf",
+                            "bytes":  347785
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_cvrltr_Attention for U.S. Agent.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_cvrltr_Attention for U.S. Agent.pdf",
+                            "bytes":  1133137
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_cvrltr_Attestation HAC Waiver Letter.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_cvrltr_Attestation HAC Waiver Letter.pdf",
+                            "bytes":  2567368
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_cvrltr_Certification_2.911d5(i)\u0026(ii).pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_cvrltr_Certification_2.911d5(i)\u0026(ii).pdf",
+                            "bytes":  3096657
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_cvrltr_Class II Permissive Change.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_cvrltr_Class II Permissive Change.pdf",
+                            "bytes":  252340
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_cvrltr_Declaration Letter for HAC.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_cvrltr_Declaration Letter for HAC.pdf",
+                            "bytes":  2903965
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_cvrltr_FCC Confidentiality Request(LTC+STC).pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_cvrltr_FCC Confidentiality Request(LTC+STC).pdf",
+                            "bytes":  2820324
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_cvrltr_FCC Confidentiality Request(STC).pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_cvrltr_FCC Confidentiality Request(STC).pdf",
+                            "bytes":  270729
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_cvrltr_FCC POA II.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_cvrltr_FCC POA II.pdf",
+                            "bytes":  281469
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_cvrltr_FCC POA.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_cvrltr_FCC POA.pdf",
+                            "bytes":  3027346
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_CXX.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_CXX.pdf",
+                            "bytes":  121461
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_DSS.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_DSS.pdf",
+                            "bytes":  125160
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_DTS.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_DTS.pdf",
+                            "bytes":  126950
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_DXX.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_DXX.pdf",
+                            "bytes":  123657
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_JBP.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_JBP.pdf",
+                            "bytes":  120162
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_Label Location.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_Label Location.pdf",
+                            "bytes":  46207
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_Label.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_Label.pdf",
+                            "bytes":  388708
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_NII.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_NII.pdf",
+                            "bytes":  128016
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_PCE.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_PCE.pdf",
+                            "bytes":  153854
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_RF Exposure Declaration.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_RF Exposure Declaration.pdf",
+                            "bytes":  90617
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_CXX_v1.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_CXX_v1.pdf",
+                            "bytes":  823200
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_HAC RF.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_HAC RF.pdf",
+                            "bytes":  1157308
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_HAC RF_Appendix A.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_HAC RF_Appendix A.pdf",
+                            "bytes":  201877
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_HAC RF_Appendix B.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_HAC RF_Appendix B.pdf",
+                            "bytes":  611142
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_HAC RF_Appendix C_Part1-2.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_HAC RF_Appendix C_Part1-2.pdf",
+                            "bytes":  4131892
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_HAC RF_Appendix C_Part2-2.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_HAC RF_Appendix C_Part2-2.pdf",
+                            "bytes":  2062077
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_HAC RF_Appendix E.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_HAC RF_Appendix E.pdf",
+                            "bytes":  1769682
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_HAC T-Coil VOIP_Appendix A_v1.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_HAC T-Coil VOIP_Appendix A_v1.pdf",
+                            "bytes":  1918180
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_HAC T-Coil VOIP_Appendix B.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_HAC T-Coil VOIP_Appendix B.pdf",
+                            "bytes":  895091
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_HAC T-Coil VOIP_v2.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_HAC T-Coil VOIP_v2.pdf",
+                            "bytes":  813570
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_HAC T-Coil.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_HAC T-Coil.pdf",
+                            "bytes":  1107333
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_HAC T-Coil_Appendix A.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_HAC T-Coil_Appendix A.pdf",
+                            "bytes":  4705060
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_HAC T-Coil_Appendix B.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_HAC T-Coil_Appendix B.pdf",
+                            "bytes":  3768947
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_HAC Volume Control.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_HAC Volume Control.pdf",
+                            "bytes":  1199599
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_HAC Volume Control_Appendix A.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_HAC Volume Control_Appendix A.pdf",
+                            "bytes":  1294491
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_HAC Volume Control_Appendix B.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_HAC Volume Control_Appendix B.pdf",
+                            "bytes":  4287896
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_JBP_v1.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_JBP_v1.pdf",
+                            "bytes":  823200
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_NII_DFS_v1.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_NII_DFS_v1.pdf",
+                            "bytes":  1220025
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_NII_U-NII-1,2,3_Part1-3_v1.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_NII_U-NII-1,2,3_Part1-3_v1.pdf",
+                            "bytes":  5786073
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_NII_U-NII-1,2,3_Part2-3_v1.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_NII_U-NII-1,2,3_Part2-3_v1.pdf",
+                            "bytes":  5903039
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_NII_U-NII-1,2,3_Part3-3.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_NII_U-NII-1,2,3_Part3-3.pdf",
+                            "bytes":  4495707
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_2G,3G_v1.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_2G,3G_v1.pdf",
+                            "bytes":  5367305
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_5G_27O_n77.78_v1.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_5G_27O_n77.78_v1.pdf",
+                            "bytes":  4542924
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_5G_27Q_n77.78_v2.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_5G_27Q_n77.78_v2.pdf",
+                            "bytes":  4256488
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_5G_n5.7.38.41.66.71_Part1-3_v1.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_5G_n5.7.38.41.66.71_Part1-3_v1.pdf",
+                            "bytes":  5818138
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_5G_n5.7.38.41.66.71_Part2-3.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_5G_n5.7.38.41.66.71_Part2-3.pdf",
+                            "bytes":  5541136
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_5G_n5.7.38.41.66.71_Part3-3.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_5G_n5.7.38.41.66.71_Part3-3.pdf",
+                            "bytes":  4413385
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_27Q_B42_v1.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_27Q_B42_v1.pdf",
+                            "bytes":  3277460
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_90S_B26_v1.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_90S_B26_v1.pdf",
+                            "bytes":  3431629
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_B2.25.66.5.26_Part1-2_v1.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_B2.25.66.5.26_Part1-2_v1.pdf",
+                            "bytes":  5714869
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_B2.25.66.5.26_Part2-2.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_B2.25.66.5.26_Part2-2.pdf",
+                            "bytes":  5052625
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_B7.12.13.17.38.41.71_Part1-3_v1.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_B7.12.13.17.38.41.71_Part1-3_v1.pdf",
+                            "bytes":  5675301
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_B7.12.13.17.38.41.71_Part2-3.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_B7.12.13.17.38.41.71_Part2-3.pdf",
+                            "bytes":  5667294
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_B7.12.13.17.38.41.71_Part3-3.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_PCE_LTE_B7.12.13.17.38.41.71_Part3-3.pdf",
+                            "bytes":  471709
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_Appendix A_v1.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_Appendix A_v1.pdf",
+                            "bytes":  4115845
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_Appendix B_Part1-2.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_Appendix B_Part1-2.pdf",
+                            "bytes":  5723279
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_Appendix B_Part2-2.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_Appendix B_Part2-2.pdf",
+                            "bytes":  4039126
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_Appendix C_Part1-3.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_Appendix C_Part1-3.pdf",
+                            "bytes":  5774532
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_Appendix C_Part2-3.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_Appendix C_Part2-3.pdf",
+                            "bytes":  5705874
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_Appendix C_Part3-3.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_Appendix C_Part3-3.pdf",
+                            "bytes":  4664489
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_Appendix E.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_Appendix E.pdf",
+                            "bytes":  4441826
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_v1.pdf",
+                            "dest":  "assets/pdfs/fcc/2BVCPGC603606_TestRpt_SAR_v1.pdf",
+                            "bytes":  2818621
+                        },
+                        {
+                            "source":  "assets/pdfs/fcc/DA-23-914.pdf",
+                            "dest":  "assets/pdfs/fcc/DA-23-914.pdf",
+                            "bytes":  154006
+                        },
+                        {
+                            "source":  "assets/pdfs/G0-Explanatory_Note.pdf",
+                            "dest":  "assets/pdfs/G0-Explanatory_Note.pdf",
+                            "bytes":  370652
+                        },
+                        {
+                            "source":  "assets/pdfs/G10-Android_Partner_Approvals.pdf",
+                            "dest":  "assets/pdfs/G10-Android_Partner_Approvals.pdf",
+                            "bytes":  1505676
+                        },
+                        {
+                            "source":  "assets/pdfs/G11-Extended_Info.pdf",
+                            "dest":  "assets/pdfs/G11-Extended_Info.pdf",
+                            "bytes":  169388
+                        },
+                        {
+                            "source":  "assets/pdfs/G12-Reports.pdf",
+                            "dest":  "assets/pdfs/G12-Reports.pdf",
+                            "bytes":  201626
+                        },
+                        {
+                            "source":  "assets/pdfs/G13-Tests.pdf",
+                            "dest":  "assets/pdfs/G13-Tests.pdf",
+                            "bytes":  358544
+                        },
+                        {
+                            "source":  "assets/pdfs/G14-deviceinfo.pdf",
+                            "dest":  "assets/pdfs/G14-deviceinfo.pdf",
+                            "bytes":  80261
+                        },
+                        {
+                            "source":  "assets/pdfs/G15-SE.pdf",
+                            "dest":  "assets/pdfs/G15-SE.pdf",
+                            "bytes":  241440
+                        },
+                        {
+                            "source":  "assets/pdfs/G1-Regional.pdf",
+                            "dest":  "assets/pdfs/G1-Regional.pdf",
+                            "bytes":  90423
+                        },
+                        {
+                            "source":  "assets/pdfs/G2-Worldwide.pdf",
+                            "dest":  "assets/pdfs/G2-Worldwide.pdf",
+                            "bytes":  106910
+                        },
+                        {
+                            "source":  "assets/pdfs/G3-build.pdf",
+                            "dest":  "assets/pdfs/G3-build.pdf",
+                            "bytes":  43560
+                        },
+                        {
+                            "source":  "assets/pdfs/G4-Details.pdf",
+                            "dest":  "assets/pdfs/G4-Details.pdf",
+                            "bytes":  55611
+                        },
+                        {
+                            "source":  "assets/pdfs/G5-device.pdf",
+                            "dest":  "assets/pdfs/G5-device.pdf",
+                            "bytes":  39474
+                        },
+                        {
+                            "source":  "assets/pdfs/G6-overview.pdf",
+                            "dest":  "assets/pdfs/G6-overview.pdf",
+                            "bytes":  98670
+                        },
+                        {
+                            "source":  "assets/pdfs/G7-product.pdf",
+                            "dest":  "assets/pdfs/G7-product.pdf",
+                            "bytes":  36423
+                        },
+                        {
+                            "source":  "assets/pdfs/G8-sublicense.pdf",
+                            "dest":  "assets/pdfs/G8-sublicense.pdf",
+                            "bytes":  56960
+                        },
+                        {
+                            "source":  "assets/pdfs/G9-WidevineL1.pdf",
+                            "dest":  "assets/pdfs/G9-WidevineL1.pdf",
+                            "bytes":  16064
+                        },
+                        {
+                            "source":  "assets/pdfs/GSMA-TAC-Certificate.pdf",
+                            "dest":  "assets/pdfs/GSMA-TAC-Certificate.pdf",
+                            "bytes":  183170
+                        },
+                        {
+                            "source":  "assets/pdfs/un38/DSP25120089_001_MSDS.pdf",
+                            "dest":  "assets/pdfs/un38/DSP25120089_001_MSDS.pdf",
+                            "bytes":  597478
+                        },
+                        {
+                            "source":  "assets/pdfs/un38/DSP25120089_002_UN-Test.pdf",
+                            "dest":  "assets/pdfs/un38/DSP25120089_002_UN-Test.pdf",
+                            "bytes":  1443852
+                        },
+                        {
+                            "source":  "assets/pdfs/un38/DSP25120089_003_Summary.pdf",
+                            "dest":  "assets/pdfs/un38/DSP25120089_003_Summary.pdf",
+                            "bytes":  453704
+                        },
+                        {
+                            "source":  "assets/pdfs/un38/DSP25120089_004_12m-Drop.pdf",
+                            "dest":  "assets/pdfs/un38/DSP25120089_004_12m-Drop.pdf",
+                            "bytes":  2411154
+                        },
+                        {
+                            "source":  "assets/pdfs/un38/DSP25120089_005_Stacking.pdf",
+                            "dest":  "assets/pdfs/un38/DSP25120089_005_Stacking.pdf",
+                            "bytes":  2436860
+                        },
+                        {
+                            "source":  "assets/pdfs/un38/DSP25120089_006_12m-Transport.pdf",
+                            "dest":  "assets/pdfs/un38/DSP25120089_006_12m-Transport.pdf",
+                            "bytes":  2424080
+                        },
+                        {
+                            "source":  "assets/pdfs/un38/S45C-0i26020917430_0006.pdf",
+                            "dest":  "assets/pdfs/un38/S45C-0i26020917430_0006.pdf",
+                            "bytes":  3173299
+                        },
+                        {
+                            "source":  "assets/pdfs/un38/S45C-0i26020917430_0007.pdf",
+                            "dest":  "assets/pdfs/un38/S45C-0i26020917430_0007.pdf",
+                            "bytes":  3093737
+                        },
+                        {
+                            "source":  "assets/pdfs/un38/S45C-Air-Transport.pdf",
+                            "dest":  "assets/pdfs/un38/S45C-Air-Transport.pdf",
+                            "bytes":  3173299
+                        },
+                        {
+                            "source":  "assets/pdfs/un38/S45C-Sea-Transport.pdf",
+                            "dest":  "assets/pdfs/un38/S45C-Sea-Transport.pdf",
+                            "bytes":  3093737
+                        }
+                    ],
+    "brand_assets":  [
+                         {
+                             "source":  "ecosystem/1zeni.png",
+                             "dest":  "assets/brand/ecosystem/1zeni.png",
+                             "bytes":  3230
+                         },
+                         {
+                             "source":  "ecosystem/21dao.png",
+                             "dest":  "assets/brand/ecosystem/21dao.png",
+                             "bytes":  31569
+                         },
+                         {
+                             "source":  "ecosystem/agentbay.png",
+                             "dest":  "assets/brand/ecosystem/agentbay.png",
+                             "bytes":  6471
+                         },
+                         {
+                             "source":  "ecosystem/agentbay_web.png",
+                             "dest":  "assets/brand/ecosystem/agentbay_web.png",
+                             "bytes":  4383
+                         },
+                         {
+                             "source":  "ecosystem/aios.jpg",
+                             "dest":  "assets/brand/ecosystem/aios.jpg",
+                             "bytes":  68548
+                         },
+                         {
+                             "source":  "ecosystem/aios.png",
+                             "dest":  "assets/brand/ecosystem/aios.png",
+                             "bytes":  1865
+                         },
+                         {
+                             "source":  "ecosystem/aios_web.png",
+                             "dest":  "assets/brand/ecosystem/aios_web.png",
+                             "bytes":  4630
+                         },
+                         {
+                             "source":  "ecosystem/aios-ventures.png",
+                             "dest":  "assets/brand/ecosystem/aios-ventures.png",
+                             "bytes":  1865
+                         },
+                         {
+                             "source":  "ecosystem/ascendex.svg",
+                             "dest":  "assets/brand/ecosystem/ascendex.svg",
+                             "bytes":  6520
+                         },
+                         {
+                             "source":  "ecosystem/ascendex_web.png",
+                             "dest":  "assets/brand/ecosystem/ascendex_web.png",
+                             "bytes":  264
+                         },
+                         {
+                             "source":  "ecosystem/attrace.svg",
+                             "dest":  "assets/brand/ecosystem/attrace.svg",
+                             "bytes":  6342
+                         },
+                         {
+                             "source":  "ecosystem/attRace_web.png",
+                             "dest":  "assets/brand/ecosystem/attRace_web.png",
+                             "bytes":  4410
+                         },
+                         {
+                             "source":  "ecosystem/ave_ai.png",
+                             "dest":  "assets/brand/ecosystem/ave_ai.png",
+                             "bytes":  5493
+                         },
+                         {
+                             "source":  "ecosystem/ave_ai_web.png",
+                             "dest":  "assets/brand/ecosystem/ave_ai_web.png",
+                             "bytes":  4618
+                         },
+                         {
+                             "source":  "ecosystem/avedex.png",
+                             "dest":  "assets/brand/ecosystem/avedex.png",
+                             "bytes":  1413
+                         },
+                         {
+                             "source":  "ecosystem/aylab.webp",
+                             "dest":  "assets/brand/ecosystem/aylab.webp",
+                             "bytes":  2898
+                         },
+                         {
+                             "source":  "ecosystem/aylab2.webp",
+                             "dest":  "assets/brand/ecosystem/aylab2.webp",
+                             "bytes":  2898
+                         },
+                         {
+                             "source":  "ecosystem/becker.png",
+                             "dest":  "assets/brand/ecosystem/becker.png",
+                             "bytes":  10167
+                         },
+                         {
+                             "source":  "ecosystem/becker_web.png",
+                             "dest":  "assets/brand/ecosystem/becker_web.png",
+                             "bytes":  8460
+                         },
+                         {
+                             "source":  "ecosystem/beosin.png",
+                             "dest":  "assets/brand/ecosystem/beosin.png",
+                             "bytes":  4286
+                         },
+                         {
+                             "source":  "ecosystem/bitget.png",
+                             "dest":  "assets/brand/ecosystem/bitget.png",
+                             "bytes":  42967
+                         },
+                         {
+                             "source":  "ecosystem/bitpush.png",
+                             "dest":  "assets/brand/ecosystem/bitpush.png",
+                             "bytes":  5306
+                         },
+                         {
+                             "source":  "ecosystem/bitpush_web.png",
+                             "dest":  "assets/brand/ecosystem/bitpush_web.png",
+                             "bytes":  4830
+                         },
+                         {
+                             "source":  "ecosystem/blockbeats.svg",
+                             "dest":  "assets/brand/ecosystem/blockbeats.svg",
+                             "bytes":  19501
+                         },
+                         {
+                             "source":  "ecosystem/blockbeats_web.png",
+                             "dest":  "assets/brand/ecosystem/blockbeats_web.png",
+                             "bytes":  302
+                         },
+                         {
+                             "source":  "ecosystem/castrum.png",
+                             "dest":  "assets/brand/ecosystem/castrum.png",
+                             "bytes":  154378
+                         },
+                         {
+                             "source":  "ecosystem/castrum_web.png",
+                             "dest":  "assets/brand/ecosystem/castrum_web.png",
+                             "bytes":  5172
+                         },
+                         {
+                             "source":  "ecosystem/chaincatcher_web.png",
+                             "dest":  "assets/brand/ecosystem/chaincatcher_web.png",
+                             "bytes":  5121
+                         },
+                         {
+                             "source":  "ecosystem/chainthink.png",
+                             "dest":  "assets/brand/ecosystem/chainthink.png",
+                             "bytes":  2352
+                         },
+                         {
+                             "source":  "ecosystem/cheersland.png",
+                             "dest":  "assets/brand/ecosystem/cheersland.png",
+                             "bytes":  5771
+                         },
+                         {
+                             "source":  "ecosystem/cipherbc.png",
+                             "dest":  "assets/brand/ecosystem/cipherbc.png",
+                             "bytes":  4303
+                         },
+                         {
+                             "source":  "ecosystem/crmclick.png",
+                             "dest":  "assets/brand/ecosystem/crmclick.png",
+                             "bytes":  157482
+                         },
+                         {
+                             "source":  "ecosystem/depinscan.png",
+                             "dest":  "assets/brand/ecosystem/depinscan.png",
+                             "bytes":  1101
+                         },
+                         {
+                             "source":  "ecosystem/depinscan_web.png",
+                             "dest":  "assets/brand/ecosystem/depinscan_web.png",
+                             "bytes":  1101
+                         },
+                         {
+                             "source":  "ecosystem/dmail.svg",
+                             "dest":  "assets/brand/ecosystem/dmail.svg",
+                             "bytes":  1261
+                         },
+                         {
+                             "source":  "ecosystem/dmail_web.png",
+                             "dest":  "assets/brand/ecosystem/dmail_web.png",
+                             "bytes":  8272
+                         },
+                         {
+                             "source":  "ecosystem/duckdao.png",
+                             "dest":  "assets/brand/ecosystem/duckdao.png",
+                             "bytes":  5550
+                         },
+                         {
+                             "source":  "ecosystem/duckdao_web.png",
+                             "dest":  "assets/brand/ecosystem/duckdao_web.png",
+                             "bytes":  2913
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/1zeni.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/1zeni.png",
+                             "bytes":  3230
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/21dao.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/21dao.png",
+                             "bytes":  31569
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/agentbay.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/agentbay.png",
+                             "bytes":  6471
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/aios.jpg",
+                             "dest":  "assets/brand/ecosystem/ecosystem/aios.jpg",
+                             "bytes":  68548
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/aios_web.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/aios_web.png",
+                             "bytes":  8684
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/aios-ventures.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/aios-ventures.png",
+                             "bytes":  1865
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/attrace.svg",
+                             "dest":  "assets/brand/ecosystem/ecosystem/attrace.svg",
+                             "bytes":  6342
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/avedex.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/avedex.png",
+                             "bytes":  1413
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/beosin.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/beosin.png",
+                             "bytes":  4286
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/bitget.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/bitget.png",
+                             "bytes":  42967
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/bitpush.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/bitpush.png",
+                             "bytes":  5306
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/blockbeats.svg",
+                             "dest":  "assets/brand/ecosystem/ecosystem/blockbeats.svg",
+                             "bytes":  19501
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/blockbeats_web.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/blockbeats_web.png",
+                             "bytes":  302
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/chaincatcher_web.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/chaincatcher_web.png",
+                             "bytes":  5121
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/chainthink.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/chainthink.png",
+                             "bytes":  2352
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/cheersland.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/cheersland.png",
+                             "bytes":  5771
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/cipherbc.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/cipherbc.png",
+                             "bytes":  4303
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/crmclick.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/crmclick.png",
+                             "bytes":  157482
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/depinscan_web.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/depinscan_web.png",
+                             "bytes":  1705
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/dmail.svg",
+                             "dest":  "assets/brand/ecosystem/ecosystem/dmail.svg",
+                             "bytes":  1261
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/eni.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/eni.png",
+                             "bytes":  18074
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/eni_web.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/eni_web.png",
+                             "bytes":  9011
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/evx.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/evx.png",
+                             "bytes":  69809
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/evx_web.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/evx_web.png",
+                             "bytes":  5950
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/fih-white.svg",
+                             "dest":  "assets/brand/ecosystem/ecosystem/fih-white.svg",
+                             "bytes":  3090
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/fognet.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/fognet.png",
+                             "bytes":  14004
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/gamepad.svg",
+                             "dest":  "assets/brand/ecosystem/ecosystem/gamepad.svg",
+                             "bytes":  13014
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/gamepad_web.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/gamepad_web.png",
+                             "bytes":  269
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/grandgangstacity_web.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/grandgangstacity_web.png",
+                             "bytes":  15267
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/gs.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/gs.png",
+                             "bytes":  16561
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/hpx_web.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/hpx_web.png",
+                             "bytes":  2690
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/hyra.svg",
+                             "dest":  "assets/brand/ecosystem/ecosystem/hyra.svg",
+                             "bytes":  14897
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/iflux.svg",
+                             "dest":  "assets/brand/ecosystem/ecosystem/iflux.svg",
+                             "bytes":  5883
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/iotex_web.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/iotex_web.png",
+                             "bytes":  5254
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/jinse_web.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/jinse_web.png",
+                             "bytes":  4622
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/kpopclick-green.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/kpopclick-green.png",
+                             "bytes":  3036
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/kucoin.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/kucoin.png",
+                             "bytes":  10689
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/kucoin_web.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/kucoin_web.png",
+                             "bytes":  3409
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/landload_web.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/landload_web.png",
+                             "bytes":  20756
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/lbank.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/lbank.png",
+                             "bytes":  6287
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/LinkLayer AI.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/LinkLayer AI.png",
+                             "bytes":  62319
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/linklayer.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/linklayer.png",
+                             "bytes":  10049
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/logo.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/logo.png",
+                             "bytes":  495361
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/manuspay.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/manuspay.png",
+                             "bytes":  883903
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/menya_web.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/menya_web.png",
+                             "bytes":  3794
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/mexc.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/mexc.png",
+                             "bytes":  4930
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/mexc.svg",
+                             "dest":  "assets/brand/ecosystem/ecosystem/mexc.svg",
+                             "bytes":  3090
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/mexc_web.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/mexc_web.png",
+                             "bytes":  3105
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/mobinode.svg",
+                             "dest":  "assets/brand/ecosystem/ecosystem/mobinode.svg",
+                             "bytes":  660737
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/momofun.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/momofun.png",
+                             "bytes":  6657
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/nodle.svg",
+                             "dest":  "assets/brand/ecosystem/ecosystem/nodle.svg",
+                             "bytes":  5980
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/nodle_web.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/nodle_web.png",
+                             "bytes":  269
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/planethares.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/planethares.png",
+                             "bytes":  2761
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/playsout_web.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/playsout_web.png",
+                             "bytes":  2096
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/qitmeer.svg",
+                             "dest":  "assets/brand/ecosystem/ecosystem/qitmeer.svg",
+                             "bytes":  24764
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/rei_web.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/rei_web.png",
+                             "bytes":  2621
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/samurai.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/samurai.png",
+                             "bytes":  85638
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/socialgrowai.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/socialgrowai.png",
+                             "bytes":  101789
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/soda.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/soda.png",
+                             "bytes":  2687
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/soei.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/soei.png",
+                             "bytes":  124081
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/soei_web.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/soei_web.png",
+                             "bytes":  5539
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/stabilityworld.svg",
+                             "dest":  "assets/brand/ecosystem/ecosystem/stabilityworld.svg",
+                             "bytes":  7810
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/stabilityworld_web.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/stabilityworld_web.png",
+                             "bytes":  269
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/tag.svg",
+                             "dest":  "assets/brand/ecosystem/ecosystem/tag.svg",
+                             "bytes":  6520
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/techflow.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/techflow.png",
+                             "bytes":  9427
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/teltlk.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/teltlk.png",
+                             "bytes":  73323
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/teltlk_web.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/teltlk_web.png",
+                             "bytes":  1949
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/TX24.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/TX24.png",
+                             "bytes":  19512
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/u2u.svg",
+                             "dest":  "assets/brand/ecosystem/ecosystem/u2u.svg",
+                             "bytes":  7422
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/u2u_new.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/u2u_new.png",
+                             "bytes":  7422
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/u2u_web.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/u2u_web.png",
+                             "bytes":  1281
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/virgocx.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/virgocx.png",
+                             "bytes":  6792
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/virgocx_web.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/virgocx_web.png",
+                             "bytes":  4080
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/weex.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/weex.png",
+                             "bytes":  5363
+                         },
+                         {
+                             "source":  "ecosystem/ecosystem/xt.png",
+                             "dest":  "assets/brand/ecosystem/ecosystem/xt.png",
+                             "bytes":  2914
+                         },
+                         {
+                             "source":  "ecosystem/eni.png",
+                             "dest":  "assets/brand/ecosystem/eni.png",
+                             "bytes":  18074
+                         },
+                         {
+                             "source":  "ecosystem/eni_web.png",
+                             "dest":  "assets/brand/ecosystem/eni_web.png",
+                             "bytes":  9011
+                         },
+                         {
+                             "source":  "ecosystem/evx.png",
+                             "dest":  "assets/brand/ecosystem/evx.png",
+                             "bytes":  69809
+                         },
+                         {
+                             "source":  "ecosystem/evx_web.png",
+                             "dest":  "assets/brand/ecosystem/evx_web.png",
+                             "bytes":  5950
+                         },
+                         {
+                             "source":  "ecosystem/fih-white.svg",
+                             "dest":  "assets/brand/ecosystem/fih-white.svg",
+                             "bytes":  3090
+                         },
+                         {
+                             "source":  "ecosystem/fognet.png",
+                             "dest":  "assets/brand/ecosystem/fognet.png",
+                             "bytes":  14004
+                         },
+                         {
+                             "source":  "ecosystem/fognet_web.png",
+                             "dest":  "assets/brand/ecosystem/fognet_web.png",
+                             "bytes":  2322
+                         },
+                         {
+                             "source":  "ecosystem/gamepad.svg",
+                             "dest":  "assets/brand/ecosystem/gamepad.svg",
+                             "bytes":  13014
+                         },
+                         {
+                             "source":  "ecosystem/gamepad_web.png",
+                             "dest":  "assets/brand/ecosystem/gamepad_web.png",
+                             "bytes":  264
+                         },
+                         {
+                             "source":  "ecosystem/grandgangstacity_web.png",
+                             "dest":  "assets/brand/ecosystem/grandgangstacity_web.png",
+                             "bytes":  15267
+                         },
+                         {
+                             "source":  "ecosystem/gs.png",
+                             "dest":  "assets/brand/ecosystem/gs.png",
+                             "bytes":  16561
+                         },
+                         {
+                             "source":  "ecosystem/gs_legal_llc.png",
+                             "dest":  "assets/brand/ecosystem/gs_legal_llc.png",
+                             "bytes":  16561
+                         },
+                         {
+                             "source":  "ecosystem/gs_legal_llc_web.png",
+                             "dest":  "assets/brand/ecosystem/gs_legal_llc_web.png",
+                             "bytes":  1613
+                         },
+                         {
+                             "source":  "ecosystem/hpx_web.png",
+                             "dest":  "assets/brand/ecosystem/hpx_web.png",
+                             "bytes":  2690
+                         },
+                         {
+                             "source":  "ecosystem/hyra.svg",
+                             "dest":  "assets/brand/ecosystem/hyra.svg",
+                             "bytes":  13407
+                         },
+                         {
+                             "source":  "ecosystem/hyra_web.png",
+                             "dest":  "assets/brand/ecosystem/hyra_web.png",
+                             "bytes":  350
+                         },
+                         {
+                             "source":  "ecosystem/iflux.svg",
+                             "dest":  "assets/brand/ecosystem/iflux.svg",
+                             "bytes":  5883
+                         },
+                         {
+                             "source":  "ecosystem/iflux_web.png",
+                             "dest":  "assets/brand/ecosystem/iflux_web.png",
+                             "bytes":  788
+                         },
+                         {
+                             "source":  "ecosystem/iotex_web.png",
+                             "dest":  "assets/brand/ecosystem/iotex_web.png",
+                             "bytes":  5254
+                         },
+                         {
+                             "source":  "ecosystem/jinse_web.png",
+                             "dest":  "assets/brand/ecosystem/jinse_web.png",
+                             "bytes":  4622
+                         },
+                         {
+                             "source":  "ecosystem/kpopclick-green.png",
+                             "dest":  "assets/brand/ecosystem/kpopclick-green.png",
+                             "bytes":  3036
+                         },
+                         {
+                             "source":  "ecosystem/kucoin.png",
+                             "dest":  "assets/brand/ecosystem/kucoin.png",
+                             "bytes":  10689
+                         },
+                         {
+                             "source":  "ecosystem/kucoin_web.png",
+                             "dest":  "assets/brand/ecosystem/kucoin_web.png",
+                             "bytes":  3409
+                         },
+                         {
+                             "source":  "ecosystem/landload_web.png",
+                             "dest":  "assets/brand/ecosystem/landload_web.png",
+                             "bytes":  20756
+                         },
+                         {
+                             "source":  "ecosystem/lbank.png",
+                             "dest":  "assets/brand/ecosystem/lbank.png",
+                             "bytes":  6287
+                         },
+                         {
+                             "source":  "ecosystem/linklayer.png",
+                             "dest":  "assets/brand/ecosystem/linklayer.png",
+                             "bytes":  10049
+                         },
+                         {
+                             "source":  "ecosystem/linklayer_ai.png",
+                             "dest":  "assets/brand/ecosystem/linklayer_ai.png",
+                             "bytes":  62319
+                         },
+                         {
+                             "source":  "ecosystem/linklayer_ai_web.png",
+                             "dest":  "assets/brand/ecosystem/linklayer_ai_web.png",
+                             "bytes":  2621
+                         },
+                         {
+                             "source":  "ecosystem/logo.png",
+                             "dest":  "assets/brand/ecosystem/logo.png",
+                             "bytes":  495361
+                         },
+                         {
+                             "source":  "ecosystem/manuspay.png",
+                             "dest":  "assets/brand/ecosystem/manuspay.png",
+                             "bytes":  883903
+                         },
+                         {
+                             "source":  "ecosystem/manuspay_web.png",
+                             "dest":  "assets/brand/ecosystem/manuspay_web.png",
+                             "bytes":  5012
+                         },
+                         {
+                             "source":  "ecosystem/medium.png",
+                             "dest":  "assets/brand/ecosystem/medium.png",
+                             "bytes":  7805
+                         },
+                         {
+                             "source":  "ecosystem/medium_web.png",
+                             "dest":  "assets/brand/ecosystem/medium_web.png",
+                             "bytes":  4250
+                         },
+                         {
+                             "source":  "ecosystem/menya_web.png",
+                             "dest":  "assets/brand/ecosystem/menya_web.png",
+                             "bytes":  3794
+                         },
+                         {
+                             "source":  "ecosystem/meta_arena.png",
+                             "dest":  "assets/brand/ecosystem/meta_arena.png",
+                             "bytes":  7805
+                         },
+                         {
+                             "source":  "ecosystem/meta_arena_web.png",
+                             "dest":  "assets/brand/ecosystem/meta_arena_web.png",
+                             "bytes":  4250
+                         },
+                         {
+                             "source":  "ecosystem/mexc.png",
+                             "dest":  "assets/brand/ecosystem/mexc.png",
+                             "bytes":  4930
+                         },
+                         {
+                             "source":  "ecosystem/mexc.svg",
+                             "dest":  "assets/brand/ecosystem/mexc.svg",
+                             "bytes":  3090
+                         },
+                         {
+                             "source":  "ecosystem/mexc_web.png",
+                             "dest":  "assets/brand/ecosystem/mexc_web.png",
+                             "bytes":  3105
+                         },
+                         {
+                             "source":  "ecosystem/mixmax.png",
+                             "dest":  "assets/brand/ecosystem/mixmax.png",
+                             "bytes":  5226
+                         },
+                         {
+                             "source":  "ecosystem/mixmax_web.png",
+                             "dest":  "assets/brand/ecosystem/mixmax_web.png",
+                             "bytes":  1170
+                         },
+                         {
+                             "source":  "ecosystem/mobinode.svg",
+                             "dest":  "assets/brand/ecosystem/mobinode.svg",
+                             "bytes":  660737
+                         },
+                         {
+                             "source":  "ecosystem/mobinode_web.png",
+                             "dest":  "assets/brand/ecosystem/mobinode_web.png",
+                             "bytes":  265
+                         },
+                         {
+                             "source":  "ecosystem/momofun.png",
+                             "dest":  "assets/brand/ecosystem/momofun.png",
+                             "bytes":  6657
+                         },
+                         {
+                             "source":  "ecosystem/momofun_web.png",
+                             "dest":  "assets/brand/ecosystem/momofun_web.png",
+                             "bytes":  4620
+                         },
+                         {
+                             "source":  "ecosystem/nodle.svg",
+                             "dest":  "assets/brand/ecosystem/nodle.svg",
+                             "bytes":  5980
+                         },
+                         {
+                             "source":  "ecosystem/nodle_web.png",
+                             "dest":  "assets/brand/ecosystem/nodle_web.png",
+                             "bytes":  266
+                         },
+                         {
+                             "source":  "ecosystem/nowchain.svg",
+                             "dest":  "assets/brand/ecosystem/nowchain.svg",
+                             "bytes":  660737
+                         },
+                         {
+                             "source":  "ecosystem/nowchain_web.png",
+                             "dest":  "assets/brand/ecosystem/nowchain_web.png",
+                             "bytes":  265
+                         },
+                         {
+                             "source":  "ecosystem/planethares.png",
+                             "dest":  "assets/brand/ecosystem/planethares.png",
+                             "bytes":  2761
+                         },
+                         {
+                             "source":  "ecosystem/planethares_web.png",
+                             "dest":  "assets/brand/ecosystem/planethares_web.png",
+                             "bytes":  2761
+                         },
+                         {
+                             "source":  "ecosystem/playsout_web.png",
+                             "dest":  "assets/brand/ecosystem/playsout_web.png",
+                             "bytes":  2096
+                         },
+                         {
+                             "source":  "ecosystem/primeyield.svg",
+                             "dest":  "assets/brand/ecosystem/primeyield.svg",
+                             "bytes":  156548
+                         },
+                         {
+                             "source":  "ecosystem/primeyield_web.png",
+                             "dest":  "assets/brand/ecosystem/primeyield_web.png",
+                             "bytes":  450
+                         },
+                         {
+                             "source":  "ecosystem/qitmeer.svg",
+                             "dest":  "assets/brand/ecosystem/qitmeer.svg",
+                             "bytes":  24764
+                         },
+                         {
+                             "source":  "ecosystem/qitmeer_web.png",
+                             "dest":  "assets/brand/ecosystem/qitmeer_web.png",
+                             "bytes":  268
+                         },
+                         {
+                             "source":  "ecosystem/rei_web.png",
+                             "dest":  "assets/brand/ecosystem/rei_web.png",
+                             "bytes":  2621
+                         },
+                         {
+                             "source":  "ecosystem/samurai.png",
+                             "dest":  "assets/brand/ecosystem/samurai.png",
+                             "bytes":  85638
+                         },
+                         {
+                             "source":  "ecosystem/samurai_warlords.png",
+                             "dest":  "assets/brand/ecosystem/samurai_warlords.png",
+                             "bytes":  85638
+                         },
+                         {
+                             "source":  "ecosystem/samurai_warlords_web.png",
+                             "dest":  "assets/brand/ecosystem/samurai_warlords_web.png",
+                             "bytes":  9855
+                         },
+                         {
+                             "source":  "ecosystem/snowball.png",
+                             "dest":  "assets/brand/ecosystem/snowball.png",
+                             "bytes":  495361
+                         },
+                         {
+                             "source":  "ecosystem/snowball_web.png",
+                             "dest":  "assets/brand/ecosystem/snowball_web.png",
+                             "bytes":  3969
+                         },
+                         {
+                             "source":  "ecosystem/socialgrowai.png",
+                             "dest":  "assets/brand/ecosystem/socialgrowai.png",
+                             "bytes":  101789
+                         },
+                         {
+                             "source":  "ecosystem/socialgrowai_web.png",
+                             "dest":  "assets/brand/ecosystem/socialgrowai_web.png",
+                             "bytes":  2776
+                         },
+                         {
+                             "source":  "ecosystem/soda.png",
+                             "dest":  "assets/brand/ecosystem/soda.png",
+                             "bytes":  2687
+                         },
+                         {
+                             "source":  "ecosystem/soda_web.png",
+                             "dest":  "assets/brand/ecosystem/soda_web.png",
+                             "bytes":  3510
+                         },
+                         {
+                             "source":  "ecosystem/soei.png",
+                             "dest":  "assets/brand/ecosystem/soei.png",
+                             "bytes":  124081
+                         },
+                         {
+                             "source":  "ecosystem/soei_web.png",
+                             "dest":  "assets/brand/ecosystem/soei_web.png",
+                             "bytes":  5539
+                         },
+                         {
+                             "source":  "ecosystem/stabilityworld.svg",
+                             "dest":  "assets/brand/ecosystem/stabilityworld.svg",
+                             "bytes":  7810
+                         },
+                         {
+                             "source":  "ecosystem/stabilityworld_web.png",
+                             "dest":  "assets/brand/ecosystem/stabilityworld_web.png",
+                             "bytes":  268
+                         },
+                         {
+                             "source":  "ecosystem/tag.svg",
+                             "dest":  "assets/brand/ecosystem/tag.svg",
+                             "bytes":  6520
+                         },
+                         {
+                             "source":  "ecosystem/tbv.png",
+                             "dest":  "assets/brand/ecosystem/tbv.png",
+                             "bytes":  1997
+                         },
+                         {
+                             "source":  "ecosystem/tbv_web.png",
+                             "dest":  "assets/brand/ecosystem/tbv_web.png",
+                             "bytes":  1997
+                         },
+                         {
+                             "source":  "ecosystem/tdk_inv.png",
+                             "dest":  "assets/brand/ecosystem/tdk_inv.png",
+                             "bytes":  2713
+                         },
+                         {
+                             "source":  "ecosystem/techflow.png",
+                             "dest":  "assets/brand/ecosystem/techflow.png",
+                             "bytes":  9427
+                         },
+                         {
+                             "source":  "ecosystem/techflow_web.png",
+                             "dest":  "assets/brand/ecosystem/techflow_web.png",
+                             "bytes":  3272
+                         },
+                         {
+                             "source":  "ecosystem/teltlk.png",
+                             "dest":  "assets/brand/ecosystem/teltlk.png",
+                             "bytes":  73323
+                         },
+                         {
+                             "source":  "ecosystem/teltlk_web.png",
+                             "dest":  "assets/brand/ecosystem/teltlk_web.png",
+                             "bytes":  1949
+                         },
+                         {
+                             "source":  "ecosystem/TX24.png",
+                             "dest":  "assets/brand/ecosystem/TX24.png",
+                             "bytes":  19512
+                         },
+                         {
+                             "source":  "ecosystem/TX24_web.png",
+                             "dest":  "assets/brand/ecosystem/TX24_web.png",
+                             "bytes":  3816
+                         },
+                         {
+                             "source":  "ecosystem/u2u.svg",
+                             "dest":  "assets/brand/ecosystem/u2u.svg",
+                             "bytes":  7422
+                         },
+                         {
+                             "source":  "ecosystem/u2u_network.svg",
+                             "dest":  "assets/brand/ecosystem/u2u_network.svg",
+                             "bytes":  7422
+                         },
+                         {
+                             "source":  "ecosystem/u2u_network_web.png",
+                             "dest":  "assets/brand/ecosystem/u2u_network_web.png",
+                             "bytes":  1338
+                         },
+                         {
+                             "source":  "ecosystem/u2u_new.png",
+                             "dest":  "assets/brand/ecosystem/u2u_new.png",
+                             "bytes":  7422
+                         },
+                         {
+                             "source":  "ecosystem/u2u_web.png",
+                             "dest":  "assets/brand/ecosystem/u2u_web.png",
+                             "bytes":  1281
+                         },
+                         {
+                             "source":  "ecosystem/virgocx.png",
+                             "dest":  "assets/brand/ecosystem/virgocx.png",
+                             "bytes":  6792
+                         },
+                         {
+                             "source":  "ecosystem/virgocx_web.png",
+                             "dest":  "assets/brand/ecosystem/virgocx_web.png",
+                             "bytes":  4080
+                         },
+                         {
+                             "source":  "ecosystem/weex.png",
+                             "dest":  "assets/brand/ecosystem/weex.png",
+                             "bytes":  5363
+                         },
+                         {
+                             "source":  "ecosystem/xt.png",
+                             "dest":  "assets/brand/ecosystem/xt.png",
+                             "bytes":  2914
+                         },
+                         {
+                             "source":  "logos/logo_pdf-1.png",
+                             "dest":  "assets/brand/logos/logo_pdf-1.png",
+                             "bytes":  23812
+                         },
+                         {
+                             "source":  "logos/logo_pdf-2.png",
+                             "dest":  "assets/brand/logos/logo_pdf-2.png",
+                             "bytes":  25056
+                         },
+                         {
+                             "source":  "logos/logo_pdf-3.png",
+                             "dest":  "assets/brand/logos/logo_pdf-3.png",
+                             "bytes":  5758
+                         },
+                         {
+                             "source":  "logos/logo_pdf-4.png",
+                             "dest":  "assets/brand/logos/logo_pdf-4.png",
+                             "bytes":  5666
+                         },
+                         {
+                             "source":  "logos/logo_pdf-5.png",
+                             "dest":  "assets/brand/logos/logo_pdf-5.png",
+                             "bytes":  3604
+                         },
+                         {
+                             "source":  "logos/logo_pdf-6.png",
+                             "dest":  "assets/brand/logos/logo_pdf-6.png",
+                             "bytes":  22109
+                         },
+                         {
+                             "source":  "logos/logo_pdf-7.png",
+                             "dest":  "assets/brand/logos/logo_pdf-7.png",
+                             "bytes":  28219
+                         },
+                         {
+                             "source":  "logos/Magne.AIlogo_1---fad2baf7-a562-463c-bf06-9cdbbc2bec77.jpg",
+                             "dest":  "assets/brand/logos/Magne.AIlogo_1---fad2baf7-a562-463c-bf06-9cdbbc2bec77.jpg",
+                             "bytes":  64195
+                         },
+                         {
+                             "source":  "logos/Magne.AIlogo_2---c66058d0-523d-4cdf-82c0-e630cc9e7957.png",
+                             "dest":  "assets/brand/logos/Magne.AIlogo_2---c66058d0-523d-4cdf-82c0-e630cc9e7957.png",
+                             "bytes":  13816
+                         },
+                         {
+                             "source":  "logos/Magne.AIlogo_3---1910244f-bc90-4772-ada7-a2df5ec4fbe9.jpg",
+                             "dest":  "assets/brand/logos/Magne.AIlogo_3---1910244f-bc90-4772-ada7-a2df5ec4fbe9.jpg",
+                             "bytes":  63197
+                         },
+                         {
+                             "source":  "logos/Magne.AIlogo_4---b662a392-704a-44de-9d61-80b7f4e76fc1.jpg",
+                             "dest":  "assets/brand/logos/Magne.AIlogo_4---b662a392-704a-44de-9d61-80b7f4e76fc1.jpg",
+                             "bytes":  55513
+                         },
+                         {
+                             "source":  "logos/Magne.AIlogo_5---133ce9d1-a9c9-4726-9233-e81678b04c0e.jpg",
+                             "dest":  "assets/brand/logos/Magne.AIlogo_5---133ce9d1-a9c9-4726-9233-e81678b04c0e.jpg",
+                             "bytes":  84024
+                         },
+                         {
+                             "source":  "logos/Magne.AIlogo_6---934e0ae4-bdf8-4010-bc9e-c1917cb215ad.jpg",
+                             "dest":  "assets/brand/logos/Magne.AIlogo_6---934e0ae4-bdf8-4010-bc9e-c1917cb215ad.jpg",
+                             "bytes":  91874
+                         },
+                         {
+                             "source":  "logos/Magne.AIlogo_BLACB1---2fc029b0-210f-4da5-b762-af7318d68c88.jpg",
+                             "dest":  "assets/brand/logos/Magne.AIlogo_BLACB1---2fc029b0-210f-4da5-b762-af7318d68c88.jpg",
+                             "bytes":  175631
+                         },
+                         {
+                             "source":  "logos/Magne.AIlogo_BLACK---4d6e6ebf-4718-4629-9066-e9d7e30c6179.jpg",
+                             "dest":  "assets/brand/logos/Magne.AIlogo_BLACK---4d6e6ebf-4718-4629-9066-e9d7e30c6179.jpg",
+                             "bytes":  181684
+                         },
+                         {
+                             "source":  "logos/Magne.AIlogo_BLACKPNG---60b049b1-b656-4d69-9119-1280a994b2b0.png",
+                             "dest":  "assets/brand/logos/Magne.AIlogo_BLACKPNG---60b049b1-b656-4d69-9119-1280a994b2b0.png",
+                             "bytes":  48906
+                         },
+                         {
+                             "source":  "logos/Magne.AIlogo_png_3---ab3165ec-3118-4423-a257-629440305ca7.png",
+                             "dest":  "assets/brand/logos/Magne.AIlogo_png_3---ab3165ec-3118-4423-a257-629440305ca7.png",
+                             "bytes":  13856
+                         },
+                         {
+                             "source":  "logos/Magne.AIlogo_PNG_5---67148b18-44bb-400c-8035-f3c7e3469844.png",
+                             "dest":  "assets/brand/logos/Magne.AIlogo_PNG_5---67148b18-44bb-400c-8035-f3c7e3469844.png",
+                             "bytes":  53497
+                         },
+                         {
+                             "source":  "logos/Magne.AIlogo_PNG_6---01b9231c-d825-4e5e-a7cf-c80624a0e617.png",
+                             "dest":  "assets/brand/logos/Magne.AIlogo_PNG_6---01b9231c-d825-4e5e-a7cf-c80624a0e617.png",
+                             "bytes":  55714
+                         },
+                         {
+                             "source":  "logos/Magne.AIlogo_WITHE---9e7017c9-bf39-4944-946b-8ffaefa978e8.png",
+                             "dest":  "assets/brand/logos/Magne.AIlogo_WITHE---9e7017c9-bf39-4944-946b-8ffaefa978e8.png",
+                             "bytes":  48934
+                         },
+                         {
+                             "source":  "media-kit/brand-identity.png",
+                             "dest":  "assets/brand/media-kit/brand-identity.png",
+                             "bytes":  102136
+                         },
+                         {
+                             "source":  "media-kit/color-guide.png",
+                             "dest":  "assets/brand/media-kit/color-guide.png",
+                             "bytes":  1449438
+                         },
+                         {
+                             "source":  "media-kit/logo-concept.png",
+                             "dest":  "assets/brand/media-kit/logo-concept.png",
+                             "bytes":  182125
+                         },
+                         {
+                             "source":  "media-kit/nfc-card.png",
+                             "dest":  "assets/brand/media-kit/nfc-card.png",
+                             "bytes":  224075
+                         },
+                         {
+                             "source":  "media-kit/package-page-1.png",
+                             "dest":  "assets/brand/media-kit/package-page-1.png",
+                             "bytes":  598222
+                         },
+                         {
+                             "source":  "media-kit/package-page-1-transparent.png",
+                             "dest":  "assets/brand/media-kit/package-page-1-transparent.png",
+                             "bytes":  324070
+                         },
+                         {
+                             "source":  "media-kit/package-page-2.png",
+                             "dest":  "assets/brand/media-kit/package-page-2.png",
+                             "bytes":  1243411
+                         },
+                         {
+                             "source":  "media-kit/package-page-2-transparent.png",
+                             "dest":  "assets/brand/media-kit/package-page-2-transparent.png",
+                             "bytes":  329397
+                         },
+                         {
+                             "source":  "media-kit/package-page-3.png",
+                             "dest":  "assets/brand/media-kit/package-page-3.png",
+                             "bytes":  181650
+                         },
+                         {
+                             "source":  "media-kit/package-page-3-transparent.png",
+                             "dest":  "assets/brand/media-kit/package-page-3-transparent.png",
+                             "bytes":  203075
+                         },
+                         {
+                             "source":  "media-kit/package-page-4.png",
+                             "dest":  "assets/brand/media-kit/package-page-4.png",
+                             "bytes":  852885
+                         },
+                         {
+                             "source":  "media-kit/package-page-4-transparent.png",
+                             "dest":  "assets/brand/media-kit/package-page-4-transparent.png",
+                             "bytes":  190300
+                         },
+                         {
+                             "source":  "media-kit/package-page-5.png",
+                             "dest":  "assets/brand/media-kit/package-page-5.png",
+                             "bytes":  1752310
+                         },
+                         {
+                             "source":  "media-kit/package-page-5-transparent.png",
+                             "dest":  "assets/brand/media-kit/package-page-5-transparent.png",
+                             "bytes":  313122
+                         },
+                         {
+                             "source":  "media-kit-logos/01-logo-variant.png",
+                             "dest":  "assets/brand/media-kit-logos/01-logo-variant.png",
+                             "bytes":  55714
+                         },
+                         {
+                             "source":  "media-kit-logos/02-logo-variant.png",
+                             "dest":  "assets/brand/media-kit-logos/02-logo-variant.png",
+                             "bytes":  53497
+                         },
+                         {
+                             "source":  "media-kit-logos/03-logo-variant.png",
+                             "dest":  "assets/brand/media-kit-logos/03-logo-variant.png",
+                             "bytes":  13856
+                         },
+                         {
+                             "source":  "media-kit-logos/04-logo-black-wide.png",
+                             "dest":  "assets/brand/media-kit-logos/04-logo-black-wide.png",
+                             "bytes":  48906
+                         },
+                         {
+                             "source":  "media-kit-logos/06-logo-white-wide.png",
+                             "dest":  "assets/brand/media-kit-logos/06-logo-white-wide.png",
+                             "bytes":  48934
+                         },
+                         {
+                             "source":  "media-kit-logos/08-logo-vector.svg",
+                             "dest":  "assets/brand/media-kit-logos/08-logo-vector.svg",
+                             "bytes":  1562
+                         },
+                         {
+                             "source":  "media-kit-logos/09-logo-vector.svg",
+                             "dest":  "assets/brand/media-kit-logos/09-logo-vector.svg",
+                             "bytes":  66548
+                         },
+                         {
+                             "source":  "media-kit-logos/10-logo-vector.svg",
+                             "dest":  "assets/brand/media-kit-logos/10-logo-vector.svg",
+                             "bytes":  2157
+                         },
+                         {
+                             "source":  "media-kit-logos/11-logo-vector.svg",
+                             "dest":  "assets/brand/media-kit-logos/11-logo-vector.svg",
+                             "bytes":  1945
+                         },
+                         {
+                             "source":  "media-kit-logos/18-logo-vector.svg",
+                             "dest":  "assets/brand/media-kit-logos/18-logo-vector.svg",
+                             "bytes":  4797
+                         },
+                         {
+                             "source":  "media-kit-logos/21-logo-vector.svg",
+                             "dest":  "assets/brand/media-kit-logos/21-logo-vector.svg",
+                             "bytes":  1562
+                         },
+                         {
+                             "source":  "media-kit-logos/26-logo-vector.svg",
+                             "dest":  "assets/brand/media-kit-logos/26-logo-vector.svg",
+                             "bytes":  4797
+                         },
+                         {
+                             "source":  "media-kit-logos/28-logo-variant.png",
+                             "dest":  "assets/brand/media-kit-logos/28-logo-variant.png",
+                             "bytes":  13816
+                         },
+                         {
+                             "source":  "media-kit-logos/ms2/ms2-icon-3d.png",
+                             "dest":  "assets/brand/media-kit-logos/ms2/ms2-icon-3d.png",
+                             "bytes":  847182
+                         },
+                         {
+                             "source":  "media-kit-logos/ms2/ms2-icon-vector.svg",
+                             "dest":  "assets/brand/media-kit-logos/ms2/ms2-icon-vector.svg",
+                             "bytes":  2505
+                         },
+                         {
+                             "source":  "media-kit-logos/ms2/ms2-logo-horizontal.png",
+                             "dest":  "assets/brand/media-kit-logos/ms2/ms2-logo-horizontal.png",
+                             "bytes":  156663
+                         },
+                         {
+                             "source":  "media-kit-logos/ms2/ms2-wordmark.png",
+                             "dest":  "assets/brand/media-kit-logos/ms2/ms2-wordmark.png",
+                             "bytes":  98062
+                         },
+                         {
+                             "source":  "partners/1zeni.png",
+                             "dest":  "assets/brand/partners/1zeni.png",
+                             "bytes":  3230
+                         },
+                         {
+                             "source":  "partners/21dao.png",
+                             "dest":  "assets/brand/partners/21dao.png",
+                             "bytes":  31569
+                         },
+                         {
+                             "source":  "partners/agentbay.png",
+                             "dest":  "assets/brand/partners/agentbay.png",
+                             "bytes":  6471
+                         },
+                         {
+                             "source":  "partners/aios-ventures.png",
+                             "dest":  "assets/brand/partners/aios-ventures.png",
+                             "bytes":  1865
+                         },
+                         {
+                             "source":  "partners/aixovia.webp",
+                             "dest":  "assets/brand/partners/aixovia.webp",
+                             "bytes":  169426
+                         },
+                         {
+                             "source":  "partners/attrace.svg",
+                             "dest":  "assets/brand/partners/attrace.svg",
+                             "bytes":  6342
+                         },
+                         {
+                             "source":  "partners/aveai.png",
+                             "dest":  "assets/brand/partners/aveai.png",
+                             "bytes":  1803
+                         },
+                         {
+                             "source":  "partners/aveai2.png",
+                             "dest":  "assets/brand/partners/aveai2.png",
+                             "bytes":  5493
+                         },
+                         {
+                             "source":  "partners/avedex.png",
+                             "dest":  "assets/brand/partners/avedex.png",
+                             "bytes":  1413
+                         },
+                         {
+                             "source":  "partners/avedex2.png",
+                             "dest":  "assets/brand/partners/avedex2.png",
+                             "bytes":  3642
+                         },
+                         {
+                             "source":  "partners/aylab.png",
+                             "dest":  "assets/brand/partners/aylab.png",
+                             "bytes":  2898
+                         },
+                         {
+                             "source":  "partners/becker.png",
+                             "dest":  "assets/brand/partners/becker.png",
+                             "bytes":  10167
+                         },
+                         {
+                             "source":  "partners/beosin.png",
+                             "dest":  "assets/brand/partners/beosin.png",
+                             "bytes":  4286
+                         },
+                         {
+                             "source":  "partners/bg.png",
+                             "dest":  "assets/brand/partners/bg.png",
+                             "bytes":  243
+                         },
+                         {
+                             "source":  "partners/bitget.png",
+                             "dest":  "assets/brand/partners/bitget.png",
+                             "bytes":  42967
+                         },
+                         {
+                             "source":  "partners/bitpush.png",
+                             "dest":  "assets/brand/partners/bitpush.png",
+                             "bytes":  5306
+                         },
+                         {
+                             "source":  "partners/blockbeats.svg",
+                             "dest":  "assets/brand/partners/blockbeats.svg",
+                             "bytes":  19501
+                         },
+                         {
+                             "source":  "partners/blockbeats_web.png",
+                             "dest":  "assets/brand/partners/blockbeats_web.png",
+                             "bytes":  304
+                         },
+                         {
+                             "source":  "partners/castrum.png",
+                             "dest":  "assets/brand/partners/castrum.png",
+                             "bytes":  154378
+                         },
+                         {
+                             "source":  "partners/chaincatcher.png",
+                             "dest":  "assets/brand/partners/chaincatcher.png",
+                             "bytes":  4053
+                         },
+                         {
+                             "source":  "partners/chaincatcher_web.png",
+                             "dest":  "assets/brand/partners/chaincatcher_web.png",
+                             "bytes":  5121
+                         },
+                         {
+                             "source":  "partners/chainthink.png",
+                             "dest":  "assets/brand/partners/chainthink.png",
+                             "bytes":  2352
+                         },
+                         {
+                             "source":  "partners/cheersland.png",
+                             "dest":  "assets/brand/partners/cheersland.png",
+                             "bytes":  5771
+                         },
+                         {
+                             "source":  "partners/cipherbc.png",
+                             "dest":  "assets/brand/partners/cipherbc.png",
+                             "bytes":  4303
+                         },
+                         {
+                             "source":  "partners/crmclick.png",
+                             "dest":  "assets/brand/partners/crmclick.png",
+                             "bytes":  157482
+                         },
+                         {
+                             "source":  "partners/deepmind_blue.png",
+                             "dest":  "assets/brand/partners/deepmind_blue.png",
+                             "bytes":  5139
+                         },
+                         {
+                             "source":  "partners/deepmind_web.png",
+                             "dest":  "assets/brand/partners/deepmind_web.png",
+                             "bytes":  5201
+                         },
+                         {
+                             "source":  "partners/depinscan.png",
+                             "dest":  "assets/brand/partners/depinscan.png",
+                             "bytes":  1101
+                         },
+                         {
+                             "source":  "partners/depinscan.svg",
+                             "dest":  "assets/brand/partners/depinscan.svg",
+                             "bytes":  1847
+                         },
+                         {
+                             "source":  "partners/depinscan_web.png",
+                             "dest":  "assets/brand/partners/depinscan_web.png",
+                             "bytes":  1705
+                         },
+                         {
+                             "source":  "partners/depinscan-new.svg",
+                             "dest":  "assets/brand/partners/depinscan-new.svg",
+                             "bytes":  1847
+                         },
+                         {
+                             "source":  "partners/dmail.svg",
+                             "dest":  "assets/brand/partners/dmail.svg",
+                             "bytes":  1261
+                         },
+                         {
+                             "source":  "partners/duckdao.png",
+                             "dest":  "assets/brand/partners/duckdao.png",
+                             "bytes":  5550
+                         },
+                         {
+                             "source":  "partners/duckdao.svg",
+                             "dest":  "assets/brand/partners/duckdao.svg",
+                             "bytes":  4771
+                         },
+                         {
+                             "source":  "partners/ecosystem/1zeni.png",
+                             "dest":  "assets/brand/partners/ecosystem/1zeni.png",
+                             "bytes":  3230
+                         },
+                         {
+                             "source":  "partners/ecosystem/21dao.png",
+                             "dest":  "assets/brand/partners/ecosystem/21dao.png",
+                             "bytes":  31569
+                         },
+                         {
+                             "source":  "partners/ecosystem/agentbay.png",
+                             "dest":  "assets/brand/partners/ecosystem/agentbay.png",
+                             "bytes":  6471
+                         },
+                         {
+                             "source":  "partners/ecosystem/agentbay_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/agentbay_web.png",
+                             "bytes":  4383
+                         },
+                         {
+                             "source":  "partners/ecosystem/aios.jpg",
+                             "dest":  "assets/brand/partners/ecosystem/aios.jpg",
+                             "bytes":  68548
+                         },
+                         {
+                             "source":  "partners/ecosystem/aios.png",
+                             "dest":  "assets/brand/partners/ecosystem/aios.png",
+                             "bytes":  1865
+                         },
+                         {
+                             "source":  "partners/ecosystem/aios_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/aios_web.png",
+                             "bytes":  4630
+                         },
+                         {
+                             "source":  "partners/ecosystem/aios-ventures.png",
+                             "dest":  "assets/brand/partners/ecosystem/aios-ventures.png",
+                             "bytes":  1865
+                         },
+                         {
+                             "source":  "partners/ecosystem/ascendex.svg",
+                             "dest":  "assets/brand/partners/ecosystem/ascendex.svg",
+                             "bytes":  6520
+                         },
+                         {
+                             "source":  "partners/ecosystem/ascendex_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/ascendex_web.png",
+                             "bytes":  264
+                         },
+                         {
+                             "source":  "partners/ecosystem/attrace.svg",
+                             "dest":  "assets/brand/partners/ecosystem/attrace.svg",
+                             "bytes":  6342
+                         },
+                         {
+                             "source":  "partners/ecosystem/attRace_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/attRace_web.png",
+                             "bytes":  4410
+                         },
+                         {
+                             "source":  "partners/ecosystem/ave_ai.png",
+                             "dest":  "assets/brand/partners/ecosystem/ave_ai.png",
+                             "bytes":  5493
+                         },
+                         {
+                             "source":  "partners/ecosystem/ave_ai_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/ave_ai_web.png",
+                             "bytes":  4618
+                         },
+                         {
+                             "source":  "partners/ecosystem/avedex.png",
+                             "dest":  "assets/brand/partners/ecosystem/avedex.png",
+                             "bytes":  1413
+                         },
+                         {
+                             "source":  "partners/ecosystem/aylab.webp",
+                             "dest":  "assets/brand/partners/ecosystem/aylab.webp",
+                             "bytes":  2898
+                         },
+                         {
+                             "source":  "partners/ecosystem/aylab2.webp",
+                             "dest":  "assets/brand/partners/ecosystem/aylab2.webp",
+                             "bytes":  2898
+                         },
+                         {
+                             "source":  "partners/ecosystem/becker.png",
+                             "dest":  "assets/brand/partners/ecosystem/becker.png",
+                             "bytes":  10167
+                         },
+                         {
+                             "source":  "partners/ecosystem/becker_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/becker_web.png",
+                             "bytes":  8460
+                         },
+                         {
+                             "source":  "partners/ecosystem/beosin.png",
+                             "dest":  "assets/brand/partners/ecosystem/beosin.png",
+                             "bytes":  4286
+                         },
+                         {
+                             "source":  "partners/ecosystem/bitget.png",
+                             "dest":  "assets/brand/partners/ecosystem/bitget.png",
+                             "bytes":  42967
+                         },
+                         {
+                             "source":  "partners/ecosystem/bitpush.png",
+                             "dest":  "assets/brand/partners/ecosystem/bitpush.png",
+                             "bytes":  5306
+                         },
+                         {
+                             "source":  "partners/ecosystem/bitpush_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/bitpush_web.png",
+                             "bytes":  4830
+                         },
+                         {
+                             "source":  "partners/ecosystem/blockbeats.svg",
+                             "dest":  "assets/brand/partners/ecosystem/blockbeats.svg",
+                             "bytes":  19501
+                         },
+                         {
+                             "source":  "partners/ecosystem/blockbeats_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/blockbeats_web.png",
+                             "bytes":  302
+                         },
+                         {
+                             "source":  "partners/ecosystem/castrum.png",
+                             "dest":  "assets/brand/partners/ecosystem/castrum.png",
+                             "bytes":  154378
+                         },
+                         {
+                             "source":  "partners/ecosystem/castrum_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/castrum_web.png",
+                             "bytes":  5172
+                         },
+                         {
+                             "source":  "partners/ecosystem/chaincatcher_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/chaincatcher_web.png",
+                             "bytes":  5121
+                         },
+                         {
+                             "source":  "partners/ecosystem/chainthink.png",
+                             "dest":  "assets/brand/partners/ecosystem/chainthink.png",
+                             "bytes":  2352
+                         },
+                         {
+                             "source":  "partners/ecosystem/cheersland.png",
+                             "dest":  "assets/brand/partners/ecosystem/cheersland.png",
+                             "bytes":  5771
+                         },
+                         {
+                             "source":  "partners/ecosystem/cipherbc.png",
+                             "dest":  "assets/brand/partners/ecosystem/cipherbc.png",
+                             "bytes":  4303
+                         },
+                         {
+                             "source":  "partners/ecosystem/crmclick.png",
+                             "dest":  "assets/brand/partners/ecosystem/crmclick.png",
+                             "bytes":  157482
+                         },
+                         {
+                             "source":  "partners/ecosystem/depinscan.png",
+                             "dest":  "assets/brand/partners/ecosystem/depinscan.png",
+                             "bytes":  1101
+                         },
+                         {
+                             "source":  "partners/ecosystem/depinscan_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/depinscan_web.png",
+                             "bytes":  1101
+                         },
+                         {
+                             "source":  "partners/ecosystem/dmail.svg",
+                             "dest":  "assets/brand/partners/ecosystem/dmail.svg",
+                             "bytes":  1261
+                         },
+                         {
+                             "source":  "partners/ecosystem/dmail_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/dmail_web.png",
+                             "bytes":  8272
+                         },
+                         {
+                             "source":  "partners/ecosystem/duckdao.png",
+                             "dest":  "assets/brand/partners/ecosystem/duckdao.png",
+                             "bytes":  5550
+                         },
+                         {
+                             "source":  "partners/ecosystem/duckdao_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/duckdao_web.png",
+                             "bytes":  2913
+                         },
+                         {
+                             "source":  "partners/ecosystem/eni.png",
+                             "dest":  "assets/brand/partners/ecosystem/eni.png",
+                             "bytes":  18074
+                         },
+                         {
+                             "source":  "partners/ecosystem/eni_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/eni_web.png",
+                             "bytes":  9011
+                         },
+                         {
+                             "source":  "partners/ecosystem/evx.png",
+                             "dest":  "assets/brand/partners/ecosystem/evx.png",
+                             "bytes":  69809
+                         },
+                         {
+                             "source":  "partners/ecosystem/evx_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/evx_web.png",
+                             "bytes":  5950
+                         },
+                         {
+                             "source":  "partners/ecosystem/fih-white.svg",
+                             "dest":  "assets/brand/partners/ecosystem/fih-white.svg",
+                             "bytes":  3090
+                         },
+                         {
+                             "source":  "partners/ecosystem/fognet.png",
+                             "dest":  "assets/brand/partners/ecosystem/fognet.png",
+                             "bytes":  14004
+                         },
+                         {
+                             "source":  "partners/ecosystem/fognet_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/fognet_web.png",
+                             "bytes":  2322
+                         },
+                         {
+                             "source":  "partners/ecosystem/gamepad.svg",
+                             "dest":  "assets/brand/partners/ecosystem/gamepad.svg",
+                             "bytes":  13014
+                         },
+                         {
+                             "source":  "partners/ecosystem/gamepad_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/gamepad_web.png",
+                             "bytes":  264
+                         },
+                         {
+                             "source":  "partners/ecosystem/grandgangstacity_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/grandgangstacity_web.png",
+                             "bytes":  15267
+                         },
+                         {
+                             "source":  "partners/ecosystem/gs.png",
+                             "dest":  "assets/brand/partners/ecosystem/gs.png",
+                             "bytes":  16561
+                         },
+                         {
+                             "source":  "partners/ecosystem/gs_legal_llc.png",
+                             "dest":  "assets/brand/partners/ecosystem/gs_legal_llc.png",
+                             "bytes":  16561
+                         },
+                         {
+                             "source":  "partners/ecosystem/gs_legal_llc_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/gs_legal_llc_web.png",
+                             "bytes":  1613
+                         },
+                         {
+                             "source":  "partners/ecosystem/hpx_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/hpx_web.png",
+                             "bytes":  2690
+                         },
+                         {
+                             "source":  "partners/ecosystem/hyra.svg",
+                             "dest":  "assets/brand/partners/ecosystem/hyra.svg",
+                             "bytes":  13407
+                         },
+                         {
+                             "source":  "partners/ecosystem/hyra_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/hyra_web.png",
+                             "bytes":  350
+                         },
+                         {
+                             "source":  "partners/ecosystem/iflux.svg",
+                             "dest":  "assets/brand/partners/ecosystem/iflux.svg",
+                             "bytes":  5883
+                         },
+                         {
+                             "source":  "partners/ecosystem/iflux_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/iflux_web.png",
+                             "bytes":  788
+                         },
+                         {
+                             "source":  "partners/ecosystem/iotex_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/iotex_web.png",
+                             "bytes":  5254
+                         },
+                         {
+                             "source":  "partners/ecosystem/jinse_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/jinse_web.png",
+                             "bytes":  4622
+                         },
+                         {
+                             "source":  "partners/ecosystem/kpopclick-green.png",
+                             "dest":  "assets/brand/partners/ecosystem/kpopclick-green.png",
+                             "bytes":  3036
+                         },
+                         {
+                             "source":  "partners/ecosystem/kucoin.png",
+                             "dest":  "assets/brand/partners/ecosystem/kucoin.png",
+                             "bytes":  10689
+                         },
+                         {
+                             "source":  "partners/ecosystem/kucoin_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/kucoin_web.png",
+                             "bytes":  3409
+                         },
+                         {
+                             "source":  "partners/ecosystem/landload_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/landload_web.png",
+                             "bytes":  20756
+                         },
+                         {
+                             "source":  "partners/ecosystem/lbank.png",
+                             "dest":  "assets/brand/partners/ecosystem/lbank.png",
+                             "bytes":  6287
+                         },
+                         {
+                             "source":  "partners/ecosystem/LinkLayer AI.png",
+                             "dest":  "assets/brand/partners/ecosystem/LinkLayer AI.png",
+                             "bytes":  62319
+                         },
+                         {
+                             "source":  "partners/ecosystem/linklayer.png",
+                             "dest":  "assets/brand/partners/ecosystem/linklayer.png",
+                             "bytes":  10049
+                         },
+                         {
+                             "source":  "partners/ecosystem/linklayer_ai.png",
+                             "dest":  "assets/brand/partners/ecosystem/linklayer_ai.png",
+                             "bytes":  62319
+                         },
+                         {
+                             "source":  "partners/ecosystem/linklayer_ai_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/linklayer_ai_web.png",
+                             "bytes":  2621
+                         },
+                         {
+                             "source":  "partners/ecosystem/logo.png",
+                             "dest":  "assets/brand/partners/ecosystem/logo.png",
+                             "bytes":  495361
+                         },
+                         {
+                             "source":  "partners/ecosystem/manuspay.png",
+                             "dest":  "assets/brand/partners/ecosystem/manuspay.png",
+                             "bytes":  883903
+                         },
+                         {
+                             "source":  "partners/ecosystem/manuspay_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/manuspay_web.png",
+                             "bytes":  5012
+                         },
+                         {
+                             "source":  "partners/ecosystem/medium.png",
+                             "dest":  "assets/brand/partners/ecosystem/medium.png",
+                             "bytes":  7805
+                         },
+                         {
+                             "source":  "partners/ecosystem/medium_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/medium_web.png",
+                             "bytes":  4250
+                         },
+                         {
+                             "source":  "partners/ecosystem/menya_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/menya_web.png",
+                             "bytes":  3794
+                         },
+                         {
+                             "source":  "partners/ecosystem/meta_arena.png",
+                             "dest":  "assets/brand/partners/ecosystem/meta_arena.png",
+                             "bytes":  7805
+                         },
+                         {
+                             "source":  "partners/ecosystem/meta_arena_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/meta_arena_web.png",
+                             "bytes":  4250
+                         },
+                         {
+                             "source":  "partners/ecosystem/mexc.png",
+                             "dest":  "assets/brand/partners/ecosystem/mexc.png",
+                             "bytes":  4930
+                         },
+                         {
+                             "source":  "partners/ecosystem/mexc.svg",
+                             "dest":  "assets/brand/partners/ecosystem/mexc.svg",
+                             "bytes":  3090
+                         },
+                         {
+                             "source":  "partners/ecosystem/mexc_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/mexc_web.png",
+                             "bytes":  3105
+                         },
+                         {
+                             "source":  "partners/ecosystem/mixmax.png",
+                             "dest":  "assets/brand/partners/ecosystem/mixmax.png",
+                             "bytes":  5226
+                         },
+                         {
+                             "source":  "partners/ecosystem/mixmax_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/mixmax_web.png",
+                             "bytes":  1170
+                         },
+                         {
+                             "source":  "partners/ecosystem/mobinode.svg",
+                             "dest":  "assets/brand/partners/ecosystem/mobinode.svg",
+                             "bytes":  660737
+                         },
+                         {
+                             "source":  "partners/ecosystem/mobinode_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/mobinode_web.png",
+                             "bytes":  265
+                         },
+                         {
+                             "source":  "partners/ecosystem/momofun.png",
+                             "dest":  "assets/brand/partners/ecosystem/momofun.png",
+                             "bytes":  6657
+                         },
+                         {
+                             "source":  "partners/ecosystem/momofun_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/momofun_web.png",
+                             "bytes":  4620
+                         },
+                         {
+                             "source":  "partners/ecosystem/nodle.svg",
+                             "dest":  "assets/brand/partners/ecosystem/nodle.svg",
+                             "bytes":  5980
+                         },
+                         {
+                             "source":  "partners/ecosystem/nodle_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/nodle_web.png",
+                             "bytes":  266
+                         },
+                         {
+                             "source":  "partners/ecosystem/nowchain.svg",
+                             "dest":  "assets/brand/partners/ecosystem/nowchain.svg",
+                             "bytes":  660737
+                         },
+                         {
+                             "source":  "partners/ecosystem/nowchain_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/nowchain_web.png",
+                             "bytes":  265
+                         },
+                         {
+                             "source":  "partners/ecosystem/planethares.png",
+                             "dest":  "assets/brand/partners/ecosystem/planethares.png",
+                             "bytes":  2761
+                         },
+                         {
+                             "source":  "partners/ecosystem/planethares_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/planethares_web.png",
+                             "bytes":  2761
+                         },
+                         {
+                             "source":  "partners/ecosystem/playsout_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/playsout_web.png",
+                             "bytes":  2096
+                         },
+                         {
+                             "source":  "partners/ecosystem/primeyield.svg",
+                             "dest":  "assets/brand/partners/ecosystem/primeyield.svg",
+                             "bytes":  156548
+                         },
+                         {
+                             "source":  "partners/ecosystem/primeyield_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/primeyield_web.png",
+                             "bytes":  450
+                         },
+                         {
+                             "source":  "partners/ecosystem/qitmeer.svg",
+                             "dest":  "assets/brand/partners/ecosystem/qitmeer.svg",
+                             "bytes":  24764
+                         },
+                         {
+                             "source":  "partners/ecosystem/qitmeer_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/qitmeer_web.png",
+                             "bytes":  268
+                         },
+                         {
+                             "source":  "partners/ecosystem/rei_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/rei_web.png",
+                             "bytes":  2621
+                         },
+                         {
+                             "source":  "partners/ecosystem/samurai.png",
+                             "dest":  "assets/brand/partners/ecosystem/samurai.png",
+                             "bytes":  85638
+                         },
+                         {
+                             "source":  "partners/ecosystem/samurai_warlords.png",
+                             "dest":  "assets/brand/partners/ecosystem/samurai_warlords.png",
+                             "bytes":  85638
+                         },
+                         {
+                             "source":  "partners/ecosystem/samurai_warlords_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/samurai_warlords_web.png",
+                             "bytes":  9855
+                         },
+                         {
+                             "source":  "partners/ecosystem/snowball.png",
+                             "dest":  "assets/brand/partners/ecosystem/snowball.png",
+                             "bytes":  495361
+                         },
+                         {
+                             "source":  "partners/ecosystem/snowball_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/snowball_web.png",
+                             "bytes":  3969
+                         },
+                         {
+                             "source":  "partners/ecosystem/socialgrowai.png",
+                             "dest":  "assets/brand/partners/ecosystem/socialgrowai.png",
+                             "bytes":  101789
+                         },
+                         {
+                             "source":  "partners/ecosystem/socialgrowai_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/socialgrowai_web.png",
+                             "bytes":  2776
+                         },
+                         {
+                             "source":  "partners/ecosystem/soda.png",
+                             "dest":  "assets/brand/partners/ecosystem/soda.png",
+                             "bytes":  2687
+                         },
+                         {
+                             "source":  "partners/ecosystem/soda_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/soda_web.png",
+                             "bytes":  3510
+                         },
+                         {
+                             "source":  "partners/ecosystem/soei.png",
+                             "dest":  "assets/brand/partners/ecosystem/soei.png",
+                             "bytes":  124081
+                         },
+                         {
+                             "source":  "partners/ecosystem/soei_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/soei_web.png",
+                             "bytes":  5539
+                         },
+                         {
+                             "source":  "partners/ecosystem/stabilityworld.svg",
+                             "dest":  "assets/brand/partners/ecosystem/stabilityworld.svg",
+                             "bytes":  7810
+                         },
+                         {
+                             "source":  "partners/ecosystem/stabilityworld_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/stabilityworld_web.png",
+                             "bytes":  268
+                         },
+                         {
+                             "source":  "partners/ecosystem/tag.svg",
+                             "dest":  "assets/brand/partners/ecosystem/tag.svg",
+                             "bytes":  6520
+                         },
+                         {
+                             "source":  "partners/ecosystem/tbv.png",
+                             "dest":  "assets/brand/partners/ecosystem/tbv.png",
+                             "bytes":  1997
+                         },
+                         {
+                             "source":  "partners/ecosystem/tbv_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/tbv_web.png",
+                             "bytes":  1997
+                         },
+                         {
+                             "source":  "partners/ecosystem/tdk_inv.png",
+                             "dest":  "assets/brand/partners/ecosystem/tdk_inv.png",
+                             "bytes":  2713
+                         },
+                         {
+                             "source":  "partners/ecosystem/techflow.png",
+                             "dest":  "assets/brand/partners/ecosystem/techflow.png",
+                             "bytes":  9427
+                         },
+                         {
+                             "source":  "partners/ecosystem/techflow_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/techflow_web.png",
+                             "bytes":  3272
+                         },
+                         {
+                             "source":  "partners/ecosystem/teltlk.png",
+                             "dest":  "assets/brand/partners/ecosystem/teltlk.png",
+                             "bytes":  73323
+                         },
+                         {
+                             "source":  "partners/ecosystem/teltlk_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/teltlk_web.png",
+                             "bytes":  1949
+                         },
+                         {
+                             "source":  "partners/ecosystem/TX24.png",
+                             "dest":  "assets/brand/partners/ecosystem/TX24.png",
+                             "bytes":  19512
+                         },
+                         {
+                             "source":  "partners/ecosystem/TX24_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/TX24_web.png",
+                             "bytes":  3816
+                         },
+                         {
+                             "source":  "partners/ecosystem/u2u.svg",
+                             "dest":  "assets/brand/partners/ecosystem/u2u.svg",
+                             "bytes":  7422
+                         },
+                         {
+                             "source":  "partners/ecosystem/u2u_network.svg",
+                             "dest":  "assets/brand/partners/ecosystem/u2u_network.svg",
+                             "bytes":  7422
+                         },
+                         {
+                             "source":  "partners/ecosystem/u2u_network_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/u2u_network_web.png",
+                             "bytes":  1338
+                         },
+                         {
+                             "source":  "partners/ecosystem/u2u_new.png",
+                             "dest":  "assets/brand/partners/ecosystem/u2u_new.png",
+                             "bytes":  7422
+                         },
+                         {
+                             "source":  "partners/ecosystem/u2u_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/u2u_web.png",
+                             "bytes":  1281
+                         },
+                         {
+                             "source":  "partners/ecosystem/virgocx.png",
+                             "dest":  "assets/brand/partners/ecosystem/virgocx.png",
+                             "bytes":  6792
+                         },
+                         {
+                             "source":  "partners/ecosystem/virgocx_web.png",
+                             "dest":  "assets/brand/partners/ecosystem/virgocx_web.png",
+                             "bytes":  4080
+                         },
+                         {
+                             "source":  "partners/ecosystem/weex.png",
+                             "dest":  "assets/brand/partners/ecosystem/weex.png",
+                             "bytes":  5363
+                         },
+                         {
+                             "source":  "partners/ecosystem/xt.png",
+                             "dest":  "assets/brand/partners/ecosystem/xt.png",
+                             "bytes":  2914
+                         },
+                         {
+                             "source":  "partners/eni.png",
+                             "dest":  "assets/brand/partners/eni.png",
+                             "bytes":  18074
+                         },
+                         {
+                             "source":  "partners/eson_larger.png",
+                             "dest":  "assets/brand/partners/eson_larger.png",
+                             "bytes":  9731
+                         },
+                         {
+                             "source":  "partners/eson_web.png",
+                             "dest":  "assets/brand/partners/eson_web.png",
+                             "bytes":  7703
+                         },
+                         {
+                             "source":  "partners/evx.png",
+                             "dest":  "assets/brand/partners/evx.png",
+                             "bytes":  71273
+                         },
+                         {
+                             "source":  "partners/fih.png",
+                             "dest":  "assets/brand/partners/fih.png",
+                             "bytes":  1703
+                         },
+                         {
+                             "source":  "partners/fih-white.svg",
+                             "dest":  "assets/brand/partners/fih-white.svg",
+                             "bytes":  3090
+                         },
+                         {
+                             "source":  "partners/fognet.png",
+                             "dest":  "assets/brand/partners/fognet.png",
+                             "bytes":  14004
+                         },
+                         {
+                             "source":  "partners/foxconn.png",
+                             "dest":  "assets/brand/partners/foxconn.png",
+                             "bytes":  2146
+                         },
+                         {
+                             "source":  "partners/gamepad.svg",
+                             "dest":  "assets/brand/partners/gamepad.svg",
+                             "bytes":  13014
+                         },
+                         {
+                             "source":  "partners/gamepad_web.png",
+                             "dest":  "assets/brand/partners/gamepad_web.png",
+                             "bytes":  269
+                         },
+                         {
+                             "source":  "partners/ganapay.jpg",
+                             "dest":  "assets/brand/partners/ganapay.jpg",
+                             "bytes":  919
+                         },
+                         {
+                             "source":  "partners/google.png",
+                             "dest":  "assets/brand/partners/google.png",
+                             "bytes":  1906
+                         },
+                         {
+                             "source":  "partners/google-cloud.png",
+                             "dest":  "assets/brand/partners/google-cloud.png",
+                             "bytes":  72000
+                         },
+                         {
+                             "source":  "partners/google-logo.png",
+                             "dest":  "assets/brand/partners/google-logo.png",
+                             "bytes":  11870
+                         },
+                         {
+                             "source":  "partners/grandgangstacity.png",
+                             "dest":  "assets/brand/partners/grandgangstacity.png",
+                             "bytes":  52792
+                         },
+                         {
+                             "source":  "partners/gs.png",
+                             "dest":  "assets/brand/partners/gs.png",
+                             "bytes":  16561
+                         },
+                         {
+                             "source":  "partners/hed.png",
+                             "dest":  "assets/brand/partners/hed.png",
+                             "bytes":  64876
+                         },
+                         {
+                             "source":  "partners/hed-alpha.png",
+                             "dest":  "assets/brand/partners/hed-alpha.png",
+                             "bytes":  64737
+                         },
+                         {
+                             "source":  "partners/hed-clean.png",
+                             "dest":  "assets/brand/partners/hed-clean.png",
+                             "bytes":  56872
+                         },
+                         {
+                             "source":  "partners/hed-final.png",
+                             "dest":  "assets/brand/partners/hed-final.png",
+                             "bytes":  64710
+                         },
+                         {
+                             "source":  "partners/hed-tmp.png",
+                             "dest":  "assets/brand/partners/hed-tmp.png",
+                             "bytes":  64740
+                         },
+                         {
+                             "source":  "partners/hed-trans.png",
+                             "dest":  "assets/brand/partners/hed-trans.png",
+                             "bytes":  64863
+                         },
+                         {
+                             "source":  "partners/hpx.png",
+                             "dest":  "assets/brand/partners/hpx.png",
+                             "bytes":  1018
+                         },
+                         {
+                             "source":  "partners/hpx_web.png",
+                             "dest":  "assets/brand/partners/hpx_web.png",
+                             "bytes":  2690
+                         },
+                         {
+                             "source":  "partners/hyra.svg",
+                             "dest":  "assets/brand/partners/hyra.svg",
+                             "bytes":  14897
+                         },
+                         {
+                             "source":  "partners/hyra-bg4.svg",
+                             "dest":  "assets/brand/partners/hyra-bg4.svg",
+                             "bytes":  13407
+                         },
+                         {
+                             "source":  "partners/iflux.svg",
+                             "dest":  "assets/brand/partners/iflux.svg",
+                             "bytes":  5883
+                         },
+                         {
+                             "source":  "partners/imag.png",
+                             "dest":  "assets/brand/partners/imag.png",
+                             "bytes":  19141
+                         },
+                         {
+                             "source":  "partners/imag.svg",
+                             "dest":  "assets/brand/partners/imag.svg",
+                             "bytes":  4625
+                         },
+                         {
+                             "source":  "partners/imag_final.png",
+                             "dest":  "assets/brand/partners/imag_final.png",
+                             "bytes":  4991
+                         },
+                         {
+                             "source":  "partners/imag_green.png",
+                             "dest":  "assets/brand/partners/imag_green.png",
+                             "bytes":  4948
+                         },
+                         {
+                             "source":  "partners/imag_hires.png",
+                             "dest":  "assets/brand/partners/imag_hires.png",
+                             "bytes":  4042
+                         },
+                         {
+                             "source":  "partners/imag_inv.png",
+                             "dest":  "assets/brand/partners/imag_inv.png",
+                             "bytes":  2142
+                         },
+                         {
+                             "source":  "partners/imag_new.png",
+                             "dest":  "assets/brand/partners/imag_new.png",
+                             "bytes":  4146
+                         },
+                         {
+                             "source":  "partners/imag_raw.png",
+                             "dest":  "assets/brand/partners/imag_raw.png",
+                             "bytes":  13842
+                         },
+                         {
+                             "source":  "partners/instagram.jpg",
+                             "dest":  "assets/brand/partners/instagram.jpg",
+                             "bytes":  65241
+                         },
+                         {
+                             "source":  "partners/iot.png",
+                             "dest":  "assets/brand/partners/iot.png",
+                             "bytes":  243
+                         },
+                         {
+                             "source":  "partners/iotex.png",
+                             "dest":  "assets/brand/partners/iotex.png",
+                             "bytes":  5396
+                         },
+                         {
+                             "source":  "partners/iotex_web.png",
+                             "dest":  "assets/brand/partners/iotex_web.png",
+                             "bytes":  5254
+                         },
+                         {
+                             "source":  "partners/jinse.png",
+                             "dest":  "assets/brand/partners/jinse.png",
+                             "bytes":  6251
+                         },
+                         {
+                             "source":  "partners/jinse_web.png",
+                             "dest":  "assets/brand/partners/jinse_web.png",
+                             "bytes":  4622
+                         },
+                         {
+                             "source":  "partners/kpopclick.png",
+                             "dest":  "assets/brand/partners/kpopclick.png",
+                             "bytes":  3192
+                         },
+                         {
+                             "source":  "partners/kpopclick-green.png",
+                             "dest":  "assets/brand/partners/kpopclick-green.png",
+                             "bytes":  3036
+                         },
+                         {
+                             "source":  "partners/ku.png",
+                             "dest":  "assets/brand/partners/ku.png",
+                             "bytes":  243
+                         },
+                         {
+                             "source":  "partners/kucoin.png",
+                             "dest":  "assets/brand/partners/kucoin.png",
+                             "bytes":  10689
+                         },
+                         {
+                             "source":  "partners/kucoin.svg",
+                             "dest":  "assets/brand/partners/kucoin.svg",
+                             "bytes":  10052
+                         },
+                         {
+                             "source":  "partners/kucoin_new.png",
+                             "dest":  "assets/brand/partners/kucoin_new.png",
+                             "bytes":  14688
+                         },
+                         {
+                             "source":  "partners/landload.png",
+                             "dest":  "assets/brand/partners/landload.png",
+                             "bytes":  64672
+                         },
+                         {
+                             "source":  "partners/landload_web.png",
+                             "dest":  "assets/brand/partners/landload_web.png",
+                             "bytes":  20756
+                         },
+                         {
+                             "source":  "partners/lbank.png",
+                             "dest":  "assets/brand/partners/lbank.png",
+                             "bytes":  6287
+                         },
+                         {
+                             "source":  "partners/linklayer.png",
+                             "dest":  "assets/brand/partners/linklayer.png",
+                             "bytes":  10049
+                         },
+                         {
+                             "source":  "partners/logo.png",
+                             "dest":  "assets/brand/partners/logo.png",
+                             "bytes":  495361
+                         },
+                         {
+                             "source":  "partners/manuspay.png",
+                             "dest":  "assets/brand/partners/manuspay.png",
+                             "bytes":  883903
+                         },
+                         {
+                             "source":  "partners/medium.png",
+                             "dest":  "assets/brand/partners/medium.png",
+                             "bytes":  7768
+                         },
+                         {
+                             "source":  "partners/menya.png",
+                             "dest":  "assets/brand/partners/menya.png",
+                             "bytes":  1572
+                         },
+                         {
+                             "source":  "partners/mexc.png",
+                             "dest":  "assets/brand/partners/mexc.png",
+                             "bytes":  4930
+                         },
+                         {
+                             "source":  "partners/mexc.svg",
+                             "dest":  "assets/brand/partners/mexc.svg",
+                             "bytes":  6496
+                         },
+                         {
+                             "source":  "partners/mexc-new.png",
+                             "dest":  "assets/brand/partners/mexc-new.png",
+                             "bytes":  265
+                         },
+                         {
+                             "source":  "partners/micron.png",
+                             "dest":  "assets/brand/partners/micron.png",
+                             "bytes":  2054
+                         },
+                         {
+                             "source":  "partners/micron.svg",
+                             "dest":  "assets/brand/partners/micron.svg",
+                             "bytes":  2735
+                         },
+                         {
+                             "source":  "partners/micron_hires.png",
+                             "dest":  "assets/brand/partners/micron_hires.png",
+                             "bytes":  46315
+                         },
+                         {
+                             "source":  "partners/micron_inv.png",
+                             "dest":  "assets/brand/partners/micron_inv.png",
+                             "bytes":  2522
+                         },
+                         {
+                             "source":  "partners/micron_logo.png",
+                             "dest":  "assets/brand/partners/micron_logo.png",
+                             "bytes":  2806
+                         },
+                         {
+                             "source":  "partners/mobinode.svg",
+                             "dest":  "assets/brand/partners/mobinode.svg",
+                             "bytes":  660737
+                         },
+                         {
+                             "source":  "partners/momofun.png",
+                             "dest":  "assets/brand/partners/momofun.png",
+                             "bytes":  6657
+                         },
+                         {
+                             "source":  "partners/mx.png",
+                             "dest":  "assets/brand/partners/mx.png",
+                             "bytes":  243
+                         },
+                         {
+                             "source":  "partners/newlogo.png",
+                             "dest":  "assets/brand/partners/newlogo.png",
+                             "bytes":  19512
+                         },
+                         {
+                             "source":  "partners/new-partner.png",
+                             "dest":  "assets/brand/partners/new-partner.png",
+                             "bytes":  76262
+                         },
+                         {
+                             "source":  "partners/nodle.svg",
+                             "dest":  "assets/brand/partners/nodle.svg",
+                             "bytes":  5980
+                         },
+                         {
+                             "source":  "partners/nodle_web.png",
+                             "dest":  "assets/brand/partners/nodle_web.png",
+                             "bytes":  269
+                         },
+                         {
+                             "source":  "partners/partner1.png",
+                             "dest":  "assets/brand/partners/partner1.png",
+                             "bytes":  10839
+                         },
+                         {
+                             "source":  "partners/partner2.png",
+                             "dest":  "assets/brand/partners/partner2.png",
+                             "bytes":  3340
+                         },
+                         {
+                             "source":  "partners/partner3.png",
+                             "dest":  "assets/brand/partners/partner3.png",
+                             "bytes":  3345
+                         },
+                         {
+                             "source":  "partners/partner4.png",
+                             "dest":  "assets/brand/partners/partner4.png",
+                             "bytes":  2013
+                         },
+                         {
+                             "source":  "partners/partner5.png",
+                             "dest":  "assets/brand/partners/partner5.png",
+                             "bytes":  2048
+                         },
+                         {
+                             "source":  "partners/partner6.png",
+                             "dest":  "assets/brand/partners/partner6.png",
+                             "bytes":  3697
+                         },
+                         {
+                             "source":  "partners/partner7.png",
+                             "dest":  "assets/brand/partners/partner7.png",
+                             "bytes":  391
+                         },
+                         {
+                             "source":  "partners/partner8.png",
+                             "dest":  "assets/brand/partners/partner8.png",
+                             "bytes":  2253
+                         },
+                         {
+                             "source":  "partners/planethares.png",
+                             "dest":  "assets/brand/partners/planethares.png",
+                             "bytes":  2761
+                         },
+                         {
+                             "source":  "partners/playsout.png",
+                             "dest":  "assets/brand/partners/playsout.png",
+                             "bytes":  7263
+                         },
+                         {
+                             "source":  "partners/playsout_web.png",
+                             "dest":  "assets/brand/partners/playsout_web.png",
+                             "bytes":  2096
+                         },
+                         {
+                             "source":  "partners/playsout-new.png",
+                             "dest":  "assets/brand/partners/playsout-new.png",
+                             "bytes":  7263
+                         },
+                         {
+                             "source":  "partners/primeyield.svg",
+                             "dest":  "assets/brand/partners/primeyield.svg",
+                             "bytes":  156548
+                         },
+                         {
+                             "source":  "partners/qitmeer.svg",
+                             "dest":  "assets/brand/partners/qitmeer.svg",
+                             "bytes":  24764
+                         },
+                         {
+                             "source":  "partners/redrock_web.png",
+                             "dest":  "assets/brand/partners/redrock_web.png",
+                             "bytes":  10706
+                         },
+                         {
+                             "source":  "partners/rei.png",
+                             "dest":  "assets/brand/partners/rei.png",
+                             "bytes":  243
+                         },
+                         {
+                             "source":  "partners/rei_web.png",
+                             "dest":  "assets/brand/partners/rei_web.png",
+                             "bytes":  2621
+                         },
+                         {
+                             "source":  "partners/rei-network.png",
+                             "dest":  "assets/brand/partners/rei-network.png",
+                             "bytes":  62319
+                         },
+                         {
+                             "source":  "partners/rvx.png",
+                             "dest":  "assets/brand/partners/rvx.png",
+                             "bytes":  909773
+                         },
+                         {
+                             "source":  "partners/samsung.png",
+                             "dest":  "assets/brand/partners/samsung.png",
+                             "bytes":  2139
+                         },
+                         {
+                             "source":  "partners/samsung_black.png",
+                             "dest":  "assets/brand/partners/samsung_black.png",
+                             "bytes":  29084
+                         },
+                         {
+                             "source":  "partners/samsung_hires.png",
+                             "dest":  "assets/brand/partners/samsung_hires.png",
+                             "bytes":  104956
+                         },
+                         {
+                             "source":  "partners/samsung_inv.png",
+                             "dest":  "assets/brand/partners/samsung_inv.png",
+                             "bytes":  2906
+                         },
+                         {
+                             "source":  "partners/samsung_official.png",
+                             "dest":  "assets/brand/partners/samsung_official.png",
+                             "bytes":  2168
+                         },
+                         {
+                             "source":  "partners/samsung_si.png",
+                             "dest":  "assets/brand/partners/samsung_si.png",
+                             "bytes":  6044
+                         },
+                         {
+                             "source":  "partners/samsung_web.png",
+                             "dest":  "assets/brand/partners/samsung_web.png",
+                             "bytes":  5107
+                         },
+                         {
+                             "source":  "partners/samurai.png",
+                             "dest":  "assets/brand/partners/samurai.png",
+                             "bytes":  85638
+                         },
+                         {
+                             "source":  "partners/skhynix.png",
+                             "dest":  "assets/brand/partners/skhynix.png",
+                             "bytes":  5012
+                         },
+                         {
+                             "source":  "partners/skhynix.svg",
+                             "dest":  "assets/brand/partners/skhynix.svg",
+                             "bytes":  9765
+                         },
+                         {
+                             "source":  "partners/skhynix_hires.png",
+                             "dest":  "assets/brand/partners/skhynix_hires.png",
+                             "bytes":  180202
+                         },
+                         {
+                             "source":  "partners/skhynix_web.png",
+                             "dest":  "assets/brand/partners/skhynix_web.png",
+                             "bytes":  7782
+                         },
+                         {
+                             "source":  "partners/socialgrowai.png",
+                             "dest":  "assets/brand/partners/socialgrowai.png",
+                             "bytes":  101789
+                         },
+                         {
+                             "source":  "partners/soda.png",
+                             "dest":  "assets/brand/partners/soda.png",
+                             "bytes":  2687
+                         },
+                         {
+                             "source":  "partners/soei.png",
+                             "dest":  "assets/brand/partners/soei.png",
+                             "bytes":  124081
+                         },
+                         {
+                             "source":  "partners/stabilityworld.svg",
+                             "dest":  "assets/brand/partners/stabilityworld.svg",
+                             "bytes":  7810
+                         },
+                         {
+                             "source":  "partners/stabilityworld_web.png",
+                             "dest":  "assets/brand/partners/stabilityworld_web.png",
+                             "bytes":  269
+                         },
+                         {
+                             "source":  "partners/strategic/becker.png",
+                             "dest":  "assets/brand/partners/strategic/becker.png",
+                             "bytes":  10167
+                         },
+                         {
+                             "source":  "partners/strategic/bitget.png",
+                             "dest":  "assets/brand/partners/strategic/bitget.png",
+                             "bytes":  42967
+                         },
+                         {
+                             "source":  "partners/strategic/castrum.png",
+                             "dest":  "assets/brand/partners/strategic/castrum.png",
+                             "bytes":  154378
+                         },
+                         {
+                             "source":  "partners/strategic/castrum_web.png",
+                             "dest":  "assets/brand/partners/strategic/castrum_web.png",
+                             "bytes":  2996
+                         },
+                         {
+                             "source":  "partners/strategic/deepmind_blue.png",
+                             "dest":  "assets/brand/partners/strategic/deepmind_blue.png",
+                             "bytes":  5139
+                         },
+                         {
+                             "source":  "partners/strategic/duckdao.png",
+                             "dest":  "assets/brand/partners/strategic/duckdao.png",
+                             "bytes":  5550
+                         },
+                         {
+                             "source":  "partners/strategic/fih.png",
+                             "dest":  "assets/brand/partners/strategic/fih.png",
+                             "bytes":  1703
+                         },
+                         {
+                             "source":  "partners/strategic/google-logo.png",
+                             "dest":  "assets/brand/partners/strategic/google-logo.png",
+                             "bytes":  11870
+                         },
+                         {
+                             "source":  "partners/strategic/hed.png",
+                             "dest":  "assets/brand/partners/strategic/hed.png",
+                             "bytes":  64876
+                         },
+                         {
+                             "source":  "partners/strategic/imag_green.png",
+                             "dest":  "assets/brand/partners/strategic/imag_green.png",
+                             "bytes":  4948
+                         },
+                         {
+                             "source":  "partners/strategic/kucoin.svg",
+                             "dest":  "assets/brand/partners/strategic/kucoin.svg",
+                             "bytes":  10052
+                         },
+                         {
+                             "source":  "partners/strategic/mexc.png",
+                             "dest":  "assets/brand/partners/strategic/mexc.png",
+                             "bytes":  4930
+                         },
+                         {
+                             "source":  "partners/strategic/micron_inv.png",
+                             "dest":  "assets/brand/partners/strategic/micron_inv.png",
+                             "bytes":  2522
+                         },
+                         {
+                             "source":  "partners/strategic/redrock_web.png",
+                             "dest":  "assets/brand/partners/strategic/redrock_web.png",
+                             "bytes":  10706
+                         },
+                         {
+                             "source":  "partners/strategic/samsung_inv.png",
+                             "dest":  "assets/brand/partners/strategic/samsung_inv.png",
+                             "bytes":  2906
+                         },
+                         {
+                             "source":  "partners/strategic/skhynix_web.png",
+                             "dest":  "assets/brand/partners/strategic/skhynix_web.png",
+                             "bytes":  7782
+                         },
+                         {
+                             "source":  "partners/strategic/tbv.png",
+                             "dest":  "assets/brand/partners/strategic/tbv.png",
+                             "bytes":  1997
+                         },
+                         {
+                             "source":  "partners/strategic/tdk_inv.png",
+                             "dest":  "assets/brand/partners/strategic/tdk_inv.png",
+                             "bytes":  2713
+                         },
+                         {
+                             "source":  "partners/strategic/ti.svg",
+                             "dest":  "assets/brand/partners/strategic/ti.svg",
+                             "bytes":  13964
+                         },
+                         {
+                             "source":  "partners/strategic/unisoc_web.png",
+                             "dest":  "assets/brand/partners/strategic/unisoc_web.png",
+                             "bytes":  8399
+                         },
+                         {
+                             "source":  "partners/strategic/wd_better_inv.png",
+                             "dest":  "assets/brand/partners/strategic/wd_better_inv.png",
+                             "bytes":  7765
+                         },
+                         {
+                             "source":  "partners/tag.svg",
+                             "dest":  "assets/brand/partners/tag.svg",
+                             "bytes":  6520
+                         },
+                         {
+                             "source":  "partners/tbv.png",
+                             "dest":  "assets/brand/partners/tbv.png",
+                             "bytes":  1997
+                         },
+                         {
+                             "source":  "partners/tdk.png",
+                             "dest":  "assets/brand/partners/tdk.png",
+                             "bytes":  1015
+                         },
+                         {
+                             "source":  "partners/tdk.svg",
+                             "dest":  "assets/brand/partners/tdk.svg",
+                             "bytes":  3432
+                         },
+                         {
+                             "source":  "partners/tdk_hires.png",
+                             "dest":  "assets/brand/partners/tdk_hires.png",
+                             "bytes":  56468
+                         },
+                         {
+                             "source":  "partners/tdk_inv.png",
+                             "dest":  "assets/brand/partners/tdk_inv.png",
+                             "bytes":  2713
+                         },
+                         {
+                             "source":  "partners/tdk_logo.png",
+                             "dest":  "assets/brand/partners/tdk_logo.png",
+                             "bytes":  6873
+                         },
+                         {
+                             "source":  "partners/techflow.png",
+                             "dest":  "assets/brand/partners/techflow.png",
+                             "bytes":  9427
+                         },
+                         {
+                             "source":  "partners/teltlk.png",
+                             "dest":  "assets/brand/partners/teltlk.png",
+                             "bytes":  73323
+                         },
+                         {
+                             "source":  "partners/ti.svg",
+                             "dest":  "assets/brand/partners/ti.svg",
+                             "bytes":  13964
+                         },
+                         {
+                             "source":  "partners/twitter-new.jpg",
+                             "dest":  "assets/brand/partners/twitter-new.jpg",
+                             "bytes":  36241
+                         },
+                         {
+                             "source":  "partners/twitter-profile.jpg",
+                             "dest":  "assets/brand/partners/twitter-profile.jpg",
+                             "bytes":  8212
+                         },
+                         {
+                             "source":  "partners/u2dpn.svg",
+                             "dest":  "assets/brand/partners/u2dpn.svg",
+                             "bytes":  4681
+                         },
+                         {
+                             "source":  "partners/u2u.svg",
+                             "dest":  "assets/brand/partners/u2u.svg",
+                             "bytes":  7422
+                         },
+                         {
+                             "source":  "partners/u2u_web.png",
+                             "dest":  "assets/brand/partners/u2u_web.png",
+                             "bytes":  1281
+                         },
+                         {
+                             "source":  "partners/unisoc_web.png",
+                             "dest":  "assets/brand/partners/unisoc_web.png",
+                             "bytes":  8399
+                         },
+                         {
+                             "source":  "partners/virgocx.png",
+                             "dest":  "assets/brand/partners/virgocx.png",
+                             "bytes":  3502
+                         },
+                         {
+                             "source":  "partners/virgocx-actual.png",
+                             "dest":  "assets/brand/partners/virgocx-actual.png",
+                             "bytes":  7812
+                         },
+                         {
+                             "source":  "partners/virgocx-new.png",
+                             "dest":  "assets/brand/partners/virgocx-new.png",
+                             "bytes":  7833
+                         },
+                         {
+                             "source":  "partners/wd.png",
+                             "dest":  "assets/brand/partners/wd.png",
+                             "bytes":  310
+                         },
+                         {
+                             "source":  "partners/wd.svg",
+                             "dest":  "assets/brand/partners/wd.svg",
+                             "bytes":  5138
+                         },
+                         {
+                             "source":  "partners/wd_better.png",
+                             "dest":  "assets/brand/partners/wd_better.png",
+                             "bytes":  7663
+                         },
+                         {
+                             "source":  "partners/wd_better_inv.png",
+                             "dest":  "assets/brand/partners/wd_better_inv.png",
+                             "bytes":  7765
+                         },
+                         {
+                             "source":  "partners/wd_final2.png",
+                             "dest":  "assets/brand/partners/wd_final2.png",
+                             "bytes":  8860
+                         },
+                         {
+                             "source":  "partners/wd_hires.png",
+                             "dest":  "assets/brand/partners/wd_hires.png",
+                             "bytes":  94908
+                         },
+                         {
+                             "source":  "partners/wd_inv.png",
+                             "dest":  "assets/brand/partners/wd_inv.png",
+                             "bytes":  4356
+                         },
+                         {
+                             "source":  "partners/wd_logo.png",
+                             "dest":  "assets/brand/partners/wd_logo.png",
+                             "bytes":  7005
+                         },
+                         {
+                             "source":  "partners/wd_web_final.png",
+                             "dest":  "assets/brand/partners/wd_web_final.png",
+                             "bytes":  2931
+                         },
+                         {
+                             "source":  "partners/weex.png",
+                             "dest":  "assets/brand/partners/weex.png",
+                             "bytes":  5363
+                         },
+                         {
+                             "source":  "partners/wix-logo.png",
+                             "dest":  "assets/brand/partners/wix-logo.png",
+                             "bytes":  5226
+                         },
+                         {
+                             "source":  "partners/xt.png",
+                             "dest":  "assets/brand/partners/xt.png",
+                             "bytes":  2914
+                         }
+                     ]
+}

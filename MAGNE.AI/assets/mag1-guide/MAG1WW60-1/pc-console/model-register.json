@@ -1,0 +1,386 @@
+{
+  "date": "2026-10-16",
+  "build": "MAG1WW60-1",
+  "completeDeviceInventory": false,
+  "scope": "16 model-format files, 31 compiled candidates and companions, plus one separately installed Gemma artifact; these counts are not independent model or capability counts.",
+  "firmwareModelFiles": [
+    {
+      "path": "/product/media/models/asr/sherpa-onnx-paraformer-zh-small-2024-03-09/model.int8.onnx",
+      "sizeBytes": 81828675,
+      "mtimeEpoch": 1775341837
+    },
+    {
+      "path": "/product/media/models/asr/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-2024-07-17/model.int8.onnx",
+      "sizeBytes": 239233841,
+      "mtimeEpoch": 1775341851
+    },
+    {
+      "path": "/product/media/models/asr/silero-vad/silero_vad.onnx",
+      "sizeBytes": 2327524,
+      "mtimeEpoch": 1775341851
+    },
+    {
+      "path": "/product/media/models/llm/Qwen2.5-1.5B-Instruct-UNI/Qwen2.5-1.5B-a16w8-feo.unillm",
+      "sizeBytes": 2045612704,
+      "mtimeEpoch": 1775341783
+    },
+    {
+      "path": "/product/media/models/tts/kokoro-multi-lang-v1_1/model.onnx",
+      "sizeBytes": 325631784,
+      "mtimeEpoch": 1775341819
+    },
+    {
+      "path": "/system/etc/motion_predictor_model.tflite",
+      "sizeBytes": 179532,
+      "mtimeEpoch": 1775346859
+    },
+    {
+      "path": "/vendor/etc/models/noahark/imageClassify/cv_imageClassify.tflite",
+      "sizeBytes": 4316512,
+      "mtimeEpoch": 1775350227
+    },
+    {
+      "path": "/vendor/firmware/MonoDepthC30.mnn",
+      "sizeBytes": 71941228,
+      "mtimeEpoch": 1775350245
+    },
+    {
+      "path": "/vendor/firmware/MonoDepthC40.mnn",
+      "sizeBytes": 66279616,
+      "mtimeEpoch": 1775350246
+    },
+    {
+      "path": "/vendor/firmware/PortraitSegC10.mnn",
+      "sizeBytes": 3891128,
+      "mtimeEpoch": 1775350246
+    },
+    {
+      "path": "/vendor/firmware/PortraitSegC20.mnn",
+      "sizeBytes": 3891128,
+      "mtimeEpoch": 1775350246
+    },
+    {
+      "path": "/vendor/firmware/PortraitSegC50.mnn",
+      "sizeBytes": 13510972,
+      "mtimeEpoch": 1775350246
+    },
+    {
+      "path": "/vendor/firmware/PortraitSegC60.mnn",
+      "sizeBytes": 14481160,
+      "mtimeEpoch": 1775350246
+    },
+    {
+      "path": "/vendor/firmware/aipd.mnn",
+      "sizeBytes": 1181168,
+      "mtimeEpoch": 1775350247
+    },
+    {
+      "path": "/vendor/firmware/gesture.mnn",
+      "sizeBytes": 1974976,
+      "mtimeEpoch": 1775350247
+    },
+    {
+      "path": "/vendor/firmware/scene_seg_256_model.mnn",
+      "sizeBytes": 22656296,
+      "mtimeEpoch": 1775350247
+    }
+  ],
+  "compiledGroups": [
+    {
+      "name": "Stereo-depth model parts",
+      "nameZhHant": "雙目深度模型分段",
+      "note": "Names suggest a multi-part depth-estimation pipeline using stereo views, potentially supporting foreground/background distance separation. Parts 1, 3 and 5 are components, not three complete user-facing models. Actual camera inputs and activation are unverified.",
+      "noteZhHant": "檔名指向由多段組成的雙目深度估計流程，可為前後景距離區分提供資訊。part1、part3、part5 是組件，不是三個完整的使用者模型；實際相機輸入及啟用狀態尚未確認。",
+      "files": [
+        {
+          "path": "/vendor/firmware/BinoDepth_part1_384x576_NNA.mbs.bin",
+          "sizeBytes": 6356220
+        },
+        {
+          "path": "/vendor/firmware/BinoDepth_part3_384x576_NNA.mbs.bin",
+          "sizeBytes": 1377200
+        },
+        {
+          "path": "/vendor/firmware/BinoDepth_part5_384x576_NNA.mbs.bin",
+          "sizeBytes": 14796160
+        }
+      ]
+    },
+    {
+      "name": "Compiled monocular-depth variants",
+      "nameZhHant": "單目深度編譯變體",
+      "note": "Same broad depth-estimation family as MonoDepthC30/C40. Library references identify alternative NNA paths; network/cadence files are packaged companions. Selection rules and equivalence between variants are unverified.",
+      "noteZhHant": "與 MonoDepthC30／C40 同屬深度估計方向。算法庫有替代 NNA 路徑引用；network／cadence 檔案屬封裝配套。各變體的選用條件及等價性尚未確認。",
+      "files": [
+        {
+          "path": "/vendor/firmware/MonoDepthN30_NNA.mbs.bin",
+          "sizeBytes": 12138160
+        },
+        {
+          "path": "/vendor/firmware/MonoDepthN40_NNA.mbs.bin",
+          "sizeBytes": 30097712
+        },
+        {
+          "path": "/vendor/firmware/MonoDepthV40_cadence.bin",
+          "sizeBytes": 1931375
+        },
+        {
+          "path": "/vendor/firmware/MonoDepthV40_network.bin",
+          "sizeBytes": 33818976
+        }
+      ]
+    },
+    {
+      "name": "Compiled portrait-segmentation variants",
+      "nameZhHant": "人像分割編譯變體",
+      "note": "Separate a person from the background for region-based processing. These are additional packaged variants/companions of the portrait-segmentation family, not proof of additional enabled portrait modes.",
+      "noteZhHant": "區分人物與背景，為分區處理提供資訊。這些是人像分割系列的其他封裝變體／配套，不代表多個額外人像模式已啟用。",
+      "files": [
+        {
+          "path": "/vendor/firmware/PortraitSegN60_NNA.mbs.bin",
+          "sizeBytes": 7229672
+        },
+        {
+          "path": "/vendor/firmware/PortraitSegN70_NNA.mbs.bin",
+          "sizeBytes": 45416780
+        },
+        {
+          "path": "/vendor/firmware/PortraitSegV30_cadence.bin",
+          "sizeBytes": 4638114
+        },
+        {
+          "path": "/vendor/firmware/PortraitSegV30_network.bin",
+          "sizeBytes": 4490496
+        },
+        {
+          "path": "/vendor/firmware/PortraitSegV60_cadence.bin",
+          "sizeBytes": 4688782
+        },
+        {
+          "path": "/vendor/firmware/PortraitSegV60_network.bin",
+          "sizeBytes": 5460992
+        },
+        {
+          "path": "/vendor/firmware/portraitseg_cadence.bin",
+          "sizeBytes": 2966947
+        },
+        {
+          "path": "/vendor/firmware/portraitseg_network.bin",
+          "sizeBytes": 3971944
+        }
+      ]
+    },
+    {
+      "name": "Video noise reduction",
+      "nameZhHant": "影片降噪",
+      "note": "libvideonr.so references this exact filename. Its role is video noise reduction; the IMX586 and 1080p labels do not confirm the fitted sensor, active recording mode, or 4K support.",
+      "noteZhHant": "libvideonr.so 引用此完整檔名，對應影片降噪方向。IMX586 與 1080p 標籤不能確認實裝感測器、當前錄影模式或 4K 支援。",
+      "files": [
+        {
+          "path": "/vendor/firmware/IMX586_id0_1080p_videonr_NNA.mbs.bin",
+          "sizeBytes": 169368
+        }
+      ]
+    },
+    {
+      "name": "RAW multi-frame noise reduction · day/night variants",
+      "nameZhHant": "RAW 多幀降噪 · 日間／夜間變體",
+      "note": "Names and RAW AI MFNR library templates point to noise reduction using multiple raw frames, with day/night variants. Which frames are combined, which variant is selected and whether it runs for a particular photo remain unverified. Sensor labels are packaging clues only.",
+      "noteZhHant": "檔名及 RAW AI MFNR 算法庫模板指向利用多張 RAW 影格降噪，分日間／夜間變體。具體融合哪些影格、選用哪個變體、是否用於某張照片仍未確認；感測器標籤僅屬封裝線索。",
+      "files": [
+        {
+          "path": "/vendor/firmware/raw_ai_mfnr_n6pro_imx586_day_NNA.mbs.bin",
+          "sizeBytes": 1630392
+        },
+        {
+          "path": "/vendor/firmware/raw_ai_mfnr_n6pro_imx586_night_NNA.mbs.bin",
+          "sizeBytes": 1630392
+        },
+        {
+          "path": "/vendor/firmware/raw_mfnr_n6pro_sensor_48M_day_NNA.mbs.bin",
+          "sizeBytes": 1840808
+        },
+        {
+          "path": "/vendor/firmware/raw_mfnr_n6pro_sensor_48M_night_NNA.mbs.bin",
+          "sizeBytes": 1840808
+        }
+      ]
+    },
+    {
+      "name": "Skin-region segmentation",
+      "nameZhHant": "皮膚區域分割",
+      "note": "libSkinSegment.so references this file. A skin-region mask can support selective skin processing; this does not establish skin-tone classification, health diagnosis or activation of a beauty feature.",
+      "noteZhHant": "libSkinSegment.so 引用此檔案。皮膚區域遮罩可為局部皮膚處理提供資訊，不代表膚色分類、健康診斷或美顏功能已啟用。",
+      "files": [
+        {
+          "path": "/vendor/firmware/skinseg_NNA.mbs.bin",
+          "sizeBytes": 8640828
+        }
+      ]
+    },
+    {
+      "name": "Face-analysis binary pairs",
+      "nameZhHant": "臉部分析二進位配套",
+      "note": "Names suggest face-related analysis supporting image processing. Exact outputs, such as landmarks or attributes, are not established. Do not equate these files with identity recognition or biometric unlocking.",
+      "noteZhHant": "檔名指向影像處理中的臉部分析；是否輸出特徵點或其他屬性尚未確認。不能把這些檔案等同於身分辨識或生物辨識解鎖。",
+      "files": [
+        {
+          "path": "/vendor/firmware/face_analyze_cadence.bin",
+          "sizeBytes": 1960149
+        },
+        {
+          "path": "/vendor/firmware/face_analyze_for_fb2_2_cadence.bin",
+          "sizeBytes": 1956622
+        },
+        {
+          "path": "/vendor/firmware/face_analyze_for_fb2_2_network.bin",
+          "sizeBytes": 3496736
+        },
+        {
+          "path": "/vendor/firmware/face_analyze_network.bin",
+          "sizeBytes": 3119360
+        }
+      ]
+    },
+    {
+      "name": "Facial-skin segmentation companions",
+      "nameZhHant": "臉部皮膚分割配套",
+      "note": "Names suggest separating facial skin from surrounding regions for selective processing. Exact masks, inputs and active feature mapping are unverified. The paired files are not counted as two independent models.",
+      "noteZhHant": "檔名指向分離臉部皮膚及周圍區域，以供局部處理。精確遮罩、輸入及功能對應尚未確認；成對檔案不算兩個獨立模型。",
+      "files": [
+        {
+          "path": "/vendor/firmware/faceskin_seg_cadence.bin",
+          "sizeBytes": 3250319
+        },
+        {
+          "path": "/vendor/firmware/faceskin_seg_network.bin",
+          "sizeBytes": 638720
+        }
+      ]
+    },
+    {
+      "name": "Face-beautification companion",
+      "nameZhHant": "臉部美化配套",
+      "note": "The filename indicates a face-beautification processing component. Whether it contains model weights, executable kernels or mixed data is unverified, as are the available adjustments and activation conditions.",
+      "noteZhHant": "檔名指向臉部美化處理組件；其中是模型權重、執行核心或混合資料尚未確認，可調項目及啟用條件亦未確認。",
+      "files": [
+        {
+          "path": "/vendor/firmware/facebeauty_cadence.bin",
+          "sizeBytes": 384415
+        }
+      ]
+    },
+    {
+      "name": "Video HDR component",
+      "nameZhHant": "影片 HDR 組件",
+      "note": "libSprdVideoHDR.so references this file. It is associated with video dynamic-range processing. File presence does not establish HDR recording at a given resolution or frame rate.",
+      "noteZhHant": "libSprdVideoHDR.so 引用此檔案，與影片動態範圍處理有關；存在此檔案不代表指定解析度或幀率下已啟用 HDR 錄影。",
+      "files": [
+        {
+          "path": "/vendor/firmware/videohdr_NNA.mbs.bin",
+          "sizeBytes": 888936
+        }
+      ]
+    },
+    {
+      "name": "Inception-v3-named compiled candidate",
+      "nameZhHant": "以 Inception-v3 命名的編譯候選檔",
+      "note": "The name suggests an image-classification network. Its class labels, consuming application and relationship to cv_imageClassify.tflite are not established; it may belong to a separate test or runtime path.",
+      "noteZhHant": "名稱指向影像分類網路。類別標籤、使用它的應用，以及與 cv_imageClassify.tflite 的關係尚未確認；可能屬於獨立測試或執行路徑。",
+      "files": [
+        {
+          "path": "/vendor/etc/inceptionv3_mbs.bin",
+          "sizeBytes": 17747956
+        }
+      ]
+    },
+    {
+      "name": "FDR companion · role unresolved",
+      "nameZhHant": "FDR 配套 · 用途待確認",
+      "note": "The filename alone is insufficient to expand FDR reliably or determine whether this is a model, runtime code or calibration data. It is listed for completeness without assigning a consumer feature.",
+      "noteZhHant": "僅憑檔名不足以可靠解釋 FDR，亦無法判定是模型、執行程式或校準資料。為完整性保留列出，不指定其消費者功能。",
+      "files": [
+        {
+          "path": "/vendor/firmware/fdr_cadence.bin",
+          "sizeBytes": 1022053
+        }
+      ]
+    }
+  ],
+  "externalGemma": {
+    "name": "Gemma 3n E2B IT INT4 generic LiteRT-LM",
+    "file": "gemma-3n-E2B-it-int4.litertlm",
+    "bytes": 3655827456,
+    "sha256LocalAndDevice": "2ed7bc3a0026c93d5b8a4544b352d9d00cd66ff0bac3ef6a20ac3d2cba4010d6",
+    "tests": {
+      "date": "2026-10-16",
+      "device_software": "MAG1WW60-1",
+      "model": "Gemma 3n E2B IT INT4 generic LiteRT-LM",
+      "runtime": "Google AI Edge Gallery 1.0.20",
+      "backend": "CPU",
+      "runtime_evidence": "Gallery labels responses Model on CPU; process log records TfLiteXNNPackDelegate for prefill and decode.",
+      "text_tests": [
+        {
+          "language": "English",
+          "status": "completed",
+          "ui_elapsed_seconds": 24.0,
+          "evidence": "english-result.xml",
+          "quality_note": "The response generalizes local inference as faster; this is generated text, not a verified performance claim."
+        },
+        {
+          "language": "Traditional Chinese output from English instruction",
+          "status": "completed",
+          "ui_elapsed_seconds": 23.7,
+          "evidence": "traditional-chinese-result.xml"
+        }
+      ],
+      "benchmark": {
+        "source": "Gallery built-in benchmark results UI",
+        "aggregation": "arithmetic mean displayed as avg",
+        "runs": 3,
+        "prefill_tokens": 64,
+        "decode_tokens": 64,
+        "max_tokens_config": 1024,
+        "prefill_tokens_per_second": 19.34,
+        "decode_tokens_per_second": 2.11,
+        "time_to_first_token_seconds": 3.79,
+        "first_initialization_ms": 42993.23,
+        "steady_initialization_ms": 5409.28,
+        "warmup_policy": "Not independently established; report as the app's three-run average, not an externally controlled warm-up-excluded measurement.",
+        "evidence": "benchmark-cpu-64-64-3.xml"
+      },
+      "memory": {
+        "english_generation_pss_kib": 2470511,
+        "chinese_generation_pss_kib": 2518399,
+        "scope": "Point samples, not measured absolute peak. Includes app/model process. See benchmark-memory-samples.json for benchmark sampling."
+      },
+      "limitations": [
+        "GPU not tested; current imported model UI offered CPU.",
+        "NPU acceleration not established.",
+        "These short tests do not establish long-context stability, production readiness or comprehensive accuracy.",
+        "Qwen/FIH results use a different model, tokenizer, engine and workload; rates are not directly equivalent."
+      ],
+      "vision_test": {
+        "status": "completed",
+        "import_name": "Gemma-3n-E2B-INT4-vision.litertlm",
+        "model_identity": "Byte-identical copy of the generic official model; SHA-256 matches model-provenance.json. A second Gallery import enables Support image; all other import parameters unchanged.",
+        "input": "One previously captured ordinary demo photo showing eyeglasses, a laptop keyboard and a maroon desk surface; selected in the Android photo picker at Oct 16 11:39 AM.",
+        "prompt": "Describe the main objects and their positions in this photo in two short English sentences.",
+        "output": "The photo shows a pair of eyeglasses lying on a maroon surface with a laptop partially visible in the background. The glasses are oriented horizontally, with the temples resting on the surface and the lenses facing the camera.",
+        "ui_elapsed_seconds": 41.5,
+        "app_backend_label": "Model on CPU",
+        "backend_scope": "This is the app's LLM backend label, not proof that all vision preprocessing/encoding operations are CPU-only. Vision initialization logs also contain OpenCL activity.",
+        "sampled_process_pss_kib": 3229999,
+        "sampled_battery_c": 35.9,
+        "assessment": "Main objects and their broad spatial relationship correctly identified in this one image. No general visual accuracy claim.",
+        "evidence": "vision-result.xml",
+        "screenshot": "gemma-vision-result.png"
+      }
+    }
+  },
+  "excluded": [
+    "Private app data",
+    "Other APK archives",
+    "Encrypted or proprietary model containers not matching the extension filter"
+  ]
+}

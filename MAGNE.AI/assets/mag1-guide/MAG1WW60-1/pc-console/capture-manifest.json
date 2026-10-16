@@ -1,0 +1,170 @@
+{
+  "build": "MAG1WW60-1",
+  "date": "2026-10-16",
+  "timezone": "Asia/Shanghai",
+  "method": "Real browser frames sampled in chronological order and held until the next captured frame. Original capture timestamps determine playback duration; no inference output was simulated. Audio track is the exact generated WAV, aligned with the observed Play action, not a microphone recording.",
+  "network": "Wi-Fi and mobile data were left enabled. These recordings are not new offline-isolation tests.",
+  "runs": {
+    "en": {
+      "durationSeconds": 73.715,
+      "capturedFrames": 177,
+      "markersSeconds": {
+        "overview": 0.0,
+        "asr": 5.853999853134155,
+        "asr-submit": 7.330999851226807,
+        "asr-result": 20.967000007629395,
+        "tts": 24.753999948501587,
+        "tts-submit": 26.323999881744385,
+        "tts-result": 65.31599998474121,
+        "tts-playback": 67.26199984550476
+      },
+      "tts": {
+        "runId": "7c29a92b1f064f3eaf6e2f62698fb35d",
+        "state": "success",
+        "text": "Hello. This speech is generated locally on the MAG1 phone.",
+        "speakerId": 0,
+        "execution": "Independent Kokoro / phone CPU",
+        "runtime": "sherpa-onnx 1.13.8",
+        "threads": 2,
+        "fihServiceInvoked": false,
+        "build": "MAG1WW60-1",
+        "startedAt": "2026-10-16T13:12:26.641745+00:00",
+        "processElapsedSeconds": 16.89,
+        "audioSeconds": 4.2560416666666665,
+        "synthesisSeconds": 9.447,
+        "rtf": 2.2196681188506533,
+        "sha256": "92227faaa4da1daf4afba30907c27a5c3b37793107ac33d00cc31da00a6d6581",
+        "warnings": [
+          "/k2-fsa/sherpa-onnx/sherpa-onnx/csrc/lexicon.cc:ConvertTokensToIds:93 Unknown token: ❓",
+          "/k2-fsa/sherpa-onnx/sherpa-onnx/csrc/piper-phonemize-lexicon.cc:PiperPhonemesToIdsKokoroOrKitten:262 Skip unknown phonemes. Unicode codepoint: \\U+025a."
+        ]
+      }
+    },
+    "zh": {
+      "durationSeconds": 95.165,
+      "capturedFrames": 322,
+      "markersSeconds": {
+        "overview": 0.0,
+        "asr": 5.4019999504089355,
+        "asr-submit": 18.33799982070923,
+        "asr-result": 21.250999927520752,
+        "tts": 24.68499994277954,
+        "tts-submit": 37.53499984741211,
+        "tts-result": 83.37800002098083,
+        "tts-playback": 84.89599990844727
+      },
+      "tts": {
+        "runId": "815b2257dc944c78be800b3ebf54c5b0",
+        "state": "success",
+        "text": "你好，這段語音由手機本地模型產生。",
+        "speakerId": 3,
+        "execution": "Independent Kokoro / phone CPU",
+        "runtime": "sherpa-onnx 1.13.8",
+        "threads": 2,
+        "fihServiceInvoked": false,
+        "build": "MAG1WW60-1",
+        "startedAt": "2026-10-16T13:14:15.939515+00:00",
+        "processElapsedSeconds": 14.422,
+        "audioSeconds": 3.62075,
+        "synthesisSeconds": 6.974,
+        "rtf": 1.9261202789477319,
+        "sha256": "7c41547ec3010aa9732a1449b163877d6ced38fe0161ed062807b39056bc0589",
+        "warnings": [
+          "/k2-fsa/sherpa-onnx/sherpa-onnx/csrc/lexicon.cc:ConvertTokensToIds:93 Unknown token: ❓"
+        ]
+      }
+    }
+  },
+  "files": [
+    {
+      "name": "asr-en.jpg",
+      "bytes": 81729,
+      "sha256": "547f17f4f16a67b16da4cda08931312a3440d8622cd23cfe19c05b53aaf89512"
+    },
+    {
+      "name": "asr-zh.jpg",
+      "bytes": 71732,
+      "sha256": "edd4de8bab51b34ee04e5a914a67b5a376368f59ec2149f639e555c3ddf17fef"
+    },
+    {
+      "name": "console-demo-en-poster.jpg",
+      "bytes": 97482,
+      "sha256": "c1a7f90646e8d9bccf39660f86311d1d4956ca99a994762b63fe75cfc6ed1683"
+    },
+    {
+      "name": "console-demo-en.en.vtt",
+      "bytes": 836,
+      "sha256": "cd87aded6d430bdbc7b7e9305a4b24a3e6358ae86549d12c32253f033511bff8"
+    },
+    {
+      "name": "console-demo-en.mp4",
+      "bytes": 722774,
+      "sha256": "65aad52b62d1f1750c52b222b3e13ae42682c820915317a0395c517f017b8ced"
+    },
+    {
+      "name": "console-demo-en.zh.vtt",
+      "bytes": 797,
+      "sha256": "51dd90d39190b2a0b1854e4c42c8de7ea772094ce8288101d5b4b91647d40477"
+    },
+    {
+      "name": "console-demo-zh-poster.jpg",
+      "bytes": 84960,
+      "sha256": "c922795a0d5f877059835cc246e54ef7651ccaa67289c87d33fa8db38ca35c73"
+    },
+    {
+      "name": "console-demo-zh.en.vtt",
+      "bytes": 836,
+      "sha256": "ca9d54f1a19dde7a2e81f7a2cf931f9707f0cad39379339f823f6e02db5ae4b9"
+    },
+    {
+      "name": "console-demo-zh.mp4",
+      "bytes": 657789,
+      "sha256": "4e4b32c558d704f91a7adb09c92b3f3e24f7263fd0597e69d0450d70ce1d84a0"
+    },
+    {
+      "name": "console-demo-zh.zh.vtt",
+      "bytes": 797,
+      "sha256": "fcef1419debc77b31f2ecf69c00ec11052c766438fc72877c4d04db8a4779f2f"
+    },
+    {
+      "name": "models-en.jpg",
+      "bytes": 82348,
+      "sha256": "c9b1bccc1ec128c2bab3a801bccf072336baa5150394f58ea2625368e65a6ef8"
+    },
+    {
+      "name": "models-zh.jpg",
+      "bytes": 74584,
+      "sha256": "fa3f141d9466bc560b12cd552370a829f71fff467525771393ee0e7deb47fa7e"
+    },
+    {
+      "name": "overview-en.jpg",
+      "bytes": 97482,
+      "sha256": "c1a7f90646e8d9bccf39660f86311d1d4956ca99a994762b63fe75cfc6ed1683"
+    },
+    {
+      "name": "overview-zh.jpg",
+      "bytes": 84960,
+      "sha256": "c922795a0d5f877059835cc246e54ef7651ccaa67289c87d33fa8db38ca35c73"
+    },
+    {
+      "name": "tts-en.jpg",
+      "bytes": 74350,
+      "sha256": "1f4f5180a5bc5919aa7d79650a6a1e1e1852f864a27c09ba8ade369dc4ff4729"
+    },
+    {
+      "name": "tts-output-en.wav",
+      "bytes": 204334,
+      "sha256": "92227faaa4da1daf4afba30907c27a5c3b37793107ac33d00cc31da00a6d6581"
+    },
+    {
+      "name": "tts-output-zh.wav",
+      "bytes": 173840,
+      "sha256": "7c41547ec3010aa9732a1449b163877d6ced38fe0161ed062807b39056bc0589"
+    },
+    {
+      "name": "tts-zh.jpg",
+      "bytes": 64047,
+      "sha256": "73974138283c66745ec20b66265f979b721c3c335ff5ccbe2cb1a5125880b3c3"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "defaultGuideBaseline": "MAG1WW53",
+  "isLatestFirmwareClaim": false,
+  "builds": [
+    {
+      "id": "MAG1WW53",
+      "android": "15",
+      "captureDate": "2026-10-14",
+      "guideRevision": "2026.10.14-review.15",
+      "state": "internal-review",
+      "availableContentLocales": [
+        "en",
+        "zh-Hant"
+      ],
+      "plannedPublicationLocales": [
+        "en",
+        "zh-Hant"
+      ]
+    }
+  ],
+  "updatePolicy": {
+    "preservePreviousBuilds": true,
+    "compatibility": "exact-build-until-verified",
+    "updateUnit": "individual-feature",
+    "reviewStepsScreensAndVideos": true,
+    "reviewBothPublicationLocales": true,
+    "newBuildRequiresDeviceVerification": true
+  }
+}

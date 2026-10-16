@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en" data-asset-base="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101a17">
+  
+  <title>Security Architecture | MAGNE.AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans+TC:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/site.css?v=lang-4-ga4-2">
+  <script src="../assets/site.js?v=consent-3" defer></script>
+  <meta name="description" content="Learn about MAG1's three-layer hardware security architecture: Trusted Execution Environment, Secure Element, and Offline NFC Resilience.">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <link rel="canonical" href="https://www.magne.ai/en/security.html">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="MAGNE.AI">
+  <meta property="og:title" content="Security Architecture | MAGNE.AI">
+  <meta property="og:description" content="Learn about MAG1's three-layer hardware security architecture: Trusted Execution Environment, Secure Element, and Offline NFC Resilience.">
+  <meta property="og:url" content="https://www.magne.ai/en/security.html">
+  <meta property="og:image" content="https://www.magne.ai/assets/images/cover-hold-the-future.webp">
+  <meta property="og:image:alt" content="MAGNE.AI MAG1 intelligent terminal">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Security Architecture | MAGNE.AI">
+  <meta name="twitter:description" content="Learn about MAG1's three-layer hardware security architecture: Trusted Execution Environment, Secure Element, and Offline NFC Resilience.">
+  <meta name="twitter:image" content="https://www.magne.ai/assets/images/cover-hold-the-future.webp">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../site.webmanifest">
+</head>
+<body class="page-security">
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="reading-progress" aria-hidden="true"><span></span></div>
+  <header class="masthead">
+    <div class="masthead__edition"><span>MAGNE.AI</span><span>Trust Profile · FILE 04</span></div>
+      <a class="wordmark" href="./" aria-label="MAGNE.AI Home Page"><span class="wordmark__mark" aria-hidden="true">///</span><span class="wordmark__logo"><img src="../assets/images/magne-logo-black-wide.png" width="1181" height="116" alt="MAGNE.AI"></span></a>
+    <div class="masthead__meta"><span>HARDWARE TRUST</span><span>THREE INDEPENDENT LAYERS</span></div>
+  </header>
+  <nav class="site-nav" aria-label="Primary navigation">
+    <a class="site-nav__brand" href="./" aria-label="MAGNE.AI Home Page">MAGNE.AI</a>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu"><span class="sr-only">Open navigation</span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
+    <div class="site-nav__menu" id="site-menu"><a href="./">INDEX</a><a href="phone.html">PHONE</a><a href="ai.html">AI</a><a href="network.html">NETWORK</a><a href="security.html" aria-current="page">SECURITY</a><a href="compliance.html">COMPLIANCE</a><a href="progress.html">PROGRESS</a><a href="partners.html">PARTNERS</a><a href="media-kit.html">MEDIA KIT</a><a href="contact.html">CONTACT</a><a href="https://w3.magne.ai/" target="_blank" rel="noopener">W3 ↗</a></div>
+    <div class="site-nav__actions"><div class="language-menu"><span>EN</span></div><a class="nav-cta" href="https://payment.magne.ai/buy">Pre-order MAG1 ↗</a></div>
+  </nav>
+  <main id="main">
+    <section class="security-hero">
+      <div class="security-hero__stamp reveal"><span>TRUST / 03</span><strong>independent<br>line of defense</strong><small>NO SINGLE POINT OF TRUST</small></div>
+      <div class="security-hero__copy">
+        <p class="eyebrow reveal">HARDWARE BEFORE PROMISES</p>
+        <h1><span class="reveal">Security is not</span><span class="reveal">one wall.</span><span class="reveal">It is three distinct gates.</span></h1>
+        <p class="reveal">The main system, signature and recovery are designed separately. Even if one layer faces risks, the other layers still maintain their boundaries.</p>
+      </div>
+    </section>
+
+    <section class="section trust-blueprint" aria-labelledby="trust-title">
+      <header class="section-heading"><span class="chapter-index">I</span><div><p class="eyebrow">TRUST BLUEPRINT · TRUST BLUEPRINT</p><h2 id="trust-title">Each layer only does one thing.<br>Only believe what you should believe.</h2></div></header>
+      <div class="trust-layers">
+        <article class="trust-layer trust-layer--tee reveal"><span class="trust-layer__index">01</span><div><p class="eyebrow">ISOLATE</p><h3>Trusted execution isolation</h3><strong>UTEE · CC EAL2+</strong></div><p>Isolate sensitive data and critical operations from the general Android environment and process them within controlled boundaries.</p><small>PROCESS BOUNDARY</small></article>
+        <article class="trust-layer trust-layer--se reveal"><span class="trust-layer__index">02</span><div><p class="eyebrow">SIGN</p><h3>Secure element signature</h3><strong>HYPERSEED N60 · CC EAL6+</strong></div><p>Keys are designed to remain within the secure hardware; sensitive signing operations do not have to be exposed to the main system.</p><small>KEY BOUNDARY</small></article>
+        <article class="trust-layer trust-layer--nfc reveal"><span class="trust-layer__index">03</span><div><p class="eyebrow">RECOVER</p><h3>Offline NFC recovery</h3><strong>HYPERSEED 72B · CC EAL6+</strong></div><p>Recovery materials can be saved offline, so device loss and ownership loss are no longer the same thing.</p><small>RECOVERY BOUNDARY</small></article>
+      </div>
+    </section>
+
+    <section class="section section--dark se-runtime" aria-labelledby="se-runtime-title">
+      <header class="section-heading"><span class="chapter-index">II</span><div><p class="eyebrow">Real machine security path · ADB VERIFIED</p><h2 id="se-runtime-title">The N60 isn't just about spec sheets.<br>It has entered the safe path of Android.</h2></div></header>
+
+      <div class="se-runtime__identity reveal">
+        <div><span>PRODUCT CONFIRMED</span><strong>HYPERSEED N60</strong><p>MAG1’s product integration is confirmed using the HyperSeed N60. This is product and supply chain confirmation and does not rely on ADB to guess commercial models.</p></div>
+        <div><span>ADB VISIBLE</span><code>vendor.hed.hednfc_aidl.IHedNfc/default</code><p>The actual system returns to the HED NFC provider service to prove that the N60 / NFCC has been connected to the Android NFC and secure element channel.</p></div>
+      </div>
+
+      <div class="se-stack reveal" role="img" aria-label="MAG1 Android and HyperSeed N60 secure element integration architecture diagram">
+        <div class="se-stack__layer se-stack__layer--apps">
+          <div class="se-stack__label"><span>01</span><strong>APP LAYER</strong><small>user intent</small></div>
+          <div class="se-stack__nodes se-stack__nodes--3"><span>WALLET / DAPP</span><span>AGENTPAY</span><span>IDENTITY / RECOVERY</span></div>
+        </div>
+        <div class="se-stack__layer se-stack__layer--android">
+          <div class="se-stack__label"><span>02</span><strong>ANDROID FRAMEWORK</strong><small>Authorization and standard interface</small></div>
+          <div class="se-stack__nodes se-stack__nodes--4"><span>USER AUTHORIZATION</span><span>OMAPI API</span><span>SECURE ELEMENT SERVICE</span><span>APDU ACCESS RULES</span></div>
+        </div>
+        <div class="se-stack__layer se-stack__layer--vendor">
+          <div class="se-stack__label"><span>03</span><strong>VENDOR BRIDGE</strong><small>Real machine service path</small></div>
+          <div class="se-stack__nodes se-stack__nodes--3"><span>ANDROID NFC SERVICE</span><span>HED NFC AIDL</span><span>eSE1 · CONNECTED</span></div>
+        </div>
+        <div class="se-stack__layer se-stack__layer--hardware">
+          <div class="se-stack__label"><span>04</span><strong>HARDWARE BOUNDARY</strong><small>key does not leave</small></div>
+          <div class="se-stack__hardware"><strong>HYPERSEED N60</strong><div><span>KEY STORE</span><span>CRYPTO</span><span>RNG</span><span>ANTI-TAMPER</span></div><small>Only returns signatures or controlled operation results</small></div>
+        </div>
+      </div>
+
+      <div class="se-runtime__mechanism" aria-label="N60 security request operation mechanism">
+        <article class="reveal"><span>01 / INTENT</span><strong>Application makes a request</strong><p>Apps or DApps initiate signature, identity, or security data operations without directly contacting the secure element.</p></article>
+        <article class="reveal"><span>02 / AUTHORIZE</span><strong>The system performs authorization first</strong><p>Android permissions, user confirmation, and OMAPI access rules work together to determine the caller.</p></article>
+        <article class="reveal"><span>03 / ROUTE</span><strong>Standard service routing</strong><p>The Secure Element Service hands over controlled APDUs to the HED NFC provider service.</p></article>
+        <article class="reveal"><span>04 / EXECUTE</span><strong>N60 internal execution</strong><p>Requests enter N60 via eSE1; keys, nonces, and cryptographic operations remain within the hardware boundary.</p></article>
+        <article class="reveal"><span>05 / RETURN</span><strong>Only results are returned</strong><p>Android and applications only obtain signatures or controlled results, and the private key body is not exported.</p></article>
+      </div>
+
+      <aside class="se-runtime__parallel reveal"><span>PARALLEL ANDROID SECURITY</span><strong>Keystore2 → KeyMint → Hardware-backed key operations</strong><p>Keystore2 and KeyMint are parallel hardware key services for Android. Together with the OMAPI / eSE path, they form the system security layer of MAG1, but this picture does not mistakenly draw KeyMint as an N60 internal module.</p></aside>
+
+      <div class="se-runtime__evidence">
+        <article class="reveal"><span>SYSTEM FEATURE</span><code>android.hardware.nfc.ese</code><p>Android announces the ability to embed secure elements and NFC stacks to recognize eSE paths.</p></article>
+        <article class="reveal"><span>OMAPI FEATURE</span><code>android.hardware.se.omapi.ese</code><p>The system provides a standard OMAPI eSE interface, and the application does not directly contact the underlying hardware bus.</p></article>
+        <article class="reveal"><span>ANDROID SERVICE</span><code>secure_element · ISecureElementService</code><p>The Secure Element Service is registered and managed by the Android Secure Element Framework.</p></article>
+        <article class="reveal"><span>LIVE TERMINAL</span><code>eSE1 · mIsConnected:true</code><p>The actual machine reports that the eSE1 terminal is online and the secure element channel is connected.</p></article>
+        <article class="reveal"><span>KEY SERVICES</span><code>KeyMint · Keystore2</code><p>The hardware key service exists at the same time as Android Keystore2, undertaking the key life cycle and controlled operations.</p></article>
+        <article class="reveal"><span>ACCESS CONTROL</span><code>APDU RULES · FILTERS PRESENT</code><p>The actual machine returns per-application access and APDU filtering status; the specific rules, hashing and identification data are not made public.</p></article>
+      </div>
+
+      <p class="se-runtime__scope reveal"><strong>Evidence boundaries:</strong>ADB cannot guarantee full commercial models for direct readout of the secure element; the N60 model is from MAG1's confirmed product integration, and ADB verifies that HED, OMAPI, eSE1 and Android security services are actually running. This page does not disclose other security chip part numbers.</p>
+    </section>
+
+    <section class="section chip-architecture" aria-labelledby="chip-title">
+      <header class="section-heading"><span class="chapter-index">III</span><div><p class="eyebrow">Safety factors · CHIP ARCHITECTURE</p><h2 id="chip-title">Three safety factors,<br>Three paths that cannot be confused.</h2></div></header>
+      <div class="architecture-strip reveal" aria-label="MAG1 three layers of security factors">
+        <article class="architecture-node architecture-node--tee"><span>L1</span><strong>UTEE</strong><p>Put sensitive processes into trusted execution boundaries.</p></article>
+        <i class="architecture-connector" aria-hidden="true"></i>
+        <article class="architecture-node architecture-node--se"><span>L2</span><strong>HYPERSEED N60</strong><p>Store the key in a secure element and complete the signature.</p></article>
+        <i class="architecture-connector" aria-hidden="true"></i>
+        <article class="architecture-node architecture-node--nfc"><span>L3</span><strong>HYPERSEED 72B</strong><p>Save the recovery path with a separate NFC chip.</p></article>
+      </div>
+      <div class="chip-diagrams">
+        <article class="chip-card reveal">
+          <div class="chip-card__head"><span>L1 / UTEE</span><div><h3>Trusted execution environment</h3><p>Normal World and Secure World are separated by the TrustZone boundary, and sensitive APIs, key services and secure storage are only completed on the trusted side.</p></div></div>
+          <svg class="chip-diagram chip-diagram--legacy" viewBox="0 0 900 420" style="width:100%;max-width:900px;height:auto;display:block;margin:0 auto;">
+        
+        <!-- HLOS Section (Left) -->
+        <text x="15" y="25" fill="rgba(255,255,255,0.6)" font-size="12" font-weight="700">HLOS</text>
+        
+        <!-- Android box -->
+        <rect x="15" y="35" width="410" height="95" rx="6" fill="rgba(80,80,120,0.15)" stroke="rgba(255,255,255,0.1)"/>
+        <text x="25" y="52" fill="rgba(255,255,255,0.7)" font-size="10" font-weight="600">Android</text>
+        
+        <rect x="25" y="60" width="75" height="18" rx="4" fill="rgba(100,100,200,0.25)"/><text x="32" y="72" fill="white" font-size="8">TSupplicant</text>
+        <rect x="110" y="60" width="65" height="18" rx="4" fill="rgba(100,100,200,0.25)"/><text x="118" y="72" fill="white" font-size="8">Storaged</text>
+        <rect x="185" y="60" width="50" height="18" rx="4" fill="rgba(100,100,200,0.25)"/><text x="193" y="72" fill="white" font-size="8">CAs</text>
+        <rect x="25" y="85" width="130" height="16" rx="4" fill="rgba(80,80,180,0.25)"/><text x="32" y="96" fill="rgba(180,180,255,0.9)" font-size="7">GPTEE Client API Library</text>
+        <rect x="165" y="85" width="130" height="16" rx="4" fill="rgba(80,80,180,0.25)"/><text x="172" y="96" fill="rgba(180,180,255,0.9)" font-size="7">Unisoc TEE API Library</text>
+        <rect x="305" y="85" width="110" height="16" rx="4" fill="rgba(80,80,180,0.25)"/><text x="312" y="96" fill="rgba(180,180,255,0.9)" font-size="7">world switch</text>
+        
+        <!-- Linux Kernel box -->
+        <rect x="15" y="140" width="410" height="70" rx="6" fill="rgba(60,60,100,0.15)" stroke="rgba(255,255,255,0.1)"/>
+        <text x="25" y="157" fill="rgba(255,255,255,0.7)" font-size="10" font-weight="600">Linux kernel</text>
+        
+        <rect x="25" y="165" width="390" height="35" rx="4" fill="none" stroke="rgba(150,100,200,0.4)" stroke-dasharray="4,2"/>
+        <text x="35" y="178" fill="rgba(200,150,255,0.8)" font-size="8">trusty linux driver</text>
+        <rect x="35" y="183" width="45" height="12" rx="3" fill="rgba(150,100,200,0.3)"/><text x="40" y="192" fill="rgba(220,200,255,0.9)" font-size="6">TIPC</text>
+        <rect x="90" y="183" width="45" height="12" rx="3" fill="rgba(150,100,200,0.3)"/><text x="95" y="192" fill="rgba(220,200,255,0.9)" font-size="6">virtio</text>
+        <rect x="145" y="183" width="80" height="12" rx="3" fill="rgba(150,100,200,0.3)"/><text x="150" y="192" fill="rgba(220,200,255,0.9)" font-size="6">SMC call helper</text>
+        <rect x="235" y="183" width="70" height="12" rx="3" fill="rgba(150,100,200,0.3)"/><text x="240" y="192" fill="rgba(220,200,255,0.9)" font-size="6">world switch</text>
+        
+        <!-- SML Firmware -->
+        <rect x="15" y="220" width="410" height="25" rx="4" fill="rgba(100,80,60,0.2)" stroke="rgba(200,150,100,0.2)"/>
+        <text x="25" y="236" fill="rgba(200,180,150,0.8)" font-size="8">SML (ARM Trusted Firmware)</text>
+        
+        <!-- Isolation Barrier -->
+        <line x1="435" y1="10" x2="435" y2="400" stroke="rgba(0,212,212,0.5)" stroke-width="2" stroke-dasharray="6,3"/>
+        <text x="440" y="30" fill="rgba(0,212,212,0.7)" font-size="8" transform="rotate(90,440,30)">Isolation defined by TrustZone</text>
+        
+        <!-- Trusted OS Section (Right) -->
+        <text x="450" y="25" fill="rgba(0,212,212,0.9)" font-size="12" font-weight="700">Trusted OS</text>
+        
+        <!-- Trusty Applications -->
+        <rect x="450" y="35" width="435" height="100" rx="6" fill="rgba(0,150,150,0.1)" stroke="rgba(0,212,212,0.2)"/>
+        <text x="460" y="52" fill="rgba(0,212,212,0.9)" font-size="10" font-weight="600">Trusty Application</text>
+        
+        <rect x="460" y="60" width="70" height="18" rx="4" fill="rgba(0,180,180,0.25)"/><text x="468" y="72" fill="white" font-size="8">Keymaster</text>
+        <rect x="540" y="60" width="70" height="18" rx="4" fill="rgba(0,180,180,0.25)"/><text x="548" y="72" fill="white" font-size="8">Gatekeeper</text>
+        <rect x="620" y="60" width="70" height="18" rx="4" fill="rgba(0,180,180,0.25)"/><text x="628" y="72" fill="white" font-size="8">Fingerprint</text>
+        <rect x="700" y="60" width="55" height="18" rx="4" fill="rgba(0,180,180,0.25)"/><text x="708" y="72" fill="white" font-size="8">FaceID</text>
+        <rect x="765" y="60" width="75" height="18" rx="4" fill="rgba(0,180,180,0.25)"/><text x="773" y="72" fill="white" font-size="8">KernelBootCP</text>
+        
+        <rect x="460" y="83" width="60" height="16" rx="4" fill="rgba(0,160,160,0.2)"/><text x="468" y="94" fill="rgba(180,255,255,0.9)" font-size="7">Production</text>
+        <rect x="530" y="83" width="45" height="16" rx="4" fill="rgba(0,160,160,0.2)"/><text x="538" y="94" fill="rgba(180,255,255,0.9)" font-size="7">DRM</text>
+        <rect x="585" y="83" width="70" height="16" rx="4" fill="rgba(0,160,160,0.2)"/><text x="592" y="94" fill="rgba(180,255,255,0.9)" font-size="7">IFAA/Soter</text>
+        
+        <!-- Middle TOE Box -->
+        <rect x="460" y="105" width="415" height="30" rx="4" fill="rgba(180,50,50,0.08)" stroke="rgba(255,100,100,0.4)" stroke-width="1.5"/>
+        <text x="470" y="118" fill="rgba(255,150,150,0.8)" font-size="7">Storage</text>
+        <text x="530" y="118" fill="rgba(255,150,150,0.8)" font-size="7">GPTEE Internal API Library</text>
+        <text x="690" y="118" fill="rgba(255,150,150,0.8)" font-size="7">Unisoc TEE API Library</text>
+        
+        <!-- Trusted OS Framework -->
+        <rect x="450" y="145" width="435" height="100" rx="6" fill="rgba(0,100,100,0.12)" stroke="rgba(0,150,150,0.25)"/>
+        <text x="460" y="162" fill="rgba(0,212,212,0.9)" font-size="10" font-weight="600">Trusted OS Framework</text>
+        
+        <!-- Dashed box for TEE Communication -->
+        <rect x="470" y="170" width="140" height="65" rx="4" fill="none" stroke="rgba(0,212,212,0.3)" stroke-dasharray="4,2"/>
+        <text x="480" y="182" fill="rgba(0,212,212,0.7)" font-size="7">IPC, TIPC, virtio</text>
+        <text x="480" y="195" fill="rgba(180,255,255,0.8)" font-size="6">SMC call wait thread</text>
+        <text x="480" y="208" fill="rgba(180,255,255,0.8)" font-size="6">misc syscalls</text>
+        <text x="480" y="221" fill="rgba(180,255,255,0.8)" font-size="6">world switch</text>
+        
+        <!-- Other framework components -->
+        <rect x="620" y="170" width="250" height="65" rx="4" fill="rgba(0,80,80,0.2)" stroke="rgba(0,150,150,0.3)"/>
+        <text x="630" y="182" fill="rgba(180,255,255,0.9)" font-size="7">Tomcrypt</text>
+        <text x="690" y="182" fill="rgba(180,255,255,0.9)" font-size="7">OpenSSL</text>
+        <text x="630" y="195" fill="rgba(180,255,255,0.9)" font-size="7">TA Manager</text>
+        <text x="720" y="195" fill="rgba(180,255,255,0.9)" font-size="7">GPAPI Agent</text>
+        <text x="630" y="208" fill="rgba(180,255,255,0.9)" font-size="7">Secure Boot</text>
+        <text x="720" y="208" fill="rgba(180,255,255,0.9)" font-size="7">Firewall</text>
+        <text x="630" y="221" fill="rgba(180,255,255,0.9)" font-size="7">Crypto Engine</text>
+        <text x="720" y="221" fill="rgba(180,255,255,0.9)" font-size="7">LK (Trusted kernel)</text>
+        
+        <!-- Hardware Section -->
+        <text x="15" y="260" fill="rgba(255,255,255,0.6)" font-size="10" font-weight="600">Hardware</text>
+        
+        <rect x="15" y="270" width="870" height="80" rx="6" fill="rgba(60,60,60,0.15)" stroke="rgba(255,255,255,0.1)"/>
+        
+        <!-- Non-Secure Peripherals -->
+        <rect x="25" y="280" width="130" height="60" rx="4" fill="rgba(80,80,80,0.2)" stroke="rgba(150,150,150,0.2)"/>
+        <text x="35" y="295" fill="rgba(200,200,200,0.8)" font-size="8">Non-Secure</text>
+        <text x="35" y="308" fill="rgba(200,200,200,0.8)" font-size="8">Peripherals</text>
+        
+        <!-- Non-Secure RAM -->
+        <rect x="165" y="280" width="100" height="60" rx="4" fill="rgba(80,80,80,0.2)" stroke="rgba(150,150,150,0.2)"/>
+        <text x="175" y="295" fill="rgba(200,200,200,0.8)" font-size="8">Non-Secure RAM</text>
+        
+        <!-- Shared RAM -->
+        <rect x="275" y="280" width="90" height="60" rx="4" fill="rgba(100,100,80,0.2)" stroke="rgba(200,200,150,0.2)"/>
+        <text x="285" y="295" fill="rgba(220,220,180,0.8)" font-size="8">Shared RAM</text>
+        
+        <!-- Secure RAM -->
+        <rect x="375" y="280" width="100" height="60" rx="4" fill="rgba(0,150,150,0.15)" stroke="rgba(0,212,212,0.3)"/>
+        <text x="385" y="295" fill="rgba(0,212,212,0.9)" font-size="8">Secure RAM</text>
+        
+        <!-- Secure Peripherals -->
+        <rect x="485" y="280" width="130" height="60" rx="4" fill="rgba(0,150,150,0.15)" stroke="rgba(0,212,212,0.3)"/>
+        <text x="495" y="295" fill="rgba(0,212,212,0.9)" font-size="8">Secure Peripherals</text>
+        
+        <!-- Firewall -->
+        <rect x="625" y="280" width="250" height="60" rx="4" fill="rgba(0,150,150,0.15)" stroke="rgba(0,212,212,0.3)"/>
+        <text x="635" y="295" fill="rgba(0,212,212,0.9)" font-size="8">Firewall</text>
+        <text x="635" y="310" fill="rgba(0,212,212,0.7)" font-size="7">(TrustZone Protect Controller)</text>
+        
+        <!-- Legend -->
+        <rect x="15" y="365" width="870" height="45" rx="4" fill="rgba(40,40,40,0.2)" stroke="rgba(255,255,255,0.05)"/>
+        
+        <rect x="25" y="375" width="12" height="12" rx="2" fill="rgba(100,100,200,0.3)"/><text x="42" y="385" fill="rgba(200,200,255,0.8)" font-size="7">Non-Trusted software components</text>
+        
+        <rect x="230" y="375" width="12" height="12" rx="2" fill="rgba(0,180,180,0.3)" stroke="rgba(0,212,212,0.5)"/><text x="247" y="385" fill="rgba(180,255,255,0.9)" font-size="7">Trusted software components</text>
+        
+        <rect x="450" y="375" width="12" height="12" rx="2" fill="none" stroke="rgba(0,212,212,0.5)" stroke-dasharray="2,1"/><text x="467" y="385" fill="rgba(180,255,255,0.9)" font-size="7">TEE&lt;-&gt;REE Communication Components</text>
+        
+        <rect x="690" y="373" width="20" height="4" rx="2" fill="rgba(255,100,100,0.5)"/><text x="715" y="380" fill="rgba(255,200,200,0.9)" font-size="7">TOE</text>
+        
+      </svg>
+          <div class="chip-summary chip-summary--tee" aria-label="UTEE Image Reading Summary">
+            <span>Reading summary</span>
+            <strong>Normal World</strong>
+            <i aria-hidden="true">TrustZone</i>
+            <strong>Secure World</strong>
+            <p>General systems can initiate requests, but sensitive APIs, key services, and secure storage remain within the trusted execution boundary.</p>
+          </div>
+          <svg class="chip-mobile-diagram chip-mobile-diagram--tee" viewBox="0 0 420 380" role="img" aria-label="Simplified architecture diagram of UTEE mobile version">
+            <text class="mobile-diagram-kicker" x="24" y="34">Mobile Diagram</text>
+            <rect class="mobile-diagram-panel mobile-diagram-panel--normal" x="24" y="60" width="372" height="82" rx="10"></rect>
+            <text class="mobile-diagram-title" x="210" y="96">Normal World</text>
+            <text class="mobile-diagram-subtitle" x="210" y="122">Android / Client API / TEE Driver</text>
+            <line class="mobile-diagram-flow" x1="58" y1="184" x2="166" y2="184"></line>
+            <text class="mobile-diagram-label" x="210" y="190">TrustZone Boundary</text>
+            <line class="mobile-diagram-flow" x1="254" y1="184" x2="362" y2="184"></line>
+            <rect class="mobile-diagram-panel mobile-diagram-panel--secure" x="24" y="226" width="372" height="92" rx="10"></rect>
+            <text class="mobile-diagram-title" x="210" y="264">Secure World</text>
+            <text class="mobile-diagram-subtitle" x="210" y="292">Trusted OS / Keymaster / Secure RAM</text>
+            <rect class="mobile-diagram-strip" x="24" y="334" width="372" height="28" rx="7"></rect>
+            <text class="mobile-diagram-strip-text" x="210" y="353">CC EAL2+ Reference / Process Boundary</text>
+          </svg>
+        </article>
+
+        <article class="chip-card reveal">
+          <div class="chip-card__head"><span>L2 / N60</span><div><h3>Secure element signature</h3><p>The NFC Controller is connected to the eSE via a controlled channel. Key storage, random numbers, encryption acceleration, and tamper detection converge within the secure element.</p></div></div>
+          <svg class="chip-diagram chip-diagram--legacy" viewBox="0 0 900 260" style="width: 100%; max-width: 900px; height: auto; display: block; margin: 0 auto;">
+        <!-- NFCC Section -->
+        <rect x="15" y="10" width="410" height="240" rx="12" fill="rgba(255,180,0,0.05)" stroke="rgba(255,180,0,0.2)" stroke-width="1"/>
+        <text x="30" y="30" fill="#ffb700" font-size="11" font-weight="600">NFCC</text>
+        <text x="30" y="45" fill="rgba(255,200,100,0.5)" font-size="8">Near Field Communication Controller</text>
+        
+        <!-- NFCC CPU -->
+        <rect x="30" y="55" width="180" height="70" rx="8" fill="rgba(255,180,0,0.1)" stroke="rgba(255,180,0,0.3)"/>
+        <text x="40" y="72" fill="rgba(255,200,100,0.8)" font-size="9">CPU CORE</text>
+        <rect x="40" y="80" width="70" height="14" rx="3" fill="rgba(255,150,0,0.2)"/><text x="47" y="91" fill="rgba(255,220,150,0.9)" font-size="7">RAM 20KB</text>
+        <rect x="120" y="80" width="75" height="14" rx="3" fill="rgba(255,150,0,0.2)"/><text x="127" y="91" fill="rgba(255,220,150,0.9)" font-size="7">ROM 64KB</text>
+        <rect x="40" y="100" width="150" height="14" rx="3" fill="rgba(255,150,0,0.25)"/><text x="47" y="111" fill="rgba(255,220,150,0.9)" font-size="7">FLASH 256KB</text>
+        
+        <!-- NFCC Interfaces -->
+        <rect x="220" y="55" width="190" height="70" rx="8" fill="rgba(255,180,0,0.08)" stroke="rgba(255,180,0,0.2)"/>
+        <text x="230" y="72" fill="rgba(255,200,100,0.8)" font-size="9">Interfaces</text>
+        <rect x="230" y="80" width="40" height="18" rx="3" fill="rgba(200,150,0,0.2)"/><text x="237" y="92" fill="rgba(255,220,150,0.9)" font-size="7">I2C</text>
+        <rect x="280" y="80" width="40" height="18" rx="3" fill="rgba(200,150,0,0.2)"/><text x="287" y="92" fill="rgba(255,220,150,0.9)" font-size="7">SPI</text>
+        <rect x="330" y="80" width="45" height="18" rx="3" fill="rgba(200,150,0,0.2)"/><text x="335" y="92" fill="rgba(255,220,150,0.9)" font-size="7">GPIO</text>
+        <rect x="230" y="103" width="80" height="16" rx="3" fill="rgba(200,150,0,0.2)"/><text x="235" y="115" fill="rgba(255,220,150,0.9)" font-size="7">SWP ×3</text>
+        
+        <!-- NFC Radio -->
+        <rect x="30" y="135" width="380" height="50" rx="8" fill="rgba(255,180,0,0.06)" stroke="rgba(255,180,0,0.15)"/>
+        <text x="40" y="152" fill="rgba(255,200,100,0.7)" font-size="9">Contactless RF</text>
+        <rect x="40" y="160" width="70" height="16" rx="3" fill="rgba(200,150,0,0.15)"/><text x="53" y="172" fill="rgba(255,220,150,0.8)" font-size="7">TX</text>
+        <rect x="120" y="160" width="70" height="16" rx="3" fill="rgba(200,150,0,0.15)"/><text x="133" y="172" fill="rgba(255,220,150,0.8)" font-size="7">RX</text>
+        <rect x="220" y="155" width="170" height="24" rx="4" fill="rgba(255,150,0,0.1)"/><text x="240" y="171" fill="rgba(255,220,150,0.8)" font-size="8">Clock: OSC + PLL</text>
+        
+        <!-- Security features -->
+        <rect x="30" y="195" width="380" height="45" rx="8" fill="rgba(255,180,0,0.06)" stroke="rgba(255,180,0,0.15)"/>
+        <text x="40" y="212" fill="rgba(255,200,100,0.7)" font-size="9">Security: </text>
+        <rect x="110" y="203" width="55" height="14" rx="3" fill="rgba(200,150,0,0.2)"/><text x="117" y="213" fill="rgba(255,220,150,0.9)" font-size="7">CRC</text>
+        <rect x="175" y="203" width="55" height="14" rx="3" fill="rgba(200,150,0,0.2)"/><text x="182" y="213" fill="rgba(255,220,150,0.9)" font-size="7">RNG</text>
+        <rect x="240" y="203" width="80" height="14" rx="3" fill="rgba(200,150,0,0.2)"/><text x="247" y="213" fill="rgba(255,220,150,0.9)" font-size="7">Co-proc</text>
+        
+        <!-- SWP Connection -->
+        <line x1="425" y1="130" x2="450" y2="130" stroke="rgba(0,212,212,0.5)" stroke-width="3" stroke-dasharray="5,3"/>
+        <text x="432" y="125" fill="rgba(0,212,212,0.8)" font-size="8">SWP</text>
+        
+        <!-- eSE Section -->
+        <rect x="460" y="10" width="425" height="240" rx="12" fill="rgba(0, 212, 212, 0.05)" stroke="rgba(0, 212, 212, 0.2)" stroke-width="1"/>
+        <text x="475" y="30" fill="var(--accent)" font-size="11" font-weight="600">eSE</text>
+        <text x="475" y="45" fill="rgba(0,255,255,0.5)" font-size="8">Embedded Secure Element</text>
+        
+        <!-- SC300 -->
+        <rect x="475" y="55" width="180" height="70" rx="8" fill="rgba(0, 212, 212, 0.1)" stroke="rgba(0, 212, 212, 0.3)"/>
+        <text x="485" y="72" fill="rgba(0,255,255,0.8)" font-size="9">SC300 Core</text>
+        <rect x="485" y="80" width="70" height="14" rx="3" fill="rgba(0,180,180,0.2)"/><text x="492" y="91" fill="rgba(0,255,255,0.9)" font-size="7">Debug</text>
+        <rect x="565" y="80" width="75" height="14" rx="3" fill="rgba(0,180,180,0.2)"/><text x="572" y="91" fill="rgba(0,255,255,0.9)" font-size="7">EMMU</text>
+        <rect x="485" y="100" width="155" height="18" rx="4" fill="rgba(0,150,150,0.25)"/><text x="492" y="113" fill="rgba(0,255,255,0.9)" font-size="7">DMAC (8-ch)</text>
+        
+        <!-- Crypto Accelerators -->
+        <rect x="665" y="55" width="205" height="130" rx="8" fill="rgba(0, 212, 212, 0.08)" stroke="rgba(0, 212, 212, 0.2)"/>
+        <text x="675" y="72" fill="rgba(0,255,255,0.8)" font-size="9">Crypto Accelerators</text>
+        <rect x="675" y="80" width="50" height="14" rx="3" fill="rgba(200,50,50,0.2)"/><text x="682" y="91" fill="rgba(255,150,150,0.9)" font-size="7">DES</text>
+        <rect x="735" y="80" width="60" height="14" rx="3" fill="rgba(200,50,50,0.2)"/><text x="742" y="91" fill="rgba(255,150,150,0.9)" font-size="7">TDES</text>
+        <rect x="805" y="80" width="50" height="14" rx="3" fill="rgba(200,50,50,0.2)"/><text x="812" y="91" fill="rgba(255,150,150,0.9)" font-size="7">AES</text>
+        <rect x="675" y="99" width="50" height="14" rx="3" fill="rgba(200,50,50,0.2)"/><text x="682" y="110" fill="rgba(255,150,150,0.9)" font-size="7">SHA1</text>
+        <rect x="735" y="99" width="60" height="14" rx="3" fill="rgba(200,50,50,0.2)"/><text x="742" y="110" fill="rgba(255,150,150,0.9)" font-size="7">SHA256</text>
+        <rect x="805" y="99" width="50" height="14" rx="3" fill="rgba(200,50,50,0.2)"/><text x="810" y="110" fill="rgba(255,150,150,0.9)" font-size="7">SM</text>
+        <rect x="675" y="118" width="90" height="14" rx="3" fill="rgba(200,50,50,0.2)"/><text x="682" y="129" fill="rgba(255,150,150,0.9)" font-size="7">PKE</text>
+        
+        <!-- Memory -->
+        <rect x="475" y="135" width="180" height="50" rx="8" fill="rgba(255,200,0,0.08)" stroke="rgba(255,200,0,0.2)"/>
+        <text x="485" y="152" fill="rgba(255,220,100,0.8)" font-size="9">Memory</text>
+        <rect x="485" y="160" width="80" height="18" rx="4" fill="rgba(200,150,0,0.2)"/><text x="492" y="173" fill="rgba(255,220,150,0.9)" font-size="7">Flash</text>
+        <rect x="575" y="160" width="65" height="18" rx="4" fill="rgba(200,150,0,0.2)"/><text x="582" y="173" fill="rgba(255,220,150,0.9)" font-size="7">RAM</text>
+        
+        <!-- Security -->
+        <rect x="475" y="195" width="395" height="45" rx="8" fill="rgba(0, 212, 212, 0.06)" stroke="rgba(0, 212, 212, 0.15)"/>
+        <text x="485" y="212" fill="rgba(0,255,255,0.7)" font-size="9">Security: </text>
+        <rect x="555" y="203" width="55" height="14" rx="3" fill="rgba(0,180,180,0.2)"/><text x="562" y="213" fill="rgba(0,255,255,0.9)" font-size="7">RNG×2</text>
+        <rect x="620" y="203" width="50" height="14" rx="3" fill="rgba(0,180,180,0.2)"/><text x="627" y="213" fill="rgba(0,255,255,0.9)" font-size="7">PUF</text>
+        <rect x="680" y="203" width="60" height="14" rx="3" fill="rgba(0,180,180,0.2)"/><text x="687" y="213" fill="rgba(0,255,255,0.9)" font-size="7">Sensor</text>
+        <rect x="750" y="203" width="110" height="14" rx="3" fill="rgba(0,180,180,0.2)"/><text x="757" y="213" fill="rgba(0,255,255,0.9)" font-size="7">Anti-tamper</text>
+      </svg>
+          <div class="chip-summary chip-summary--se" aria-label="HYPERSEED N60 image reading summary">
+            <span>Reading summary</span>
+            <strong>NFCC</strong>
+            <i aria-hidden="true">SWP</i>
+            <strong>eSE</strong>
+            <p>NFC communication and security components work separately, and signatures, keys, random numbers, and tamper detection converge at the hardware security boundary.</p>
+          </div>
+          <svg class="chip-mobile-diagram chip-mobile-diagram--se" viewBox="0 0 420 400" role="img" aria-label="HYPERSEED N60 mobile version simplified architecture diagram">
+            <text class="mobile-diagram-kicker" x="24" y="34">Mobile Diagram</text>
+            <rect class="mobile-diagram-panel mobile-diagram-panel--warm" x="24" y="58" width="372" height="104" rx="10"></rect>
+            <text class="mobile-diagram-title" x="210" y="94">NFCC</text>
+            <text class="mobile-diagram-subtitle" x="210" y="120">CPU Core / Contactless RF / SWP x3</text>
+            <line class="mobile-diagram-flow" x1="58" y1="202" x2="166" y2="202"></line>
+            <text class="mobile-diagram-label" x="210" y="208">SWP</text>
+            <line class="mobile-diagram-flow" x1="254" y1="202" x2="362" y2="202"></line>
+            <rect class="mobile-diagram-panel mobile-diagram-panel--secure" x="24" y="246" width="372" height="104" rx="10"></rect>
+            <text class="mobile-diagram-title" x="210" y="282">eSE</text>
+            <text class="mobile-diagram-subtitle" x="210" y="308">Key Store / Crypto / Anti-tamper</text>
+            <rect class="mobile-diagram-strip" x="24" y="362" width="372" height="28" rx="7"></rect>
+            <text class="mobile-diagram-strip-text" x="210" y="381">CC EAL6+ Reference / Signature Boundary</text>
+          </svg>
+        </article>
+
+        <article class="chip-card reveal">
+          <div class="chip-card__head"><span>L3 / 72B</span><div><h3>NFC recovery chip</h3><p>A dedicated secure processor protects offline recovery material. It does not vouch for the main system; it preserves an independently authorized path back to ownership.</p></div></div>
+          <svg class="chip-diagram chip-diagram--legacy" viewBox="0 0 900 240" style="width: 100%; max-width: 900px; height: auto; display: block; margin: 0 auto;">
+        <!-- SC000 Core -->
+        <rect x="15" y="10" width="165" height="65" rx="8" fill="rgba(255, 140, 0, 0.1)" stroke="rgba(255, 140, 0, 0.3)"/>
+        <text x="25" y="30" fill="rgba(255,200,100,0.8)" font-size="9">SC000 Core</text>
+        <text x="25" y="45" fill="rgba(255,200,100,0.5)" font-size="7">ARM Cortex-M0</text>
+        <text x="25" y="60" fill="rgba(255,220,150,0.7)" font-size="7">Secure Processor</text>
+        
+        <!-- AHB Bus -->
+        <rect x="195" y="10" width="480" height="65" rx="8" fill="rgba(0, 100, 200, 0.1)" stroke="rgba(0, 150, 255, 0.3)"/>
+        <text x="205" y="30" fill="rgba(100,200,255,0.8)" font-size="9">AHB Bus</text>
+        <rect x="205" y="38" width="100" height="18" rx="4" fill="rgba(200,50,50,0.2)"/><text x="212" y="50" fill="rgba(255,150,150,0.9)" font-size="7">AES</text>
+        <rect x="315" y="38" width="50" height="18" rx="4" fill="rgba(200,50,50,0.2)"/><text x="322" y="50" fill="rgba(255,150,150,0.9)" font-size="7">SM3</text>
+        <rect x="375" y="38" width="50" height="18" rx="4" fill="rgba(200,50,50,0.2)"/><text x="382" y="50" fill="rgba(255,150,150,0.9)" font-size="7">SM4</text>
+        <rect x="435" y="38" width="55" height="18" rx="4" fill="rgba(200,50,50,0.2)"/><text x="440" y="50" fill="rgba(255,150,150,0.9)" font-size="7">TDES</text>
+        <rect x="500" y="38" width="45" height="18" rx="4" fill="rgba(200,50,50,0.2)"/><text x="505" y="50" fill="rgba(255,150,150,0.9)" font-size="7">DES</text>
+        <rect x="555" y="38" width="45" height="18" rx="4" fill="rgba(200,50,50,0.2)"/><text x="560" y="50" fill="rgba(255,150,150,0.9)" font-size="7">PKE</text>
+        
+        <!-- Memory -->
+        <rect x="15" y="85" width="165" height="55" rx="8" fill="rgba(255, 200, 0, 0.08)" stroke="rgba(255, 200, 0, 0.2)"/>
+        <text x="25" y="102" fill="rgba(255,220,100,0.8)" font-size="9">Memory Subsystem</text>
+        <rect x="25" y="110" width="70" height="16" rx="3" fill="rgba(200,150,0,0.2)"/><text x="32" y="122" fill="rgba(255,220,150,0.9)" font-size="7">RAM</text>
+        <rect x="105" y="110" width="70" height="16" rx="3" fill="rgba(200,150,0,0.2)"/><text x="110" y="122" fill="rgba(255,220,150,0.9)" font-size="7">FLASH</text>
+        
+        <!-- APB Bus -->
+        <rect x="195" y="85" width="480" height="55" rx="8" fill="rgba(0, 180, 100, 0.08)" stroke="rgba(0, 200, 120, 0.2)"/>
+        <text x="205" y="102" fill="rgba(100,220,150,0.8)" font-size="9">APB Bus (Peripherals)</text>
+        <rect x="205" y="110" width="55" height="16" rx="3" fill="rgba(0,150,100,0.2)"/><text x="210" y="122" fill="rgba(100,220,150,0.9)" font-size="7">Timer</text>
+        <rect x="270" y="110" width="55" height="16" rx="3" fill="rgba(0,150,100,0.2)"/><text x="275" y="122" fill="rgba(100,220,150,0.9)" font-size="7">WDT</text>
+        <rect x="335" y="110" width="55" height="16" rx="3" fill="rgba(0,150,100,0.2)"/><text x="340" y="122" fill="rgba(100,220,150,0.9)" font-size="7">RNG1</text>
+        <rect x="400" y="110" width="50" height="16" rx="3" fill="rgba(0,150,100,0.2)"/><text x="405" y="122" fill="rgba(100,220,150,0.9)" font-size="7">I2C</text>
+        <rect x="460" y="110" width="55" height="16" rx="3" fill="rgba(0,150,100,0.2)"/><text x="465" y="122" fill="rgba(100,220,150,0.9)" font-size="7">GPIO</text>
+        <rect x="525" y="110" width="50" height="16" rx="3" fill="rgba(0,150,100,0.2)"/><text x="530" y="122" fill="rgba(100,220,150,0.9)" font-size="7">SCI</text>
+        
+        <!-- Security & Control -->
+        <rect x="15" y="150" width="165" height="45" rx="8" fill="rgba(0, 212, 212, 0.08)" stroke="rgba(0, 212, 212, 0.2)"/>
+        <text x="25" y="167" fill="rgba(0,255,255,0.8)" font-size="9">Security</text>
+        <rect x="25" y="175" width="60" height="14" rx="3" fill="rgba(0,180,180,0.2)"/><text x="32" y="186" fill="rgba(0,255,255,0.9)" font-size="7">RNG2</text>
+        <rect x="95" y="175" width="80" height="14" rx="3" fill="rgba(0,180,180,0.2)"/><text x="102" y="186" fill="rgba(0,255,255,0.9)" font-size="7">Temp Sensor</text>
+        
+        <!-- Interfaces -->
+        <rect x="690" y="10" width="195" height="185" rx="8" fill="rgba(255, 140, 0, 0.08)" stroke="rgba(255, 140, 0, 0.2)"/>
+        <text x="700" y="30" fill="rgba(255,200,100,0.8)" font-size="9">External Interfaces</text>
+        <rect x="700" y="38" width="85" height="18" rx="4" fill="rgba(200,150,0,0.2)"/><text x="707" y="50" fill="rgba(255,220,150,0.9)" font-size="7">LA / LB</text>
+        <rect x="795" y="38" width="75" height="18" rx="4" fill="rgba(200,150,0,0.2)"/><text x="802" y="50" fill="rgba(255,220,150,0.9)" font-size="7">GPIO0/1</text>
+        <rect x="700" y="62" width="175" height="18" rx="4" fill="rgba(200,150,0,0.2)"/><text x="707" y="75" fill="rgba(255,220,150,0.9)" font-size="7">ISO7816 (CLK/RST/IO)</text>
+        <rect x="700" y="86" width="90" height="14" rx="3" fill="rgba(200,150,0,0.15)"/><text x="707" y="97" fill="rgba(255,220,150,0.8)" font-size="7">NFC RF</text>
+      </svg>
+          <div class="chip-summary chip-summary--nfc" aria-label="HYPERSEED 72B Image Reading Summary">
+            <span>Reading summary</span>
+            <strong>Secure Core</strong>
+            <i aria-hidden="true">NFC RF</i>
+            <strong>Recovery Payload</strong>
+            <p>Recovery data follows a separate chip path to keep device loss, primary system failure, and ownership recovery separate.</p>
+          </div>
+          <svg class="chip-mobile-diagram chip-mobile-diagram--nfc" viewBox="0 0 420 400" role="img" aria-label="HYPERSEED 72B mobile version simplified architecture diagram">
+            <text class="mobile-diagram-kicker" x="24" y="34">Mobile Diagram</text>
+            <rect class="mobile-diagram-panel mobile-diagram-panel--warm" x="24" y="58" width="372" height="82" rx="10"></rect>
+            <text class="mobile-diagram-title" x="210" y="94">Secure Core</text>
+            <text class="mobile-diagram-subtitle" x="210" y="120">SC000 / Crypto Engine</text>
+            <line class="mobile-diagram-flow" x1="58" y1="180" x2="166" y2="180"></line>
+            <text class="mobile-diagram-label" x="210" y="186">NFC RF</text>
+            <line class="mobile-diagram-flow" x1="254" y1="180" x2="362" y2="180"></line>
+            <rect class="mobile-diagram-panel mobile-diagram-panel--secure" x="24" y="222" width="372" height="92" rx="10"></rect>
+            <text class="mobile-diagram-title" x="210" y="258">Recovery Payload</text>
+            <text class="mobile-diagram-subtitle" x="210" y="286">Offline Ownership Path</text>
+            <rect class="mobile-diagram-strip" x="24" y="342" width="372" height="28" rx="7"></rect>
+            <text class="mobile-diagram-strip-text" x="210" y="361">CC EAL6+ Reference / Recovery Boundary</text>
+          </svg>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section--dark threat-section" aria-labelledby="threat-title">
+      <header class="section-heading"><span class="chapter-index">IV</span><div><p class="eyebrow">Threat Paths · THREAT PATHS</p><h2 id="threat-title">Risk takes shortcuts.<br>Architecture cannot.</h2></div></header>
+      <div class="threat-matrix">
+        <div class="threat-matrix__head"><span>event</span><span>protected borders</span><span>System response</span></div>
+        <div class="reveal"><strong>General system is under attack</strong><span>TEE/Secure Element</span><p>Sensitive signing operations and keys remain within isolated hardware paths.</p></div>
+        <div class="reveal"><strong>Device is missing or damaged</strong><span>Offline recovery</span><p>Reconstruct the ownership path with stand-alone NFC recovery material.</p></div>
+        <div class="reveal"><strong>Cloud service is unavailable</strong><span>End-side capability</span><p>Local vaults and hardware signing are not subject to cloud availability.</p></div>
+        <div class="reveal"><strong>Malicious application requests signature</strong><span>User confirmation</span><p>The signature path is separated from the application request, allowing authorization to occur at a controlled boundary.</p></div>
+      </div>
+      <p class="scope-note reveal"><strong>Certification scope description:</strong>CC EAL2+ and CC EAL6+ are certification references for corresponding components, modules or evaluation scopes, and do not mean that the entire machine or all commercial configurations have obtained the same level of certification.</p>
+    </section>
+
+    <section class="section security-proof" aria-labelledby="proof-title">
+      <div><p class="eyebrow">PROOF, NOT POSTURE</p><h2 id="proof-title">Trustworthy, without relying on a word<br>"Please trust us."</h2><p>Security architecture and market access are two different pieces of evidence: the former shows how keys are protected; the latter shows how devices are subjected to public testing.</p></div>
+      <div class="proof-links reveal"><a href="compliance.html"><span>01</span><strong>View device passport</strong><small>GMS · FCC · CB · UN38.3 · CE</small></a><a href="phone.html"><span>02</span><strong>View the terminal hosting it</strong><small>MAG1 PRODUCT DOSSIER</small></a><a href="mailto:official@magne.ai"><span>03</span><strong>Request technical information</strong><small>OFFICIAL@MAGNE.AI</small></a></div>
+      <div class="page-next reveal"><span>NEXT FILE</span><a href="compliance.html">After security, there is a market path that can be verified <strong>COMPLIANCE →</strong></a></div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="footer__brand"><span class="wordmark__mark" aria-hidden="true">///</span><strong>MAGNE.AI</strong><p>Three independently verifiable layers. No layer relies on another to vouch for it.</p></div>
+    <div class="footer__column"><strong>read</strong><a href="./">INDEX</a><a href="phone.html">Phone</a><a href="ai.html">AI</a></div>
+    <div class="footer__column"><strong>verify</strong><a href="compliance.html">Compliance Overview</a><a href="fcc-lookup.html">FCC</a><a href="gsma-tac-lookup.html">GSMA TAC</a></div>
+    <div class="footer__column"><strong>connect</strong><a href="partners.html">cooperate</a><a href="contact.html">contact</a></div>
+    <div class="footer__external"><div class="footer__external-group"><strong>Resources</strong><a href="media-kit.html">Media Kit</a><a href="mag1-guide/index.html">MAG1 User Guide</a><a href="https://w3.magne.ai" target="_blank" rel="noopener">W3 Web3 Portal ↗</a><a href="https://web3.magne.ai" target="_blank" rel="noopener">White paper ↗</a></div><div class="footer__external-group"><strong>Follow</strong><a href="https://github.com/magne-ai" target="_blank" rel="noopener">GitHub</a><a href="https://x.com/Magne_Ai" target="_blank" rel="noopener">X</a><a href="https://t.me/MagneAI" target="_blank" rel="noopener">Telegram</a><a href="https://www.youtube.com/@MagneAI" target="_blank" rel="noopener">YouTube</a><a href="https://discord.gg/tX2xRAkd" target="_blank" rel="noopener">Discord</a></div></div><div class="footer__legal"><span>© 2026 MAGNE.AI</span><span>Trust Profile · FILE 04</span><a href="privacy-policy.html">Privacy Policy</a></div>
+  </footer>
+</body>
+</html>

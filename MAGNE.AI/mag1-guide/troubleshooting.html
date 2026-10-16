@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-Hant" data-guide-alternates="{&quot;zh-Hant&quot;:&quot;troubleshooting.html&quot;,&quot;en&quot;:&quot;../en/mag1-guide/troubleshooting.html&quot;}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f2eee4">
+  <title>故障排查 | MAG1 使用指南</title>
+  <meta name="description" content="本使用說明書針對 MAG1WW60-1 開發軟體版本（MAG1CW60-1.pac，Android 15 / userdebug）；系統顯示版本號為 MAG1WW60-1。MAG1 另有 WW53、MAG1WW60、MAG1WW64 等韌體版本，功能與操作可能不同。既有 WW53 畫面及步驟屬歷史參考，需在 MAG1WW60-1 重新核驗；MAG1WW64 證據另列日期與範圍。">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="guide-firmware" content="MAG1WW60-1">
+  <meta name="guide-target-firmware" content="MAG1WW60-1">
+  <meta name="guide-capture-firmware" content="MAG1WW60-1">
+  <meta name="guide-evidence-firmwares" content="MAG1WW60-1">
+  <meta name="guide-revision" content="1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans+TC:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/site.css?v=lang-4-ga4-2">
+  <link rel="stylesheet" href="../assets/mag1-guide/guide.css?v=models-20261016">
+  <script src="../assets/site.js?v=guide-1" defer></script>
+  <script src="../assets/mag1-guide/guide.js?v=1.0" defer></script>
+</head>
+<body class="page-mag1-guide">
+<a class="skip-link" href="#main">跳至主要內容</a>
+  <div class="reading-progress" aria-hidden="true"><span></span></div>
+
+  <header class="masthead">
+    <div class="masthead__edition"><span>MAGNE.AI</span><span>產品檔案 · DOSSIER 01</span></div>
+      <a class="wordmark" href="../" aria-label="MAGNE.AI 首頁"><span class="wordmark__mark" aria-hidden="true">///</span><span class="wordmark__logo"><img src="../assets/images/magne-logo-black-wide.png" width="1181" height="116" alt="MAGNE.AI"></span></a>
+    <div class="masthead__meta"><span>MAG1 · GEN 1</span><span>PRODUCT FILE</span></div>
+  </header>
+  <nav class="site-nav" aria-label="主要導覽">
+    <a class="site-nav__brand" href="../" aria-label="MAGNE.AI 首頁">MAGNE.AI</a>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu"><span class="sr-only">開啟導覽</span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
+    <div class="site-nav__menu" id="site-menu">
+      <a href="../">INDEX</a><a href="../phone.html" aria-current="page">PHONE</a><a href="../ai.html">AI</a><a href="../network.html">NETWORK</a><a href="../security.html">SECURITY</a><a href="../compliance.html">COMPLIANCE</a><a href="../progress.html">PROGRESS</a><a href="../partners.html">PARTNERS</a><a href="../media-kit.html">MEDIA KIT</a><a href="../contact.html">CONTACT</a><a href="https://w3.magne.ai/" target="_blank" rel="noopener">W3 ↗</a>
+    </div>
+    <div class="site-nav__actions"><div class="language-menu"><span>繁中</span></div><a class="nav-cta" href="https://payment.magne.ai/buy">預購 MAG1 ↗</a></div>
+  </nav>
+<div class="mag1-guide">
+<nav class="guide-nav" aria-label="指南導覽"><a href="quickstart.html">快速入門</a><a href="index.html#catalog">完整指南</a><a href="troubleshooting.html">故障排查</a><a href="status.html">核驗狀態</a><a href="media.html">截圖與影片</a><a href="full-manual.html">整冊閱讀 / 列印</a><a href="evidence-review.html">版本與相容性</a></nav><div class="review-note"><strong>MAG1 使用說明書 · 版本 1.0</strong><span>Android 15 · 僅展示 MAG1WW60-1 素材與實測結果。</span></div><div class="reading-layout"><main id="main"><p class="eyebrow">TROUBLESHOOTING / 故障排查</p><h1>先定位，<br>再改變一項。</h1><p class="lead">記錄發生時間、版本、錯誤文字和復現步驟。認證、付款、刪除、重置前停下；不要把清空資料當作第一步。</p><div class="table-wrap" tabindex="0" role="region" aria-label="症狀 / 先做什麼 / 相關步驟"><table><thead><tr><th scope="col">症狀</th><th scope="col">先做什麼</th><th scope="col">相關步驟</th></tr></thead><tbody><tr><td>無法聯網</td><td>先看飛航模式和 Internet，再檢查 SIM、VPN、DNS 與門戶認證。一次只改一項。</td><td><a href="pages/wifi.html">開啟指南 →</a></td></tr><tr><td>通知延遲</td><td>按 App 通知 → 渠道 → 勿擾 → Battery 自啟動/鎖屏停止 → 網路逐層檢查。</td><td><a href="pages/battery.html">開啟指南 →</a></td></tr><tr><td>螢幕看不清/熄屏快</td><td>檢查 Display 中亮度、自動亮度、Screen timeout 和輔助顯示設定。</td><td><a href="pages/display.html">開啟指南 →</a></td></tr><tr><td>聲音或振動異常</td><td>區分媒體、通話、鈴聲、通知、鬧鐘；檢查耳機輸出及勿擾。</td><td><a href="pages/sound.html">開啟指南 →</a></td></tr><tr><td>USB 只充電</td><td>檢查資料線、解鎖、USB 用途及電腦識別；勿把充電線當資料線。</td><td><a href="pages/usb.html">開啟指南 →</a></td></tr><tr><td>藍牙搜不到</td><td>配件進入配對模式，核對距離與身份；配對碼不一致立即取消。</td><td><a href="pages/bluetooth.html">開啟指南 →</a></td></tr><tr><td>空間不足</td><td>先看 Storage 分類，再處理已確認備份的內容；不清錢包資料。</td><td><a href="pages/storage.html">開啟指南 →</a></td></tr><tr><td>錢包打不開/恢復失敗</td><td>保留資料，核對包與版本；缺測試帳戶或認證時停在確認前。</td><td><a href="pages/mag-wallet.html">開啟指南 →</a></td></tr><tr><td>系統版本不同</td><td>對照實際 Build 與地區，重新確認入口；當前不安裝更新或刷機。</td><td><a href="pages/updates.html">開啟指南 →</a></td></tr><tr><td>進液/破損/異常發熱</td><td>停止使用和充電，聯絡官方支援；當前規格不承諾浸水使用。</td><td><a href="pages/maintenance.html">開啟指南 →</a></td></tr></tbody></table></div><section id="report"><h2>聯絡支援前準備</h2><ul><li>產品型號和 Build；App 名稱、包名與版本。</li><li>錯誤文字、發生時間、網路/配件條件、最短復現步驟。</li><li>無個人資料的截圖；只透過私密官方渠道提供必要訂單資訊。</li><li>不要傳送私鑰、助記詞、密碼、驗證碼或公開個人身份材料。</li></ul></section><p>產品支援入口見官網 Contact 頁面：official@magne.ai。沒有傳送外部訊息；保修期限和服務條款等待正式政策。</p><section id="wallet-network-permissions"><h2>錢包、連線與權限排查</h2><ul><li>無法掃碼：檢查目前使用者的相機權限；採樣時尚未授予，不代表缺少掃碼實作。</li><li>網路或餘額不同：確認主網／測試網、網路 ID 與 RPC。MAGNE／MHASH 配置為測試網；USE_TESTNET 不會一致套用到所有鏈。</li><li>WalletConnect 拒絕網路：對照 DApp 請求與初始批准鏈；自訂網路仍需聯調。</li><li>生物識別不可用：取消敏感操作並確認受支援的認證方式；不可假定每條簽名路徑都強制第二次指紋認證。</li><li>NFC 恢復失敗：確認卡片相容性與備份版本，不要覆寫唯一備份或清除錢包資料。</li><li>NFT 頁面空白：目前分析的資產頁仍標示 developing。</li></ul><p><a href="pages/mag-wallet.html#limits">錢包限制 →</a></p></section><section id="developer-build-issues"><h2>版本特定問題</h2><ul><li>MAG1WW60-1 相機實測在成功拍攝前記錄 freezer／Binder 退出，請記錄時間、App／韌體與可見症狀；尚未證實為 AI 或感測器故障。</li><li>短時間 MAG1WW60-1 行動網路觀察沒有重現舊問題，不代表 5G 已普遍修復。若工程要求重現基帶故障，先確認 Modem log 已啟用且持續寫入，再重現；一般使用不需開啟診斷日誌。</li><li>USB 480 Mbit/s 是該次連線檔位；後續檢查需已知可傳資料的線材及主機，目前未確定限制來自哪個部件。</li><li>翻譯快捷開關缺少時，先確認韌體及受支援的啟用方式；測試曾臨時加入工程開關，不是已驗證的預設配置。</li></ul><p class="mono">證據來源: <a href="evidence-review.html#src-functional">functional</a> · <a href="evidence-review.html#src-system">system</a> · <a href="evidence-review.html#src-usb-typec">usb-typec</a></p></section></main></div>
+</div>
+<footer class="footer">
+    <div class="footer__brand"><span class="wordmark__mark" aria-hidden="true">///</span><strong>MAGNE.AI</strong><p>智能終端，不只是智能手機。</p></div>
+    <div class="footer__column"><strong>閱讀</strong><a href="../">INDEX</a><a href="../ai.html">AI</a><a href="../network.html">Network</a></div>
+    <div class="footer__column"><strong>驗證</strong><a href="../compliance.html">合規總覽</a><a href="../fcc-lookup.html">FCC</a><a href="../gsma-tac-lookup.html">GSMA TAC</a></div>
+    <div class="footer__column"><strong>連接</strong><a href="https://payment.magne.ai/buy">預購</a><a href="../contact.html">聯絡</a></div>
+    <div class="footer__external"><div class="footer__external-group"><strong>資源</strong><a href="../media-kit.html">Media Kit</a><a href="index.html">MAG1 使用指南</a><a href="https://w3.magne.ai" target="_blank" rel="noopener">W3 Web3 入口 ↗</a><a href="https://web3.magne.ai" target="_blank" rel="noopener">白皮書 ↗</a></div><div class="footer__external-group"><strong>關注</strong><a href="https://github.com/magne-ai" target="_blank" rel="noopener">GitHub</a><a href="https://x.com/Magne_Ai" target="_blank" rel="noopener">X</a><a href="https://t.me/MagneAI" target="_blank" rel="noopener">Telegram</a><a href="https://www.youtube.com/@MagneAI" target="_blank" rel="noopener">YouTube</a><a href="https://discord.gg/tX2xRAkd" target="_blank" rel="noopener">Discord</a></div></div><div class="footer__legal"><span>© 2026 MAGNE.AI</span><span>產品檔案 · DOSSIER 01</span><a href="../privacy-policy.html">隱私政策</a></div>
+  </footer>
+</body>
+</html>
