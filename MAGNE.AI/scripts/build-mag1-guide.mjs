@@ -35,13 +35,16 @@ export async function buildMag1Guide(root) {
   <meta name="description" content="${escape(page.description)}">
   <meta name="robots" content="noindex,nofollow">
   <meta name="guide-firmware" content="${escape(locale.document.firmware)}">
+  <meta name="guide-target-firmware" content="${escape(locale.document.targetFirmware || locale.document.firmware)}">
+  <meta name="guide-capture-firmware" content="${escape(locale.document.captureFirmware || locale.document.firmware)}">
+  <meta name="guide-evidence-firmwares" content="${escape((locale.document.evidenceBuilds || [locale.document.firmware]).join(', '))}">
   <meta name="guide-revision" content="${escape(locale.document.guideRevision)}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   ${fonts}
   <link rel="icon" href="${posix.relative(posix.dirname(destination), "favicon.svg")}" type="image/svg+xml">
   <link rel="stylesheet" href="${assetRoot}/site.css?v=lang-4-ga4-2">
-  <link rel="stylesheet" href="${assetRoot}/mag1-guide/guide.css?v=main-1">
+  <link rel="stylesheet" href="${assetRoot}/mag1-guide/guide.css?v=models-20261016">
   <script src="${assetRoot}/site.js?v=guide-1" defer></script>
   <script src="${assetRoot}/mag1-guide/guide.js?v=${encodeURIComponent(locale.document.guideRevision)}" defer></script>
 </head>

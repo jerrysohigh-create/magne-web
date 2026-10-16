@@ -42,7 +42,7 @@
   dialog.innerHTML = english
     ? '<div class="viewer-bar"><span>MAG1 · WHITE / DEVICE CAPTURE</span><button class="viewer-close" type="button" aria-label="Close enlarged view">Close ×</button></div><div class="viewer-content"></div><p class="viewer-caption"></p>'
     : '<div class="viewer-bar"><span>MAG1 · WHITE / 真機畫面</span><button class="viewer-close" type="button" aria-label="關閉放大畫面">關閉 ×</button></div><div class="viewer-content"></div><p class="viewer-caption"></p>';
-  const firmware = document.querySelector('meta[name="guide-firmware"]')?.content || '';
+  const firmware = document.querySelector('meta[name="guide-capture-firmware"]')?.content || document.querySelector('meta[name="guide-firmware"]')?.content || '';
   dialog.querySelector('.viewer-caption').textContent = `${english ? 'White device display frame' : '白色機身展示框'} · English UI · ${firmware}`;
   document.querySelector('.mag1-guide').append(dialog);
   dialog.querySelector('button').addEventListener('click', () => dialog.close());
@@ -52,6 +52,9 @@
     const link = e.target.closest('a[href]');
     if (!link || !/assets\/mag1-guide\/[^/]+\/(screenshots|videos)\/[^?#]+\.(png|mp4)$/.test(link.getAttribute('href')) || e.ctrlKey || e.metaKey || e.shiftKey) return;
     e.preventDefault();
+    const assetBuild = new URL(link.href).pathname.match(/assets\/mag1-guide\/([^/]+)\//)?.[1];
+    const capturedBuild = assetBuild === 'MAG1CM60-1' ? 'MAG1WW60-1' : (assetBuild || firmware);
+    dialog.querySelector('.viewer-caption').textContent = `${english ? 'White device display frame' : '白色機身展示框'} · English UI · ${capturedBuild}`;
     const media = document.createElement(link.href.endsWith('.mp4') ? 'video' : 'img');
     media.src = link.href;
     if (media.tagName === 'VIDEO') { media.controls = true; media.playsInline = true; media.preload = 'none'; }

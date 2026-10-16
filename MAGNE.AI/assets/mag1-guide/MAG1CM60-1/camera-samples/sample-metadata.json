@@ -1,0 +1,127 @@
+{
+  "firmware": "MAG1WW60-1",
+  "date": "2026-10-16",
+  "app": "Camera 1.0000.19",
+  "photos": {
+    "capture": {
+      "mode": "normal",
+      "original": "IMG_20261016_113902.jpg",
+      "width": 3072,
+      "height": 4416,
+      "megapixels": 13.565952,
+      "sha256": "084a620ea7b708730517a9205b9d45c9f0419dade85100e9eece8b6e9710f1fa",
+      "deviceCopyMatched": true,
+      "locationCoordinatesPresent": false,
+      "gpsIFDKeys": [
+        16,
+        17
+      ],
+      "exifOrientation": 0,
+      "watermarkSetting": "Frame watermark / Black"
+    },
+    "ultraRes": {
+      "mode": "ultra",
+      "original": "IMG_20261016_114000.jpg",
+      "width": 6144,
+      "height": 8432,
+      "megapixels": 51.806208,
+      "sha256": "b21e996b1ab530975b796b3758c723539df03fc9d60aca43b0d0f13ed4aba261",
+      "deviceCopyMatched": true,
+      "locationCoordinatesPresent": false,
+      "gpsIFDKeys": [
+        16,
+        17
+      ],
+      "exifOrientation": 0,
+      "watermarkSetting": "Frame watermark / Black"
+    }
+  },
+  "beforeFrameDimensions": {
+    "normal": {
+      "width": 3072,
+      "height": 4080,
+      "megapixels": 12.53376,
+      "original": "IMG_20261016_111645.jpg"
+    },
+    "ultra": {
+      "mode": "ultra",
+      "original": "IMG_20261016_111426.jpg",
+      "width": 6144,
+      "height": 8064,
+      "megapixels": 49.545216,
+      "sha256": "bfb000d87536bb9a0ce71154c0925e1515e219aa5ce91434ab066411eeab2a29",
+      "deviceCopyMatched": true,
+      "locationCoordinatesPresent": false,
+      "gpsIFDKeys": [
+        16,
+        17
+      ],
+      "watermarkSetting": "MAGNE.AI MAG1",
+      "watermarkVisuallyConfirmed": true
+    }
+  },
+  "video": {
+    "original": "VID_20261016_111835.mp4",
+    "sha256": "43fc7bf82fa69d3f3622b11bc0db0b498c7e26bf60d2398afb07f1260e17efd5",
+    "deviceCopyMatched": true,
+    "requestedMode": "UHD 4K, 30fps",
+    "screenrecordConcurrent": false,
+    "nativePhotoWatermarkEnabled": true,
+    "streams": [
+      {
+        "kind": "vide",
+        "codec": "hvc1",
+        "samples": 250,
+        "durationSeconds": 8.296133333333334,
+        "averageSamplesPerSecond": 30.13452049950981,
+        "timingRuns": 75,
+        "width": 3840,
+        "height": 2160
+      }
+    ]
+  },
+  "webVideo": [
+    {
+      "kind": "vide",
+      "codec": "avc1",
+      "samples": 250,
+      "durationSeconds": 8.333333333333334,
+      "averageSamplesPerSecond": 30.0,
+      "timingRuns": 1,
+      "width": 2160,
+      "height": 3840
+    }
+  ],
+  "comparisonNote": "The simultaneous tutorial recording averaged 26.49 fps. The separate camera-only sample is the published original and averaged 30.13 fps. This is not a sustained performance or image-quality benchmark.",
+  "watermark": {
+    "source": "native camera",
+    "frame": true,
+    "background": "Black",
+    "text": "MAG1 and exposure metadata",
+    "universalCustomText": "Setting became No when Frame was enabled",
+    "video": "No native video watermark control found; published 4K sample has no watermark"
+  },
+  "files": {
+    "capture-frame.jpg": {
+      "bytes": 5696767,
+      "sha256": "084a620ea7b708730517a9205b9d45c9f0419dade85100e9eece8b6e9710f1fa"
+    },
+    "uhd-4k-original.mp4": {
+      "bytes": 26449648,
+      "sha256": "43fc7bf82fa69d3f3622b11bc0db0b498c7e26bf60d2398afb07f1260e17efd5"
+    },
+    "uhd-4k-poster.jpg": {
+      "bytes": 218659,
+      "sha256": "4e641bd41d6205b0a139d2c4160daadc77148f41ee6d609f756400d06967b47f"
+    },
+    "uhd-4k-web.mp4": {
+      "bytes": 32834465,
+      "sha256": "0cc523527a968b757c45f11e958d2f5249174d713ce49d50cf1f0af083fbeefa"
+    },
+    "ultra-res-frame.jpg": {
+      "bytes": 13569427,
+      "sha256": "b21e996b1ab530975b796b3758c723539df03fc9d60aca43b0d0f13ed4aba261"
+    }
+  },
+  "firmwarePackage": "MAG1CW60-1.pac"
+}

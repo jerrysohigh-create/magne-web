@@ -1,0 +1,25 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:05.854
+Check connection. Overview badges include earlier saved results.
+
+00:00:05.854 --> 00:00:07.331
+ASR: inspect the known English audio and query service languages.
+
+00:00:07.331 --> 00:00:20.967
+Submit the sample to the phone ASR service and inspect its returned text.
+
+00:00:20.967 --> 00:00:24.754
+Returned transcript: the weather is sunny today. This is one sample.
+
+00:00:24.754 --> 00:00:26.324
+TTS uses the independent Kokoro runtime on phone CPU, not the FIH TTS service.
+
+00:00:26.324 --> 00:01:05.316
+Generate on the phone. Model loading and USB transfer take additional time.
+
+00:01:05.316 --> 00:01:07.262
+Inspect the actual WAV result, timings and runtime warnings.
+
+00:01:07.262 --> 00:01:13.715
+Play on the computer. Soundtrack uses this run’s generated WAV.
